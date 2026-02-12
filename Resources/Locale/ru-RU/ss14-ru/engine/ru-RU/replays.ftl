@@ -29,6 +29,7 @@ cmd-replay-error-args = Неверное количество аргументо
 cmd-replay-error-no-replay = В данный момент запись не воспроизводится.
 cmd-replay-error-already-loaded = Запись уже загружена.
 cmd-replay-error-run-level = Невозможно загрузить запись при подключении к серверу.
+cmd-replay-toggleui-desc = открыть меню реплеев.
 
 # Команды записи
 
