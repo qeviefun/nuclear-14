@@ -1,8 +1,8 @@
 - type: entity
-  name: шакал
+  name: jackal
   id: N14MobJackal
   parent: N14MobBaseHostile
-  description: Это не собака, ЭТО НЕ СОБАКА!!!
+  description: This is not a dog, THIS IS NOT A DOG!!!
   components:
   - type: Sprite
     drawdepth: Mobs
