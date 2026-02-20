@@ -1,7 +1,7 @@
 - type: radioChannel
   id: Bazar
   name: chat-radio-bazar
-  keycode: 'ba'
+  keycode: 'x'
   frequency: 6996
   color: "#f8aa01"
   longRange: true

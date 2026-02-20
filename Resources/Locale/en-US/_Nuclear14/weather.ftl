@@ -16,3 +16,6 @@ weather-storm = Storm is approaching.
 
 weather-sandstorm-extreme = Extreme sandstorm is approaching.
 weather-snowfall-extreme = Extreme snowfall is approaching.
+weather-radioactive-particles = Radioactive fallout is approaching. [color=red]Warning: seek shelter![/color]
+weather-radioactive-rain = Radioactive rain is approaching. [color=red]Warning: seek shelter![/color]
+

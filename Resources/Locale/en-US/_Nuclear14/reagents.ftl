@@ -137,7 +137,7 @@ reagent-name-extract-datura = datura extract
 reagent-desc-extract-datura = A root that is often harvested for its venom which is commonly put on melee weapons. Tastes terrible, it burns your mouth, it makes your stomach feel sick.
 reagent-name-extract-honey-mesquite-pod = honey mesquite pod extract
 reagent-desc-extract-honey-mesquite-pod = A vegetable that vaguely resembles a pea pod. Tastes of buckwheat and clover honey.
-reagent-name-extract-glowpepper = glowpepper juice 
+reagent-name-extract-glowpepper = glowpepper juice
 reagent-desc-extract-glowpepper = A glowing pepper; something tells you eating this would probably hurt your mouth. Tastes like glorious nuclear fire.
 reagent-name-extract-maize = maize extract
 reagent-desc-extract-maize = Corn before there was corn, this vegetable is all sorts of different colours. Tastes slightly sweet and starchy.
@@ -283,6 +283,8 @@ reagent-desc-cateye = A reagent that improves your low-light vision.
 reagent-name-daytripper = daytripper
 reagent-desc-daytripper = The perfect escape for your horrible life.
 
+reagent-name-fev = FEV
+reagent-desc-fev = A megavirus protected by a protein shell, strengthened with ionized hydrogen molecules.
 
 # Meta
 reagent-name-movespeedmod-mixture = jet

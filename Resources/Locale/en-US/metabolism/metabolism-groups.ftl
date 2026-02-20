@@ -5,3 +5,5 @@ metabolism-group-alcohol = Alcohol
 metabolism-group-food = Food
 metabolism-group-drink = Drink
 metabolism-group-gas = Gas
+metabolism-group-plant-metabolisms = Plant metabolism
+metabolism-group-N14Virus = Viruses

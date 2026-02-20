@@ -3,7 +3,7 @@
   graph: DecorationFlagEmpty
   startNode: start
   targetNode: FlagEmpty
-  category: construction-category-furniture 
+  category: construction-category-furniture
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -15,6 +15,7 @@
     - !type:TileNotBlocked
 
 - type: construction
+  name: NCR Flag
   id: N14DecorationFlagNCR # NCR
   graph: DecorationFlagNCR
   startNode: start
@@ -32,6 +33,7 @@
 
 - type: construction
   id: N14DecorationFlagYuma # Yuma Tribe
+  name: Yuma Tribe Flag
   graph: DecorationFlagYuma
   startNode: start
   targetNode: FlagYuma
@@ -48,6 +50,7 @@
 
 - type: construction
   id: N14DecorationFlagBrotherhoodMidwest # MW Brotherhood
+  name: BoS Midwest Flag
   graph: DecorationFlagBrotherhoodMidwest
   startNode: start
   targetNode: FlagBrotherhoodMidwest
@@ -64,6 +67,7 @@
 
 - type: construction
   id: N14DecorationFlagLocust # Raiders / Locust
+  name: Raider Flag
   graph: DecorationFlagLocust
   startNode: start
   targetNode: FlagLocust
@@ -80,6 +84,7 @@
 
 - type: construction
   id: N14DecorationFlagGunner # Gunners
+  name: Gunner Flag
   graph: DecorationFlagGunner
   startNode: start
   targetNode: FlagGunner
@@ -96,6 +101,7 @@
 
 - type: construction
   id: N14DecorationFlagFollowers # Followers
+  name: Followers Flag
   graph: DecorationFlagFollowers
   startNode: start
   targetNode: FlagFollowers
@@ -112,6 +118,7 @@
 
 - type: construction
   id: N14DecorationFlagLegion # Legion
+  name: Legion Flag
   graph: DecorationFlagLegion
   startNode: start
   targetNode: FlagLegion

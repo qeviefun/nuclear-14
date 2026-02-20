@@ -8,6 +8,7 @@ reagent-name-lemondrop = lemon drop
 reagent-desc-lemondrop = A simple, tangy, and tasty drink consisting of lemon, vodka, and simple syrup. Refreshing!
 
 reagent-name-greengrass = green grass
+reagent-desc-greengrass = Green grass, or grune wiese, is a peculiar green cocktail from the now-defunct GDR. Popular among the disillusioned and the insincere alike.
 
 reagent-name-daiquiri = modern daiquiri
 reagent-desc-daiquiri = A sweet mix of deadrum and lime, a favourite of writers and politicians.

@@ -6432,15 +6432,15 @@ Entries:
 - author: Spatison
   changes:
     - type: Add
-      message: Added lying down system / Добавлена система лежания
+      message: Added lying down system.
     - type: Tweak
       message: >-
         Lying down now uses do-afters that are visible to other people to
         indicate what is going on.
     - type: Add
-      message: Added telescope system / Добавлена система прицеливания
+      message: Added telescope system.
     - type: Tweak
-      message: Now you can aim from Hristov / Теперь можно прицеливаться из Христова
+      message: Now you can aim from Hristov.
   id: 6369
   time: '2024-09-19T02:18:35.0000000+00:00'
   url: https://github.com/Simple-Station/Einstein-Engines/pull/815
@@ -6586,7 +6586,7 @@ Entries:
 - author: Spatison
   changes:
     - type: Add
-      message: Added discounts in uplink / Добавлены скидки в аплинк
+      message: Added discounts to the uplink.
   id: 6383
   time: '2024-09-21T22:46:59.0000000+00:00'
   url: https://github.com/Simple-Station/Einstein-Engines/pull/930
@@ -6806,8 +6806,7 @@ Entries:
   changes:
     - type: Fix
       message: >-
-        The size of the Lobby cannot be changed now / Размер лобби теперь нельзя
-        изменить
+        The size of the Lobby cannot be changed now.
   id: 6403
   time: '2024-09-30T16:29:47.0000000+00:00'
   url: https://github.com/Simple-Station/Einstein-Engines/pull/962
@@ -9522,7 +9521,7 @@ Entries:
     - type: Add
       message: >-
         Added 2 new traits related to CyberEyes. Light Amplification Module, and
-        Thermographic Scanner Module. 
+        Thermographic Scanner Module.
   id: 6658
   time: '2025-01-10T05:14:46.0000000+00:00'
   url: https://github.com/Simple-Station/Einstein-Engines/pull/1477
@@ -10079,12 +10078,12 @@ Entries:
     - type: Add
       message: >-
         The much-requested Psionics Guidebook has returned, now with all new
-        up-to-date information. 
+        up-to-date information.
     - type: Remove
       message: >-
         Removed "GLIMMERLOOSE". It's no longer possible for glimmer to start a
         chain of events that ends the round if epistemics isn't destroyed. You
-        can ALWAYS recover from high glimmer now. 
+        can ALWAYS recover from high glimmer now.
     - type: Tweak
       message: >-
         All glimmer events have had their thresholds tweaked to reflect the fact
@@ -10301,7 +10300,7 @@ Entries:
     - type: Tweak
       message: >-
         The "Scream Action" no longer appears by default. It may be set in your
-        server's configuration to spawn or not. 
+        server's configuration to spawn or not.
   id: 6725
   time: '2025-01-18T20:28:56.0000000+00:00'
   url: https://github.com/Simple-Station/Einstein-Engines/pull/1589
@@ -10359,7 +10358,7 @@ Entries:
         most of the useless single item researches into larger essential
         categories. Basic Weapons, Advanced Weapons, Prototype Weapons. Going
         forwards, these three categories will have significantly more exciting
-        options added to them that should make it more worthwhile to pursue. 
+        options added to them that should make it more worthwhile to pursue.
   id: 6731
   time: '2025-01-19T20:44:45.0000000+00:00'
   url: https://github.com/Simple-Station/Einstein-Engines/pull/1602
@@ -10506,7 +10505,7 @@ Entries:
         server's tickrate. It should now be SIGNIFICANTLY less likely to enter a
         plasma fire death spiral. If it does catch fire, just make sure coolant
         is being pumped into the engine, and start blasting it with a fire
-        extinguisher. 
+        extinguisher.
   id: 6744
   time: '2025-01-20T23:13:35.0000000+00:00'
   url: https://github.com/Simple-Station/Einstein-Engines/pull/1618
@@ -10524,7 +10523,7 @@ Entries:
         Singularity and Tesla are now affected by objects thrown into them,
         causing them to change directions. Unless a traitor intervenes (with a
         Singularity Beacon), a "Singuloose" is extremely likely to be blown out
-        to space. 
+        to space.
   id: 6746
   time: '2025-01-21T00:18:24.0000000+00:00'
   url: https://github.com/Simple-Station/Einstein-Engines/pull/1619
@@ -10790,7 +10789,7 @@ Entries:
     - type: Fix
       message: >-
         Harpy, Arachne and Lamia can no longer pick the "No Ears" marking which
-        had no effect as they had no default ear markings. 
+        had no effect as they had no default ear markings.
   id: 6767
   time: '2025-01-26T01:14:42.0000000+00:00'
   url: https://github.com/Simple-Station/Einstein-Engines/pull/1658
@@ -10799,7 +10798,7 @@ Entries:
     - type: Remove
       message: >-
         Removed almost all of the EE DEFAULT playtime requirements. If you're a
-        downstream, set these yourself. 
+        downstream, set these yourself.
   id: 6768
   time: '2025-01-26T02:13:32.0000000+00:00'
   url: https://github.com/Simple-Station/Einstein-Engines/pull/1660
@@ -10983,11 +10982,11 @@ Entries:
     - type: Add
       message: >-
         Clothing now supports having multiple species-specific layers, and
-        species-specific shaders. 
+        species-specific shaders.
     - type: Add
       message: >-
         New "Unpainted" engineering hardsuit, and "Unpainted" Shanlin Tacsuit.
-        More to come soon. 
+        More to come soon.
     - type: Add
       message: >-
         Unpainted variant of the "Shiwei" tacsuit(AKA: Elite suit). This one is
