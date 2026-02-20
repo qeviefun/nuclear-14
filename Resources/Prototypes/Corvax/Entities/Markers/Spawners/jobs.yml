@@ -26,7 +26,7 @@
 - type: entity
   id: N14SpawnPointDean
   parent: N14SpawnPointCenturion
-  name: dean
+  name: decanus
   components:
   - type: SpawnPoint
     job_id: CaesarLegionDean

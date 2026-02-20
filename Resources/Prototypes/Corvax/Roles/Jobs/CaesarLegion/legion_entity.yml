@@ -27,7 +27,7 @@
 - type: entity
   parent: MobHuman
   id: N14MobHumanCaesarLegionDean
-  name: Dean
+  name: Decanus
   components:
     - type: RandomHumanoidAppearance
       randomizeName: true

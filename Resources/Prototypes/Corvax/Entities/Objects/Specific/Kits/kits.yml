@@ -113,7 +113,7 @@
       path: /Audio/Effects/unwrap.ogg
 
 - type: entity
-  name: dean-gladiator kit
+  name: decanus-gladiator kit
   parent: KitBase
   id: KitDeanGladiator
   description: "A set of Legion equipment."
@@ -142,7 +142,7 @@
       path: /Audio/Effects/unwrap.ogg
 
 - type: entity
-  name: dean-sagitaria kit
+  name: decanus-sagitaria kit
   parent: KitBase
   id: KitDeanSagitaria
   description: "A set of Legion equipment."
@@ -170,7 +170,7 @@
       path: /Audio/Effects/unwrap.ogg
 
 - type: entity
-  name: dean-berserker kit
+  name: decanus-berserker kit
   parent: KitBase
   id: KitDeanBerserker
   description: "A set of Legion equipment."
