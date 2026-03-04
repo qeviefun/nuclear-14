@@ -28,3 +28,10 @@ Entries:
   id: 3
   time: '2026-03-04T18:17:41.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/19
+- author: Cythisiax
+  changes:
+    - type: Tweak
+      message: Just fixed ruleset path /Resource. Added _Misfits folder for future.
+  id: 4
+  time: '2026-03-04T18:30:35.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/20
