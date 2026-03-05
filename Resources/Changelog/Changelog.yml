@@ -1,14 +1,19 @@
 Entries:
 - author: Misfits
   changes:
-    - message: Merge of all CF and N14. Misfits has done upstream merges with English localization of mostly all playable content.
-       This is a huge change and there are likely to be many bugs, so please report them if you find them.
-       The changelog will be updated as more changes are made, but for now this is the main one.
-       Please note that this is not the final merge, there will be more merges in the future as we continue to work on the project.
+    - message: >-
+        Merge of all CF and N14. Misfits has done upstream merges with English
+        localization of mostly all playable content. This is a huge change and
+        there are likely to be many bugs, so please report them if you find
+        them. The changelog will be updated as more changes are made, but for
+        now this is the main one. Please note that this is not the final merge,
+        there will be more merges in the future as we continue to work on the
+        project.
       type: Fix
   id: 5605
   time: '2026-03-04T03:23:53.0000000+00:00'
-  url: https://github.com/Misfit-Sanctuary/nuclear-14/commit/74991fd1a0c05bb0acd78bc1eb45f1120b422a0c
+  url: >-
+    https://github.com/Misfit-Sanctuary/nuclear-14/commit/74991fd1a0c05bb0acd78bc1eb45f1120b422a0c
 - author: Cythisiax
   changes:
     - type: Add
@@ -47,3 +52,8 @@ Entries:
   id: 5
   time: '2026-03-04T19:10:53.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/21
+- author: Cythisiax
+  changes: []
+  id: 5606
+  time: '2026-03-05T11:22:27.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/22
