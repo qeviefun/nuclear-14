@@ -75,3 +75,12 @@ Entries:
   id: 5608
   time: '2026-03-05T18:28:49.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/27
+- author: Cythisiax
+  changes:
+    - type: Tweak
+      message: >-
+        More Russian translation, adjusted localization edit of Wendover into
+        Resources/Misfits/Maps, similar applied to Prototypes.
+  id: 5609
+  time: '2026-03-06T00:25:44.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/28
