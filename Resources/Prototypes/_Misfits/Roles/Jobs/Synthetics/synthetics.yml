@@ -15,6 +15,11 @@
   spawnLoadout: false
   applyTraits: false
   jobEntity: N14PlayerSyntheticMrHandy
+  requirements:
+    - !type:CharacterWhitelistRequirement
+    - !type:CharacterPlaytimeRequirement
+      tracker: SyntheticMrHandy
+      min: 35996400 # 9999 hours
 
 - type: job
   id: SyntheticProtectron
@@ -30,6 +35,11 @@
   spawnLoadout: false
   applyTraits: false
   jobEntity: N14PlayerSyntheticProtectron
+  requirements:
+    - !type:CharacterWhitelistRequirement
+    - !type:CharacterPlaytimeRequirement
+      tracker: SyntheticProtectron
+      min: 35996400 # 9999 hours
 
 - type: job
   id: SyntheticMrGutsy
@@ -45,6 +55,11 @@
   spawnLoadout: false
   applyTraits: false
   jobEntity: N14PlayerSyntheticMrGutsy
+  requirements:
+    - !type:CharacterWhitelistRequirement
+    - !type:CharacterPlaytimeRequirement
+      tracker: SyntheticMrGutsy
+      min: 35996400 # 9999 hours
 
 - type: job
   id: SyntheticAssaultron
@@ -60,6 +75,11 @@
   spawnLoadout: false
   applyTraits: false
   jobEntity: N14PlayerSyntheticAssaultron
+  requirements:
+    - !type:CharacterWhitelistRequirement
+    - !type:CharacterPlaytimeRequirement
+      tracker: SyntheticAssaultron
+      min: 35996400 # 9999 hours
 
 - type: playTimeTracker
   id: SyntheticMrHandy
