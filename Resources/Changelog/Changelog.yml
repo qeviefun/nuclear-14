@@ -332,3 +332,60 @@ Entries:
   id: 5616
   time: '2026-03-07T21:41:10.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/51
+- author: Cythisia
+  changes:
+    - type: Add
+      message: >-
+        Added Mentor Help system - players can now request mentor assistance via
+        a dedicated chat channel and UI window
+    - type: Add
+      message: >-
+        Added Whitelist Search admin panel (command: `whitelistsearch`) for
+        admins to look up and manage player job whitelists, connects to DB.
+    - type: Add
+      message: >-
+        Split the single `RobotSpawn` job into per-species jobs
+        (SyntheticMrHandy, SyntheticProtectron, SyntheticMrGutsy,
+        SyntheticAssaultron), each locked to their matching robot species
+    - type: Add
+      message: >-
+        Added Fallout-themed name datasets for each playable robot type (Mr.
+        Handy, Protectron, Mr. Gutsy, Assaultron)
+    - type: Add
+      message: Added "Extend Round" vote type
+    - type: Add
+      message: >-
+        Added N14 explosion type with structural damage so blasts can break
+        walls, fences, and windows
+    - type: Fix
+      message: >-
+        Robot species in the profile editor now auto-randomize the character
+        name on species change, name randomize applies to each time a new
+        "species" selection is done.
+    - type: Fix
+      message: >-
+        Sandbox suicide button now works for admins regardless of whether
+        sandbox mode is enabled, renamed to "Kill"
+    - type: Fix
+      message: >-
+        Restart vote now requires a majority of all connected players, not just
+        a ratio of those who explicitly voted
+    - type: Fix
+      message: Swamper renamed to Mirelurk (corrected creature name and textures)
+    - type: Fix
+      message: >-
+        Added HumanoidAppearance components to player synthetic entities for
+        proper species tracking so no more character setup errors.
+    - type: Tweak
+      message: Admin permissions editor now shows short descriptions for each flag
+    - type: Tweak
+      message: >-
+        Added MHelp buttons to the lobby screen and top menu bar for quick
+        mentor help access, and permissions oriented to add mentors in-game.
+    - type: Tweak
+      message: >-
+        Mentor/whitelist-related admin windows now use a distinct purple header
+        style
+  id: 5617
+  time: '2026-03-08T05:26:00.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/67
