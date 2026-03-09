@@ -528,3 +528,24 @@ Entries:
   id: 5621
   time: '2026-03-09T02:41:17.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/81
+- author: Dpellowski
+  changes:
+    - type: Add
+      message: >-
+        Added a persistent currency wallet system. Players can deposit
+        Bottlecaps, NCR Dollars, Legion Denarii, and Pre-War Money by using
+        currency items in hand.
+    - type: Add
+      message: >-
+        Added a Currency Wallet GUI accessible via an action button in the
+        action bar. Players can view their stored currency and withdraw specific
+        amounts.
+    - type: Add
+      message: Pre-War Money is now a supported persistent currency type.
+    - type: Add
+      message: >-
+        Currency balances persist across rounds and server restarts, tied to
+        each character.
+  id: 5622
+  time: '2026-03-09T02:59:37.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/82
