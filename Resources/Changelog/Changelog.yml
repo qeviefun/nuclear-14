@@ -549,3 +549,205 @@ Entries:
   id: 5622
   time: '2026-03-09T02:59:37.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/82
+- author: cythisiax
+  changes:
+    - type: Add
+      message: >-
+        📻 **Radio System Overhaul** — Rewrote radio syntax to proper `:` prefix
+        format with faction relevancy
+    - type: Add
+      message: >-
+        `:b` Brotherhood of Steel · `:n` NCR · `:l` Legion · `:t` Town · `:w`
+        Global Wasteland
+    - type: Add
+      message: >-
+        Spawning in a faction with a headset auto-sets your tab-cycle to that
+        faction's radio channel
+    - type: Add
+      message: >-
+        Legion roles spawn with a headset pre-configured with `:w` and `:l`
+        encryption keys
+    - type: Add
+      message: >-
+        Headsets (0.5%), Pipboys (0.05%), and paper added to trash pile loot;
+        headsets pre-set with `:w`
+    - type: Add
+      message: >-
+        🗺️ **Pip-Boy Map System** — `Programs > Map` with zoom, pan, player
+        tracking, blips, and annotation tools
+    - type: Add
+      message: >-
+        Pip-Boys come preinstalled with the tactical map cartridge with updated
+        faction map compatibility
+    - type: Add
+      message: >-
+        BoS Tactical Map — real-time holotag tracking of all BoS positions;
+        Paladins get a helmet HUD with RTD and death status of fellow BoS
+        members
+    - type: Add
+      message: >-
+        Shared faction tactical feeds for Brotherhood and NCR via tagged IDs,
+        cartridges, and actions
+    - type: Add
+      message: >-
+        NCR and Legion receive faction-relevant map programs in Pip-Boy (no RTD
+        — lore appropriate)
+    - type: Add
+      message: >-
+        Holotags and Vault ID cards plugged into a Pip-Boy surface RTD faction
+        data — isolated per department, Vault and BoS do not share
+    - type: Add
+      message: Paper, headset (0.5%), pipboy (0.005%) to junk piles.
+    - type: Add
+      message: >-
+        🤖 **Robot Overhaul** — Species map with branded navigation headers;
+        General Atomics (Assaultron, Protectron) · RobCo (Mr. Handy, Mr. Gutsy)
+    - type: Add
+      message: >-
+        Robots have passive damage regeneration — triggers a "whirr" sound and
+        damage-status emote
+    - type: Add
+      message: >-
+        Robots can now pick up people and items · given a headset slot · walking
+        sounds added (Assaultron, Protectron)
+    - type: Add
+      message: >-
+        Mr. Gutsy given a nerfed plasma caster with effectively infinite ammo;
+        battery drain increased to compensate
+    - type: Add
+      message: >-
+        Robots and ghouls no longer auto-aggro their own kind unless attacked
+        first · death sounds added to all robot mobs
+    - type: Add
+      message: Robot added as a new Misfits species prototype
+    - type: Add
+      message: >-
+        🧬 **Species Whitelist System** — `WhitelistRequired`, `RestrictedJobs`,
+        `JobWhitelistUnlock`, `Order`, and `RestrictedCustomization` added to
+        `SpeciesPrototype`; enforced in character editor and late-join
+    - type: Add
+      message: >-
+        🛠️ **Admin Menu Rebuilt** — Reordered and expanded; Players tab moved
+        forward; left-click opens quick actions, right-click opens verb list
+    - type: Add
+      message: >-
+        Admin Whitelisting and Staff tabs, Admin List window, and player
+        quick-action popup
+    - type: Add
+      message: >-
+        Permissions UI reworked into rank-grouped cards with updated admin
+        editing controls; restyled notes and whitelist search interfaces
+    - type: Add
+      message: >-
+        Admin tabs refactored into cleaner vertical layout with inline
+        descriptions and spacing improvements
+    - type: Add
+      message: >-
+        MoMMI Discord relay support with shared events/CVars and expanded admin
+        UI localization
+    - type: Add
+      message: >-
+        💬 **Chat & Emote Commands** — `./do` `./em` `./say` `./looc` `./ooc`
+        `./admin` `./dead`
+    - type: Add
+      message: >-
+        `/aemote` — Admin emote displayed in special green text at local/say
+        radius for immersive RP
+    - type: Add
+      message: Updated chat parsing to support slash aliases before channel detection
+    - type: Add
+      message: >-
+        🩺 **Shitmed (Delta V)** — Drug addictions on appropriate Fallout drugs
+        · contamination factor on amputations · new Chronic Pain trait
+    - type: Add
+      message: >-
+        Plasma weapons now use a dedicated muzzle discharge sprite instead of
+        the ballistic sprite
+    - type: Add
+      message: BoS hardsuits and power armor gain an additional backpack slot
+    - type: Add
+      message: Projectiles now pass through chainlink fences and catwalks
+    - type: Add
+      message: Wood door recipes and construction graph nodes
+    - type: Add
+      message: Misfits lobby background (1920x1080)
+    - type: Add
+      message: Loadout locale entries for Duffel and Satchel categories
+    - type: Add
+      message: >-
+        Numerous localization files across clothing, structures, weapons, and
+        furniture
+    - type: Tweak
+      message: >-
+        `HumanoidProfileEditor` now hides
+        Appearance/Jobs/Antags/Traits/Loadouts/Markings tabs for restricted
+        species; sorts species by Order and whitelist/unlock status
+    - type: Tweak
+      message: >-
+        Mob pathfinding overhauled — removed broken 3-second mobjuke/unstuck
+        system; now distance-appropriate, mobs no longer hug player sprites
+    - type: Tweak
+      message: >-
+        BoS powerfist nerfed vs. players · range increased slightly · now
+        capable of damaging wall entities
+    - type: Tweak
+      message: >-
+        Night cycle adjusted — no longer pitch black · map no longer defaults to
+        permanent rain state
+    - type: Tweak
+      message: Player names in emotes colorized to prevent blending into grey chat
+    - type: Tweak
+      message: Lowered `NuclearMapFix` log level from `Error` to `Info`
+    - type: Tweak
+      message: Gamma Gulp Beer item now has correct size to match other bottles
+    - type: Fix
+      message: >-
+        BoS job roles now correctly access BoS base doors after faction
+        restructuring
+    - type: Fix
+      message: >-
+        Fixed Brotherhood tactical tables, holotags, and objective
+        issuer/localization for the new shared map system
+    - type: Fix
+      message: >-
+        Ghouls and all mobs with `IdleSound` no longer play idle sounds while
+        dead
+    - type: Fix
+      message: Red hit-flash effect no longer incorrectly alters player color on damage
+    - type: Fix
+      message: >-
+        Fixed `HumanoidProfileEditor` selecting blank `DescriptionTab` for
+        restricted species
+    - type: Fix
+      message: Fixed profile name not being applied to spawned job entities
+    - type: Fix
+      message: Fixed lobby background prototypes not being registered or loaded
+    - type: Fix
+      message: >-
+        Fixed TTS regex using source-generated cached Regex methods — resolves
+        RA0026 and improves performance
+    - type: Fix
+      message: >-
+        Fixed double-localization in `PlayerTab`,
+        `AtmosMonitoringEntryContainer`, and `PowerMonitoringWindow`
+    - type: Fix
+      message: >-
+        Fixed `LoadoutPreferenceSelector` double-localization by using
+        `loadoutDesc` directly
+    - type: Fix
+      message: >-
+        Fixed bark voice prototypes sorting by raw `Name` instead of
+        `Loc.GetString`
+    - type: Fix
+      message: Fixed redundant localization calls in `MarkingPicker`
+    - type: Fix
+      message: >-
+        Fixed short key/voice names being treated as display text in
+        `BoundKeyHelpers` and `Barks`
+    - type: Fix
+      message: Recurring `loc` display string issue resolved
+    - type: Fix
+      message: '`PersistentCurrencySystem.cs` save file path string error resolved'
+  id: 5623
+  time: '2026-03-09T12:34:56.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/83
