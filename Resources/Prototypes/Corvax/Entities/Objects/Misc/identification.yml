@@ -21,7 +21,7 @@
     sprite: Corvax/Objects/Misc/identification.rsi
     state: sign
   - type: PresetIdCard
-    job: CaesarLegionLegionnaireRecruit
+    job: CaesarLegionAuxilia
 
 - type: entity
   parent: N14IDPassportBlank
@@ -47,6 +47,31 @@
   - type: PresetIdCard
     job: CaesarLegionLegionnaireWarrior
 
+#Misfits Change /Add/: Recruit-tier Legion medals so combat roles no longer use sign IDs.
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDLegionaryMedalRecruit
+  name: distinctive medal
+  description: "A silver medal worn by a Legion recruit."
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Misc/identification.rsi
+    state: medal-silver
+  - type: PresetIdCard
+    job: CaesarLegionRecruit
+
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDLegionaryMedalLegionnaireRecruit
+  name: distinctive medal
+  description: "A silver medal awarded to a Legionnaire recruit."
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Misc/identification.rsi
+    state: medal-silver
+  - type: PresetIdCard
+    job: CaesarLegionLegionnaireRecruit
+
 - type: entity
   parent: N14IDPassportBlank
   id: N14IDLegionaryMedalHoundmaster
@@ -58,6 +83,19 @@
     state: medal-silver
   - type: PresetIdCard
     job: CaesarLegionHoundmaster
+
+#Misfits Change /Add/: Auxilia badge.
+- type: entity
+  parent: N14IDPassportBlank
+  id: N14IDLegionaryBadgeAuxilia
+  name: distinctive sign
+  description: "The sign of a Legion auxilia."
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Misc/identification.rsi
+    state: sign
+  - type: PresetIdCard
+    job: CaesarLegionAuxilia
 
 - type: entity
   parent: N14IDPassportBlank

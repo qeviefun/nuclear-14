@@ -4,6 +4,13 @@
 
 - type: entity
   parent: N14BaseRobotChassis
+  id: N14BasePlayerSynthetic
+  abstract: true
+  components:
+  - type: Stripping # #Misfits Change: allow player robots to open strip UI with hover + E
+
+- type: entity
+  parent: N14BasePlayerSynthetic
   id: N14PlayerSyntheticMrHandy
   name: mr. handy
   suffix: player, synthetic
@@ -68,7 +75,7 @@
         startingItem: PowerCellHyper
 
 - type: entity
-  parent: N14BaseRobotChassis
+  parent: N14BasePlayerSynthetic
   id: N14PlayerSyntheticProtectron
   name: protectron
   suffix: player, synthetic
@@ -136,7 +143,7 @@
         startingItem: PowerCellHyper
 
 - type: entity
-  parent: N14BaseRobotChassis
+  parent: N14BasePlayerSynthetic
   id: N14PlayerSyntheticMrGutsy
   name: mr. gutsy
   suffix: player, synthetic
@@ -200,7 +207,7 @@
         startingItem: PowerCellHyper
 
 - type: entity
-  parent: N14BaseRobotChassis
+  parent: N14BasePlayerSynthetic
   id: N14PlayerSyntheticAssaultron
   name: assaultron
   suffix: player, synthetic

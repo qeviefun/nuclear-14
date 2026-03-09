@@ -30,6 +30,22 @@
     - node: healingpowder
       entity: N14HealingPowder
 
+# Cleansing Powder
+- type: constructionGraph
+  id: N14CleansingPowder
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: cleansingpowder
+          steps:
+            - material: CaveFungusRad
+              amount: 2
+            - material: XanderRoot
+
+    - node: cleansingpowder
+      entity: N14CleansingPowder
+
 # Stimpaks
 - type: constructionGraph
   id: N14Stimpak
@@ -156,6 +172,38 @@
 
     - node: jet
       entity: N14JetInhaler
+
+# Hydra
+- type: constructionGraph
+  id: N14Hydra
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: hydra
+          steps:
+            #Misfits Change /Fix:/ construction graph steps do not support prototype mappings here; use tagged item steps.
+            - tag: HydraInhaler
+              name: hydra inhaler
+              icon:
+                sprite: _Nuclear14/Objects/Specific/Medical/ms13_drugs.rsi
+                state: hydra
+              doAfter: 1
+            - tag: Jet
+              name: jet inhaler
+              icon:
+                sprite: _Nuclear14/Objects/Specific/Medical/ms13_drugs.rsi
+                state: jet
+              doAfter: 1
+            - tag: Turbo
+              name: turbo inhaler
+              icon:
+                sprite: _Nuclear14/Objects/Specific/Medical/ms13_drugs.rsi
+                state: turbo
+              doAfter: 1
+
+    - node: hydra
+      entity: N14Hydra
 
 # Dirty Gauze
 - type: constructionGraph

@@ -2,6 +2,7 @@ sandbox-window-title = Sandbox Panel
 sandbox-window-ai-overlay-button = AI Overlay
 sandbox-window-respawn-button = Respawn
 sandbox-window-spawn-entities-button = Spawn Entities
+sandbox-window-spawn-dungeons-button = Spawn Dungeons
 sandbox-window-spawn-tiles-button = Spawn Tiles
 sandbox-window-spawn-decals-button = Spawn Decals
 sandbox-window-grant-full-access-button = Grant Full Access

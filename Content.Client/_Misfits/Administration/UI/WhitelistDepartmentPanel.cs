@@ -1,6 +1,5 @@
-// #Misfits Change - Department panel for enriched whitelist administration rows
+// #Misfits Change /Tweak: Department panel for whitelist administration (checkbox-per-job style)
 using System.Linq;
-using Content.Shared._Misfits.Administration;
 using Content.Shared.Roles;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Prototypes;
@@ -10,24 +9,14 @@ namespace Content.Client._Misfits.Administration.UI;
 public sealed class WhitelistDepartmentPanel : PanelContainer
 {
     public Action<ProtoId<JobPrototype>, bool>? OnSetJob;
-    public Action<ProtoId<JobPrototype>, string>? OnAddRoleTime;
-    public Action<ProtoId<JobPrototype>, string>? OnSetRoleTime;
-    public Action<ProtoId<JobPrototype>, int>? OnAdjustJobSlots;
-    public Action<string, string>? OnAddDeptTime;
-    public Action<string, string>? OnSetDeptTime;
 
-    private readonly List<(string JobName, WhitelistJobRow Row)> _rows = new();
-    private readonly BoxContainer _jobs;
-    private readonly string _departmentId;
+    private readonly List<(string JobName, CheckBox CheckBox)> _jobCheckboxes = new();
 
     public WhitelistDepartmentPanel(
         DepartmentPrototype department,
         IPrototypeManager proto,
-        HashSet<ProtoId<JobPrototype>> whitelists,
-        IReadOnlyDictionary<ProtoId<JobPrototype>, WhitelistJobAdminInfo> adminInfo,
-        bool canManagePlaytime)
+        HashSet<ProtoId<JobPrototype>> whitelists)
     {
-        _departmentId = department.ID;
         Margin = new Thickness(0, 0, 0, 6);
         StyleClasses.Add("BackgroundDark");
 
@@ -38,78 +27,32 @@ public sealed class WhitelistDepartmentPanel : PanelContainer
             Margin = new Thickness(6),
         };
 
+        // Department header toggle — toggles all jobs at once
         var allWhitelisted = department.Roles.All(whitelists.Contains);
-        var headerRow = new BoxContainer
-        {
-            Orientation = BoxContainer.LayoutOrientation.Horizontal,
-            SeparationOverride = 6,
-            HorizontalExpand = true,
-        };
-
-        var header = new Button
+        var header = new CheckBox
         {
             Text = Loc.GetString(department.ID),
-            ToggleMode = true,
             Pressed = allWhitelisted,
             HorizontalExpand = true,
             Modulate = department.Color,
         };
 
-        // Bulk time controls in header
-        var deptTimeInput = new LineEdit
+        header.OnPressed += _ =>
         {
-            PlaceHolder = "e.g. 1h30m",
-            MinWidth = 80,
-            Editable = canManagePlaytime,
-            VerticalAlignment = VAlignment.Center,
+            foreach (var id in department.Roles)
+            {
+                if (whitelists.Contains(id) != header.Pressed)
+                    OnSetJob?.Invoke(id, header.Pressed);
+            }
         };
 
-        var addAllButton = new Button
+        // Job checkboxes in a grid (4 columns, same as vanilla)
+        var grey = Color.FromHex("#ccc");
+        var jobsGrid = new GridContainer
         {
-            Text = Loc.GetString("misfits-whitelist-search-dept-add-all"),
-            Disabled = !canManagePlaytime,
-            MinWidth = 80,
-            StyleClasses = { "ButtonSquare" },
-        };
-        addAllButton.ToolTip = Loc.GetString("misfits-whitelist-search-dept-add-all-tooltip");
-
-        addAllButton.OnPressed += _ =>
-        {
-            var t = deptTimeInput.Text.Trim();
-            if (t.Length == 0) return;
-            OnAddDeptTime?.Invoke(_departmentId, t);
-            deptTimeInput.Text = string.Empty;
-        };
-
-        var setAllButton = new Button
-        {
-            Text = Loc.GetString("misfits-whitelist-search-dept-set-all"),
-            Disabled = !canManagePlaytime,
-            MinWidth = 80,
-            StyleClasses = { "ButtonSquare" },
-        };
-        setAllButton.ToolTip = Loc.GetString("misfits-whitelist-search-dept-set-all-tooltip");
-
-        setAllButton.OnPressed += _ =>
-        {
-            var t = deptTimeInput.Text.Trim();
-            if (t.Length == 0) return;
-            OnSetDeptTime?.Invoke(_departmentId, t);
-            deptTimeInput.Text = string.Empty;
-        };
-
-        headerRow.AddChild(header);
-        if (canManagePlaytime)
-        {
-            headerRow.AddChild(deptTimeInput);
-            headerRow.AddChild(addAllButton);
-            headerRow.AddChild(setAllButton);
-        }
-
-        _jobs = new BoxContainer
-        {
-            Orientation = BoxContainer.LayoutOrientation.Vertical,
-            SeparationOverride = 3,
+            Columns = 4,
+            HSeparationOverride = 6,
+            VSeparationOverride = 3,
         };
 
         foreach (var (jobProtoId, job) in department.Roles
@@ -117,51 +60,37 @@ public sealed class WhitelistDepartmentPanel : PanelContainer
                      .OrderByDescending(entry => entry.Job.RealDisplayWeight)
                      .ThenBy(entry => entry.Job.ID))
         {
-            adminInfo.TryGetValue(jobProtoId, out var info);
+            var capturedId = jobProtoId;
+            var cb = new CheckBox
+            {
+                Text = job.LocalizedName,
+                Pressed = whitelists.Contains(jobProtoId),
+            };
+            if (!job.Whitelisted)
+                cb.Modulate = grey;
 
-            var row = new WhitelistJobRow(
-                jobProtoId,
-                job,
-                whitelists.Contains(jobProtoId),
-                info?.RoleTime ?? TimeSpan.Zero,
-                canManagePlaytime);
-
-            row.OnSetJob += (id, enabled) => OnSetJob?.Invoke(id, enabled);
-            row.OnAddRoleTime += (id, timeString) => OnAddRoleTime?.Invoke(id, timeString);
-            row.OnSetRoleTime += (id, timeString) => OnSetRoleTime?.Invoke(id, timeString);
-            row.OnAdjustJobSlots += (id, delta) => OnAdjustJobSlots?.Invoke(id, delta);
-            _rows.Add((job.LocalizedName, row));
-            _jobs.AddChild(row);
+            cb.OnPressed += _ => OnSetJob?.Invoke(capturedId, cb.Pressed);
+            _jobCheckboxes.Add((job.LocalizedName, cb));
+            jobsGrid.AddChild(cb);
         }
 
-        header.OnPressed += _ =>
-        {
-            foreach (var id in department.Roles)
-            {
-                if (whitelists.Contains(id) == header.Pressed)
-                    continue;
-
-                OnSetJob?.Invoke(id, header.Pressed);
-            }
-        };
-
-        root.AddChild(headerRow);
-        root.AddChild(_jobs);
+        root.AddChild(header);
+        root.AddChild(jobsGrid);
         AddChild(root);
     }
 
     /// <summary>
-    /// Shows/hides individual job rows based on the filter string.
-    /// Returns true if any rows are visible.
+    /// Shows/hides individual job checkboxes based on the filter string.
+    /// Returns true if any are visible.
     /// </summary>
     public bool Filter(string filter)
     {
         var empty = string.IsNullOrWhiteSpace(filter);
         var anyVisible = false;
-        foreach (var (name, row) in _rows)
+        foreach (var (name, cb) in _jobCheckboxes)
         {
             var visible = empty || name.Contains(filter, StringComparison.OrdinalIgnoreCase);
-            row.Visible = visible;
+            cb.Visible = visible;
             if (visible)
                 anyVisible = true;
         }

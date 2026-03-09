@@ -26,6 +26,12 @@
   id: SeeingRainbows
 
 - type: statusEffect
+  id: HealingPowderHaze
+
+- type: statusEffect
+  id: HydraTint
+
+- type: statusEffect
   id: Electrocution
 
 - type: statusEffect

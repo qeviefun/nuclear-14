@@ -34,6 +34,7 @@
   id: TownDeputyGear
   equipment:
     jumpsuit: N14ClothingUniformJumpsuitTownGuard
+    ears: MisfitsClothingHeadsetWastelandScrap
     back: N14ClothingBackpackSatchelMilitary # Forge-Change
     shoes: N14ClothingBootsLeatherFilled
     id: N14IDBadgeTownDeputy

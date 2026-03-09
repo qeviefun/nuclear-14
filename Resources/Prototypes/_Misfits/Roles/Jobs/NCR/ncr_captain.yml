@@ -21,7 +21,7 @@
       tracker: NCRNCO
       min: 43200
   weight: 120
-  startingGear: NCRLTGear
+  startingGear: NCRCaptainGear
   icon: "JobIconNcrLeader"
   supervisors: job-supervisors-ncr-captain
   requireAdminNotify: true
@@ -38,6 +38,24 @@
         factions:
           - Wastelander
           - NCR
+
+- type: startingGear
+  id: NCRCaptainGear
+  equipment:
+    head: N14ClothingHeadHatNCRBeretOfficer
+    back: N14ClothingBackpackNCR # Corvax-Change
+    jumpsuit: N14ClothingOfficerUniformNCRDesert # Corvax-Change
+    shoes: N14ClothingBootsCombatFilled
+    eyes: ClothingEyesGlassesSunglasses
+    ears: N14ClothingHeadsetNCR
+    pocket1: NCRcaptainloadoutkits
+    pocket2: RadioHandheld
+    id: N14IDNCRDogtagCaptain
+  innerClothingSkirt: N14ClothingOfficerUniformNCRDesert # Corvax-Change
+  satchel: N14ClothingBackpackSatchelNCRFilled
+  storage: # Corvax-Change
+    back:
+    - N14BoxPlasticFilledMilitaryNCR
 
 - type: playTimeTracker
   id: NCRCaptain

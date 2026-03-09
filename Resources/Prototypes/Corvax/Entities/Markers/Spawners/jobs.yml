@@ -108,6 +108,19 @@
       - state: green
       - state: warrior
 
+#Misfits Change /Add/: Legion Auxilia spawn point.
+- type: entity
+  id: N14SpawnPointAuxilia
+  parent: N14SpawnPointCenturion
+  name: legion auxilia
+  components:
+  - type: SpawnPoint
+    job_id: CaesarLegionAuxilia
+  - type: Sprite
+    layers:
+      - state: green
+      - state: recruit
+
 - type: entity
   id: N14SpawnPointLegionnaireRecruit
   parent: N14SpawnPointCenturion

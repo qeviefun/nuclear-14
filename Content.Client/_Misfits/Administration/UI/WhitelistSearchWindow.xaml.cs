@@ -10,7 +10,6 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Timing;
 using Timer = Robust.Shared.Timing.Timer;
 
 namespace Content.Client._Misfits.Administration.UI;
@@ -23,15 +22,10 @@ public sealed partial class WhitelistSearchWindow : FancyWindow
     public Action<string>? OnSearch;
     public Action<NetUserId>? OnSelectPlayer;
     public Action<ProtoId<JobPrototype>, bool>? OnSetJob;
-    public Action<ProtoId<JobPrototype>, string>? OnAddRoleTime;
-    public Action<ProtoId<JobPrototype>, string>? OnSetRoleTime;
-    public Action<string, string>? OnAddDeptTime;
-    public Action<string, string>? OnSetDeptTime;
-    public Action<ProtoId<JobPrototype>, int>? OnAdjustJobSlots;
 
     private CancellationTokenSource? _searchDebounce;
 
-    // #Misfits Change - Only show Fallout-relevant factions/departments in the whitelist GUI
+    // #Misfits Change - Only show Fallout-relevant factions/departments
     private static readonly HashSet<string> AllowedDepartments = new()
     {
         "BrotherhoodOfSteel",
@@ -83,7 +77,6 @@ public sealed partial class WhitelistSearchWindow : FancyWindow
             return;
         }
 
-        // Debounce 300ms so we don't spam the server on every keystroke
         Timer.Spawn(300, () =>
         {
             OnSearch?.Invoke(query);
@@ -116,49 +109,33 @@ public sealed partial class WhitelistSearchWindow : FancyWindow
             SearchResults.AddChild(button);
         }
 
-        // Update selected player info
+        // Update selected player whitelists
         if (state.SelectedPlayerName != null && state.Whitelists != null)
         {
             SelectedPlayerLabel.Text = $"Whitelists for: {state.SelectedPlayerName}";
-            SelectedStationLabel.Text = state.SelectedStationName == null
-                ? Loc.GetString("misfits-whitelist-search-station-none")
-                : Loc.GetString("misfits-whitelist-search-station", ("station", state.SelectedStationName));
-
-            UpdateDepartments(
-                state.Whitelists,
-                state.JobAdminInfo,
-                state.CanManagePlaytime);
+            UpdateDepartments(state.Whitelists);
         }
         else
         {
             SelectedPlayerLabel.Text = "No player selected";
-            SelectedStationLabel.Text = Loc.GetString("misfits-whitelist-search-station-none");
             Departments.RemoveAllChildren();
         }
     }
 
-    private void UpdateDepartments(
-        HashSet<ProtoId<JobPrototype>> whitelists,
-        List<WhitelistJobAdminInfo>? jobAdminInfo,
-        bool canManagePlaytime)
+    private void UpdateDepartments(HashSet<ProtoId<JobPrototype>> whitelists)
     {
-        var infoLookup = jobAdminInfo?
-            .ToDictionary(x => x.Job, x => x) ?? new Dictionary<ProtoId<JobPrototype>, WhitelistJobAdminInfo>();
-
         Departments.RemoveAllChildren();
         var currentFilter = RoleSearchBox.Text.Trim();
-        foreach (var proto in _proto.EnumeratePrototypes<DepartmentPrototype>().OrderByDescending(x => x.Weight).ThenBy(x => x.ID))
+
+        foreach (var proto in _proto.EnumeratePrototypes<DepartmentPrototype>()
+                     .OrderByDescending(x => x.Weight)
+                     .ThenBy(x => x.ID))
         {
             if (!AllowedDepartments.Contains(proto.ID))
                 continue;
 
-            var panel = new WhitelistDepartmentPanel(proto, _proto, whitelists, infoLookup, canManagePlaytime);
+            var panel = new WhitelistDepartmentPanel(proto, _proto, whitelists);
             panel.OnSetJob += (id, whitelisting) => OnSetJob?.Invoke(id, whitelisting);
-            panel.OnAddRoleTime += (id, timeString) => OnAddRoleTime?.Invoke(id, timeString);
-            panel.OnSetRoleTime += (id, timeString) => OnSetRoleTime?.Invoke(id, timeString);
-            panel.OnAddDeptTime += (deptId, timeString) => OnAddDeptTime?.Invoke(deptId, timeString);
-            panel.OnSetDeptTime += (deptId, timeString) => OnSetDeptTime?.Invoke(deptId, timeString);
-            panel.OnAdjustJobSlots += (id, delta) => OnAdjustJobSlots?.Invoke(id, delta);
             if (!string.IsNullOrWhiteSpace(currentFilter))
                 panel.Filter(currentFilter);
             Departments.AddChild(panel);

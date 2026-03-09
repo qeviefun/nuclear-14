@@ -38,6 +38,7 @@
   equipment:
     head: ClothingHeadHatTophat
     jumpsuit: N14ClothingUniformJumpsuitBartenderAlt
+    ears: MisfitsClothingHeadsetWastelandScrap
     outerClothing: N14ClothingOuterLeatherArmor
     back: N14ClothingBackpackExplorer # Corvax-Change
     shoes: N14ClothingBootsLeather

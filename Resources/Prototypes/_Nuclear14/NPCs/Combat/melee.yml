@@ -25,12 +25,11 @@
             pathfindKey: TargetPathfind
             rangeKey: MeleeRange
 
-        # #Misfits Change — Re-enabled: the juke system was refactored to handle edge cases
-        # (null target, missing weapon) that caused the original errors. The continuous melee
-        # back-off in NPCJukeSystem.cs prevents NPCs from sticking to the target entity.
+        # #Misfits Change — Use AdjacentTile juke for melee NPCs so they strafe
+        # sideways (combat alive-ness) without fleeing. Away is for ranged only.
         - !type:HTNPrimitiveTask
           operator: !type:JukeOperator
-            jukeType: Away
+            jukeType: AdjacentTile
 
         - !type:HTNPrimitiveTask
           operator: !type:MeleeOperator

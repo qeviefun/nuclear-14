@@ -39,7 +39,7 @@
     shoes: N14ClothingBootsLeatherFilled
     id: N14IDBrotherhoodWashingtonHolotagScribe
     ears: N14ClothingHeadsetBOSWashingtonLightScribe
-    pocket1: BoSWashingtonScribeKits
+    pocket1: BoSBrotherhoodScribeKits
 
 - type: playTimeTracker
   id: BoSWashingtonScribe

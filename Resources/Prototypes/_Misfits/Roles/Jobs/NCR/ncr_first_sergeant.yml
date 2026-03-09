@@ -22,7 +22,7 @@
     - !type:CharacterPlaytimeRequirement
       tracker: NCRStaffSergeant
       min: 0
-  startingGear: NCRSGTGear
+  startingGear: NCRFirstSergeantGear
   icon: "JobIconNcrSerg"
   supervisors: job-supervisors-ncr-lt
   alwaysUseSpawner: true
@@ -36,6 +36,25 @@
         factions:
           - Wastelander
           - NCR
+
+- type: startingGear
+  id: NCRFirstSergeantGear
+  equipment:
+    back: N14ClothingBackpackNCR # Corvax-Change
+    gloves: N14ClothingHandsGlovesCombat
+    jumpsuit: N14ClothingOfficerUniformNCRDesert # Corvax-Change
+    shoes: N14ClothingBootsCombatFilled
+    neck: N14ClothingNeckMantleNCR
+    belt: ClothingBeltNCR
+    outerClothing: N14ClothingOuterNCRCombatArmor
+    pocket1: NCRfirstsergeantloadoutkits
+    pocket2: RadioHandheld
+    id: N14IDNCRDogtagFirstSergeant
+  innerClothingSkirt: N14ClothingOfficerUniformNCRDesert # Corvax-Change
+  satchel: N14ClothingBackpackSatchelNCRFilled
+  storage: # Corvax-Change
+    back:
+    - N14BoxPlasticFilledMilitaryNCR
 
 - type: playTimeTracker
   id: NCRFirstSergeant

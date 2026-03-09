@@ -23,14 +23,14 @@
   - type: DamageOtherOnHit
     damage:
       types:
-        Slash: 13
-        Piercing: 7
+        Blunt: 4
+        Slash: 16
   - type: MeleeWeapon
     wideAnimationRotation: -135
     damage:
       types:
-        Slash: 10
-        Piercing: 5
+        Blunt: 4
+        Slash: 11
   - type: Item
     sprite: _Nuclear14/Objects/Weapons/Melee/hatchet.rsi
     size: Normal
@@ -62,14 +62,14 @@
   - type: DamageOtherOnHit
     damage:
       types:
-        Slash: 15
-        Piercing: 7
+        Blunt: 5
+        Slash: 17
   - type: MeleeWeapon
     wideAnimationRotation: -135
     damage:
       types:
-        Slash: 12
-        Piercing: 7
+        Blunt: 6
+        Slash: 13
   - type: Item
     sprite: _Nuclear14/Objects/Weapons/Melee/tribalhatchet.rsi
     size: Normal

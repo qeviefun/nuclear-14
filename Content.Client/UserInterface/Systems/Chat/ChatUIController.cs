@@ -720,7 +720,14 @@ public sealed class ChatUIController : UIController
         var (prefixChannel, _, radioChannel) = SplitInputContents(inputText.ToLower());
 
         if (prefixChannel == ChatSelectChannel.None)
-            box.ChatInput.ChannelSelector.UpdateChannelSelectButton(box.SelectedChannel, null);
+        {
+            // #Misfits Change — when Radio is selected with no explicit :x prefix, display the headset's
+            // default channel (e.g. BoS → "Brotherhood of Steel") instead of the generic "Radio" label.
+            RadioChannelPrototype? defaultRadio = null;
+            if (box.SelectedChannel == ChatSelectChannel.Radio)
+                TryGetRadioChannel(SharedChatSystem.DefaultChannelPrefix, out defaultRadio);
+            box.ChatInput.ChannelSelector.UpdateChannelSelectButton(box.SelectedChannel, defaultRadio);
+        }
         else
             box.ChatInput.ChannelSelector.UpdateChannelSelectButton(prefixChannel, radioChannel);
     }
@@ -886,8 +893,9 @@ public sealed class ChatUIController : UIController
             channel = prefixChannel;
         else if (channel == ChatSelectChannel.Radio)
         {
-            // radio must have prefix as it goes through the say command.
-            text = $";{text}";
+            // #Misfits Change — use :h (DefaultChannelKey) so the server routes via the
+            // player's equipped headset default channel. ; (Common prefix) is disabled.
+            text = $"{SharedChatSystem.DefaultChannelPrefix}{text}";
         }
 
         _manager.SendMessage(text, prefixChannel == 0 ? channel : prefixChannel);

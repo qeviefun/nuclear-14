@@ -1,9 +1,10 @@
 # Legion kits
 
+#Misfits Change /Tweak/: Legion loadout kits were rebalanced to follow the active rank hierarchy from Legate to Recruit.
 - type: entity
-  name: centurion-bestiary kit
+  name: legate-praetorian kit
   parent: KitBase
-  id: KitCenturionBestiary
+  id: KitLegatePraetorian
   description: "A set of Legion equipment."
   components:
   - type: Sprite
@@ -14,25 +15,25 @@
   - type: SpawnItemsOnUse
     items:
       - id: N14WeaponThermospear
-      - id: N14CeremonialSword
+      - id: N14LegionnaireShield
       - id: ClothingBeltRope
       - id: Bola
         amount: 2
-      - id: N14StimpakDirty
-        amount: 3
+      - id: N14Stimpak
+        amount: 2
       - id: N14SuperStimpak
-        amount: 1
+      - id: N14MedkitCombatFilled
       - id: N14FoodTinK
         amount: 2
       - id: DrinkWaterBottleFull
-      - id: FoodCondimentPacketMustard
+      - id: N14DrinkTeaBroc
     sound:
       path: /Audio/Effects/unwrap.ogg
 
 - type: entity
-  name: centurion-sagitaria kit
+  name: legate-sagitaria kit
   parent: KitBase
-  id: KitCenturionSagitaria
+  id: KitLegateSagitaria
   description: "A set of Legion equipment."
   components:
   - type: Sprite
@@ -42,17 +43,129 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14WeaponLMGchinese
+      - id: N14WeaponRifle762Chinese
       - id: ClothingBeltRope
-      - id: Magazine762AmmoBelt
+      - id: Magazine762Rifle
         amount: 2
+      - id: MagazineBox762
+      - id: SmokeGrenade
+      - id: N14Stimpak
+      - id: N14SuperStimpak
+      - id: N14FoodTinK
+        amount: 2
+      - id: DrinkWaterBottleFull
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: legate-imperator kit
+  parent: KitBase
+  id: KitLegateImperator
+  description: "A set of Legion equipment."
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14CeremonialSword
+      - id: N14WeaponPistol45Colt
+      - id: N14MagazinePistol45
+        amount: 2
+      - id: MagazineBox45
+      - id: Bola
+        amount: 2
+      - id: N14Stimpak
+        amount: 2
+      - id: N14SuperStimpak
+      - id: N14FoodTinK
+        amount: 2
+      - id: DrinkWaterBottleFull
       - id: N14DrinkTeaBroc
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: centurion-command kit
+  parent: KitBase
+  id: KitCenturionCommand
+  description: "A set of Legion equipment."
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponShotgunLever
+      - id: N14LegionnaireShield
+      - id: ClothingBeltRope
+      - id: MagazineBox12gauge
+      - id: Bola
+        amount: 2
+      - id: BoxHandcuff
+      - id: N14StimpakDirty
+        amount: 2
+      - id: N14MedkitFilled
+      - id: N14FoodTinK
+        amount: 2
+      - id: DrinkWaterBottleFull
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: centurion-marksman kit
+  parent: KitBase
+  id: KitCenturionMarksman
+  description: "A set of Legion equipment."
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponRifle762Chinese
+      - id: ClothingBeltRope
+      - id: Magazine762Rifle
+        amount: 2
+      - id: MagazineBox762
+      - id: SmokeGrenade
       - id: N14StimpakDirty
         amount: 2
       - id: N14FoodTinK
         amount: 2
       - id: DrinkWaterBottleFull
-      - id: FoodCondimentPacketMustard
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: centurion-vanquisher kit
+  parent: KitBase
+  id: KitCenturionVanquisher
+  description: "A set of Legion equipment."
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14SledgeHammer
+      - id: ClothingBeltRope
+      - id: ThrowingKnife
+        amount: 3
+      - id: N14Stimpak
+        amount: 2
+      - id: N14MedkitFilled
+      - id: N14FoodTinK
+        amount: 2
+      - id: DrinkWaterBottleFull
     sound:
       path: /Audio/Effects/unwrap.ogg
 
@@ -85,6 +198,33 @@
       path: /Audio/Effects/unwrap.ogg
 
 - type: entity
+  name: venator-stalker kit
+  parent: KitBase
+  id: KitVenatorStalker
+  description: "A set of Legion equipment."
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponShotgunLever
+      - id: N14WeaponRevolver10mm
+      - id: MagazineBox12gauge
+      - id: ClothingBeltRope
+      - id: ClothingEyesNightVisionGoggles
+      - id: N14HealingPowder
+      - id: N14StimpakDirty
+        amount: 2
+      - id: N14FoodTinK
+        amount: 2
+      - id: DrinkWaterBottleFull
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
   name: venator-triaria kit
   parent: KitBase
   id: KitVenatorTriaria
@@ -113,6 +253,335 @@
       path: /Audio/Effects/unwrap.ogg
 
 - type: entity
+  name: vexillarius-standard kit
+  parent: KitBase
+  id: KitVexillariusStandard
+  description: "A set of Legion equipment."
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ClothingOuterLegionnaireBaseArmor
+      - id: N14LegionnaireShield
+      - id: ClothingBeltRope
+      - id: N14PilumSpear
+        amount: 2
+      - id: Bola
+      - id: N14StimpakDirty
+      - id: N14HealingPowder
+      - id: N14FoodTinK
+        amount: 2
+      - id: DrinkWaterBottleFull
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: vexillarius-herald kit
+  parent: KitBase
+  id: KitVexillariusHerald
+  description: "A set of Legion equipment."
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ClothingOuterLegionnaireBaseArmor
+      - id: N14WeaponPistol45Colt
+      - id: N14MagazinePistol45
+        amount: 2
+      - id: MagazineBox45
+      - id: SmokeGrenade
+      - id: N14Bandage
+        amount: 2
+      - id: N14HealingPoultice
+        amount: 2
+      - id: N14StimpakDirty
+      - id: N14FoodTinK
+        amount: 2
+      - id: DrinkWaterBottleFull
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: vexillarius-skirmisher kit
+  parent: KitBase
+  id: KitVexillariusSkirmisher
+  description: "A set of Legion equipment."
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ClothingOuterLegionnaireBaseArmor
+      - id: N14WeaponSMG9mm
+      - id: N14MagazineSMG9mm
+        amount: 2
+      - id: MagazineBox9mm
+      - id: N14LegionnaireBuckler
+      - id: N14PilumSpear
+      - id: N14StimpakDirty
+      - id: N14FoodTinK
+        amount: 2
+      - id: DrinkWaterBottleFull
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: houndmaster-hunter kit
+  parent: KitBase
+  id: KitHoundmasterHunter
+  description: "A set of Legion equipment."
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ClothingOuterLegionnaireBaseArmor
+      - id: N14Whip
+      - id: N14WeaponRevolver44Tribal
+      - id: SpeedLoader44
+        amount: 2
+      - id: MagazineBox44
+      - id: Bola
+        amount: 2
+      - id: N14HealingPowder
+      - id: N14FoodTinK
+        amount: 2
+      - id: DrinkWaterBottleFull
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: houndmaster-tamer kit
+  parent: KitBase
+  id: KitHoundmasterTamer
+  description: "A set of Legion equipment."
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ClothingOuterLegionnaireBaseArmor
+      - id: N14WeaponShotgunShort
+      - id: MagazineBox12gauge
+      - id: N14Whip
+      - id: Zipties
+        amount: 2
+      - id: N14StimpakDirty
+      - id: N14FoodTinK
+        amount: 2
+      - id: DrinkWaterBottleFull
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: houndmaster-medic kit
+  parent: KitBase
+  id: KitHoundmasterMedic
+  description: "A set of Legion equipment."
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ClothingOuterLegionnaireBaseArmor
+      - id: N14WeaponPistol45Colt
+      - id: N14MagazinePistol45
+      - id: MagazineBox45
+      - id: N14Bandage
+        amount: 2
+      - id: N14HealingPoultice
+        amount: 2
+      - id: N14Hydra
+      - id: N14HealingPowder
+      - id: N14FoodTinK
+        amount: 2
+      - id: DrinkWaterBottleFull
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: auxilia-skirmisher kit
+  parent: KitBase
+  id: KitAuxiliaSkirmisher
+  description: "A set of Legion equipment."
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ClothingOuterLegionnaireRecruitArmor
+      - id: N14WeaponSMG9mm
+      - id: N14MagazineSMG9mm
+        amount: 2
+      - id: MagazineBox9mm
+      - id: N14LegionnaireBuckler
+      - id: N14FoodTinK
+        amount: 2
+      - id: DrinkWaterBottleFull
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: auxilia-spearman kit
+  parent: KitBase
+  id: KitAuxiliaSpearman
+  description: "A set of Legion equipment."
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ClothingOuterLegionnaireRecruitArmor
+      - id: ClothingBeltQuiverSpear
+      - id: N14PilumSpear
+        amount: 3
+      - id: N14LegionnaireBuckler
+      - id: N14HealingPowder
+      - id: N14FoodTinK
+        amount: 2
+      - id: DrinkWaterBottleFull
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: auxilia-medic kit
+  parent: KitBase
+  id: KitAuxiliaMedic
+  description: "A set of Legion equipment."
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ClothingOuterLegionnaireRecruitArmor
+      - id: ClothingBeltMedical
+      - id: N14Bandage
+        amount: 2
+      - id: N14HealingPoultice
+        amount: 2
+      - id: N14Hydra
+      - id: N14HealingPowder
+        amount: 2
+      - id: N14TribalMachete
+      - id: N14FoodTinK
+        amount: 2
+      - id: DrinkWaterBottleFull
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: veteran-decanus-command kit
+  parent: KitBase
+  id: KitVeteranDecanusCommand
+  description: "A set of Legion equipment."
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14LegionnaireShield
+      - id: ClothingBeltRope
+      - id: N14WeaponPistol45Colt
+      - id: N14MagazinePistol45
+        amount: 2
+      - id: MagazineBox45
+      - id: BoxHandcuff
+      - id: Bola
+      - id: N14StimpakDirty
+        amount: 2
+      - id: N14MedkitFilled
+      - id: N14FoodTinK
+        amount: 2
+      - id: DrinkWaterBottleFull
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: veteran-decanus-hunter kit
+  parent: KitBase
+  id: KitVeteranDecanusHunter
+  description: "A set of Legion equipment."
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14LegionnaireBuckler
+      - id: ClothingBeltRope
+      - id: N14WeaponShotgunShort
+      - id: MagazineBox12gauge
+      - id: N14StimpakDirty
+        amount: 2
+      - id: N14HealingPowder
+      - id: N14FoodTinK
+        amount: 2
+      - id: DrinkWaterBottleFull
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: veteran-decanus-crusher kit
+  parent: KitBase
+  id: KitVeteranDecanusCrusher
+  description: "A set of Legion equipment."
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14TrenchClub
+      - id: N14WeaponRevolver44Tribal
+      - id: SpeedLoader44
+        amount: 2
+      - id: MagazineBox44
+      - id: SmokeGrenade
+      - id: N14StimpakDirty
+        amount: 2
+      - id: N14FoodTinK
+        amount: 2
+      - id: DrinkWaterBottleFull
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
   name: decanus-gladiator kit
   parent: KitBase
   id: KitDeanGladiator
@@ -127,7 +596,7 @@
     items:
       - id: N14LegionnaireShield
       - id: ClothingBeltRope
-      - id: N14PoliceBaton
+      - id: N14TrenchClub
       - id: Bola
         amount: 2
       - id: BoxHandcuff
@@ -154,12 +623,12 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14WeaponLMGAutoRifle
+      - id: N14WeaponSMG10mm
       - id: ClothingBeltRope
-      - id: Magazine308Rifle
+      - id: N14MagazineSMG10mm
         amount: 2
-      - id: MagazineBox308
-      - id: N14MedkitFilled
+      - id: MagazineBox10mm
+      - id: SmokeGrenade
       - id: N14StimpakDirty
         amount: 2
       - id: N14FoodTinK
@@ -269,15 +738,16 @@
     items:
       - id: N14ClothingOuterLegionnaireVeteranArmor
       - id: ClothingBeltRope
-      - id: N14WeaponKebab
       - id: N14LegionnaireShield
+      - id: N14WeaponRevolver44Tribal
+      - id: SpeedLoader44
+        amount: 2
+      - id: MagazineBox44
       - id: N14StimpakDirty
         amount: 2
-      - id: N14FuelTankHandyRusty
       - id: N14FoodTinK
         amount: 2
       - id: DrinkWaterBottleFull
-      - id: FoodCondimentPacketMustard
     sound:
       path: /Audio/Effects/unwrap.ogg
 
@@ -353,22 +823,20 @@
     items:
       - id: N14ClothingOuterLegionnaireBaseArmor
       - id: N14TribalMachete
-      - id: N14Stimpak
-        amount: 3
-      - id: Brutepack
       - id: N14ClothingBeltMedicalFilled
-      - id: N14MortarpestleGrinder
-      - id: N14FloraWildBrocFlowerClippingSeed
-      - id: N14FloraWildXanderRootClippingSeed
+      - id: N14HealingPowder
+        amount: 2
+      - id: N14HealingPoultice
+        amount: 2
+      - id: N14Bandage
+        amount: 2
+      - id: Ointment
       - id: N14WeaponPistol45Colt
       - id: N14MagazinePistol45
-        amount: 2
       - id: MagazineBox45
-      - id: Ointment
       - id: N14FoodTinK
         amount: 2
       - id: DrinkWaterBottleFull
-      - id: FoodCondimentPacketMustard
     sound:
       path: /Audio/Effects/unwrap.ogg
 
@@ -391,7 +859,7 @@
       - id: N14WeaponSMG10mm
       - id: MagazineBox10mm
       - id: N14MagazineSMG10mm
-        amount: 2
+        amount: 3
       - id: N14StimpakDirty
         amount: 1
       - id: N14FoodTinK
@@ -418,7 +886,6 @@
       - id: ClothingBeltRope
       - id: N14TrenchClub
       - id: N14LegionnaireShield
-        amount: 2
       - id: N14HealingPowder
       - id: N14StimpakDirty
         amount: 1
@@ -455,7 +922,6 @@
       - id: N14FoodTinK
         amount: 2
       - id: DrinkWaterBottleFull
-      - id: FoodCondimentPacketMustard
     sound:
       path: /Audio/Effects/unwrap.ogg
 
@@ -476,6 +942,8 @@
       - id: ClothingBeltQuiverSpear
       - id: N14PilumSpear
         amount: 4
+      - id: N14LegionnaireBuckler
+      - id: N14HealingPowder
       - id: N14StimpakDirty
         amount: 1
       - id: N14FoodTinK
@@ -526,16 +994,89 @@
       - id: N14ClothingOuterLegionnaireRecruitArmor
       - id: N14TribalMachete
       - id: ClothingBeltMedical
-      - id: N14StimpakDirty
+      - id: N14Bandage
         amount: 2
       - id: N14HealingPoultice
         amount: 2
-      - id: Brutepack
       - id: Ointment
+      - id: N14HealingPowder
       - id: N14FoodTinK
         amount: 2
       - id: DrinkWaterBottleFull
-      - id: FoodCondimentPacketMustard
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: recruit-initiate kit
+  parent: KitBase
+  id: KitRecruitInitiate
+  description: "A set of Legion equipment."
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ClothingOuterLegionnaireRecruitArmor
+      - id: N14TribalMachete
+      - id: N14LegionnaireBuckler
+      - id: N14HealingPowder
+      - id: N14FoodTinK
+        amount: 2
+      - id: DrinkWaterBottleFull
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: recruit-porter kit
+  parent: KitBase
+  id: KitRecruitPorter
+  description: "A set of Legion equipment."
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ClothingOuterLegionnaireRecruitArmor
+      - id: ClothingBeltQuiverSpear
+      - id: N14PilumSpear
+        amount: 3
+      - id: N14HealingPowder
+      - id: N14FoodTinK
+        amount: 2
+      - id: DrinkWaterBottleFull
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: recruit-camp-medic kit
+  parent: KitBase
+  id: KitRecruitCampMedic
+  description: "A set of Legion equipment."
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ClothingOuterLegionnaireRecruitArmor
+      - id: ClothingBeltMedical
+      - id: N14TribalMachete
+      - id: N14Bandage
+        amount: 2
+      - id: Ointment
+      - id: N14HealingPoultice
+        amount: 2
+      - id: N14FoodTinK
+        amount: 2
+      - id: DrinkWaterBottleFull
     sound:
       path: /Audio/Effects/unwrap.ogg
 

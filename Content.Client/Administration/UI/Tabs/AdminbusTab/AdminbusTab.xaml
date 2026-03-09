@@ -13,6 +13,10 @@
                 <Label Text="{Loc misfits-adminbus-tab-spawn-entities-desc}" VerticalAlignment="Center" StyleClasses="LabelSubText" />
             </BoxContainer>
             <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                <Button Name="SpawnDungeonsButton" Text="{Loc 'sandbox-window-spawn-dungeons-button'}" MinWidth="180" />
+                <Label Text="{Loc misfits-adminbus-tab-spawn-dungeons-desc}" VerticalAlignment="Center" StyleClasses="LabelSubText" />
+            </BoxContainer>
+            <BoxContainer Orientation="Horizontal" SeparationOverride="8">
                 <Button Name="SpawnTilesButton" Text="{Loc 'sandbox-window-spawn-tiles-button'}" MinWidth="180" />
                 <Label Text="{Loc misfits-adminbus-tab-spawn-tiles-desc}" VerticalAlignment="Center" StyleClasses="LabelSubText" />
             </BoxContainer>

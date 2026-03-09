@@ -207,6 +207,8 @@
         - id: N14Ointment10
         - id: N14HealingPowder
         - id: N14HealingPowder
+        - id: N14HealingPoultice
+        - id: N14HealingPoultice
 
 
 # Vault

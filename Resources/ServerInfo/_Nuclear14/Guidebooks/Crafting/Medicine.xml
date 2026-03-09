@@ -46,6 +46,19 @@ Ingredients:
 <GuideEntityEmbed Entity="N14FloraProduceWildXander"/>
 </Box>
 
+<!-- Misfits Change /Add/: Cleansing Powder -->
+## Cleansing Powder
+
+A field remedy used by tribal and Legion healers to purge radiation. Craft it from irradiated cave fungus and xander root in the medical tab of the crafting menu.
+
+<GuideEntityEmbed Entity="N14CleansingPowder" Caption="Cleansing Powder"/>
+
+Ingredients:
+<Box>
+<GuideEntityEmbed Entity="N14FloraProduceWildCaveFungusRad"/>
+<GuideEntityEmbed Entity="N14FloraProduceWildXander"/>
+</Box>
+
 ## Healing Poultice
 
 A more advanced natural remedy combining multiple plant extracts. Heals common ailments slowly but surpasses healing powder for sustained recovery.
@@ -87,6 +100,19 @@ Ingredients:
 <GuideEntityEmbed Entity="SheetPlastic"/>
 </Box>
 
+## Hydra
+
+Hydra can be assembled in the crafting menu once you have the right wasteland chems. Build or acquire an empty hydra inhaler shell, then combine it with one Jet inhaler and one Turbo inhaler in the medical tab.
+
+<GuideEntityEmbed Entity="N14Hydra" Caption="Hydra"/>
+
+Ingredients:
+<Box>
+<GuideEntityEmbed Entity="N14HydraInhaler" Caption="Empty Hydra Inhaler"/>
+<GuideEntityEmbed Entity="N14Jet" Caption="Jet Inhaler"/>
+<GuideEntityEmbed Entity="N14Turbo" Caption="Turbo Inhaler"/>
+</Box>
+
 ## RadAway Inhaler
 
 Flushes radiation from the bloodstream. Assemble the inhaler body first (see Jet Inhaler above), then attach a glass phial loaded with RadAway reagent.
@@ -125,6 +151,7 @@ Pills and canisters are pre-manufactured and cannot be crafted. They are found i
 </Box>
 <Box>
 <GuideEntityEmbed Entity="N14Jet" Caption="Jet"/>
+<GuideEntityEmbed Entity="N14Hydra" Caption="Hydra"/>
 <GuideEntityEmbed Entity="N14BuffjetCanisterFilled" Caption="Buffjet"/>
 <GuideEntityEmbed Entity="N14BufftatsCanisterFilled" Caption="Bufftats"/>
 </Box>

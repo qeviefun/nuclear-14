@@ -32,6 +32,7 @@
   id: TownMayorGear
   equipment:
     jumpsuit: N14ClothingUniformJumpsuitCheckered
+    ears: MisfitsClothingHeadsetWastelandScrap
     back: N14ClothingBackpackExplorer # Corvax-Change
     shoes: N14ClothingShoesBrown
     id: N14IDBadgeTownMayor

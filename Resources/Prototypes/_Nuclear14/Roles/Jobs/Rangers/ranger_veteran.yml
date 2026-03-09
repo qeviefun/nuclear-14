@@ -37,10 +37,10 @@
     ears: N14ClothingHeadsetNCR
     shoes: N14ClothingBootsCombatFilled
     gloves: N14ClothingHandsGlovesCombat
-    belt: ClothingBeltRevolverdesertfilled
+    belt: ClothingBeltRevolvervetfilled
     mask: ClothingMaskGasRangerElite
     pocket1: MagazineBox45-70
-    pocket2: FlashlightSeclite
+    pocket2: NCRveteranrangerloadoutkits
     eyes: ClothingEyesGlassesSunglasses
     outerClothing: N14ClothingOuterRangerEliteOld
     id: N14IDBadgeNCRDesertRangerElite
@@ -50,6 +50,7 @@
   storage: # Corvax-Change
     back:
     - N14BoxPlasticFilledMilitary
+    - FlashlightSeclite
 
 - type: playTimeTracker
   id: RangerVeteran

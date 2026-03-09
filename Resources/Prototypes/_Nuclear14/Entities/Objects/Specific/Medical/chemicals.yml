@@ -260,6 +260,7 @@
   parent: N14ChemicalSyringe
   id: N14TurboInhaler
   suffix: empty
+  #Misfits Change /Fix:/ add explicit crafting tags for supported construction graph tag steps.
   name: Turbo inhaler
   description: A small injector filled with a narcotic reagent that makes you feel as though the world around you is slowing down. It's stronger and more dangerous than Jet.
   components:
@@ -282,6 +283,7 @@
         maxVol: 10
   - type: Tag
     tags:
+    - Turbo
     - Syringe
 
 - type: entity
@@ -348,6 +350,7 @@
     transferAmount: 15
   - type: Tag
     tags:
+    - HydraInhaler
     - Syringe
 
 - type: entity
@@ -633,6 +636,29 @@
   - type: Construction
     graph: N14HealingPowder
     node: healingpowder
+
+#Misfits Change /Add/: Cleansing powder
+- type: entity
+  parent: N14HealingPowder
+  id: N14CleansingPowder
+  name: cleansing powder
+  description: A bag of anti-rad powder used by tribal and Legion healers.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Specific/Medical/drugs.rsi
+    layers:
+    - state: healingpowder
+      color: "#7fbf48"
+  - type: Item
+    sprite: _Nuclear14/Objects/Specific/Medical/drugs.rsi
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: RadAway
+          Quantity: 20
 
 - type: entity
   parent: DrinkBottleGlassBaseFull

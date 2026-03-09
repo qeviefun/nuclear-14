@@ -18,6 +18,7 @@
   - CaesarLegionVenator         # Venator            | _Misfits/Roles/Jobs/CaesarLegion/legion_venator.yml
   - CaesarLegionVexillarius     # Vexillarius        | _Misfits/Roles/Jobs/CaesarLegion/legion_vexillarius.yml
   - CaesarLegionHoundmaster     # Houndmaster        | _Misfits/Roles/Jobs/CaesarLegion/legion_houndmaster.yml
+  - CaesarLegionAuxilia         # Auxilia            | _Misfits/Roles/Jobs/CaesarLegion/legion_auxilia.yml
   # Enlisted
   - CaesarLegionRecruit         # Recruit            | _Misfits/Roles/Jobs/CaesarLegion/legion_recruit.yml
   - CaesarLegionSlave           # Slave              | _Misfits/Roles/Jobs/CaesarLegion/legion_slave.yml

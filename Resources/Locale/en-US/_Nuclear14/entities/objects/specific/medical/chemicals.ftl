@@ -6,5 +6,7 @@ ent-N14RadAwayInhaler = RadAway inhaler
     .desc = A jet inhaler with a RadAway phial screwed on top of it. Three puffs away from being rad free.
 ent-N14HealingPowder = healing powder
     .desc = A bag of tribal healing powder. Nausiating.
+ent-N14CleansingPowder = cleansing powder
+    .desc = A bag of anti-rad powder used by tribal and Legion healers.
 ent-N14HealingPoultice = healing poultice
     .desc = A bag of poultice to help with all common ailments if slowly.

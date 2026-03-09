@@ -54,8 +54,11 @@ public sealed class PlayerPanelEui : BaseEui
 
     public override EuiStateBase GetNewState()
     {
+        _player.TryGetSessionById(_targetPlayer.UserId, out var session);
+
         return new PlayerPanelEuiState(_targetPlayer.UserId,
             _targetPlayer.Username,
+            _entity.GetNetEntity(session?.AttachedEntity),
             _playtime,
             _notes,
             _bans,

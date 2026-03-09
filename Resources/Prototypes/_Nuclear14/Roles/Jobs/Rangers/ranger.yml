@@ -40,7 +40,7 @@
     belt: ClothingBeltRevolverdesertfilled
     mask: ClothingMaskGasRangerDesert
     pocket1: MagazineBox45-70
-    pocket2: FlashlightSeclite
+    pocket2: NCRfieldrangerloadoutkits
     eyes: ClothingEyesGlassesSunglasses
     outerClothing: N14ClothingOuterRangerCombatDesert
     id: N14IDBadgeNCRDesertRanger
@@ -50,6 +50,7 @@
   storage: # Corvax-Change
     back:
     - N14BoxPlasticFilledMilitary
+    - FlashlightSeclite
 
 - type: playTimeTracker
   id: Ranger

@@ -45,6 +45,12 @@
   id: Jet
 
 - type: Tag
+  id: HydraInhaler
+
+- type: Tag
+  id: Turbo
+
+- type: Tag
   id: IdCardVault
 
 # Medical Items

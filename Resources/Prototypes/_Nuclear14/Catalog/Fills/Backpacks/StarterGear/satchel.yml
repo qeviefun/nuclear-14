@@ -93,6 +93,7 @@
       # - id: MagazineBox308
 
 # Tribal
+#Misfits Change /Tweak/: Keep Tribal satchel medical contents aligned with Tribal starting gear.
 - type: entity
   categories: [ HideSpawnMenu ]
   parent: N14ClothingBackpackSatchelTrekker
@@ -105,6 +106,7 @@
       - id: Torch
       - id: N14CleanGauze10
       - id: N14Ointment10
+      - id: N14HealingPowder
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -121,6 +123,8 @@
       - id: N14Ointment10
       - id: N14HealingPowder
       - id: N14HealingPowder
+      - id: N14HealingPoultice
+      - id: N14HealingPoultice
       - id: N14Bitterdrink
 
 - type: entity

@@ -17,10 +17,12 @@ misfits-admin-tab-announce-desc = Send a server-wide announcement to all players
 misfits-admin-tab-shuttle-desc = Call or recall the evacuation train.
 misfits-admin-tab-logs-desc = View admin logs and filter by player or action.
 misfits-admin-tab-fax-desc = Send an admin fax in-game.
+misfits-admin-tab-spawn-dungeons-desc = Open the dungeon spawn panel to place procedural dungeons on the map.
 misfits-admin-tab-time-transfer-desc = Transfer playtime between players.
 
 # Adminbus tab button descriptions
 misfits-adminbus-tab-spawn-entities-desc = Open the entity spawn panel to place objects in the world.
+misfits-adminbus-tab-spawn-dungeons-desc = Open the dungeon spawn panel to place procedural dungeons on the map.
 misfits-adminbus-tab-spawn-tiles-desc = Open the tile spawn panel to paint floor/wall tiles.
 misfits-adminbus-tab-spawn-decals-desc = Open the decal placer to paint decals on tiles.
 misfits-adminbus-tab-load-prototype-desc = Load a YAML prototype file from disk into the game.

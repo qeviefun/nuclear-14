@@ -152,7 +152,8 @@ public partial class ChatBox : UIWidget, ILinkClickHandler // #Misfits Change â€
             ChatChannel.Local or
             ChatChannel.Emotes or
             ChatChannel.LOOC or
-            ChatChannel.Radio;
+            ChatChannel.Radio or
+            ChatChannel.Dead; // #Misfits Change
 
         if (!isWatchedChannel)
             return (false, null);

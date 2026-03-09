@@ -40,7 +40,7 @@
     shoes: N14ClothingBootsLeatherFilled
     head: N14ClothingHeadHatArmyCap
     outerClothing: N14ClothingOuterMBoSInitiateArmor
-    pocket1: BoSMidwestInitSet
+    pocket1: BoSBrotherhoodSquireKits
     id: N14IDBrotherhoodHolotagSquire
     belt: ClothingBeltMilitary
   storage: # Forge-Change

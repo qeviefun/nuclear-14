@@ -54,13 +54,14 @@
     gloves: N14ClothingHandsGlovesTribal
     outerClothing: N14ClothingOuterDeanLegionnaireVeteranArmor
     belt: N14Gladius
-    pocket1: LegionDeanloadoutkits
+    pocket1: LegionVeteranDecanusloadoutkits
     pocket2: N14WeaponPistol10mmPipe
     id: N14IDLegionaryMedalVeteranDecanus
   innerClothingSkirt: N14ClothingUniformJumpsuitLegionnaireOther
   storage:
     back:
     - N14BoxPlasticFilledMilitary
+    - N14HealingPowder
 
 - type: playTimeTracker
   id: CaesarLegionVeteranDecanus

@@ -33,6 +33,7 @@
   id: WastelandReporterGear
   equipment:
     jumpsuit: N14ClothingUniformJumpsuitDetectiveAlt
+    ears: MisfitsClothingHeadsetWastelandScrap
     back: N14ClothingBackpackExplorer # Corvax-Change
     shoes: N14ClothingShoesBlack
     id: N14IDReporterTown

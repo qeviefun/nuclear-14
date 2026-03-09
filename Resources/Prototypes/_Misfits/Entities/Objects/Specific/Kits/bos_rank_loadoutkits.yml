@@ -1,0 +1,167 @@
+- type: entity
+  id: BoSBrotherhoodElderKits
+  name: Undecided Brotherhood Elder Kit
+  parent: BaseLoadoutKit
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - KitBrootherWest_ElderlasSet
+    - KitBrootherWest_ElderrifleSet
+    - CommandGatlingWashingtonBoSSet
+
+- type: entity
+  id: BoSBrotherhoodHeadPaladinKits
+  name: Undecided Brotherhood Head Paladin Kit
+  parent: BaseLoadoutKit
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - CommandBaseWashingtonBoSSet
+    - CommandCasterWashingtonBoSSet
+    - MBoS_PalPla_Set
+
+- type: entity
+  id: BoSBrotherhoodHeadKnightKits
+  name: Undecided Brotherhood Head Knight Kit
+  parent: BaseLoadoutKit
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - BaseWashingtonBoSSet
+    - WattzWashingtonBoSSet
+    - ProtoWashingtonBoSSet
+
+- type: entity
+  id: BoSBrotherhoodHeadScribeKits
+  name: Undecided Brotherhood Head Scribe Kit
+  parent: BaseLoadoutKit
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - WBoS_ScrMed_Set
+    - WBoS_ScrEng_Set
+    - KitBrootherWest_ScribelaserSet
+
+- type: entity
+  id: BoSBrotherhoodSeniorPaladinKits
+  name: Undecided Brotherhood Senior Paladin Kit
+  parent: BaseLoadoutKit
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - MBoS_PalLas_Set
+    - MBoS_PalBal_Set
+    - MBoS_PalSni_Set
+    - MBoS_PalPla_Set
+
+- type: entity
+  id: BoSBrotherhoodSeniorKnightKits
+  name: Undecided Brotherhood Senior Knight Kit
+  parent: BaseLoadoutKit
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - KitBrootherWest_KnightrifleSet
+    - KitBrootherWest_KnightlaserSet
+    - KitBrootherWest_KnightplasmaSet
+
+- type: entity
+  id: BoSBrotherhoodSeniorScribeKits
+  name: Undecided Brotherhood Senior Scribe Kit
+  parent: BaseLoadoutKit
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - MBoS_ScrMed_Set
+    - MBoS_ScrFld_Set
+    - MBoS_ScrEng_Set
+
+- type: entity
+  id: BoSBrotherhoodPaladinKits
+  name: Undecided Brotherhood Paladin Kit
+  parent: BaseLoadoutKit
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - WBoS_PalPla_Set
+    - WBoS_PalBal_Set
+    - WBoS_PalSni_Set
+    - WBoS_PalLas_Set
+
+- type: entity
+  id: BoSBrotherhoodKnightKits
+  name: Undecided Brotherhood Knight Kit
+  parent: BaseLoadoutKit
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - WBoS_KniPla_Set
+    - WBoS_KniBal_Set
+    - MBoS_KniLas_Set
+
+- type: entity
+  id: BoSBrotherhoodScribeKits
+  name: Undecided Brotherhood Scribe Kit
+  parent: BaseLoadoutKit
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - WBoS_ScrMed_Set
+    - WBoS_ScrFld_Set
+    - WBoS_ScrEng_Set
+
+- type: entity
+  id: BoSBrotherhoodSquireKits
+  name: Undecided Brotherhood Squire Kit
+  parent: BaseLoadoutKit
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - MBoS_IniLas_Set
+    - MBoS_IniBal_Set
+
+- type: entity
+  id: BoSBrotherhoodInitiateKits
+  name: Undecided Brotherhood Initiate Kit
+  parent: BaseLoadoutKit
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - WBoS_IniPla_Set
+    - WBoS_IniBal_Set

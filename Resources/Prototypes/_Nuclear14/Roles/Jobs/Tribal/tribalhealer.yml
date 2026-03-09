@@ -56,6 +56,8 @@
     - Ointment
     - N14HealingPowder
     - N14HealingPowder
+    - N14HealingPoultice
+    - N14HealingPoultice
 
 - type: playTimeTracker
   id: TribalHealer

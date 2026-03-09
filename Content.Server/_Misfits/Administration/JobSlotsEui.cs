@@ -141,20 +141,15 @@ public sealed class JobSlotsEui : BaseEui
     {
         base.HandleMessage(msg);
 
-        if (!_admin.HasAdminFlag(Player, AdminFlags.Whitelist))
+        // #Misfits Change - Whitelist flag not universally assigned; gate on Admin instead.
+        if (!_admin.HasAdminFlag(Player, AdminFlags.Admin))
         {
-            _sawmill.Warning($"{Player.Name} ({Player.UserId}) tried to use job slots EUI without Whitelist flag");
+            _sawmill.Warning($"{Player.Name} ({Player.UserId}) tried to use job slots EUI without Admin flag");
             return;
         }
 
         if (msg is not AdjustJobSlotsMessage adjust)
             return;
-
-        if (!_admin.HasAdminFlag(Player, AdminFlags.Admin))
-        {
-            _sawmill.Warning($"{Player.Name} ({Player.UserId}) tried to adjust job slots without Admin flag");
-            return;
-        }
 
         HandleAdjust(adjust.Job, adjust.Delta);
     }

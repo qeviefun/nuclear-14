@@ -47,12 +47,13 @@
     head: N14ClothingHeadHatTribalOutcastHood
     gloves: N14ClothingHandsGlovesTribal
     belt: N14Gladius
-    pocket1: LegionRecruitloadoutkits
+    pocket1: LegionHoundmasterloadoutkits
     id: N14IDLegionaryMedalHoundmaster
   innerClothingSkirt: N14ClothingUniformJumpsuitLegionnaireOther
   storage:
     back:
     - N14BoxPlasticFilledMilitary
+    - N14HealingPowder
 
 - type: playTimeTracker
   id: CaesarLegionHoundmaster

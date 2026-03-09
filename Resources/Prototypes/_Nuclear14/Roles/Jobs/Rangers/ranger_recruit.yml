@@ -37,7 +37,7 @@
     shoes: N14ClothingBootsLeather
     belt: ClothingBeltRevolverdesertfilled
     pocket1: MagazineBox45-70
-    pocket2: FlashlightSeclite
+    pocket2: NCRpatrolrangerloadoutkits
     eyes: ClothingEyesGlassesSunglasses
     outerClothing: N14ClothingOuterRangerCombat
     id: N14IDBadgeNCRDesertRangerRecruit
@@ -47,6 +47,7 @@
   storage: # Corvax-Change
     back:
     - N14BoxPlasticFilledMilitary
+    - FlashlightSeclite
 
 - type: playTimeTracker
   id: RangerRecruit

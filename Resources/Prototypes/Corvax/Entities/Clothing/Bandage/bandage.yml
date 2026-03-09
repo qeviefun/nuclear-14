@@ -123,13 +123,13 @@
     state: icon
   - type: Clothing
     sprite: Corvax/Clothing/Bandage/bandageSerfMBOS.rsi
-    slots: [ bandage ]
+    slots: [ neck ]
   - type: Unremoveable
 
 - type: entity
   parent: NCClothingCollarLegionBase
   id: NCClothingCollarLegionSlave
-  name: recruit bandage Legion
+  name: legion slave collar
   description: A collar used by the Legion slave.
   components:
   - type: ClothingFactionAndRoleAdd

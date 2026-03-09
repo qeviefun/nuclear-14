@@ -68,8 +68,5 @@
         Slash: 0.75
         Piercing: 0.7
         Heat: 0.65
-  - type: ClothingSpeedModifier # Forge-Change
-    walkModifier: 1.05
-    sprintModifier: 1.05
   - type: ExplosionResistance
     damageCoefficient: 0.8

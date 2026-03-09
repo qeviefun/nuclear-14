@@ -29,6 +29,7 @@
   id: WastelanderGear
   equipment:
     jumpsuit: N14ClothingUniformJumpsuitRags
+    ears: MisfitsClothingHeadsetWastelandScrap
     back: N14ClothingBackpackExplorer # Corvax-Change
     shoes: N14ClothingShoesRags
   innerClothingSkirt: N14ClothingUniformJumpskirtFalloutBlack

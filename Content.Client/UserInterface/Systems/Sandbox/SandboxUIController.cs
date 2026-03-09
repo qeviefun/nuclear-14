@@ -1,4 +1,5 @@
-﻿using Content.Client.Administration.Managers;
+﻿using Content.Client._NF.Procedural;
+using Content.Client.Administration.Managers;
 using Content.Client.Gameplay;
 using Content.Client.Markers;
 using Content.Client.Sandbox;
@@ -48,6 +49,7 @@ public sealed class SandboxUIController : UIController, IOnStateChanged<Gameplay
     private EntitySpawningUIController EntitySpawningController => UIManager.GetUIController<EntitySpawningUIController>();
     private TileSpawningUIController TileSpawningController => UIManager.GetUIController<TileSpawningUIController>();
     private DecalPlacerUIController DecalPlacerController => UIManager.GetUIController<DecalPlacerUIController>();
+    private DungeonSpawnUIController DungeonSpawnController => UIManager.GetUIController<DungeonSpawnUIController>();
 
     private MenuButton? SandboxButton => UIManager.GetActiveUIWidgetOrNull<MenuBar.Widgets.GameTopMenuBar>()?.SandboxButton;
 
@@ -139,6 +141,7 @@ public sealed class SandboxUIController : UIController, IOnStateChanged<Gameplay
         _window.RespawnButton.OnPressed += _ => _sandbox.Respawn();
         _window.SpawnTilesButton.OnPressed += _ => TileSpawningController.ToggleWindow();
         _window.SpawnEntitiesButton.OnPressed += _ => EntitySpawningController.ToggleWindow();
+        _window.SpawnDungeonsButton.OnPressed += _ => DungeonSpawnController.ToggleWindow();
         _window.SpawnDecalsButton.OnPressed += _ => DecalPlacerController.ToggleWindow();
         _window.GiveFullAccessButton.OnPressed += _ => _sandbox.GiveAdminAccess();
         _window.GiveAghostButton.OnPressed += _ => _sandbox.GiveAGhost();

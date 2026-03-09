@@ -265,6 +265,18 @@
 
 - type: entity
   parent: MisfitsSpawnPointCaesarLegionCenturion
+  id: MisfitsSpawnPointCaesarLegionAuxilia
+  name: Legion Auxilia
+  components:
+  - type: SpawnPoint
+    job_id: CaesarLegionAuxilia
+  - type: Sprite
+    layers:
+      - state: green
+      - state: recruit
+
+- type: entity
+  parent: MisfitsSpawnPointCaesarLegionCenturion
   id: MisfitsSpawnPointCaesarLegionLegionnaireRecruit
   name: Legion Recruit Legionary
   components:

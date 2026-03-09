@@ -41,7 +41,7 @@
     id: N14IDBrotherhoodWashingtonHolotagInitiate
     outerClothing: N14ClothingOuterWBoSInitiateArmor
     belt: ClothingBeltBoSWebbing
-    pocket1: BoSWashingtonInitSet
+    pocket1: BoSBrotherhoodInitiateKits
 
 - type: playTimeTracker
   id: BoSWashingtonInitiate

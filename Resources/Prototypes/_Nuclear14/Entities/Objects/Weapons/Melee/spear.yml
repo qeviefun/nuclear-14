@@ -38,7 +38,8 @@
     wideAnimationRotation: -135
     damage:
       types:
-        Piercing: 12
+        Piercing: 10
+        Slash: 2
     angle: 0
     animation: WeaponArcThrust
     soundHit:
@@ -46,7 +47,8 @@
   - type: DamageOtherOnHit
     damage:
       types:
-        Piercing: 35
+        Piercing: 28
+        Slash: 7
   - type: Item
     size: Large
   - type: Clothing
@@ -127,7 +129,8 @@
     wideAnimationRotation: -135
     damage:
       types:
-        Piercing: 20
+        Piercing: 16
+        Slash: 4
     angle: 0
     animation: WeaponArcThrust
     soundHit:
@@ -135,7 +138,8 @@
   - type: DamageOtherOnHit
     damage:
       types:
-        Piercing: 25
+        Piercing: 20
+        Slash: 5
   - type: Item
     size: Large
   - type: Clothing
@@ -195,6 +199,7 @@
   name: tribal spear
   parent: N14WastelandSpear
   id: N14WastelandTribalSpear
+  #Misfits Change /Fix:/ removed duplicate damage mapping key.
   description: Strong and with a devastating attack, these spears are commonly made and used by tribals.
   components:
   - type: Clothing
@@ -210,7 +215,7 @@
   - type: MeleeWeapon
     damage:
       types:
-        Piercing: 18
+        Piercing: 15
         Slash: 8
   - type: DamageOtherOnHit
     damage:
@@ -253,10 +258,27 @@
   id: N14WastelandTribalJavelin
   description: "Technically a very short spear, but its strength doesn't come from melee combat."
   components:
+  - type: LandAtCursor
+  - type: ThrowSpeedModifier
+    multiplier: 1.2
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Melee/javelin.rsi
     netsync: false
     state: spear
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PolygonShape
+          vertices:
+            - -0.48,-0.34
+            - -0.34,-0.48
+            - 0.48,0.34
+            - 0.34,0.48
+        density: 20
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
   - type: MeleeWeapon
     damage:
       types:
@@ -265,4 +287,5 @@
     damage:
       types:
         Piercing: 36
+        Slash: 6
 

@@ -49,12 +49,13 @@
     gloves: N14ClothingHandsGlovesTribal
     belt: N14Gladius
     suitstorage: N14PilumSpear
-    pocket1: LegionRecruitloadoutkits
+    pocket1: LegionVexillariusloadoutkits
     id: N14IDLegionaryMedalVexillarius
   innerClothingSkirt: N14ClothingUniformJumpsuitLegionnaireOther
   storage:
     back:
     - N14BoxPlasticFilledMilitary
+    - N14HealingPowder
 
 - type: playTimeTracker
   id: CaesarLegionVexillarius

@@ -72,7 +72,34 @@ public sealed partial class ChatSystem
             return;
 
         var wrappedMessage = BuildDoWrappedMessage(action);
-        SendInVoiceRange(ChatChannel.Emotes, string.Empty, action, wrappedMessage, obfuscated: string.Empty, obfuscatedWrappedMessage: string.Empty, source, range, author);
+
+        // Loop over recipients manually and pass EntityUid.Invalid so no speech bubble
+        // appears over the sender's head — matching /aemote (anonymous local-area RP) behavior.
+        foreach (var (session, data) in GetRecipients(source, Transform(source).GridUid == null ? 0.3f : VoiceRange))
+        {
+            if (session.AttachedEntity != null
+                && Transform(session.AttachedEntity.Value).GridUid != Transform(source).GridUid
+                && !CheckAttachedGrids(source, session.AttachedEntity.Value))
+                continue;
+
+            var entRange = MessageRangeCheck(session, data, range);
+            if (entRange == MessageRangeCheckResult.Disallowed)
+                continue;
+
+            var entHideChat = entRange == MessageRangeCheckResult.HideChat;
+
+            _chatManager.ChatMessageToOne(
+                ChatChannel.Emotes,
+                action,
+                wrappedMessage,
+                EntityUid.Invalid,   // no entity → no speech bubble over sender
+                entHideChat,
+                session.Channel,
+                author: author);
+        }
+
+        _replay.RecordServerMessage(
+            new ChatMessage(ChatChannel.Emotes, action, wrappedMessage, default, null, MessageRangeHideChatForReplay(range)));
 
         if (!hideLog)
             _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Do from {ToPrettyString(source):user}: {action}");

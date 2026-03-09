@@ -40,7 +40,7 @@
     id: N14IDBrotherhoodWashingtonHolotagPaladin
     ears: N14ClothingHeadsetBOSWashington
     belt: ClothingBeltBoSWebbing
-    pocket1: BoSWashingtonPaladinKits
+    pocket1: BoSBrotherhoodPaladinKits
 
 - type: playTimeTracker
   id: BoSWashingtonPaladin

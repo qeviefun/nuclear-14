@@ -20,9 +20,38 @@
 
 - type: accessGroup
   id: NCR
+  #Misfits Change /Fix/: Base NCR access should only open base NCR doors.
   tags:
-  - NCRLT
-  - NCRRanger
+  - NCR
+
+- type: accessGroup
+  id: NCRMedic
+  #Misfits Change /Fix/: NCR medics inherit base NCR access plus medic spaces.
+  tags:
+  - NCR
+  - NCRMedic
+
+- type: accessGroup
+  id: NCRSGT
+  #Misfits Change /Fix/: NCR NCOs inherit base NCR access plus NCO spaces.
+  tags:
+  - NCR
+  - NCRSGT
+
+- type: accessGroup
+  id: NCRLT
+  #Misfits Change /Fix/: NCR officers inherit base, NCO, medical, and officer spaces.
+  tags:
+  - NCR
   - NCRSGT
   - NCRMedic
+  - NCRLT
+
+- type: accessGroup
+  id: NCRRanger
+  #Misfits Change /Fix/: NCR Rangers inherit their specialist access alongside shared NCR base access.
+  tags:
   - NCR
+  - NCRSGT
+  - NCRMedic
+  - NCRRanger

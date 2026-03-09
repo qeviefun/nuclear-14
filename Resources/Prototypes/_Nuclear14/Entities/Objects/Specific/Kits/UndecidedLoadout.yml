@@ -19,9 +19,10 @@
 #MARK: Undecided Loadout Backpacks
 
 # New California Republic Army
+#Misfits Change /Tweak/: Split NCR army loadout kits by rank progression.
 - type: entity
   id: NCRcadetloadoutkits
-  name: Undecided NCRA Cadet Loadout Kit
+  name: Undecided NCRA Recruit Loadout Kit
   parent: BaseLoadoutKit
   components:
   - type: Sprite
@@ -35,7 +36,21 @@
 
 - type: entity
   id: NCRtrooperloadoutkits
-  name: Undecided NCRA Trooper Loadout Kit
+  name: Undecided NCRA Private Loadout Kit
+  parent: NCRcadetloadoutkits
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - NCRA_RiflemanSet
+    - NCRA_StormSet
+    - NCRA_ScoutSet
+
+- type: entity
+  id: NCRpfcloadoutkits
+  name: Undecided NCRA Private First Class Loadout Kit
   parent: NCRcadetloadoutkits
   components:
   - type: Sprite
@@ -48,6 +63,23 @@
     - NCRA_ScoutSet
     - NCRA_PointSet
     - NCRA_MoraleSet
+    - NCRA_PFCFireteamSet
+
+- type: entity
+  id: NCRcorporalloadoutkits
+  name: Undecided NCRA Corporal Loadout Kit
+  parent: NCRcadetloadoutkits
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: pointman
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - NCRA_PointSet
+    - NCRA_MoraleSet
+    - NCRA_GrenadierSet
+    - NCRA_ScoutSet
+    - NCRA_CorporalPatrolSet
 
 - type: entity
   id: NCRengineerloadoutkits
@@ -79,7 +111,7 @@
 
 - type: entity
   id: NCRwsloadoutkits
-  name: Undecided NCRA Weapon Specalist Loadout Kit
+  name: Undecided NCRA Weapon Specialist Loadout Kit
   parent: NCRcadetloadoutkits
   components:
   - type: Sprite
@@ -107,6 +139,38 @@
     - NCRA_SGTPointSet
 
 - type: entity
+  id: NCRstaffsergeantloadoutkits
+  name: Undecided NCRA Staff Sergeant Loadout Kit
+  parent: NCRcadetloadoutkits
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - NCRA_SGTGunnerSet
+    - NCRA_SGTScoutSet
+    - NCRA_SGTPointSet
+    - NCRA_LTTacticalSet
+    - NCRA_StaffSergeantLineSet
+
+- type: entity
+  id: NCRfirstsergeantloadoutkits
+  name: Undecided NCRA First Sergeant Loadout Kit
+  parent: NCRcadetloadoutkits
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: pointman
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - NCRA_SGTRiflemanSet
+    - NCRA_SGTPointSet
+    - NCRA_LTPencilSet
+    - NCRA_LTTacticalSet
+    - NCRA_FirstSergeantVeteranSet
+
+- type: entity
   id: NCRLTloadoutkits
   name: Undecided NCRA Lieutenant Loadout Kit
   parent: NCRcadetloadoutkits
@@ -121,10 +185,27 @@
     - NCRA_LTTacticalSet
   - type: ActivatableUI
 
+- type: entity
+  id: NCRcaptainloadoutkits
+  name: Undecided NCRA Captain Loadout Kit
+  parent: NCRcadetloadoutkits
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: pointman
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - NCRA_LTPencilSet
+    - NCRA_LTScoutSet
+    - NCRA_LTTacticalSet
+    - NCRA_CaptainCommandSet
+    - NCRA_CaptainMarksmanSet
+  - type: ActivatableUI
+
 # New California Republic Rangers
 - type: entity
-  id: NCRrangerloadoutkits
-  name: Undecided NCR Ranger Loadout Kit
+  id: NCRpatrolrangerloadoutkits
+  name: Undecided NCR Patrol Ranger Loadout Kit
   parent: NCRcadetloadoutkits
   components:
   - type: Sprite
@@ -132,8 +213,25 @@
   - type: UndecidedLoadoutBackpack
     possibleSets:
     - RangerServiceSet
+    - RangerRiflemanSet
     - RangerCQBSet
+
+- type: entity
+  id: NCRrangerloadoutkits
+  name: Undecided NCR Ranger Loadout Kit
+  parent: NCRpatrolrangerloadoutkits
+
+- type: entity
+  id: NCRfieldrangerloadoutkits
+  name: Undecided NCR Field Ranger Loadout Kit
+  parent: NCRcadetloadoutkits
+  components:
+  - type: Sprite
+    state: marksman
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
     - RangerTrailmanSet
+    - RangerMarksmanSet
     - RangerSniperSet
 
 - type: entity
@@ -146,12 +244,6 @@
     state: rifleman
   - type: UndecidedLoadoutBackpack
     possibleSets:
-    - RangerServiceSet
-    - RangerRiflemanSet
-    - RangerMarksmanSet
-    - RangerCQBSet
-    - RangerTrailmanSet
-    - RangerSMGSet # Forge-Change
     - VeteranRangerServiceSet
     - VeteranRangerRiflemanSet
     - VeteranRangerHeavySniperSet

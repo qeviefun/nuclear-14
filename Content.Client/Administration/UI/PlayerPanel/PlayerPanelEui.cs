@@ -5,6 +5,7 @@ using Content.Shared.Eui;
 using JetBrains.Annotations;
 using Robust.Client.Console;
 using Robust.Client.UserInterface;
+using Robust.Shared.GameObjects;
 
 namespace Content.Client.Administration.UI.PlayerPanel;
 
@@ -38,11 +39,11 @@ public sealed class PlayerPanelEui : BaseEui
         PlayerPanel.OnLogs += () => SendMessage(new PlayerPanelLogsMessage());
         PlayerPanel.OnRejuvenate += () => SendMessage(new PlayerPanelRejuvenationMessage());
         PlayerPanel.OnDelete += () => SendMessage(new PlayerPanelDeleteMessage());
-        // #Misfits Change — aghost to the target player via the aghost command.
-        PlayerPanel.OnAGhost += username =>
+        // #Misfits Change — follow the target player's current entity from the player panel.
+        PlayerPanel.OnFollow += entity =>
         {
-            if (!string.IsNullOrEmpty(username))
-                _console.ExecuteCommand($"aghost \"{username}\"");
+            if (entity is { } netEntity && netEntity != NetEntity.Invalid)
+                _console.ExecuteCommand($"follow \"{netEntity}\"");
         };
 
         PlayerPanel.OnClose += () => SendMessage(new CloseEuiMessage());
@@ -65,6 +66,7 @@ public sealed class PlayerPanelEui : BaseEui
 
         PlayerPanel.TargetPlayer = s.Guid;
         PlayerPanel.TargetUsername = s.Username;
+        PlayerPanel.TargetNetEntity = s.AttachedEntity;
         PlayerPanel.SetUsername(s.Username);
         PlayerPanel.SetPlaytime(s.Playtime);
         PlayerPanel.SetBans(s.TotalBans, s.TotalRoleBans);

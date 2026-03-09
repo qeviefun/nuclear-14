@@ -54,13 +54,14 @@
     gloves: N14ClothingHandsGlovesLegate
     outerClothing: N14ClothingOuterLegateArmor
     belt: N14Gladius
-    pocket1: LegionCenturionloadoutkits
+    pocket1: LegionLegateloadoutkits
     pocket2: N14WeaponPistol10mmPipe
     id: N14IDLegionaryMedalLegate
   innerClothingSkirt: N14ClothingUniformJumpsuitLegionnaireOther
   storage:
     back:
     - N14BoxPlasticFilledMilitary
+    - N14HealingPowder
 
 - type: playTimeTracker
   id: CaesarLegionLegate

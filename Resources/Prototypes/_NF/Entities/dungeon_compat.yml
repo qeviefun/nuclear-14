@@ -1,0 +1,521 @@
+# Frontier/NF dungeon compatibility aliases for legacy atlas maps.
+
+- type: entity
+  abstract: true
+  id: NFDungeonCompatMarker
+  parent: MarkerBase
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  abstract: true
+  id: NFDungeonCompatTreasureMarker
+  parent: NFDungeonCompatMarker
+  components:
+  - type: RandomSpawner
+    prototypes:
+    - N14Scrap1
+    - N14ScrapElectronic1
+    - BookRandom
+    - N14HandheldRadio
+    chance: 1.0
+    offset: 0.0
+
+- type: entity
+  parent: AirlockEngineeringGlassLocked
+  id: AirlockEngineeringGlassLockedDungeon
+
+- type: entity
+  parent: AirlockMaintGlassLocked
+  id: AirlockMaintGlassLockedDungeon
+
+- type: entity
+  parent: AirlockSecurityGlassLocked
+  id: AirlockMercenaryGlassLockedDungeon
+
+- type: entity
+  parent: AirlockMiningGlass
+  id: AirlockMiningGlassDungeon
+
+- type: entity
+  parent: AirlockMiningGlassLocked
+  id: AirlockMiningGlassLockedDungeon
+
+- type: entity
+  parent: N14HydroponicsPlanter
+  id: Biogenerator
+
+- type: entity
+  parent: N14ScrapElectronic1
+  id: BorgModuleAdvancedMining
+
+- type: entity
+  parent: N14ClothingOuterRobeHubologist
+  id: ClothingOuterCoatBloodCultRobes
+
+- type: entity
+  parent: N14ComputerTerminalRustedBroken
+  id: ComputerTabletopAlert
+
+- type: entity
+  parent: N14ComputerTerminalRustedBroken
+  id: ComputerTabletopBroken
+
+- type: entity
+  parent: N14ComputerTerminalRustedBroken
+  id: ComputerTabletopCrewMonitoring
+
+- type: entity
+  parent: N14ComputerTerminalRustedBroken
+  id: ComputerTabletopMedicalRecords
+
+- type: entity
+  parent: N14ComputerTerminalRustedBroken
+  id: ComputerTabletopPowerMonitoring
+
+- type: entity
+  parent: N14ComputerTerminalRustedBroken
+  id: ComputerTabletopSurveillanceCameraMonitor
+
+- type: entity
+  parent: Grille
+  id: GrilleDungeon
+
+- type: entity
+  parent: LockerJanitor
+  id: LockerJanitorFilled
+
+- type: entity
+  parent: LockerSecurity
+  id: LockerMercenary
+
+- type: entity
+  parent: Dresser
+  id: LockerWoodenGeneric
+
+- type: entity
+  parent: MiningWindow
+  id: MiningWindowDungeon
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: NFAsteroidRockElementalSpawner
+
+- type: entity
+  parent: Landmine
+  id: NFConcealedMineSpawner
+
+- type: entity
+  parent: BookRandom
+  id: NFRandomBook
+
+- type: entity
+  parent: WardrobePrison
+  id: NFWardrobePrisonFilled
+
+- type: entity
+  parent: N14WeaponPistol10mmPipe
+  id: NFWeaponPistolCHIMP
+
+- type: entity
+  parent: N14HydroponicsPlanter
+  id: PlantBox
+
+- type: entity
+  parent: PlasmaReinforcedWindowDirectional
+  id: PlasmaReinforcedWindowDirectionalDungeon
+
+- type: entity
+  parent: PlasmaWindowDirectional
+  id: PlasmaWindowDirectionalDungeon
+
+- type: entity
+  parent: N14Scrap1
+  id: PlushieMoffRandom
+
+- type: entity
+  parent: N14PortableGeneratorWeldingFuel
+  id: PortableGeneratorDK
+
+- type: entity
+  parent: N14PortableGeneratorWeldingFuel
+  id: PortableGeneratorJrPacmanShuttle
+
+- type: entity
+  parent: N14HandheldRadio
+  id: RadioHandheldNF
+
+- type: entity
+  parent: ReinforcedPlasmaWindow
+  id: ReinforcedPlasmaWindowDungeon
+
+- type: entity
+  parent: ReinforcedWindow
+  id: ReinforcedWindowDungeon
+
+- type: entity
+  parent: NFDungeonCompatTreasureMarker
+  id: SalvageSpawnerTreasure
+
+- type: entity
+  parent: SuitStorageBase
+  id: SuitStorageMercenary
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: StructurePistolRackWallmountedMercenaryFilled
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonClutterMedical
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonClutterPatientTransport
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonFurnitureBedroom
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootArmorMercenary
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootArmoryClutter
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootArmoryExplosives
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootArmoryGuns
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootArmoryMelee
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootArmoryRare
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootBriefcase
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootBureaucracy
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootCanister
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootChems
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootChemsHydroponics
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootCircuitBoard
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootClothesSalvage
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootClutterEngi
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootClutterHydroponics
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootClutterKitchen
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootClutterSalvage
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootCrateArmoryWeapon
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootCrateEngi
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootCrateGeneral
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootCrateHydro
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootCrateMaterials
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootCrateMed
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootCrateRestockGeneral
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootCrateRestockMed
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootCrateScience
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootCrateService
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootCrateVehicle
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootCutlery
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootFood
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootHardsuitsMercenary
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootHardsuitsSalvage
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootKitchenTabletop
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootKitsFirstAid
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootKitSurgery
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootLathe
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootLatheEngi
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootLatheSalvage
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootLockersArmory
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootLockersEngi
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootLockersGeneral
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootLockersMed
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootLockersProtectiveGear
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootLockersSalvage
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootMaterialsBasicFull
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootMaterialsBasicSingle
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootMaterialsValuableFull
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootMaterialsValuableSingle
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootMeleeT1
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootMugs
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootOresFull
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootOresSingle
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootPartsEngi
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootPowerCell
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootSeed
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootSpesos
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootSuitStorageUnitsSalvage
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootToolbox
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootToolsAdvancedEngineering
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootToolsBasicEngineering
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootToolsHydroponics
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootToolsSalvage
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootToolsSurgeryAdvanced
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootToolsSurgeryCrude
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonLootVaultGuns
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonVendomatsArmory
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonVendomatsClothes
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonVendomatsEngi
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonVendomatsMed
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonVendomatsRecreational
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonVendomatsSalvage
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnDungeonVendomatsTools
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: SpawnVehicleHoverbikeNF
+
+- type: entity
+  parent: NFDungeonCompatMarker
+  id: VehicleKeyHoverbikeNF
+
+- type: entity
+  parent: Windoor
+  id: WindoorDungeon
+
+- type: entity
+  parent: WindoorPlasma
+  id: WindoorPlasmaDungeon
+
+- type: entity
+  parent: WindoorSecure
+  id: WindoorSecureDungeon
+
+- type: entity
+  parent: WindoorSecureEngineeringLocked
+  id: WindoorSecureEngineeringLockedDungeon
+
+- type: entity
+  parent: WindoorSecureMedicalLocked
+  id: WindoorSecureMedicalLockedDungeon
+
+- type: entity
+  parent: WindoorSecureSecurityLocked
+  id: WindoorSecureMercenaryLockedDungeon
+
+- type: entity
+  parent: WindoorSecurePlasma
+  id: WindoorSecurePlasmaDungeon
+
+- type: entity
+  parent: WindoorSecureSecurityLocked
+  id: WindoorSecureSecurityLockedDungeon
+
+- type: entity
+  parent: WindowDirectional
+  id: WindowDirectionalDungeon
+
+- type: entity
+  parent: Window
+  id: WindowDungeon
+
+- type: entity
+  parent: WindowFrostedDirectional
+  id: WindowFrostedDirectionalDungeon
+
+- type: entity
+  parent: WindowReinforcedDirectional
+  id: WindowReinforcedDirectionalDungeon

@@ -136,6 +136,8 @@
     - SlowedDown
     - Stutter
     - SeeingRainbows
+    - HealingPowderHaze
+    - HydraTint
     - Electrocution
     - Drunk
     - SlurredSpeech
@@ -289,6 +291,8 @@
     - SlowedDown
     - Stutter
     - SeeingRainbows
+    - HealingPowderHaze
+    - HydraTint
     - Electrocution
     - ForcedSleep
     - TemporaryBlindness

@@ -232,6 +232,12 @@ undecided-loadout-category-ranger-trailman-description =
     Includes 1 NCR pouches bandolier, 1 lever carbine, 3 .44 ammo boxes,
     2 stimpaks, 1 C ration MRE, and a combat knife.
 
+undecided-loadout-category-ranger-sniper-name = Ranger Sniper Kit
+undecided-loadout-category-ranger-sniper-description =
+    A crate containing advance weaponry for members of the rangers.
+    Includes 1 NCR pouches bandolier, 1 sniper rifle, 3 .308 sniper magazines,
+    1 box of .308, 2 stimpaks, 1 C ration MRE, and a combat knife.
+
 undecided-loadout-category-veteran-ranger-service-name = Veteran Ranger Service Kit
 undecided-loadout-category-veteran-ranger-service-description =
     A cache containing belongings of a veteran ranger.

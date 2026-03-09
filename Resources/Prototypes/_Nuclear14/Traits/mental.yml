@@ -73,6 +73,7 @@
         - CaesarLegionLegionnaireWarrior
         - CaesarLegionLegionnaireRecruit
         - CaesarLegionHoundmaster
+        - CaesarLegionAuxilia
         - CaesarLegionRecruit
         # Forge-Change-End
         - VaultSecurity

@@ -10,7 +10,8 @@ namespace Content.Server._Misfits.Administration.Commands;
 /// Opens the Job Slots panel so admins can view and adjust per-job slot counts
 /// on the active station without needing to select a player first.
 /// </summary>
-[AdminCommand(AdminFlags.Whitelist)]
+// #Misfits Change - Whitelist flag not universally assigned; gate on Admin instead.
+[AdminCommand(AdminFlags.Admin)]
 public sealed class WhitelistSlotsCommand : LocalizedCommands
 {
     [Dependency] private readonly EuiManager _eui = default!;

@@ -5,4 +5,19 @@
   id: WeaponRifleNovaliteC1
 
 - type: Tag
+  id: NFCaveFactory
+
+- type: Tag
+  id: NFLavaMercenary
+
+- type: Tag
+  id: NFHaunted
+
+- type: Tag
+  id: NFMineshaft
+
+- type: Tag
+  id: NFSalvageOutpost
+
+- type: Tag
   id: MagazineNovaliteC1

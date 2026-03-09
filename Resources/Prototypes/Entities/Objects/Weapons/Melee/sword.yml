@@ -35,7 +35,8 @@
       path: /Audio/SimpleStation14/Weapons/Melee/rapierhit.ogg
     damage:
       types:
-        Slash: 15
+        Slash: 11
+        Piercing: 4
     heavyRateModifier: 1.25
     heavyRangeModifier: 1
     heavyDamageBaseModifier: 1
@@ -83,7 +84,8 @@
       path: /Audio/SimpleStation14/Weapons/Melee/rapierhit.ogg
     damage:
       types:
-        Slash: 12
+        Slash: 8
+        Piercing: 4
     heavyRateModifier: 2
     heavyRangeModifier: 2.75 #Superior Japanese folded steel
     heavyDamageBaseModifier: 1.25
@@ -114,7 +116,8 @@
     wideAnimationRotation: -60
     damage:
       types:
-        Slash: 25
+        Slash: 15
+        Heat: 10
   - type: ThrowingAngle
     angle: 300
   - type: Item
@@ -154,7 +157,8 @@
     attackRate: 1.25
     damage:
       types:
-        Slash: 15
+        Slash: 11
+        Piercing: 4
     heavyRateModifier: 1.25
     heavyRangeModifier: 1.25
     heavyDamageBaseModifier: 1.2
@@ -187,7 +191,8 @@
     range: 1.85
     damage:
       types:
-        Slash: 19
+        Slash: 14
+        Piercing: 5
         Blunt: 1
     bluntStaminaDamageFactor: 25.0
     heavyRateModifier: 2
@@ -228,7 +233,8 @@
     attackRate: .8
     damage:
       types:
-        Slash: 12
+        Slash: 9
+        Piercing: 3
     heavyRateModifier: 1.25
     heavyRangeModifier: 1.2
     heavyDamageBaseModifier: 1.2

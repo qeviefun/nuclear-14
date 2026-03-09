@@ -14,9 +14,6 @@ namespace Content.Shared._Misfits.Administration;
 [Serializable, NetSerializable]
 public sealed class WhitelistSearchEuiState : EuiStateBase
 {
-    public bool CanManagePlaytime;
-    public bool CanManageSlots;
-
     /// <summary>
     /// Player search results matching the last query.
     /// </summary>
@@ -37,55 +34,16 @@ public sealed class WhitelistSearchEuiState : EuiStateBase
     /// </summary>
     public HashSet<ProtoId<JobPrototype>>? Whitelists;
 
-    /// <summary>
-    /// Extra per-job admin data for the selected player.
-    /// </summary>
-    public List<WhitelistJobAdminInfo>? JobAdminInfo;
-
-    /// <summary>
-    /// The station whose slots are being managed, or null if no station could be resolved.
-    /// </summary>
-    public string? SelectedStationName;
-
     public WhitelistSearchEuiState(
-        bool canManagePlaytime,
-        bool canManageSlots,
         List<WhitelistPlayerInfo> searchResults,
         string? selectedPlayerName,
         NetUserId? selectedPlayerId,
-        HashSet<ProtoId<JobPrototype>>? whitelists,
-        List<WhitelistJobAdminInfo>? jobAdminInfo,
-        string? selectedStationName)
+        HashSet<ProtoId<JobPrototype>>? whitelists)
     {
-        CanManagePlaytime = canManagePlaytime;
-        CanManageSlots = canManageSlots;
         SearchResults = searchResults;
         SelectedPlayerName = selectedPlayerName;
         SelectedPlayerId = selectedPlayerId;
         Whitelists = whitelists;
-        JobAdminInfo = jobAdminInfo;
-        SelectedStationName = selectedStationName;
-    }
-}
-
-[Serializable, NetSerializable]
-public sealed class WhitelistJobAdminInfo
-{
-    public ProtoId<JobPrototype> Job;
-    public TimeSpan RoleTime;
-    public int? Slots;
-    public bool HasSlotConfiguration;
-
-    public WhitelistJobAdminInfo(
-        ProtoId<JobPrototype> job,
-        TimeSpan roleTime,
-        int? slots,
-        bool hasSlotConfiguration)
-    {
-        Job = job;
-        RoleTime = roleTime;
-        Slots = slots;
-        HasSlotConfiguration = hasSlotConfiguration;
     }
 }
 
@@ -146,85 +104,5 @@ public sealed class SetWhitelistSearchJobMessage : EuiMessageBase
     {
         Job = job;
         Whitelisting = whitelisting;
-    }
-}
-
-/// <summary>
-/// Message from client to server to add role playtime for the selected player.
-/// </summary>
-[Serializable, NetSerializable]
-public sealed class AddWhitelistSearchRoleTimeMessage : EuiMessageBase
-{
-    public ProtoId<JobPrototype> Job;
-    public string TimeString;
-
-    public AddWhitelistSearchRoleTimeMessage(ProtoId<JobPrototype> job, string timeString)
-    {
-        Job = job;
-        TimeString = timeString;
-    }
-}
-
-/// <summary>
-/// Message from client to server to adjust job slots on the selected station.
-/// </summary>
-[Serializable, NetSerializable]
-public sealed class AdjustWhitelistSearchJobSlotsMessage : EuiMessageBase
-{
-    public ProtoId<JobPrototype> Job;
-    public int Delta;
-
-    public AdjustWhitelistSearchJobSlotsMessage(ProtoId<JobPrototype> job, int delta)
-    {
-        Job = job;
-        Delta = delta;
-    }
-}
-
-/// <summary>
-/// Message from client to server to set (overwrite) a single job's role time to an exact value.
-/// </summary>
-[Serializable, NetSerializable]
-public sealed class SetWhitelistSearchRoleTimeMessage : EuiMessageBase
-{
-    public ProtoId<JobPrototype> Job;
-    public string TimeString;
-
-    public SetWhitelistSearchRoleTimeMessage(ProtoId<JobPrototype> job, string timeString)
-    {
-        Job = job;
-        TimeString = timeString;
-    }
-}
-
-/// <summary>
-/// Message from client to server to add playtime to all jobs in a department for the selected player.
-/// </summary>
-[Serializable, NetSerializable]
-public sealed class AddWhitelistSearchDeptTimeMessage : EuiMessageBase
-{
-    public string DepartmentId;
-    public string TimeString;
-
-    public AddWhitelistSearchDeptTimeMessage(string departmentId, string timeString)
-    {
-        DepartmentId = departmentId;
-        TimeString = timeString;
-    }
-}
-
-/// <summary>
-/// Message from client to server to set (overwrite) playtime for all jobs in a department.
-/// </summary>
-[Serializable, NetSerializable]
-public sealed class SetWhitelistSearchDeptTimeMessage : EuiMessageBase
-{
-    public string DepartmentId;
-    public string TimeString;
-
-    public SetWhitelistSearchDeptTimeMessage(string departmentId, string timeString)
-    {
-        DepartmentId = departmentId;
-        TimeString = timeString;
     }
 }

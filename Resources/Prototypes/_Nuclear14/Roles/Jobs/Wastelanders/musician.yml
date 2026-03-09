@@ -26,6 +26,7 @@
   id: WastelandMusicianGear
   equipment:
     jumpsuit: N14ClothingUniformJumpsuitManagerSuit
+    ears: MisfitsClothingHeadsetWastelandScrap
     back: N14ClothingBackpackTrekker # Corvax-Change
     eyes: ClothingEyesGlassesSunglasses
     shoes: N14ClothingShoesBrown

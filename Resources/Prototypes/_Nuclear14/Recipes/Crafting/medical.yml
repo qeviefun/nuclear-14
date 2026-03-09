@@ -28,6 +28,21 @@
     state: healingpowder
   objectType: Item
 
+# Cleansing Powder
+- type: construction
+  name: cleansing powder
+  id: N14CleansingPowder
+  graph: N14CleansingPowder
+  startNode: start
+  targetNode: cleansingpowder
+  category: construction-category-medical
+  description: A pouch of anti-rad powder.
+  hide: false
+  icon:
+    sprite: _Nuclear14/Objects/Specific/Medical/drugs.rsi
+    state: healingpowder
+  objectType: Item
+
 # Stimpaks
 - type: construction
   name: stimpak
@@ -103,6 +118,21 @@
   icon:
     sprite: _Nuclear14/Objects/Specific/Medical/drugs.rsi
     state: jet
+  objectType: Item
+
+# Hydra
+- type: construction
+  name: hydra inhaler
+  id: N14Hydra
+  graph: N14Hydra
+  startNode: start
+  targetNode: hydra
+  category: construction-category-medical
+  description: A hydra inhaler assembled from an empty hydra rig, Jet, and Turbo.
+  hide: false
+  icon:
+    sprite: _Nuclear14/Objects/Specific/Medical/ms13_drugs.rsi
+    state: hydra
   objectType: Item
 
 # Healing Poultice

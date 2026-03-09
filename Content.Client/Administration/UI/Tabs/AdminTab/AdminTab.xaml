@@ -40,6 +40,10 @@
                 <cc:CommandButton Command="faxui" Text="{Loc admin-player-actions-window-admin-fax}" MinWidth="180" />
                 <Label Text="{Loc misfits-admin-tab-fax-desc}" VerticalAlignment="Center" StyleClasses="LabelSubText" />
             </BoxContainer>
+            <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                <Button Name="SpawnDungeonsButton" Text="{Loc nf-dungeon-spawn-window-open-button}" MinWidth="180" />
+                <Label Text="{Loc misfits-admin-tab-spawn-dungeons-desc}" VerticalAlignment="Center" StyleClasses="LabelSubText" />
+            </BoxContainer>
             <!-- Time Transfer commented out: functionality merged into Role Whitelists Menu (whitelistsearch) -->
             <!--
             <BoxContainer Orientation="Horizontal" SeparationOverride="8">

@@ -1,0 +1,363 @@
+# NF dungeon configs ported to N14 (old generator/postGeneration architecture)
+# Atlas maps and room themes sourced from Frontier Station 14 (AGPLv3)
+# Thematic translations:
+#   NFCaveFactory    → Pre-war industrial underground facility
+#   NFLavaMercenary  → Raider/mercenary stronghold on hostile terrain
+#   NFHaunted        → Abandoned haunted cave complex (uses NFHaunted rooms)
+#   NFMineshaft      → Pre-war mining operation (richer room set than upstream Mineshaft)
+#   NFSalvageOutpost → Scavenger resource-extraction outpost
+
+- type: dungeonConfig
+  id: NFCaveFactory
+  generator: !type:PrefabDunGen
+    roomWhitelist:
+      - NFCaveFactory
+    presets:
+      - Bucket
+      - Wow
+      - SpaceShip
+      - Tall
+  postGeneration:
+    - !type:CorridorPostGen
+      width: 3
+
+    - !type:DungeonEntrancePostGen
+      count: 2
+
+    - !type:RoomEntrancePostGen
+      entities:
+        - CableApcExtension
+        - AirlockGlass
+
+    - !type:EntranceFlankPostGen
+      entities:
+        - Grille
+        - Window
+
+    - !type:ExternalWindowPostGen
+      entities:
+        - Grille
+        - Window
+
+    - !type:WallMountPostGen
+      spawns:
+        - id: RandomPosterLegit
+          orGroup: content
+        - id: ExtinguisherCabinetFilled
+          prob: 0.2
+          orGroup: content
+        - id: RandomPainting
+          prob: 0.05
+          orGroup: content
+
+    - !type:BoundaryWallPostGen
+      tile: FloorSteel
+      wall: WallSolid
+      cornerWall: WallReinforced
+
+    - !type:JunctionPostGen
+      width: 1
+
+    - !type:JunctionPostGen
+
+    - !type:AutoCablingPostGen
+
+    - !type:CornerClutterPostGen
+      contents:
+        - id: PottedPlantRandom
+          amount: 1
+
+    - !type:CorridorDecalSkirtingPostGen
+      color: "#ab803bff"
+      cardinalDecals:
+        South: BrickTileWhiteLineS
+        East: BrickTileWhiteLineE
+        North: BrickTileWhiteLineN
+        West: BrickTileWhiteLineW
+      cornerDecals:
+        SouthEast: BrickTileWhiteCornerSe
+        SouthWest: BrickTileWhiteCornerSw
+        NorthEast: BrickTileWhiteCornerNe
+        NorthWest: BrickTileWhiteCornerNw
+      pocketDecals:
+        SouthWest: BrickTileWhiteInnerSw
+        SouthEast: BrickTileWhiteInnerSe
+        NorthWest: BrickTileWhiteInnerNw
+        NorthEast: BrickTileWhiteInnerNe
+
+
+- type: dungeonConfig
+  id: NFLavaMercenary
+  generator: !type:PrefabDunGen
+    roomWhitelist:
+      - NFLavaMercenary
+    presets:
+      - Bucket
+      - Wow
+      - SpaceShip
+      - Tall
+  postGeneration:
+    - !type:CorridorPostGen
+      width: 3
+      tile: FloorDark
+
+    - !type:DungeonEntrancePostGen
+      count: 2
+      tile: FloorDark
+
+    - !type:RoomEntrancePostGen
+      tile: FloorDark
+      entities:
+        - CableApcExtension
+        - AirlockSecurityGlass
+
+    - !type:EntranceFlankPostGen
+      tile: FloorDark
+      entities:
+        - Grille
+        - Window
+
+    - !type:ExternalWindowPostGen
+      tile: FloorDark
+      entities:
+        - Grille
+        - Window
+
+    - !type:WallMountPostGen
+      tile: FloorDark
+      spawns:
+        - id: RandomPosterContraband
+          orGroup: content
+        - id: ExtinguisherCabinetFilled
+          prob: 0.2
+          orGroup: content
+        - id: RandomPainting
+          prob: 0.05
+          orGroup: content
+
+    - !type:BoundaryWallPostGen
+      tile: FloorDark
+      wall: WallSolid
+      cornerWall: WallReinforced
+
+    - !type:JunctionPostGen
+      width: 1
+      tile: FloorDark
+
+    - !type:JunctionPostGen
+      tile: FloorDark
+
+    - !type:AutoCablingPostGen
+
+    - !type:CornerClutterPostGen
+      contents:
+        - id: PottedPlantRandom
+          amount: 1
+
+    - !type:CorridorDecalSkirtingPostGen
+      color: "#5E7C1696"
+      cardinalDecals:
+        South: BrickTileWhiteLineS
+        East: BrickTileWhiteLineE
+        North: BrickTileWhiteLineN
+        West: BrickTileWhiteLineW
+      cornerDecals:
+        SouthEast: BrickTileWhiteCornerSe
+        SouthWest: BrickTileWhiteCornerSw
+        NorthEast: BrickTileWhiteCornerNe
+        NorthWest: BrickTileWhiteCornerNw
+      pocketDecals:
+        SouthWest: BrickTileWhiteInnerSw
+        SouthEast: BrickTileWhiteInnerSe
+        NorthWest: BrickTileWhiteInnerNw
+        NorthEast: BrickTileWhiteInnerNe
+
+
+- type: dungeonConfig
+  id: NFHaunted
+  generator: !type:PrefabDunGen
+    tile: FloorCaveDrought
+    roomWhitelist:
+      - NFHaunted
+    presets:
+      - Bucket
+      - Wow
+      - SpaceShip
+      - Tall
+  postGeneration:
+    - !type:WormCorridorPostGen
+      width: 3
+      tile: FloorCaveDrought
+
+    - !type:CorridorClutterPostGen
+      contents:
+        - id: FloraStalagmite1
+        - id: FloraStalagmite2
+        - id: FloraStalagmite3
+        - id: FloraStalagmite4
+        - id: FloraStalagmite5
+        - id: FloraStalagmite6
+
+    - !type:BoundaryWallPostGen
+      tile: FloorCaveDrought
+      wall: WallRock
+
+
+- type: dungeonConfig
+  id: NFMineshaft
+  generator: !type:PrefabDunGen
+    tile: FloorCaveDrought
+    roomWhitelist:
+      - NFMineshaft
+    presets:
+      - Bucket
+      - Wow
+      - SpaceShip
+      - Tall
+  postGeneration:
+    - !type:CorridorPostGen
+      tile: FloorCaveDrought
+      width: 3
+
+    - !type:DungeonEntrancePostGen
+      count: 5
+      tile: FloorCaveDrought
+      entities:
+        - RandomWoodenWall
+
+    - !type:RoomEntrancePostGen
+      tile: FloorCaveDrought
+      entities:
+        - RandomWoodenWall
+
+    - !type:EntranceFlankPostGen
+      tile: FloorCaveDrought
+      entities:
+        - RandomWoodenWall
+
+    - !type:ExternalWindowPostGen
+      tile: FloorCaveDrought
+      entities:
+        - RandomWoodenWall
+
+    - !type:WallMountPostGen
+      tile: FloorCaveDrought
+      spawns:
+        - id: WallRockSalt
+          prob: 0.6
+          orGroup: content
+        - id: WallRockCoal
+          prob: 0.6
+          orGroup: content
+        - id: WallRockTin
+          prob: 0.4
+          orGroup: content
+        - id: WallMining
+          prob: 0.8
+          orGroup: content
+
+    - !type:BoundaryWallPostGen
+      tile: FloorCaveDrought
+      wall: WallRock
+      cornerWall: WallRock
+
+    - !type:AutoCablingPostGen
+      entity: Catwalk
+
+    - !type:JunctionPostGen
+      tile: FloorCaveDrought
+      width: 3
+      entities:
+        - RandomWoodenSupport
+
+    - !type:CornerClutterPostGen
+      contents:
+        - id: RandomStalagmiteOrCrystal
+          amount: 1
+
+
+- type: dungeonConfig
+  id: NFSalvageOutpost
+  generator: !type:PrefabDunGen
+    roomWhitelist:
+      - NFSalvageOutpost
+    presets:
+      - Bucket
+      - Wow
+      - SpaceShip
+      - Tall
+  postGeneration:
+    - !type:CorridorPostGen
+      width: 3
+      tile: FloorDark
+
+    - !type:DungeonEntrancePostGen
+      count: 2
+      tile: FloorDark
+
+    - !type:RoomEntrancePostGen
+      tile: FloorDark
+      entities:
+        - CableApcExtension
+        - AirlockMiningGlass
+
+    - !type:EntranceFlankPostGen
+      tile: FloorDark
+      entities:
+        - Grille
+        - Window
+
+    - !type:ExternalWindowPostGen
+      tile: FloorDark
+      entities:
+        - Grille
+        - Window
+
+    - !type:WallMountPostGen
+      tile: FloorDark
+      spawns:
+        - id: RandomPosterLegit
+          orGroup: content
+        - id: ExtinguisherCabinetFilled
+          prob: 0.2
+          orGroup: content
+        - id: DefibrillatorCabinetFilled
+          prob: 0.1
+          orGroup: content
+
+    - !type:BoundaryWallPostGen
+      tile: FloorDark
+      wall: WallMining
+      cornerWall: WallMining
+
+    - !type:JunctionPostGen
+      width: 1
+      tile: FloorDark
+
+    - !type:JunctionPostGen
+      tile: FloorDark
+
+    - !type:AutoCablingPostGen
+
+    - !type:CornerClutterPostGen
+      contents:
+        - id: PottedPlantRandom
+          amount: 1
+
+    - !type:CorridorDecalSkirtingPostGen
+      color: "#9A54BF96"
+      cardinalDecals:
+        South: BrickTileWhiteLineS
+        East: BrickTileWhiteLineE
+        North: BrickTileWhiteLineN
+        West: BrickTileWhiteLineW
+      cornerDecals:
+        SouthEast: BrickTileWhiteCornerSe
+        SouthWest: BrickTileWhiteCornerSw
+        NorthEast: BrickTileWhiteCornerNe
+        NorthWest: BrickTileWhiteCornerNw
+      pocketDecals:
+        SouthWest: BrickTileWhiteInnerSw
+        SouthEast: BrickTileWhiteInnerSe
+        NorthWest: BrickTileWhiteInnerNw
+        NorthEast: BrickTileWhiteInnerNe

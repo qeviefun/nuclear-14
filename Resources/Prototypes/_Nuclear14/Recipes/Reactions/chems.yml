@@ -55,13 +55,12 @@
 
 - type: reaction
   id: Hydra
+#Misfits Change /Tweak/: Craft Hydra from existing Fallout stimulant chemistry instead of creature-only drops.
   reactants:
-    ExtractFungus:
+    MovespeedMixture:
       amount: 1
-    ScorpionTail:
+    RobustMovespeedMixture:
       amount: 1
-    NightstalkerBlood:
-      amount: 2
   products:
     Hydra: 2
 

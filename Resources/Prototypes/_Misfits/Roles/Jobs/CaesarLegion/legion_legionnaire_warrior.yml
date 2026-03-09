@@ -53,6 +53,7 @@
   storage:
     back:
     - N14BoxPlasticFilledMilitary
+    - N14HealingPowder
 
 - type: playTimeTracker
   id: CaesarLegionLegionnaireWarrior

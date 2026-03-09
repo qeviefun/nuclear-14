@@ -40,6 +40,7 @@
   id: TownSheriffGear
   equipment:
     jumpsuit: N14ClothingUniformJumpsuitTownGuardLight
+    ears: MisfitsClothingHeadsetWastelandScrap
     back: N14ClothingBackpackSatchelMilitary
     shoes: N14ClothingBootsLeatherFilled
     id: N14IDBadgeTownSheriff

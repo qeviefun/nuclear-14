@@ -49,7 +49,7 @@
     head:  N14ClothingHeadHatBrotherhoodFieldCap
     outerClothing: N14ClothingOuterMBoSPaladinArmor
     hands: N14ClothingHandsGlovesCombat
-    pocket1: BoSMidwestPaladinKits
+    pocket1: BoSBrotherhoodHeadPaladinKits
     id: N14IDBrotherhoodHolotagCommander
     ears: N14ClothingHeadsetBOSMidwest
     belt: ClothingBeltMilitary

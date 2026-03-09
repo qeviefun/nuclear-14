@@ -10,7 +10,8 @@ namespace Content.Server._Misfits.Administration.Commands;
 /// <summary>
 /// Opens the role whitelist panel so admins can search for players and manage their job whitelists.
 /// </summary>
-[AdminCommand(AdminFlags.Whitelist)]
+// #Misfits Change - Whitelist flag not universally assigned; gate on Admin instead.
+[AdminCommand(AdminFlags.Admin)]
 public sealed class WhitelistSearchCommand : LocalizedCommands
 {
     [Dependency] private readonly EuiManager _eui = default!;

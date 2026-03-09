@@ -1,4 +1,20 @@
+#Misfits Change /Tweak/: Legion rank loadout kits split by hierarchy so command, line officers, veterans, and recruits no longer share the same spawn box.
 # Legion kits
+- type: entity
+  id: LegionLegateloadoutkits
+  name: kit
+  description: "please only take one."
+  parent: LegionCenturionloadoutkits
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - LegatePraetorianSet
+    - LegateSagitariaSet
+    - LegateImperatorSet
+
 - type: entity
   id: LegionCenturionloadoutkits
   name: kit
@@ -10,8 +26,9 @@
     state: base
   - type: UndecidedLoadoutBackpack
     possibleSets:
-    - CenturionBestiarySet
-    - CenturionSagitariaSet
+    - CenturionCommandSet
+    - CenturionMarksmanSet
+    - CenturionVanquisherSet
   - type: ActivatableUI
     key: enum.UndecidedLoadoutBackpackUIKey.Key
   - type: UserInterface
@@ -30,8 +47,69 @@
     state: base
   - type: UndecidedLoadoutBackpack
     possibleSets:
-    - VenatorSagitariaSet
-    - VenatorTriariaSet
+    - VenatorMarksmanSet
+    - VenatorStalkerSet
+    - VenatorExecutionerSet
+
+- type: entity
+  id: LegionVexillariusloadoutkits
+  name: kit
+  description: "please only take one."
+  parent: LegionCenturionloadoutkits
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - VexillariusStandardSet
+    - VexillariusHeraldSet
+    - VexillariusSkirmisherSet
+
+- type: entity
+  id: LegionHoundmasterloadoutkits
+  name: kit
+  description: "please only take one."
+  parent: LegionCenturionloadoutkits
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - HoundmasterHunterSet
+    - HoundmasterTamerSet
+    - HoundmasterMedicSet
+
+- type: entity
+  id: LegionAuxilialoadoutkits
+  name: kit
+  description: "please only take one."
+  parent: LegionCenturionloadoutkits
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - AuxiliaSkirmisherSet
+    - AuxiliaSpearmanSet
+    - AuxiliaMedicSet
+
+- type: entity
+  id: LegionVeteranDecanusloadoutkits
+  name: kit
+  description: "please only take one."
+  parent: LegionCenturionloadoutkits
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - VeteranDecanusCommandSet
+    - VeteranDecanusHunterSet
+    - VeteranDecanusCrusherSet
 
 - type: entity
   id: LegionDeanloadoutkits
@@ -44,9 +122,9 @@
     state: base
   - type: UndecidedLoadoutBackpack
     possibleSets:
-    - DeanGladiatorSet
-    - DeanSagitariaSet
-    - DeanBerserkerSet
+    - DecanusGladiatorSet
+    - DecanusSagitariaSet
+    - DecanusBerserkerSet
 
 - type: entity
   id: LegionVeteranloadoutkits
@@ -59,9 +137,9 @@
     state: base
   - type: UndecidedLoadoutBackpack
     possibleSets:
-    - VeteranFirearmSet
+    - VeteranRiflemanSet
     - VeteranBerserkerSet
-    - VeteranKebabSet
+    - VeteranShieldbearerSet
 
 - type: entity
   id: LegionWarriorloadoutkits
@@ -71,11 +149,41 @@
   components:
   - type: UndecidedLoadoutBackpack
     possibleSets:
-    - WarriorBaseSet
-    - WarriorSlaveOwnerSet
-    - WarriorHealerSet
-    - WarriorFirearmSet
-    - WarriorMeleeSet
+    - WarriorSkirmisherSet
+    - WarriorSlaverSet
+    - WarriorMedicSet
+    - WarriorGunmanSet
+    - WarriorShieldbearerSet
+
+- type: entity
+  id: LegionLegionnaireRecruitloadoutkits
+  name: kit
+  description: "please only take one."
+  parent: LegionCenturionloadoutkits
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - LegionnaireRecruitSkirmisherSet
+    - LegionnaireRecruitSpearmanSet
+    - LegionnaireRecruitMedicSet
+
+- type: entity
+  id: LegionRecruitInitiateloadoutkits
+  name: kit
+  description: "please only take one."
+  parent: LegionCenturionloadoutkits
+  components:
+  - type: Sprite
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - RecruitInitiateSet
+    - RecruitPorterSet
+    - RecruitCampMedicSet
 
 - type: entity
   id: LegionRecruitloadoutkits
@@ -85,10 +193,10 @@
   components:
   - type: UndecidedLoadoutBackpack
     possibleSets:
-    - RecruitBaseSet
-    - RecruitSpearSet
-    - RecruitMeleeSet
-    - RecruitHealerSet
+    - AuxiliaryRecruitSet
+    - AuxiliarySpearmanSet
+    - AuxiliaryMeleeSet
+    - AuxiliaryHealerSet
 
 #Washington kits
 
@@ -264,29 +372,69 @@
 # Legion
 
 - type: UndecidedLoadoutBackpackSet
-  id: CenturionBestiarySet
-  name: undecided-loadout-category-bestiary-name
-  description: undecided-loadout-category-bestiary-description
+  id: LegatePraetorianSet
+  name: Legate Praetorian
+  description: Command duelist kit with thermic spear, shield, and battlefield medicine.
   sprite:
     sprite: Corvax/Objects/Misc/kits.rsi
     state: base
   content:
-  - KitCenturionBestiary
+  - KitLegatePraetorian
 
 - type: UndecidedLoadoutBackpackSet
-  id: CenturionSagitariaSet
-  name: undecided-loadout-category-sagitaria-name
-  description: undecided-loadout-category-sagitaria-description
+  id: LegateSagitariaSet
+  name: Legate Sagitaria
+  description: Command marksman kit with rifle support and smoke for formation control.
   sprite:
     sprite: Corvax/Objects/Misc/kits.rsi
     state: base
   content:
-  - KitCenturionSagitaria
+  - KitLegateSagitaria
 
 - type: UndecidedLoadoutBackpackSet
-  id: VenatorSagitariaSet
-  name: undecided-loadout-category-ventor-sagitaria-name
-  description: undecided-loadout-category-ventor-sagitaria-description
+  id: LegateImperatorSet
+  name: Legate Imperator
+  description: Command sidearm kit for aggressive pushes and close-quarters leadership.
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitLegateImperator
+
+- type: UndecidedLoadoutBackpackSet
+  id: CenturionCommandSet
+  name: Centurion Command
+  description: Officer shock kit with lever shotgun, shield, and restraint tools.
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitCenturionCommand
+
+- type: UndecidedLoadoutBackpackSet
+  id: CenturionMarksmanSet
+  name: Centurion Marksman
+  description: Officer ranged kit with rifle firepower and smoke cover.
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitCenturionMarksman
+
+- type: UndecidedLoadoutBackpackSet
+  id: CenturionVanquisherSet
+  name: Centurion Vanquisher
+  description: Brutal officer assault kit with heavy melee tools and stimulants.
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitCenturionVanquisher
+
+- type: UndecidedLoadoutBackpackSet
+  id: VenatorMarksmanSet
+  name: Venator Marksman
+  description: Long-range hunter kit with anti-materiel rifle and night optics.
   sprite:
     sprite: Corvax/Objects/Misc/kits.rsi
     state: base
@@ -294,9 +442,19 @@
   - KitVenatorSagitaria
 
 - type: UndecidedLoadoutBackpackSet
-  id: VenatorTriariaSet
-  name: undecided-loadout-category-ventor-triaria-name
-  description: undecided-loadout-category-ventor-triaria-description
+  id: VenatorStalkerSet
+  name: Venator Stalker
+  description: Scout pursuit kit with lever shotgun, revolver, and night optics.
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitVenatorStalker
+
+- type: UndecidedLoadoutBackpackSet
+  id: VenatorExecutionerSet
+  name: Venator Executioner
+  description: Close-range kill team kit with blowback shotgun and ceremonial blade.
   sprite:
     sprite: Corvax/Objects/Misc/kits.rsi
     state: base
@@ -304,9 +462,129 @@
   - KitVenatorTriaria
 
 - type: UndecidedLoadoutBackpackSet
-  id: DeanGladiatorSet
-  name: undecided-loadout-category-dean-gladiator-name
-  description: undecided-loadout-category-dean-gladiator-description
+  id: VexillariusStandardSet
+  name: Vexillarius Standard Bearer
+  description: Banner guard kit with shield, pilum, and line-holding tools.
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitVexillariusStandard
+
+- type: UndecidedLoadoutBackpackSet
+  id: VexillariusHeraldSet
+  name: Vexillarius Herald
+  description: Rallying support kit with sidearm, smoke, and squad medicine.
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitVexillariusHerald
+
+- type: UndecidedLoadoutBackpackSet
+  id: VexillariusSkirmisherSet
+  name: Vexillarius Skirmisher
+  description: Mobile banner escort kit with SMG and light shield support.
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitVexillariusSkirmisher
+
+- type: UndecidedLoadoutBackpackSet
+  id: HoundmasterHunterSet
+  name: Houndmaster Hunter
+  description: Pack pursuit kit with whip, tribal revolver, and bolas.
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitHoundmasterHunter
+
+- type: UndecidedLoadoutBackpackSet
+  id: HoundmasterTamerSet
+  name: Houndmaster Tamer
+  description: Kennel control kit with shotgun, restraints, and close pressure.
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitHoundmasterTamer
+
+- type: UndecidedLoadoutBackpackSet
+  id: HoundmasterMedicSet
+  name: Houndmaster Handler Medic
+  description: Handler support kit with canine-ready treatment and a sidearm.
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitHoundmasterMedic
+
+- type: UndecidedLoadoutBackpackSet
+  id: AuxiliaSkirmisherSet
+  name: Auxilia Skirmisher
+  description: Auxiliary light infantry kit with SMG and buckler.
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitAuxiliaSkirmisher
+
+- type: UndecidedLoadoutBackpackSet
+  id: AuxiliaSpearmanSet
+  name: Auxilia Spearman
+  description: Auxiliary spear support kit for screening and formation fighting.
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitAuxiliaSpearman
+
+- type: UndecidedLoadoutBackpackSet
+  id: AuxiliaMedicSet
+  name: Auxilia Medic
+  description: Auxiliary camp medic kit with hydra, poultices, and bandages.
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitAuxiliaMedic
+
+- type: UndecidedLoadoutBackpackSet
+  id: VeteranDecanusCommandSet
+  name: Veteran Decanus Command
+  description: Veteran officer kit with pistol, shield, and arrest tools.
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitVeteranDecanusCommand
+
+- type: UndecidedLoadoutBackpackSet
+  id: VeteranDecanusHunterSet
+  name: Veteran Decanus Hunter
+  description: Veteran officer skirmish kit with a short shotgun and shield.
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitVeteranDecanusHunter
+
+- type: UndecidedLoadoutBackpackSet
+  id: VeteranDecanusCrusherSet
+  name: Veteran Decanus Crusher
+  description: Veteran officer breacher kit with club, revolver, and smoke.
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitVeteranDecanusCrusher
+
+- type: UndecidedLoadoutBackpackSet
+  id: DecanusGladiatorSet
+  name: Decanus Gladiator
+  description: Squad leader melee kit with shield, bolas, and restraints.
   sprite:
     sprite: Corvax/Objects/Misc/kits.rsi
     state: base
@@ -314,9 +592,9 @@
   - KitDeanGladiator
 
 - type: UndecidedLoadoutBackpackSet
-  id: DeanSagitariaSet
-  name: undecided-loadout-category-dean-sagitaria-name
-  description: undecided-loadout-category-dean-sagitaria-description
+  id: DecanusSagitariaSet
+  name: Decanus Sagitaria
+  description: Squad leader ranged kit with 10mm SMG and reserve ammunition.
   sprite:
     sprite: Corvax/Objects/Misc/kits.rsi
     state: base
@@ -324,9 +602,9 @@
   - KitDeanSagitaria
 
 - type: UndecidedLoadoutBackpackSet
-  id: DeanBerserkerSet
-  name: undecided-loadout-category-dean-berserker-name
-  description: undecided-loadout-category-dean-berserker-description
+  id: DecanusBerserkerSet
+  name: Decanus Berserker
+  description: Squad leader breacher kit for aggressive melee pushes.
   sprite:
     sprite: Corvax/Objects/Misc/kits.rsi
     state: base
@@ -334,9 +612,9 @@
   - KitDeanBerserker
 
 - type: UndecidedLoadoutBackpackSet
-  id: VeteranFirearmSet
-  name: undecided-loadout-category-veteran-firearm-name
-  description: undecided-loadout-category-veteran-firearm-description
+  id: VeteranRiflemanSet
+  name: Veteran Rifleman
+  description: Experienced legionary kit with rifle support and smoke.
   sprite:
     sprite: Corvax/Objects/Misc/kits.rsi
     state: base
@@ -345,8 +623,8 @@
 
 - type: UndecidedLoadoutBackpackSet
   id: VeteranBerserkerSet
-  name: undecided-loadout-category-veteran-berserker-name
-  description: undecided-loadout-category-veteran-berserker-description
+  name: Veteran Berserker
+  description: Experienced legionary melee kit with axe and throwing knives.
   sprite:
     sprite: Corvax/Objects/Misc/kits.rsi
     state: base
@@ -354,9 +632,9 @@
   - KitVeteranBerserker
 
 - type: UndecidedLoadoutBackpackSet
-  id: VeteranKebabSet
-  name: undecided-loadout-category-veteran-kebab-name
-  description: undecided-loadout-category-veteran-kebab-description
+  id: VeteranShieldbearerSet
+  name: Veteran Shieldbearer
+  description: Experienced legionary shield wall kit with a tribal revolver.
   sprite:
     sprite: Corvax/Objects/Misc/kits.rsi
     state: base
@@ -364,9 +642,9 @@
   - KitVeteranKebab
 
 - type: UndecidedLoadoutBackpackSet
-  id: WarriorBaseSet
-  name: undecided-loadout-category-warrior-base-name
-  description: undecided-loadout-category-warrior-base-description
+  id: WarriorSkirmisherSet
+  name: Warrior Skirmisher
+  description: Rank-and-file skirmisher kit with a short shotgun and buckler.
   sprite:
     sprite: Corvax/Objects/Misc/kits.rsi
     state: base
@@ -374,9 +652,9 @@
   - KitWarriorBase
 
 - type: UndecidedLoadoutBackpackSet
-  id: WarriorSlaveOwnerSet
-  name: undecided-loadout-category-warrior-slave-owner-name
-  description: undecided-loadout-category-warrior-slave-owner-description
+  id: WarriorSlaverSet
+  name: Warrior Slaver
+  description: Enforcement kit with whip, zipties, and a tribal revolver.
   sprite:
     sprite: Corvax/Objects/Misc/kits.rsi
     state: base
@@ -384,9 +662,9 @@
   - KitWarriorSlaveOwner
 
 - type: UndecidedLoadoutBackpackSet
-  id: WarriorHealerSet
-  name: undecided-loadout-category-warrior-healer-name
-  description: undecided-loadout-category-warrior-healer-description
+  id: WarriorMedicSet
+  name: Warrior Medic
+  description: Frontline medicine kit with poultices, powder, and a sidearm.
   sprite:
     sprite: Corvax/Objects/Misc/kits.rsi
     state: base
@@ -394,9 +672,9 @@
   - KitWarriorHealer
 
 - type: UndecidedLoadoutBackpackSet
-  id: WarriorFirearmSet
-  name: undecided-loadout-category-warrior-firearm-name
-  description: undecided-loadout-category-warrior-firearm-description
+  id: WarriorGunmanSet
+  name: Warrior Gunman
+  description: Rank-and-file firearm kit with a 10mm SMG and reserve magazines.
   sprite:
     sprite: Corvax/Objects/Misc/kits.rsi
     state: base
@@ -404,9 +682,9 @@
   - KitWarriorFirearm
 
 - type: UndecidedLoadoutBackpackSet
-  id: WarriorMeleeSet
-  name: undecided-loadout-category-warrior-melee-name
-  description: undecided-loadout-category-warrior-melee-description
+  id: WarriorShieldbearerSet
+  name: Warrior Shieldbearer
+  description: Rank-and-file melee kit built around a club and shield wall pressure.
   sprite:
     sprite: Corvax/Objects/Misc/kits.rsi
     state: base
@@ -414,9 +692,9 @@
   - KitWarriorMelee
 
 - type: UndecidedLoadoutBackpackSet
-  id: RecruitBaseSet
-  name: undecided-loadout-category-recruit-base-name
-  description: undecided-loadout-category-recruit-base-description
+  id: LegionnaireRecruitSkirmisherSet
+  name: Legionnaire Recruit Skirmisher
+  description: Junior legionary kit with light armor, SMG, and buckler.
   sprite:
     sprite: Corvax/Objects/Misc/kits.rsi
     state: base
@@ -424,9 +702,9 @@
   - KitRecruitBase
 
 - type: UndecidedLoadoutBackpackSet
-  id: RecruitSpearSet
-  name: undecided-loadout-category-recruit-spear-name
-  description: undecided-loadout-category-recruit-spear-description
+  id: LegionnaireRecruitSpearmanSet
+  name: Legionnaire Recruit Spearman
+  description: Junior legionary spear kit for formation fighting and throws.
   sprite:
     sprite: Corvax/Objects/Misc/kits.rsi
     state: base
@@ -434,9 +712,69 @@
   - KitRecruitSpear
 
 - type: UndecidedLoadoutBackpackSet
-  id: RecruitMeleeSet
-  name: undecided-loadout-category-recruit-melee-name
-  description: undecided-loadout-category-recruit-melee-description
+  id: LegionnaireRecruitMedicSet
+  name: Legionnaire Recruit Medic
+  description: Junior legionary support kit with poultices and field treatment tools.
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitRecruitHealer
+
+- type: UndecidedLoadoutBackpackSet
+  id: RecruitInitiateSet
+  name: Legion Recruit Initiate
+  description: Fresh recruit kit with simple armor, blade, and a little healing powder.
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitRecruitInitiate
+
+- type: UndecidedLoadoutBackpackSet
+  id: RecruitPorterSet
+  name: Legion Recruit Spear Porter
+  description: Fresh recruit spear kit for carrying pilum and supporting the line.
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitRecruitPorter
+
+- type: UndecidedLoadoutBackpackSet
+  id: RecruitCampMedicSet
+  name: Legion Recruit Camp Medic
+  description: Fresh recruit camp support kit with bandages, ointment, and poultices.
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitRecruitCampMedic
+
+- type: UndecidedLoadoutBackpackSet
+  id: AuxiliaryRecruitSet
+  name: Auxiliary Recruit
+  description: Auxiliary light infantry kit with light armor and a sidearm.
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitRecruitBase
+
+- type: UndecidedLoadoutBackpackSet
+  id: AuxiliarySpearmanSet
+  name: Auxiliary Spearman
+  description: Auxiliary spear kit intended for throw-and-charge skirmishing.
+  sprite:
+    sprite: Corvax/Objects/Misc/kits.rsi
+    state: base
+  content:
+  - KitRecruitSpear
+
+- type: UndecidedLoadoutBackpackSet
+  id: AuxiliaryMeleeSet
+  name: Auxiliary Duelist
+  description: Auxiliary melee kit centered on a sword and buckler.
   sprite:
     sprite: Corvax/Objects/Misc/kits.rsi
     state: base
@@ -444,9 +782,9 @@
   - KitRecruitMelee
 
 - type: UndecidedLoadoutBackpackSet
-  id: RecruitHealerSet
-  name: undecided-loadout-category-recruit-healer-name
-  description: undecided-loadout-category-recruit-healer-description
+  id: AuxiliaryHealerSet
+  name: Auxiliary Healer
+  description: Auxiliary support kit with basic medical supplies and a machete.
   sprite:
     sprite: Corvax/Objects/Misc/kits.rsi
     state: base

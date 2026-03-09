@@ -21,7 +21,7 @@
     - !type:CharacterPlaytimeRequirement
       tracker: NCRMedic
       min: 0
-  startingGear: NCRMedicGear
+  startingGear: NCRDoctorGear
   icon: "JobIconNcrMedic"
   supervisors: job-supervisors-ncr-lt
   alwaysUseSpawner: true
@@ -36,6 +36,21 @@
           - Wastelander
           - NCR
       - type: CPRTraining
+
+- type: startingGear
+  id: NCRDoctorGear
+  equipment:
+    jumpsuit: N14ClothingUniformNCRDesert # Corvax-Change
+    outerClothing: N14ClothingOuterNCRPouchedVestDesert # Forge-Change
+    back: N14ClothingBackpackNCR # Corvax-Change
+    shoes: N14ClothingBootsLeatherFilled
+    id: N14IDNCRDogtagDoctorSenior
+    pocket2: NCRmedicloadoutkits
+  innerClothingSkirt: N14ClothingUniformNCRDesert # Corvax-Change
+  satchel: N14ClothingBackpackSatchelNCRFilled
+  storage: # Corvax-Change
+    back:
+    - N14BoxPlasticFilledMilitaryNCR
 
 - type: playTimeTracker
   id: NCRDoctor

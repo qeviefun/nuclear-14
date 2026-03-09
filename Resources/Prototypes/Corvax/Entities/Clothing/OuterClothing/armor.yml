@@ -50,6 +50,7 @@
 - type: entity
   parent: N14FalloutArmorBase
   id: N14ClothingOuterDeanLegionnaireVeteranArmor
+  #Misfits Change /Fix:/ corrected malformed component list indentation.
   name: heavy legionary armor
   description: "The heavy version of legionary armor slows down the wearer, but gives good protection from external threats."
   components:
@@ -57,6 +58,9 @@
     sprite: Corvax/Clothing/OuterClothing/Armor/deanveteranarmor.rsi
   - type: Clothing
     sprite: Corvax/Clothing/OuterClothing/Armor/deanveteranarmor.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
   - type: Armor
     modifiers:
       coefficients:
@@ -79,6 +83,9 @@
     sprite: Corvax/Clothing/OuterClothing/Armor/deanprimearmor.rsi
   - type: Clothing
     sprite: Corvax/Clothing/OuterClothing/Armor/deanprimearmor.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
   - type: Armor
     modifiers:
       coefficients:
@@ -101,6 +108,9 @@
     sprite: Corvax/Clothing/OuterClothing/Armor/deanrecruitarmor.rsi
   - type: Clothing
     sprite: Corvax/Clothing/OuterClothing/Armor/deanrecruitarmor.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
   - type: Armor
     modifiers:
       coefficients:

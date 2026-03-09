@@ -84,7 +84,8 @@
     range: 1.4
     damage:
       types:
-        Piercing: 8
+        Piercing: 6
+        Blunt: 2
     heavyDamageBaseModifier: 1.5
     heavyStaminaCost: 5
     maxTargets: 1
@@ -94,7 +95,8 @@
   - type: DamageOtherOnHit
     damage:
       types:
-        Piercing: 11
+        Piercing: 9
+        Blunt: 2
     staminaCost: 8
   - type: EmbeddableProjectile
   - type: EmbedPassiveDamage
@@ -157,7 +159,8 @@
     range: 1.4
     damage:
       types:
-        Slash: 5
+        Slash: 3
+        Piercing: 2
     heavyRateModifier: 1.25
     heavyDamageBaseModifier: 1.25
     heavyStaminaCost: 5
@@ -283,7 +286,8 @@
     range: 1.4
     damage:
       types:
-        Slash: 4
+        Slash: 2
+        Piercing: 2
     heavyRateModifier: 0.8
     heavyDamageBaseModifier: 1.25
     heavyStaminaCost: 4.5
@@ -415,7 +419,8 @@
   - type: DamageOtherOnHit
     damage:
       types:
-        Slash: 10
+        Slash: 8
+        Blunt: 2
     staminaCost: 14
   - type: ThrowingAngle
     angle: 90

@@ -26,6 +26,7 @@
   id: FarmerGear
   equipment:
     jumpsuit: N14ClothingUniformJumpsuitBrahminFarmer
+    ears: MisfitsClothingHeadsetWastelandScrap
     back: N14ClothingBackpackExplorer # Corvax-Change
     shoes: N14ClothingBootsLeather
     outerClothing: ClothingOuterApronBotanist

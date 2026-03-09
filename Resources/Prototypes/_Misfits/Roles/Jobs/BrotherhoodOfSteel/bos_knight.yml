@@ -41,7 +41,7 @@
     outerClothing: N14ClothingOuterWBoSKnightArmor
     id: N14IDBrotherhoodWashingtonHolotagKnight
     belt: ClothingBeltBoSWebbing
-    pocket1: BoSWashingtonKnightSet
+    pocket1: BoSBrotherhoodKnightKits
 
 - type: playTimeTracker
   id: BoSWashingtonKnight

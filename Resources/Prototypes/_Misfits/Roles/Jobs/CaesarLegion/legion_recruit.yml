@@ -46,7 +46,12 @@
     shoes: N14ClothingBootsLeather
     head: N14ClothingHeadHatTribalOutcastHood
     gloves: N14ClothingHandsGlovesTribal
-    id: N14IDLegionaryBadgeRecruit
+    pocket1: LegionRecruitInitiateloadoutkits
+    id: N14IDLegionaryMedalRecruit
+  #Misfits Change /Tweak/: Give rank-and-file Legion access to healing powder.
+  storage:
+    back:
+    - N14HealingPowder
 
 - type: playTimeTracker
   id: CaesarLegionRecruit

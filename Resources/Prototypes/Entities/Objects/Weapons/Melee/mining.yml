@@ -203,7 +203,8 @@
     range: 1.4
     damage:
       types:
-        Slash: 9
+        Slash: 6
+        Piercing: 3
     heavyRateModifier: 0.9
     heavyDamageBaseModifier: 1.2
     maxTargets: 2

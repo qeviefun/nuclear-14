@@ -30,8 +30,8 @@
             <Button Name="FreezeAndMuteToggleButton" Text="{Loc player-panel-freeze-and-mute}" Disabled="True"/>
             <Button Name="BanButton" Text="{Loc player-panel-ban}" Disabled="True"/>
             <controls:ConfirmButton Name="RejuvenateButton" Text="{Loc player-panel-rejuvenate}" Disabled="True"/>
-            <!-- #Misfits Change — aghost to player button -->
-            <Button Name="AghostButton" Text="{Loc player-panel-aghost}" Disabled="True"/>
+            <!-- #Misfits Change — follow player button -->
+            <Button Name="FollowButton" Text="{Loc admin-player-actions-follow}" Disabled="True"/>
            </GridContainer>
        </BoxContainer>
     </BoxContainer>

@@ -1,0 +1,44 @@
+<nfDungeon:DungeonSpawnWindow
+    xmlns="https://spacestation14.io"
+    xmlns:nfDungeon="clr-namespace:Content.Client._NF.Procedural"
+    Title="{Loc nf-dungeon-spawn-window-title}"
+    MinSize="280 500">
+    <BoxContainer Orientation="Vertical" SeparationOverride="4" Margin="4">
+        <!-- Search bar -->
+        <LineEdit Name="SearchBar"
+                  PlaceHolder="{Loc nf-dungeon-spawn-window-search-placeholder}"
+                  HorizontalExpand="True" />
+
+        <!-- Namespace filter strip -->
+        <BoxContainer Orientation="Horizontal" SeparationOverride="2">
+            <Label Text="{Loc nf-dungeon-spawn-window-filter-label}" VerticalAlignment="Center" Margin="0 0 4 0"/>
+            <OptionButton Name="NamespaceFilter" HorizontalExpand="True" />
+        </BoxContainer>
+
+        <!-- Dungeon list -->
+        <ScrollContainer VerticalExpand="True">
+            <ItemList Name="DungeonList" VerticalExpand="True" SelectMode="Single" />
+        </ScrollContainer>
+
+        <!-- Selected dungeon info -->
+        <PanelContainer StyleClasses="AngleRect" Margin="0 4 0 0">
+            <BoxContainer Orientation="Vertical" Margin="4" SeparationOverride="2">
+                <Label Name="SelectedLabel" Text="{Loc nf-dungeon-spawn-window-none-selected}" HorizontalAlignment="Center" />
+                <Label Name="SelectedDesc" Visible="False" StyleClasses="LabelSubText"
+                       HorizontalAlignment="Center" />
+            </BoxContainer>
+        </PanelContainer>
+
+        <!-- Action buttons -->
+        <BoxContainer Orientation="Horizontal" SeparationOverride="4">
+            <Button Name="PlaceButton"
+                    Text="{Loc nf-dungeon-spawn-window-place-button}"
+                    HorizontalExpand="True"
+                    Disabled="True" />
+            <Button Name="CancelButton"
+                    Text="{Loc nf-dungeon-spawn-window-cancel-button}"
+                    HorizontalExpand="True"
+                    Disabled="True" />
+        </BoxContainer>
+    </BoxContainer>
+</nfDungeon:DungeonSpawnWindow>

@@ -1,0 +1,61 @@
+# #Misfits Change /Add/: Legion Auxilia job.
+- type: job
+  id: CaesarLegionAuxilia
+  setPreference: true
+  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+  jobWhitelistBypassesRoleTimers: true # #Misfits Change
+  weight: 35
+  showBorder: true
+  name: job-name-caesar-legion-auxilia
+  description: job-description-caesar-legion-auxilia
+  playTimeTracker: CaesarLegionAuxilia
+  requirements:
+  - !type:CharacterDepartmentTimeRequirement
+      department: CaesarLegion
+      min: 0
+  - !type:CharacterSpeciesRequirement
+    species:
+    - Human
+  startingGear: CaesarLegionAuxiliaGear
+  alwaysUseSpawner: true
+  icon: "JobIconlegionerRecruit"
+  supervisors: job-name-caesar-legion-other
+  canBeAntag: false
+  access:
+  - CaesarLegionRecruit
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - CaesarLegion
+      - type: ReplacementAccent
+        accent: latin
+      - type: CPRTraining
+  - !type:AddTraitSpecial
+    traits: [ LanguageLatin ]
+
+- type: startingGear
+  id: CaesarLegionAuxiliaGear
+  equipment:
+    jumpsuit: N14ClothingUniformJumpsuitLegionnaire
+    ears: N14ClothingHeadsetLegion
+    mask: N14ClothingMaskBrownMask
+    back: N14ClothingBackpackMilitary
+    shoes: N14ClothingBootsLeather
+    head: N14ClothingHeadHatTribalOutcastHood
+    gloves: N14ClothingHandsGlovesTribal
+    pocket1: LegionAuxilialoadoutkits
+    id: N14IDLegionaryBadge
+  innerClothingSkirt: N14ClothingUniformJumpsuitLegionnaireOther
+  storage:
+    back:
+    - N14BoxPlasticFilledMilitary
+    - N14HealingPowder
+    - N14HealingPowder
+    - N14HealingPoultice
+    - N14HealingPoultice
+    - N14Hydra
+
+- type: playTimeTracker
+  id: CaesarLegionAuxilia

@@ -51,6 +51,7 @@
     - Torch
     - N14Bandage
     - Ointment
+    - N14HealingPowder
 
 - type: playTimeTracker
   id: Tribal

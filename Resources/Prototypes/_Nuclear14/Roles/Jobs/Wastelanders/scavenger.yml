@@ -26,6 +26,7 @@
   id: ScavengerGear
   equipment:
     jumpsuit: N14ClothingUniformJumpsuitMechanic
+    ears: MisfitsClothingHeadsetWastelandScrap
     back: N14ClothingBackpackExplorer # Corvax-Change
     shoes: N14ClothingBootsFire
     belt: N14ClothingBeltUtilityFilled

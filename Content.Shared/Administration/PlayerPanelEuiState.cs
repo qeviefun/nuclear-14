@@ -1,4 +1,5 @@
 using Content.Shared.Eui;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
 using YamlDotNet.Serialization.Callbacks;
@@ -8,6 +9,7 @@ namespace Content.Shared.Administration;
 [Serializable, NetSerializable]
 public sealed class PlayerPanelEuiState(NetUserId guid,
     string username,
+    NetEntity? attachedEntity,
     TimeSpan playtime,
     int? totalNotes,
     int? totalBans,
@@ -21,6 +23,7 @@ public sealed class PlayerPanelEuiState(NetUserId guid,
 {
     public readonly NetUserId Guid = guid;
     public readonly string Username = username;
+    public readonly NetEntity? AttachedEntity = attachedEntity;
     public readonly TimeSpan Playtime = playtime;
     public readonly int? TotalNotes = totalNotes;
     public readonly int? TotalBans = totalBans;
