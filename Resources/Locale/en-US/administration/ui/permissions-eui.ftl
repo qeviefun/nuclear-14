@@ -1,7 +1,8 @@
 permissions-eui-do-not-have-required-flags-to-edit-admin-tooltip = You do not have the required flags to edit this admin.
 permissions-eui-do-not-have-required-flags-to-edit-rank-tooltip = You do not have the required flags to edit this rank.
 
-permissions-eui-menu-title = Permissions Panel
+# Misfits Change — renamed from "Permissions Panel" to "Admin Permissions"
+permissions-eui-menu-title = Admin Permissions
 permissions-eui-menu-add-admin-button = Add Admin
 permissions-eui-menu-add-admin-rank-button = Add Admin rank
 permissions-eui-menu-save-admin-rank-button = Save
@@ -20,3 +21,7 @@ permissions-eui-edit-admin-rank-button = Edit
 permissions-eui-edit-admin-rank-window-title = Edit Admin Rank
 permissions-eui-edit-admin-window-save-button = Save
 permissions-eui-edit-admin-window-remove-flag-button = Remove
+
+# Misfits Change — new strings for overhauled permissions panel
+permissions-eui-rank-perms-count = {$count} perms
+permissions-eui-perms-badge = [{$count} perms]

@@ -1,3 +1,4 @@
+<!-- #Misfits Change — vertical list layout with inline descriptions, permissions moved to Staff tab -->
 <Control
     xmlns="https://spacestation14.io"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -5,18 +6,44 @@
     xmlns:at="clr-namespace:Content.Client.Administration.UI.Tabs.AdminTab"
     Margin="4"
     MinSize="50 50">
-    <BoxContainer Orientation="Vertical">
-        <GridContainer Columns="3">
-            <cc:UICommandButton Command="kick" Text="{Loc admin-player-actions-window-title}" WindowType="{x:Type at:PlayerActionsWindow}" />
-            <cc:CommandButton Command="banpanel" Text="{Loc admin-player-actions-window-ban}" />
-            <cc:CommandButton Command="aghost" Text="{Loc admin-player-actions-window-admin-ghost}" />
-            <cc:UICommandButton Command="tpto" Text="{Loc admin-player-actions-window-teleport}" WindowType="{x:Type at:TeleportWindow}" />
-            <cc:CommandButton Command="permissions" Text="{Loc admin-player-actions-window-permissions}" />
-            <cc:CommandButton Command="announceui" Text="{Loc admin-player-actions-window-announce}"/>
-            <cc:UICommandButton Command="callshuttle" Text="{Loc admin-player-actions-window-shuttle}" WindowType="{x:Type at:AdminShuttleWindow}"/>
-            <cc:CommandButton Command="adminlogs" Text="{Loc admin-player-actions-window-admin-logs}"/>
-            <cc:CommandButton Command="faxui" Text="{Loc admin-player-actions-window-admin-fax}"/>
-            <cc:CommandButton Command="timetransferpanel" Text="{Loc admin-player-actions-window-time-transfer}"/>
-        </GridContainer>
-    </BoxContainer>
+    <ScrollContainer VerticalExpand="True">
+        <BoxContainer Orientation="Vertical" SeparationOverride="4">
+            <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                <cc:UICommandButton Command="kick" Text="{Loc admin-player-actions-window-title}" WindowType="{x:Type at:PlayerActionsWindow}" MinWidth="180" />
+                <Label Text="{Loc misfits-admin-tab-kick-desc}" VerticalAlignment="Center" StyleClasses="LabelSubText" />
+            </BoxContainer>
+            <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                <cc:CommandButton Command="banpanel" Text="{Loc admin-player-actions-window-ban}" MinWidth="180" />
+                <Label Text="{Loc misfits-admin-tab-ban-desc}" VerticalAlignment="Center" StyleClasses="LabelSubText" />
+            </BoxContainer>
+            <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                <cc:CommandButton Command="aghost" Text="{Loc admin-player-actions-window-admin-ghost}" MinWidth="180" />
+                <Label Text="{Loc misfits-admin-tab-aghost-desc}" VerticalAlignment="Center" StyleClasses="LabelSubText" />
+            </BoxContainer>
+            <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                <cc:UICommandButton Command="tpto" Text="{Loc admin-player-actions-window-teleport}" WindowType="{x:Type at:TeleportWindow}" MinWidth="180" />
+                <Label Text="{Loc misfits-admin-tab-teleport-desc}" VerticalAlignment="Center" StyleClasses="LabelSubText" />
+            </BoxContainer>
+            <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                <cc:CommandButton Command="announceui" Text="{Loc admin-player-actions-window-announce}" MinWidth="180" />
+                <Label Text="{Loc misfits-admin-tab-announce-desc}" VerticalAlignment="Center" StyleClasses="LabelSubText" />
+            </BoxContainer>
+            <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                <cc:UICommandButton Command="callshuttle" Text="{Loc admin-player-actions-window-shuttle}" WindowType="{x:Type at:AdminShuttleWindow}" MinWidth="180" />
+                <Label Text="{Loc misfits-admin-tab-shuttle-desc}" VerticalAlignment="Center" StyleClasses="LabelSubText" />
+            </BoxContainer>
+            <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                <cc:CommandButton Command="adminlogs" Text="{Loc admin-player-actions-window-admin-logs}" MinWidth="180" />
+                <Label Text="{Loc misfits-admin-tab-logs-desc}" VerticalAlignment="Center" StyleClasses="LabelSubText" />
+            </BoxContainer>
+            <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                <cc:CommandButton Command="faxui" Text="{Loc admin-player-actions-window-admin-fax}" MinWidth="180" />
+                <Label Text="{Loc misfits-admin-tab-fax-desc}" VerticalAlignment="Center" StyleClasses="LabelSubText" />
+            </BoxContainer>
+            <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                <cc:CommandButton Command="timetransferpanel" Text="{Loc admin-player-actions-window-time-transfer}" MinWidth="180" />
+                <Label Text="{Loc misfits-admin-tab-time-transfer-desc}" VerticalAlignment="Center" StyleClasses="LabelSubText" />
+            </BoxContainer>
+        </BoxContainer>
+    </ScrollContainer>
 </Control>

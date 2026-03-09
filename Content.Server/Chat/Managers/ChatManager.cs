@@ -1,3 +1,4 @@
+// #Misfits Change - relay OOC and admin chat to Discord-configured webhooks
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -302,6 +303,7 @@ namespace Content.Server.Chat.Managers
                     author: player.UserId);
             }
 
+            _mommiLink.SendAdminChatMessage(player.Name, message);
             _adminLogger.Add(LogType.Chat, $"Admin chat from {player:Player}: {message}");
         }
 

@@ -1,0 +1,19 @@
+<!-- #Misfits Change - Quick-action popup when clicking a player in the Players tab -->
+<DefaultWindow
+    xmlns="https://spacestation14.io"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="{Loc misfits-player-action-title}"
+    MinSize="280 220"
+    SetSize="300 280">
+    <BoxContainer Orientation="Vertical" SeparationOverride="4" Margin="4">
+        <Label Name="PlayerNameLabel" StyleClasses="LabelHeading" Margin="0 0 0 4" />
+        <PanelContainer StyleClasses="LowDivider" Margin="0 0 0 4" />
+        <Button Name="TeleportButton" Text="{Loc misfits-player-action-teleport}" />
+        <Button Name="BwoinkButton" Text="{Loc misfits-player-action-bwoink}" />
+        <Button Name="SpectateButton" Text="{Loc misfits-player-action-spectate}" />
+        <Button Name="FreezeButton" Text="{Loc misfits-player-action-freeze}" />
+        <Button Name="KickButton" Text="{Loc misfits-player-action-kick}" />
+        <Button Name="BanButton" Text="{Loc misfits-player-action-ban}" />
+        <Button Name="KillButton" Text="{Loc misfits-player-action-kill}" />
+    </BoxContainer>
+</DefaultWindow>

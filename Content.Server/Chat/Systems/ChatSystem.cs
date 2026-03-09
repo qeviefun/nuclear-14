@@ -588,11 +588,8 @@ public sealed partial class ChatSystem : SharedChatSystem
         var ent = Identity.Entity(source, EntityManager);
         string name = FormattedMessage.EscapeText(nameOverride ?? Name(ent));
 
-        // Emotes use Identity.Name, since it doesn't actually involve your voice at all.
-        var wrappedMessage = Loc.GetString("chat-manager-entity-me-wrap-message",
-            ("entityName", name),
-            ("entity", ent),
-            ("message", FormattedMessage.RemoveMarkup(action)));
+        // #Misfits Change
+        var wrappedMessage = BuildEmoteWrappedMessage(source, name, action);
 
         if (checkEmote)
             TryEmoteChatInput(source, action);

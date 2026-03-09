@@ -186,7 +186,7 @@ public sealed class WastelandMapSystem : EntitySystem
                 sanitizedPts[i] = Math.Clamp(pts[i], 0f, 1f);
             if (string.IsNullOrWhiteSpace(label))
                 label = "Drawing";
-            return new WastelandMapAnnotation(WastelandMapAnnotationType.Draw, 0f, 0f, 0f, 0f, label, annotation.PackedColor, sanitizedPts);
+            return new WastelandMapAnnotation(WastelandMapAnnotationType.Draw, 0f, 0f, 0f, 0f, label, annotation.PackedColor, Math.Clamp(annotation.StrokeWidth, 1f, 12f), sanitizedPts);
         }
 
         // Marker / Box
@@ -198,7 +198,7 @@ public sealed class WastelandMapSystem : EntitySystem
         if (string.IsNullOrWhiteSpace(label))
             label = annotation.Type == WastelandMapAnnotationType.Marker ? "Marker" : "Box";
 
-        return new WastelandMapAnnotation(annotation.Type, startX, startY, endX, endY, label, annotation.PackedColor, null);
+        return new WastelandMapAnnotation(annotation.Type, startX, startY, endX, endY, label, annotation.PackedColor, Math.Clamp(annotation.StrokeWidth, 1f, 12f), null);
     }
 
     private List<WastelandMapAnnotation> GetSharedAnnotations(WastelandMapComponent comp, MapId mapId, WastelandMapTacticalFeedKind feed)

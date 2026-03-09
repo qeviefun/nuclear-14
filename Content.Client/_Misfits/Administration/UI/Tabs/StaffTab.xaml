@@ -1,0 +1,13 @@
+<!-- #Misfits Change - Staff Panel tab for admin menu -->
+<Control
+    xmlns="https://spacestation14.io"
+    xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
+    Margin="4"
+    MinSize="50 50">
+    <BoxContainer Orientation="Vertical" SeparationOverride="6">
+        <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+            <cc:CommandButton Command="permissions" Text="{Loc misfits-staff-tab-permissions-btn}" MinWidth="180" />
+            <Label Text="{Loc misfits-staff-tab-permissions-desc}" VerticalAlignment="Center" StyleClasses="LabelSubText" />
+        </BoxContainer>
+    </BoxContainer>
+</Control>

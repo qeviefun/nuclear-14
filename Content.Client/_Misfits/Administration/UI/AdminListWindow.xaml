@@ -1,0 +1,34 @@
+<!-- #Misfits Change - Admin list popup window shown by /admins command -->
+<controls:FancyWindow
+        xmlns="https://spacestation14.io"
+    xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
+        xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+        Title="{Loc misfits-admin-list-title}" MinSize="400 350">
+    <BoxContainer Orientation="Vertical" Margin="8">
+        <!-- Admins Section -->
+        <Label Name="AdminsHeader" StyleClasses="LabelHeadingBig" Margin="0 0 0 4" />
+        <ScrollContainer VerticalExpand="True" MinSize="0 120">
+            <BoxContainer Name="AdminsContainer" Orientation="Vertical" />
+        </ScrollContainer>
+
+        <!-- Separator -->
+        <PanelContainer StyleClasses="LowDivider" Margin="0 6 0 6" />
+
+        <!-- Mentors Section -->
+        <Label Name="MentorsHeader" StyleClasses="LabelHeadingBig" Margin="0 0 0 4" />
+        <ScrollContainer VerticalExpand="True" MinSize="0 80">
+            <BoxContainer Name="MentorsContainer" Orientation="Vertical" />
+        </ScrollContainer>
+
+        <PanelContainer StyleClasses="LowDivider" Margin="0 6 0 6" />
+
+        <BoxContainer Orientation="Horizontal" SeparationOverride="8" HorizontalExpand="True">
+            <cc:CommandButton Command="openmentorhelp" Text="{Loc misfits-admin-list-open-mentorhelp}" HorizontalExpand="True" />
+            <cc:CommandButton Command="openahelp" Text="{Loc misfits-admin-list-open-adminhelp}" HorizontalExpand="True" />
+        </BoxContainer>
+
+        <Label Name="ConnectedPlayersLabel" Margin="0 6 0 0" HorizontalAlignment="Center" StyleClasses="LabelSubText" />
+        <Label Name="AfkPlayersLabel" Margin="0 2 0 0" HorizontalAlignment="Center" StyleClasses="LabelSubText" />
+        <Label Name="GhostPlayersLabel" Margin="0 2 0 0" HorizontalAlignment="Center" StyleClasses="LabelSubText" />
+    </BoxContainer>
+</controls:FancyWindow>

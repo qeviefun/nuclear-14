@@ -1,3 +1,4 @@
+// #Misfits Change - extended to support Discord chat relays alongside MoMMI OOC relay
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
@@ -9,25 +10,32 @@ using Content.Shared.CCVar;
 using Robust.Server.ServerStatus;
 using Robust.Shared.Asynchronous;
 using Robust.Shared.Configuration;
+using Robust.Shared.Log;
 
 namespace Content.Server.MoMMI
 {
-    internal sealed class MoMMILink : IMoMMILink, IPostInjectInit
+    internal sealed partial class MoMMILink : IMoMMILink, IPostInjectInit
     {
         [Dependency] private readonly IConfigurationManager _configurationManager = default!;
         [Dependency] private readonly IStatusHost _statusHost = default!;
         [Dependency] private readonly IChatManager _chatManager = default!;
         [Dependency] private readonly ITaskManager _taskManager = default!;
+        [Dependency] private readonly ILogManager _logManager = default!;
 
         private readonly HttpClient _httpClient = new();
+        private ISawmill _sawmill = default!;
 
         void IPostInjectInit.PostInject()
         {
+            _sawmill = _logManager.GetSawmill("mommi");
             _statusHost.AddHandler(HandleChatPost);
+            PostInjectDiscordRelay();
         }
 
         public async void SendOOCMessage(string sender, string message)
         {
+            RelayOOCToDiscord(sender, message);
+
             var sentMessage = new MoMMIMessageOOC
             {
                 Sender = sender,
@@ -35,6 +43,11 @@ namespace Content.Server.MoMMI
             };
 
             await SendMessageInternal("ooc", sentMessage);
+        }
+
+        public void SendAdminChatMessage(string sender, string message)
+        {
+            RelayAdminChatToDiscord(sender, message);
         }
 
         private async Task SendMessageInternal(string type, object messageObject)
@@ -48,7 +61,7 @@ namespace Content.Server.MoMMI
 
             if (string.IsNullOrWhiteSpace(password))
             {
-                Logger.WarningS("mommi", "MoMMI URL specified but not password!");
+                _sawmill.Warning("MoMMI URL specified but not password!");
                 return;
             }
 
@@ -147,5 +160,9 @@ namespace Content.Server.MoMMI
             public string Contents = null!;
 #pragma warning restore CS0649
         }
+
+    partial void PostInjectDiscordRelay();
+    partial void RelayOOCToDiscord(string sender, string message);
+    partial void RelayAdminChatToDiscord(string sender, string message);
     }
 }

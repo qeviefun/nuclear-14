@@ -56,10 +56,13 @@ public readonly record struct WastelandMapAnnotation(
     string Label,
     /// <summary>RGBA8 packed color: (R&lt;&lt;24)|(G&lt;&lt;16)|(B&lt;&lt;8)|A. Default is orange.</summary>
     uint PackedColor,
+    /// <summary>Stroke width in screen pixels (1–12). Applies to Draw, Marker, and Box borders.</summary>
+    float StrokeWidth,
     /// <summary>For Draw type: interleaved [x0,y0,x1,y1,...] UV coords. Null for Marker/Box.</summary>
     float[]? StrokePoints)
 {
     public const uint DefaultPackedColor = 0xF27F26FF;
+    public const float DefaultStrokeWidth = 3f;
 }
 
 /// <summary>

@@ -1,13 +1,14 @@
 // #Misfits Change - Console command to open the Whitelist Search admin panel
 using Content.Server.Administration;
 using Content.Server.EUI;
+using Content.Shared._Misfits.Administration;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
 
 namespace Content.Server._Misfits.Administration.Commands;
 
 /// <summary>
-/// Opens the whitelist search panel so admins can search for players and manage their job whitelists.
+/// Opens the role whitelist panel so admins can search for players and manage their job whitelists.
 /// </summary>
 [AdminCommand(AdminFlags.Whitelist)]
 public sealed class WhitelistSearchCommand : LocalizedCommands
@@ -24,7 +25,7 @@ public sealed class WhitelistSearchCommand : LocalizedCommands
             return;
         }
 
-        var ui = new WhitelistSearchEui();
+        var ui = new WhitelistSearchEui(WhitelistSearchMode.RoleWhitelists);
         _eui.OpenEui(ui, player);
     }
 }

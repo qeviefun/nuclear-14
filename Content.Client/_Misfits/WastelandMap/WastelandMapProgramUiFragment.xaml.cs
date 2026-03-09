@@ -92,6 +92,16 @@ public sealed partial class WastelandMapProgramUiFragment : BoxContainer
             btn.OnPressed += _ => _mapViewer.SetAnnotationColor(captured);
             ColorRow.AddChild(btn);
         }
+
+        // Stroke-width presets
+        ColorRow.AddChild(new Label { Text = "  Width: " });
+        foreach (var (pixels, label) in new (float, string)[] { (2f, "Thin"), (4f, "Med"), (8f, "Thick"), (12f, "Max") })
+        {
+            var pw = pixels;
+            var wb = new Button { Text = label };
+            wb.OnPressed += _ => _mapViewer.SetAnnotationStrokeWidth(pw);
+            ColorRow.AddChild(wb);
+        }
     }
 
     public void SetMap(string title, ResPath texturePath, Robust.Shared.Maths.Box2 worldBounds, WastelandMapTrackedBlip[] trackedBlips, WastelandMapAnnotation[] sharedAnnotations)

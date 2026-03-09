@@ -15,6 +15,8 @@ public sealed partial class AdminMenuWindow : DefaultWindow
         MinSize = new Vector2(850, 250); // Corvax-Change old 650, 250
         Title = Loc.GetString("admin-menu-title");
         RobustXamlLoader.Load(this);
+        // #Misfits Change - Reordered: Players first
+        MasterTabContainer.SetTabTitle((int) TabIndex.Players, Loc.GetString("admin-menu-players-tab"));
         MasterTabContainer.SetTabTitle((int) TabIndex.Admin, Loc.GetString("admin-menu-admin-tab"));
         MasterTabContainer.SetTabTitle((int) TabIndex.Adminbus, Loc.GetString("admin-menu-adminbus-tab"));
         MasterTabContainer.SetTabTitle((int) TabIndex.Atmos, Loc.GetString("admin-menu-atmos-tab"));
@@ -25,10 +27,11 @@ public sealed partial class AdminMenuWindow : DefaultWindow
          * TODO: Remove baby jail code once a more mature gateway process is established. This code is only being issued as a stopgap to help with potential tiding in the immediate future.
          */
         MasterTabContainer.SetTabTitle((int) TabIndex.BabyJail, Loc.GetString("admin-menu-baby-jail-tab"));
-        MasterTabContainer.SetTabTitle((int) TabIndex.Players, Loc.GetString("admin-menu-players-tab"));
         MasterTabContainer.SetTabTitle((int) TabIndex.Objects, Loc.GetString("admin-menu-objects-tab"));
         // #Misfits Change - Whitelisting tab
-        MasterTabContainer.SetTabTitle((int) TabIndex.Whitelisting, "Whitelisting");
+        MasterTabContainer.SetTabTitle((int) TabIndex.Whitelisting, Loc.GetString("misfits-admin-menu-whitelisting-tab"));
+        // #Misfits Change - Staff tab
+        MasterTabContainer.SetTabTitle((int) TabIndex.Staff, Loc.GetString("misfits-admin-menu-staff-tab"));
         MasterTabContainer.OnTabChanged += OnTabChanged;
     }
 
@@ -46,17 +49,19 @@ public sealed partial class AdminMenuWindow : DefaultWindow
         OnDisposed = null;
     }
 
+    // #Misfits Change - Reordered: Players first
     private enum TabIndex
     {
-        Admin = 0,
+        Players = 0,
+        Admin,
         Adminbus,
         Atmos,
         Round,
         Server,
         PanicBunker,
         BabyJail,
-        Players,
         Objects,
         Whitelisting, // #Misfits Change
+        Staff, // #Misfits Change
     }
 }

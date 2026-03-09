@@ -9,7 +9,7 @@ namespace Content.Client._Misfits.Administration.UI;
 public sealed class WhitelistSearchEui : BaseEui
 {
     private readonly ISawmill _sawmill;
-    private WhitelistSearchWindow _window;
+    private readonly WhitelistSearchWindow _window;
 
     public WhitelistSearchEui()
     {
@@ -19,6 +19,8 @@ public sealed class WhitelistSearchEui : BaseEui
         _window.OnSearch += query => SendMessage(new SearchPlayersMessage(query));
         _window.OnSelectPlayer += playerId => SendMessage(new SelectPlayerMessage(playerId));
         _window.OnSetJob += (job, whitelisting) => SendMessage(new SetWhitelistSearchJobMessage(job, whitelisting));
+        _window.OnAddRoleTime += (job, timeString) => SendMessage(new AddWhitelistSearchRoleTimeMessage(job, timeString));
+        _window.OnAdjustJobSlots += (job, delta) => SendMessage(new AdjustWhitelistSearchJobSlotsMessage(job, delta));
     }
 
     public override void HandleState(EuiStateBase state)
@@ -45,6 +47,5 @@ public sealed class WhitelistSearchEui : BaseEui
     {
         base.Closed();
         _window.Close();
-        _window.Dispose();
     }
 }

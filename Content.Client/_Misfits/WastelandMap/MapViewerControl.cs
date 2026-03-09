@@ -60,6 +60,7 @@ public sealed class MapViewerControl : Control
 
     // Free-draw state
     private Color _currentColor = new Color(0.95f, 0.50f, 0.15f, 1f); // default orange
+    private float _currentStrokeWidth = 3f;
     private readonly List<Vector2> _freeDrawUvPoints = new();
     private bool _freeDrawActive;
     private const int MaxStrokeUvPoints = 256;
@@ -118,6 +119,11 @@ public sealed class MapViewerControl : Control
     public void SetAnnotationColor(Color color)
     {
         _currentColor = color;
+    }
+
+    public void SetAnnotationStrokeWidth(float width)
+    {
+        _currentStrokeWidth = Math.Clamp(width, 1f, 12f);
     }
 
     /// <summary>Pack RGBA floats (0-1) into a uint: (R&lt;&lt;24)|(G&lt;&lt;16)|(B&lt;&lt;8)|A.</summary>
@@ -204,6 +210,7 @@ public sealed class MapViewerControl : Control
                 _annotationDragCurrentUv.Value.Y,
                 GetAnnotationLabel("Box"),
                 ToPackedColor(_currentColor),
+                _currentStrokeWidth,
                 null);
             DrawAnnotation(handle, preview, x, y, drawW, drawH, true);
         }
@@ -224,7 +231,7 @@ public sealed class MapViewerControl : Control
             {
                 var p0 = new Vector2(x + _freeDrawUvPoints[i].X * drawW,     y + _freeDrawUvPoints[i].Y * drawH);
                 var p1 = new Vector2(x + _freeDrawUvPoints[i + 1].X * drawW, y + _freeDrawUvPoints[i + 1].Y * drawH);
-                handle.DrawLine(p0, p1, previewColor);
+                DrawThickLine(handle, p0, p1, previewColor, _currentStrokeWidth);
             }
         }
     }
@@ -369,7 +376,7 @@ public sealed class MapViewerControl : Control
                 {
                     var p0 = new Vector2(x + pts[i]     * drawW, y + pts[i + 1] * drawH);
                     var p1 = new Vector2(x + pts[i + 2] * drawW, y + pts[i + 3] * drawH);
-                    handle.DrawLine(p0, p1, color);
+                    DrawThickLine(handle, p0, p1, color, annotation.StrokeWidth);
                 }
                 break;
             }
@@ -407,7 +414,7 @@ public sealed class MapViewerControl : Control
                 {
                     var p0 = new Vector2(x + pts[i]     * drawW, y + pts[i + 1] * drawH);
                     var p1 = new Vector2(x + pts[i + 2] * drawW, y + pts[i + 3] * drawH);
-                    handle.DrawLine(p0, p1, eraseColor);
+                    DrawThickLine(handle, p0, p1, eraseColor, Math.Max(annotation.StrokeWidth, 4f));
                 }
                 break;
             }
@@ -423,6 +430,33 @@ public sealed class MapViewerControl : Control
         var padding = new Vector2(6f, 4f);
         handle.DrawRect(new UIBox2(position - padding, position + textDimensions + padding), new Color(0f, 0f, 0f, 0.82f));
         handle.DrawString(_blipLabelFont, position, label, color);
+    }
+
+    /// <summary>Draw a thick anti-aliased line segment with rounded end-caps.</summary>
+    private static void DrawThickLine(DrawingHandleScreen handle, Vector2 p0, Vector2 p1, Color color, float width)
+    {
+        if (width <= 1.5f)
+        {
+            handle.DrawLine(p0, p1, color);
+            return;
+        }
+        var dir = p1 - p0;
+        var len = dir.Length();
+        if (len < 0.001f)
+        {
+            handle.DrawCircle(p0, width / 2f, color);
+            return;
+        }
+        dir /= len;
+        var perp = new Vector2(-dir.Y, dir.X) * (width / 2f);
+        var verts = new[]
+        {
+            p0 - perp, p0 + perp, p1 + perp,
+            p0 - perp, p1 + perp, p1 - perp,
+        };
+        handle.DrawPrimitives(DrawPrimitiveTopology.TriangleList, verts, color);
+        handle.DrawCircle(p0, width / 2f, color);
+        handle.DrawCircle(p1, width / 2f, color);
     }
 
     private static void DrawBorder(DrawingHandleScreen handle, UIBox2 rect, Color color, float width)
@@ -569,8 +603,9 @@ public sealed class MapViewerControl : Control
                         uv.X,
                         uv.Y,
                         GetAnnotationLabel("Marker"),
-                    ToPackedColor(_currentColor),
-                    null));
+                        ToPackedColor(_currentColor),
+                        _currentStrokeWidth,
+                        null));
                     args.Handle();
                 }
                 return;
@@ -615,6 +650,7 @@ public sealed class MapViewerControl : Control
                         WastelandMapAnnotationType.Draw, 0f, 0f, 0f, 0f,
                         GetAnnotationLabel("Drawing"),
                         ToPackedColor(_currentColor),
+                        _currentStrokeWidth,
                         pts));
                 }
                 _freeDrawUvPoints.Clear();
@@ -634,6 +670,7 @@ public sealed class MapViewerControl : Control
                     _annotationDragCurrentUv.Value.Y,
                     GetAnnotationLabel("Box"),
                     ToPackedColor(_currentColor),
+                    _currentStrokeWidth,
                     null));
                 _annotationDragStartUv = null;
                 _annotationDragCurrentUv = null;

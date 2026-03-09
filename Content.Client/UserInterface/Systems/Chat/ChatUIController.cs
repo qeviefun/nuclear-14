@@ -704,12 +704,104 @@ public sealed class ChatUIController : UIController
 
     public void UpdateSelectedChannel(ChatBox box)
     {
-        var (prefixChannel, _, radioChannel) = SplitInputContents(box.ChatInput.Input.Text.ToLower());
+        // #Misfits Change
+        if (TryConsumeSlashAlias(box))
+            return;
+
+        var inputText = box.ChatInput.Input.Text;
+        if (TryGetSlashAlias(inputText, out var slashChannel, out _, out _))
+        {
+            box.ChatInput.ChannelSelector.UpdateChannelSelectButton(slashChannel, null);
+            return;
+        }
+
+        var (prefixChannel, _, radioChannel) = SplitInputContents(inputText.ToLower());
 
         if (prefixChannel == ChatSelectChannel.None)
             box.ChatInput.ChannelSelector.UpdateChannelSelectButton(box.SelectedChannel, null);
         else
             box.ChatInput.ChannelSelector.UpdateChannelSelectButton(prefixChannel, radioChannel);
+    }
+
+    // #Misfits Change
+    private bool TryConsumeSlashAlias(ChatBox box)
+    {
+        if (!TryGetSlashAlias(box.ChatInput.Input.Text, out var aliasChannel, out var strippedText, out _))
+            return false;
+
+        aliasChannel = MapLocalIfGhost(aliasChannel);
+        if ((SelectableChannels & aliasChannel) == 0)
+            return false;
+
+        box.SafelySelectChannel(aliasChannel);
+        box.ChatInput.Input.SetText(strippedText);
+        return true;
+    }
+
+    // #Misfits Change
+    private bool TryGetSlashAlias(string text, out ChatSelectChannel channel, out string strippedText, out bool forceRadioPrefix)
+    {
+        channel = ChatSelectChannel.None;
+        strippedText = text;
+        forceRadioPrefix = false;
+
+        return TryAssignSlashAlias(text, "./me", ChatSelectChannel.Emotes, ref channel, ref strippedText, ref forceRadioPrefix)
+            || TryAssignSlashAlias(text, "./em", ChatSelectChannel.Emotes, ref channel, ref strippedText, ref forceRadioPrefix)
+            || TryAssignSlashAlias(text, "./do", ChatSelectChannel.Emotes, ref channel, ref strippedText, ref forceRadioPrefix)
+            || TryAssignSlashAlias(text, "./looc", ChatSelectChannel.LOOC, ref channel, ref strippedText, ref forceRadioPrefix)
+            || TryAssignSlashAlias(text, "./ooc", ChatSelectChannel.OOC, ref channel, ref strippedText, ref forceRadioPrefix)
+            || TryAssignSlashAlias(text, "./admin", ChatSelectChannel.Admin, ref channel, ref strippedText, ref forceRadioPrefix)
+            || TryAssignSlashAlias(text, "./say", ChatSelectChannel.Local, ref channel, ref strippedText, ref forceRadioPrefix)
+            || TryAssignSlashAlias(text, "./whisper", ChatSelectChannel.Whisper, ref channel, ref strippedText, ref forceRadioPrefix)
+            || TryAssignSlashAlias(text, "./w", ChatSelectChannel.Whisper, ref channel, ref strippedText, ref forceRadioPrefix)
+            || TryAssignSlashAlias(text, "./radio", ChatSelectChannel.Radio, ref channel, ref strippedText, ref forceRadioPrefix, true)
+            || TryAssignSlashAlias(text, "./dead", ChatSelectChannel.Dead, ref channel, ref strippedText, ref forceRadioPrefix);
+    }
+
+    // #Misfits Change
+    private static bool TryAssignSlashAlias(
+        string text,
+        string alias,
+        ChatSelectChannel aliasChannel,
+        ref ChatSelectChannel channel,
+        ref string strippedText,
+        ref bool forceRadioPrefix,
+        bool forceRadio = false)
+    {
+        if (!TryMatchSlashAlias(text, alias, out var aliasLength))
+            return false;
+
+        channel = aliasChannel;
+        strippedText = StripPrefix(text, aliasLength);
+        forceRadioPrefix = forceRadio;
+        return true;
+    }
+
+    // #Misfits Change
+    private static bool TryMatchSlashAlias(string text, string alias, out int aliasLength)
+    {
+        aliasLength = 0;
+
+        if (!text.StartsWith(alias, StringComparison.OrdinalIgnoreCase))
+            return false;
+
+        if (text.Length != alias.Length && !char.IsWhiteSpace(text[alias.Length]))
+            return false;
+
+        aliasLength = alias.Length;
+        return true;
+    }
+
+    // #Misfits Change
+    private static string StripPrefix(string text, int prefixLength)
+    {
+        if (prefixLength <= 0)
+            return text.TrimStart();
+
+        if (prefixLength >= text.Length)
+            return string.Empty;
+
+        return text[prefixLength..].TrimStart();
     }
 
     public (ChatSelectChannel chatChannel, string text, RadioChannelPrototype? radioChannel) SplitInputContents(string text)
@@ -741,7 +833,7 @@ public sealed class ChatUIController : UIController
                 chatChannel = ChatSelectChannel.Dead;
         }
 
-        return (chatChannel, text[1..].TrimStart(), null);
+        return (chatChannel, StripPrefix(text, 1), null);
     }
 
     public void SendMessage(ChatBox box, ChatSelectChannel channel)
@@ -755,6 +847,26 @@ public sealed class ChatUIController : UIController
 
         if (string.IsNullOrWhiteSpace(text))
             return;
+
+        if (TryGetSlashAlias(text, out var slashChannel, out var slashText, out var forceRadioPrefix))
+        {
+            text = slashText;
+            channel = slashChannel;
+
+            if (text.Length > MaxMessageLength)
+            {
+                var locWarning = Loc.GetString("chat-manager-max-message-length",
+                    ("maxMessageLength", MaxMessageLength));
+                box.AddLine(locWarning, Color.Orange);
+                return;
+            }
+
+            if (forceRadioPrefix)
+                text = $";{text}";
+
+            _manager.SendMessage(text, channel);
+            return;
+        }
 
         (var prefixChannel, text, var _) = SplitInputContents(text);
 

@@ -53,6 +53,14 @@ namespace Content.Server.Administration.Managers
 
         private ISawmill _sawmill = default!;
 
+        // #Misfits Change
+        private string GetAdminAnnouncementTitle(AdminData adminData)
+        {
+            return string.IsNullOrWhiteSpace(adminData.Title)
+                ? Loc.GetString("admin-manager-admin-data-fallback-title")
+                : adminData.Title;
+        }
+
         public bool IsAdmin(ICommonSession session, bool includeDeAdmin = false)
         {
             return GetAdminData(session, includeDeAdmin) != null;
@@ -347,10 +355,12 @@ namespace Content.Server.Administration.Managers
                 {
                     if (reg.Data.Stealth)
                         _chat.SendAdminAnnouncement(Loc.GetString("admin-manager-admin-logout-message",
-                            ("name", e.Session.Name)), flagWhitelist: AdminFlags.Stealth);
+                            ("name", e.Session.Name),
+                            ("title", GetAdminAnnouncementTitle(reg.Data))), flagWhitelist: AdminFlags.Stealth);
                     else
                         _chat.SendAdminAnnouncement(Loc.GetString("admin-manager-admin-logout-message",
-                            ("name", e.Session.Name)));
+                            ("name", e.Session.Name),
+                            ("title", GetAdminAnnouncementTitle(reg.Data))));
                 }
             }
         }
@@ -387,12 +397,14 @@ namespace Content.Server.Administration.Managers
 
                         _chat.DispatchServerMessage(session, Loc.GetString("admin-manager-stealthed-message"));
                         _chat.SendAdminAnnouncement(Loc.GetString("admin-manager-admin-login-message",
-                            ("name", session.Name)), flagWhitelist: AdminFlags.Stealth);
+                            ("name", session.Name),
+                            ("title", GetAdminAnnouncementTitle(reg.Data))), flagWhitelist: AdminFlags.Stealth);
                     }
                     else
                     {
                         _chat.SendAdminAnnouncement(Loc.GetString("admin-manager-admin-login-message",
-                            ("name", session.Name)));
+                            ("name", session.Name),
+                            ("title", GetAdminAnnouncementTitle(reg.Data))));
                     }
                 }
 

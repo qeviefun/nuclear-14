@@ -147,6 +147,20 @@
     sprite: Corvax/Clothing/OuterClothing/PowerArmor/t45westbos.rsi
   - type: Clothing
     sprite: Corvax/Clothing/OuterClothing/PowerArmor/t45westbos.rsi
+  - type: UserInterface
+    interfaces:
+      enum.ToggleClothingUiKey.Key:
+        type: ToggleableClothingBoundUserInterface
+      enum.WastelandMapUiKey.Key:
+        type: WastelandMapBoundUserInterface
+  - type: WastelandMap
+    mapTexturePath: _Misfits/Maps/wendover_map.png
+    mapTitle: Brotherhood Tactical HUD
+    worldBounds: "-517,-308,484,311"
+    tacticalFeed: Brotherhood
+    compactHud: true
+  - type: WastelandMapAction
+    requiredSlot: OUTERCLOTHING
   - type: ToggleableClothing
     clothingPrototypes:
       head: N14ClothingHeadHelmetPowerArmorT45WestBOS

@@ -229,87 +229,191 @@ namespace Content.Client.Administration.UI
 
             _ranks = s.AdminRanks;
 
+            // ---- Admins tab: group by rank, sort groups by total perm count descending ----
+            // #Misfits Change — rank-grouped card layout instead of flat grid
             _menu.AdminsList.RemoveAllChildren();
-            foreach (var admin in s.Admins.OrderBy(d => d.UserName))
+
+            // Compute combined flags per admin for sorting
+            AdminFlags CombinedFlags(PermissionsEuiState.AdminData a)
             {
-                var al = _menu.AdminsList;
-                var name = admin.UserName ?? admin.UserId.ToString();
+                var f = a.PosFlags;
+                if (a.RankId is { } rid && s.AdminRanks.TryGetValue(rid, out var rd))
+                    f |= rd.Flags;
+                return f;
+            }
 
-                al.AddChild(new Label { Text = name });
-
-                var titleControl = new Label { Text = admin.Title ?? Loc.GetString("permissions-eui-edit-admin-title-control-text").ToLowerInvariant() };
-                if (admin.Title == null) // none
+            // Group admins by rank id (null = unranked)
+            var grouped = s.Admins
+                .OrderByDescending(a => BitOperations.PopCount((uint) CombinedFlags(a)))
+                .GroupBy(a => a.RankId)
+                .OrderByDescending(g =>
                 {
-                    titleControl.StyleClasses.Add(StyleBase.StyleClassItalic);
-                }
+                    // Order groups by the highest perm count in the group
+                    return g.Max(a => BitOperations.PopCount((uint) CombinedFlags(a)));
+                });
 
-                al.AddChild(titleControl);
-
-                bool italic;
-                string rank;
-                var combinedFlags = admin.PosFlags;
-                if (admin.RankId is { } rankId)
+            foreach (var group in grouped)
+            {
+                string rankName;
+                int rankPermCount;
+                if (group.Key is { } rankId && s.AdminRanks.TryGetValue(rankId, out var rankData))
                 {
-                    italic = false;
-                    var rankData = s.AdminRanks[rankId];
-                    rank = rankData.Name;
-                    combinedFlags |= rankData.Flags;
+                    rankName = rankData.Name;
+                    rankPermCount = BitOperations.PopCount((uint) rankData.Flags);
                 }
                 else
                 {
-                    italic = true;
-                    rank = Loc.GetString("permissions-eui-edit-no-rank-text").ToLowerInvariant();
+                    rankName = Loc.GetString("permissions-eui-edit-no-rank-text");
+                    rankPermCount = 0;
                 }
 
-                var rankControl = new Label { Text = rank };
-                if (italic)
+                // Rank group header
+                var headerBox = new BoxContainer
                 {
-                    rankControl.StyleClasses.Add(StyleBase.StyleClassItalic);
-                }
-
-                al.AddChild(rankControl);
-
-                var flagsText = AdminFlagsHelper.PosNegFlagsText(admin.PosFlags, admin.NegFlags);
-
-                al.AddChild(new Label
-                {
-                    Text = flagsText,
+                    Orientation = LayoutOrientation.Horizontal,
+                    Margin = new Thickness(0, 6, 0, 2),
                     HorizontalExpand = true,
-                    HorizontalAlignment = Control.HAlignment.Center,
+                };
+                headerBox.AddChild(new Label
+                {
+                    Text = $"{rankName}",
+                    StyleClasses = { StyleBase.StyleClassLabelHeading },
+                    HorizontalExpand = true,
+                });
+                headerBox.AddChild(new Label
+                {
+                    Text = Loc.GetString("permissions-eui-rank-perms-count", ("count", rankPermCount)),
+                    StyleClasses = { StyleBase.StyleClassItalic },
+                    Margin = new Thickness(8, 0, 0, 0),
+                });
+                _menu.AdminsList.AddChild(headerBox);
+
+                // Separator line
+                _menu.AdminsList.AddChild(new PanelContainer
+                {
+                    StyleClasses = { "LowDivider" },
+                    Margin = new Thickness(0, 0, 0, 4),
                 });
 
-                var editButton = new Button { Text = Loc.GetString("permissions-eui-edit-title-button") };
-                editButton.OnPressed += _ => OnEditPressed(admin);
-                al.AddChild(editButton);
-
-                if (!_adminManager.HasFlag(combinedFlags))
+                // Admin entries in this group
+                foreach (var admin in group)
                 {
-                    editButton.Disabled = true;
-                    editButton.ToolTip = Loc.GetString("permissions-eui-do-not-have-required-flags-to-edit-admin-tooltip");
+                    var combinedFlags = CombinedFlags(admin);
+                    var name = admin.UserName ?? admin.UserId.ToString();
+                    var canEdit = _adminManager.HasFlag(combinedFlags);
+
+                    var row = new BoxContainer
+                    {
+                        Orientation = LayoutOrientation.Horizontal,
+                        Margin = new Thickness(12, 2, 0, 2),
+                        HorizontalExpand = true,
+                    };
+
+                    // Clickable name button
+                    var capturedAdmin = admin;
+                    var nameButton = new Button
+                    {
+                        Text = name,
+                        Disabled = !canEdit,
+                        MinWidth = 160,
+                    };
+                    nameButton.OnPressed += _ => OnEditPressed(capturedAdmin);
+                    if (!canEdit)
+                        nameButton.ToolTip = Loc.GetString("permissions-eui-do-not-have-required-flags-to-edit-admin-tooltip");
+                    row.AddChild(nameButton);
+
+                    // Title
+                    var titleText = admin.Title ?? Loc.GetString("permissions-eui-edit-admin-title-control-text").ToLowerInvariant();
+                    var titleLabel = new Label
+                    {
+                        Text = $"[{titleText}]",
+                        Margin = new Thickness(8, 0, 0, 0),
+                        HorizontalExpand = true,
+                        VerticalAlignment = Control.VAlignment.Center,
+                    };
+                    if (admin.Title == null)
+                        titleLabel.StyleClasses.Add(StyleBase.StyleClassItalic);
+                    row.AddChild(titleLabel);
+
+                    // Perm count badge
+                    var permCount = BitOperations.PopCount((uint) combinedFlags);
+                    row.AddChild(new Label
+                    {
+                        Text = Loc.GetString("permissions-eui-perms-badge", ("count", permCount)),
+                        Margin = new Thickness(4, 0, 0, 0),
+                        VerticalAlignment = Control.VAlignment.Center,
+                    });
+
+                    _menu.AdminsList.AddChild(row);
                 }
             }
 
+            // ---- Ranks tab: card-style rank list ----
+            // #Misfits Change — card-style rank list sorted by perm count descending
             _menu.AdminRanksList.RemoveAllChildren();
-            foreach (var kv in s.AdminRanks)
+            foreach (var kv in s.AdminRanks.OrderByDescending(r => BitOperations.PopCount((uint) r.Value.Flags)))
             {
                 var rank = kv.Value;
-                var flagsText = string.Join(' ', AdminFlagsHelper.FlagsToNames(rank.Flags).Select(f => $"+{f}"));
-                _menu.AdminRanksList.AddChild(new Label { Text = rank.Name });
-                _menu.AdminRanksList.AddChild(new Label
-                {
-                    Text = flagsText,
-                    HorizontalExpand = true,
-                    HorizontalAlignment = Control.HAlignment.Center,
-                });
-                var editButton = new Button { Text = Loc.GetString("permissions-eui-edit-admin-rank-button") };
-                editButton.OnPressed += _ => OnEditRankPressed(kv);
-                _menu.AdminRanksList.AddChild(editButton);
+                var flagCount = BitOperations.PopCount((uint) rank.Flags);
+                var flagsText = string.Join(", ", AdminFlagsHelper.FlagsToNames(rank.Flags));
 
+                var card = new BoxContainer
+                {
+                    Orientation = LayoutOrientation.Vertical,
+                    Margin = new Thickness(0, 4, 0, 4),
+                    HorizontalExpand = true,
+                };
+
+                // Rank header row
+                var headerRow = new BoxContainer
+                {
+                    Orientation = LayoutOrientation.Horizontal,
+                    HorizontalExpand = true,
+                };
+                headerRow.AddChild(new Label
+                {
+                    Text = rank.Name,
+                    StyleClasses = { StyleBase.StyleClassLabelHeading },
+                    HorizontalExpand = true,
+                });
+                headerRow.AddChild(new Label
+                {
+                    Text = Loc.GetString("permissions-eui-rank-perms-count", ("count", flagCount)),
+                    Margin = new Thickness(8, 0, 0, 0),
+                });
+
+                var editButton = new Button
+                {
+                    Text = Loc.GetString("permissions-eui-edit-admin-rank-button"),
+                    Margin = new Thickness(8, 0, 0, 0),
+                };
+                var capturedKv = kv;
+                editButton.OnPressed += _ => OnEditRankPressed(capturedKv);
                 if (!_adminManager.HasFlag(rank.Flags))
                 {
                     editButton.Disabled = true;
                     editButton.ToolTip = Loc.GetString("permissions-eui-do-not-have-required-flags-to-edit-rank-tooltip");
                 }
+                headerRow.AddChild(editButton);
+
+                card.AddChild(headerRow);
+
+                // Flags detail line
+                card.AddChild(new Label
+                {
+                    Text = flagsText,
+                    StyleClasses = { StyleBase.StyleClassItalic },
+                    Margin = new Thickness(12, 2, 0, 0),
+                });
+
+                // Separator
+                card.AddChild(new PanelContainer
+                {
+                    StyleClasses = { "LowDivider" },
+                    Margin = new Thickness(0, 4, 0, 0),
+                });
+
+                _menu.AdminRanksList.AddChild(card);
             }
         }
 
@@ -318,11 +422,12 @@ namespace Content.Client.Administration.UI
             OpenRankEditWindow(rank);
         }
 
+        // #Misfits Change — completely overhauled Menu to use rank-grouped card layout
         private sealed class Menu : DefaultWindow
         {
             private readonly PermissionsEui _ui;
-            public readonly GridContainer AdminsList;
-            public readonly GridContainer AdminRanksList;
+            public readonly BoxContainer AdminsList;
+            public readonly BoxContainer AdminRanksList;
             public readonly Button AddAdminButton;
             public readonly Button AddAdminRankButton;
 
@@ -336,28 +441,46 @@ namespace Content.Client.Administration.UI
                 AddAdminButton = new Button
                 {
                     Text = Loc.GetString("permissions-eui-menu-add-admin-button"),
-                    HorizontalAlignment = HAlignment.Right
+                    HorizontalAlignment = HAlignment.Right,
+                    Margin = new Thickness(0, 4, 0, 0),
                 };
 
                 AddAdminRankButton = new Button
                 {
                     Text = Loc.GetString("permissions-eui-menu-add-admin-rank-button"),
-                    HorizontalAlignment = HAlignment.Right
+                    HorizontalAlignment = HAlignment.Right,
+                    Margin = new Thickness(0, 4, 0, 0),
                 };
 
-                AdminsList = new GridContainer { Columns = 5, VerticalExpand = true };
+                AdminsList = new BoxContainer
+                {
+                    Orientation = LayoutOrientation.Vertical,
+                    HorizontalExpand = true,
+                };
                 var adminVBox = new BoxContainer
                 {
                     Orientation = LayoutOrientation.Vertical,
-                    Children = { new ScrollContainer() { VerticalExpand = true, Children = { AdminsList } }, AddAdminButton },
+                    Children =
+                    {
+                        new ScrollContainer { VerticalExpand = true, Children = { AdminsList } },
+                        AddAdminButton,
+                    },
                 };
                 TabContainer.SetTabTitle(adminVBox, Loc.GetString("permissions-eui-menu-admins-tab-title"));
 
-                AdminRanksList = new GridContainer { Columns = 3, VerticalExpand = true };
+                AdminRanksList = new BoxContainer
+                {
+                    Orientation = LayoutOrientation.Vertical,
+                    HorizontalExpand = true,
+                };
                 var rankVBox = new BoxContainer
                 {
                     Orientation = LayoutOrientation.Vertical,
-                    Children = { new ScrollContainer() { VerticalExpand = true, Children = { AdminRanksList } }, AddAdminRankButton }
+                    Children =
+                    {
+                        new ScrollContainer { VerticalExpand = true, Children = { AdminRanksList } },
+                        AddAdminRankButton,
+                    },
                 };
                 TabContainer.SetTabTitle(rankVBox, Loc.GetString("permissions-eui-menu-admin-ranks-tab-title"));
 
@@ -367,7 +490,7 @@ namespace Content.Client.Administration.UI
                 Contents.AddChild(tab);
             }
 
-            protected override Vector2 ContentsMinimumSize => new Vector2(600, 400);
+            protected override Vector2 ContentsMinimumSize => new Vector2(700, 500);
         }
 
         private sealed class EditAdminWindow : DefaultWindow

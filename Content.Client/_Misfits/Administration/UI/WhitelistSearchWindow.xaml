@@ -2,25 +2,33 @@
 <controls:FancyWindow
         xmlns="https://spacestation14.io"
         xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
-        Title="Whitelist Search" MinSize="800 650">
+    Title="Whitelist Search" MinSize="1100 720">
     <BoxContainer Orientation="Vertical" Margin="4">
-        <!-- Search Area -->
-        <BoxContainer Orientation="Horizontal" Margin="0 0 0 4">
-            <Label Text="Search Player:" Margin="0 0 8 0" />
-            <LineEdit Name="SearchBox" PlaceHolder="Type a player name (min 2 chars)..." HorizontalExpand="True" />
-            <Button Name="SearchButton" Text="Search" Margin="4 0 0 0" MinWidth="80" />
+        <!-- Player Search Section — hidden in JobSlots mode -->
+        <BoxContainer Name="PlayerSearchArea" Orientation="Vertical">
+            <BoxContainer Orientation="Horizontal" Margin="0 0 0 4">
+                <Label Text="{Loc misfits-whitelist-search-search-player}" Margin="0 0 8 0" />
+                <LineEdit Name="SearchBox" PlaceHolder="{Loc misfits-whitelist-search-search-placeholder}" HorizontalExpand="True" />
+                <Button Name="SearchButton" Text="{Loc misfits-whitelist-search-search-button}" Margin="4 0 0 0" MinWidth="80" />
+            </BoxContainer>
+            <!-- Search Results -->
+            <BoxContainer Orientation="Vertical" Margin="0 0 0 4" VerticalExpand="False" MinSize="0 150" MaxHeight="200">
+                <Label Text="{Loc misfits-whitelist-search-results}" Margin="0 0 0 2" />
+                <ScrollContainer VerticalExpand="True" HorizontalExpand="True">
+                    <BoxContainer Name="SearchResults" Orientation="Vertical" HorizontalExpand="True" />
+                </ScrollContainer>
+            </BoxContainer>
         </BoxContainer>
 
-        <!-- Search Results -->
-        <BoxContainer Orientation="Vertical" Margin="0 0 0 4" VerticalExpand="False" MinSize="0 150" MaxHeight="200">
-            <Label Text="Search Results:" Margin="0 0 0 2" />
-            <ScrollContainer VerticalExpand="True" HorizontalExpand="True">
-                <BoxContainer Name="SearchResults" Orientation="Vertical" HorizontalExpand="True" />
-            </ScrollContainer>
+        <!-- Role Filter — visible in both modes -->
+        <BoxContainer Orientation="Horizontal" Margin="0 0 0 4">
+            <Label Text="{Loc misfits-whitelist-search-search-role}" Margin="0 0 8 0" />
+            <LineEdit Name="RoleFilterBox" PlaceHolder="{Loc misfits-whitelist-search-search-role-placeholder}" HorizontalExpand="True" />
         </BoxContainer>
 
         <!-- Selected Player Header -->
-        <Label Name="SelectedPlayerLabel" Text="No player selected" Margin="0 4 0 4" StyleClasses="LabelHeadingBig" />
+        <Label Name="SelectedPlayerLabel" Text="{Loc misfits-whitelist-search-no-player-selected}" Margin="0 4 0 4" StyleClasses="LabelHeadingBig" />
+        <Label Name="SelectedStationLabel" Text="{Loc misfits-whitelist-search-station-none}" Margin="0 0 0 6" StyleClasses="LabelSubText" />
 
         <!-- Job Whitelists for Selected Player -->
         <ScrollContainer VerticalExpand="True">

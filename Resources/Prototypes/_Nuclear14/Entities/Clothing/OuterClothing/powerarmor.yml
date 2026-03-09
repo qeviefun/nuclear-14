@@ -317,6 +317,16 @@
     interfaces:
       enum.ToggleClothingUiKey.Key:
         type: ToggleableClothingBoundUserInterface
+      enum.WastelandMapUiKey.Key:
+        type: WastelandMapBoundUserInterface
+  - type: WastelandMap
+    mapTexturePath: _Misfits/Maps/wendover_map.png
+    mapTitle: Brotherhood Tactical HUD
+    worldBounds: "-517,-308,484,311"
+    tacticalFeed: Brotherhood
+    compactHud: true
+  - type: WastelandMapAction
+    requiredSlot: OUTERCLOTHING
   - type: ToggleableClothing
     clothingPrototypes:
       head: N14ClothingHeadHelmetPowerArmorMidwest
@@ -356,6 +366,16 @@
         type: StorageBoundUserInterface
       enum.ToggleClothingUiKey.Key:
         type: ToggleableClothingBoundUserInterface
+      enum.WastelandMapUiKey.Key:
+        type: WastelandMapBoundUserInterface
+  - type: WastelandMap
+    mapTexturePath: _Misfits/Maps/wendover_map.png
+    mapTitle: Brotherhood Tactical HUD
+    worldBounds: "-517,-308,484,311"
+    tacticalFeed: Brotherhood
+    compactHud: true
+  - type: WastelandMapAction
+    requiredSlot: OUTERCLOTHING
   - type: ToggleableClothing
     clothingPrototypes:
       head: N14ClothingHeadHelmetPowerArmorMidwestCommander
@@ -390,6 +410,16 @@
     interfaces:
       enum.ToggleClothingUiKey.Key:
         type: ToggleableClothingBoundUserInterface
+      enum.WastelandMapUiKey.Key:
+        type: WastelandMapBoundUserInterface
+  - type: WastelandMap
+    mapTexturePath: _Misfits/Maps/wendover_map.png
+    mapTitle: Brotherhood Tactical HUD
+    worldBounds: "-517,-308,484,311"
+    tacticalFeed: Brotherhood
+    compactHud: true
+  - type: WastelandMapAction
+    requiredSlot: OUTERCLOTHING
   - type: ToggleableClothing
     clothingPrototypes:
       head: N14ClothingHeadHelmetPowerArmorT51BC
@@ -484,6 +514,16 @@
     interfaces:
       enum.ToggleClothingUiKey.Key:
         type: ToggleableClothingBoundUserInterface
+      enum.WastelandMapUiKey.Key:
+        type: WastelandMapBoundUserInterface
+  - type: WastelandMap
+    mapTexturePath: _Misfits/Maps/wendover_map.png
+    mapTitle: Brotherhood Tactical HUD
+    worldBounds: "-517,-308,484,311"
+    tacticalFeed: Brotherhood
+    compactHud: true
+  - type: WastelandMapAction
+    requiredSlot: OUTERCLOTHING
   - type: ToggleableClothing
     clothingPrototypes:
       head: N14ClothingHeadHelmetPowerArmorT51Wash
@@ -525,6 +565,16 @@
         type: StorageBoundUserInterface
       enum.ToggleClothingUiKey.Key:
         type: ToggleableClothingBoundUserInterface
+      enum.WastelandMapUiKey.Key:
+        type: WastelandMapBoundUserInterface
+  - type: WastelandMap
+    mapTexturePath: _Misfits/Maps/wendover_map.png
+    mapTitle: Brotherhood Tactical HUD
+    worldBounds: "-517,-308,484,311"
+    tacticalFeed: Brotherhood
+    compactHud: true
+  - type: WastelandMapAction
+    requiredSlot: OUTERCLOTHING
   - type: ToggleableClothing
     clothingPrototypes:
       head: N14ClothingHeadHelmetPowerArmorT51WashElite

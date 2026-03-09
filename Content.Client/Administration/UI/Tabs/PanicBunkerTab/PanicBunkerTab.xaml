@@ -1,43 +1,62 @@
-﻿<controls:PanicBunkerTab
+﻿<!-- #Misfits Change - Vertical list layout with inline descriptions -->
+<controls:PanicBunkerTab
     xmlns="https://spacestation14.io"
     xmlns:controls="clr-namespace:Content.Client.Administration.UI.Tabs.PanicBunkerTab"
     xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
-    Margin="4">
-    <BoxContainer Orientation="Vertical">
-        <cc:CommandButton Name="EnabledButton" Command="panicbunker" ToggleMode="True"
-                          Text="{Loc admin-ui-panic-bunker-disabled}"
-                          ToolTip="{Loc admin-ui-panic-bunker-tooltip}" />
-        <BoxContainer Orientation="Horizontal">
-            <cc:CommandButton Name="DisableAutomaticallyButton" HorizontalExpand="True"
-                              Command="panicbunker_disable_with_admins"
-                              ToggleMode="True"
-                              Text="{Loc admin-ui-panic-bunker-disable-automatically}"
-                              ToolTip="{Loc admin-ui-panic-bunker-disable-automatically-tooltip}" />
-            <cc:CommandButton Name="EnableAutomaticallyButton" HorizontalExpand="True"
-                              Command="panicbunker_enable_without_admins"
-                              ToggleMode="True"
-                              Text="{Loc admin-ui-panic-bunker-enable-automatically}"
-                              ToolTip="{Loc admin-ui-panic-bunker-enable-automatically-tooltip}" />
-            <cc:CommandButton Name="CountDeadminnedButton" HorizontalExpand="True"
-                              Command="panicbunker_count_deadminned_admins"
-                              ToggleMode="True"
-                              Text="{Loc admin-ui-panic-bunker-count-deadminned-admins}"
-                              ToolTip="{Loc admin-ui-panic-bunker-count-deadminned-admins-tooltip}" />
-        </BoxContainer>
-        <cc:CommandButton Name="ShowReasonButton" Command="panicbunker_show_reason"
-                          ToggleMode="True" Text="{Loc admin-ui-panic-bunker-show-reason}"
-                          ToolTip="{Loc admin-ui-panic-bunker-show-reason-tooltip}" />
-        <BoxContainer Orientation="Vertical" Margin="0 10 0 0">
-            <BoxContainer Orientation="Horizontal" Margin="2">
-                <Label Text="{Loc admin-ui-panic-bunker-min-account-age}" MinWidth="175" />
+    Margin="4"
+    MinSize="50 50">
+    <ScrollContainer HScrollEnabled="False" VScrollEnabled="True" VerticalExpand="True">
+        <BoxContainer Orientation="Vertical" SeparationOverride="6">
+            <!-- Toggle: Enable/Disable Panic Bunker -->
+            <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                <cc:CommandButton Name="EnabledButton" Command="panicbunker" ToggleMode="True"
+                                  Text="{Loc admin-ui-panic-bunker-disabled}" MinWidth="180" />
+                <Label Text="{Loc misfits-panic-bunker-toggle-desc}" VerticalAlignment="Center" StyleClasses="LabelSubText" />
+            </BoxContainer>
+            <!-- Toggle: Disable Automatically -->
+            <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                <cc:CommandButton Name="DisableAutomaticallyButton"
+                                  Command="panicbunker_disable_with_admins"
+                                  ToggleMode="True"
+                                  Text="{Loc admin-ui-panic-bunker-disable-automatically}" MinWidth="180" />
+                <Label Text="{Loc misfits-panic-bunker-disable-auto-desc}" VerticalAlignment="Center" StyleClasses="LabelSubText" />
+            </BoxContainer>
+            <!-- Toggle: Enable Automatically -->
+            <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                <cc:CommandButton Name="EnableAutomaticallyButton"
+                                  Command="panicbunker_enable_without_admins"
+                                  ToggleMode="True"
+                                  Text="{Loc admin-ui-panic-bunker-enable-automatically}" MinWidth="180" />
+                <Label Text="{Loc misfits-panic-bunker-enable-auto-desc}" VerticalAlignment="Center" StyleClasses="LabelSubText" />
+            </BoxContainer>
+            <!-- Toggle: Count Deadmins -->
+            <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                <cc:CommandButton Name="CountDeadminnedButton"
+                                  Command="panicbunker_count_deadminned_admins"
+                                  ToggleMode="True"
+                                  Text="{Loc admin-ui-panic-bunker-count-deadminned-admins}" MinWidth="180" />
+                <Label Text="{Loc misfits-panic-bunker-count-deadmin-desc}" VerticalAlignment="Center" StyleClasses="LabelSubText" />
+            </BoxContainer>
+            <!-- Toggle: Show Reason -->
+            <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                <cc:CommandButton Name="ShowReasonButton" Command="panicbunker_show_reason"
+                                  ToggleMode="True" Text="{Loc admin-ui-panic-bunker-show-reason}" MinWidth="180" />
+                <Label Text="{Loc misfits-panic-bunker-show-reason-desc}" VerticalAlignment="Center" StyleClasses="LabelSubText" />
+            </BoxContainer>
+            <!-- Min Account Age -->
+            <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                <Label Text="{Loc admin-ui-panic-bunker-min-account-age}" MinWidth="180" VerticalAlignment="Center" />
                 <LineEdit Name="MinAccountAge" MinWidth="50" Margin="0 0 5 0" />
-                <Label Text="{Loc generic-hours}" />
+                <Label Text="{Loc generic-hours}" VerticalAlignment="Center" />
+                <Label Text="{Loc misfits-panic-bunker-min-age-desc}" VerticalAlignment="Center" StyleClasses="LabelSubText" />
             </BoxContainer>
-            <BoxContainer Orientation="Horizontal" Margin="2">
-                <Label Text="{Loc admin-ui-panic-bunker-min-overall-hours}" MinWidth="175" />
+            <!-- Min Overall Hours -->
+            <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                <Label Text="{Loc admin-ui-panic-bunker-min-overall-hours}" MinWidth="180" VerticalAlignment="Center" />
                 <LineEdit Name="MinOverallHours" MinWidth="50" Margin="0 0 5 0" />
-                <Label Text="{Loc generic-hours}" />
+                <Label Text="{Loc generic-hours}" VerticalAlignment="Center" />
+                <Label Text="{Loc misfits-panic-bunker-min-hours-desc}" VerticalAlignment="Center" StyleClasses="LabelSubText" />
             </BoxContainer>
         </BoxContainer>
-    </BoxContainer>
+    </ScrollContainer>
 </controls:PanicBunkerTab>
