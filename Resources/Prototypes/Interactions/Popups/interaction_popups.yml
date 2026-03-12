@@ -29,24 +29,24 @@
   popupType: MediumCaution
   logChannel: Emotes
 
-# Delayed popups - not logged into chat
+# Delayed popups - logged to chat as emotes #Misfits Change /Tweak: Convert sprite-only delayed interaction popups to chat emotes so players see 'X tries to force down Y' in chat rather than floating sprite text.
 - type: InteractionPopup
   id: SubtleDelayed
   popupType: Small
-  logPopup: false
+  logPopup: true
   logChannel: Emotes
   others: null
 
 - type: InteractionPopup
   id: ObviousDelayed
   popupType: Small
-  logPopup: false
+  logPopup: true
   logChannel: Emotes
 
 - type: InteractionPopup
   id: DangerousDelayed
   popupType: SmallCaution
-  logPopup: false
+  logPopup: true
   logChannel: Emotes
 
 # Visible only to self

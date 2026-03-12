@@ -1,0 +1,40 @@
+<!-- #Misfits Add - Persistent Decal Spawn Window.
+     Mirrors DecalPlacerWindow (Content.Client/Decals/UI/DecalPlacerWindow.xaml) but routes
+     placements through PersistentDecalPlacementSystem so they are saved to JSON and
+     re-applied automatically on round restart. -->
+<DefaultWindow
+    xmlns="https://spacestation14.io"
+    Title="{Loc misfits-persistent-decal-spawn-window-title}"
+    MinSize="250 550"
+    SetSize="250 600">
+    <BoxContainer Orientation="Vertical">
+        <!-- Notice banner -->
+        <Label Text="{Loc misfits-persistent-decal-spawn-window-notice}" StyleClasses="LabelSubText" Margin="0 0 0 4" />
+        <!-- Search bar -->
+        <LineEdit Name="Search" PlaceHolder="{Loc window-search-bar-placeholder}" />
+        <!-- Decal grid -->
+        <ScrollContainer VerticalExpand="True">
+            <GridContainer Name="Grid" Columns="6">
+                <!-- Decals are added here by code (PersistentDecalSpawnUIController) -->
+            </GridContainer>
+        </ScrollContainer>
+        <!-- Color picker -->
+        <BoxContainer Orientation="Vertical">
+            <ColorSelectorSliders Name="ColorPicker" IsAlphaVisible="True" />
+            <Button Name="PickerOpen" Text="{Loc decal-placer-window-palette}" />
+        </BoxContainer>
+        <CheckBox Name="EnableAuto"      Text="{Loc decal-placer-window-enable-auto}"     Margin="0 0 0 10"/>
+        <CheckBox Name="EnableColor"     Text="{Loc decal-placer-window-use-color}" />
+        <CheckBox Name="EnableSnap"      Text="{Loc decal-placer-window-enable-snap}" />
+        <CheckBox Name="EnableCleanable" Text="{Loc decal-placer-window-enable-cleanable}" />
+        <!-- Rotation spin-box (filled in C# like vanilla DecalPlacerWindow) -->
+        <BoxContainer Name="SpinBoxContainer" Orientation="Horizontal">
+            <Label Text="{Loc decal-placer-window-rotation}" Margin="0 0 0 1" />
+        </BoxContainer>
+        <!-- Z-index -->
+        <BoxContainer Orientation="Horizontal">
+            <Label Text="{Loc decal-placer-window-zindex}" Margin="0 0 0 1" />
+            <SpinBox Name="ZIndexSpinBox" HorizontalExpand="True" />
+        </BoxContainer>
+    </BoxContainer>
+</DefaultWindow>

@@ -1,6 +1,7 @@
 using Content.Server.Abilities.Chitinid;
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
+using Content.Server.Chat.Systems;
 using Content.Server.Chat.Managers;
 using Content.Shared.Chat;
 using Content.Shared.Chemistry;
@@ -24,6 +25,7 @@ namespace Content.Server.Chemistry.EntitySystems;
 public sealed class InjectorSystem : SharedInjectorSystem
 {
     [Dependency] private readonly BloodstreamSystem _blood = default!;
+    [Dependency] private readonly ChatSystem _chatSystem = default!; // #Misfits Change Add: broadcast injection emotes to nearby players.
     [Dependency] private readonly ReactiveSystem _reactiveSystem = default!;
     [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
@@ -274,6 +276,8 @@ public sealed class InjectorSystem : SharedInjectorSystem
             ("amount", removedSolution.Volume),
             ("target", Identity.Entity(target, EntityManager))), injector.Owner, user);
 
+        TrySendInjectionEmote(user, target.Owner, injector.Owner);
+
         Dirty(injector);
         AfterInject(injector, target);
     }
@@ -319,8 +323,25 @@ public sealed class InjectorSystem : SharedInjectorSystem
             ("amount", removedSolution.Volume),
             ("target", Identity.Entity(targetEntity, EntityManager))), injector.Owner, user);
 
+        TrySendInjectionEmote(user, targetEntity, injector.Owner);
+
         Dirty(injector);
         AfterInject(injector, targetEntity);
+    }
+
+    // #Misfits Change Add: surface successful mob injections as local emote chat instead of only private popups.
+    private void TrySendInjectionEmote(EntityUid user, EntityUid target, EntityUid injector)
+    {
+        if (user == target || !HasComp<MobStateComponent>(target))
+            return;
+
+        _chatSystem.TrySendInGameICMessage(user,
+            Loc.GetString("misfits-chat-inject-other",
+                ("target", Identity.Entity(target, EntityManager)),
+                ("item", Identity.Entity(injector, EntityManager))),
+            InGameICChatType.Emote,
+            ChatTransmitRange.Normal,
+            ignoreActionBlocker: true);
     }
 
     private void AfterInject(Entity<InjectorComponent> injector, EntityUid target)

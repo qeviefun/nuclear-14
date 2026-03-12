@@ -17,6 +17,7 @@
     size: Huge
     sprite: _Nuclear14/Objects/Weapons/Guns/LMGs/autorifle.rsi
   - type: Wieldable
+    wieldedSpeedModifier: 0.8
   - type: GunRequiresWield
   - type: GunWieldBonus
     minAngle: -18 # Corvax-Change
@@ -53,7 +54,6 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.85
-  - type: HeldSpeedModifier
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -83,6 +83,7 @@
     size: Huge
     sprite: _Nuclear14/Objects/Weapons/Guns/LMGs/canadianhmg.rsi
   - type: Wieldable
+    wieldedSpeedModifier: 0.8
   - type: GunRequiresWield
   - type: GunWieldBonus
     minAngle: -19 # Corvax-Change
@@ -119,7 +120,6 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.85
-  - type: HeldSpeedModifier
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -149,6 +149,7 @@
     size: Huge
     sprite: _Nuclear14/Objects/Weapons/Guns/LMGs/chineselmg.rsi
   - type: Wieldable
+    wieldedSpeedModifier: 0.8
   - type: GunRequiresWield
   - type: GunWieldBonus
     minAngle: -22 # Corvax-Change
@@ -185,7 +186,6 @@
   - type: ClothingSpeedModifier # Corvax-Add
     walkModifier: 0.85
     sprintModifier: 0.85
-  - type: HeldSpeedModifier
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -215,6 +215,7 @@
     size: Huge
     sprite: _Nuclear14/Objects/Weapons/Guns/LMGs/lmg.rsi
   - type: Wieldable
+    wieldedSpeedModifier: 0.8
   - type: GunRequiresWield
   - type: GunWieldBonus
     minAngle: -20
@@ -251,7 +252,6 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.85
-  - type: HeldSpeedModifier
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -281,6 +281,7 @@
     size: Huge
     sprite: _Nuclear14/Objects/Weapons/Guns/LMGs/bren.rsi
   - type: Wieldable
+    wieldedSpeedModifier: 0.8
   - type: ClothingSpeedModifier # Corvax-Add
     walkModifier: 0.85
     sprintModifier: 0.85

@@ -2,6 +2,11 @@
   id: FloorPlanetDirt
   name: tiles-dirt-floor
   sprite: /Textures/Tiles/Planet/dirt.rsi/dirt.png
+  # #Misfits Tweak: Shared terrain blend metadata keeps planet dirt compatible with the
+  # generic mask path while allowing the feature to be disabled globally.
+  blendGroup: terrain
+  blendPriority: 1
+  blendMaskSet: soft-terrain
   isSubfloor: true
   footstepSounds:
     collection: FootstepAsteroid
@@ -59,7 +64,9 @@
   - 1.0
   - 1.0
   - 1.0
-  edgeSpritePriority: 1
+  edgeSpritePriority: 2
+  blendGroup: terrain
+  blendPriority: 2
   edgeSprites:
     SouthEast: /Textures/Tiles/Planet/Grass/single_edge.png
     NorthEast: /Textures/Tiles/Planet/Grass/single_edge.png

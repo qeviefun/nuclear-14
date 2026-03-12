@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Extracted by #Misfits Change from LoneStar vertibird.dmi at https://github.com/Cythisiax/LoneStar",
+  "size": {
+    "x": 300,
+    "y": 300
+  },
+  "states": [
+    {
+      "name": "vertibird"
+    }
+  ]
+}

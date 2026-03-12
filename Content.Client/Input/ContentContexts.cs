@@ -1,4 +1,5 @@
 using Content.Shared.Input;
+using Content.Shared._RMC.Input; // #Misfits Add - RMC keybinds
 using Robust.Shared.Input;
 
 namespace Content.Client.Input
@@ -27,6 +28,7 @@ namespace Content.Client.Input
             common.AddFunction(ContentKeyFunctions.EscapeContext);
             common.AddFunction(ContentKeyFunctions.ExamineEntity);
             common.AddFunction(ContentKeyFunctions.OpenAHelp);
+            common.AddFunction(ContentKeyFunctions.OpenHelpSelector); // #Misfits Change - Help Selector popup (F12)
             common.AddFunction(ContentKeyFunctions.TakeScreenshot);
             common.AddFunction(ContentKeyFunctions.TakeScreenshotNoUI);
             common.AddFunction(ContentKeyFunctions.ToggleFullscreen);
@@ -98,6 +100,14 @@ namespace Content.Client.Input
             human.AddFunction(ContentKeyFunctions.TargetRightLeg);
             human.AddFunction(ContentKeyFunctions.TargetRightFoot);
             // Shitmed Change End
+
+            // #Misfits Add Start - RMC holster keybinds
+            human.AddFunction(CMKeyFunctions.CMHolsterPrimary);
+            human.AddFunction(CMKeyFunctions.CMHolsterSecondary);
+            human.AddFunction(CMKeyFunctions.CMHolsterTertiary);
+            human.AddFunction(CMKeyFunctions.CMHolsterQuaternary);
+            human.AddFunction(CMKeyFunctions.RMCPickUpDroppedItems);
+            // #Misfits Add End
 
             // actions should be common (for ghosts, mobs, etc)
             common.AddFunction(ContentKeyFunctions.OpenActionsMenu);

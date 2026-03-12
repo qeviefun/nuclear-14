@@ -1,4 +1,8 @@
 - type: accessLevel
+  id: NCRCaptain
+  name: id-card-access-level-ncr-captain
+
+- type: accessLevel
   id: NCRLT
   name: id-card-access-level-ncr-lt
 
@@ -55,3 +59,13 @@
   - NCRSGT
   - NCRMedic
   - NCRRanger
+
+- type: accessGroup
+  id: NCRCaptain
+  # #Misfits Add: NCR Captain inherits all officer access plus Captain-level spaces.
+  tags:
+  - NCR
+  - NCRSGT
+  - NCRMedic
+  - NCRLT
+  - NCRCaptain

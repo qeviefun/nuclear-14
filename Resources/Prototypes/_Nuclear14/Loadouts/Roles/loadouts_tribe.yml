@@ -17,19 +17,20 @@
   items:
     - N14ClothingHeadHatTribalPowerhelm
 
-- type: loadout
-  id: N14TribalSword
-  category: Weapons
-  cost: 4
-  requirements:
-    - !type:CharacterItemGroupRequirement
-      group: N14LoadoutMelee
-    - !type:CharacterDepartmentRequirement
-      departments:
-        - Tribe
-  items:
-    - N14TribalSword
-
+# Misfits Change - Disabled: armor/weapons removed from roundstart loadout menu
+#- type: loadout
+#  id: N14TribalSword
+#  category: Weapons
+#  cost: 4
+#  requirements:
+#    - !type:CharacterItemGroupRequirement
+#      group: N14LoadoutMelee
+#    - !type:CharacterDepartmentRequirement
+#      departments:
+#        - Tribe
+#  items:
+#    - N14TribalSword
+#
 - type: loadout
   id: N14ClothingOuterElderwintercoat
   category: Outer

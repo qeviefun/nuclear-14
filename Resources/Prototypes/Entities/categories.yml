@@ -2,3 +2,21 @@
   id: Actions
   name: entity-category-name-actions
   hideSpawnMenu: true
+
+# Misfits Fix - HideSpawnMenu and Spawner are already defined by the engine in
+# RobustToolbox/Resources/EnginePrototypes/entityCategory.yml - removing duplicates.
+#- type: entityCategory
+#  id: HideSpawnMenu
+#  name: entity-category-name-hide-spawn-menu
+#  hideSpawnMenu: true
+
+#- type: entityCategory
+#  id: Spawner
+#  name: entity-category-name-spawner
+#  hideSpawnMenu: true
+
+# Misfits Add - DoNotMap category (not in engine prototypes, required by various _RMC and base YAML)
+- type: entityCategory
+  id: DoNotMap
+  name: entity-category-name-do-not-map
+  hideSpawnMenu: true

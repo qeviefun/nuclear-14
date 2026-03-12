@@ -39,6 +39,21 @@
     N14RawSilver: 100
     Coal: 50
 
+#Misfits Change /Add/: Let the forge mint Legion currency directly from the matching precious metal.
+- type: latheRecipe
+  id: N14CurrencyLegionAureus
+  result: N14CurrencyLegionAureus
+  completetime: 1
+  materials:
+    N14Gold: 1
+
+- type: latheRecipe
+  id: N14CurrencyLegionDenarius
+  result: N14CurrencyLegionDenarius
+  completetime: 1
+  materials:
+    N14Silver: 1
+
 - type: latheRecipe
   id: N14IngotIronScrap
   result: N14IngotIron1

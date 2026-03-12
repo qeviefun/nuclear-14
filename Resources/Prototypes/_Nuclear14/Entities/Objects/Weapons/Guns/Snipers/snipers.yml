@@ -9,9 +9,7 @@
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/hunting.rsi
   - type: Wieldable
-  - type: GunWieldBonus
-    minAngle: -23
-    maxAngle: -104
+    wieldedSpeedModifier: 0.75
   - type: Gun
     minAngle: 24
     maxAngle: 105
@@ -21,6 +19,7 @@
     soundGunshot:
       collection: N14SniperHuntingGunshot
   - type: BallisticAmmoProvider
+    wieldedSpeedModifier: 0.75
     whitelist:
       tags:
       - N14Cartridge308Rifle
@@ -35,13 +34,14 @@
   name: lee enfield rifle
   parent: BaseWeaponSniper
   id: N14WeaponSniperEnfield
-  description: A well-preserved bolt action service rifle. PLING! Uses .308 ammo.
+  description: A classic bolt-action service rifle. Uses .308 ammo.
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/enfield.rsi
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/enfield.rsi
   - type: Wieldable
+    wieldedSpeedModifier: 0.75
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -104
@@ -57,9 +57,6 @@
     whitelist:
       tags:
       - N14Cartridge308Rifle
-    capacity: 10
-    proto: N14Cartridge308Rifle
-  - type: FollowDistance
     backStrength: 3
   - type: StaticPrice
     price: 100
@@ -86,6 +83,7 @@
   - type: Item
     size: Huge
   - type: Wieldable
+    wieldedSpeedModifier: 0.75
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -104
@@ -127,9 +125,6 @@
   - type: Appearance
   - type: FollowDistance
     backStrength: 3
-  - type: HeldSpeedModifier
-    walkModifier: 0.75
-    sprintModifier: 0.75
   - type: StaticPrice
     price: 200
 
@@ -153,6 +148,7 @@
     capacity: 1
     proto: N14Cartridge50
   - type: Wieldable
+    wieldedSpeedModifier: 0.75
   - type: GunRequiresWield # Forge-Change
   - type: GunWieldBonus
     minAngle: -23
@@ -167,9 +163,6 @@
       collection: N14AntiMaterielGunshot
   - type: FollowDistance
     backStrength: 3
-  - type: HeldSpeedModifier
-    walkModifier: 0.75
-    sprintModifier: 0.75
   - type: StaticPrice
     price: 175
 
@@ -375,6 +368,7 @@
     capacity: 1
     proto: N14Cartridge50
   - type: Wieldable
+    wieldedSpeedModifier: 0.75
   - type: GunRequiresWield # Forge-Change
   - type: GunWieldBonus
     minAngle: -23
@@ -387,9 +381,6 @@
     fireRate: 1.2
     soundGunshot:
       collection: N14AntiMaterielGunshot
-  - type: HeldSpeedModifier
-    walkModifier: 0.75
-    sprintModifier: 0.75
   - type: FollowDistance
     backStrength: 3
   - type: StaticPrice

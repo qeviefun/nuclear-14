@@ -43,7 +43,8 @@ public sealed class MentorHelpUIController : UIController,
     [UISystemDependency] private readonly AudioSystem _audio = default!;
 
     private MentorHelpSystem? _mentorHelpSystem;
-    private MenuButton? GameMHelpButton => UIManager.GetActiveUIWidgetOrNull<GameTopMenuBar>()?.MHelpButton;
+    // #Misfits Change - MHelpButton removed from XAML; combined HelpButton handled by HelpSelectorUIController
+    private MenuButton? GameMHelpButton => null;
     private Button? LobbyMHelpButton => (UIManager.ActiveScreen as LobbyGui)?.MHelpButton;
     public IMentorHelpUIHandler? UIHelper;
 

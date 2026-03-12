@@ -67,7 +67,8 @@ public sealed partial class ObjectsTab : Control
 
     private void RefreshObjectList(ObjectsTabSelection selection)
     {
-        var entities = new List<(string Name, NetEntity Entity)>();
+        // #Misfits Change - Extended tuple to carry Prototype ID alongside Name and NetEntity
+        var entities = new List<(string Name, NetEntity Entity, string Prototype)>();
         switch (selection)
         {
             case ObjectsTabSelection.Entities:
@@ -77,14 +78,23 @@ public sealed partial class ObjectsTab : Control
                 AddMobs(entities);
                 break;
             case ObjectsTabSelection.Stations:
-                entities.AddRange(_entityManager.EntitySysManager.GetEntitySystem<StationSystem>().Stations);
+            {
+                // #Misfits Change - iterate instead of AddRange so we can include Prototype
+                foreach (var station in _entityManager.EntitySysManager.GetEntitySystem<StationSystem>().Stations)
+                {
+                    var stationUid = _entityManager.GetEntity(station.Entity);
+                    var proto = _entityManager.GetComponent<MetaDataComponent>(stationUid).EntityPrototype?.ID ?? string.Empty;
+                    entities.Add((station.Name, station.Entity, proto));
+                }
                 break;
+            }
             case ObjectsTabSelection.Grids:
             {
                 var query = _entityManager.AllEntityQueryEnumerator<MapGridComponent, MetaDataComponent>();
                 while (query.MoveNext(out var uid, out _, out var metadata))
                 {
-                    entities.Add((metadata.EntityName, _entityManager.GetNetEntity(uid)));
+                    // #Misfits Change - include Prototype
+                    entities.Add((metadata.EntityName, _entityManager.GetNetEntity(uid), metadata.EntityPrototype?.ID ?? string.Empty));
                 }
 
                 break;
@@ -94,7 +104,8 @@ public sealed partial class ObjectsTab : Control
                 var query = _entityManager.AllEntityQueryEnumerator<MapComponent, MetaDataComponent>();
                 while (query.MoveNext(out var uid, out _, out var metadata))
                 {
-                    entities.Add((metadata.EntityName, _entityManager.GetNetEntity(uid)));
+                    // #Misfits Change - include Prototype
+                    entities.Add((metadata.EntityName, _entityManager.GetNetEntity(uid), metadata.EntityPrototype?.ID ?? string.Empty));
                 }
 
                 break;
@@ -122,15 +133,17 @@ public sealed partial class ObjectsTab : Control
         for (var index = 0; index < entities.Count; index++)
         {
             var info = entities[index];
+            // #Misfits Change - include Prototype in filtering string so search works on prototype ID
             listData.Add(new ObjectsListData(info,
-                $"{info.Name} {info.Entity}",
+                $"{info.Name} {info.Entity} {info.Prototype}",
                 index % 2 == 0 ? _altColor : _defaultColor));
         }
 
         SearchList.PopulateList(listData);
     }
 
-    private void AddGenericEntities(List<(string Name, NetEntity Entity)> entities)
+    // #Misfits Change - extended tuple to include Prototype
+    private void AddGenericEntities(List<(string Name, NetEntity Entity, string Prototype)> entities)
     {
         var stations = _entityManager.EntitySysManager.GetEntitySystem<StationSystem>().Stations;
         var query = _entityManager.AllEntityQueryEnumerator<TransformComponent, MetaDataComponent>();
@@ -139,11 +152,12 @@ public sealed partial class ObjectsTab : Control
             if (!IsGenericEntity(uid, stations))
                 continue;
 
-            entities.Add((metadata.EntityName, _entityManager.GetNetEntity(uid)));
+            entities.Add((metadata.EntityName, _entityManager.GetNetEntity(uid), metadata.EntityPrototype?.ID ?? string.Empty));
         }
     }
 
-    private void AddMobs(List<(string Name, NetEntity Entity)> entities)
+    // #Misfits Change - extended tuple to include Prototype
+    private void AddMobs(List<(string Name, NetEntity Entity, string Prototype)> entities)
     {
         // #Misfits Change - Exclude player-controlled entities (ActorComponent = has a player session attached)
         // so that "Mobs" only shows NPCs, not connected players.
@@ -153,11 +167,12 @@ public sealed partial class ObjectsTab : Control
             if (_entityManager.HasComponent<ActorComponent>(uid))
                 continue;
 
-            entities.Add((metadata.EntityName, _entityManager.GetNetEntity(uid)));
+            entities.Add((metadata.EntityName, _entityManager.GetNetEntity(uid), metadata.EntityPrototype?.ID ?? string.Empty));
         }
     }
 
-    private void AddWeapons(List<(string Name, NetEntity Entity)> entities)
+    // #Misfits Change - extended tuple to include Prototype
+    private void AddWeapons(List<(string Name, NetEntity Entity, string Prototype)> entities)
     {
         var query = _entityManager.AllEntityQueryEnumerator<ItemComponent, MetaDataComponent>();
         while (query.MoveNext(out var uid, out _, out var metadata))
@@ -165,11 +180,12 @@ public sealed partial class ObjectsTab : Control
             if (!IsWeapon(uid))
                 continue;
 
-            entities.Add((metadata.EntityName, _entityManager.GetNetEntity(uid)));
+            entities.Add((metadata.EntityName, _entityManager.GetNetEntity(uid), metadata.EntityPrototype?.ID ?? string.Empty));
         }
     }
 
-    private void AddArmor(List<(string Name, NetEntity Entity)> entities)
+    // #Misfits Change - extended tuple to include Prototype
+    private void AddArmor(List<(string Name, NetEntity Entity, string Prototype)> entities)
     {
         var query = _entityManager.AllEntityQueryEnumerator<ItemComponent, MetaDataComponent>();
         while (query.MoveNext(out var uid, out _, out var metadata))
@@ -177,7 +193,7 @@ public sealed partial class ObjectsTab : Control
             if (!_entityManager.HasComponent<ArmorComponent>(uid))
                 continue;
 
-            entities.Add((metadata.EntityName, _entityManager.GetNetEntity(uid)));
+            entities.Add((metadata.EntityName, _entityManager.GetNetEntity(uid), metadata.EntityPrototype?.ID ?? string.Empty));
         }
     }
 
@@ -200,10 +216,12 @@ public sealed partial class ObjectsTab : Control
         if (data is not ObjectsListData { Info: var info, BackgroundColor: var backgroundColor })
             return;
 
+        // #Misfits Change - pass Prototype to ObjectsTabEntry so it renders in the Prototype column
         var entry = new ObjectsTabEntry(info.Name,
             info.Entity,
+            info.Prototype,
             new StyleBoxFlat { BackgroundColor = backgroundColor });
-        button.ToolTip = $"{info.Name}, {info.Entity}";
+        button.ToolTip = $"{info.Name}, {info.Entity}, {info.Prototype}";
 
         button.AddChild(entry);
     }
@@ -220,12 +238,14 @@ public sealed partial class ObjectsTab : Control
         return filteringString.Contains(filter, StringComparison.CurrentCultureIgnoreCase);
     }
 
-    private object GetComparableValue((string Name, NetEntity Entity) entity, ObjectsTabHeader.Header header)
+    // #Misfits Change - updated signature and added Prototype sort case
+    private object GetComparableValue((string Name, NetEntity Entity, string Prototype) entity, ObjectsTabHeader.Header header)
     {
         return header switch
         {
             ObjectsTabHeader.Header.ObjectName => entity.Name,
             ObjectsTabHeader.Header.EntityID => entity.Entity.ToString(),
+            ObjectsTabHeader.Header.Prototype => entity.Prototype, // #Misfits Change - sort by Prototype
             _ => entity.Name,
         };
     }
@@ -273,5 +293,6 @@ public sealed partial class ObjectsTab : Control
     }
 }
 
-public record ObjectsListData((string Name, NetEntity Entity) Info, string FilteringString, Color BackgroundColor)
+// #Misfits Change - extended Info tuple to include Prototype for column display
+public record ObjectsListData((string Name, NetEntity Entity, string Prototype) Info, string FilteringString, Color BackgroundColor)
     : ListData;

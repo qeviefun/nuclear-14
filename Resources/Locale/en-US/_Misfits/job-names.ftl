@@ -1,4 +1,10 @@
-# Synthetics job names and descriptions (Misfits-specific)
+# #Misfits Add - Enclave job locale.
+job-name-enclave-officer = Enclave Officer
+job-description-enclave-officer = Command the Enclave cell, protect its secrecy, and direct field operations with superior technology.
+job-name-enclave-soldier = Enclave Soldier
+job-description-enclave-soldier = Serve as the Enclave's disciplined frontline trooper and carry out the officer's mission.
+job-name-enclave-scientist = Enclave Scientist
+job-description-enclave-scientist = Safeguard Enclave research, maintain advanced equipment, and keep the cell operational.# Synthetics job names and descriptions (Misfits-specific)
 
 # Synthetics
 job-name-synthetic-mr-handy = Mr. Handy

@@ -29,11 +29,10 @@
         maxDistance: 5
   - type: AggroSound #Misfits Change
     sound:
-      collection: N14GhoulAttack
+      collection: N14GhoulAggro
       params:
         volume: -3
         maxDistance: 10
-    cooldownDuration: 25
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -68,11 +67,10 @@
         maxDistance: 5
   - type: AggroSound #Misfits Change
     sound:
-      collection: N14GhoulAttack
+      collection: N14GhoulAggro
       params:
         volume: -3
         maxDistance: 10
-    cooldownDuration: 25
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -111,11 +109,10 @@
         maxDistance: 5
   - type: AggroSound #Misfits Change
     sound:
-      collection: N14GhoulAttack
+      collection: N14GhoulAggro
       params:
         volume: -3
         maxDistance: 10
-    cooldownDuration: 25
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -195,8 +192,7 @@
     coefficient: 0
   - type: AggroSound #Misfits Change
     sound:
-      collection: N14GhoulAttack
+      collection: N14GhoulAggro
       params:
         volume: -3
         maxDistance: 10
-    cooldownDuration: 25

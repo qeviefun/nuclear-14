@@ -17,3 +17,14 @@
   weight: -100
   roles:
   - SuperMutant
+
+# #Misfits Add - Enclave department is job-whitelist-only and sorted below other special departments.
+- type: department
+  id: Enclave
+  description: department-Enclave-description
+  color: "#2d5d91"
+  weight: -101
+  roles:
+  - EnclaveOfficer
+  - EnclaveSoldier
+  - EnclaveScientist

@@ -15,6 +15,7 @@
       - Back
       - suitStorage
   - type: Wieldable
+    wieldedSpeedModifier: 0.9
     wieldSound:
       path: /Audio/Items/bow_pull.ogg
   - type: UseDelay

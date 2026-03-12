@@ -18,6 +18,9 @@
       entity: N14Bonfire
       edges:
         - to: start
+          steps:
+            - tool: Sawing
+              doAfter: 1
           completed:
             - !type:SpawnPrototype
               prototype: N14FloraLogTimber

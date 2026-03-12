@@ -32,6 +32,7 @@
     ears: MisfitsClothingHeadsetWastelandScrap
     back: N14ClothingBackpackExplorer # Corvax-Change
     shoes: N14ClothingShoesRags
+    id: N14WastelanderPipboy # #Misfits Add - Pip-Boy with dogtags for PipBoy Hub networking
   innerClothingSkirt: N14ClothingUniformJumpskirtFalloutBlack
   satchel: N14ClothingBackpackSatchelWastelanderFilled
   duffelbag: N14ClothingBackpackDuffelFilled

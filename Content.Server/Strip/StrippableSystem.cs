@@ -1,9 +1,12 @@
 using System.Linq;
 using Content.Server.Administration.Logs;
+using Content.Server.Chat.Systems;
 using Content.Server.Ensnaring;
+using Content.Server.Nutrition.Components;
 using Content.Shared.CombatMode;
 using Content.Shared.Cuffs;
 using Content.Shared.Cuffs.Components;
+using Content.Shared.Chat;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.Ensnaring.Components;
@@ -26,6 +29,7 @@ namespace Content.Server.Strip
 {
     public sealed class StrippableSystem : SharedStrippableSystem
     {
+        [Dependency] private readonly ChatSystem _chat = default!;
         [Dependency] private readonly InventorySystem _inventorySystem = default!;
         [Dependency] private readonly EnsnareableSystem _ensnaringSystem = default!;
         [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
@@ -37,6 +41,15 @@ namespace Content.Server.Strip
 
         [Dependency] private readonly IAdminLogManager _adminLogger = default!;
         [Dependency] private readonly ThievingSystem _thieving = default!;
+
+        private static readonly HashSet<string> MajorVisibleSlots = new()
+        {
+            "mask",
+            "eyes",
+            "head",
+            "outerClothing",
+            "jumpsuit",
+        };
 
         // TODO: ECS popups. Not all of these have ECS equivalents yet.
 
@@ -291,6 +304,9 @@ namespace Content.Server.Strip
 
             _inventorySystem.TryEquip(user, target, held, slot);
             _adminLogger.Add(LogType.Stripping, LogImpact.Medium, $"{ToPrettyString(user):actor} has placed the item {ToPrettyString(held):item} in {ToPrettyString(target):target}'s {slot} slot");
+
+            // #Misfits Change Add: treat forced mouth-blocking equipment as a visible gagging action.
+            TrySendGagEmotes(user.Owner, target, held, slot);
         }
 
         /// <summary>
@@ -387,6 +403,9 @@ namespace Content.Server.Strip
 
             _handsSystem.PickupOrDrop(user, item, animateUser: hidden, animate: hidden);
             _adminLogger.Add(LogType.Stripping, LogImpact.Medium, $"{ToPrettyString(user):actor} has stripped the item {ToPrettyString(item):item} from {ToPrettyString(target):target}'s {slot} slot");
+
+            // #Misfits Change Add: major visible slot stripping should read in local emote chat.
+            TrySendVisibleStripEmotes(user, target, item, slot);
         }
 
         /// <summary>
@@ -636,6 +655,50 @@ namespace Content.Server.Strip
                         StripInsertHand((entity.Owner, entity.Comp), ev.Target.Value, ev.Used.Value, ev.SlotOrHandName, ev.Args.Hidden);
                 else    StripRemoveHand((entity.Owner, entity.Comp), ev.Target.Value, ev.Used.Value, ev.SlotOrHandName, ev.Args.Hidden);
             }
+        }
+
+        // #Misfits Change Add: only broadcast strip results that are visually obvious to bystanders.
+        private void TrySendVisibleStripEmotes(EntityUid user, EntityUid target, EntityUid item, string slot)
+        {
+            if (user == target || !MajorVisibleSlots.Contains(slot))
+                return;
+
+            var userName = Identity.Entity(user, EntityManager);
+            var targetName = Identity.Entity(target, EntityManager);
+            var itemName = Identity.Entity(item, EntityManager);
+
+            _chat.TrySendInGameICMessage(user,
+                Loc.GetString("misfits-chat-strip-remove", ("target", targetName), ("item", itemName)),
+                InGameICChatType.Emote,
+                ChatTransmitRange.Normal,
+                ignoreActionBlocker: true);
+            _chat.TrySendInGameICMessage(target,
+                Loc.GetString("misfits-chat-strip-victim-remove", ("user", userName), ("item", itemName)),
+                InGameICChatType.Emote,
+                ChatTransmitRange.Normal,
+                ignoreActionBlocker: true);
+        }
+
+        // #Misfits Change Add: special-case forced masking so muzzles and similar blockers read as gags.
+        private void TrySendGagEmotes(EntityUid user, EntityUid target, EntityUid item, string slot)
+        {
+            if (user == target || slot is not ("mask" or "head") || !HasComp<IngestionBlockerComponent>(item))
+                return;
+
+            var userName = Identity.Entity(user, EntityManager);
+            var targetName = Identity.Entity(target, EntityManager);
+            var itemName = Identity.Entity(item, EntityManager);
+
+            _chat.TrySendInGameICMessage(user,
+                Loc.GetString("misfits-chat-gag-apply", ("target", targetName), ("item", itemName)),
+                InGameICChatType.Emote,
+                ChatTransmitRange.Normal,
+                ignoreActionBlocker: true);
+            _chat.TrySendInGameICMessage(target,
+                Loc.GetString("misfits-chat-gag-victim", ("user", userName), ("item", itemName)),
+                InGameICChatType.Emote,
+                ChatTransmitRange.Normal,
+                ignoreActionBlocker: true);
         }
     }
 }

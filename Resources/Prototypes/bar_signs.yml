@@ -139,7 +139,8 @@
 # Hidden signs list below this point
 - type: barSign
   id: EmpBarSign
-  name: ""
+  # #Misfits Fix: hidden signs still get localized during prototype load, so they need real locale keys instead of empty strings.
+  name: barsign-prototype-name-empbarsign
   icon: "empbarsign"
   description: barsign-prototype-description-empbarsign
   renameArea: false
@@ -147,7 +148,7 @@
 
 - type: barSign
   id: SignOff
-  name: ""
+  name: barsign-prototype-name-sign-off
   icon: "empty"
   description: barsign-prototype-description-sign-off
   renameArea: false

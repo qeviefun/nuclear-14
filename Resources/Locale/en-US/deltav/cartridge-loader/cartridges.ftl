@@ -160,11 +160,11 @@ stock-trading-amount-placeholder = Amount
 stock-trading-price-history = Price History
 
 
-## NanoChat
+## NanoChat (Misfits Rename → Private Messenger)
 
 # General
-nano-chat-program-name = NanoChat
-nano-chat-title = NanoChat
+nano-chat-program-name = Private Messenger
+nano-chat-title = Instant Messenger
 nano-chat-new-chat = New Chat
 nano-chat-contacts = CONTACTS
 nano-chat-no-chats = No active chats

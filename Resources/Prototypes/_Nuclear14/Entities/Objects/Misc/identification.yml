@@ -17,6 +17,7 @@
     size: Small
   - type: Access
   - type: IdCard
+  - type: NanoChatCard # #Misfits Add - PipBoy Hub requires NanoChatCard for number assignment and messaging
   - type: StationRecordKeyStorage
   - type: Tag
     tags:

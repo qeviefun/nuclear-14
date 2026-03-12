@@ -22,8 +22,10 @@ public sealed partial class RadiationWarningComponent : Component
     public float[] TierCooldownTimes = { 75f, 55f, 35f, 22f };
 
     /// <summary>
-    /// RadsPerSecond thresholds that unlock each tier.
+    /// Accumulated Radiation damage thresholds (from DamageableComponent) that unlock each tier.
+    /// Misfits Change — previously rads/second from proximity; now total damage so
+    /// reagent-applied radiation also counts.
     /// </summary>
     [DataField]
-    public float[] TierThresholds = { 0.05f, 0.4f, 1.0f, 2.5f };
+    public float[] TierThresholds = { 10f, 40f, 80f, 150f };
 }

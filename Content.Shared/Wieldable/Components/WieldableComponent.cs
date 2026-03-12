@@ -10,6 +10,8 @@ namespace Content.Shared.Wieldable.Components;
 [RegisterComponent, NetworkedComponent, Access(typeof(WieldableSystem)), AutoGenerateComponentState]
 public sealed partial class WieldableComponent : Component
 {
+    public const float DefaultWeaponWieldedSpeedModifier = 0.85f;
+
     [DataField("wieldSound")]
     public SoundSpecifier? WieldSound = new SoundPathSpecifier("/Audio/Effects/thudswoosh.ogg");
 
@@ -35,6 +37,10 @@ public sealed partial class WieldableComponent : Component
 
     [DataField("wieldedInhandPrefix")]
     public string? WieldedInhandPrefix = "wielded";
+
+    // #Misfits Change /Add/ - Allows per-item tuning of the wielded movement penalty instead of hardcoding it in the system.
+    [DataField("wieldedSpeedModifier")]
+    public float? WieldedSpeedModifier;
 
     public string? OldInhandPrefix = null;
 }

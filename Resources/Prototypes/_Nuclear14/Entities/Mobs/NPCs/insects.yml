@@ -78,7 +78,6 @@
       params:
         volume: -3
         maxDistance: 10
-    cooldownDuration: 25
 
 #MARK: Giant Ant
 - type: entity
@@ -144,7 +143,6 @@
       params:
         volume: -3
         maxDistance: 10
-    cooldownDuration: 25
 
 #MARK: Giant Fire Ant
 - type: entity
@@ -194,7 +192,6 @@
       params:
         volume: -3
         maxDistance: 10
-    cooldownDuration: 25
 
 #MARK: Radroach
 - type: entity
@@ -264,7 +261,6 @@
       params:
         volume: -3
         maxDistance: 10
-    cooldownDuration: 25
   - type: Butcherable
     spawned:
     - id: N14FoodMeatRadroachFillet
@@ -350,7 +346,6 @@
       params:
         volume: -3
         maxDistance: 10
-    cooldownDuration: 25
   - type: SolutionContainerManager
     solutions:
       melee:
@@ -401,7 +396,6 @@
       params:
         volume: -3
         maxDistance: 10
-    cooldownDuration: 25
 #MARK: Cazador
 #SCARY FUCKERS, RUUUN!!
 - type: entity
@@ -495,4 +489,3 @@
       params:
         volume: -3
         maxDistance: 10
-    cooldownDuration: 25

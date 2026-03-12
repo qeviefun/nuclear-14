@@ -21,7 +21,9 @@ namespace Content.Shared.Access
 
         public string GetAccessLevelName()
         {
-            if (Name is { } name)
+            // #Misfits Change /Fix/: malformed whitespace access-level names should fall back to the raw ID
+            // instead of triggering localization warnings when a reader/UI asks for a display name.
+            if (!string.IsNullOrWhiteSpace(Name) && Name is { } name)
                 return Loc.GetString(name);
 
             return ID;

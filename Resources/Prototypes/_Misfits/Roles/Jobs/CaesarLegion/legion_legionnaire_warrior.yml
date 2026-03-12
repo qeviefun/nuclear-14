@@ -45,7 +45,7 @@
     eyes: N14ClothingEyesGlassesWelding
     back: N14ClothingBackpackMilitary
     shoes: N14ClothingShoesKaligi
-    head: N14ClothingHeadHatLegionHood # #Misfits Change /Fix/: Legionnaires should not wear decanus helmets
+    head: N14ClothingHeadHatLightBaseballHelmet # #Misfits Change /Tweak/: Prime Legionary wears a light baseball helmet
     outerClothing: N14ClothingOuterLegionnaireBaseArmor
     gloves: N14ClothingHandsGlovesTribal
     pocket1: LegionWarriorloadoutkits

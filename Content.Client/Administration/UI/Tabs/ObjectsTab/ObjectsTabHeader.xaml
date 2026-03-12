@@ -17,5 +17,13 @@
                ClipText="True"
                Text="{Loc object-tab-entity-id}"
                MouseFilter="Pass"/>
+        <!-- Misfits Add - Prototype column header -->
+        <cc:VSeparator/>
+        <Label Name="PrototypeLabel"
+               SizeFlagsStretchRatio="3"
+               HorizontalExpand="True"
+               ClipText="True"
+               Text="{Loc object-tab-prototype}"
+               MouseFilter="Pass"/>
     </BoxContainer>
 </Control>

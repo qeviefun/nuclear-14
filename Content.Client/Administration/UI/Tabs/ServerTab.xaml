@@ -6,6 +6,21 @@
     MinSize="50 50">
     <ScrollContainer VerticalExpand="True">
         <BoxContainer Orientation="Vertical" SeparationOverride="4">
+            <!-- #Misfits Add - Persistent Entity Spawn button -->
+            <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                <Button Name="PersistentSpawnButton" Text="{Loc misfits-persistent-spawn-button}" MinWidth="180" />
+                <Label Text="{Loc misfits-server-tab-persistent-spawn-desc}" VerticalAlignment="Center" StyleClasses="LabelSubText" />
+            </BoxContainer>
+            <!-- #Misfits Add - Persistent Tile Spawn button -->
+            <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                <Button Name="PersistentTileSpawnButton" Text="{Loc misfits-persistent-tile-spawn-button}" MinWidth="180" />
+                <Label Text="{Loc misfits-server-tab-persistent-tile-spawn-desc}" VerticalAlignment="Center" StyleClasses="LabelSubText" />
+            </BoxContainer>
+            <!-- #Misfits Add - Persistent Decal Spawn button -->
+            <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                <Button Name="PersistentDecalSpawnButton" Text="{Loc misfits-persistent-decal-spawn-button}" MinWidth="180" />
+                <Label Text="{Loc misfits-server-tab-persistent-decal-spawn-desc}" VerticalAlignment="Center" StyleClasses="LabelSubText" />
+            </BoxContainer>
             <!-- #Misfits Change - Shutdown button hidden; use Restart Server instead (announces to players before shutdown) -->
             <!--
             <BoxContainer Orientation="Horizontal" SeparationOverride="8">

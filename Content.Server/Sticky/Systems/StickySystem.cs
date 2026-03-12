@@ -8,6 +8,11 @@ using Content.Shared.Sticky;
 using Content.Shared.Sticky.Components;
 using Content.Shared.Verbs;
 using Content.Shared.Whitelist;
+using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
+using Robust.Shared.Physics;
+using Robust.Shared.Physics.Components;
+using Content.Shared.Physics;
 using Robust.Shared.Containers;
 using Robust.Shared.Utility;
 
@@ -21,6 +26,7 @@ public sealed class StickySystem : EntitySystem
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
 
     private const string StickerSlotId = "stickers_container";
@@ -35,11 +41,40 @@ public sealed class StickySystem : EntitySystem
 
     private void OnAfterInteract(EntityUid uid, StickyComponent component, AfterInteractEvent args)
     {
-        if (args.Handled || !args.CanReach || args.Target == null)
+        if (args.Handled || !args.CanReach)
+            return;
+
+        var target = args.Target ?? TryGetWallTarget(args.ClickLocation, component);
+        if (target == null)
             return;
 
         // try stick object to a clicked target entity
-        args.Handled = StartSticking(uid, args.User, args.Target.Value, component);
+        args.Handled = StartSticking(uid, args.User, target.Value, component);
+    }
+
+    // #Misfits Change /Fix: Allow sticky items such as C4 to resolve a solid wall target from tile clicks.
+    private EntityUid? TryGetWallTarget(EntityCoordinates clickLocation, StickyComponent component)
+    {
+        var gridUid = clickLocation.GetGridUid(EntityManager);
+        if (gridUid == null || !TryComp<MapGridComponent>(gridUid, out var grid))
+            return null;
+
+        foreach (var anchored in _mapSystem.GetAnchoredEntities(gridUid.Value, grid, clickLocation))
+        {
+            if (_whitelistSystem.IsWhitelistFail(component.Whitelist, anchored) ||
+                _whitelistSystem.IsBlacklistPass(component.Blacklist, anchored) ||
+                !TryComp<PhysicsComponent>(anchored, out var physics) ||
+                !physics.CanCollide ||
+                !physics.Hard ||
+                (physics.CollisionLayer & (int) CollisionGroup.Impassable) == 0)
+            {
+                continue;
+            }
+
+            return anchored;
+        }
+
+        return null;
     }
 
     private void AddUnstickVerb(EntityUid uid, StickyComponent component, GetVerbsEvent<Verb> args)

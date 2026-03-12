@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "license": "CC-BY-NC-SA-3.0",
+  "copyright": "Extracted from Foundation-19/Big-Iron behemoth.dmi (upstream: DesertRose2/desertrose). Source: https://github.com/Foundation-19/Big-Iron/blob/master/icons/fallout/mobs/behemoth.dmi",
+  "size": {
+    "x": 62,
+    "y": 88
+  },
+  "states": [
+    {
+      "name": "behemoth",
+      "directions": 4
+    },
+    {
+      "name": "behemoth_dead"
+    },
+    {
+      "name": "behemoth_axe",
+      "directions": 4
+    }
+  ]
+}

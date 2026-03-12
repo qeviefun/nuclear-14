@@ -4,8 +4,7 @@
   setPreference: true
   hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
   jobWhitelistBypassesRoleTimers: true # #Misfits Change
-  weight: 35
-  showBorder: true
+  weight: 30
   name: job-name-caesar-legion-auxilia
   description: job-description-caesar-legion-auxilia
   playTimeTracker: CaesarLegionAuxilia

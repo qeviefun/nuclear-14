@@ -1,0 +1,595 @@
+// #Misfits Add - PipBoy Hub Cartridge System.
+// Handles all UI messages for the PipBoy Hub cartridge (contacts, groups, directory, password,
+// SOS beacon, waypoints, dead drops, encrypted channels, status, radio relay).
+using Content.Server.Administration.Logs;
+using Content.Server.CartridgeLoader;
+using Content.Shared._Misfits.PipBoy;
+using Content.Shared.Access.Components;
+using Content.Shared.CartridgeLoader;
+using Content.Shared.Database;
+using Content.Shared.DeltaV.CartridgeLoader.Cartridges;
+using Content.Shared.DeltaV.NanoChat;
+using Content.Shared.PDA;
+using Robust.Shared.Timing;
+
+namespace Content.Server._Misfits.PipBoy;
+
+public sealed class PipBoyHubCartridgeSystem : EntitySystem
+{
+    [Dependency] private readonly CartridgeLoaderSystem _cartridge = default!;
+    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly PipBoyNetworkSystem _network = default!;
+    [Dependency] private readonly SharedNanoChatSystem _nanoChat = default!;
+
+    private const int MaxNameLength = 42;
+    private const int MaxPasswordLength = 32;
+    private const int MaxNoteLength = 256;
+    private const int MaxStatusLength = 64;
+    private const int MaxWaypointLabelLength = 32;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<PipBoyHubCartridgeComponent, CartridgeUiReadyEvent>(OnUiReady);
+        SubscribeLocalEvent<PipBoyHubCartridgeComponent, CartridgeMessageEvent>(OnMessage);
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        // Keep card references in sync (same pattern as NanoChatCartridgeSystem)
+        var query = EntityQueryEnumerator<PipBoyHubCartridgeComponent, CartridgeComponent>();
+        while (query.MoveNext(out var uid, out var hub, out var cartridge))
+        {
+            if (cartridge.LoaderUid == null)
+                continue;
+
+            if (!TryComp<PdaComponent>(cartridge.LoaderUid, out var pda))
+                continue;
+
+            var newCard = pda.ContainedId;
+            if (newCard == hub.Card)
+                continue;
+
+            hub.Card = newCard;
+            UpdateUI((uid, hub), cartridge.LoaderUid.Value);
+        }
+    }
+
+    private void OnUiReady(Entity<PipBoyHubCartridgeComponent> ent, ref CartridgeUiReadyEvent args)
+    {
+        UpdateUI(ent, args.Loader);
+    }
+
+    private void OnMessage(Entity<PipBoyHubCartridgeComponent> ent, ref CartridgeMessageEvent args)
+    {
+        if (args is not PipBoyHubUiMessageEvent msg)
+            return;
+
+        if (!GetCard(GetEntity(args.LoaderUid), out var cardUid, out var cardComp, out var netComp))
+            return;
+
+        var ownNumber = cardComp.Number ?? 0;
+
+        switch (msg.Type)
+        {
+            // ── Contacts ──
+            case PipBoyHubMessageType.ContactAdd:
+                HandleContactAdd(ownNumber, msg);
+                break;
+            case PipBoyHubMessageType.ContactAccept:
+                HandleContactAccept(ownNumber, msg);
+                break;
+            case PipBoyHubMessageType.ContactReject:
+                HandleContactReject(ownNumber, msg);
+                break;
+            case PipBoyHubMessageType.ContactToggleLocation:
+                HandleContactToggleLocation(ownNumber, msg);
+                break;
+            case PipBoyHubMessageType.ContactSendMessage:
+                HandleContactSendMessage(cardUid, cardComp, msg);
+                break;
+
+            // ── Groups ──
+            case PipBoyHubMessageType.GroupCreate:
+                HandleGroupCreate(cardUid, netComp, ownNumber, msg);
+                break;
+            case PipBoyHubMessageType.GroupJoin:
+                HandleGroupJoin(cardUid, netComp, ownNumber, msg);
+                break;
+            case PipBoyHubMessageType.GroupLeave:
+                HandleGroupLeave(cardUid, netComp, ownNumber, msg);
+                break;
+            case PipBoyHubMessageType.GroupToggleMapTracking:
+                HandleGroupToggleMapTracking(cardUid, netComp, msg);
+                break;
+            case PipBoyHubMessageType.GroupSendMessage:
+                HandleGroupSendMessage(ownNumber, cardUid, msg, GetEntity(args.LoaderUid));
+                break;
+            case PipBoyHubMessageType.GroupSelect:
+                HandleGroupSelect(ent, msg);
+                break;
+            case PipBoyHubMessageType.GroupAddWaypoint:
+                HandleGroupAddWaypoint(cardUid, ownNumber, msg);
+                break;
+            case PipBoyHubMessageType.GroupRemoveWaypoint:
+                HandleGroupRemoveWaypoint(msg);
+                break;
+            case PipBoyHubMessageType.GroupSetPassword:
+                HandleGroupSetPassword(ownNumber, msg);
+                break;
+
+            // ── Directory ──
+            case PipBoyHubMessageType.DirectoryToggleVisibility:
+                HandleToggleVisibility(cardUid, netComp);
+                break;
+            case PipBoyHubMessageType.DirectorySendMessage:
+                HandleDirectorySendMessage(cardUid, cardComp, msg);
+                break;
+
+            // ── Password / Lock ──
+            case PipBoyHubMessageType.PasswordSet:
+                HandlePasswordSet(cardUid, netComp, msg);
+                break;
+            case PipBoyHubMessageType.PasswordUnlock:
+                HandlePasswordUnlock(cardUid, netComp, msg);
+                break;
+            case PipBoyHubMessageType.Lock:
+                _network.Lock((cardUid, netComp));
+                break;
+
+            // ── SOS ──
+            case PipBoyHubMessageType.SosBeacon:
+                HandleSosBeacon(cardUid, ownNumber);
+                break;
+
+            // ── Status ──
+            case PipBoyHubMessageType.SetStatus:
+                HandleSetStatus(ownNumber, msg);
+                break;
+
+            // ── Dead Drops ──
+            case PipBoyHubMessageType.DeadDropCreate:
+                HandleDeadDropCreate(cardUid, ownNumber, msg);
+                break;
+            case PipBoyHubMessageType.DeadDropCollect:
+                HandleDeadDropCollect(ownNumber, msg);
+                break;
+
+            // ── Contact Notes ──
+            case PipBoyHubMessageType.ContactSetNote:
+                HandleContactSetNote(ownNumber, msg);
+                break;
+        }
+
+        UpdateUI(ent, GetEntity(args.LoaderUid));
+    }
+
+    #region Handlers
+
+    private void HandleContactAdd(uint ownNumber, PipBoyHubUiMessageEvent msg)
+    {
+        if (msg.TargetNumber == null)
+            return;
+
+        _network.SendContactRequest(ownNumber, msg.TargetNumber.Value);
+    }
+
+    private void HandleContactAccept(uint ownNumber, PipBoyHubUiMessageEvent msg)
+    {
+        if (msg.TargetNumber == null)
+            return;
+
+        _network.AcceptContactRequest(ownNumber, msg.TargetNumber.Value);
+    }
+
+    private void HandleContactReject(uint ownNumber, PipBoyHubUiMessageEvent msg)
+    {
+        if (msg.TargetNumber == null)
+            return;
+
+        _network.RemoveContact(ownNumber, msg.TargetNumber.Value);
+    }
+
+    private void HandleContactToggleLocation(uint ownNumber, PipBoyHubUiMessageEvent msg)
+    {
+        if (msg.TargetNumber == null)
+            return;
+
+        _network.ToggleLocationSharing(ownNumber, msg.TargetNumber.Value);
+    }
+
+    /// <summary>Send a quick message to a contact via NanoChat.</summary>
+    private void HandleContactSendMessage(EntityUid cardUid, NanoChatCardComponent cardComp, PipBoyHubUiMessageEvent msg)
+    {
+        if (msg.TargetNumber == null || string.IsNullOrWhiteSpace(msg.Content) || cardComp.Number == null)
+            return;
+
+        var content = msg.Content.Trim();
+        if (content.Length > NanoChatMessage.MaxContentLength)
+            content = content[..NanoChatMessage.MaxContentLength];
+
+        // Create the NanoChat message and store on sender
+        var nanoChatMsg = new NanoChatMessage(_timing.CurTime, content, cardComp.Number.Value);
+
+        // Ensure recipient exists in NanoChat
+        _nanoChat.EnsureRecipientExists((cardUid, cardComp), msg.TargetNumber.Value, GetNanoChatRecipientInfo(msg.TargetNumber.Value));
+
+        _nanoChat.AddMessage((cardUid, cardComp), msg.TargetNumber.Value, nanoChatMsg);
+
+        // Deliver to recipient
+        var targetCard = _network.FindCardByNumber(msg.TargetNumber.Value);
+        if (targetCard != null && TryComp<NanoChatCardComponent>(targetCard.Value, out var targetChatComp))
+        {
+            _nanoChat.EnsureRecipientExists((targetCard.Value, targetChatComp), cardComp.Number.Value, GetNanoChatRecipientInfo(cardComp.Number.Value));
+            _nanoChat.AddMessage((targetCard.Value, targetChatComp), cardComp.Number.Value, nanoChatMsg with { DeliveryFailed = false });
+        }
+    }
+
+    private void HandleGroupCreate(EntityUid cardUid, PipBoyNetworkComponent netComp, uint ownNumber, PipBoyHubUiMessageEvent msg)
+    {
+        if (string.IsNullOrWhiteSpace(msg.Content))
+            return;
+
+        var name = msg.Content.Trim();
+        if (name.Length > MaxNameLength)
+            name = name[..MaxNameLength];
+
+        var groupId = _network.CreateGroup(name, ownNumber);
+        netComp.Groups[groupId] = new PipBoyGroupMembership(groupId, name);
+        Dirty(cardUid, netComp);
+    }
+
+    private void HandleGroupJoin(EntityUid cardUid, PipBoyNetworkComponent netComp, uint ownNumber, PipBoyHubUiMessageEvent msg)
+    {
+        if (msg.GroupId == null)
+            return;
+
+        if (!_network.JoinGroup(msg.GroupId.Value, ownNumber, msg.Content))
+            return;
+
+        var group = _network.GetGroup(msg.GroupId.Value);
+        if (group == null)
+            return;
+
+        netComp.Groups[msg.GroupId.Value] = new PipBoyGroupMembership(msg.GroupId.Value, group.GroupName);
+        Dirty(cardUid, netComp);
+    }
+
+    private void HandleGroupLeave(EntityUid cardUid, PipBoyNetworkComponent netComp, uint ownNumber, PipBoyHubUiMessageEvent msg)
+    {
+        if (msg.GroupId == null)
+            return;
+
+        _network.LeaveGroup(msg.GroupId.Value, ownNumber);
+        netComp.Groups.Remove(msg.GroupId.Value);
+        Dirty(cardUid, netComp);
+    }
+
+    private void HandleGroupToggleMapTracking(EntityUid cardUid, PipBoyNetworkComponent netComp, PipBoyHubUiMessageEvent msg)
+    {
+        if (msg.GroupId == null || !netComp.Groups.TryGetValue(msg.GroupId.Value, out var membership))
+            return;
+
+        netComp.Groups[msg.GroupId.Value] = membership with { MapTrackingEnabled = !membership.MapTrackingEnabled };
+        Dirty(cardUid, netComp);
+    }
+
+    private void HandleGroupSendMessage(uint ownNumber, EntityUid cardUid, PipBoyHubUiMessageEvent msg, EntityUid loaderUid)
+    {
+        if (msg.GroupId == null || string.IsNullOrWhiteSpace(msg.Content))
+            return;
+
+        // Radio relay: log whether telecomm is available (informational, does not block messaging)
+        // In the wasteland, PipBoy-to-PipBoy group chat works peer-to-peer without infrastructure.
+
+        var content = msg.Content.Trim();
+        if (content.Length > PipBoyGroupMessage.MaxContentLength)
+            content = content[..PipBoyGroupMessage.MaxContentLength];
+
+        var info = _network.GetCardDisplayInfo(cardUid);
+        var groupMsg = new PipBoyGroupMessage(_timing.CurTime, content, ownNumber, info.Name);
+        _network.AddGroupMessage(msg.GroupId.Value, groupMsg);
+
+        // Trigger UI update for all group members who have the hub open
+        UpdateUIForGroupMembers(msg.GroupId.Value);
+    }
+
+    private void HandleGroupSelect(Entity<PipBoyHubCartridgeComponent> ent, PipBoyHubUiMessageEvent msg)
+    {
+        ent.Comp.SelectedGroupId = msg.GroupId;
+    }
+
+    private void HandleToggleVisibility(EntityUid cardUid, PipBoyNetworkComponent netComp)
+    {
+        netComp.IsVisible = !netComp.IsVisible;
+        Dirty(cardUid, netComp);
+    }
+
+    /// <summary>Send a message to someone from the directory (via NanoChat).</summary>
+    private void HandleDirectorySendMessage(EntityUid cardUid, NanoChatCardComponent cardComp, PipBoyHubUiMessageEvent msg)
+    {
+        // Reuse the contact send message logic
+        HandleContactSendMessage(cardUid, cardComp, msg);
+    }
+
+    private void HandlePasswordSet(EntityUid cardUid, PipBoyNetworkComponent netComp, PipBoyHubUiMessageEvent msg)
+    {
+        var password = msg.Content?.Trim();
+        if (password != null && password.Length > MaxPasswordLength)
+            password = password[..MaxPasswordLength];
+
+        _network.SetPassword((cardUid, netComp), string.IsNullOrEmpty(password) ? null : password);
+    }
+
+    private void HandlePasswordUnlock(EntityUid cardUid, PipBoyNetworkComponent netComp, PipBoyHubUiMessageEvent msg)
+    {
+        if (string.IsNullOrEmpty(msg.Content))
+            return;
+
+        _network.TryUnlock((cardUid, netComp), msg.Content);
+    }
+
+    private void HandleGroupAddWaypoint(EntityUid cardUid, uint ownNumber, PipBoyHubUiMessageEvent msg)
+    {
+        if (msg.GroupId == null || string.IsNullOrWhiteSpace(msg.Content))
+            return;
+
+        var label = msg.Content.Trim();
+        if (label.Length > MaxWaypointLabelLength)
+            label = label[..MaxWaypointLabelLength];
+
+        // Use the PDA's world position as the waypoint coordinates
+        if (!TryComp<NanoChatCardComponent>(cardUid, out var card) || card.PdaUid == null)
+            return;
+
+        var xform = Transform(card.PdaUid.Value);
+        var pos = xform.WorldPosition;
+        var info = _network.GetCardDisplayInfo(cardUid);
+        _network.AddGroupWaypoint(msg.GroupId.Value, label, pos.X, pos.Y, info.Name);
+    }
+
+    private void HandleGroupRemoveWaypoint(PipBoyHubUiMessageEvent msg)
+    {
+        if (msg.GroupId == null || string.IsNullOrEmpty(msg.Content))
+            return;
+
+        if (int.TryParse(msg.Content, out var index))
+            _network.RemoveGroupWaypoint(msg.GroupId.Value, index);
+    }
+
+    private void HandleGroupSetPassword(uint ownNumber, PipBoyHubUiMessageEvent msg)
+    {
+        if (msg.GroupId == null)
+            return;
+
+        var password = msg.Content?.Trim();
+        if (password != null && password.Length > MaxPasswordLength)
+            password = password[..MaxPasswordLength];
+
+        _network.SetGroupPassword(msg.GroupId.Value, ownNumber, string.IsNullOrEmpty(password) ? null : password);
+    }
+
+    private void HandleSosBeacon(EntityUid cardUid, uint ownNumber)
+    {
+        if (!TryComp<NanoChatCardComponent>(cardUid, out var card) || card.PdaUid == null)
+            return;
+
+        var info = _network.GetCardDisplayInfo(cardUid);
+        var xform = Transform(card.PdaUid.Value);
+        var pos = xform.WorldPosition;
+        _network.BroadcastSos(ownNumber, info.Name, pos.X, pos.Y);
+    }
+
+    private void HandleSetStatus(uint ownNumber, PipBoyHubUiMessageEvent msg)
+    {
+        var status = PipBoyPresenceStatus.Available;
+        string? statusMessage = null;
+
+        if (!string.IsNullOrEmpty(msg.Content))
+        {
+            var parts = msg.Content.Split('|', 2);
+            if (parts.Length >= 1 && byte.TryParse(parts[0], out var statusByte) &&
+                Enum.IsDefined(typeof(PipBoyPresenceStatus), statusByte))
+            {
+                status = (PipBoyPresenceStatus) statusByte;
+            }
+
+            if (parts.Length >= 2 && !string.IsNullOrWhiteSpace(parts[1]))
+            {
+                statusMessage = parts[1].Trim();
+                if (statusMessage.Length > MaxStatusLength)
+                    statusMessage = statusMessage[..MaxStatusLength];
+            }
+        }
+
+        _network.SetStatus(ownNumber, status, statusMessage);
+    }
+
+    private void HandleDeadDropCreate(EntityUid cardUid, uint ownNumber, PipBoyHubUiMessageEvent msg)
+    {
+        if (string.IsNullOrWhiteSpace(msg.Content))
+            return;
+
+        if (!TryComp<NanoChatCardComponent>(cardUid, out var card) || card.PdaUid == null)
+            return;
+
+        var content = msg.Content.Trim();
+        if (content.Length > PipBoyDeadDrop.MaxContentLength)
+            content = content[..PipBoyDeadDrop.MaxContentLength];
+
+        var info = _network.GetCardDisplayInfo(cardUid);
+        var xform = Transform(card.PdaUid.Value);
+        var pos = xform.WorldPosition;
+        _network.CreateDeadDrop(ownNumber, info.Name, content, pos.X, pos.Y, msg.TargetNumber);
+    }
+
+    private void HandleDeadDropCollect(uint ownNumber, PipBoyHubUiMessageEvent msg)
+    {
+        if (string.IsNullOrEmpty(msg.Content))
+            return;
+
+        if (uint.TryParse(msg.Content, out var dropId))
+            _network.CollectDeadDrop(dropId, ownNumber);
+    }
+
+    private void HandleContactSetNote(uint ownNumber, PipBoyHubUiMessageEvent msg)
+    {
+        if (msg.TargetNumber == null)
+            return;
+
+        var notes = msg.Content?.Trim();
+        if (notes != null && notes.Length > MaxNoteLength)
+            notes = notes[..MaxNoteLength];
+
+        _network.SetContactNote(ownNumber, msg.TargetNumber.Value,
+            string.IsNullOrWhiteSpace(notes) ? null : notes);
+    }
+
+    #endregion
+
+    #region UI
+
+    /// <summary>Update UI for all members of a group who have the hub cartridge active.</summary>
+    private void UpdateUIForGroupMembers(uint groupId)
+    {
+        var group = _network.GetGroup(groupId);
+        if (group == null)
+            return;
+
+        var query = EntityQueryEnumerator<PipBoyHubCartridgeComponent, CartridgeComponent>();
+        while (query.MoveNext(out var uid, out var hub, out var cartridge))
+        {
+            if (cartridge.LoaderUid == null || hub.Card == null)
+                continue;
+
+            if (!TryComp<NanoChatCardComponent>(hub.Card, out var card) || card.Number == null)
+                continue;
+
+            if (!group.Members.Contains(card.Number.Value))
+                continue;
+
+            UpdateUI((uid, hub), cartridge.LoaderUid.Value);
+        }
+    }
+
+    private bool GetCard(EntityUid loaderUid,
+        out EntityUid cardUid,
+        out NanoChatCardComponent cardComp,
+        out PipBoyNetworkComponent netComp)
+    {
+        cardUid = default;
+        cardComp = default!;
+        netComp = default!;
+
+        if (!TryComp<PdaComponent>(loaderUid, out var pda) ||
+            pda.ContainedId == null ||
+            !TryComp<NanoChatCardComponent>(pda.ContainedId, out var cc) ||
+            !TryComp<PipBoyNetworkComponent>(pda.ContainedId, out var nc))
+            return false;
+
+        cardUid = pda.ContainedId.Value;
+        cardComp = cc;
+        netComp = nc;
+        return true;
+    }
+
+    private void UpdateUI(Entity<PipBoyHubCartridgeComponent> ent, EntityUid loader)
+    {
+        uint ownNumber = 0;
+        var hasPassword = false;
+        var isLocked = false;
+        var isVisible = true;
+        var contacts = new Dictionary<uint, PipBoyContact>();
+        var contactLocs = new List<PipBoyTrackedLocation>();
+        var groups = new List<PipBoyGroupInfo>();
+        var groupMessages = new List<PipBoyGroupMessage>();
+        var groupLocs = new List<PipBoyTrackedLocation>();
+        var groupWaypoints = new List<PipBoyWaypoint>();
+        var directory = new List<PipBoyDirectoryEntry>();
+        var sosAlerts = new List<PipBoySosAlert>();
+        var presenceStatus = PipBoyPresenceStatus.Available;
+        string? statusMessage = null;
+        var nearbyDeadDrops = new List<PipBoyDeadDrop>();
+        var hasRadioConnection = false;
+
+        if (ent.Comp.Card != null &&
+            TryComp<NanoChatCardComponent>(ent.Comp.Card, out var card) &&
+            TryComp<PipBoyNetworkComponent>(ent.Comp.Card, out var net))
+        {
+            ownNumber = card.Number ?? 0;
+            hasPassword = net.Password != null;
+            isLocked = net.IsLocked;
+            isVisible = net.IsVisible;
+            contacts = net.Contacts;
+            presenceStatus = net.PresenceStatus;
+            statusMessage = net.StatusMessage;
+            sosAlerts = net.SosAlerts;
+
+            if (!isLocked)
+            {
+                contactLocs = _network.GetContactLocations((ent.Comp.Card.Value, net));
+                groups = _network.GetGroupsForMember(ownNumber, net.Groups);
+                directory = _network.GetDirectory(ownNumber);
+                hasRadioConnection = _network.HasTelecommAccess(loader);
+
+                // Group messages, tracking, and waypoints for the selected group
+                if (ent.Comp.SelectedGroupId != null)
+                {
+                    var groupData = _network.GetGroup(ent.Comp.SelectedGroupId.Value);
+                    if (groupData != null)
+                    {
+                        groupMessages = groupData.Messages;
+                        groupLocs = _network.GetGroupLocations(ent.Comp.SelectedGroupId.Value, ownNumber);
+                        groupWaypoints = _network.GetGroupWaypoints(ent.Comp.SelectedGroupId.Value);
+                    }
+                }
+
+                // Dead drops near the PDA's position
+                if (card.PdaUid != null)
+                {
+                    var xform = Transform(card.PdaUid.Value);
+                    var pos = xform.WorldPosition;
+                    nearbyDeadDrops = _network.GetNearbyDeadDrops(pos.X, pos.Y, ownNumber);
+                }
+            }
+        }
+
+        var state = new PipBoyHubUiState(
+            ownNumber,
+            hasPassword,
+            isLocked,
+            isVisible,
+            contacts,
+            contactLocs,
+            groups,
+            groupMessages,
+            ent.Comp.SelectedGroupId,
+            groupLocs,
+            directory,
+            groupWaypoints,
+            sosAlerts,
+            presenceStatus,
+            statusMessage,
+            nearbyDeadDrops,
+            hasRadioConnection);
+
+        _cartridge.UpdateCartridgeUiState(loader, state);
+    }
+
+    /// <summary>Get NanoChatRecipient info for use with the NanoChat messaging system.</summary>
+    private NanoChatRecipient? GetNanoChatRecipientInfo(uint number)
+    {
+        var cardUid = _network.FindCardByNumber(number);
+        if (cardUid == null)
+            return null;
+
+        var info = _network.GetCardDisplayInfo(cardUid.Value);
+        return new NanoChatRecipient(number, info.Name, info.JobTitle);
+    }
+
+    #endregion
+}

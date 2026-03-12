@@ -1,4 +1,5 @@
 using Content.Server.Acz;
+using System.Linq; // #Misfits Add
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
@@ -77,8 +78,16 @@ namespace Content.Server.Entry
 
 
             factory.RegisterIgnore(IgnoredComponents.List);
+
+            // #Misfits Add: RMC ignored components – skip any that are already registered
+            var rmcIgnored = RmcIgnoredComponents.List
+                .Where(name => !factory.TryGetRegistration(name, out _))
+                .ToArray();
+            if (rmcIgnored.Length > 0)
+                factory.RegisterIgnore(rmcIgnored);
             prototypes.RegisterIgnore("guideEntry");
             prototypes.RegisterIgnore("parallax");
+            prototypes.RegisterIgnore("latheRecipePack"); // #Misfits Add: RMC prototype type not in this fork
 
             ServerContentIoC.Register();
 

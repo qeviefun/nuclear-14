@@ -20,6 +20,7 @@ namespace Content.Client.Administration.UI.Tabs.ObjectsTab
 
             ObjectNameLabel.OnKeyBindDown += ObjectNameClicked;
             EntityIDLabel.OnKeyBindDown += EntityIDClicked;
+            PrototypeLabel.OnKeyBindDown += PrototypeClicked; // #Misfits Change - wire up Prototype column sort
         }
 
         public Label GetHeader(Header header)
@@ -28,6 +29,7 @@ namespace Content.Client.Administration.UI.Tabs.ObjectsTab
             {
                 Header.ObjectName => ObjectNameLabel,
                 Header.EntityID => EntityIDLabel,
+                Header.Prototype => PrototypeLabel, // #Misfits Change - Prototype column header
                 _ => throw new ArgumentOutOfRangeException(nameof(header), header, null)
             };
         }
@@ -36,6 +38,7 @@ namespace Content.Client.Administration.UI.Tabs.ObjectsTab
         {
             ObjectNameLabel.Text = Loc.GetString("object-tab-object-name");
             EntityIDLabel.Text = Loc.GetString("object-tab-entity-id");
+            PrototypeLabel.Text = Loc.GetString("object-tab-prototype"); // #Misfits Change - reset Prototype column header text
         }
 
         public void UpdateHeaderSymbols(Header headerClicked, bool ascending)
@@ -66,6 +69,12 @@ namespace Content.Client.Administration.UI.Tabs.ObjectsTab
             HeaderClicked(args, Header.EntityID);
         }
 
+        // #Misfits Change - click handler for Prototype column sort
+        private void PrototypeClicked(GUIBoundKeyEventArgs args)
+        {
+            HeaderClicked(args, Header.Prototype);
+        }
+
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
@@ -74,13 +83,15 @@ namespace Content.Client.Administration.UI.Tabs.ObjectsTab
             {
                 ObjectNameLabel.OnKeyBindDown -= ObjectNameClicked;
                 EntityIDLabel.OnKeyBindDown -= EntityIDClicked;
+                PrototypeLabel.OnKeyBindDown -= PrototypeClicked; // #Misfits Change - unsubscribe Prototype header click
             }
         }
 
         public enum Header
         {
             ObjectName,
-            EntityID
+            EntityID,
+            Prototype, // #Misfits Change - Prototype sort column
         }
     }
 }

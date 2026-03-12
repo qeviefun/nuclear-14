@@ -2,8 +2,8 @@
 
 - type: UndecidedLoadoutBackpackSet
   id: NCRA_PFCFireteamSet
-  name: private first class fireteam kit
-  description: A junior fireteam leader package built around a serviceable carbine, spare supplies, and smoke for maneuver.
+  name: Private First Class Fireteam Kit
+  description: Includes NCR pouches, a carbine with 3 long magazines, a 9mm pistol with 2 magazines, a handheld radio, a smoke grenade, a C ration MRE, a stimpak, a Rad-X pill, a gauze pack, and a flare.
   sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: pointman
@@ -12,8 +12,8 @@
 
 - type: UndecidedLoadoutBackpackSet
   id: NCRA_CorporalPatrolSet
-  name: corporal patrol leader kit
-  description: A patrol leader loadout with a scoped service rifle and field-control tools for NCR line leadership.
+  name: Corporal Patrol Leader Kit
+  description: Includes a metal helmet, an NCR belt, a scoped service rifle with 4 magazines, a 9mm pistol with 2 magazines, a handheld radio, 2 smoke grenades, a C ration MRE, a stimpak, a RadAway blood bag, a gauze pack, and a flare.
   sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: marksman
@@ -22,8 +22,8 @@
 
 - type: UndecidedLoadoutBackpackSet
   id: NCRA_StaffSergeantLineSet
-  name: staff sergeant linebreaker kit
-  description: A veteran line NCO package with a battle rifle and extra sustain for holding the center.
+  name: Staff Sergeant Linebreaker Kit
+  description: Includes NCR combat armor, an NCR belt, a sergeant first class pin, a battle rifle with 6 clips, a 9mm pistol with 2 magazines, a handheld radio, a smoke grenade, a C ration MRE, a stimpak, a super stimpak, a RadAway blood bag, a gauze pack, and a flare.
   sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: rifleman
@@ -32,8 +32,8 @@
 
 - type: UndecidedLoadoutBackpackSet
   id: NCRA_FirstSergeantVeteranSet
-  name: first sergeant veteran kit
-  description: A hardened senior NCO loadout for frontline oversight, rallying troops, and surviving long pushes.
+  name: First Sergeant Veteran Kit
+  description: Includes an NCR trench coat, a loaded revolver belt, a master sergeant pin, a battle rifle with 6 clips, a handheld radio, 2 smoke grenades, a frag grenade, a C ration MRE, a stimpak, a super stimpak, a RadAway blood bag, 2 gauze packs, and a flare.
   sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: pointman
@@ -42,8 +42,8 @@
 
 - type: UndecidedLoadoutBackpackSet
   id: NCRA_CaptainCommandSet
-  name: captain command kit
-  description: A command package for an NCR captain who expects to lead from just behind the line, not from a tent.
+  name: Captain Command Kit
+  description: Includes NCR combat armor, a loaded captain's revolver belt, a captain pin, a battle rifle with 6 clips, a handheld radio, 2 smoke grenades, a frag grenade, a C ration MRE, a stimpak, 2 super stimpaks, a RadAway blood bag, 2 gauze packs, and a flare.
   sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: rifleman
@@ -52,8 +52,8 @@
 
 - type: UndecidedLoadoutBackpackSet
   id: NCRA_CaptainMarksmanSet
-  name: captain frontier marksman kit
-  description: A stronger officer marksman package for wasteland campaigns where the captain has to solve problems personally.
+  name: Captain Frontier Marksman Kit
+  description: Includes an NCR trench coat, a loaded captain's revolver belt, a captain pin, an NCR .50 rifle, a box of .50 ammo, a handheld radio, a smoke grenade, a C ration MRE, a stimpak, a super stimpak, a RadAway blood bag, 2 gauze packs, and a flare.
   sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: marksman
@@ -248,8 +248,8 @@
 
 - type: UndecidedLoadoutBackpackSet
   id: NCRA_CaptainServiceRifleSet
-  name: captain field officer kit
-  description: A field officer package built around the iconic NCR service rifle, for a captain who leads by example and holds the line.
+  name: Captain Field Officer Kit
+  description: Includes NCR combat armor, an NCR belt, a captain pin, a scoped service rifle with 6 magazines, a 9mm pistol with 3 magazines, a handheld radio, 2 smoke grenades, a frag grenade, a C ration MRE, a stimpak, 2 super stimpaks, a RadAway blood bag, 2 gauze packs, and a flare.
   sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: rifleman

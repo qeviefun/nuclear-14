@@ -47,6 +47,8 @@ namespace Content.Server.Chemistry.EntitySystems
         [ValidatePrototypeId<EntityPrototype>]
         private const string PillCanisterPrototypeId = "PillCanister";
 
+        private const string ChemistryBottlePrototypeId = "ChemistryEmptyBottle01";
+
         public override void Initialize()
         {
             base.Initialize();
@@ -176,7 +178,7 @@ namespace Content.Server.Chemistry.EntitySystems
             if (fromBuffer)
             {
                 if (_solutionContainerSystem.TryGetSolution(chemMaster.Owner, SharedChemMaster.BufferSolutionName, out _, out var bufferSolution) &&
-                    _solutionContainerSystem.TryGetSolution(chemMaster.Owner, SharedChemMaster.PillSolutionName, out _, out var pillBufferSolution))
+                    _solutionContainerSystem.TryGetSolution(chemMaster.Owner, SharedChemMaster.PillBufferSolutionName, out _, out var pillBufferSolution))
                 {
                     var solution = isOutput ? pillBufferSolution : bufferSolution;
                     solution.RemoveReagent(id, amount, preserveOrder: true);
@@ -272,9 +274,9 @@ namespace Content.Server.Chemistry.EntitySystems
 
             if (maybeContainer == null)
             {
-                var canister = _entityManager.SpawnEntity(PillCanisterPrototypeId, Transform(chemMaster.Owner).Coordinates);
-                _itemSlotsSystem.TryInsert(chemMaster.Owner, SharedChemMaster.OutputSlotName, canister, null);
-                maybeContainer = canister;
+                var bottle = _entityManager.SpawnEntity(ChemistryBottlePrototypeId, Transform(chemMaster.Owner).Coordinates);
+                _itemSlotsSystem.TryInsert(chemMaster.Owner, SharedChemMaster.OutputSlotName, bottle, null);
+                maybeContainer = bottle;
             }
 
             if (maybeContainer is not { Valid: true } container

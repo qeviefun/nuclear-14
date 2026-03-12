@@ -46,7 +46,7 @@
     eyes: N14ClothingEyesGlassesWelding
     back: N14ClothingBackpackMilitary
     shoes: N14ClothingBootsBlack
-    head: N14ClothingHeadHatLegionHood # #Misfits Change /Fix/: Legionnaires should not wear decanus helmets
+    head: N14ClothingHeadHatBaseballHelmet # #Misfits Change /Tweak/: Veteran Legionary wears a baseball helmet
     outerClothing: N14ClothingOuterLegionnaireVeteranArmor
     gloves: N14ClothingHandsGlovesTribal
     pocket1: LegionVeteranloadoutkits

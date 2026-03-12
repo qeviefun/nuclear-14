@@ -97,7 +97,6 @@
     activatedDamage:
         types:
             Heat: 40
-  # Misfits Change /Fix/ Expose the welder tank so this weapon can be refilled with WeldingFuel.
   - type: RefillableSolution
     solution: Welder
   - type: SolutionContainerManager
@@ -107,12 +106,6 @@
         - ReagentId: WeldingFuel
           Quantity: 250
         maxVol: 250
-  - type: Tool
-    useSound:
-      collection: Welder
-    qualities: Welding
-    speedModifier: 3
-  - type: Welder
   - type: PointLight
     enabled: false
     radius: 2
@@ -201,7 +194,6 @@
     activatedDamage:
         types:
             Heat: 35
-  # Misfits Change /Fix/ Expose the welder tank so this weapon can be refilled with WeldingFuel.
   - type: RefillableSolution
     solution: Welder
   - type: SolutionContainerManager
@@ -211,11 +203,6 @@
         - ReagentId: WeldingFuel
           Quantity: 250
         maxVol: 250
-  - type: Tool
-    useSound:
-      collection: Welder
-    qualities: Welding
-  - type: Welder
   - type: PointLight
     enabled: false
     radius: 1.5

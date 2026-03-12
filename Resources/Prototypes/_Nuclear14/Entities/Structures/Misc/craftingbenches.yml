@@ -100,7 +100,10 @@
     - N14JunkGunpartsStockWood
     - N14JunkGunpartsTrigger
     # Explosives - Misfits Add
-    - N14LandMine
+    - N14LandMine        # Anti-Personnel Mine
+    - LandMineKick       # Concussion Mine (non-lethal)
+    - LandMineExplosive  # Explosive Mine (~4 tile radius)
+    - LandMineModular    # Modular Mine (empty casing, add payload)
 
 - type: entity
   parent: N14WorkbenchBase
@@ -559,6 +562,9 @@
     runningState: icon # change this
     staticRecipes:
     # Ores
+    # #Misfits Change /Add/: Legion coin minting uses the forge's existing precious metal workflow.
+    - N14CurrencyLegionAureus
+    - N14CurrencyLegionDenarius
     - N14IngotSilver
     - N14IngotIron
     - N14IngotGold

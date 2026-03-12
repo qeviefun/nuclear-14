@@ -3,6 +3,7 @@ using Content.Server.Administration.Logs;
 using Content.Server.CriminalRecords.Systems;
 using Content.Server.PsionicsRecords.Systems;
 using Content.Server.Humanoid;
+using Content.Shared.Chat;
 using Content.Shared.Clothing;
 using Content.Shared.Database;
 using Content.Shared.Hands;
@@ -47,6 +48,7 @@ public sealed class IdentitySystem : SharedIdentitySystem
 
         SubscribeLocalEvent<IdentityBlockerComponent, ComponentInit>(BlockerUpdateIdentity); // Goobstation - Update component state on component toggle
         SubscribeLocalEvent<IdentityBlockerComponent, ComponentRemove>(BlockerUpdateIdentity); // Goobstation - Update component state on component toggle
+        SubscribeLocalEvent<IdentityBlockerComponent, InventoryRelayedEvent<TransformSpeakerNameEvent>>(OnTransformSpeakerName);
     }
 
     public override void Update(float frameTime)
@@ -189,6 +191,35 @@ public sealed class IdentitySystem : SharedIdentitySystem
             target = containing.Value;
 
         QueueIdentityUpdate(target);
+    }
+
+    // #Misfits Change /Fix/: identity-blocking masks should obfuscate spoken names the same way they already obfuscate emotes.
+    private void OnTransformSpeakerName(EntityUid uid, IdentityBlockerComponent component, ref InventoryRelayedEvent<TransformSpeakerNameEvent> args)
+    {
+        if (!component.Enabled)
+            return;
+
+        var obscuredName = Identity.Name(args.Args.Sender, EntityManager);
+        var trueName = Name(args.Args.Sender);
+
+        if (obscuredName == trueName)
+            return;
+
+        args.Args.VoiceName = FormatObscuredSpeechName(obscuredName);
+    }
+
+    // #Misfits Change /Fix/: generic obscured identities need a sentence-case leading article in spoken chat.
+    private static string FormatObscuredSpeechName(string obscuredName)
+    {
+        if (string.IsNullOrWhiteSpace(obscuredName))
+            return obscuredName;
+
+        if (obscuredName.StartsWith("The "))
+            return obscuredName;
+
+        return char.IsLower(obscuredName[0])
+            ? $"The {obscuredName}"
+            : obscuredName;
     }
 
     #endregion

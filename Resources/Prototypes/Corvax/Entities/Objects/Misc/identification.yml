@@ -10,6 +10,10 @@
     state: medal-gold
   - type: PresetIdCard
     job: CaesarLegionLegate
+  #Misfits Add - IdCardLegion enables this medallion to appear on the Centurion's tactical map terminal
+  - type: Tag
+    tags:
+    - IdCardLegion
 
 - type: entity
   parent: N14IDPassportBlank
@@ -22,6 +26,10 @@
     state: sign
   - type: PresetIdCard
     job: CaesarLegionAuxilia
+  #Misfits Add - IdCardLegion enables this badge to appear on the Centurion's tactical map terminal
+  - type: Tag
+    tags:
+    - IdCardLegion
 
 - type: entity
   parent: N14IDPassportBlank
@@ -34,6 +42,10 @@
     state: sign
   - type: PresetIdCard
     job: CaesarLegionRecruit
+  #Misfits Add - IdCardLegion enables this badge to appear on the Centurion's tactical map terminal
+  - type: Tag
+    tags:
+    - IdCardLegion
 
 - type: entity
   parent: N14IDPassportBlank
@@ -46,6 +58,10 @@
     state: medal-silver
   - type: PresetIdCard
     job: CaesarLegionLegionnaireWarrior
+  #Misfits Add - IdCardLegion enables this medallion to appear on the Centurion's tactical map terminal
+  - type: Tag
+    tags:
+    - IdCardLegion
 
 #Misfits Change /Add/: Recruit-tier Legion medals so combat roles no longer use sign IDs.
 - type: entity
@@ -59,6 +75,10 @@
     state: medal-silver
   - type: PresetIdCard
     job: CaesarLegionRecruit
+  #Misfits Add - IdCardLegion enables this medallion to appear on the Centurion's tactical map terminal
+  - type: Tag
+    tags:
+    - IdCardLegion
 
 - type: entity
   parent: N14IDPassportBlank
@@ -71,6 +91,10 @@
     state: medal-silver
   - type: PresetIdCard
     job: CaesarLegionLegionnaireRecruit
+  #Misfits Add - IdCardLegion enables this medallion to appear on the Centurion's tactical map terminal
+  - type: Tag
+    tags:
+    - IdCardLegion
 
 - type: entity
   parent: N14IDPassportBlank
@@ -83,6 +107,10 @@
     state: medal-silver
   - type: PresetIdCard
     job: CaesarLegionHoundmaster
+  #Misfits Add - IdCardLegion enables this medallion to appear on the Centurion's tactical map terminal
+  - type: Tag
+    tags:
+    - IdCardLegion
 
 #Misfits Change /Add/: Auxilia badge.
 - type: entity
@@ -96,6 +124,10 @@
     state: sign
   - type: PresetIdCard
     job: CaesarLegionAuxilia
+  #Misfits Add - IdCardLegion enables this badge to appear on the Centurion's tactical map terminal
+  - type: Tag
+    tags:
+    - IdCardLegion
 
 #Misfits Change /Add/: Legion Slave sign so the role carries the same legion badge style with its own access data.
 - type: entity
@@ -109,6 +141,10 @@
     state: sign
   - type: PresetIdCard
     job: CaesarLegionSlave
+  #Misfits Add - IdCardLegion enables this badge to appear on the Centurion's tactical map terminal
+  - type: Tag
+    tags:
+    - IdCardLegion
 
 - type: entity
   parent: N14IDPassportBlank
@@ -121,6 +157,10 @@
     state: medal-silver-2
   - type: PresetIdCard
     job: CaesarLegionLegionnaireVeteran
+  #Misfits Add - IdCardLegion enables this medallion to appear on the Centurion's tactical map terminal
+  - type: Tag
+    tags:
+    - IdCardLegion
 
 - type: entity
   parent: N14IDPassportBlank
@@ -133,6 +173,10 @@
     state: medal-silver-2
   - type: PresetIdCard
     job: CaesarLegionVexillarius
+  #Misfits Add - IdCardLegion enables this medallion to appear on the Centurion's tactical map terminal
+  - type: Tag
+    tags:
+    - IdCardLegion
 
 - type: entity
   parent: N14IDPassportBlank
@@ -145,6 +189,10 @@
     state: medal-silver-3
   - type: PresetIdCard
     job: CaesarLegionDean
+  #Misfits Add - IdCardLegion enables this medallion to appear on the Centurion's tactical map terminal
+  - type: Tag
+    tags:
+    - IdCardLegion
 
 - type: entity
   parent: N14IDPassportBlank
@@ -157,6 +205,10 @@
     state: medal-silver-3
   - type: PresetIdCard
     job: CaesarLegionExplorer
+  #Misfits Add - IdCardLegion enables this medallion to appear on the Centurion's tactical map terminal
+  - type: Tag
+    tags:
+    - IdCardLegion
 
 - type: entity
   parent: N14IDPassportBlank
@@ -169,6 +221,10 @@
     state: medal-silver-3
   - type: PresetIdCard
     job: CaesarLegionOrator
+  #Misfits Add - IdCardLegion enables this medallion to appear on the Centurion's tactical map terminal
+  - type: Tag
+    tags:
+    - IdCardLegion
 
 - type: entity
   parent: N14IDPassportBlank
@@ -181,6 +237,10 @@
     state: medal-silver-3
   - type: PresetIdCard
     job: CaesarLegionFrumentarii
+  #Misfits Add - IdCardLegion enables this medallion to appear on the Centurion's tactical map terminal
+  - type: Tag
+    tags:
+    - IdCardLegion
 
 - type: entity
   parent: N14IDPassportBlank
@@ -193,6 +253,10 @@
     state: medal-silver-3
   - type: PresetIdCard
     job: CaesarLegionDean
+  #Misfits Add - IdCardLegion enables this medallion to appear on the Centurion's tactical map terminal
+  - type: Tag
+    tags:
+    - IdCardLegion
 
 - type: entity
   parent: N14IDPassportBlank
@@ -205,6 +269,10 @@
     state: medal-silver-3
   - type: PresetIdCard
     job: CaesarLegionVeteranDecanus
+  #Misfits Add - IdCardLegion enables this medallion to appear on the Centurion's tactical map terminal
+  - type: Tag
+    tags:
+    - IdCardLegion
 
 - type: entity
   parent: N14IDPassportBlank
@@ -217,6 +285,10 @@
     state: medal-gold
   - type: PresetIdCard
     job: CaesarLegionCenturion
+  #Misfits Add - IdCardLegion enables this medallion to appear on the Centurion's tactical map terminal
+  - type: Tag
+    tags:
+    - IdCardLegion
 
 ### Frumentaria
 

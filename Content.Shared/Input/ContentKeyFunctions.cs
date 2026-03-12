@@ -37,6 +37,8 @@ namespace Content.Shared.Input
         public static readonly BoundKeyFunction OpenAHelp = "OpenAHelp";
         // #Misfits Change - Mentor help key function
         public static readonly BoundKeyFunction OpenMentorHelp = "OpenMentorHelp";
+        // #Misfits Change - Combined Help Selector popup key function (F12)
+        public static readonly BoundKeyFunction OpenHelpSelector = "OpenHelpSelector";
         public static readonly BoundKeyFunction SwapHands = "SwapHands";
         public static readonly BoundKeyFunction MoveStoredItem = "MoveStoredItem";
         public static readonly BoundKeyFunction RotateStoredItem = "RotateStoredItem";

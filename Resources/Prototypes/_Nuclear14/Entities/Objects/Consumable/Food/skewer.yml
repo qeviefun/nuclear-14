@@ -1,0 +1,37 @@
+#Misfits Change /Add/: Define the N14-specific skewer results that already have clean art support and do not collide with upstream skewer metamorph recipes.
+
+- type: entity
+  name: meat kebab
+  parent: FoodKebabSkewer
+  id: N14CookedFoodMeatKebab
+  description: Three chunks of wasteland meat on a skewer.
+  components:
+  - type: Food
+    trash:
+    - FoodKebabSkewer
+  - type: FlavorProfile
+    flavors:
+    - meaty
+  - type: Sprite
+    layers:
+    - state: skewer
+    - state: skewer-meat
+    - state: skewer-meat-alpha
+    - map: ["foodSequenceLayers"]
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 12
+        - ReagentId: Protein
+          Quantity: 6
+        - ReagentId: Vitamin
+          Quantity: 2
+  - type: Tag
+    tags:
+    - Meat
+
+- type: entity
+  parent: FoodMeatSnakeKebab
+  id: N14FoodMeatSnakeKebab

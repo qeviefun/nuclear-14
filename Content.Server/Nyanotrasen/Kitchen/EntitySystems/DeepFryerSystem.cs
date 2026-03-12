@@ -287,6 +287,7 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
     ///     - give it a crispy shader, and possibly also
     ///     - turn it into food.
     /// </summary>
+    // #Misfits Change /Add/ - Play a one-shot completion cue when an item first becomes deep-fried.
     private void DeepFry(EntityUid uid, DeepFryerComponent component, EntityUid item)
     {
         if (MetaData(item).EntityPrototype?.ID == component.CharredPrototype)
@@ -346,6 +347,7 @@ public sealed partial class DeepFryerSystem : SharedDeepfryerSystem
         }
 
         MakeCrispy(item);
+    _audioSystem.PlayPvs(component.FryDoneSound, uid);
 
         var oilToUse = 0;
 

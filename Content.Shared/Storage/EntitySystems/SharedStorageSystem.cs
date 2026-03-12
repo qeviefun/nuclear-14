@@ -1,3 +1,4 @@
+using Content.Shared._RMC.Storage; // #Misfits Add - RMC IgnoreContentsSize support
 using System.Collections.Frozen;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -71,6 +72,7 @@ public abstract class SharedStorageSystem : EntitySystem
     private EntityQuery<StackComponent> _stackQuery;
     private EntityQuery<TransformComponent> _xformQuery;
     private EntityQuery<UserInterfaceUserComponent> _userQuery;
+    private EntityQuery<IgnoreContentsSizeComponent> _ignoreContentsSizeQuery; // #Misfits Add
 
     /// <summary>
     /// Whether we're allowed to go up-down storage via UI.
@@ -119,6 +121,7 @@ public abstract class SharedStorageSystem : EntitySystem
         _stackQuery = GetEntityQuery<StackComponent>();
         _xformQuery = GetEntityQuery<TransformComponent>();
         _userQuery = GetEntityQuery<UserInterfaceUserComponent>();
+        _ignoreContentsSizeQuery = GetEntityQuery<IgnoreContentsSizeComponent>(); // #Misfits Add
         _prototype.PrototypesReloaded += OnPrototypesReloaded;
 
         Subs.CVar(_cfg, CCVars.StorageLimit, OnStorageLimitChanged, true);
@@ -941,13 +944,16 @@ public abstract class SharedStorageSystem : EntitySystem
         }
 
         var maxSize = GetMaxItemSize((uid, storageComp));
-        if (ItemSystem.GetSizePrototype(item.Size) > maxSize)
+        // #Misfits Add - RMC IgnoreContentsSize: skip size check if item matches the whitelist
+        var ignoreSize = _ignoreContentsSizeQuery.TryComp(uid, out var ignoreComp)
+                         && _whitelistSystem.IsValid(ignoreComp.Items, insertEnt);
+        if (!ignoreSize && ItemSystem.GetSizePrototype(item.Size) > maxSize)
         {
             reason = "comp-storage-too-big";
             return false;
         }
 
-        if (TryComp<StorageComponent>(insertEnt, out var insertStorage)
+        if (!ignoreSize && TryComp<StorageComponent>(insertEnt, out var insertStorage)
             && GetMaxItemSize((insertEnt, insertStorage)) >= maxSize)
         {
             reason = "comp-storage-too-big";
@@ -1332,7 +1338,7 @@ public abstract class SharedStorageSystem : EntitySystem
         if (!gridBounds.Contains(position))
             return false;
 
-        var itemShape = ItemSystem.GetAdjustedItemShape(itemEnt, rotation, position);
+        var itemShape = ItemSystem.GetAdjustedItemShape(storageEnt, itemEnt, rotation, position); // #Misfits Change - pass storage for FixedItemSizeStorage
 
         foreach (var box in itemShape)
         {
@@ -1380,7 +1386,7 @@ public abstract class SharedStorageSystem : EntitySystem
             if (!_itemQuery.TryGetComponent(ent, out var itemComp))
                 continue;
 
-            var adjustedShape = ItemSystem.GetAdjustedItemShape((ent, itemComp), storedItem);
+            var adjustedShape = ItemSystem.GetAdjustedItemShape(storageEnt, (ent, itemComp), storedItem); // #Misfits Change - pass storage for FixedItemSizeStorage
             foreach (var box in adjustedShape)
             {
                 if (box.Contains(location))
@@ -1437,7 +1443,7 @@ public abstract class SharedStorageSystem : EntitySystem
         {
             if (!_itemQuery.TryGetComponent(item, out var itemComp))
                 continue;
-            sum += ItemSystem.GetItemShape((item, itemComp)).GetArea();
+            sum += ItemSystem.GetItemShape(entity, (item, itemComp)).GetArea(); // #Misfits Change - pass storage for FixedItemSizeStorage
         }
 
         return sum;
@@ -1509,6 +1515,8 @@ public abstract class SharedStorageSystem : EntitySystem
         if (playerSession.AttachedEntity is not {Valid: true} playerEnt || !Exists(playerEnt))
             return;
 
+        slot = ResolveStorageSlot(playerEnt, slot);
+
         if (!_inventory.TryGetSlotEntity(playerEnt, slot, out var storageEnt))
             return;
 
@@ -1523,6 +1531,30 @@ public abstract class SharedStorageSystem : EntitySystem
         {
             UI.CloseUi(storageEnt.Value, StorageComponent.StorageUiKey.Key, playerEnt);
         }
+    }
+
+    private string ResolveStorageSlot(EntityUid playerEnt, string requestedSlot)
+    {
+        if (requestedSlot != "back" || !TryComp(playerEnt, out InventoryComponent? inventory))
+            return requestedSlot;
+
+        string? fallbackSlot = null;
+
+        foreach (var slot in inventory.Slots)
+        {
+            if (!slot.SlotFlags.HasFlag(SlotFlags.BACK))
+                continue;
+
+            fallbackSlot ??= slot.Name;
+
+            if (_inventory.TryGetSlotEntity(playerEnt, slot.Name, out var storageEnt, inventory) &&
+                HasComp<StorageComponent>(storageEnt.Value))
+            {
+                return slot.Name;
+            }
+        }
+
+        return fallbackSlot ?? requestedSlot;
     }
 
     protected void ClearCantFillReasons()

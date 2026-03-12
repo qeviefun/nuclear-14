@@ -19,10 +19,18 @@ public sealed partial class AggroSoundComponent : Component
     public SoundSpecifier Sound = default!;
 
     /// <summary>
-    /// Minimum seconds between aggro sound plays.
+    /// Minimum seconds between aggro sound plays. Actual cooldown after each play
+    /// is chosen randomly between this and <see cref="CooldownMax"/> so mobs in a
+    /// group do not all vocalize in sync.
     /// </summary>
     [DataField]
-    public float CooldownDuration = 30f;
+    public float CooldownMin = 4f;
+
+    /// <summary>
+    /// Maximum seconds between aggro sound plays.
+    /// </summary>
+    [DataField]
+    public float CooldownMax = 15f;
 
     /// <summary>
     /// Time remaining before the aggro sound can play again.

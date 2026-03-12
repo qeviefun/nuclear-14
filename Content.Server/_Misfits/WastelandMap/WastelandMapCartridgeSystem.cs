@@ -1,7 +1,10 @@
 // #Misfits Change - Pip-Boy tactical map cartridge system
 using System.Collections.Generic;
+using Content.Server._Misfits.PipBoy;
 using Content.Server.CartridgeLoader;
+using Content.Shared._Misfits.PipBoy;
 using Content.Shared.CartridgeLoader;
+using Content.Shared.DeltaV.NanoChat;
 using Content.Shared.PDA;
 using Content.Shared._Misfits.WastelandMap;
 using Content.Shared.Tag;
@@ -16,6 +19,7 @@ public sealed class WastelandMapCartridgeSystem : EntitySystem
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
     [Dependency] private readonly WastelandMapSystem _wastelandMap = default!;
     [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private readonly PipBoyNetworkSystem _pipBoy = default!;
 
     // Track which (cartridge, loader) pairs have had their UIFragment set up by the client.
     // We must NOT send WastelandMapBoundUserInterfaceState until after CartridgeUiReadyEvent
@@ -60,6 +64,10 @@ public sealed class WastelandMapCartridgeSystem : EntitySystem
             var feed = GetLoaderFeed(loader, map);
             var mapId = GetViewerMapId(loader);
             var state = _wastelandMap.BuildState(map, mapId, feed);
+
+            // #Misfits Add - Inject PipBoy contact/group blips into the tactical map
+            state = AppendPipBoyBlips(state, loader);
+
             _cartridgeLoader.UpdateCartridgeUiState(loader, state, loader: loaderComp);
         }
     }
@@ -71,6 +79,10 @@ public sealed class WastelandMapCartridgeSystem : EntitySystem
 
         var feed = GetLoaderFeed(args.Loader, component);
         var state = _wastelandMap.BuildState(component, GetViewerMapId(args.Loader), feed);
+
+        // #Misfits Add - Inject PipBoy contact/group blips into the tactical map
+        state = AppendPipBoyBlips(state, args.Loader);
+
         _cartridgeLoader.UpdateCartridgeUiState(args.Loader, state);
     }
 
@@ -135,5 +147,66 @@ public sealed class WastelandMapCartridgeSystem : EntitySystem
             return WastelandMapTacticalFeedKind.Enclave;
 
         return _wastelandMap.GetEffectiveFeed(component);
+    }
+
+    /// <summary>
+    /// #Misfits Add - Appends PipBoy contact and group location blips to the tactical map state.
+    /// If the PDA has a NanoChatCard with PipBoyNetworkComponent, tracked contacts and group members
+    /// appear as blips on the wasteland map.
+    /// </summary>
+    private WastelandMapBoundUserInterfaceState AppendPipBoyBlips(WastelandMapBoundUserInterfaceState state, EntityUid loaderUid)
+    {
+        if (!TryComp<PdaComponent>(loaderUid, out var pda) ||
+            pda.ContainedId is not { } containedId ||
+            !TryComp<PipBoyNetworkComponent>(containedId, out var net) ||
+            !TryComp<NanoChatCardComponent>(containedId, out var card) ||
+            card.Number == null ||
+            net.IsLocked)
+        {
+            return state;
+        }
+
+        var extraBlips = new List<WastelandMapTrackedBlip>();
+
+        // Contact locations
+        var contactLocs = _pipBoy.GetContactLocations((containedId, net));
+        foreach (var loc in contactLocs)
+        {
+            extraBlips.Add(new WastelandMapTrackedBlip(loc.X, loc.Y,
+                $"{loc.Name} #{loc.Number:D4}", WastelandMapTrackedBlipKind.PipBoyContact));
+        }
+
+        // Group member locations (for all groups the user has map tracking enabled)
+        foreach (var (groupId, membership) in net.Groups)
+        {
+            if (!membership.MapTrackingEnabled)
+                continue;
+
+            var groupLocs = _pipBoy.GetGroupLocations(groupId, card.Number.Value);
+            foreach (var loc in groupLocs)
+            {
+                extraBlips.Add(new WastelandMapTrackedBlip(loc.X, loc.Y,
+                    loc.Name, WastelandMapTrackedBlipKind.PipBoyGroupMember));
+            }
+        }
+
+        if (extraBlips.Count == 0)
+            return state;
+
+        // Merge existing blips with PipBoy blips
+        var merged = new WastelandMapTrackedBlip[state.TrackedBlips.Length + extraBlips.Count];
+        state.TrackedBlips.CopyTo(merged, 0);
+        extraBlips.CopyTo(merged, state.TrackedBlips.Length);
+
+        return new WastelandMapBoundUserInterfaceState(
+            state.MapTitle,
+            state.MapTexturePath,
+            state.CompactHud,
+            state.BoundsLeft,
+            state.BoundsBottom,
+            state.BoundsRight,
+            state.BoundsTop,
+            merged,
+            state.SharedAnnotations);
     }
 }

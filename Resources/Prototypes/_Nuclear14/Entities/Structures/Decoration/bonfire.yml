@@ -1,14 +1,67 @@
 - type: entity
-  parent: Bonfire
+  parent: BaseStructure
   id: N14Bonfire
   suffix: Mapping
+  name: bonfire
+  description: A wooden bonfire for heating and cooking.
   components:
+  # Misfits Change /Fix/ Make the constructible bonfire behave as a real player-managed fire source.
+  - type: InteractionOutline
+  - type: Sprite
+    noRot: true
+    sprite: Structures/Decoration/bonfire.rsi
+    layers:
+      - state: bonfire_extinguished
+  - type: Appearance
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+  - type: ExtinguishOnInteract
+    extinguishAttemptSound:
+      path: /Audio/Items/candle_blowing.ogg
+      params:
+        variation: 0.05
+        volume: 10
+  - type: UseDelay
+  - type: Flammable
+    fireSpread: false
+    canResistFire: false
+    alwaysCombustible: true
+    canExtinguish: true
+    firestacksOnIgnite: 3.0
+    firestackFade: -0.01
+    damage:
+      types:
+        Heat: 0.1
+  - type: FireVisuals
+    sprite: Structures/Decoration/bonfire.rsi
+    normalState: burning
+    lightColor: "#FFC90C"
+  - type: AmbientSound
+    enabled: false
+    volume: -5
+    range: 5
+    sound:
+      path: /Audio/Ambience/Objects/fireplace.ogg
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 50
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
   - type: Construction
     graph: N14Bonfire
     node: bonfire
   - type: BonfireHeater
   - type: SolutionHeater
     heatPerSecond: 160
+    requireHot: true
   - type: ItemPlacer
     maxEntities: 8 # big grill, many steaks
     whitelist:

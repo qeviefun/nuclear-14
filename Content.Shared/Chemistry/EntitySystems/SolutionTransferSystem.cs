@@ -72,13 +72,17 @@ public sealed class SolutionTransferSystem : EntitySystem
         var user = args.User;
         foreach (var amount in DefaultTransferAmounts)
         {
+            if (amount < comp.MinimumTransferAmount || amount > comp.MaximumTransferAmount)
+                continue;
+
             AlternativeVerb verb = new();
             verb.Text = Loc.GetString("comp-solution-transfer-verb-amount", ("amount", amount));
             verb.Category = VerbCategory.SetTransferAmount;
             verb.Act = () =>
             {
-                comp.TransferAmount = amount;
-                _popup.PopupClient(Loc.GetString("comp-solution-transfer-set-amount", ("amount", amount)), uid, user);
+                var clampedAmount = FixedPoint2.Clamp(amount, comp.MinimumTransferAmount, comp.MaximumTransferAmount);
+                comp.TransferAmount = clampedAmount;
+                _popup.PopupClient(Loc.GetString("comp-solution-transfer-set-amount", ("amount", clampedAmount)), uid, user);
             };
 
             // we want to sort by size, not alphabetically by the verb text.
@@ -103,7 +107,7 @@ public sealed class SolutionTransferSystem : EntitySystem
             && TryComp<RefillableSolutionComponent>(uid, out var refill)
             && _solution.TryGetRefillableSolution((uid, refill, null), out var ownerSoln, out var ownerRefill))
         {
-            var transferAmount = comp.TransferAmount; // This is the player-configurable transfer amount of "uid," not the target reagent tank.
+            var transferAmount = FixedPoint2.Clamp(comp.TransferAmount, comp.MinimumTransferAmount, comp.MaximumTransferAmount); // This is the player-configurable transfer amount of "uid," not the target reagent tank.
 
             // if the receiver has a smaller transfer limit, use that instead
             if (refill?.MaxRefill is {} maxRefill)
@@ -130,7 +134,7 @@ public sealed class SolutionTransferSystem : EntitySystem
             && _solution.TryGetRefillableSolution((target, targetRefill, null), out targetSoln, out _)
             && _solution.TryGetDrainableSolution(uid, out ownerSoln, out _))
         {
-            var transferAmount = comp.TransferAmount;
+            var transferAmount = FixedPoint2.Clamp(comp.TransferAmount, comp.MinimumTransferAmount, comp.MaximumTransferAmount);
 
             if (targetRefill?.MaxRefill is {} maxRefill)
                 transferAmount = FixedPoint2.Min(transferAmount, maxRefill);

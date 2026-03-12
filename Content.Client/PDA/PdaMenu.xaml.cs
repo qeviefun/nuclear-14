@@ -9,6 +9,14 @@ using Robust.Client.Graphics;
 using Robust.Client.UserInterface.XAML;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Timing;
+using Robust.Shared.Prototypes; // #Misfits Add - for DatasetPrototype
+using Robust.Shared.Random; // #Misfits Add - for random tip selection
+using Content.Shared.Damage; // #Misfits Add - for health status
+using Content.Shared.Mobs.Components; // #Misfits Add - for MobState
+using Content.Shared.Mobs; // #Misfits Add - for MobState enum
+using Content.Shared.Dataset; // #Misfits Add - for DatasetPrototype
+using Content.Shared._Shitmed.Targeting; // #Misfits Add - for body part status
+using Robust.Client.GameObjects; // #Misfits Add - for SpriteSystem
 
 namespace Content.Client.PDA
 {
@@ -18,7 +26,19 @@ namespace Content.Client.PDA
         [Dependency] private readonly IClipboardManager _clipboard = null!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly IEntitySystemManager _entitySystem = default!;
+        [Dependency] private readonly IPrototypeManager _protoManager = default!; // #Misfits Add
+        [Dependency] private readonly IRobustRandom _random = default!; // #Misfits Add
         private readonly ClientGameTicker _gameTicker;
+
+        // #Misfits Add - Fusion battery total capacity in hours (Fallout canon: micro fusion cells last ~100+ years)
+        // We use 876,000 hours (~100 years) as the starting battery value.
+        private const double BatteryTotalHours = 876_000;
+        // #Misfits Add - Random tip selected once per PDA open
+        private string _randomTip = string.Empty;
+        // #Misfits Add - Track the PDA entity for health lookups
+        private EntityUid? _pdaEntity;
+        // #Misfits Add - Body part TextureRects for health doll
+        private Dictionary<TargetBodyPart, TextureRect>? _bodyPartControls;
 
         public const int HomeView = 0;
         public const int ProgramListView = 1;
@@ -44,6 +64,28 @@ namespace Content.Client.PDA
             IoCManager.InjectDependencies(this);
             _gameTicker = _entitySystem.GetEntitySystem<ClientGameTicker>();
             RobustXamlLoader.Load(this);
+
+            // #Misfits Add - Pick a random tip from the Tips dataset on open
+            if (_protoManager.TryIndex<DatasetPrototype>("Tips", out var tips) && tips.Values.Count > 0)
+                _randomTip = _random.Pick(tips.Values);
+            else
+                _randomTip = "Stay alert. The wasteland is unforgiving.";
+
+            // #Misfits Add - Map body part TextureRects for health doll
+            _bodyPartControls = new Dictionary<TargetBodyPart, TextureRect>
+            {
+                { TargetBodyPart.Head, DollHead },
+                { TargetBodyPart.Torso, DollTorso },
+                { TargetBodyPart.Groin, DollGroin },
+                { TargetBodyPart.LeftArm, DollLeftArm },
+                { TargetBodyPart.LeftHand, DollLeftHand },
+                { TargetBodyPart.RightArm, DollRightArm },
+                { TargetBodyPart.RightHand, DollRightHand },
+                { TargetBodyPart.LeftLeg, DollLeftLeg },
+                { TargetBodyPart.LeftFoot, DollLeftFoot },
+                { TargetBodyPart.RightLeg, DollRightLeg },
+                { TargetBodyPart.RightFoot, DollRightFoot }
+            };
 
             ViewContainer.OnChildAdded += control => control.Visible = false;
 
@@ -158,8 +200,9 @@ namespace Content.Client.PDA
             }
 
             _stationName = state.StationName ?? Loc.GetString("comp-pda-ui-unknown");
+            // #Misfits Change - Override location to Wendover, Utah for Nuclear-14
             StationNameLabel.SetMarkup(Loc.GetString("comp-pda-ui-station",
-                ("station", _stationName)));
+                ("station", "Wendover, Utah")));
             
 
             var stationTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
@@ -177,7 +220,8 @@ namespace Content.Client.PDA
                 ("color", alertColor),
                 ("level", _alertLevel)
             ));
-            _instructions = Loc.GetString($"{alertLevelKey}-instructions");
+            // #Misfits Change - Show random tip instead of alert level instructions
+            _instructions = _randomTip;
             StationAlertLevelInstructions.SetMarkup(Loc.GetString(
                 "comp-pda-ui-station-alert-level-instructions",
                 ("instructions", _instructions))
@@ -191,6 +235,136 @@ namespace Content.Client.PDA
             ActivateMusicButton.Visible = state.CanPlayMusic;
             ShowUplinkButton.Visible = state.HasUplink;
             LockUplinkButton.Visible = state.HasUplink;
+
+            // #Misfits Add - Update health status readout
+            UpdateHealthStatus();
+        }
+
+        // #Misfits Add - Set the PDA entity UID for health lookups
+        public void SetPdaEntity(EntityUid pdaUid)
+        {
+            _pdaEntity = pdaUid;
+        }
+
+        // #Misfits Add - Update health status from the PDA holder's components
+        private void UpdateHealthStatus()
+        {
+            var entMan = IoCManager.Resolve<IEntityManager>();
+            var spriteSystem = _entitySystem.GetEntitySystem<SpriteSystem>();
+
+            // Try to find the mob holding this PDA by traversing container hierarchy
+            EntityUid? holder = null;
+            if (_pdaEntity != null)
+            {
+                var xformQuery = entMan.GetEntityQuery<TransformComponent>();
+                var current = _pdaEntity.Value;
+                for (var i = 0; i < 5; i++)
+                {
+                    if (!xformQuery.TryGetComponent(current, out var xform) || xform.ParentUid == EntityUid.Invalid)
+                        break;
+                    current = xform.ParentUid;
+                    if (entMan.HasComponent<MobStateComponent>(current))
+                    {
+                        holder = current;
+                        break;
+                    }
+                }
+            }
+
+            if (holder == null || !entMan.TryGetComponent<MobStateComponent>(holder.Value, out var mobState))
+            {
+                HealthStatusLabel.SetMarkup(Loc.GetString("pipboy-health-header") + " " + Loc.GetString("pipboy-health-state-unknown"));
+                ConditionsLabel.SetMarkup("");
+                return;
+            }
+
+            // Determine overall state string
+            var stateStr = mobState.CurrentState switch
+            {
+                MobState.Alive => Loc.GetString("pipboy-health-state-alive"),
+                MobState.Critical => Loc.GetString("pipboy-health-state-critical"),
+                MobState.Dead => Loc.GetString("pipboy-health-state-dead"),
+                MobState.SoftCritical => Loc.GetString("pipboy-health-state-soft-crit"),
+                _ => Loc.GetString("pipboy-health-state-unknown")
+            };
+
+            HealthStatusLabel.SetMarkup(Loc.GetString("pipboy-health-status-line",
+                ("state", stateStr)));
+
+            // #Misfits Add - Build conditions line from damage groups
+            var conditions = new List<string>();
+            if (entMan.TryGetComponent<DamageableComponent>(holder.Value, out var damageable))
+            {
+                var damagePerGroup = damageable.Damage.GetDamagePerGroup(_protoManager);
+                foreach (var (group, amount) in damagePerGroup)
+                {
+                    if (amount <= 0)
+                        continue;
+
+                    var color = group switch
+                    {
+                        "Brute" => "orange",
+                        "Burn" => "red",
+                        "Toxin" => "lime",
+                        "Airloss" => "deepskyblue",
+                        "Genetic" => "mediumpurple",
+                        _ => "white"
+                    };
+                    conditions.Add($"[color={color}]{group}: {amount}[/color]");
+                }
+            }
+
+            ConditionsLabel.SetMarkup(conditions.Count > 0
+                ? string.Join(" | ", conditions)
+                : Loc.GetString("pipboy-health-no-conditions"));
+
+            // #Misfits Add - Update body doll textures from TargetingComponent
+            if (_bodyPartControls != null && entMan.TryGetComponent<TargetingComponent>(holder.Value, out var targeting))
+            {
+                foreach (var (bodyPart, integrity) in targeting.BodyStatus)
+                {
+                    if (!_bodyPartControls.TryGetValue(bodyPart, out var control))
+                        continue;
+
+                    var enumName = Enum.GetName(typeof(TargetBodyPart), bodyPart)?.ToLowerInvariant() ?? "torso";
+                    var rsi = new SpriteSpecifier.Rsi(
+                        new ResPath($"/Textures/_Shitmed/Interface/Targeting/Status/{enumName}.rsi"),
+                        $"{enumName}_{(int) integrity}");
+                    control.Texture = spriteSystem.Frame0(rsi);
+                }
+
+                // Update side labels with per-region integrity colors
+                UpdateBodyPartLabel(LabelHead, Loc.GetString("pipboy-body-head"), targeting.BodyStatus, TargetBodyPart.Head);
+                UpdateBodyPartLabel(LabelTorso, Loc.GetString("pipboy-body-chest"), targeting.BodyStatus, TargetBodyPart.Torso);
+                UpdateBodyPartLabel(LabelLeftArm, Loc.GetString("pipboy-body-left-arm"), targeting.BodyStatus, TargetBodyPart.LeftArm);
+                UpdateBodyPartLabel(LabelRightArm, Loc.GetString("pipboy-body-right-arm"), targeting.BodyStatus, TargetBodyPart.RightArm);
+                UpdateBodyPartLabel(LabelLeftLeg, Loc.GetString("pipboy-body-left-leg"), targeting.BodyStatus, TargetBodyPart.LeftLeg);
+                UpdateBodyPartLabel(LabelRightLeg, Loc.GetString("pipboy-body-right-leg"), targeting.BodyStatus, TargetBodyPart.RightLeg);
+            }
+        }
+
+        // #Misfits Add - Set a body part label with color based on integrity
+        private static void UpdateBodyPartLabel(RichTextLabel label, string text,
+            Dictionary<TargetBodyPart, TargetIntegrity> status, TargetBodyPart part)
+        {
+            var color = "lime";
+            if (status.TryGetValue(part, out var integrity))
+            {
+                color = integrity switch
+                {
+                    TargetIntegrity.Healthy => "lime",
+                    TargetIntegrity.LightlyWounded => "greenyellow",
+                    TargetIntegrity.SomewhatWounded => "yellow",
+                    TargetIntegrity.ModeratelyWounded => "orange",
+                    TargetIntegrity.HeavilyWounded => "orangered",
+                    TargetIntegrity.CriticallyWounded => "red",
+                    TargetIntegrity.Severed => "darkred",
+                    TargetIntegrity.Dead => "gray",
+                    TargetIntegrity.Disabled => "gray",
+                    _ => "white"
+                };
+            }
+            label.SetMarkup($"[color={color}]{text}[/color]");
         }
 
         public void UpdateAvailablePrograms(List<(EntityUid, CartridgeComponent)> programs)
@@ -336,10 +510,13 @@ namespace Content.Client.PDA
         {
             base.Draw(handle);
 
-            var stationTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
-
+            // #Misfits Change - Battery countdown instead of shift duration
+            var elapsed = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
+            var remainingHours = BatteryTotalHours - elapsed.TotalHours;
+            if (remainingHours < 0) remainingHours = 0;
+            var batteryTs = TimeSpan.FromHours(remainingHours);
             StationTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-station-time",
-                ("time", stationTime.ToString("hh\\:mm\\:ss"))));
+                ("time", $"{(int)batteryTs.TotalHours:N0}h {batteryTs.Minutes:D2}m {batteryTs.Seconds:D2}s")));
         }
     }
 }

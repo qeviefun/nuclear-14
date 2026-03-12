@@ -1,7 +1,10 @@
 using Content.Server.Popups;
+using Content.Server.Chat.Systems;
+using Content.Server._Misfits.Grabbing.Components;
 using Content.Shared.Storage.Components;
 using Content.Shared.Storage;
 using Content.Server.Carrying; // Carrying system from Nyanotrasen.
+using Content.Shared.Chat;
 using Content.Shared.Inventory;
 using Content.Shared.Hands.EntitySystems;
 using Content.Server.Storage.Components;
@@ -9,12 +12,10 @@ using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
 using Content.Shared.Contests;
 using Content.Shared.DoAfter;
-using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction.Events;
-using Content.Shared.Inventory;
+using Content.Shared.IdentityManagement;
 using Content.Shared.Movement.Events;
 using Content.Shared.Resist;
-using Content.Shared.Storage;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 
@@ -22,6 +23,7 @@ namespace Content.Server.Resist;
 
 public sealed class EscapeInventorySystem : EntitySystem
 {
+    [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
@@ -84,7 +86,11 @@ public sealed class EscapeInventorySystem : EntitySystem
         if (component.IsEscaping)
             return;
 
-        var doAfterEventArgs = new DoAfterArgs(EntityManager, user, component.BaseResistTime * multiplier, new EscapeInventoryEvent(), user, target: container)
+        var doAfterTime = component.BaseResistTime * multiplier;
+        if (TryComp<DoubleGrabVictimComponent>(user, out var chokeVictim) && chokeVictim.Carrier == container)
+            doAfterTime = (float) chokeVictim.EscapeTime.TotalSeconds;
+
+        var doAfterEventArgs = new DoAfterArgs(EntityManager, user, doAfterTime, new EscapeInventoryEvent(), user, target: container)
         {
             BreakOnMove = true,
             BreakOnDamage = true,
@@ -96,6 +102,17 @@ public sealed class EscapeInventorySystem : EntitySystem
 
         _popupSystem.PopupEntity(Loc.GetString("escape-inventory-component-start-resisting"), user, user);
         _popupSystem.PopupEntity(Loc.GetString("escape-inventory-component-start-resisting-target"), container, container);
+
+        // #Misfits Change Add: make visible struggling while carried readable in chat.
+        if (TryComp<BeingCarriedComponent>(user, out var carried))
+        {
+            var carrierName = Identity.Entity(carried.Carrier, EntityManager);
+            _chat.TrySendInGameICMessage(user,
+                Loc.GetString("misfits-chat-struggle-carried", ("carrier", carrierName)),
+                InGameICChatType.Emote,
+                ChatTransmitRange.Normal,
+                ignoreActionBlocker: true);
+        }
 
         // Add an escape cancel action
         if (component.EscapeCancelAction is not { Valid: true })

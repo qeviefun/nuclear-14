@@ -233,7 +233,6 @@
       params:
         volume: -3
         maxDistance: 12
-    cooldownDuration: 25
 
 - type: entity
   parent: N14MobRobotHostileMelee
@@ -300,7 +299,6 @@
       params:
         volume: -3
         maxDistance: 12
-    cooldownDuration: 25
 
 - type: entity
   parent: N14MobRobotProtectronHostile
@@ -475,7 +473,6 @@
       params:
         volume: -3
         maxDistance: 10
-    cooldownDuration: 25
 
 - type: entity
   parent: N14MobRobotMrHandyClaw
@@ -512,7 +509,6 @@
       params:
         volume: -3
         maxDistance: 10
-    cooldownDuration: 25
 
 - type: entity
   parent: N14MobRobotHostile
@@ -587,7 +583,6 @@
       params:
         volume: -3
         maxDistance: 10
-    cooldownDuration: 25
 
 - type: entity
   parent: N14MobRobotHostile
@@ -659,7 +654,6 @@
       params:
         volume: -3
         maxDistance: 10
-    cooldownDuration: 25
 
 - type: entity
   parent: N14MobRobotHostile
@@ -722,7 +716,6 @@
       params:
         volume: -3
         maxDistance: 12
-    cooldownDuration: 25
 
 - type: entity
   parent: N14MobRobotHostile
@@ -813,7 +806,6 @@
       params:
         volume: -3
         maxDistance: 12
-    cooldownDuration: 25
 
 - type: entity
   id: N14SentryBotOverloadLightEmitter
@@ -828,7 +820,7 @@
     softness: 2
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
-    netsync: false
+    # Misfits Change /Fix: netsync must be enabled so clients can see the light toggle during overload flash.
 
 # Misfits Change /Add: Sentry Bot - hostile NPC with twin gatling lasers, high HP, and armor
 - type: entity
@@ -853,11 +845,13 @@
       params:
         volume: -3
         maxDistance: 12
-    cooldownDuration: 25
   - type: MovementSpeedModifier
     # Sentry Bots are slow, heavily armored walkers
     baseWalkSpeed: 1.5
     baseSprintSpeed: 2.5
+  # Misfits Change /Add: Prevent players from dragging this robot around.
+  # At 350 HP and covered in combat plating it is far too heavy to be moved.
+  - type: NoPull
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -871,6 +865,8 @@
     damageModifierSet: N14HeavyRobot
   - type: Sprite
     sprite: _Nuclear14/Mobs/Robots/sentrybot.rsi
+    # Misfits Change /Tweak: Scale up 2× so the sentry bot looks imposingly large on screen.
+    scale: 2.0, 2.0
     layers:
     - state: icon
       map: ["movement"]
@@ -902,13 +898,22 @@
   - type: SentryBotOverloadLight
     steadyLightEnabled: true
     flashInterval: 0.35
+  # Misfits Change /Fix: PointLight required on the main entity so SentryBotOverloadLightSystem's
+  # Update() query (which requires both SentryBotOverloadLightComponent and PointLightComponent)
+  # runs correctly and drives the overload flash animation.
+  - type: PointLight
+    enabled: false
+    radius: 0
+    softness: 0
   # Single gatling laser sprite, but still uses the same combat profile and hitscan path.
   - type: Gun
     minAngle: 2
     maxAngle: 12
     angleIncrease: 4
     angleDecay: 12
-    fireRate: 8
+    # Misfits Change /Tweak: reduced from 8 to 3 shots/sec — a sustained gatling beam,
+    # not an instant vaporizer.
+    fireRate: 3
     soundGunshot:
       collection: N14LaserGatlingGunshot
     useKey: false
@@ -921,6 +926,185 @@
   - type: Battery
     maxCharge: 5000
     startingCharge: 5000
+  # Misfits Change /Add: Melee stomp/ram attack used by N14RangedHostileCompound as a fallback
+  # when the gatling laser battery is depleted (HTN tries ranged first, then melee).
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      path: /Audio/Effects/metal_thud1.ogg
+    angle: 0
+    animation: WeaponArcPunch
+    attackRate: 0.75
+    damage:
+      groups:
+        Brute: 20
+  - type: HTN
+    rootTask:
+      task: N14RangedHostileCompound
+    blackboard:
+      NavSmash: !type:Bool
+        true
+      NavClimb: !type:Bool
+        true
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: OnUseTimerTrigger
+    delay: 8
+    initialBeepDelay: 0
+    beepInterval: 1
+    beepSound:
+      path: /Audio/Machines/Nuke/general_beep.ogg
+      params:
+        volume: -2
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: N14DefaultStructural
+    maxIntensity: 4
+    intensitySlope: 4
+    totalIntensity: 24
+    canCreateVacuum: false
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 350
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          N14ScrapElectronic1:
+            min: 2
+            max: 5
+          N14Scrap1:
+            min: 2
+            max: 5
+          N14CurrencyPrewar: #Misfits Change /Add: Drop prewar money on death (10-40)
+            min: 10
+            max: 40
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Machines/AI/borg_death.ogg
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Machines/warning_buzzer.ogg
+          params:
+            volume: 2
+
+# Misfits Change /Add: Ballistic Sentry Bot - same chassis as the laser variant but armed with a
+# 5mm minigun instead of a gatling laser. Once the drum empties the HTN falls back to a heavy stomp.
+# Parented from N14MobRobotHostile (not the laser variant) to avoid conflicting ammo providers.
+- type: entity
+  parent: N14MobRobotHostile
+  id: N14MobRobotSentryBotBallistic
+  name: Sentry Bot
+  description: A pre-war military robot armed with a 5mm minigun and covered in thick armor plating. A terrifying relic of humanity's last war.
+  suffix: hostile, minigun
+  components:
+  - type: IdleSound #Misfits Change /Add - reuse Sentry Bot idle loop set on ballistic variant
+  - type: SpamEmitSound
+    minInterval: 12
+    maxInterval: 40
+    sound:
+      collection: N14SentryIdle
+      params:
+        volume: -6
+        maxDistance: 7
+  - type: AggroSound #Misfits Change /Add - same aggro alert as laser variant
+    sound:
+      collection: N14SentryAttack
+      params:
+        volume: -3
+        maxDistance: 12
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1.5
+    baseSprintSpeed: 2.5
+  # Misfits Change /Add: Prevent players from dragging this robot around.
+  - type: NoPull
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      350: Dead
+    stateAlertDict:
+      Alive: BorgHealth
+      Dead: HumanDead
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: N14HeavyRobot
+  - type: Sprite
+    sprite: _Nuclear14/Mobs/Robots/sentrybot.rsi
+    # Misfits Change /Add: Same 2x scale as the laser variant.
+    scale: 2.0, 2.0
+    layers:
+    - state: icon
+      map: ["movement"]
+    - sprite: _Nuclear14/Objects/Weapons/Guns/Heavy/minigun.rsi
+      state: base
+      offset: 0.0, 0.1
+      scale: 0.55, 0.55
+    - state: icon
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: icon
+      shader: unshaded
+      map: ["light"]
+      visible: false
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: walking
+    noMovementLayers:
+      movement:
+        state: icon
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: icon
+      Dead:
+        Base: dead
+  - type: SentryBotOverloadLight
+    steadyLightEnabled: true
+    flashInterval: 0.35
+  # Dummy PointLight so SentryBotOverloadLightSystem's Update() query finds this entity.
+  - type: PointLight
+    enabled: false
+    radius: 0
+    softness: 0
+  # 5mm minigun: BasicEntityAmmoProvider + recharge simulates drum-feed and reload pause.
+  - type: Gun
+    minAngle: 3
+    maxAngle: 15
+    angleIncrease: 5
+    angleDecay: 10
+    # 4 shots/sec — sustained suppressive minigun fire.
+    fireRate: 4
+    soundGunshot:
+      collection: N14MinigunGunshot
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+  - type: BasicEntityAmmoProvider
+    proto: N14Bullet5mm
+    # 200-round drum — long enough for sustained suppression before the "reload" break.
+    capacity: 200
+    count: 200
+  - type: RechargeBasicEntityAmmo
+    # 8-second reload pause simulates swapping the feed drum.
+    rechargeCooldown: 8
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+  # Fallback stomp/ram when reloading — same HTN compound tries melee automatically.
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      path: /Audio/Effects/metal_thud1.ogg
+    angle: 0
+    animation: WeaponArcPunch
+    attackRate: 0.75
+    damage:
+      groups:
+        Brute: 20
   - type: HTN
     rootTask:
       task: N14RangedHostileCompound

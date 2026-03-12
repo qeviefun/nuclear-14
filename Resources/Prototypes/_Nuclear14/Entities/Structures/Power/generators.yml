@@ -233,17 +233,25 @@
     - state: generator_rust
 
 - type: entity
-  parent: N14GeneratorFusioncore
+  parent: N14BasePortableGeneratorFuel
   id: N14GeneratorPrewar
   description: A dirty old generator that uses fuel to run.
   name: pre-war generator
   components:
+  - type: Transform
+    anchored: true
   - type: Sprite
     sprite: _Nuclear14/Structures/Power/generator.rsi
     layers:
     - state: generator_off
-    - state: generator_on
+      map: [ "enum.GeneratorVisualLayers.Body" ]
     offset: 0.5, 0
+  - type: GenericVisualizer
+    visuals:
+      enum.GeneratorVisuals.Running:
+        enum.GeneratorVisualLayers.Body:
+          True: { state: generator_on }
+          False: { state: generator_off }
   - type: Fixtures
     fixtures:
       fix1:
@@ -255,18 +263,54 @@
         - MachineMask
         layer:
         - MachineLayer
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      output:
+        !type:CableDeviceNode
+        nodeGroupID: HVPower
+  - type: PowerMonitoringDevice
+    group: Generator
+    loadNode: output
+    sprite: _Nuclear14/Structures/Power/generator.rsi
+    state: generator_off
+  - type: PowerSupplier
+    supplyRampRate: 250
+    supplyRampTolerance: 250
 
 - type: entity
-  parent: N14GeneratorPrewar
+  parent: N14BasePortableGeneratorUranium
   id: N14GeneratorPrewarUranium
   description: A dirty old generator that uses raw uranium to run.
   name: pre-war uranium generator
   components:
+  - type: Transform
+    anchored: true
   - type: Sprite
     sprite: _Nuclear14/Structures/Power/generator.rsi
     layers:
     - state: generator_off
-    - state: generator_uranium
+      map: [ "enum.GeneratorVisualLayers.Body" ]
+  - type: GenericVisualizer
+    visuals:
+      enum.GeneratorVisuals.Running:
+        enum.GeneratorVisualLayers.Body:
+          True: { state: generator_uranium }
+          False: { state: generator_off }
+  - type: NodeContainer
+    examinable: true
+    nodes:
+      output:
+        !type:CableDeviceNode
+        nodeGroupID: HVPower
+  - type: PowerMonitoringDevice
+    group: Generator
+    loadNode: output
+    sprite: _Nuclear14/Structures/Power/generator.rsi
+    state: generator_off
+  - type: PowerSupplier
+    supplyRampRate: 250
+    supplyRampTolerance: 250
 
 - type: entity
   parent: N14BaseGenerator
@@ -358,6 +402,73 @@
     color: "#f05e1b"
 
 - type: entity
+  abstract: true
+  parent: PortableGeneratorBase
+  id: N14BasePortableGeneratorFuel
+  components:
+    - type: AmbientSound
+      range: 4
+      volume: -8
+    - type: PortableGenerator
+      startChance: 0.5
+    - type: FuelGenerator
+      targetPower: 5000
+      minTargetPower: 1000
+      optimalPower: 8000
+      maxTargetPower: 8000
+      # 15 minutes at a full 250u tank.
+      optimalBurnRate: 0.11111111
+      fuelEfficiencyConstant: 0.3
+    - type: ChemicalFuelGeneratorAdapter
+      solution: tank
+      reagents:
+        WeldingFuel: 1
+    - type: SolutionContainerManager
+      solutions:
+        tank:
+          maxVol: 250
+          reagents:
+          - ReagentId: WeldingFuel
+            Quantity: 250
+    - type: RefillableSolution
+      solution: tank
+    - type: GeneratorExhaustGas
+      gasType: CarbonDioxide
+      moleRatio: 0.5
+    - type: Explosive
+      #Misfits Change - use the structural-capable N14 explosion profile.
+      explosionType: N14DefaultStructural
+      tileBreakScale: 0
+
+- type: entity
+  abstract: true
+  parent: PortableGeneratorBase
+  id: N14BasePortableGeneratorUranium
+  components:
+    - type: PortableGenerator
+      startChance: 0.7
+    - type: FuelGenerator
+      targetPower: 5000
+      minTargetPower: 1000
+      optimalPower: 5000
+      maxTargetPower: 5000
+      # Roughly one hour on a full 30-sheet hopper.
+      optimalBurnRate: 0.008333333
+      fuelEfficiencyConstant: 0.2
+    - type: SolidFuelGeneratorAdapter
+      fuelMaterial: Uranium
+      multiplier: 0.01
+    - type: MaterialStorage
+      storageLimit: 3000
+      materialWhiteList: [Uranium]
+      storage:
+        Uranium: 3000
+    - type: Explosive
+      #Misfits Change - use the structural-capable N14 explosion profile.
+      explosionType: N14DefaultStructural
+      tileBreakScale: 0
+
+- type: entity
   name: gas powered generator
   description: |-
     A small generator capable of powering individual rooms.
@@ -367,6 +478,8 @@
   id: N14PortableGeneratorWeldingFuel
   suffix: Welding Fuel, 8 kW
   components:
+    - type: Transform
+      anchored: true
     - type: AmbientSound
       range: 4
       volume: -8
@@ -416,6 +529,9 @@
       solutions:
         tank:
           maxVol: 250 #A bucket of welding fuel.
+          reagents:
+          - ReagentId: WeldingFuel
+            Quantity: 250
     - type: RefillableSolution
       solution: tank
     - type: PortableGenerator

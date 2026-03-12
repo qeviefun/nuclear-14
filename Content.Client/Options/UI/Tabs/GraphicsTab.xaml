@@ -41,6 +41,9 @@
                       ToolTip="{Loc 'ui-options-vp-vertical-fit-tooltip'}" />
             <CheckBox Name="ViewportLowResCheckBox" Text="{Loc 'ui-options-vp-low-res'}" />
             <CheckBox Name="ParallaxLowQualityCheckBox" Text="{Loc 'ui-options-parallax-low-quality'}" />
+            <CheckBox Name="TileBlendMasksCheckBox"
+                      Text="{Loc 'ui-options-tile-blend-masks'}"
+                      ToolTip="{Loc 'ui-options-tile-blend-masks-tooltip'}" />
             <CheckBox Name="FpsCounterCheckBox" Text="{Loc 'ui-options-fps-counter'}" />
         </BoxContainer>
         <controls:StripeBack HasBottomEdge="False" HasMargins="False">

@@ -1,7 +1,10 @@
+using Content.Server.Chat.Systems;
 using Content.Server.Popups;
 using Content.Server.Storage.Components;
 using Content.Server.Storage.EntitySystems;
+using Content.Shared.Chat;
 using Content.Shared.DoAfter;
+using Content.Shared.IdentityManagement;
 using Content.Shared.Lock;
 using Content.Shared.Movement.Events;
 using Content.Shared.Popups;
@@ -13,6 +16,7 @@ namespace Content.Server.Resist;
 
 public sealed class ResistLockerSystem : EntitySystem
 {
+    [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly EntityStorageSystem _entityStorage = default!;
     [Dependency] private readonly LockSystem _lockSystem = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
@@ -54,6 +58,15 @@ public sealed class ResistLockerSystem : EntitySystem
 
         resistLockerComponent.IsResisting = true;
         _popupSystem.PopupEntity(Loc.GetString("resist-locker-component-start-resisting"), user, user, PopupType.Large);
+
+        // #Misfits Change Add: struggling inside a locked container should be visible to nearby players.
+        var containerName = Identity.Entity(target, EntityManager);
+        _chat.TrySendInGameICMessage(user,
+            Loc.GetString("misfits-chat-locker-struggle", ("container", containerName)),
+            InGameICChatType.Emote,
+            ChatTransmitRange.Normal,
+            ignoreActionBlocker: true);
+
         _doAfterSystem.TryStartDoAfter(doAfterEventArgs);
     }
 
@@ -81,6 +94,14 @@ public sealed class ResistLockerSystem : EntitySystem
                 _lockSystem.Unlock(uid, args.Args.User, lockComponent);
 
             _entityStorage.TryOpenStorage(args.Args.User, uid);
+
+            // #Misfits Change Add: successful breakout should also broadcast locally.
+            var containerName = Identity.Entity(uid, EntityManager);
+            _chat.TrySendInGameICMessage(args.Args.User,
+                Loc.GetString("misfits-chat-locker-breakout", ("container", containerName)),
+                InGameICChatType.Emote,
+                ChatTransmitRange.Normal,
+                ignoreActionBlocker: true);
         }
 
         args.Handled = true;

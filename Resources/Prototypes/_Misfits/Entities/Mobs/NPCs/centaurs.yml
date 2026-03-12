@@ -96,7 +96,6 @@
       params:
         volume: -3
         maxDistance: 10
-    cooldownDuration: 25
   - type: Sprite
     drawdepth: Mobs
     layers:

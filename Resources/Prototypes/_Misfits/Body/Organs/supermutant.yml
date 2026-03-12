@@ -115,7 +115,7 @@
     removeEmpty: true
     solutionOnBody: false
     solution: "Lung"
-    metabolizerTypes: [ Human ]
+    metabolizerTypes: [ SuperMutant ] # Misfits Change: use SuperMutant metabolizer type
     groups:
     - id: Gas
       rateModifier: 100.0
@@ -147,7 +147,7 @@
     state: heart-on
   - type: Metabolizer
     maxReagents: 2
-    metabolizerTypes: [Human]
+    metabolizerTypes: [SuperMutant] # Misfits Change: use SuperMutant metabolizer type
     groups:
     - id: Medicine
     - id: Poison
@@ -175,7 +175,7 @@
   - type: Stomach
   - type: Metabolizer
     maxReagents: 3
-    metabolizerTypes: [Human]
+    metabolizerTypes: [SuperMutant] # Misfits Change: use SuperMutant metabolizer type
     groups:
     - id: Food
     - id: Drink
@@ -193,7 +193,7 @@
     state: liver
   - type: Metabolizer
     maxReagents: 1
-    metabolizerTypes: [Human]
+    metabolizerTypes: [SuperMutant] # Misfits Change: use SuperMutant metabolizer type
     groups:
     - id: Alcohol
       rateModifier: 0.1
@@ -212,5 +212,5 @@
       - state: kidney-r
   - type: Metabolizer
     maxReagents: 5
-    metabolizerTypes: [Human]
+    metabolizerTypes: [SuperMutant] # Misfits Change: use SuperMutant metabolizer type
     removeEmpty: true

@@ -13,5 +13,11 @@
                SizeFlagsStretchRatio="3"
                HorizontalExpand="True"
                ClipText="True"/>
+        <!-- Misfits Add - Prototype column -->
+        <customControls:VSeparator/>
+        <Label Name="PrototypeLabel"
+               SizeFlagsStretchRatio="3"
+               HorizontalExpand="True"
+               ClipText="True"/>
     </BoxContainer>
 </PanelContainer>

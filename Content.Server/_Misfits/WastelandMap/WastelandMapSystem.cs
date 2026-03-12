@@ -223,6 +223,7 @@ public sealed class WastelandMapSystem : EntitySystem
             WastelandMapTacticalFeedKind.Vault => GetIdCardBlips(mapId, bounds, "IdCardVault"),
             WastelandMapTacticalFeedKind.NCR => GetIdCardBlips(mapId, bounds, "IdCardNCR"),
             WastelandMapTacticalFeedKind.Enclave => GetIdCardBlips(mapId, bounds, "IdCardEnclave"), // #Misfits Change
+            WastelandMapTacticalFeedKind.Legion => GetIdCardBlips(mapId, bounds, "IdCardLegion"), // #Misfits Add - Legion tactical feed
             _ => [],
         };
     }
@@ -301,6 +302,37 @@ public sealed class WastelandMapSystem : EntitySystem
         {
             return WastelandMapTrackedBlipKind.Squire;
         }
+
+        // #Misfits Add - Legion rank detection for the Centurion tactical computer
+        if (source.Contains("legate", StringComparison.OrdinalIgnoreCase) ||
+            source.Contains("centurion", StringComparison.OrdinalIgnoreCase))
+        {
+            return WastelandMapTrackedBlipKind.LegionCenturion;
+        }
+
+        if (source.Contains("decanus", StringComparison.OrdinalIgnoreCase) ||
+            source.Contains("dean", StringComparison.OrdinalIgnoreCase)) // CaesarLegionDean = Decanus in-game
+        {
+            return WastelandMapTrackedBlipKind.LegionDecanus;
+        }
+
+        if (source.Contains("legionnaire", StringComparison.OrdinalIgnoreCase) ||
+            source.Contains("vexillarius", StringComparison.OrdinalIgnoreCase) ||
+            source.Contains("houndmaster", StringComparison.OrdinalIgnoreCase) ||
+            source.Contains("frumentarii", StringComparison.OrdinalIgnoreCase) ||
+            source.Contains("orator", StringComparison.OrdinalIgnoreCase) ||
+            source.Contains("explorer", StringComparison.OrdinalIgnoreCase))
+        {
+            return WastelandMapTrackedBlipKind.LegionWarrior;
+        }
+
+        if (source.Contains("auxilia", StringComparison.OrdinalIgnoreCase) ||
+            source.Contains("recruit", StringComparison.OrdinalIgnoreCase) ||
+            source.Contains("slave", StringComparison.OrdinalIgnoreCase))
+        {
+            return WastelandMapTrackedBlipKind.LegionRecruit;
+        }
+        // End Misfits Add
 
         return WastelandMapTrackedBlipKind.Unknown;
     }

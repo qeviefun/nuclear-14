@@ -175,12 +175,12 @@
   - CaesarLegionLegionnaireVeteran  # Veteran Legionnaire | _Misfits/Roles/Jobs/CaesarLegion/legion_legionnaire_veteran.yml
   - CaesarLegionLegionnaireWarrior  # Legionnaire Warrior | _Misfits/Roles/Jobs/CaesarLegion/legion_legionnaire_warrior.yml
   - CaesarLegionLegionnaireRecruit  # Legionnaire Recruit | _Misfits/Roles/Jobs/CaesarLegion/legion_legionnaire_recruit.yml
-  # Specialists # #Misfits Change /Fix/: Reordered Explorer below Frumentarii; Auxilia below Houndmaster above Recruit
-  - CaesarLegionFrumentarii     # Frumentarii         | _Misfits/Roles/Jobs/CaesarLegion/legion_venator.yml
-  - CaesarLegionExplorer        # Explorer            | _Misfits/Roles/Jobs/CaesarLegion/legion_explorer.yml
-  - CaesarLegionVexillarius     # Vexillarius         | _Misfits/Roles/Jobs/CaesarLegion/legion_vexillarius.yml
-  - CaesarLegionOrator          # Orator              | _Misfits/Roles/Jobs/CaesarLegion/legion_orator.yml
+  # Specialists # #Misfits Change /Fix/: Match Character Setup and Latejoin order to the requested Legion rank grouping.
   - CaesarLegionHoundmaster     # Houndmaster         | _Misfits/Roles/Jobs/CaesarLegion/legion_houndmaster.yml
+  - CaesarLegionFrumentarii     # Frumentarii         | _Misfits/Roles/Jobs/CaesarLegion/legion_venator.yml
+  - CaesarLegionVexillarius     # Vexillarius         | _Misfits/Roles/Jobs/CaesarLegion/legion_vexillarius.yml
+  - CaesarLegionExplorer        # Explorer            | _Misfits/Roles/Jobs/CaesarLegion/legion_explorer.yml
+  - CaesarLegionOrator          # Orator              | _Misfits/Roles/Jobs/CaesarLegion/legion_orator.yml
   - CaesarLegionAuxilia         # Auxilia             | _Misfits/Roles/Jobs/CaesarLegion/legion_auxilia.yml
   # Recruits
   - CaesarLegionRecruit         # Recruit             | _Misfits/Roles/Jobs/CaesarLegion/legion_recruit.yml

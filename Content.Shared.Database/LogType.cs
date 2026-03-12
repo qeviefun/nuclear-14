@@ -112,4 +112,7 @@ public enum LogType
     /// Storage & entity-storage related interactions
     /// </summary>
     Storage = 93,
+
+    // #Misfits Add - RMC holster logging
+    RMCHolster = 200,
 }

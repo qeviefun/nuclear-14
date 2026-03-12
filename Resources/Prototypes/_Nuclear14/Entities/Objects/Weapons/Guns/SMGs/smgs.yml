@@ -4,6 +4,7 @@
   abstract: true
   components:
   - type: Wieldable
+    wieldedSpeedModifier: 0.9
   - type: MagazineVisuals
     magState: mag
     steps: 1

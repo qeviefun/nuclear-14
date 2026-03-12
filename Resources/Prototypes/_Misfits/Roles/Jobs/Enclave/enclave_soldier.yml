@@ -1,0 +1,50 @@
+# #Misfits Add - Enclave soldier role with explicit job-whitelist visibility.
+
+- type: job
+  id: EnclaveSoldier
+  setPreference: true
+  hideWithoutJobWhitelist: true
+  weight: 110
+  overrideConsoleVisibility: false
+  canBeAntag: false
+  name: job-name-enclave-soldier
+  description: job-description-enclave-soldier
+  playTimeTracker: EnclaveSoldier
+  requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+  startingGear: EnclaveSoldierGear
+  icon: "JobIconNcrSoldier"
+  supervisors: job-supervisors-enclave
+  alwaysUseSpawner: true
+  access:
+  - Enclave
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Enclave
+
+- type: startingGear
+  id: EnclaveSoldierGear
+  equipment:
+    head: N14ClothingHeadHatEnclavePeacekeeperCap
+    back: N14ClothingBackpackMilitary
+    jumpsuit: N14ClothingUniformJumpsuitEnclave
+    outerClothing: N14ClothingOuterEnclavePeacekeeper
+    shoes: N14ClothingBootsCombatFilled
+    gloves: N14ClothingHandsGlovesCombat
+    belt: ClothingBeltMilitary
+    ears: N14ClothingHeadsetEnclave
+    pocket1: EnclaveSoldierloadoutkits
+    id: N14IDEnclaveTrooper
+  satchel: N14ClothingBackpackSatchelMilitaryFilled
+  duffelbag: N14ClothingBackpackDuffelMilitaryFilled
+  storage:
+    back:
+    - N14BoxPlasticFilledMilitary
+
+- type: playTimeTracker
+  id: EnclaveSoldier

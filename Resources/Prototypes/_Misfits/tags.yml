@@ -18,6 +18,24 @@
 - type: Tag
   id: IdCardEnclave # #Misfits Change
 
+# #Misfits Add - Tag for Legion faction map blip tracking.
+# Applied to every Legion ID card / medallion / badge so the
+# Centurion tactical computer (N14LegionTacticalComputer) can
+# display ALL active Legion members on the map.
+# Checklist for adding new faction maps:
+#   1. Add tag here
+#   2. Add tag to each faction ID entity (Tag component, preserve DoorBumpOpener via parent)
+#   3. Add enum value in WastelandMapTacticalFeedKind (WastelandMapComponent.cs)
+#   4. Handle in WastelandMapSystem.GetTrackedBlips()
+#   5. Handle in WastelandMapCartridgeSystem.GetLoaderFeed() if Pip-Boy support is wanted
+- type: Tag
+  id: IdCardLegion # #Misfits Add - used by Legion tactical feed
+
+# #Misfits Add - Tag for wastelander dogtags to allow insertion into Pip-Boy idSlot.
+# Without a faction-specific tag, wastelander dogtags would be rejected by the PDA whitelist.
+- type: Tag
+  id: IdCardWastelander
+
 # #Misfits Change - Tag for Super Mutant species-specific clothing.
 # Used by the supermutant inventory template whitelist to restrict body-worn slots.
 - type: Tag

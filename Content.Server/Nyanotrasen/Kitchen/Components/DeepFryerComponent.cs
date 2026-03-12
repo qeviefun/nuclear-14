@@ -16,6 +16,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 
 namespace Content.Server.Nyanotrasen.Kitchen.Components
 {
+    // #Misfits Change /Add/ - Add a configurable completion cue when an item first becomes deep-fried.
     [RegisterComponent]
     [Access(typeof(SharedDeepfryerSystem))]
     // This line appears to be depracted: [ComponentReference(typeof(SharedDeepFryerComponent))]
@@ -189,6 +190,12 @@ namespace Content.Server.Nyanotrasen.Kitchen.Components
         [ViewVariables(VVAccess.ReadWrite)]
         [DataField("unsafeOilVolumeEffects")]
         public List<EntityEffect> UnsafeOilVolumeEffects = new();
+
+        /// <summary>
+        /// Played when an item successfully finishes its first fry pass.
+        /// </summary>
+        [DataField("fryDoneSound")]
+        public SoundSpecifier FryDoneSound = new SoundPathSpecifier("/Audio/Machines/microwave_done_beep.ogg");
 
         /// <summary>
         /// What is the temperature of the vat when the deep fryer is powered?

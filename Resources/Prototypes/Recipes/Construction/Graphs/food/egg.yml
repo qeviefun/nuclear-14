@@ -6,6 +6,9 @@
   - node: start
     edges:
     - to: boiled
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Effects/sizzle.ogg
       steps:
       - minTemperature: 344
   - node: boiled

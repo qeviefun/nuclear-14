@@ -1216,6 +1216,21 @@
   id: Skewer
 
 - type: Tag
+  id: SkewerCorn
+
+- type: Tag
+  id: SkewerMushroom
+
+- type: Tag
+  id: SkewerPepper
+
+- type: Tag
+  id: SkewerRat
+
+- type: Tag
+  id: SkewerTomato
+
+- type: Tag
   id: Slice # sliced fruit, vegetables, pizza etc.
 
 - type: Tag

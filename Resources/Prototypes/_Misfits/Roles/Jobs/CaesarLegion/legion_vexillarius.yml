@@ -3,7 +3,7 @@
   setPreference: true
   hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
   jobWhitelistBypassesRoleTimers: true # #Misfits Change
-  weight: 40
+  weight: 45
   name: job-name-caesar-legion-vexillarius
   description: job-description-caesar-legion-vexillarius
   playTimeTracker: CaesarLegionVexillarius
@@ -45,7 +45,7 @@
     mask: N14ClothingMaskBrownMask
     back: N14ClothingBackpackMilitary
     shoes: N14ClothingShoesKaligi
-    head: N14ClothingHeadHatVexillariusHelmet
+    head: N14ClothingHeadHatLegionHood #Misfits Change /Tweak/: Uses the renamed vexillarius helmet (LegionHood ID)
     outerClothing: N14ClothingOuterLegionnaireVexillariusArmor
     gloves: N14ClothingHandsGlovesTribal
     belt: N14Gladius

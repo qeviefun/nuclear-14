@@ -1,0 +1,102 @@
+# #Misfits Add: Localized Fallout ambience hooks and supporting sound collections for N14.
+
+- type: rules
+  id: NearN14Cave
+  rules:
+    - !type:NearbyTilesPercentRule
+      percent: 0.25
+      tiles:
+        - FloorCave
+        - FloorCaveDrought
+      range: 3
+
+- type: rules
+  id: NearN14Vault
+  rules:
+    - !type:NearbyTilesPercentRule
+      percent: 0.25
+      tiles:
+        - FloorRockVault
+      range: 3
+
+- type: rules
+  id: NearN14Shack
+  rules:
+    - !type:NearbyTilesPercentRule
+      percent: 0.35
+      tiles:
+        - FloorDirtIndoors
+      range: 3
+
+- type: ambientMusic
+  id: N14LocalizedWasteland
+  sound:
+    params:
+      volume: -12
+    collection: N14AmbienceWastelandLocalized
+  rules: NearWasteland
+  priority: 2
+
+- type: ambientMusic
+  id: N14LocalizedShack
+  sound:
+    params:
+      volume: -11
+    collection: N14AmbienceShackLocalized
+  rules: NearN14Shack
+  priority: 3
+
+- type: ambientMusic
+  id: N14LocalizedCave
+  sound:
+    params:
+      volume: -10
+    collection: N14AmbienceCaveLocalized
+  rules: NearN14Cave
+  priority: 4
+
+- type: ambientMusic
+  id: N14LocalizedVault
+  sound:
+    params:
+      volume: -10
+    collection: N14AmbienceVaultLocalized
+  rules: NearN14Vault
+  priority: 5
+
+- type: soundCollection
+  id: N14TerminalKeyboard
+  files:
+    - /Audio/_Misfits/N14/Machines/terminalkeytap01.ogg
+    - /Audio/_Misfits/N14/Machines/terminalmenuenter.ogg
+    - /Audio/_Misfits/N14/Machines/terminalmenucancel.ogg
+
+- type: soundCollection
+  id: N14AmbienceWastelandLocalized
+  files:
+    - /Audio/_Misfits/N14/Ambience/wasteland.ogg
+    - /Audio/_Misfits/N14/Ambience/bird_1.ogg
+    - /Audio/_Misfits/N14/Ambience/bird_2.ogg
+    - /Audio/_Misfits/N14/Ambience/bird_3.ogg
+    - /Audio/_Misfits/N14/Ambience/bird_4.ogg
+    - /Audio/_Misfits/N14/Ambience/bird_5.ogg
+    - /Audio/_Misfits/N14/Ambience/bird_6.ogg
+    - /Audio/_Misfits/N14/Ambience/bird_7.ogg
+    - /Audio/_Misfits/N14/Ambience/bird_8.ogg
+
+- type: soundCollection
+  id: N14AmbienceShackLocalized
+  files:
+    - /Audio/_Misfits/N14/Ambience/shack.ogg
+    - /Audio/_Misfits/N14/Ambience/building.ogg
+
+- type: soundCollection
+  id: N14AmbienceCaveLocalized
+  files:
+    - /Audio/_Misfits/N14/Ambience/cave.ogg
+
+- type: soundCollection
+  id: N14AmbienceVaultLocalized
+  files:
+    - /Audio/_Misfits/N14/Ambience/enclave_vault.ogg
+    - /Audio/_Misfits/N14/Ambience/vaulttec_vault.ogg

@@ -153,7 +153,10 @@ public sealed partial class MoveToOperator : HTNOperator, IHtnConditionalShutdow
 
         if (blackboard.TryGetValue<PathResultEvent>(PathfindKey, out var result, _entManager))
         {
-            if (blackboard.TryGetValue<EntityCoordinates>(NPCBlackboard.OwnerCoordinates, out var coordinates, _entManager))
+            // Misfits Fix - Guard against stale entity references: the target entity may have been
+            // deleted between planning and execution, which produces ERRO spam in the transform system.
+            if (blackboard.TryGetValue<EntityCoordinates>(NPCBlackboard.OwnerCoordinates, out var coordinates, _entManager)
+                && _entManager.EntityExists(targetCoordinates.EntityId))
             {
                 var mapCoords = coordinates.ToMap(_entManager, _transform);
                 _steering.PrunePath(uid, mapCoords, targetCoordinates.ToMapPos(_entManager, _transform) - mapCoords.Position, result.Path);

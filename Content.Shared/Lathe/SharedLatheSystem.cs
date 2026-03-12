@@ -16,6 +16,8 @@ namespace Content.Shared.Lathe;
 /// </summary>
 public abstract class SharedLatheSystem : EntitySystem
 {
+    // #Misfits Change Fix: Workbench craftability should include raw materials stored in the
+    // bench's Storage container, not only the internal MaterialStorage pool.
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly SharedMaterialStorageSystem _materialStorage = default!;
 
@@ -58,7 +60,7 @@ public abstract class SharedLatheSystem : EntitySystem
         {
             var adjustedAmount = AdjustMaterial(needed, recipe.ApplyMaterialDiscount, component.MaterialUseMultiplier);
 
-            if (_materialStorage.GetMaterialAmount(uid, material) < adjustedAmount * amount)
+            if (_materialStorage.GetAvailableMaterialAmount(uid, material) < adjustedAmount * amount)
                 return false;
         }
         return true;

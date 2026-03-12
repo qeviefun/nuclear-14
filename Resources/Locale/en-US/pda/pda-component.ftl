@@ -22,17 +22,18 @@ pda-bound-user-interface-show-uplink-description = Access your uplink
 pda-bound-user-interface-lock-uplink-title = Lock Uplink
 pda-bound-user-interface-lock-uplink-description = Prevent anyone from accessing your uplink without the code
 
-comp-pda-ui-menu-title = PDA
+# #Misfits Change - Pip-Boy themed PDA strings for Nuclear-14
+comp-pda-ui-menu-title = Pip-Boy
 
-comp-pda-ui-footer = Personal Digital Assistant
+comp-pda-ui-footer = Pip-Boy 3000 Mark IV
 
-comp-pda-ui-station = Station: [color=white]{$station}[/color]
+comp-pda-ui-station = Location: [color=white]{$station}[/color]
 
-comp-pda-ui-station-alert-level = Alert Level: [color={ $color }]{ $level }[/color]
+comp-pda-ui-station-alert-level = Weather: [color={ $color }]{ $level }[/color]
 
-comp-pda-ui-station-alert-level-instructions = Instructions: [color=white]{ $instructions }[/color]
+comp-pda-ui-station-alert-level-instructions = Tip: [color=white]{ $instructions }[/color]
 
-comp-pda-ui-station-time = Shift duration: [color=white]{ $time }[/color]
+comp-pda-ui-station-time = Battery Power: [color=white]{ $time }[/color]
 
 comp-pda-ui-eject-id-button = Eject ID
 
@@ -40,7 +41,7 @@ comp-pda-ui-eject-pen-button = Eject Pen
 
 comp-pda-ui-ringtone-button = Ringtone
 
-comp-pda-ui-ringtone-button-description = Change your PDA's ringtone
+comp-pda-ui-ringtone-button-description = Change your Pip-Boy's ringtone
 
 comp-pda-ui-toggle-flashlight-button = Toggle Flashlight
 

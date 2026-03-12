@@ -63,7 +63,8 @@
     castShadows: false
   - type: EmitSoundOnUIOpen
     sound:
-      collection: Keyboard
+      # #Misfits Change: Swap the generic keyboard collection for imported Fallout terminal taps.
+      collection: N14TerminalKeyboard
   - type: Appearance
   - type: GenericVisualizer
     visuals:

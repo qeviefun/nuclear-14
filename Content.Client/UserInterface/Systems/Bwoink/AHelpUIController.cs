@@ -39,7 +39,8 @@ public sealed class AHelpUIController: UIController, IOnSystemChanged<BwoinkSyst
     [UISystemDependency] private readonly AudioSystem _audio = default!;
 
     private BwoinkSystem? _bwoinkSystem;
-    private MenuButton? GameAHelpButton => UIManager.GetActiveUIWidgetOrNull<GameTopMenuBar>()?.AHelpButton;
+    // #Misfits Change - AHelpButton removed from XAML; combined HelpButton handled by HelpSelectorUIController
+    private MenuButton? GameAHelpButton => null;
     private Button? LobbyAHelpButton => (UIManager.ActiveScreen as LobbyGui)?.AHelpButton;
     public IAHelpUIHandler? UIHelper;
 

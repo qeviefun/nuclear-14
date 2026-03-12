@@ -79,7 +79,7 @@
   items:
     - N14WeaponPistol9mm
 
-# Shotguns
+## Shotguns
 - type: loadout
   id: N14WeaponShotgunDoubleBarrel
   category: Weapons
@@ -102,8 +102,8 @@
   items:
     - N14WeaponShotgunDoubleBarrel
 
-# Rifles
-
+## Rifles
+#
 - type: loadout
   id: N14WeaponRifle556Pipe
   category: Weapons
@@ -126,7 +126,7 @@
   items:
     - N14WeaponRifle556Pipe
 
-# Ammo
+## Ammo
 - type: loadout
   id: N14SpeedLoader9
   category: Weapons
@@ -147,7 +147,7 @@
   items:
     - SpeedLoader9
 
-# Melee
+## Melee
 - type: loadout
   id: N14KitchenKnife
   category: Weapons
@@ -199,3 +199,49 @@
         - Tribe
   items:
     - N14WastelandTribalSpear
+
+# Misfits Change - Added: tribal club, hatchet, machete, tribal sword
+# Misfits Fix - N14TribalClub loadout already defined in _Nuclear14/Loadouts/Roles/loadouts_tribe.yml
+#- type: loadout
+#  id: N14TribalClub
+#  category: Weapons
+#  cost: 2
+#  requirements:
+#    - !type:CharacterItemGroupRequirement
+#      group: N14LoadoutMelee
+#  items:
+#    - N14TribalClub
+
+- type: loadout
+  id: N14Hatchet
+  category: Weapons
+  cost: 2
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: N14LoadoutMelee
+  items:
+    - N14Hatchet
+
+- type: loadout
+  id: N14Machete
+  category: Weapons
+  cost: 3
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: N14LoadoutMelee
+  items:
+    - N14Machete
+
+- type: loadout
+  id: N14TribalSword
+  category: Weapons
+  cost: 3
+  requirements:
+    - !type:CharacterItemGroupRequirement
+      group: N14LoadoutMelee
+    - !type:CharacterDepartmentRequirement
+      departments:
+        - Wastelander
+        - Tribe
+  items:
+    - N14TribalSword

@@ -1,5 +1,6 @@
 using Content.Server.Ghost.Components;
 using Content.Server.Popups;
+using Content.Shared.Examine;
 using Content.Shared.Ghost;
 using Content.Shared.Interaction;
 using Content.Shared.Movement.Pulling.Components;
@@ -26,6 +27,7 @@ public sealed class WarperSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<WarperComponent, InteractHandEvent>(OnInteractHand);
         SubscribeLocalEvent<WarperComponent, ActivateInWorldEvent>(OnActivateInWorld);
+        SubscribeLocalEvent<WarperComponent, ExaminedEvent>(OnExamined);
     }
 
     private void OnInteractHand(EntityUid uid, WarperComponent component, InteractHandEvent args)
@@ -38,6 +40,18 @@ public sealed class WarperSystem : EntitySystem
         // #Misfits Change /Fix/: support hotkey world activation so E triggers ladder warps too.
         if (TryWarpUser(uid, component, args.User, args.Target))
             args.Handled = true;
+    }
+
+    private void OnExamined(EntityUid uid, WarperComponent component, ExaminedEvent args)
+    {
+        if (!args.IsInDetailsRange)
+            return;
+
+        if (!TryComp(args.Examiner, out GhostComponent? ghost) || ghost.CanGhostInteract)
+            return;
+
+        // #Misfits Change /Fix/: regular ghosts cannot hand-interact, so let close-range examine traverse ladders.
+        TryWarpUser(uid, component, args.Examiner, uid);
     }
 
     private bool TryWarpUser(EntityUid uid, WarperComponent component, EntityUid user, EntityUid target)

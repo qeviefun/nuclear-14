@@ -2,6 +2,7 @@ using Content.Server.Atmos.Rotting;
 using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
 using Content.Server.Forensics;
+using Content.Shared.Chat;
 using Content.Shared.Body.Organ;
 using Content.Shared.Body.Part;
 using Content.Server.Popups;
@@ -28,6 +29,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using System.Linq;
 using Content.Shared.Verbs;
+using Content.Shared.IdentityManagement; // #Misfits Change Add: Identity.Entity for surgery chat messages
 
 namespace Content.Server._Shitmed.Medical.Surgery;
 
@@ -126,6 +128,23 @@ public sealed class SurgerySystem : SharedSurgerySystem
         {
             _popup.PopupEntity(Loc.GetString("surgery-error-self-surgery"), user, user);
             return;
+        }
+
+        // #Misfits Change Add: starting surgery on another player should surface in the local emote channel.
+        if (user != target)
+        {
+            var targetName = Identity.Entity(target, EntityManager);
+            var userName = Identity.Entity(user, EntityManager);
+            _chat.TrySendInGameICMessage(user,
+                Loc.GetString("misfits-chat-surgery-start", ("target", targetName)),
+                InGameICChatType.Emote,
+                ChatTransmitRange.Normal,
+                ignoreActionBlocker: true);
+            _chat.TrySendInGameICMessage(target,
+                Loc.GetString("misfits-chat-surgery-victim", ("user", userName)),
+                InGameICChatType.Emote,
+                ChatTransmitRange.Normal,
+                ignoreActionBlocker: true);
         }
 
         _ui.OpenUi(target, SurgeryUIKey.Key, user);

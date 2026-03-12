@@ -41,6 +41,9 @@
         layer:
         - MachineLayer
   - type: DeepFryer
+    # #Misfits Change /Add/ - Reuse the machine done beep when the first fry stage completes.
+    fryDoneSound:
+      path: /Audio/Machines/microwave_done_beep.ogg
     blacklist:
       components:
       # The classic.

@@ -31,6 +31,9 @@ namespace Content.Client.PDA
             _menu = this.CreateWindow<PdaMenu>();
             _menu.OpenCenteredLeft();
 
+            // #Misfits Add - Pass the PDA entity UID for health status lookups
+            _menu.SetPdaEntity(Owner);
+
             _menu.FlashLightToggleButton.OnToggled += _ =>
             {
                 SendMessage(new PdaToggleFlashlightMessage());

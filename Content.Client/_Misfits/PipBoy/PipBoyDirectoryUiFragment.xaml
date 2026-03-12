@@ -1,0 +1,118 @@
+<!-- #Misfits Add - PipBoy Directory program UI (split from PipBoy Hub). -->
+<pipboy:PipBoyDirectoryUiFragment
+    xmlns="https://spacestation14.io"
+    xmlns:pipboy="clr-namespace:Content.Client._Misfits.PipBoy"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    Orientation="Vertical"
+    HorizontalExpand="True"
+    VerticalExpand="True"
+    Margin="5">
+
+    <!-- Lock message -->
+    <Label Name="LockedLabel"
+           Text="{Loc pipboy-hub-locked-title}"
+           StyleClasses="LabelHeading"
+           HorizontalAlignment="Center"
+           VerticalAlignment="Center"
+           Visible="False" />
+
+    <BoxContainer Name="MainPanel"
+                  Orientation="Vertical"
+                  HorizontalExpand="True"
+                  VerticalExpand="True">
+
+        <!-- Header -->
+        <controls:StripeBack MinSize="48 48" VerticalExpand="False">
+            <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                <Label Text="{Loc pipboy-hub-tab-directory}"
+                       StyleClasses="LabelHeading"
+                       HorizontalExpand="True"
+                       Margin="8 0"
+                       VerticalAlignment="Center" />
+                <Label Name="OwnNumberLabel"
+                       Text="#0000"
+                       StyleClasses="LabelSubText"
+                       VerticalAlignment="Center"
+                       Margin="0 0 8 0" />
+            </BoxContainer>
+        </controls:StripeBack>
+
+        <Label Text="{Loc pipboy-hub-directory-header}"
+               StyleClasses="LabelSubText"
+               Margin="0 2" />
+
+        <!-- Directory list -->
+        <PanelContainer StyleClasses="AngleRect" VerticalExpand="True" HorizontalExpand="True">
+            <ScrollContainer VerticalExpand="True" HorizontalExpand="True" HScrollEnabled="False">
+                <BoxContainer Name="DirectoryList"
+                              Orientation="Vertical"
+                              VerticalExpand="True"
+                              HorizontalExpand="True"
+                              Margin="4">
+                    <Label Name="NoDirectoryLabel"
+                           Text="{Loc pipboy-hub-no-directory}"
+                           HorizontalAlignment="Center"
+                           StyleClasses="LabelSubText" />
+                </BoxContainer>
+            </ScrollContainer>
+        </PanelContainer>
+
+        <!-- Directory message row -->
+        <BoxContainer Name="DirectoryMessageRow"
+                      Orientation="Horizontal"
+                      HorizontalExpand="True"
+                      Margin="0 2 0 0"
+                      Visible="False">
+            <Label Name="DirectoryMessageTarget"
+                   Text=""
+                   StyleClasses="LabelSubText"
+                   VerticalAlignment="Center"
+                   Margin="0 0 4 0" />
+            <LineEdit Name="DirectoryMessageInput"
+                      PlaceHolder="{Loc pipboy-hub-message-placeholder}"
+                      HorizontalExpand="True"
+                      StyleClasses="OpenRight" />
+            <Button Name="DirectorySendBtn"
+                    Text="{Loc pipboy-hub-send}"
+                    MinWidth="50"
+                    StyleClasses="OpenLeft" />
+        </BoxContainer>
+
+        <!-- Dead Drop panel -->
+        <PanelContainer Name="DeadDropPanel"
+                        StyleClasses="AngleRect"
+                        MaxHeight="140"
+                        Margin="0 4 0 0">
+            <BoxContainer Orientation="Vertical" Margin="4">
+                <Label Text="{Loc pipboy-hub-dead-drop-header}"
+                       StyleClasses="LabelHeading" />
+
+                <ScrollContainer MaxHeight="60" HScrollEnabled="False">
+                    <BoxContainer Name="DeadDropList"
+                                  Orientation="Vertical" />
+                </ScrollContainer>
+                <Label Name="NoDeadDropsLabel"
+                       Text="{Loc pipboy-hub-no-dead-drops}"
+                       StyleClasses="LabelSubText"
+                       HorizontalAlignment="Center" />
+
+                <!-- Create dead drop -->
+                <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="0 2 0 0">
+                    <LineEdit Name="DeadDropContentInput"
+                              PlaceHolder="{Loc pipboy-hub-dead-drop-content-placeholder}"
+                              HorizontalExpand="True"
+                              StyleClasses="OpenRight" />
+                    <LineEdit Name="DeadDropTargetInput"
+                              PlaceHolder="{Loc pipboy-hub-dead-drop-target-placeholder}"
+                              MinWidth="80"
+                              Margin="2 0 0 0" />
+                    <Button Name="DeadDropCreateBtn"
+                            Text="{Loc pipboy-hub-dead-drop-create}"
+                            MinWidth="50"
+                            StyleClasses="OpenLeft"
+                            Margin="2 0 0 0" />
+                </BoxContainer>
+            </BoxContainer>
+        </PanelContainer>
+    </BoxContainer>
+</pipboy:PipBoyDirectoryUiFragment>

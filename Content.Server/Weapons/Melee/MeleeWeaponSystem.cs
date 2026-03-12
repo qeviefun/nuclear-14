@@ -13,7 +13,6 @@ using Content.Shared.Effects;
 using Content.Shared.Hands.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Popups;
 using Content.Shared.Speech.Components;
 using Content.Shared.StatusEffect;
 using Content.Shared.Weapons.Melee;
@@ -21,6 +20,9 @@ using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
+using Robust.Shared.Physics;
+using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
@@ -32,6 +34,9 @@ namespace Content.Server.Weapons.Melee;
 
 public sealed class MeleeWeaponSystem : SharedMeleeWeaponSystem
 {
+    // #Misfits Change /Fix/: give empty-hand shoves a short, visible displacement instead of only stamina feedback.
+    private const float ShoveImpulse = 6f;
+
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
@@ -40,6 +45,8 @@ public sealed class MeleeWeaponSystem : SharedMeleeWeaponSystem
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
     [Dependency] private readonly ContestsSystem _contests = default!;
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     public override void Initialize()
     {
@@ -157,33 +164,22 @@ public sealed class MeleeWeaponSystem : SharedMeleeWeaponSystem
             return false;
         }
 
-        var filterOther = Filter.PvsExcept(user, entityManager: EntityManager);
-        var msgPrefix = "disarm-action-";
-
-        if (inTargetHand == null)
-            msgPrefix = "disarm-action-shove-";
-
-        var msgOther = Loc.GetString(
-                msgPrefix + "popup-message-other-clients",
-                ("performerName", Identity.Entity(user, EntityManager)),
-                ("targetName", Identity.Entity(target, EntityManager)));
-
-        var msgUser = Loc.GetString(msgPrefix + "popup-message-cursor", ("targetName", Identity.Entity(target, EntityManager)));
-
-        PopupSystem.PopupEntity(msgOther, user, filterOther, true);
-        PopupSystem.PopupEntity(msgUser, target, user);
-
-        _audio.PlayPvs(combatMode.DisarmSuccessSound, user, AudioParams.Default.WithVariation(0.025f).WithVolume(5f));
-        AdminLogger.Add(LogType.DisarmedAction, $"{ToPrettyString(user):user} used disarm on {ToPrettyString(target):target}");
-
         var staminaDamage = (TryComp<ShovingComponent>(user, out var shoving) ? shoving.StaminaDamage : ShovingComponent.DefaultStaminaDamage)
             * Math.Clamp(chance, 0f, 1f);
 
         var eventArgs = new DisarmedEvent { Target = target, Source = user, PushProbability = chance, StaminaDamage = staminaDamage };
         RaiseLocalEvent(target, eventArgs);
 
+        // #Misfits Change /Fix/: if nothing else handled an empty-hand disarm, convert it into an actual shove impulse.
+        if (!eventArgs.Handled && inTargetHand == null)
+            eventArgs.Handled = TryShoveTarget(user, target);
+
         if (!eventArgs.Handled)
             return false;
+
+        var emoteKey = inTargetHand == null ? "disarm-action-shove-emote" : "disarm-action-emote";
+        var emoteMessage = Loc.GetString(emoteKey, ("targetName", Identity.Entity(target, EntityManager)));
+        _chat.TrySendInGameICMessage(user, emoteMessage, InGameICChatType.Emote, ChatTransmitRange.Normal, ignoreActionBlocker: true);
 
         _audio.PlayPvs(combatMode.DisarmSuccessSound, user, AudioParams.Default.WithVariation(0.025f).WithVolume(5f));
         AdminLogger.Add(LogType.DisarmedAction, $"{ToPrettyString(user):user} used disarm on {ToPrettyString(target):target}");
@@ -209,6 +205,24 @@ public sealed class MeleeWeaponSystem : SharedMeleeWeaponSystem
     {
         var filter = Filter.Pvs(targetXform.Coordinates, entityMan: EntityManager).RemoveWhereAttachedEntity(o => o == user);
         _color.RaiseEffect(Color.Red, targets, filter);
+    }
+
+    private bool TryShoveTarget(EntityUid user, EntityUid target)
+    {
+        if (!TryComp<PhysicsComponent>(target, out var targetPhysics))
+            return false;
+
+        if ((targetPhysics.BodyType & (BodyType.Dynamic | BodyType.KinematicController)) == 0)
+            return false;
+
+        var shoveDirection = _transform.GetWorldPosition(target) - _transform.GetWorldPosition(user);
+
+        if (shoveDirection.LengthSquared() <= 0.001f)
+            shoveDirection = Transform(user).LocalRotation.ToWorldVec();
+
+        // #Misfits Change /Fix/: scale impulse by target mass so heavy mobs still move perceptibly on a valid shove.
+        _physics.ApplyLinearImpulse(target, shoveDirection.Normalized() * (ShoveImpulse * targetPhysics.Mass), body: targetPhysics);
+        return true;
     }
 
     private float CalculateDisarmChance(EntityUid disarmer, EntityUid disarmed, EntityUid? inTargetHand, CombatModeComponent disarmerComp)

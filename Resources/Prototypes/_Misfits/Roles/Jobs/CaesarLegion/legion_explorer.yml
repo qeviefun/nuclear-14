@@ -3,7 +3,7 @@
   setPreference: true
   hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
   jobWhitelistBypassesRoleTimers: true # #Misfits Change
-  weight: 60
+  weight: 40
   name: job-name-caesar-legion-explorer
   description: job-description-caesar-legion-explorer
   playTimeTracker: CaesarLegionExplorer
@@ -45,7 +45,7 @@
     mask: N14ClothingMaskBrownMask
     back: N14ClothingBackpackMilitary
     shoes: N14ClothingShoesKaligi
-    head: N14ClothingHeadHatExplorerHelmet
+    head: N14ClothingHeadHatTribalOutcastHood #Misfits Change /Tweak/: Explorer wears a tribal outcast hood for scouting
     outerClothing: N14ClothingLegionReconArmor
     gloves: N14ClothingHandsGlovesTribal
     belt: N14Gladius

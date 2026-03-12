@@ -1,4 +1,6 @@
-﻿- type: entity
+﻿# Misfits Tweak - BaseLandMine: Dynamic body so unanchored mines can be moved/pulled;
+# appearance layers for armed(animated)/disarmed(inactive) visual state.
+- type: entity
   id: BaseLandMine
   abstract: true
   components:
@@ -8,7 +10,7 @@
   - type: Pullable
   - type: MovedByPressure
   - type: Physics
-    bodyType: Static
+    bodyType: Dynamic  # Misfits Tweak - was Static; mines start unanchored and moveable
     fixedRotation: true
   - type: Fixtures
     fixtures:
@@ -22,7 +24,24 @@
   - type: Sprite
     drawdepth: Items
     sprite: _Nuclear14/Objects/Misc/landmine.rsi
-    state: landmine
+    layers:
+      # Shown when disarmed (default state)
+      - state: landmine-inactive
+        map: ["inactive"]
+      # Shown when armed (animated blinking)
+      - state: landmine
+        visible: false
+        map: ["armed"]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.LandMineVisuals.Armed:
+        armed:
+          True: { visible: true }
+          False: { visible: false }
+        inactive:
+          True: { visible: false }
+          False: { visible: true }
   - type: Damageable
     damageContainer: Inorganic
   - type: Destructible
@@ -46,17 +65,32 @@
     requiredTriggeredSpeed: 0
     stepOn: true
 
+# Misfits Tweak - "kick mine" renamed "Concussion Mine"; replaced server-disconnect GhostKickUserOnTrigger
+# with low-Blunt DamageUserOnTrigger (15 Brute). Non-lethal, will not kill/delimb/crit.
 - type: entity
-  name: kick mine
+  name: concussion mine
+  description: A low-yield pressure plate that delivers a sharp concussive blow to the feet. Hurts, but won't delimb or kill you.
   parent: BaseLandMine
   id: LandMineKick
   components:
-  - type: GhostKickUserOnTrigger
+  # Misfits Tweak - low Blunt damage only; targeting feet matches the concussive theme
+  - type: DamageUserOnTrigger
+    ignoreResistances: false
+    damage:
+      types:
+        Blunt: 15
   - type: DeleteOnTrigger
+  # Misfits Add - concussion mine knocks the tripper down for 3 seconds on trigger
+  - type: LandMine
+    knockdownDuration: 3
+  # Misfits Add - concussion mine is an item: can be picked up and carried when disarmed
+  - type: Item
+    size: Small
 
+# Misfits Tweak - modular mine; added ambient beep and Item component.
 - type: entity
   name: modular mine
-  description: This bad boy could be packing any number of dangers. Or a bike horn.
+  description: This bad boy could be packing any number of dangers. Or a bike horn. Armed mines emit a soft beep.
   parent: BaseLandMine
   id: LandMineModular
   components:
@@ -64,9 +98,21 @@
   - type: Construction
     graph: ModularMineGraph
     node: emptyCase
+  # Misfits Add - beep when armed; enabled toggled by LandMineSystem
+  - type: AmbientSound
+    enabled: false
+    volume: -6
+    range: 5
+    sound:
+      path: /Audio/Effects/beep_landmine.ogg
+  # Misfits Add - item so it can be carried when disarmed
+  - type: Item
+    size: Normal
 
+# Misfits Tweak - "explosive mine" keeps its name; ~4-tile blast radius. Added ambient beep when armed.
 - type: entity
   name: explosive mine
+  description: A powerful charge capable of leveling structures within a 4-tile radius. Armed mines emit a soft beep.
   parent: BaseLandMine
   id: LandMineExplosive
   components:
@@ -77,3 +123,13 @@
     intensitySlope: 3
     totalIntensity: 120 # about a ~4 tile radius
     canCreateVacuum: false
+  # Misfits Add - beep when armed; enabled toggled by LandMineSystem
+  - type: AmbientSound
+    enabled: false
+    volume: -6
+    range: 5
+    sound:
+      path: /Audio/Effects/beep_landmine.ogg
+  # Misfits Add - item so it can be carried when disarmed
+  - type: Item
+    size: Normal

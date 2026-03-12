@@ -123,3 +123,45 @@
   - !type:LastElementHasTags # last bun
     tags:
     - Bun
+
+- type: metamorphRecipe
+  id: FoodMeatRatdoubleKebab
+  key: Skewer
+  result: FoodMeatRatdoubleKebab
+  rules:
+  - !type:SequenceLength
+    range:
+      min: 2
+      max: 2
+  - !type:IngredientsWithTags # 2 rats on a skewer resolves into the named double rat kebab
+    tags:
+    - SkewerRat
+    count:
+      min: 2
+      max: 2
+
+- type: metamorphRecipe
+  id: FoodMeatFiestaKebab
+  key: Skewer
+  result: FoodMeatFiestaKebab
+  rules:
+  - !type:SequenceLength
+    range:
+      min: 4
+      max: 4
+  - !type:ElementHasTags # pepper first
+    elementNumber: 0
+    tags:
+    - SkewerPepper
+  - !type:ElementHasTags # corn second
+    elementNumber: 1
+    tags:
+    - SkewerCorn
+  - !type:ElementHasTags # mushroom third
+    elementNumber: 2
+    tags:
+    - SkewerMushroom
+  - !type:ElementHasTags # tomato fourth
+    elementNumber: 3
+    tags:
+    - SkewerTomato

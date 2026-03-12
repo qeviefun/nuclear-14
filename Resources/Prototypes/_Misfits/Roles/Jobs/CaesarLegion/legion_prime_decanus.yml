@@ -4,7 +4,6 @@
   hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
   jobWhitelistBypassesRoleTimers: true # #Misfits Change
   weight: 95
-  showBorder: true
   name: job-name-caesar-legion-prime-decanus
   description: job-description-caesar-legion-prime-decanus
   playTimeTracker: CaesarLegionPrimeDecanus

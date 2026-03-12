@@ -1233,6 +1233,9 @@
   - type: Tag
     tags:
     - Vegetable
+  - type: FoodSequenceElement # Misfits Change /Add/: mushrooms need a skewer sequence entry so fiesta skewers can assemble and metamorph reliably.
+    entries:
+      Skewer: MushroomSkewer
 
 # Slices
 

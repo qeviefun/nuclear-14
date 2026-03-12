@@ -1,4 +1,4 @@
-// #Misfits Add: Broadcasts a chat emote when a player is successfully restrained with handcuffs.
+// #Misfits Add: Broadcasts chat emotes at each observable stage of cuffing/uncuffing (start and success).
 using Content.Server.Chat.Systems;
 using Content.Shared._Misfits.Cuffs;
 using Content.Shared.Chat;
@@ -7,8 +7,9 @@ using Content.Shared.IdentityManagement;
 namespace Content.Server._Misfits.Cuffs;
 
 /// <summary>
-/// Hooks <see cref="CuffAppliedEvent"/> to send a local-area emote chat message so nearby
-/// players see "* Jane Smith restrains John Doe *" in the emote channel.
+/// Hooks <see cref="CuffStartedEvent"/>, <see cref="CuffAppliedEvent"/>, and <see cref="UncuffStartedEvent"/>
+/// to send local-area emote chat messages so nearby players see cuffing actions in the Emotes channel
+/// rather than as sprite-only popups.
 /// </summary>
 public sealed class CuffingChatSystem : EntitySystem
 {
@@ -18,8 +19,26 @@ public sealed class CuffingChatSystem : EntitySystem
     {
         base.Initialize();
 
-        // CuffAppliedEvent is raised on the target entity after successful restraint.
+        // Fires when a cuffing do-after begins (user starts trying to cuff).
+        SubscribeLocalEvent<CuffStartedEvent>(OnCuffStarted);
+
+        // Fires when cuffs are successfully applied.
         SubscribeLocalEvent<CuffAppliedEvent>(OnCuffApplied);
+
+        // Fires when an uncuffing do-after begins (user starts trying to remove cuffs).
+        SubscribeLocalEvent<UncuffStartedEvent>(OnUncuffStarted);
+    }
+
+    private void OnCuffStarted(ref CuffStartedEvent ev)
+    {
+        var targetName = Identity.Entity(ev.Target, EntityManager);
+
+        var message = ev.User == ev.Target
+            ? Loc.GetString("misfits-chat-cuff-start-self")
+            : Loc.GetString("misfits-chat-cuff-start", ("target", targetName));
+
+        _chat.TrySendInGameICMessage(ev.User, message, InGameICChatType.Emote,
+            ChatTransmitRange.Normal, ignoreActionBlocker: true);
     }
 
     /// <summary>
@@ -27,14 +46,24 @@ public sealed class CuffingChatSystem : EntitySystem
     /// </summary>
     private void OnCuffApplied(ref CuffAppliedEvent ev)
     {
-        // Resolve the display name of the person being restrained.
         var targetName = Identity.Entity(ev.Target, EntityManager);
 
         var message = ev.User == ev.Target
             ? Loc.GetString("misfits-chat-cuff-self")
             : Loc.GetString("misfits-chat-cuff-applied", ("target", targetName));
 
-        // Send as an emote from the user — visible to nearby players in the Emotes channel.
+        _chat.TrySendInGameICMessage(ev.User, message, InGameICChatType.Emote,
+            ChatTransmitRange.Normal, ignoreActionBlocker: true);
+    }
+
+    private void OnUncuffStarted(ref UncuffStartedEvent ev)
+    {
+        var targetName = Identity.Entity(ev.Target, EntityManager);
+
+        var message = ev.User == ev.Target
+            ? Loc.GetString("misfits-chat-uncuff-start-self")
+            : Loc.GetString("misfits-chat-uncuff-start", ("target", targetName));
+
         _chat.TrySendInGameICMessage(ev.User, message, InGameICChatType.Emote,
             ChatTransmitRange.Normal, ignoreActionBlocker: true);
     }

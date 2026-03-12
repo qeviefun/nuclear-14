@@ -316,7 +316,32 @@ public sealed class MapViewerControl : Control
                 handle.DrawCircle(markerPos, 3.5f, Color.White);
                 break;
 
-            default:
+            // #Misfits Add - Legion rank blip shapes
+            case WastelandMapTrackedBlipKind.LegionCenturion:
+                // Gold star: cross + circle, like Elder but gold-tinted
+                handle.DrawCircle(markerPos, 11f, color);
+                handle.DrawRect(UIBox2.FromDimensions(markerPos + new Vector2(-2f, -9f), new Vector2(4f, 18f)), Color.White);
+                handle.DrawRect(UIBox2.FromDimensions(markerPos + new Vector2(-9f, -2f), new Vector2(18f, 4f)), Color.White);
+                break;
+
+            case WastelandMapTrackedBlipKind.LegionDecanus:
+                // Red diamond for squad leaders
+                DrawDiamond(handle, markerPos, 12f, color);
+                handle.DrawCircle(markerPos, 3.5f, Color.White);
+                break;
+
+            case WastelandMapTrackedBlipKind.LegionWarrior:
+                // Dark red square for warriors / specialists
+                handle.DrawRect(UIBox2.FromDimensions(markerPos - new Vector2(9f, 9f), new Vector2(18f, 18f)), color);
+                handle.DrawCircle(markerPos, 3.5f, Color.White);
+                break;
+
+            case WastelandMapTrackedBlipKind.LegionRecruit:
+                // Brown circle for recruits, auxilia, slaves
+                handle.DrawCircle(markerPos, 11f, color);
+                handle.DrawCircle(markerPos, 5f, Color.Black);
+                break;
+            // End Misfits Add
                 handle.DrawCircle(markerPos, 11f, color);
                 handle.DrawCircle(markerPos, 5f, Color.Black);
                 break;
@@ -501,6 +526,12 @@ public sealed class MapViewerControl : Control
             WastelandMapTrackedBlipKind.Knight => new Color(0.15f, 0.85f, 0.35f, 1f),
             WastelandMapTrackedBlipKind.Scribe => new Color(0.35f, 0.95f, 0.95f, 1f),
             WastelandMapTrackedBlipKind.Squire => new Color(1f, 0.6f, 0.15f, 1f),
+            // #Misfits Add - Legion rank colours (red/gold Caesar's Legion palette)
+            WastelandMapTrackedBlipKind.LegionCenturion => new Color(0.95f, 0.72f, 0.08f, 1f), // gold
+            WastelandMapTrackedBlipKind.LegionDecanus => new Color(0.92f, 0.18f, 0.12f, 1f),   // bright red
+            WastelandMapTrackedBlipKind.LegionWarrior => new Color(0.70f, 0.16f, 0.12f, 1f),   // dark red
+            WastelandMapTrackedBlipKind.LegionRecruit => new Color(0.62f, 0.32f, 0.12f, 1f),   // brown
+            // End Misfits Add
             _ => new Color(0.98f, 0.84f, 0.15f, 0.95f),
         };
     }

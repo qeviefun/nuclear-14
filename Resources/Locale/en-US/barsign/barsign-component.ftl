@@ -95,7 +95,9 @@ barsign-prototype-name-spacebucks = Spacebucks
 barsign-prototype-description-spacebucks = You can't get away from them, even in space, and even after we started calling them 'spesos' instead.
 
 ## EmpBarSign
+barsign-prototype-name-empbarsign = broken sign
 barsign-prototype-description-empbarsign = Something has gone very wrong.
 
 ## SignOff
+barsign-prototype-name-sign-off = sign off
 barsign-prototype-description-sign-off = This sign doesn't seem to be on.

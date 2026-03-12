@@ -24,7 +24,22 @@ public sealed partial class IdCardComponent : Component
     private string? _jobTitle;
 
     [Access(typeof(SharedIdCardSystem), typeof(SharedPdaSystem), typeof(SharedAgentIdCardSystem), Other = AccessPermissions.ReadWriteExecute)]
-    public string? LocalizedJobTitle { set => _jobTitle = value; get => _jobTitle ?? Loc.GetString(JobTitle ?? string.Empty); }
+    // #Misfits Change /Fix/: guard against malformed whitespace LocIds on map-placed IDs so access logging
+    // and door interactions do not emit Unknown messageId warnings when a card job title is blank.
+    public string? LocalizedJobTitle
+    {
+        set => _jobTitle = value;
+        get
+        {
+            if (_jobTitle != null)
+                return _jobTitle;
+
+            if (string.IsNullOrWhiteSpace(JobTitle))
+                return null;
+
+            return Loc.GetString(JobTitle);
+        }
+    }
 
     /// <summary>
     /// The state of the job icon rsi.

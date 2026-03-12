@@ -24,6 +24,8 @@ namespace Content.Client.Lathe.UI;
 [GenerateTypedNameReferences]
 public sealed partial class LatheMenu : DefaultWindow
 {
+    // #Misfits Change Fix: Workbench recipe tooltips should reflect materials available from
+    // both the lathe material pool and the bench's raw-material storage container.
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IPlayerManager _player = default!; // DeltaV
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
@@ -242,7 +244,7 @@ public sealed partial class LatheMenu : DefaultWindow
             var unit = Loc.GetString(proto.Unit);
             var sheets = adjustedAmount / (float) sheetVolume;
 
-            var availableAmount = _materialStorage.GetMaterialAmount(Entity, id);
+            var availableAmount = _materialStorage.GetAvailableMaterialAmount(Entity, id);
             var missingAmount = Math.Max(0, adjustedAmount - availableAmount);
             var missingSheets = missingAmount / (float) sheetVolume;
 

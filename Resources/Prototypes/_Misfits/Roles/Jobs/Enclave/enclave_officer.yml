@@ -1,0 +1,53 @@
+# #Misfits Add - Enclave officer role with explicit job-whitelist visibility.
+
+- type: job
+  id: EnclaveOfficer
+  setPreference: true
+  hideWithoutJobWhitelist: true
+  weight: 120
+  showBorder: true
+  overrideConsoleVisibility: false
+  canBeAntag: false
+  name: job-name-enclave-officer
+  description: job-description-enclave-officer
+  playTimeTracker: EnclaveOfficer
+  requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+  startingGear: EnclaveOfficerGear
+  icon: "JobIconNcrLeader"
+  supervisors: job-supervisors-enclave-officer
+  requireAdminNotify: true
+  alwaysUseSpawner: true
+  access:
+  - Enclave
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Enclave
+
+- type: startingGear
+  id: EnclaveOfficerGear
+  equipment:
+    head: N14ClothingHeadHatEnclaveOfficer
+    back: N14ClothingBackpackMilitary
+    jumpsuit: N14ClothingUniformJumpsuitEnclave
+    outerClothing: N14ClothingOuterEnclaverOfficerCoat
+    shoes: N14ClothingBootsCombatFilled
+    gloves: N14ClothingHandsGlovesCombat
+    belt: ClothingBeltMilitary
+    ears: N14ClothingHeadsetEnclave
+    pocket1: EnclaveOfficerloadoutkits
+    pocket2: RadioHandheld
+    id: N14IDEnclaveOfficer
+  satchel: N14ClothingBackpackSatchelMilitaryFilled
+  duffelbag: N14ClothingBackpackDuffelMilitaryFilled
+  storage:
+    back:
+    - N14BoxPlasticFilledMilitary
+
+- type: playTimeTracker
+  id: EnclaveOfficer

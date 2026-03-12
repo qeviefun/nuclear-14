@@ -17,6 +17,16 @@
   - type: ApcPowerReceiver
     powerLoad: 0 # off by default
   - type: EntityHeater
+  # #Misfits Change /Add/ - Match other cooking heaters with ignition and active grill audio.
+  - type: AmbientSound
+    enabled: false
+    volume: -8
+    range: 5
+    sound:
+      path: /Audio/_Misfits/Machines/steam_long.ogg
+  - type: GrillHeaterSound
+    startSound:
+      path: /Audio/_Misfits/Machines/grill.ogg
   - type: ItemPlacer
     maxEntities: 4 # big grill, many steaks
     whitelist:

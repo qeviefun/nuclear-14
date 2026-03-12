@@ -30,9 +30,10 @@ namespace Content.Server.Light.Components
         [DataField("on")]
         public bool On = true;
 
-        [DataField("damage", required: true)]
+        // Misfits Fix - Changed from required:true to allow RMC light fixtures without a damage field (default = no damage)
+        [DataField("damage")]
         [ViewVariables(VVAccess.ReadWrite)]
-        public DamageSpecifier Damage = default!;
+        public DamageSpecifier Damage = new DamageSpecifier();
 
         [DataField("ignoreGhostsBoo")]
         public bool IgnoreGhostsBoo;

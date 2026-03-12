@@ -99,8 +99,8 @@
   - type: Cartridge
     programName: nano-chat-program-name
     icon:
-      sprite: DeltaV/Misc/program_icons.rsi
-      state: nanochat
+      sprite: _Nuclear14/Objects/Misc/pipboy.rsi
+      state: pda
   - type: ActiveRadio
     channels:
     - Common

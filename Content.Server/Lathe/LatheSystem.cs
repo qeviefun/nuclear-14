@@ -35,6 +35,8 @@ namespace Content.Server.Lathe
     [UsedImplicitly]
     public sealed class LatheSystem : SharedLatheSystem
     {
+        // #Misfits Change Fix: Workbench lathes need to consume recipe costs from either
+        // MaterialStorage or raw material stacks placed in the attached storage container.
         [Dependency] private readonly IGameTiming _timing = default!;
         [Dependency] private readonly IPrototypeManager _proto = default!;
         [Dependency] private readonly IAdminLogManager _adminLogger = default!;
@@ -181,7 +183,8 @@ namespace Content.Server.Lathe
                     ? (int) (-amount * component.MaterialUseMultiplier)
                     : -amount;
 
-                _materialStorage.TryChangeMaterialAmount(uid, mat, adjustedAmount);
+                if (!_materialStorage.TryConsumeAvailableMaterial(uid, mat, -adjustedAmount))
+                    return false;
             }
             component.Queue.Add(recipe);
 

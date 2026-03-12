@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "license": "CC-BY-NC-SA-3.0",
+  "copyright": "Extracted from Cythisiax/desertrose-1 supermutant.dmi (forked from DesertRose2/desertrose). States hulk_special_ncr and hulk_special_legion. Source: https://github.com/Cythisiax/desertrose-1/blob/master/icons/fallout/mobs/supermutant.dmi",
+  "size": {
+    "x": 31,
+    "y": 44
+  },
+  "states": [
+    {
+      "name": "ncr_mutant",
+      "directions": 4
+    },
+    {
+      "name": "ncr_mutant_dead"
+    },
+    {
+      "name": "nco_mutant",
+      "directions": 4
+    },
+    {
+      "name": "nco_mutant_dead"
+    }
+  ]
+}

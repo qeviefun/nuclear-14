@@ -35,10 +35,11 @@
     openTimeTwo: 0
     closedDrawDepth: Mobs
     openDrawDepth: Mobs
+    # #Misfits Change: Use imported Fallout-style metal door audio for the tall N14 door set.
     openSound:
-      path: /Audio/Effects/door_open.ogg
+      path: /Audio/_Misfits/N14/Machines/doorairlock_open.ogg
     closeSound:
-      path: /Audio/Effects/door_close.ogg
+      path: /Audio/_Misfits/N14/Machines/doorairlock_close.ogg
     # #Misfits Change/Add: Deny sound played when access is refused; mirrors airlock denial feedback.
     denySound:
       path: /Audio/Machines/airlock_deny.ogg
@@ -149,6 +150,12 @@
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
+  - type: Door
+    # #Misfits Change: Grates and fence-style doors fit the imported chain-link gate audio better.
+    openSound:
+      path: /Audio/_Misfits/N14/Machines/doorchainlink_open.ogg
+    closeSound:
+      path: /Audio/_Misfits/N14/Machines/doorchainlink_close.ogg
 
 - type: entity
   parent: N14DoorMetalBlueWindowTall
@@ -161,6 +168,12 @@
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
+  - type: Door
+    # #Misfits Change: Grates and fence-style doors fit the imported chain-link gate audio better.
+    openSound:
+      path: /Audio/_Misfits/N14/Machines/doorchainlink_open.ogg
+    closeSound:
+      path: /Audio/_Misfits/N14/Machines/doorchainlink_close.ogg
 
 - type: entity
   parent: N14DoorMetalBlueWindowTall
@@ -173,6 +186,12 @@
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
+  - type: Door
+    # #Misfits Change: Fence gates use the imported chain-link gate audio.
+    openSound:
+      path: /Audio/_Misfits/N14/Machines/doorchainlink_open.ogg
+    closeSound:
+      path: /Audio/_Misfits/N14/Machines/doorchainlink_close.ogg
 
 - type: entity
   parent: N14DoorMetalBlueWindowTall
@@ -185,6 +204,12 @@
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
+  - type: Door
+    # #Misfits Change: Fence gates use the imported chain-link gate audio.
+    openSound:
+      path: /Audio/_Misfits/N14/Machines/doorchainlink_open.ogg
+    closeSound:
+      path: /Audio/_Misfits/N14/Machines/doorchainlink_close.ogg
 
 # Wooden
 - type: entity
@@ -199,6 +224,12 @@
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
+  - type: Door
+    # #Misfits Change: Wooden shack/store doors use the lighter storefront door audio set.
+    openSound:
+      path: /Audio/_Misfits/N14/Machines/doorstore_open.ogg
+    closeSound:
+      path: /Audio/_Misfits/N14/Machines/doorstore_close.ogg
   - type: Destructible
     thresholds:
     - trigger:

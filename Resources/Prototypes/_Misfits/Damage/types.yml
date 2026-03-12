@@ -1,0 +1,11 @@
+# Misfits Add - Dedicated damage types for the malnutrition/needs system.
+# These replace the generic Cold/Bloodloss types previously used for starvation
+# and add proper dehydration tracking, making needs damage identifiable in health analyzers.
+
+- type: damageType
+  id: Starvation
+  name: damage-type-starvation
+
+- type: damageType
+  id: Dehydration
+  name: damage-type-dehydration

@@ -1,0 +1,48 @@
+# #Misfits Add - Enclave scientist role with explicit job-whitelist visibility.
+
+- type: job
+  id: EnclaveScientist
+  setPreference: true
+  hideWithoutJobWhitelist: true
+  weight: 100
+  overrideConsoleVisibility: true
+  canBeAntag: false
+  name: job-name-enclave-scientist
+  description: job-description-enclave-scientist
+  playTimeTracker: EnclaveScientist
+  requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+      - Human
+  startingGear: EnclaveScientistGear
+  icon: "JobIconScientist"
+  supervisors: job-supervisors-enclave-scientist
+  alwaysUseSpawner: true
+  access:
+  - Enclave
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Enclave
+      - type: CPRTraining
+
+- type: startingGear
+  id: EnclaveScientistGear
+  equipment:
+    head: N14ClothingHeadHatEnclaveScientist
+    back: N14ClothingBackpackSatchelMilitary
+    jumpsuit: N14ClothingUniformJumpsuitEnclave
+    shoes: N14ClothingBootsLeatherFilled
+    belt: ClothingBeltMilitary
+    ears: N14ClothingHeadsetEnclave
+    pocket2: EnclaveScientistloadoutkits
+    id: N14IDEnclaveNoncombat
+  satchel: N14ClothingBackpackSatchelMilitaryFilled
+  storage:
+    back:
+    - N14BoxPlasticFilledMilitary
+
+- type: playTimeTracker
+  id: EnclaveScientist

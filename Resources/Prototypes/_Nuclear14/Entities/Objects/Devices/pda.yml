@@ -2,8 +2,8 @@
   abstract: true
   parent: BasePDA
   id: N14BasePipboy
-  name: Pip-boy 2000
-  description: a RobCo Industries PIPBoy 2000 Personal Information Processor. What a mouthful.
+  name: Pip-Boy 3000 MKIV
+  description: a RobCo Industries Pip-Boy 3000 Mark IV Personal Information Processor.
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/pipboy.rsi
@@ -22,7 +22,7 @@
     sprite: _Nuclear14/Objects/Misc/pipboy.rsi
     state: pda
   - type: PdaBorderColor
-    borderColor: "#717059"
+    borderColor: "#3a5a40"
   - type: Clothing
     quickEquip: false
     slots:
@@ -50,12 +50,15 @@
         # IdCardVault     -> Vault shared map (VaultMap feed)
         # IdCardBrotherhood -> BOS shared map (Brotherhood feed) - same feed as N14BrotherhoodTacticalmap table and BOS helmets
         # IdCardNCR       -> NCR shared map (NCR feed)
+        # IdCardLegion    -> Legion shared map (Legion feed)
         # When adding a new faction map, add its tag here AND define it in _Misfits/tags.yml.
         tags:
-        - IdCardVault
-        - IdCardBrotherhood
-        - IdCardNCR
+        - IdCardVault # Misfits Change
+        - IdCardBrotherhood #Misfits Change
+        - IdCardNCR #Misfits Change
+        - IdCardLegion # #Misfits Change
         - IdCardEnclave # #Misfits Change
+        - IdCardWastelander # #Misfits Add - allows wastelander dogtags to be inserted
   - type: Geiger
     isEnabled: true
     showControl: true
@@ -72,11 +75,24 @@
       - NotekeeperCartridge
       - NewsReaderCartridge
       - NanoChatCartridge
+      - PipBoyContactsCartridge   # #Misfits Add - PipBoy Contacts: contact management, SOS beacon
+      - PipBoyGroupsCartridge     # #Misfits Add - PipBoy Groups: group chat, waypoints, map tracking
+      - PipBoyDirectoryCartridge  # #Misfits Add - PipBoy Directory: network listing, dead drops
+      - PipBoySettingsCartridge   # #Misfits Add - PipBoy Settings: visibility, status, password lock
       - MisfitsWastelandMapCartridge  # #Misfits Change - Pip-Boy shared faction map program
 
 - type: entity
   parent: N14BasePipboy
   id: N14Pipboy
+
+# #Misfits Add - Wastelander Pip-Boy with pre-inserted dogtags for PipBoy Hub networking.
+- type: entity
+  parent: N14BasePipboy
+  id: N14WastelanderPipboy
+  suffix: Wastelander
+  components:
+  - type: Pda
+    id: N14ClothingNeckDogtags
 
 #MARK: Vault
 - type: entity

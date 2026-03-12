@@ -15,6 +15,7 @@
     - Back
     - suitStorage
   - type: Wieldable
+    wieldedSpeedModifier: 0.85
   - type: GunRequiresWield
   - type: AmmoCounter
   - type: Gun

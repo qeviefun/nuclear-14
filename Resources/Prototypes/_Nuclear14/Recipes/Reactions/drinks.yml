@@ -35,8 +35,8 @@
     WaterSalt:
       amount: 2 # Corvax-Change
   products:
+    Water: 1
     TableSalt: 1
-# Water vapor reaction?
 
 # Plant Teas
 - type: reaction

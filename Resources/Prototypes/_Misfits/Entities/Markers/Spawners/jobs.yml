@@ -508,6 +508,44 @@
       - state: green
       - state: investigator
 
+# Enclave
+- type: entity
+  parent: SpawnPointJobBase
+  id: MisfitsSpawnPointEnclaveOfficer
+  name: Enclave Officer
+  components:
+  - type: SpawnPoint
+    job_id: EnclaveOfficer
+  - type: Sprite
+    sprite: _Nuclear14/Markers/Jobs/ncr.rsi
+    layers:
+      - state: green
+      - state: lt
+
+- type: entity
+  parent: MisfitsSpawnPointEnclaveOfficer
+  id: MisfitsSpawnPointEnclaveSoldier
+  name: Enclave Soldier
+  components:
+  - type: SpawnPoint
+    job_id: EnclaveSoldier
+  - type: Sprite
+    layers:
+      - state: green
+      - state: soldier
+
+- type: entity
+  parent: MisfitsSpawnPointEnclaveOfficer
+  id: MisfitsSpawnPointEnclaveScientist
+  name: Enclave Scientist
+  components:
+  - type: SpawnPoint
+    job_id: EnclaveScientist
+  - type: Sprite
+    layers:
+      - state: green
+      - state: medic
+
 # Synthetics
 - type: entity
   parent: SpawnPointJobBase

@@ -6,6 +6,7 @@
     - Toxin
     - Airloss
     - Genetic
+    - Malnutrition # Misfits Add - Starvation/Dehydration tracking via needs system
 
 - type: damageContainer
   id: Inorganic

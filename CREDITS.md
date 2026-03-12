@@ -68,7 +68,7 @@ Assets, sprites, and audio ported or adapted from the following SS13 codebases:
 
 ### Desert Rose 2 (F13 / SS13)
 - **Repository:** [DesertRose2/desertrose](https://github.com/DesertRose2/desertrose)
-- **Used for:** Creature audio (Assaultron sounds, credit: Tron-117); terrain tile sprites (ground.dmi, dirt and rubble tiles ported and modified by Peptide90).
+- **Used for:** Creature audio (Assaultron sounds, credit: Tron-117); machine audio (grill ignition and steam effects); terrain tile sprites (ground.dmi, dirt and rubble tiles ported and modified by Peptide90).
 
 ### Lone Star (F13 / SS13)
 - **Repository:** [LoneStarF13/LoneStar](https://github.com/LoneStarF13/LoneStar)

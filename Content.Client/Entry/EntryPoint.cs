@@ -127,6 +127,7 @@ namespace Content.Client.Entry
             _prototypeManager.RegisterIgnore("nukeopsRole");
             _prototypeManager.RegisterIgnore("stationGoal");
             _prototypeManager.RegisterIgnore("ghostRoleRaffleDecider");
+            _prototypeManager.RegisterIgnore("latheRecipePack"); // #Misfits Add: RMC prototype type not in this fork
 
             _componentFactory.GenerateNetIds();
             _adminManager.Initialize();

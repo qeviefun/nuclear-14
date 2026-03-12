@@ -247,6 +247,10 @@ binds:
 - function: OpenAHelp
   type: State
   key: F2
+# Misfits Change - Help Selector popup opens with F12
+- function: OpenHelpSelector
+  type: State
+  key: F12
 - function: OpenInventoryMenu
   type: State
   key: I
@@ -630,4 +634,26 @@ binds:
   type: State
   key: MouseRight
   canFocus: true
+# Misfits Add Start - RMC holster keybinds
+- function: CMHolsterPrimary
+  type: State
+  key: Num1
+  mod1: Alt
+- function: CMHolsterSecondary
+  type: State
+  key: Num2
+  mod1: Alt
+- function: CMHolsterTertiary
+  type: State
+  key: Num3
+  mod1: Alt
+- function: CMHolsterQuaternary
+  type: State
+  key: Num4
+  mod1: Alt
+- function: RMCPickUpDroppedItems
+  type: State
+  key: G
+  mod1: Alt
+# Misfits Add End
 

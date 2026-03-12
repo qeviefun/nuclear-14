@@ -39,6 +39,14 @@ namespace Content.Shared.Maps
 
         [DataField("edgeSpritePriority")] public int EdgeSpritePriority { get; private set; } = 0;
 
+        // #Misfits Add: Optional terrain blend metadata so generic edge-mask rendering can be enabled,
+        // disabled, or replaced later without disturbing the existing edgeSprites path.
+        [DataField("blendGroup")] public string? BlendGroup { get; private set; }
+
+        [DataField("blendPriority")] public int BlendPriority { get; private set; } = 0;
+
+        [DataField("blendMaskSet")] public string? BlendMaskSet { get; private set; }
+
         [DataField("isSubfloor")] public bool IsSubFloor { get; private set; }
 
         [DataField("baseTurf")]

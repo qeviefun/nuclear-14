@@ -3,14 +3,17 @@ using Content.Server.Administration.Logs;
 using Content.Shared.Materials;
 using Content.Shared.Popups;
 using Content.Shared.Stacks;
+using Content.Shared.Storage;
 using Content.Server.Power.Components;
 using Content.Server.Stack;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Construction;
 using Content.Shared.Database;
 using JetBrains.Annotations;
+using Robust.Server.Containers;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
+using Robust.Shared.IoC;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Materials;
@@ -20,10 +23,14 @@ namespace Content.Server.Materials;
 /// </summary>
 public sealed class MaterialStorageSystem : SharedMaterialStorageSystem
 {
+    // #Misfits Change Fix: Allow workbench lathe recipes to consume raw material stacks sitting
+    // in the bench storage container, refunding any leftover partial volume into MaterialStorage.
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly IComponentFactory _componentFactory = default!;
+    [Dependency] private readonly ContainerSystem _container = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly StackSystem _stackSystem = default!;
 
@@ -69,7 +76,8 @@ public sealed class MaterialStorageSystem : SharedMaterialStorageSystem
 
         if (material.StackEntity != null)
         {
-            if (!_prototypeManager.Index<EntityPrototype>(material.StackEntity).TryGetComponent<PhysicalCompositionComponent>(out var composition))
+            if (!_prototypeManager.Index<EntityPrototype>(material.StackEntity)
+                    .TryGetComponent<PhysicalCompositionComponent>(out var composition, _componentFactory))
                 return;
 
             var volumePerSheet = composition.MaterialComposition.FirstOrDefault(kvp => kvp.Key == msg.Material).Value;
@@ -170,7 +178,7 @@ public sealed class MaterialStorageSystem : SharedMaterialStorageSystem
             return new List<EntityUid>();
 
         var entProto = _prototypeManager.Index<EntityPrototype>(materialProto.StackEntity);
-        if (!entProto.TryGetComponent<PhysicalCompositionComponent>(out var composition))
+        if (!entProto.TryGetComponent<PhysicalCompositionComponent>(out var composition, _componentFactory))
             return new List<EntityUid>();
 
         var materialPerStack = composition.MaterialComposition[materialProto.ID];
@@ -240,5 +248,83 @@ public sealed class MaterialStorageSystem : SharedMaterialStorageSystem
         }
 
         return allSpawned;
+    }
+
+    public bool TryConsumeAvailableMaterial(
+        EntityUid uid,
+        string materialId,
+        int volume,
+        MaterialStorageComponent? component = null,
+        MaterialSiloUtilizerComponent? utilizer = null,
+        StorageComponent? storage = null)
+    {
+        if (volume <= 0)
+            return true;
+
+        if (GetAvailableMaterialAmount(uid, materialId, component, utilizer, storage) < volume)
+            return false;
+
+        var availableInPool = GetMaterialAmount(uid, materialId, component, utilizer);
+        var fromPool = Math.Min(availableInPool, volume);
+        if (fromPool > 0 && !TryChangeMaterialAmount(uid, materialId, -fromPool, component, utilizer))
+            return false;
+
+        var remaining = volume - fromPool;
+        if (remaining <= 0)
+            return true;
+
+        if (!Resolve(uid, ref storage, false))
+            return false;
+
+        return TryConsumeStoredMaterial(uid, materialId, remaining, component, utilizer, storage);
+    }
+
+    private bool TryConsumeStoredMaterial(
+        EntityUid uid,
+        string materialId,
+        int volume,
+        MaterialStorageComponent? component,
+        MaterialSiloUtilizerComponent? utilizer,
+        StorageComponent storage)
+    {
+        var remaining = volume;
+
+        foreach (var entity in storage.Container.ContainedEntities.ToArray())
+        {
+            if (!HasComp<MaterialComponent>(entity) ||
+                !TryComp<PhysicalCompositionComponent>(entity, out var composition) ||
+                !composition.MaterialComposition.TryGetValue(materialId, out var volumePerUnit) ||
+                volumePerUnit <= 0)
+            {
+                continue;
+            }
+
+            var stackCount = TryComp<StackComponent>(entity, out var stack) ? stack.Count : 1;
+            var unitsToConsume = Math.Min(stackCount, (int) Math.Ceiling(remaining / (float) volumePerUnit));
+            if (unitsToConsume <= 0)
+                continue;
+
+            var consumedVolume = unitsToConsume * volumePerUnit;
+
+            if (stack != null && stack.Count > unitsToConsume)
+            {
+                _stackSystem.SetCount(entity, stack.Count - unitsToConsume, stack);
+            }
+            else
+            {
+                _container.Remove(entity, storage.Container);
+                QueueDel(entity);
+            }
+
+            remaining -= consumedVolume;
+            if (remaining <= 0)
+                break;
+        }
+
+        if (remaining > 0)
+            return false;
+
+        var leftover = -remaining;
+        return leftover <= 0 || TryChangeMaterialAmount(uid, materialId, leftover, component, utilizer);
     }
 }

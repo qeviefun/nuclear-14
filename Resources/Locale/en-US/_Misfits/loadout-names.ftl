@@ -213,6 +213,8 @@ loadout-name-N14WeaponShotgunDoubleBarrel = double barrel shotgun
 loadout-name-N14SpeedLoader9 = 9mm speed loader
 
 # Melee weapons
+loadout-name-N14Hatchet = hatchet
+loadout-name-N14Machete = machete
 loadout-name-N14TribalMachete = tribal machete
 loadout-name-N14TribalClub = tribal club
 loadout-name-N14TribalHatchet = tribal hatchet

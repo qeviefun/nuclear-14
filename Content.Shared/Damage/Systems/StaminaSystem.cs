@@ -132,7 +132,8 @@ public sealed partial class StaminaSystem : EntitySystem
         var targetEnt = Identity.Entity(args.Target, EntityManager);
         var sourceEnt = Identity.Entity(args.Source, EntityManager);
 
-        _popup.PopupEntity(Loc.GetString("stunned-component-disarm-success-others", ("source", sourceEnt), ("target", targetEnt)), targetEnt, Filter.PvsExcept(args.Source), true, PopupType.LargeCaution);
+        // #Misfits Change: observer popup suppressed — DisarmChatSystem sends this to the emote chat channel.
+        // _popup.PopupEntity(Loc.GetString("stunned-component-disarm-success-others", ("source", sourceEnt), ("target", targetEnt)), targetEnt, Filter.PvsExcept(args.Source), true, PopupType.LargeCaution);
         _popup.PopupCursor(Loc.GetString("stunned-component-disarm-success", ("target", targetEnt)), args.Source, PopupType.Large);
 
         _adminLogger.Add(LogType.DisarmedKnockdown, LogImpact.Medium, $"{ToPrettyString(args.Source):user} knocked down {ToPrettyString(args.Target):target}");

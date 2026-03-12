@@ -1,5 +1,6 @@
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
+using Content.Server.Chat.Systems;
 using Content.Server.Inventory;
 using Content.Server.Nutrition.Components;
 using Content.Shared.Nutrition.Components;
@@ -11,6 +12,7 @@ using Content.Shared.Body.Components;
 using Content.Shared.Body.Organ;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Reagent;
+using Content.Shared.Chat;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;
@@ -46,6 +48,7 @@ namespace Content.Server.Nutrition.EntitySystems;
 public sealed class FoodSystem : EntitySystem
 {
     [Dependency] private readonly BodySystem _body = default!;
+    [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly FlavorProfileSystem _flavorProfile = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
@@ -229,7 +232,30 @@ public sealed class FoodSystem : EntitySystem
                     user, target, PopupType.SmallCaution);
         }
 
+        // #Misfits Change Add: contested feeding should also read in local emote chat.
+        if (forceFeed && doAfterSuccess)
+            TrySendForcedFeedingEmotes(user, target, food);
+
         return (true, true);
+    }
+
+    // #Misfits Change Add: keep coercive feeding visible even when sprite overlap hides the action.
+    private void TrySendForcedFeedingEmotes(EntityUid user, EntityUid target, EntityUid food)
+    {
+        var userName = Identity.Entity(user, EntityManager);
+        var targetName = Identity.Entity(target, EntityManager);
+        var foodName = Identity.Entity(food, EntityManager);
+
+        _chat.TrySendInGameICMessage(user,
+            Loc.GetString("misfits-chat-force-feed-start", ("target", targetName), ("item", foodName)),
+            InGameICChatType.Emote,
+            ChatTransmitRange.Normal,
+            ignoreActionBlocker: true);
+        _chat.TrySendInGameICMessage(target,
+            Loc.GetString("misfits-chat-force-feed-victim", ("user", userName), ("item", foodName)),
+            InGameICChatType.Emote,
+            ChatTransmitRange.Normal,
+            ignoreActionBlocker: true);
     }
 
     private void OnDoAfter(Entity<FoodComponent> entity, ref ConsumeDoAfterEvent args)

@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;
+using Content.Shared.Storage;
 using Content.Shared.Stacks;
 using Content.Shared.Whitelist;
 using JetBrains.Annotations;
@@ -15,7 +16,10 @@ namespace Content.Shared.Materials;
 /// </summary>
 public abstract class SharedMaterialStorageSystem : EntitySystem
 {
+    // #Misfits Change Fix: Workbenches with both Storage and MaterialStorage need to treat
+    // raw material stacks inside the physical storage container as available crafting material.
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly IComponentFactory _componentFactory = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
@@ -84,6 +88,53 @@ public abstract class SharedMaterialStorageSystem : EntitySystem
             return _materialSilo.GetSiloMaterialAmount(uid, material, utilizer);
 
         return component.Storage.GetValueOrDefault(material, 0);
+    }
+
+    /// <summary>
+    /// Gets the total volume of a material available from both the machine material pool and
+    /// raw material entities sitting in an attached storage container.
+    /// </summary>
+    public int GetAvailableMaterialAmount(
+        EntityUid uid,
+        string material,
+        MaterialStorageComponent? component = null,
+        MaterialSiloUtilizerComponent? utilizer = null,
+        StorageComponent? storage = null)
+    {
+        return GetMaterialAmount(uid, material, component, utilizer) + GetStoredMaterialAmount(uid, material, storage);
+    }
+
+    /// <summary>
+    /// Gets all raw material volume currently represented by entities in an attached storage container.
+    /// </summary>
+    public Dictionary<string, int> GetStoredMaterialAmounts(EntityUid uid, StorageComponent? storage = null)
+    {
+        var materials = new Dictionary<string, int>();
+
+        if (!Resolve(uid, ref storage, false))
+            return materials;
+
+        foreach (var ent in storage.Container.ContainedEntities)
+        {
+            if (!HasComp<MaterialComponent>(ent) || !TryComp<PhysicalCompositionComponent>(ent, out var composition))
+                continue;
+
+            var multiplier = TryComp<StackComponent>(ent, out var stack) ? stack.Count : 1;
+            foreach (var (material, volume) in composition.MaterialComposition)
+            {
+                materials[material] = materials.GetValueOrDefault(material) + volume * multiplier;
+            }
+        }
+
+        return materials;
+    }
+
+    /// <summary>
+    /// Gets the material volume represented by raw material entities sitting in an attached storage container.
+    /// </summary>
+    public int GetStoredMaterialAmount(EntityUid uid, string material, StorageComponent? storage = null)
+    {
+        return GetStoredMaterialAmounts(uid, storage).GetValueOrDefault(material, 0);
     }
 
     /// <summary>
@@ -356,7 +407,7 @@ public abstract class SharedMaterialStorageSystem : EntitySystem
 
         var proto = _prototype.Index<EntityPrototype>(material.StackEntity);
 
-        if (!proto.TryGetComponent<PhysicalCompositionComponent>(out var composition))
+        if (!proto.TryGetComponent<PhysicalCompositionComponent>(out var composition, _componentFactory))
             return DefaultSheetVolume;
 
         return composition.MaterialComposition.FirstOrDefault(kvp => kvp.Key == material.ID).Value;

@@ -44,7 +44,7 @@
     mask: N14ClothingMaskBrownMask
     back: N14ClothingBackpackMilitary
     shoes: N14ClothingBootsLeather
-    head: N14ClothingHeadHatTribalOutcastHood
+    head: N14ClothingHeadHatLightBaseballHelmet #Misfits Change /Tweak/: Recruit wears a light baseball helmet
     gloves: N14ClothingHandsGlovesTribal
     pocket1: LegionRecruitInitiateloadoutkits
     id: N14IDLegionaryMedalRecruit

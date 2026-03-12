@@ -24,7 +24,7 @@
     possibleSets:
     - CommandBaseWashingtonBoSSet
     - CommandCasterWashingtonBoSSet
-    - MBoS_PalPla_Set
+    - CommandWattzWashingtonBoSSet
 
 - type: entity
   id: BoSBrotherhoodHeadKnightKits
@@ -36,9 +36,9 @@
     state: rifleman
   - type: UndecidedLoadoutBackpack
     possibleSets:
-    - BaseWashingtonBoSSet
-    - WattzWashingtonBoSSet
-    - ProtoWashingtonBoSSet
+    - CommandBaseWashingtonBoSSet
+    - CommandCasterWashingtonBoSSet
+    - CommandWattzWashingtonBoSSet
 
 - type: entity
   id: BoSBrotherhoodHeadScribeKits
@@ -50,9 +50,9 @@
     state: rifleman
   - type: UndecidedLoadoutBackpack
     possibleSets:
-    - WBoS_ScrMed_Set
-    - WBoS_ScrEng_Set
+    - KitBrotherWest_ScriberifleSet
     - KitBrotherWest_ScribelaserSet
+    - KitBrotherWest_ScribeplasmaSet
 
 - type: entity
   id: BoSBrotherhoodSeniorPaladinKits
@@ -79,9 +79,8 @@
     state: rifleman
   - type: UndecidedLoadoutBackpack
     possibleSets:
-    - KitBrotherWest_KnightrifleSet
-    - KitBrotherWest_KnightlaserSet
-    - KitBrotherWest_KnightplasmaSet
+    - MBoS_KniLas_Set
+    - MBoS_KniBal_Set
 
 - type: entity
   id: BoSBrotherhoodSeniorScribeKits
@@ -124,7 +123,6 @@
     possibleSets:
     - WBoS_KniPla_Set
     - WBoS_KniBal_Set
-    - MBoS_KniLas_Set
 
 - type: entity
   id: BoSBrotherhoodScribeKits

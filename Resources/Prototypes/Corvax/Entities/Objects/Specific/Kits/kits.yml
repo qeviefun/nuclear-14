@@ -22,7 +22,7 @@
       - id: N14HealingPowder #Misfits Change /Tweak/: Legion uses tribal medicine, not stimpaks
         amount: 2
       - id: N14HealingPoultice #Misfits Change /Tweak/: replaces super stimpak
-      - id: N14MedkitCombatFilled
+      #- id: N14MedkitCombatFilled #Misfits Change /Remove/: Legion does not use stimpak medkits
       - id: N14FoodTinK
         amount: 2
       - id: N14JunkCeramicFlask
@@ -109,7 +109,7 @@
       - id: BoxHandcuff
       - id: N14HealingPowder #Misfits Change /Tweak/: replaces dirty stimpak, Legion uses tribal medicine
         amount: 2
-      - id: N14MedkitFilled
+      #- id: N14MedkitFilled #Misfits Change /Remove/: Legion does not use stimpak medkits
       - id: N14FoodTinK
         amount: 2
       - id: N14JunkCeramicFlask
@@ -162,7 +162,7 @@
         amount: 3
       - id: N14HealingPowder #Misfits Change /Tweak/: Legion uses tribal medicine, not stimpaks
         amount: 2
-      - id: N14MedkitFilled
+      #- id: N14MedkitFilled #Misfits Change /Remove/: Legion does not use stimpak medkits
       - id: N14FoodTinK
         amount: 2
       - id: N14JunkCeramicFlask
@@ -523,7 +523,7 @@
       - id: Bola
       - id: N14HealingPowder #Misfits Change /Tweak/: replaces dirty stimpak, Legion uses tribal medicine
         amount: 2
-      - id: N14MedkitFilled
+      #- id: N14MedkitFilled #Misfits Change /Remove/: Legion does not use stimpak medkits
       - id: N14FoodTinK
         amount: 2
       - id: N14JunkCeramicFlask
@@ -604,7 +604,7 @@
       - id: BoxHandcuff
       - id: N14HealingPowder #Misfits Change /Tweak/: replaces dirty stimpak, Legion uses tribal medicine
         amount: 2
-      - id: N14MedkitCombatFilled
+      #- id: N14MedkitCombatFilled #Misfits Change /Remove/: Legion does not use stimpak medkits
       - id: N14FoodTinK
         amount: 2
       - id: N14JunkCeramicFlask
@@ -659,7 +659,7 @@
         amount: 3
       - id: N14HealingPowder #Misfits Change /Tweak/: Legion uses tribal medicine, not stimpaks
         amount: 2
-      - id: N14MedkitFilled
+      #- id: N14MedkitFilled #Misfits Change /Remove/: Legion does not use stimpak medkits
       - id: N14FoodTinK
         amount: 2
       - id: N14JunkCeramicFlask
@@ -852,7 +852,7 @@
     items:
       - id: N14ClothingOuterLegionnaireBaseArmor
       - id: N14TribalMachete
-      - id: N14ClothingBeltMedicalFilled
+      #- id: N14ClothingBeltMedicalFilled #Misfits Change /Remove/: Legion does not use stimpak medical belts
       - id: N14HealingPowder
         amount: 2
       - id: N14HealingPoultice

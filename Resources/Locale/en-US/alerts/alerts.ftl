@@ -68,8 +68,8 @@ alerts-piloting-desc = You are piloting a shuttle. Click the alert to stop.
 
 alerts-hunger-name = [color=yellow]Peckish[/color]
 alerts-hunger-desc = Some food would be good right about now.
-alerts-hunger-current-value = Current hunger: {$current}/{$max}
-alerts-hunger-threshold-range = Warning range: {$upper}/{$max} > {$lower}/{$max}
+alerts-hunger-current-value = Current hunger:
+    {$current}/{$max}
 
 alerts-stamina-name = Stamina
 alerts-stamina-desc = Stuns you if it is too low.
@@ -79,8 +79,8 @@ alerts-starving-desc = You're severely malnourished. The hunger pains make movin
 
 alerts-thirsty-name = [color=yellow]Thirsty[/color]
 alerts-thirsty-desc = Something to drink would be good right about now.
-alerts-thirst-current-value = Current thirst: {$current}/{$max}
-alerts-thirst-threshold-range = Warning range: {$upper}/{$max} > {$lower}/{$max}
+alerts-thirst-current-value = Current thirst:
+    {$current}/{$max}
 
 alerts-parched-name = [color=red]Parched[/color]
 alerts-parched-desc = You're severely thirsty. The thirst makes moving around a chore.

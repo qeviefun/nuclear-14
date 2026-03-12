@@ -63,7 +63,6 @@
       params:
         volume: -3
         maxDistance: 10
-    cooldownDuration: 25
   - type: Butcherable
     spawned:
     - id: N14FoodMeatGecko
@@ -175,7 +174,6 @@
       params:
         volume: -3
         maxDistance: 10
-    cooldownDuration: 25
 
 - type: entity
   name: golden gecko
@@ -234,7 +232,6 @@
       params:
         volume: -3
         maxDistance: 10
-    cooldownDuration: 25
 
 
 # Nightstalker Cub
@@ -312,7 +309,6 @@
       params:
         volume: -3
         maxDistance: 10
-    cooldownDuration: 25
   - type: SolutionContainerManager
     solutions:
       melee:
@@ -416,7 +412,6 @@
       params:
         volume: -3
         maxDistance: 10
-    cooldownDuration: 25
   - type: SolutionContainerManager
     solutions:
       melee:
@@ -557,7 +552,6 @@
       params:
         volume: -3
         maxDistance: 10
-    cooldownDuration: 25
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
     baseSprintSpeed : 6
@@ -655,7 +649,6 @@
       params:
         volume: -3
         maxDistance: 10
-    cooldownDuration: 25
 
 - type: entity
   name: deathclaw maid
@@ -683,7 +676,6 @@
       params:
         volume: -3
         maxDistance: 10
-    cooldownDuration: 25
 
 #MARK: Metal Deathclaw
 - type: entity
@@ -712,7 +704,6 @@
       params:
         volume: -3
         maxDistance: 10
-    cooldownDuration: 25
 
 # Fatass, aka the Lurker
 - type: entity
@@ -755,7 +746,6 @@
       params:
         volume: -3
         maxDistance: 10
-    cooldownDuration: 25
   - type: StepTriggerImmune
     whitelist:
       types:

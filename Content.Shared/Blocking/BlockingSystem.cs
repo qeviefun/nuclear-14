@@ -198,7 +198,8 @@ public sealed partial class BlockingSystem : EntitySystem
             _actionsSystem.SetToggled(component.BlockingToggleActionEntity, true);
             if (_gameTiming.IsFirstTimePredicted)
             {
-                _popupSystem.PopupEntity(msgOther, user, Filter.PvsExcept(user), true);
+                // #Misfits Change: observer popup suppressed — BlockingChatSystem sends this to the emote chat channel.
+                // _popupSystem.PopupEntity(msgOther, user, Filter.PvsExcept(user), true);
                 if(_gameTiming.InPrediction)
                     _popupSystem.PopupEntity(msgUser, user, user);
             }
@@ -266,7 +267,8 @@ public sealed partial class BlockingSystem : EntitySystem
             _physics.SetBodyType(user, blockingUserComponent.OriginalBodyType, body: physicsComponent);
             if (_gameTiming.IsFirstTimePredicted)
             {
-                _popupSystem.PopupEntity(msgOther, user, Filter.PvsExcept(user), true);
+                // #Misfits Change: observer popup suppressed — BlockingChatSystem sends this to the emote chat channel.
+                // _popupSystem.PopupEntity(msgOther, user, Filter.PvsExcept(user), true);
                 if(_gameTiming.InPrediction)
                     _popupSystem.PopupEntity(msgUser, user, user);
             }

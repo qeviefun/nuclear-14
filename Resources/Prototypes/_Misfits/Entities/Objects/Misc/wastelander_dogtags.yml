@@ -1,0 +1,26 @@
+# #Misfits Add - Wastelander dogtags that function as an ID card for PipBoy use.
+# These dogtags can be worn on the neck OR inserted into a Pip-Boy's ID slot
+# to activate PipBoy Hub programs (Contacts, Groups, Directory, Settings).
+# When inserted into a Pip-Boy, the NanoChatCard component provides a unique
+# network number for messaging and the IdCard component stores name/job info.
+
+- type: entity
+  parent: ClothingNeckBase
+  id: N14ClothingNeckDogtags
+  name: wastelander dogtags
+  description: A pair of engraved metal identification tags. Can be inserted into a Pip-Boy.
+  components:
+  - type: Sprite
+    sprite: Clothing/Neck/Misc/dogtags.rsi
+  - type: Clothing
+    sprite: Clothing/Neck/Misc/dogtags.rsi
+  - type: Access
+  - type: IdCard
+  - type: NanoChatCard
+  - type: StationRecordKeyStorage
+  - type: PresetIdCard
+    job: Wastelander
+  - type: Tag
+    tags:
+    - IdCardWastelander
+    - DoorBumpOpener

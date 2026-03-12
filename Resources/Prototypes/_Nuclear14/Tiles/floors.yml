@@ -1747,6 +1747,11 @@
   sprite: /Textures/_Nuclear14/Tiles/wasteland.png
   variants: 4
   placementVariants: [0, 1, 2, 3]
+  # #Misfits Tweak: Opt wasteland into shared terrain blending so dirt can feather into it
+  # without enabling blending on unrelated hard-floor tiles.
+  blendGroup: terrain
+  blendPriority: 0
+  blendMaskSet: soft-terrain
   baseTurf: space
   isSubfloor: true
   footstepSounds:
@@ -1762,6 +1767,8 @@
   name: tiles-dirt
   sprite: /Textures/_Nuclear14/Tiles/Dirt/dirt.png
   edgeSpritePriority: 1
+  blendGroup: terrain
+  blendPriority: 1
   edgeSprites:
     SouthEast: /Textures/_Nuclear14/Tiles/Dirt/single_edge_SE.png
     NorthEast: /Textures/_Nuclear14/Tiles/Dirt/single_edge_NE.png
@@ -1783,6 +1790,8 @@
   name: tiles-dirt-indoors
   sprite: /Textures/_Nuclear14/Tiles/Dirt/dirt.png
   edgeSpritePriority: 1
+  blendGroup: terrain
+  blendPriority: 1
   edgeSprites:
     SouthEast: /Textures/_Nuclear14/Tiles/Dirt/single_edge_SE.png
     NorthEast: /Textures/_Nuclear14/Tiles/Dirt/single_edge_NE.png

@@ -1,10 +1,9 @@
 // #Misfits Change
 using Content.Server._Misfits.RadiationWarning;
 using Content.Server.Chat.Managers;
-using Content.Server.Mind;
 using Content.Shared.Chat;
+using Content.Shared.Damage;
 using Content.Shared.Humanoid;
-using Content.Shared.Radiation.Events;
 using Robust.Server.GameObjects;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
@@ -13,19 +12,21 @@ namespace Content.Server._Misfits.RadiationWarning;
 
 /// <summary>
 /// Sends private, nameless ambient-flavour messages (like /do) to humanoid
-/// players when they stand in radiation fields. No name is attached — the
-/// message appears in the local-chat box the same way a subtle admin prayer
-/// does. Only the player being irradiated sees their message.
+/// players as their accumulated Radiation damage increases. No name is attached
+/// — the message appears in the local-chat box the same way a subtle admin
+/// prayer does. Only the affected player sees their message.
 ///
-/// Tier thresholds (radsPerSecond):
-///   0 = mild   (>0.05): faint unease
-///   1 = moderate (>0.40): nausea / headache
-///   2 = significant (>1.00): hair loss / skin burns
-///   3 = severe  (>2.50): "this will kill you"
+/// Triggers on DamageChangedEvent so radiation from *any* source — proximity
+/// to a rad field, ingested reagents, contaminated solutions — all register.
+///
+/// Tier thresholds (accumulated Radiation damage):
+///   0 = mild       (≥10): faint unease
+///   1 = moderate   (≥40): nausea / headache
+///   2 = significant(≥80): hair loss / skin burns
+///   3 = severe     (≥150): "this will kill you"
 /// </summary>
 public sealed class RadiationWarningSystem : EntitySystem
 {
-    [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ActorSystem _actor = default!;
@@ -66,7 +67,9 @@ public sealed class RadiationWarningSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<HumanoidAppearanceComponent, OnIrradiatedEvent>(OnIrradiated);
+        // Misfits Change — hook accumulated damage instead of proximity event so
+        // radiation applied via reagents/solutions also triggers flavortext.
+        SubscribeLocalEvent<HumanoidAppearanceComponent, DamageChangedEvent>(OnDamageChanged);
     }
 
     public override void Update(float frameTime)
@@ -84,19 +87,32 @@ public sealed class RadiationWarningSystem : EntitySystem
         }
     }
 
-    private void OnIrradiated(EntityUid uid, HumanoidAppearanceComponent _, OnIrradiatedEvent args)
+    private void OnDamageChanged(EntityUid uid, HumanoidAppearanceComponent _, DamageChangedEvent args)
     {
-        // Only send to living player-controlled humanoids
+        // Only react when radiation damage has actually increased.
+        if (args.DamageDelta != null &&
+            (!args.DamageDelta.DamageDict.TryGetValue("Radiation", out var delta) || delta <= 0))
+            return;
+
+        // Read current accumulated radiation damage from the damage component.
+        if (!args.Damageable.Damage.DamageDict.TryGetValue("Radiation", out var currentRads))
+            return;
+
+        var currentFloat = (float) currentRads;
+        if (currentFloat <= 0f)
+            return;
+
+        // Only send to living player-controlled humanoids.
         if (!_actor.TryGetSession(uid, out var session))
             return;
 
         var comp = EnsureComp<RadiationWarningComponent>(uid);
 
-        // Determine highest eligible tier
+        // Determine highest eligible tier based on accumulated damage.
         var tier = -1;
         for (var i = comp.TierThresholds.Length - 1; i >= 0; i--)
         {
-            if (args.RadsPerSecond >= comp.TierThresholds[i])
+            if (currentFloat >= comp.TierThresholds[i])
             {
                 tier = i;
                 break;
@@ -106,13 +122,13 @@ public sealed class RadiationWarningSystem : EntitySystem
         if (tier < 0)
             return;
 
-        // Respect per-tier cooldown
+        // Respect per-tier cooldown to avoid message spam.
         if (comp.TierCooldowns[tier] > 0f)
             return;
 
         comp.TierCooldowns[tier] = comp.TierCooldownTimes[tier];
 
-        // Pick a random message from the tier list
+        // Pick a random message from the tier list.
         var messages = TierMessages[tier];
         var key = messages[_random.Next(messages.Length)];
         var text = Loc.GetString(key);

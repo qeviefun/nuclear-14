@@ -1,0 +1,69 @@
+# Misfits Add - Stub abstract parents for _RMC prototypes that reference
+# upstream parents not present in this fork.
+
+# ClothingHeadEyeBaseFlippable - eyewear that can be flipped (folded)
+# Referenced by: _RMC/Entities/Clothing/Eyes/misc.yml
+- type: entity
+  abstract: true
+  parent: ClothingEyesBase
+  id: ClothingHeadEyeBaseFlippable
+  components:
+  - type: Foldable
+
+# ClothingHeadEyeBaseFlipped - eyewear starting in flipped (folded) state
+# Referenced by: _RMC/Entities/Clothing/Eyes/misc.yml
+- type: entity
+  abstract: true
+  parent: ClothingHeadEyeBaseFlippable
+  id: ClothingHeadEyeBaseFlipped
+  components:
+  - type: Foldable
+    folded: true
+
+# RMCBoxCardboard - cardboard box base for food/fun items
+# Referenced by: _RMC/Entities/Objects/Consumables/Food/donuts.yml, _RMC/Entities/Objects/Fun/crayons.yml
+- type: entity
+  abstract: true
+  parent: BoxBase
+  id: RMCBoxCardboard
+
+# BaseDeployFoldable - foldable/deployable base for bodybags, weapon mounts, rollerbeds
+# Referenced by: _RMC/Entities/Objects/Medical/bodybags.yml, weapon_mounts.yml, rollerbeds.yml
+- type: entity
+  abstract: true
+  parent: BaseFoldable
+  id: BaseDeployFoldable
+
+# DecalSpawnerBase - marker entity for spawning random decals
+# Referenced by: _RMC/Entities/Markers/Spawners/Random/Decals/gibs.yml, splatters.yml
+- type: entity
+  abstract: true
+  parent: MarkerBase
+  id: DecalSpawnerBase
+
+# ClothingNeckOmnisexualPin - pride pin for omnisexual flag
+# Referenced by: _RMC/Entities/Clothing/Neck/pins.yml
+- type: entity
+  parent: ClothingNeckPinBase
+  id: ClothingNeckOmnisexualPin
+  name: omnisexual pin
+  description: be omni do crime
+  components:
+  - type: Sprite
+    sprite: _RMC/Objects/Clothing/HelmetGarb/HelmetCovers/pride_pins.rsi
+    layers:
+    - state: omni
+  - type: Clothing
+    sprite: _RMC/Objects/Clothing/HelmetGarb/HelmetCovers/pride_pins.rsi
+    clothingVisuals:
+      neck:
+      - state: omni
+
+# Mannequin - display mannequin base for clothing display
+# Referenced by: _RMC/Entities/Structures/mannequin.yml
+- type: entity
+  abstract: true
+  parent: BaseStructure
+  id: Mannequin
+  name: mannequin
+  description: A display mannequin.

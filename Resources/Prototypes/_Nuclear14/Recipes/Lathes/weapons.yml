@@ -255,7 +255,7 @@
   id: N14LandMine
   icon:
     sprite: _Nuclear14/Objects/Misc/landmine.rsi
-    state: landmine
+    state: landmine-inactive
   result: N14LandMine
   category: N14Weapons
   completetime: 20
@@ -263,4 +263,43 @@
     Steel: 800
     N14Gunpowder: 500
     Lead: 200
+
+# Misfits Add - concussion mine; spring mechanism, no explosive charge, non-lethal
+- type: latheRecipe
+  id: LandMineKick
+  icon:
+    sprite: _Nuclear14/Objects/Misc/landmine.rsi
+    state: landmine-inactive
+  result: LandMineKick
+  category: N14Weapons
+  completetime: 12
+  materials:
+    Steel: 500
+    N14Iron: 200
+
+# Misfits Add - explosive mine; large charge, ~4 tile radius
+- type: latheRecipe
+  id: LandMineExplosive
+  icon:
+    sprite: _Nuclear14/Objects/Misc/landmine.rsi
+    state: landmine-inactive
+  result: LandMineExplosive
+  category: N14Weapons
+  completetime: 25
+  materials:
+    Steel: 1000
+    N14Gunpowder: 1000
+    Lead: 400
+
+# Misfits Add - modular mine casing; empty shell, receives any payload
+- type: latheRecipe
+  id: LandMineModular
+  icon:
+    sprite: _Nuclear14/Objects/Misc/landmine.rsi
+    state: landmine-inactive
+  result: LandMineModular
+  category: N14Weapons
+  completetime: 15
+  materials:
+    Steel: 600
 

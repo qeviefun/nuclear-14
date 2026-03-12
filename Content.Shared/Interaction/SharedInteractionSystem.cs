@@ -8,6 +8,7 @@ using Content.Shared.CombatMode;
 using Content.Shared.Database;
 using Content.Shared.Ghost;
 using Content.Shared._Goobstation.Interaction;
+using Content.Shared._Misfits.Movement.Pulling.Events;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
 using Content.Shared.Input;
@@ -17,6 +18,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Item;
 using Content.Shared.Movement.Components;
+using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Players.RateLimiting;
@@ -263,6 +265,15 @@ namespace Content.Shared.Interaction
 
             if (!InRangeUnobstructed(userEntity.Value, uid, popup: true))
                 return false;
+
+            if (TryComp<PullerComponent>(userEntity.Value, out var puller) && puller.Pulling == uid)
+            {
+                var repeatPull = new RepeatPullAttemptEvent(userEntity.Value, uid);
+                RaiseLocalEvent(userEntity.Value, ref repeatPull, true);
+
+                if (repeatPull.Handled)
+                    return false;
+            }
 
             _pullSystem.TogglePull(uid, userEntity.Value);
             return false;

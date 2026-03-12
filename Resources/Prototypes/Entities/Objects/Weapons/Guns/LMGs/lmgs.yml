@@ -16,6 +16,7 @@
     - suitStorage
   - type: Wieldable
     unwieldOnUse: false
+    wieldedSpeedModifier: 0.75
   - type: GunRequiresWield
   - type: GunWieldBonus
     minAngle: -20

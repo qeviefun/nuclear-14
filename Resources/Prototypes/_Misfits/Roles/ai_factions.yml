@@ -117,6 +117,22 @@
   - HostileRobot
   - Feral
 
+# #Misfits Add - Enclave remnant faction for player jobs and future map-side automation.
+- type: npcFaction
+  id: Enclave
+  hostile:
+  - BrotherhoodOfSteel
+  - BrotherhoodOfSteelSecureArea
+  - NCR
+  - NCRSecureArea
+  - CaesarLegion
+  - WastelandInsect
+  - WastelandAnimal
+  - Deathclaw
+  - Raider
+  - HostileRobot
+  - Feral
+
 # #Misfits Add - Deathclaw faction. Hostile to everything, neutral only to other deathclaws.
 - type: npcFaction
   id: Deathclaw

@@ -103,6 +103,8 @@ ui-options-vp-vertical-fit-tooltip = When enabled, the main viewport will ignore
                                      will cause the viewport to be cut off on the horizontal axis.
 ui-options-vp-low-res = Low-resolution viewport
 ui-options-parallax-low-quality = Low-quality Parallax (background)
+ui-options-tile-blend-masks = Experimental terrain tile blending
+ui-options-tile-blend-masks-tooltip = Enables the new client-side terrain blend mask renderer for compatible tiles. Disable this to fall back to the older tile edge behavior.
 ui-options-fps-counter = Show FPS counter
 ui-options-vp-width = Viewport width: { $width }
 ui-options-hud-layout = HUD layout:

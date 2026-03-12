@@ -1,4 +1,4 @@
-// #Misfits Add: public event raised after a successful cuff is applied, so server systems can react (e.g. chat logging).
+// #Misfits Add: public events raised at each stage of cuffing/uncuffing so server systems can react (e.g. chat logging).
 namespace Content.Shared._Misfits.Cuffs;
 
 /// <summary>
@@ -6,3 +6,15 @@ namespace Content.Shared._Misfits.Cuffs;
 /// </summary>
 [ByRefEvent]
 public readonly record struct CuffAppliedEvent(EntityUid User, EntityUid Target);
+
+/// <summary>
+/// Raised on the target entity when a cuffing do-after is started (i.e. the user begins trying to cuff).
+/// </summary>
+[ByRefEvent]
+public readonly record struct CuffStartedEvent(EntityUid User, EntityUid Target);
+
+/// <summary>
+/// Raised on the target entity when an uncuffing do-after is started (i.e. the user begins trying to remove cuffs).
+/// </summary>
+[ByRefEvent]
+public readonly record struct UncuffStartedEvent(EntityUid User, EntityUid Target);

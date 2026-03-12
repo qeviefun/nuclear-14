@@ -88,6 +88,28 @@ misfits-server-tab-restart-desc = Cleanly restart the server process (watchdog/s
 misfits-server-tab-ooc-desc = Toggle OOC (out-of-character) chat on or off.
 misfits-server-tab-looc-desc = Toggle LOOC (local out-of-character) chat on or off.
 
+# Persistent Entity Spawn Menu (Server tab)
+misfits-persistent-spawn-button = Persistent Entity Spawn
+misfits-server-tab-persistent-spawn-desc = Open the persistent entity spawn panel. Entities placed here survive round restarts.
+misfits-persistent-spawn-window-title = Persistent Entity Spawn
+misfits-persistent-spawn-window-notice = Entities placed via this panel persist across rounds.
+
+# Persistent Tile Spawn Menu (Server tab)
+misfits-persistent-tile-spawn-button = Persistent Tile Spawn
+misfits-server-tab-persistent-tile-spawn-desc = Open the persistent tile spawn panel. Tiles placed here survive round restarts.
+misfits-persistent-tile-spawn-window-title = Persistent Tile Spawn
+misfits-persistent-tile-spawn-window-notice = Tiles placed via this panel persist across rounds.
+
+# Spawn Decals — vanilla admin decal placer (no sandbox required) (Server tab)
+misfits-spawn-decals-button = Spawn Decals
+misfits-server-tab-spawn-decals-desc = Open the decal placer. Decals placed here are NOT persistent (right-click to erase).
+
+# Persistent Decal Spawn Menu (Server tab)
+misfits-persistent-decal-spawn-button = Persistent Decal Spawn
+misfits-server-tab-persistent-decal-spawn-desc = Open the persistent decal spawn panel. Decals placed here survive round restarts.
+misfits-persistent-decal-spawn-window-title = Persistent Decal Spawn
+misfits-persistent-decal-spawn-window-notice = Decals placed via this panel persist across rounds.
+
 # Whitelisting tab button descriptions
 misfits-whitelisting-tab-role-whitelists-btn = Role Whitelists Menu
 misfits-whitelisting-tab-role-whitelists-desc = Search for players and manage their job/role whitelists.

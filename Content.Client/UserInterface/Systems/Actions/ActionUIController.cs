@@ -60,7 +60,8 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
     private ActionsWindow? _window;
 
     private ActionsBar? ActionsBar => UIManager.GetActiveUIWidgetOrNull<ActionsBar>();
-    private MenuButton? ActionButton => UIManager.GetActiveUIWidgetOrNull<MenuBar.Widgets.GameTopMenuBar>()?.ActionButton;
+    // #Misfits Change - ActionButton removed from XAML to reduce top bar clutter
+    private MenuButton? ActionButton => null;
     private ActionPage CurrentPage => _pages[_currentPageIndex];
 
     public bool IsDragging => _menuDragHelper.IsDragging;

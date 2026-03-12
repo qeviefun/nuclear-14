@@ -49,8 +49,6 @@
     tags:
     - Trash
     - Skewer
-  - type: Food
-    trash: [] # Misfits Change: removed self-referential FoodKebabSkewer trash to prevent infinite food loop
   - type: SolutionContainerManager
     solutions:
       food:
@@ -69,6 +67,8 @@
     nameGeneration: food-sequence-skewer-gen
     contentSeparator: ", "
     allowHorizontalFlip: false
+  - type: FoodMetamorphableByAdding # Misfits Change /Add/: let modular skewers resolve into named kebab results when their ingredient pattern matches.
+    onlyFinal: false
 
 - type: entity
   name: double rat kebab
@@ -76,10 +76,14 @@
   id: FoodMeatRatdoubleKebab
   description: A double serving of not so delicious rat meat, on a stick.
   components:
+  - type: Food
+    trash:
+    - FoodKebabSkewer # Misfits Change /Fix/: eating a cooked kebab should leave a reusable plain skewer behind.
   - type: Sprite
     layers:
       - state: skewer
       - state: skewer-rat
+      - map: ["foodSequenceLayers"] # Misfits Change /Fix/: preserve the dynamic skewer layer map so added ingredients update visuals.
   - type: SolutionContainerManager
     solutions:
       food:
@@ -95,6 +99,9 @@
   id: FoodMeatFiestaKebab
   description: Always a cruise ship party somewhere in the world, right?
   components:
+  - type: Food
+    trash:
+    - FoodKebabSkewer # Misfits Change /Fix/: eating a cooked kebab should leave a reusable plain skewer behind.
   - type: Sprite
     layers:
       - state: skewer
@@ -102,6 +109,7 @@
       - state: skewer-corn
       - state: skewer-mushroom
       - state: skewer-tomato
+      - map: ["foodSequenceLayers"] # Misfits Change /Fix/: preserve the dynamic skewer layer map so added ingredients update visuals.
 
 - type: entity
   name: snake kebab
@@ -109,6 +117,9 @@
   id: FoodMeatSnakeKebab
   description: Snake meat on a stick. It's a little tough.
   components:
+  - type: Food
+    trash:
+    - FoodKebabSkewer # Misfits Change /Fix/: eating a cooked kebab should leave a reusable plain skewer behind.
   - type: Sprite
     layers:
       - state: skewer

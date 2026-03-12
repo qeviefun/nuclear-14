@@ -87,11 +87,7 @@ namespace Content.Client.UserInterface.Systems.Alerts.Controls
             var msg = FormattedMessage.FromMarkup(Loc.GetString(Alert.Name));
             var desc = FormattedMessage.FromMarkup(Loc.GetString(Alert.Description));
 
-            if (TryBuildNutritionTooltip(desc))
-            {
-                desc.PushNewline();
-                desc.PushNewline();
-            }
+            TryBuildNutritionTooltip(desc);
 
             return new ActionAlertTooltip(msg, desc) {Cooldown = Cooldown};
         }
@@ -111,13 +107,10 @@ namespace Content.Client.UserInterface.Systems.Alerts.Controls
 
                     var hungerWarningMax = hunger.Thresholds[HungerThreshold.Peckish];
                     var hungerCurrent = Math.Clamp(hunger.CurrentHunger, hunger.Thresholds[HungerThreshold.Dead], hungerWarningMax);
+                    desc.PushNewline();
+                    desc.PushNewline();
                     desc.AddText(Loc.GetString("alerts-hunger-current-value",
                         ("current", (int) hungerCurrent),
-                        ("max", (int) hungerWarningMax)));
-                    desc.PushNewline();
-                    desc.AddText(Loc.GetString("alerts-hunger-threshold-range",
-                        ("upper", (int) hungerWarningMax),
-                        ("lower", (int) hunger.Thresholds[HungerThreshold.Dead]),
                         ("max", (int) hungerWarningMax)));
                     return true;
 
@@ -128,13 +121,10 @@ namespace Content.Client.UserInterface.Systems.Alerts.Controls
 
                     var thirstWarningMax = thirst.ThirstThresholds[ThirstThreshold.Thirsty];
                     var thirstCurrent = Math.Clamp(thirst.CurrentThirst, thirst.ThirstThresholds[ThirstThreshold.Dead], thirstWarningMax);
+                    desc.PushNewline();
+                    desc.PushNewline();
                     desc.AddText(Loc.GetString("alerts-thirst-current-value",
                         ("current", (int) thirstCurrent),
-                        ("max", (int) thirstWarningMax)));
-                    desc.PushNewline();
-                    desc.AddText(Loc.GetString("alerts-thirst-threshold-range",
-                        ("upper", (int) thirstWarningMax),
-                        ("lower", (int) thirst.ThirstThresholds[ThirstThreshold.Dead]),
                         ("max", (int) thirstWarningMax)));
                     return true;
 

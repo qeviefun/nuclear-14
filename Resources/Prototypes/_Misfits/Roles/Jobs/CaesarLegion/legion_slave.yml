@@ -4,6 +4,7 @@
   hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
   jobWhitelistBypassesRoleTimers: true # #Misfits Change
   weight: 10
+  showBorder: true
   name: job-name-caesar-legion-slave
   description: job-description-caesar-legion-slave
   playTimeTracker: CaesarLegionSlave

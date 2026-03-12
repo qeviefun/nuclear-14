@@ -29,5 +29,11 @@ namespace Content.Shared.Humanoid
         StencilMask,
         Ensnare,
         Fire,
+        // Misfits Add - RMC14 imported content requires these additional visual layers
+        UndergarmentTop,
+        UndergarmentBottom,
+        Arms,
+        Legs,
+        Special,
     }
 }

@@ -1,3 +1,4 @@
+using Content.Shared._RMC.Storage; // #Misfits Add - RMC FixedItemSizeStorage support
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Verbs;
@@ -18,9 +19,12 @@ public abstract class SharedItemSystem : EntitySystem
     [Dependency] private   readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] protected readonly SharedContainerSystem Container = default!;
 
+    private EntityQuery<FixedItemSizeStorageComponent> _fixedItemSizeStorageQuery; // #Misfits Add
+
     public override void Initialize()
     {
         base.Initialize();
+        _fixedItemSizeStorageQuery = GetEntityQuery<FixedItemSizeStorageComponent>(); // #Misfits Add
         SubscribeLocalEvent<ItemComponent, GetVerbsEvent<InteractionVerb>>(AddPickupVerb);
         SubscribeLocalEvent<ItemComponent, InteractHandEvent>(OnHandInteract);
         SubscribeLocalEvent<ItemComponent, AfterAutoHandleStateEvent>(OnItemAutoState);
@@ -165,6 +169,24 @@ public abstract class SharedItemSystem : EntitySystem
         return uid.Comp.Shape ?? GetSizePrototype(uid.Comp.Size).DefaultShape;
     }
 
+    // #Misfits Add - RMC storage-aware GetItemShape overload for FixedItemSizeStorage
+    /// <summary>
+    /// Gets the shape of an item within a specific storage, respecting FixedItemSizeStorage.
+    /// </summary>
+    public IReadOnlyList<Box2i> GetItemShape(Entity<StorageComponent?> storage, Entity<ItemComponent?> uid)
+    {
+        if (!Resolve(uid, ref uid.Comp))
+            return new Box2i[] { };
+
+        if (_fixedItemSizeStorageQuery.TryComp(storage, out var fixedComp))
+        {
+            fixedComp.CachedSize ??= [Box2i.FromDimensions(Vector2i.Zero, fixedComp.Size - Vector2i.One)];
+            return fixedComp.CachedSize;
+        }
+
+        return uid.Comp.Shape ?? GetSizePrototype(uid.Comp.Size).DefaultShape;
+    }
+
     /// <summary>
     /// Gets the default shape of an item.
     /// </summary>
@@ -180,6 +202,43 @@ public abstract class SharedItemSystem : EntitySystem
     {
         return GetAdjustedItemShape(entity, location.Rotation, location.Position);
     }
+
+    // #Misfits Add - RMC storage-aware GetAdjustedItemShape overload for FixedItemSizeStorage
+    /// <summary>
+    /// Gets the shape of an item within a specific storage, adjusting for rotation and offset.
+    /// </summary>
+    public IReadOnlyList<Box2i> GetAdjustedItemShape(Entity<StorageComponent?> storage, Entity<ItemComponent?> entity, ItemStorageLocation location)
+    {
+        return GetAdjustedItemShape(storage, entity, location.Rotation, location.Position);
+    }
+
+    /// <summary>
+    /// Gets the shape of an item within a specific storage, adjusting for rotation and offset.
+    /// </summary>
+    public IReadOnlyList<Box2i> GetAdjustedItemShape(Entity<StorageComponent?> storage, Entity<ItemComponent?> entity, Angle rotation, Vector2i position)
+    {
+        if (!Resolve(entity, ref entity.Comp))
+            return new Box2i[] { };
+
+        var shapes = GetItemShape(storage, entity);
+        var boundingShape = shapes.GetBoundingBox();
+        var boundingCenter = ((Box2) boundingShape).Center;
+        var matty = Matrix3Helpers.CreateTransform(boundingCenter, rotation);
+        var drift = boundingShape.BottomLeft - matty.TransformBox(boundingShape).BottomLeft;
+
+        var adjustedShapes = new List<Box2i>();
+        foreach (var shape in shapes)
+        {
+            var transformed = matty.TransformBox(shape).Translated(drift);
+            var floored = new Box2i(transformed.BottomLeft.Floored(), transformed.TopRight.Floored());
+            var translated = floored.Translated(position);
+
+            adjustedShapes.Add(translated);
+        }
+
+        return adjustedShapes;
+    }
+    // #Misfits Add End
 
     /// <summary>
     /// Gets the shape of an item, adjusting for rotation and offset.

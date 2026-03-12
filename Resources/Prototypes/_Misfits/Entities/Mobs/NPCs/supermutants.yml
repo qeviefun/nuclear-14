@@ -24,6 +24,7 @@
         Blunt: 25
     range: 1.8
   - type: Sprite
+    scale: 0.7273, 1.0909 # Misfits Change /Fix/: normalize 44x44 NPC art to the playable supermutant 32x48 footprint.
     drawdepth: Mobs
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
@@ -67,6 +68,7 @@
       Dead:
         Base: melee_dead
   - type: Sprite
+    scale: 0.7273, 1.0909 # Misfits Change /Fix/: normalize 44x44 NPC art to the playable supermutant 32x48 footprint.
     drawdepth: Mobs
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
@@ -122,6 +124,7 @@
       Dead:
         Base: ranged_dead
   - type: Sprite
+    scale: 0.7273, 1.0909 # Misfits Change /Fix/: normalize 44x44 NPC art to the playable supermutant 32x48 footprint.
     drawdepth: Mobs
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
@@ -165,6 +168,7 @@
       Dead:
         Base: nightkin_dead
   - type: Sprite
+    scale: 0.7273, 1.0909 # Misfits Change /Fix/: normalize 44x44 NPC art to the playable supermutant 32x48 footprint.
     drawdepth: Mobs
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
@@ -221,6 +225,7 @@
       Dead:
         Base: nightkin_ranged_dead
   - type: Sprite
+    scale: 0.7273, 1.0909 # Misfits Change /Fix/: normalize 44x44 NPC art to the playable supermutant 32x48 footprint.
     drawdepth: Mobs
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
@@ -277,6 +282,7 @@
       Dead:
         Base: nightkin_boss_dead
   - type: Sprite
+    scale: 0.7273, 1.0909 # Misfits Change /Fix/: normalize 44x44 NPC art to the playable supermutant 32x48 footprint.
     drawdepth: Mobs
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
@@ -340,6 +346,7 @@
       Dead:
         Base: base_dead
   - type: Sprite
+    scale: 0.7273, 1.0909 # Misfits Change /Fix/: normalize 44x44 NPC art to the playable supermutant 32x48 footprint.
     drawdepth: Mobs
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
@@ -375,8 +382,129 @@
       Dead:
         Base: base_dead
   - type: Sprite
+    scale: 0.7273, 1.0909 # Misfits Change /Fix/: normalize 44x44 NPC art to the playable supermutant 32x48 footprint.
     drawdepth: Mobs
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: armored
       sprite: _Nuclear14/Mobs/SuperMutants/supermutant.rsi
+
+#MARK: NCR Super Mutant
+# Misfits Add - super mutant allied with or encountered near NCR territory.
+# Sprites: Cythisiax/desertrose-1 supermutant.dmi state hulk_special_ncr (CC-BY-NC-SA-3.0)
+- type: entity
+  name: NCR Super Mutant
+  id: N14MobSuperMutantNCR
+  parent: N14MobBaseHostileSuperMutant
+  description: A super mutant wearing NCR military surplus. Whether conscript, prisoner, or mercenary is anyone's guess.
+  components:
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      250: Dead
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      collection: N14SuperMutantAttack
+    angle: 60
+    animation: WeaponArcFist
+    damage:
+      types:
+        Blunt: 25
+    range: 1.8
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: ncr_mutant
+      Dead:
+        Base: ncr_mutant_dead
+  - type: Sprite
+    scale: 1.032, 1.091 # Misfits Add: normalize 31x44 sprite to 32x48 rendering
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: ncr_mutant
+      sprite: _Misfits/Mobs/NPCs/supermutant_ncr.rsi
+
+#MARK: NCO Super Mutant (Legion variant)
+# Misfits Add - super mutant found in Legion-adjacent territory or as a captured warrior.
+# Sprites: Cythisiax/desertrose-1 supermutant.dmi state hulk_special_legion (CC-BY-NC-SA-3.0)
+- type: entity
+  name: Super Mutant NCO
+  id: N14MobSuperMutantNCO
+  parent: N14MobBaseHostileSuperMutant
+  description: A battle-scarred super mutant bearing the markings of a wasteland warlord. Commands lesser mutants in the field.
+  components:
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      300: Dead
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      collection: N14SuperMutantAttack
+    angle: 60
+    animation: WeaponArcFist
+    damage:
+      types:
+        Blunt: 30
+    range: 1.8
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: nco_mutant
+      Dead:
+        Base: nco_mutant_dead
+  - type: Sprite
+    scale: 1.032, 1.091 # Misfits Add: normalize 31x44 sprite to 32x48 rendering
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: nco_mutant
+      sprite: _Misfits/Mobs/NPCs/supermutant_ncr.rsi
+
+#MARK: Behemoth
+# Misfits Add - the largest and most fearsome super mutant variant.
+# Sprites: Foundation-19/Big-Iron behemoth.dmi (upstream DesertRose2/desertrose, CC-BY-NC-SA-3.0)
+- type: entity
+  name: Super Mutant Behemoth
+  id: N14MobBehemoth
+  parent: N14MobBaseHostileSuperMutant
+  description: A towering ancient super mutant, its body warped beyond recognition by decades of FEV exposure. A walking natural disaster.
+  components:
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      800: Dead
+  - type: HTN
+    rootTask:
+      task: N14HostileCompound
+    blackboard:
+      NavSmash: !type:Bool
+        true
+      MeleeRange: !type:Single
+        2.2
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      collection: N14SuperMutantAttack
+    angle: 75
+    animation: WeaponArcFist
+    damage:
+      types:
+        Blunt: 50
+        Structural: 25
+    range: 2.2
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: behemoth
+      Dead:
+        Base: behemoth_dead
+  - type: Sprite
+    scale: 1.0, 1.0 # Misfits Add: 62x88 art renders at ~2x1.94 wide × 2.75 tiles tall
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: behemoth
+      sprite: _Misfits/Mobs/NPCs/behemoth.rsi

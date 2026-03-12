@@ -1,4 +1,5 @@
 using Content.Shared.Alert;
+using Content.Shared.Damage;
 using Content.Shared.Nutrition.EntitySystems;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -59,6 +60,13 @@ public sealed partial class ThirstComponent : Component
 
     [DataField]
     public ProtoId<AlertCategoryPrototype> ThirstyCategory = "Thirst";
+
+    // Misfits Add - Damage applied each second at ThirstThreshold.Dead, mirroring HungerComponent.StarvationDamage.
+    /// <summary>
+    /// Damage dealt each update tick when at ThirstThreshold.Dead.
+    /// </summary>
+    [DataField("dehydrationDamage")]
+    public DamageSpecifier? DehydrationDamage;
 
     public static readonly Dictionary<ThirstThreshold, ProtoId<AlertPrototype>> ThirstThresholdAlertTypes = new()
     {

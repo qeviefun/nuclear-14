@@ -5,13 +5,17 @@ using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components.SolutionManager;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Placeable;
 using Content.Shared.Power;
+using Content.Shared.Temperature;
+using Content.Shared.Interaction;
 
 namespace Content.Server.Chemistry.EntitySystems;
 
 public sealed class SolutionHeaterSystem : EntitySystem
 {
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly PowerReceiverSystem _powerReceiver = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SolutionContainerSystem _solutionContainer = default!;
@@ -26,6 +30,7 @@ public sealed class SolutionHeaterSystem : EntitySystem
         SubscribeLocalEvent<SolutionHeaterComponent, UpgradeExamineEvent>(OnUpgradeExamine);
         SubscribeLocalEvent<SolutionHeaterComponent, ItemPlacedEvent>(OnItemPlaced);
         SubscribeLocalEvent<SolutionHeaterComponent, ItemRemovedEvent>(OnItemRemoved);
+        SubscribeLocalEvent<SolutionHeaterComponent, ActivateInWorldEvent>(OnActivateInWorld);
     }
 
     private void TurnOn(EntityUid uid)
@@ -39,8 +44,18 @@ public sealed class SolutionHeaterSystem : EntitySystem
         if (!Resolve(uid, ref placer))
             return false;
 
+        var heater = Comp<SolutionHeaterComponent>(uid);
+
         if (placer.PlacedEntities.Count <= 0 || !_powerReceiver.IsPowered(uid))
             return false;
+
+        if (heater.RequireHot)
+        {
+            var isHotEvent = new IsHotEvent();
+            RaiseLocalEvent(uid, isHotEvent);
+            if (!isHotEvent.IsHot)
+                return false;
+        }
 
         TurnOn(uid);
         return true;
@@ -55,14 +70,12 @@ public sealed class SolutionHeaterSystem : EntitySystem
     private void OnPowerChanged(Entity<SolutionHeaterComponent> entity, ref PowerChangedEvent args)
     {
         var placer = Comp<ItemPlacerComponent>(entity);
-        if (args.Powered && placer.PlacedEntities.Count > 0)
+        if (args.Powered && TryTurnOn(entity, placer))
         {
-            TurnOn(entity);
+            return;
         }
-        else
-        {
-            TurnOff(entity);
-        }
+
+        TurnOff(entity);
     }
 
     private void OnRefreshParts(Entity<SolutionHeaterComponent> entity, ref RefreshPartsEvent args)
@@ -79,7 +92,8 @@ public sealed class SolutionHeaterSystem : EntitySystem
 
     private void OnItemPlaced(Entity<SolutionHeaterComponent> entity, ref ItemPlacedEvent args)
     {
-        TryTurnOn(entity);
+        if (!TryTurnOn(entity))
+            TurnOff(entity);
     }
 
     private void OnItemRemoved(Entity<SolutionHeaterComponent> entity, ref ItemRemovedEvent args)
@@ -87,6 +101,24 @@ public sealed class SolutionHeaterSystem : EntitySystem
         var placer = Comp<ItemPlacerComponent>(entity);
         if (placer.PlacedEntities.Count == 0) // Last entity was removed
             TurnOff(entity);
+    }
+
+    // #Misfits Change /Fix/ Let single-item heater surfaces like the hotplate hand back their contents on activate.
+    private void OnActivateInWorld(Entity<SolutionHeaterComponent> entity, ref ActivateInWorldEvent args)
+    {
+        if (args.Handled || !args.Complex)
+            return;
+
+        if (!TryComp<ItemPlacerComponent>(entity, out var placer) || placer.PlacedEntities.Count != 1)
+            return;
+
+        foreach (var placedEntity in placer.PlacedEntities)
+        {
+            if (_hands.TryPickupAnyHand(args.User, placedEntity))
+                args.Handled = true;
+
+            break;
+        }
     }
 
     public override void Update(float frameTime)

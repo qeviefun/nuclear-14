@@ -61,6 +61,8 @@ public abstract class ClothingSystem : EntitySystem
         Entity<ClothingComponent> toEquipEnt,
         Entity<InventoryComponent, HandsComponent> userEnt)
     {
+        // #Misfits Change /Fix/ Prefer an empty compatible slot before trying to displace an occupied one.
+        // This lets duplicate slot flags such as the power-armor extra back slot behave as expected.
         foreach (var slotDef in userEnt.Comp1.Slots)
         {
             // Do not attempt to quick-equip clothing in pocket slots.
@@ -71,25 +73,37 @@ public abstract class ClothingSystem : EntitySystem
             if (!_invSystem.CanEquip(userEnt, toEquipEnt, slotDef.Name, out _, slotDef, userEnt, toEquipEnt))
                 continue;
 
-            if (_invSystem.TryGetSlotEntity(userEnt, slotDef.Name, out var slotEntity, userEnt))
-            {
-                // Item in slot has to be quick equipable as well
-                if (TryComp(slotEntity, out ClothingComponent? item) && !item.QuickEquip)
-                    continue;
+            if (_invSystem.TryGetSlotEntity(userEnt, slotDef.Name, out _, userEnt))
+                continue;
 
-                if (!_invSystem.TryUnequip(userEnt, slotDef.Name, true, inventory: userEnt, checkDoafter: true))
-                    continue;
+            if (_invSystem.TryEquip(userEnt, toEquipEnt, slotDef.Name, true, inventory: userEnt, clothing: toEquipEnt, checkDoafter: true))
+                break;
+        }
 
-                if (!_invSystem.TryEquip(userEnt, toEquipEnt, slotDef.Name, true, inventory: userEnt, clothing: toEquipEnt, checkDoafter: true))
-                    continue;
+        foreach (var slotDef in userEnt.Comp1.Slots)
+        {
+            // Do not attempt to quick-equip clothing in pocket slots.
+            // We should probably add a special flag to SlotDefinition to skip quick equip if more similar slots get added.
+            if (slotDef.SlotFlags.HasFlag(SlotFlags.POCKET))
+                continue;
 
-                _handsSystem.PickupOrDrop(userEnt, slotEntity.Value, handsComp: userEnt);
-            }
-            else
-            {
-                if (!_invSystem.TryEquip(userEnt, toEquipEnt, slotDef.Name, true, inventory: userEnt, clothing: toEquipEnt, checkDoafter: true))
-                    continue;
-            }
+            if (!_invSystem.CanEquip(userEnt, toEquipEnt, slotDef.Name, out _, slotDef, userEnt, toEquipEnt))
+                continue;
+
+            if (!_invSystem.TryGetSlotEntity(userEnt, slotDef.Name, out var slotEntity, userEnt))
+                continue;
+
+            // Item in slot has to be quick equipable as well.
+            if (TryComp(slotEntity, out ClothingComponent? item) && !item.QuickEquip)
+                continue;
+
+            if (!_invSystem.TryUnequip(userEnt, slotDef.Name, true, inventory: userEnt, checkDoafter: true))
+                continue;
+
+            if (!_invSystem.TryEquip(userEnt, toEquipEnt, slotDef.Name, true, inventory: userEnt, clothing: toEquipEnt, checkDoafter: true))
+                continue;
+
+            _handsSystem.PickupOrDrop(userEnt, slotEntity.Value, handsComp: userEnt);
 
             break;
         }

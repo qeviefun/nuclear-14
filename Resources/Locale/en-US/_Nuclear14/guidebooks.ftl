@@ -32,5 +32,8 @@ guide-entry-twohanded = Two-Handed
 # Crafting
 guide-entry-crafting = Crafting
 guide-entry-bartending = Drinks & Other Liquids
+# Misfits Fix - guide-entry-botany already defined in guidebook/guides.ftl; removed duplicate
 guide-entry-cooking = Cooking
+# Misfits Fix - guide-entry-crafting-sys already defined in guidebook/guides.ftl; removed duplicate
 guide-entry-materials = Materials
+# Misfits Fix - guide-entry-medicine already defined in guidebook/guides.ftl; removed duplicate

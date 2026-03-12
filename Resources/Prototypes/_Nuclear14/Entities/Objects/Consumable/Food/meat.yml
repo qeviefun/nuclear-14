@@ -101,6 +101,11 @@
   - type: StaticPrice # Forge-Change
     price: 1 # PH
 
+#Misfits Change /Add/: Keep disabled fish recipes in the N14 namespace without duplicating upstream fish meat behavior.
+- type: entity
+  parent: FoodMeatFish
+  id: N14FoodMeatFish
+
 - type: entity
   name: raw radstag steak
   parent: N14FoodMeatBrahmin

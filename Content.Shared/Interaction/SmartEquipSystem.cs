@@ -76,6 +76,7 @@ public sealed class SmartEquipSystem : EntitySystem
         }
 
         var handItem = hands.ActiveHand.HeldEntity;
+        var resolvedSlot = ResolveSmartEquipSlot(uid, inventory, handItem, equipmentSlot);
 
         // early out if we have an item and cant drop it at all
         if (handItem != null && !_hands.CanDropHeld(uid, hands.ActiveHand))
@@ -101,7 +102,7 @@ public sealed class SmartEquipSystem : EntitySystem
         //    - with hand item: fail
         //    - without hand item: try to put the item into your hand
 
-        _inventory.TryGetSlotEntity(uid, equipmentSlot, out var slotEntity);
+        _inventory.TryGetSlotEntity(uid, resolvedSlot, out var slotEntity);
         var emptyEquipmentSlotString = Loc.GetString("smart-equip-empty-equipment-slot", ("slotName", equipmentSlot));
 
         // case 1 (no slot item):
@@ -113,14 +114,14 @@ public sealed class SmartEquipSystem : EntitySystem
                 return;
             }
 
-            if (!_inventory.CanEquip(uid, handItem.Value, equipmentSlot, out var reason))
+            if (!_inventory.CanEquip(uid, handItem.Value, resolvedSlot, out var reason))
             {
                 _popup.PopupClient(Loc.GetString(reason), uid, uid);
                 return;
             }
 
             _hands.TryDrop(uid, hands.ActiveHand, handsComp: hands);
-            _inventory.TryEquip(uid, handItem.Value, equipmentSlot, predicted: true, checkDoafter:true);
+            _inventory.TryEquip(uid, handItem.Value, resolvedSlot, predicted: true, checkDoafter:true);
             return;
         }
 
@@ -205,13 +206,41 @@ public sealed class SmartEquipSystem : EntitySystem
         if (handItem != null)
             return;
 
-        if (!_inventory.CanUnequip(uid, equipmentSlot, out var inventoryReason))
+        if (!_inventory.CanUnequip(uid, resolvedSlot, out var inventoryReason))
         {
             _popup.PopupClient(Loc.GetString(inventoryReason), uid, uid);
             return;
         }
 
-        _inventory.TryUnequip(uid, equipmentSlot, inventory: inventory, predicted: true, checkDoafter: true);
+        _inventory.TryUnequip(uid, resolvedSlot, inventory: inventory, predicted: true, checkDoafter: true);
         _hands.TryPickup(uid, slotItem, handsComp: hands);
+    }
+
+    private string ResolveSmartEquipSlot(EntityUid uid, InventoryComponent inventory, EntityUid? handItem, string requestedSlot)
+    {
+        if (requestedSlot != "back")
+            return requestedSlot;
+
+        string? fallbackSlot = null;
+
+        foreach (var slot in inventory.Slots)
+        {
+            if (!slot.SlotFlags.HasFlag(SlotFlags.BACK))
+                continue;
+
+            fallbackSlot ??= slot.Name;
+            _inventory.TryGetSlotEntity(uid, slot.Name, out var slotEntity, inventory);
+
+            if (slotEntity is { } equipped && HasComp<StorageComponent>(equipped))
+                return slot.Name;
+
+            if (handItem != null && slotEntity == null &&
+                _inventory.CanEquip(uid, handItem.Value, slot.Name, out _, slot, inventory))
+            {
+                return slot.Name;
+            }
+        }
+
+        return fallbackSlot ?? requestedSlot;
     }
 }

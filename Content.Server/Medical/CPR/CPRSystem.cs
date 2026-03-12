@@ -1,10 +1,13 @@
 using Content.Server.Atmos.Rotting;
+using Content.Server.Chat.Systems;
 using Content.Server.DoAfter;
 using Content.Server.Nutrition.EntitySystems;
 using Content.Server.Popups;
 using Content.Shared.Atmos.Rotting;
+using Content.Shared.Chat;
 using Content.Shared.Damage;
 using Content.Shared.DoAfter;
+using Content.Shared.IdentityManagement;
 using Content.Shared.Inventory;
 using Content.Shared.Medical;
 using Content.Shared.Mobs;
@@ -20,6 +23,7 @@ namespace Content.Server.Medical.CPR;
 
 public sealed class CPRSystem : EntitySystem
 {
+    [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly DoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
@@ -85,7 +89,22 @@ public sealed class CPRSystem : EntitySystem
             BlockDuplicate = true
         };
 
-        _doAfterSystem.TryStartDoAfter(doAfterArgs);
+        if (!_doAfterSystem.TryStartDoAfter(doAfterArgs))
+            return;
+
+        // #Misfits Change Add: surface CPR attempts to nearby players in the emote channel.
+        var targetName = Identity.Entity(target, EntityManager);
+        var performerName = Identity.Entity(performer, EntityManager);
+        _chat.TrySendInGameICMessage(performer,
+            Loc.GetString("misfits-chat-cpr-start", ("target", targetName)),
+            InGameICChatType.Emote,
+            ChatTransmitRange.Normal,
+            ignoreActionBlocker: true);
+        _chat.TrySendInGameICMessage(target,
+            Loc.GetString("misfits-chat-cpr-victim", ("user", performerName)),
+            InGameICChatType.Emote,
+            ChatTransmitRange.Normal,
+            ignoreActionBlocker: true);
 
         var playingStream = _audio.PlayPvs(performer.Comp.CPRSound, performer, AudioParams.Default);
         if (!playingStream.HasValue)

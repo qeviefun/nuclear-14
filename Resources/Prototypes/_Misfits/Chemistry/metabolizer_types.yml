@@ -1,0 +1,8 @@
+# Misfits Add - SuperMutant metabolizer type for FEV-mutated super mutant organs.
+# Super mutant organs metabolize substances differently from humans due to FEV exposure.
+# Reagents that target [SuperMutant] will only affect super mutants; those targeting
+# only [Human] will have no effect on their organs.
+
+- type: metabolizerType
+  id: SuperMutant
+  name: metabolizer-type-supermutant

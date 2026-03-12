@@ -23,7 +23,14 @@ namespace Content.Shared.Humanoid.Markings
         LeftFoot,
         Wings,
         Tail,
-        Overlay
+        Overlay,
+        // Misfits Add - RMC14 imported content requires these additional marking categories
+        Arms,
+        Legs,
+        Special,
+        Eyes,
+        UndergarmentTop,
+        UndergarmentBottom,
     }
 
     public static class MarkingCategoriesConversion
@@ -50,6 +57,12 @@ namespace Content.Shared.Humanoid.Markings
                 HumanoidVisualLayers.RFoot => MarkingCategories.RightFoot,
                 HumanoidVisualLayers.Wings => MarkingCategories.Wings,
                 HumanoidVisualLayers.Tail => MarkingCategories.Tail,
+                // Misfits Add - RMC14 additional visual layers mapped to closest category
+                HumanoidVisualLayers.UndergarmentTop => MarkingCategories.UndergarmentTop,
+                HumanoidVisualLayers.UndergarmentBottom => MarkingCategories.UndergarmentBottom,
+                HumanoidVisualLayers.Arms => MarkingCategories.Arms,
+                HumanoidVisualLayers.Legs => MarkingCategories.Legs,
+                HumanoidVisualLayers.Special => MarkingCategories.Special,
                 _ => MarkingCategories.Overlay
             };
         }

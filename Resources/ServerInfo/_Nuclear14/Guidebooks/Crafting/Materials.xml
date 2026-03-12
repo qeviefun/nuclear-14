@@ -47,7 +47,6 @@ Gather fertilizer from rocks and grind it to get fertilizer as a reagent.
 <GuideReagentEmbed Reagent="Fertilizer"/>
 </Box>
 
-<!-- #Misfits Change /Add/: Document the quick compost chemistry route alongside the slower natural decay route. -->
 If you need compost immediately, you can also slurry dung with water to make rotten compost for soil and farming recipes.
 <Box>
 <GuideEntityEmbed Entity="N14CompostRotted" Caption="Rotten Compost"/>

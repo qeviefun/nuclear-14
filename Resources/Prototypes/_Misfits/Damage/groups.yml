@@ -1,0 +1,10 @@
+# Misfits Add - Malnutrition damage group grouping together starvation and dehydration.
+# Added to the Biological damage container so entities with biological damage tracking
+# can accumulate and display these needs-based damage types separately from burns/toxins.
+
+- type: damageGroup
+  id: Malnutrition
+  name: damage-group-malnutrition
+  damageTypes:
+    - Starvation
+    - Dehydration

@@ -1,0 +1,4 @@
+- files: ["grill.ogg", "steam_long.ogg", "steam_short.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Fallout 13 SS13 codebase - DesertRose (Tron-117). Grill ignition and steam machine sounds."
+  source: "https://github.com/DesertRose2/desertrose/tree/master/sound/f13effects"

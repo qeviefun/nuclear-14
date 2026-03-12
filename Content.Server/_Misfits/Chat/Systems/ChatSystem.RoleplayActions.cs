@@ -144,7 +144,8 @@ public sealed partial class ChatSystem
             ("message", FormatRoleplayActionMarkup(action)));
     }
 
-    private static string FormatRoleplayActionMarkup(string action)
+    // #Misfits Change /Modify/ — made non-static to access sanitizer helpers; now sanitizes each quoted speech segment independently.
+    private string FormatRoleplayActionMarkup(string action)
     {
         if (string.IsNullOrEmpty(action))
             return string.Empty;
@@ -171,9 +172,18 @@ public sealed partial class ChatSystem
             if (openQuote > index)
                 builder.Append(FormattedMessage.EscapeText(action[index..openQuote]));
 
-            builder.Append($"[color={RoleplayQuoteColor}][bold]");
-            builder.Append(FormattedMessage.EscapeText(action[openQuote..(closeQuote + 1)]));
-            builder.Append("[/bold][/color]");
+            // #Misfits Change /Add/ — sanitize the speech content inside each quote pair independently.
+            var speech = action[(openQuote + 1)..closeQuote];
+            speech = SanitizeMessageCapital(speech);
+            speech = SanitizeMessageCapitalizeTheWordI(speech, "i");
+            if (!string.IsNullOrEmpty(speech) && char.IsLetter(speech[^1]))
+                speech += ".";
+
+            builder.Append($"[color={RoleplayQuoteColor}]");
+            builder.Append('"');
+            builder.Append(FormattedMessage.EscapeText(speech));
+            builder.Append('"');
+            builder.Append("[/color]");
             index = closeQuote + 1;
         }
 

@@ -1,4 +1,6 @@
 using Content.Shared.Alert;
+using Content.Shared.Damage;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Nutrition.Components;
@@ -25,6 +27,9 @@ public sealed class ThirstSystem : EntitySystem
     [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;
     [Dependency] private readonly SharedJetpackSystem _jetpack = default!;
     [Dependency] private readonly IConfigurationManager _config = default!;
+    // Misfits Add - Required for dehydration damage application at Dead threshold.
+    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
 
     [ValidatePrototypeId<SatiationIconPrototype>]
     private const string ThirstIconOverhydratedId = "ThirstIconOverhydrated";
@@ -222,6 +227,7 @@ public sealed class ThirstSystem : EntitySystem
             thirst.NextUpdateTime += thirst.UpdateRate;
 
             ModifyThirst(uid, thirst, -thirst.ActualDecayRate);
+            DoContinuousThirstEffects(uid, thirst); // Misfits Add - apply dehydration damage at Dead threshold
             var calculatedThirstThreshold = GetThirstThreshold(thirst, thirst.CurrentThirst);
 
             if (calculatedThirstThreshold == thirst.CurrentThirstThreshold)
@@ -229,6 +235,18 @@ public sealed class ThirstSystem : EntitySystem
 
             thirst.CurrentThirstThreshold = calculatedThirstThreshold;
             UpdateEffects(uid, thirst);
+        }
+    }
+
+    // Misfits Add - Applies dehydration damage each tick when at ThirstThreshold.Dead,
+    // mirroring the starvation damage pattern in HungerSystem.
+    private void DoContinuousThirstEffects(EntityUid uid, ThirstComponent component)
+    {
+        if (component.CurrentThirstThreshold <= ThirstThreshold.Dead &&
+            component.DehydrationDamage is { } damage &&
+            !_mobState.IsDead(uid))
+        {
+            _damageable.TryChangeDamage(uid, damage, true, false);
         }
     }
 }

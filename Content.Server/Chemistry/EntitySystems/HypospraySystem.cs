@@ -12,6 +12,7 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Timing;
 using Content.Shared.Weapons.Melee.Events;
+using Content.Server.Chat.Systems;
 using Content.Server.Interaction;
 using Content.Server.Body.Components;
 using Content.Server.Chemistry.Containers.EntitySystems;
@@ -19,6 +20,7 @@ using Robust.Shared.GameStates;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Shared.Chemistry.Reagent;
+using Content.Shared.Chat;
 using Robust.Server.Audio;
 
 namespace Content.Server.Chemistry.EntitySystems;
@@ -26,6 +28,7 @@ namespace Content.Server.Chemistry.EntitySystems;
 public sealed class HypospraySystem : SharedHypospraySystem
 {
     [Dependency] private readonly AudioSystem _audio = default!;
+    [Dependency] private readonly ChatSystem _chatSystem = default!; // #Misfits Change Add: broadcast successful injections as emotes.
     [Dependency] private readonly InteractionSystem _interaction = default!;
 
     public override void Initialize()
@@ -179,7 +182,24 @@ public sealed class HypospraySystem : SharedHypospraySystem
         // same LogType as syringes...
         _adminLogger.Add(LogType.ForceFeed, $"{EntityManager.ToPrettyString(user):user} injected {EntityManager.ToPrettyString(target):target} with a solution {SolutionContainerSystem.ToPrettyString(removedSolution):removedSolution} using a {EntityManager.ToPrettyString(uid):using}");
 
+        TrySendInjectionEmote(user, target, uid);
+
         return true;
+    }
+
+    // #Misfits Change Add: surface successful mob injections as local emote chat instead of only private popups.
+    private void TrySendInjectionEmote(EntityUid user, EntityUid target, EntityUid injector)
+    {
+        if (user == target || !HasComp<MobStateComponent>(target))
+            return;
+
+        _chatSystem.TrySendInGameICMessage(user,
+            Loc.GetString("misfits-chat-inject-other",
+                ("target", Identity.Entity(target, EntityManager)),
+                ("item", Identity.Entity(injector, EntityManager))),
+            Content.Shared.Chat.InGameICChatType.Emote,
+            Content.Shared.Chat.ChatTransmitRange.Normal,
+            ignoreActionBlocker: true);
     }
 
     private void TryDraw(Entity<HyposprayComponent> entity, Entity<BloodstreamComponent?> target, Entity<SolutionComponent> targetSolution, EntityUid user)

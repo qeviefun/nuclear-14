@@ -5,6 +5,7 @@ using Content.Shared.Damage;
 using Content.Shared.Explosion;
 using Content.Shared.Explosion.Components;
 using Content.Shared.Maps;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Physics;
 using Content.Shared.Projectiles;
 using Content.Shared.Tag;
@@ -25,6 +26,7 @@ namespace Content.Server.Explosion.EntitySystems;
 public sealed partial class ExplosionSystem
 {
     [Dependency] private readonly FlammableSystem _flammableSystem = default!;
+    [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
 
     /// <summary>
     ///     Used to limit explosion processing time. See <see cref="MaxProcessingTime"/>.
@@ -229,6 +231,16 @@ public sealed partial class ExplosionSystem
             ProcessEntity(uid, epicenter, damage, throwForce, id, xform, fireStacks);
         }
 
+        // #Misfits Change /Fix: Also sweep mob entities from the tile lookup so mobs without the expected broadphase
+        // presence still get processed by explosions.
+        foreach (var uid in _entityLookup.GetEntitiesIntersecting(grid.Owner, gridBox, LookupFlags.Uncontained))
+        {
+            if (!processed.Add(uid) || !HasComp<MobStateComponent>(uid))
+                continue;
+
+            ProcessEntity(uid, epicenter, damage, throwForce, id, Transform(uid), fireStacks);
+        }
+
         // process anchored entities
         var tileBlocked = false;
         _anchored.Clear();
@@ -325,6 +337,14 @@ public sealed partial class ExplosionSystem
         {
             processed.Add(uid);
             ProcessEntity(uid, epicenter, damage, throwForce, id, xform, fireStacks);
+        }
+
+        foreach (var uid in _entityLookup.GetEntitiesIntersecting(lookup.Owner, worldBox, LookupFlags.Uncontained))
+        {
+            if (!processed.Add(uid) || !HasComp<MobStateComponent>(uid))
+                continue;
+
+            ProcessEntity(uid, epicenter, damage, throwForce, id, Transform(uid), fireStacks);
         }
 
         if (throwForce <= 0)

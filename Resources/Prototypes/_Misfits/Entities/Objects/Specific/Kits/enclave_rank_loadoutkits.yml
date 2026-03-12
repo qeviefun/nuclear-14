@@ -1,0 +1,362 @@
+# #Misfits Add - Enclave role-specific undecided loadout kits.
+
+- type: entity
+  id: EnclaveOfficerloadoutkits
+  name: Undecided Enclave Officer Loadout Kit
+  parent: BaseLoadoutKit
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: pointman
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - Enclave_CommandLaserSet
+    - Enclave_CommandShockSet
+    - Enclave_CommandPlasmaSet
+
+- type: entity
+  id: EnclaveSoldierloadoutkits
+  name: Undecided Enclave Soldier Loadout Kit
+  parent: BaseLoadoutKit
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - Enclave_RiflemanSet
+    - Enclave_ShocktrooperSet
+    - Enclave_SuppressorSet
+
+- type: entity
+  id: EnclaveScientistloadoutkits
+  name: Undecided Enclave Scientist Loadout Kit
+  parent: BaseLoadoutKit
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: medic
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - Enclave_FieldResearchSet
+    - Enclave_MedicalScienceSet
+    - Enclave_EngineeringScienceSet
+
+- type: UndecidedLoadoutBackpackSet
+  id: Enclave_CommandLaserSet
+  name: command laser kit
+  description: A command package for an Enclave officer expecting to direct a firefight personally.
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: pointman
+  content:
+  - KitEnclave_CommandLaser
+
+- type: UndecidedLoadoutBackpackSet
+  id: Enclave_CommandShockSet
+  name: command shock kit
+  description: A harder-hitting officer package for an Enclave commander pushing with the line.
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitEnclave_CommandShock
+
+- type: UndecidedLoadoutBackpackSet
+  id: Enclave_CommandPlasmaSet
+  name: command plasma kit
+  description: A compact plasma command package for an officer who favors precision and mobility.
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: marksman
+  content:
+  - KitEnclave_CommandPlasma
+
+- type: UndecidedLoadoutBackpackSet
+  id: Enclave_RiflemanSet
+  name: trooper rifleman kit
+  description: A disciplined line trooper package for Enclave riflemen holding the center.
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitEnclave_Rifleman
+
+- type: UndecidedLoadoutBackpackSet
+  id: Enclave_ShocktrooperSet
+  name: trooper shock kit
+  description: A heavier Enclave assault package for breaking defended positions with superior firepower.
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: gunner
+  content:
+  - KitEnclave_Shocktrooper
+
+- type: UndecidedLoadoutBackpackSet
+  id: Enclave_SuppressorSet
+  name: trooper suppressor kit
+  description: An automatic laser package for Enclave soldiers tasked with pinning targets and advancing methodically.
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: marksman
+  content:
+  - KitEnclave_Suppressor
+
+- type: UndecidedLoadoutBackpackSet
+  id: Enclave_FieldResearchSet
+  name: field research kit
+  description: A technical field package for an Enclave scientist operating outside a secure lab.
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: medic
+  content:
+  - KitEnclave_FieldResearch
+
+- type: UndecidedLoadoutBackpackSet
+  id: Enclave_MedicalScienceSet
+  name: medical science kit
+  description: A medical support package for an Enclave scientist handling trauma, radiation, and advanced recovery.
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: medic
+  content:
+  - KitEnclave_MedicalScience
+
+- type: UndecidedLoadoutBackpackSet
+  id: Enclave_EngineeringScienceSet
+  name: engineering science kit
+  description: A field engineering package for an Enclave scientist maintaining equipment and infrastructure under pressure.
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: pointman
+  content:
+  - KitEnclave_EngineeringScience
+
+- type: entity
+  id: KitEnclave_CommandLaser
+  name: command laser kit
+  parent: KitBase
+  description: A crate containing officer-grade laser weaponry, signaling tools, and sustain items for an Enclave commander.
+  components:
+  - type: Sprite
+    state: pointman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ClothingOuterEnclaverOfficerCoat
+      - id: ClothingBeltMilitary
+      - id: N14WeaponLaserRifleWattz2000
+      - id: N14WeaponLaserPistol
+      - id: RadioHandheld
+      - id: SmokeGrenade
+        amount: 2
+      - id: GrenadeFrag
+      - id: N14Stimpak
+      - id: N14SuperStimpak
+      - id: N14CleanGauze10
+        amount: 2
+      - id: N14Flare
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  id: KitEnclave_CommandShock
+  name: command shock kit
+  parent: KitBase
+  description: A crate containing heavier command gear for an Enclave officer leading an aggressive push.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ClothingOuterEnclaveArmor
+      - id: ClothingBeltMilitary
+      - id: N14WeaponLaserRifleAuto
+      - id: N14WeaponLaserPistolRecharger
+      - id: RadioHandheld
+      - id: SmokeGrenade
+      - id: GrenadeFrag
+      - id: N14Stimpak
+      - id: N14SuperStimpak
+      - id: N14RadAwayBloodbag
+      - id: N14CleanGauze10
+      - id: N14Flare
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  id: KitEnclave_CommandPlasma
+  name: command plasma kit
+  parent: KitBase
+  description: A crate containing compact plasma arms and battlefield control tools for an Enclave officer.
+  components:
+  - type: Sprite
+    state: marksman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ClothingOuterEnclaverOfficerCoat
+      - id: ClothingBeltMilitary
+      - id: N14WeaponPlasmaDefender
+      - id: N14PlasmaCell
+        amount: 3
+      - id: RadioHandheld
+      - id: SmokeGrenade
+        amount: 2
+      - id: N14Stimpak
+      - id: N14SuperStimpak
+      - id: N14RadAwayBloodbag
+      - id: N14CleanGauze10
+      - id: N14Flare
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  id: KitEnclave_Rifleman
+  name: trooper rifleman kit
+  parent: KitBase
+  description: A crate containing a dependable Enclave line trooper package built around a recharger rifle and field sustain.
+  components:
+  - type: Sprite
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ClothingOuterEnclavePeacekeeper
+      - id: ClothingBeltMilitary
+      - id: N14WeaponLaserRifleRecharger
+      - id: N14WeaponLaserPistol
+      - id: RadioHandheld
+      - id: SmokeGrenade
+      - id: N14Stimpak
+      - id: N14CleanGauze10
+      - id: N14Flare
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  id: KitEnclave_Shocktrooper
+  name: trooper shock kit
+  parent: KitBase
+  description: A crate containing an aggressive Enclave assault package for breaching and overrunning resistance.
+  components:
+  - type: Sprite
+    state: gunner
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ClothingOuterEnclaveArmor
+      - id: ClothingBeltMilitary
+      - id: N14WeaponPlasmaRifleAuto
+      - id: N14PlasmaCartridge
+        amount: 2
+      - id: N14WeaponPlasmaPistol
+      - id: N14PlasmaCell
+        amount: 2
+      - id: SmokeGrenade
+      - id: N14Stimpak
+      - id: N14SuperStimpak
+      - id: N14CleanGauze10
+      - id: N14Flare
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  id: KitEnclave_Suppressor
+  name: trooper suppressor kit
+  parent: KitBase
+  description: A crate containing automatic laser arms and grenades for Enclave suppression and controlled advances.
+  components:
+  - type: Sprite
+    state: marksman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ClothingOuterEnclavePeacekeeper
+      - id: ClothingBeltMilitary
+      - id: N14WeaponLaserRifleAuto
+      - id: N14WeaponLaserPistol
+      - id: SmokeGrenade
+        amount: 2
+      - id: GrenadeFrag
+      - id: N14Stimpak
+      - id: N14RadAwayBloodbag
+      - id: N14CleanGauze10
+      - id: N14Flare
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  id: KitEnclave_FieldResearch
+  name: field research kit
+  parent: KitBase
+  description: A crate containing a sidearm and field study tools for an Enclave scientist operating beyond the bunker.
+  components:
+  - type: Sprite
+    state: medic
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponLaserPistolRecharger
+      - id: RadioHandheld
+      - id: N14MedkitRadiationFilled
+      - id: N14Stimpak
+      - id: N14RadAwayBloodbag
+      - id: N14CleanGauze10
+      - id: N14Flare
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  id: KitEnclave_MedicalScience
+  name: medical science kit
+  parent: KitBase
+  description: A crate containing advanced trauma and radiation support for an Enclave scientist assigned to medical duties.
+  components:
+  - type: Sprite
+    state: medic
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponPlasmaPistol
+      - id: N14PlasmaCell
+        amount: 2
+      - id: N14MedkitCombatFilled
+      - id: N14SuperStimpak
+      - id: N14RadAwayBloodbag
+      - id: N14CleanGauze10
+        amount: 2
+      - id: RadioHandheld
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  id: KitEnclave_EngineeringScience
+  name: engineering science kit
+  parent: KitBase
+  description: A crate containing technical tools and a compact energy sidearm for an Enclave scientist maintaining infrastructure.
+  components:
+  - type: Sprite
+    state: pointman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14WeaponLaserPistol
+      - id: ToolboxMechanicalFilled
+      - id: ToolboxElectricalFilled
+      - id: RadioHandheld
+      - id: N14Stimpak
+      - id: N14CleanGauze10
+      - id: N14Flare
+    sound:
+      path: /Audio/Effects/unwrap.ogg

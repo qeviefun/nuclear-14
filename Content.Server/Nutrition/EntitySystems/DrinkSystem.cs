@@ -1,5 +1,6 @@
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
+using Content.Server.Chat.Systems;
 using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.EntityEffects.Effects;
 using Content.Server.Fluids.EntitySystems;
@@ -15,6 +16,7 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
+using Content.Shared.Chat;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.EntityEffects;
@@ -39,6 +41,7 @@ namespace Content.Server.Nutrition.EntitySystems;
 public sealed class DrinkSystem : SharedDrinkSystem
 {
     [Dependency] private readonly BodySystem _body = default!;
+    [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly FlavorProfileSystem _flavorProfile = default!;
     [Dependency] private readonly FoodSystem _food = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
@@ -224,8 +227,32 @@ public sealed class DrinkSystem : SharedDrinkSystem
             NeedHand = forceDrink,
         };
 
-        _doAfter.TryStartDoAfter(doAfterEventArgs);
+        var started = _doAfter.TryStartDoAfter(doAfterEventArgs);
+
+        // #Misfits Change Add: contested drinking should surface in local emote chat.
+        if (forceDrink && started)
+            TrySendForcedDrinkingEmotes(user, target, item);
+
         return true;
+    }
+
+    // #Misfits Change Add: mirror force-drink attempts into the same emote channel used by other coercive actions.
+    private void TrySendForcedDrinkingEmotes(EntityUid user, EntityUid target, EntityUid item)
+    {
+        var userName = Identity.Entity(user, EntityManager);
+        var targetName = Identity.Entity(target, EntityManager);
+        var itemName = Identity.Entity(item, EntityManager);
+
+        _chat.TrySendInGameICMessage(user,
+            Loc.GetString("misfits-chat-force-drink-start", ("target", targetName), ("item", itemName)),
+            InGameICChatType.Emote,
+            ChatTransmitRange.Normal,
+            ignoreActionBlocker: true);
+        _chat.TrySendInGameICMessage(target,
+            Loc.GetString("misfits-chat-force-drink-victim", ("user", userName), ("item", itemName)),
+            InGameICChatType.Emote,
+            ChatTransmitRange.Normal,
+            ignoreActionBlocker: true);
     }
 
     /// <summary>

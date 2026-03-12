@@ -166,12 +166,17 @@
     - /Audio/_Misfits/Mobs/Supermutant/idle3.ogg
     - /Audio/_Misfits/Mobs/Supermutant/idle4.ogg
 
-# Ghoul attack sounds (aggro screams)
+# Ghoul melee hit sounds — plays on every swing impact
 - type: soundCollection
   id: N14GhoulAttack
   files:
     - /Audio/_Misfits/Mobs/Ghoul/aggro1.ogg
     - /Audio/_Misfits/Mobs/Ghoul/aggro2.ogg
+
+# Ghoul combat-entry alert — distinct from hit sounds, used by AggroSound component
+- type: soundCollection
+  id: N14GhoulAggro
+  files:
     - /Audio/_Misfits/Mobs/Ghoul/taunt.ogg
 
 # Ghoul ambient idle

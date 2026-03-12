@@ -1558,6 +1558,11 @@
   - 1.0
   - 1.0
   - 1.0
+  # #Misfits Tweak: Shared terrain blend metadata allows dirt to participate in the new
+  # mask-driven terrain edge path without affecting non-terrain floors.
+  blendGroup: terrain
+  blendPriority: 1
+  blendMaskSet: soft-terrain
   baseTurf: Plating
   isSubfloor: true
   canShovel: true # Delta V

@@ -11,6 +11,7 @@
     - Back
     - suitStorage
   - type: Wieldable
+    wieldedSpeedModifier: 0.85
   - type: GunWieldBonus
     minAngle: -21
     maxAngle: -38

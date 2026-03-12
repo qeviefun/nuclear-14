@@ -24,6 +24,14 @@ public enum WastelandMapTrackedBlipKind : byte
     Knight,
     Scribe,
     Squire,
+    // #Misfits Add - Legion rank blip kinds for the Centurion tactical computer
+    LegionCenturion,  // Centurion & Legate — gold star marker
+    LegionDecanus,    // Decanus ranks — red diamond
+    LegionWarrior,    // Warriors, specialists — dark red square
+    LegionRecruit,    // Recruit / Auxilia / Slave — brown circle
+    // #Misfits Add - PipBoy Hub contact/group blips for wasteland map integration
+    PipBoyContact,    // PipBoy contact sharing location — cyan circle
+    PipBoyGroupMember, // PipBoy group member with map tracking — teal triangle
 }
 
 [Serializable, NetSerializable]
@@ -42,6 +50,7 @@ public enum WastelandMapTacticalFeedKind : byte
     Vault,
     NCR,
     Enclave, // #Misfits Change
+    Legion, // #Misfits Add - Legion faction tactical feed for Centurion's terminal
 }
 
 [Serializable, NetSerializable]

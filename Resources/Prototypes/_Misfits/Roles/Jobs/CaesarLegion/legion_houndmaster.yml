@@ -3,7 +3,8 @@
   setPreference: true
   hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
   jobWhitelistBypassesRoleTimers: true # #Misfits Change
-  weight: 30
+  weight: 55
+  showBorder: true
   name: job-name-caesar-legion-houndmaster
   description: job-description-caesar-legion-houndmaster
   playTimeTracker: CaesarLegionHoundmaster

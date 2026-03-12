@@ -151,7 +151,6 @@
     - NCRA_SGTGunnerSet
     - NCRA_SGTScoutSet
     - NCRA_SGTPointSet
-    - NCRA_LTTacticalSet
     - NCRA_StaffSergeantLineSet
 
 - type: entity
@@ -166,8 +165,7 @@
     possibleSets:
     - NCRA_SGTRiflemanSet
     - NCRA_SGTPointSet
-    - NCRA_LTPencilSet
-    - NCRA_LTTacticalSet
+    - NCRA_StaffSergeantLineSet
     - NCRA_FirstSergeantVeteranSet
 
 - type: entity
@@ -195,9 +193,6 @@
     state: pointman
   - type: UndecidedLoadoutBackpack
     possibleSets:
-    - NCRA_LTPencilSet
-    - NCRA_LTScoutSet
-    - NCRA_LTTacticalSet
     - NCRA_CaptainCommandSet
     - NCRA_CaptainMarksmanSet
     - NCRA_CaptainServiceRifleSet
@@ -267,7 +262,7 @@
 
 - type: entity
   id: BoSWashingtonInitSet
-  name: Undecided Washington Initiate Kit
+  name: Undecided BoS Initiate Kit
   parent: BaseLoadoutKit
   components:
   - type: Sprite
@@ -294,7 +289,7 @@
 
 - type: entity
   id: BoSWashingtonKnightSet
-  name: Undecided Washington Knight Kit
+  name: Undecided BoS Knight Kit
   parent: BaseLoadoutKit
   components:
   - type: Sprite
@@ -338,7 +333,7 @@
 
 - type: entity
   id: BoSWashingtonPaladinKits
-  name: Undecided Washington Paladin Kit
+  name: Undecided BoS Paladin Kit
   parent: BaseLoadoutKit
   components:
   - type: Sprite

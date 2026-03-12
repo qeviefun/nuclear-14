@@ -12,7 +12,7 @@ namespace Content.Server._Misfits.Nutrition;
 
 /// <summary>
 /// Sends first-person, private do-style flavor text to player-controlled entities
-/// as hunger and thirst worsen, and occasionally while those states persist.
+/// when hunger and thirst cross into specific thresholds.
 /// </summary>
 public sealed class NeedFlavorTextSystem : EntitySystem
 {
@@ -24,7 +24,6 @@ public sealed class NeedFlavorTextSystem : EntitySystem
 
     private readonly Dictionary<EntityUid, HungerThreshold> _lastHungerThresholds = new();
     private readonly Dictionary<EntityUid, ThirstThreshold> _lastThirstThresholds = new();
-    private readonly Dictionary<(EntityUid Uid, string NeedId), TimeSpan> _nextAmbientAt = new();
     private readonly Dictionary<EntityUid, TimeSpan> _nextCollapseAttemptAt = new();
 
     private static readonly string[] HungerPeckishMessages =
@@ -86,14 +85,12 @@ public sealed class NeedFlavorTextSystem : EntitySystem
     private void OnHungerShutdown(EntityUid uid, HungerComponent component, ComponentRemove args)
     {
         _lastHungerThresholds.Remove(uid);
-        _nextAmbientAt.Remove((uid, "hunger"));
         _nextCollapseAttemptAt.Remove(uid);
     }
 
     private void OnThirstShutdown(EntityUid uid, ThirstComponent component, ComponentShutdown args)
     {
         _lastThirstThresholds.Remove(uid);
-        _nextAmbientAt.Remove((uid, "thirst"));
         _nextCollapseAttemptAt.Remove(uid);
     }
 
@@ -131,55 +128,59 @@ public sealed class NeedFlavorTextSystem : EntitySystem
     private void ProcessHunger(EntityUid uid, ICommonSession session, HungerComponent hunger)
     {
         var threshold = hunger.CurrentThreshold;
-        if (!_lastHungerThresholds.TryAdd(uid, threshold))
+        if (_lastHungerThresholds.TryAdd(uid, threshold))
         {
-            var previous = _lastHungerThresholds[uid];
-            if (previous != threshold)
-            {
-                _lastHungerThresholds[uid] = threshold;
+            if (threshold == HungerThreshold.Dead)
+                TryCauseCollapse(uid);
 
-                if (IsInterestingHungerThreshold(threshold))
-                    SendAmbientNeedMessage(uid, session, "hunger", GetHungerMessages(threshold), GetHungerCooldown(threshold));
-
-                return;
-            }
+            return;
         }
 
-        if (!IsInterestingHungerThreshold(threshold))
+        var previous = _lastHungerThresholds[uid];
+        if (previous != threshold)
+        {
+            _lastHungerThresholds[uid] = threshold;
+
+            if (threshold == HungerThreshold.Dead)
+                TryCauseCollapse(uid);
+
+            if (IsInterestingHungerThreshold(threshold))
+                SendAmbientNeedMessage(session, GetHungerMessages(threshold));
+
             return;
+        }
 
         if (threshold == HungerThreshold.Dead)
             TryCauseCollapse(uid);
-
-        if (CanSendAmbient(uid, "hunger"))
-            SendAmbientNeedMessage(uid, session, "hunger", GetHungerMessages(threshold), GetHungerCooldown(threshold));
     }
 
     private void ProcessThirst(EntityUid uid, ICommonSession session, ThirstComponent thirst)
     {
         var threshold = thirst.CurrentThirstThreshold;
-        if (!_lastThirstThresholds.TryAdd(uid, threshold))
+        if (_lastThirstThresholds.TryAdd(uid, threshold))
         {
-            var previous = _lastThirstThresholds[uid];
-            if (previous != threshold)
-            {
-                _lastThirstThresholds[uid] = threshold;
+            if (threshold == ThirstThreshold.Dead)
+                TryCauseCollapse(uid);
 
-                if (IsInterestingThirstThreshold(threshold))
-                    SendAmbientNeedMessage(uid, session, "thirst", GetThirstMessages(threshold), GetThirstCooldown(threshold));
-
-                return;
-            }
+            return;
         }
 
-        if (!IsInterestingThirstThreshold(threshold))
+        var previous = _lastThirstThresholds[uid];
+        if (previous != threshold)
+        {
+            _lastThirstThresholds[uid] = threshold;
+
+            if (threshold == ThirstThreshold.Dead)
+                TryCauseCollapse(uid);
+
+            if (IsInterestingThirstThreshold(threshold))
+                SendAmbientNeedMessage(session, GetThirstMessages(threshold));
+
             return;
+        }
 
         if (threshold == ThirstThreshold.Dead)
             TryCauseCollapse(uid);
-
-        if (CanSendAmbient(uid, "thirst"))
-            SendAmbientNeedMessage(uid, session, "thirst", GetThirstMessages(threshold), GetThirstCooldown(threshold));
     }
 
     private void TryCauseCollapse(EntityUid uid)
@@ -193,14 +194,8 @@ public sealed class NeedFlavorTextSystem : EntitySystem
             _stun.TryKnockdown(uid, TimeSpan.FromSeconds(2.5f), true);
     }
 
-    private bool CanSendAmbient(EntityUid uid, string needId)
+    private void SendAmbientNeedMessage(ICommonSession session, string[] messageKeys)
     {
-        return !_nextAmbientAt.TryGetValue((uid, needId), out var nextAt) || _timing.CurTime >= nextAt;
-    }
-
-    private void SendAmbientNeedMessage(EntityUid uid, ICommonSession session, string needId, string[] messageKeys, TimeSpan cooldown)
-    {
-        _nextAmbientAt[(uid, needId)] = _timing.CurTime + cooldown;
         var text = Loc.GetString(_random.Pick(messageKeys));
         _chat.SendPrivateDoMessage(session, text);
     }
@@ -237,25 +232,4 @@ public sealed class NeedFlavorTextSystem : EntitySystem
         };
     }
 
-    private static TimeSpan GetHungerCooldown(HungerThreshold threshold)
-    {
-        return threshold switch
-        {
-            HungerThreshold.Dead => TimeSpan.FromSeconds(45),
-            HungerThreshold.Starving => TimeSpan.FromSeconds(70),
-            HungerThreshold.Peckish => TimeSpan.FromSeconds(140),
-            _ => TimeSpan.FromSeconds(120),
-        };
-    }
-
-    private static TimeSpan GetThirstCooldown(ThirstThreshold threshold)
-    {
-        return threshold switch
-        {
-            ThirstThreshold.Dead => TimeSpan.FromSeconds(40),
-            ThirstThreshold.Parched => TimeSpan.FromSeconds(55),
-            ThirstThreshold.Thirsty => TimeSpan.FromSeconds(110),
-            _ => TimeSpan.FromSeconds(90),
-        };
-    }
 }

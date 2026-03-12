@@ -24,6 +24,8 @@ public sealed partial class PathfindingSystem
         // First run
         if (!request.Started)
         {
+            // #Misfits Change /Fix/: Only seed the frontier once so time-sliced A* continues
+            // from its in-progress state instead of repeatedly restarting from the start node.
             request.Frontier = new PriorityQueue<(float, PathPoly)>(PathPolyComparer);
             request.Started = true;
         }
@@ -61,9 +63,13 @@ public sealed partial class PathfindingSystem
             return PathResult.NoPath;
         }
 
-        currentNode = startNode;
-        request.Frontier.Add((0.0f, startNode));
-        request.CostSoFar[startNode] = 0.0f;
+        if (request.CostSoFar.Count == 0)
+        {
+            currentNode = startNode;
+            request.Frontier.Add((0.0f, startNode));
+            request.CostSoFar[startNode] = 0.0f;
+        }
+
         var count = 0;
         var arrived = false;
 
@@ -129,7 +135,7 @@ public sealed partial class PathfindingSystem
             return PathResult.NoPath;
         }
 
-        var route = ReconstructPath(request.CameFrom, currentNode);
+        var route = ReconstructPath(request.CameFrom, currentNode!);
         var path = new Queue<EntityCoordinates>(route.Count);
 
         foreach (var node in route)

@@ -1,0 +1,25 @@
+<!-- #Misfits Add - Persistent Entity Spawn Window.
+     Mirrors the standard Entity Spawn Panel but entities placed through this
+     panel are saved to JSON and re-spawned automatically on round restart. -->
+<DefaultWindow
+    xmlns="https://spacestation14.io"
+    Title="{Loc misfits-persistent-spawn-window-title}"
+    SetSize="400 450"
+    MinSize="350 200">
+    <BoxContainer Orientation="Vertical">
+        <Label Text="{Loc misfits-persistent-spawn-window-notice}" StyleClasses="LabelSubText" Margin="0 0 0 4" />
+        <BoxContainer Orientation="Horizontal">
+            <LineEdit Name="SearchBar" Access="Public" HorizontalExpand="True" PlaceHolder="{Loc window-search-bar-placeholder}"/>
+            <Button Name="ClearButton" Access="Public" Disabled="True" Text="{Loc window-clear-button}" />
+        </BoxContainer>
+        <ScrollContainer Name="PrototypeScrollContainer" Access="Public" MinSize="200 0" VerticalExpand="True">
+            <PrototypeListContainer Name="PrototypeList" Access="Public"/>
+        </ScrollContainer>
+        <BoxContainer Orientation="Horizontal">
+            <Button Name="EraseButton" Access="Public" ToggleMode="True" Text="{Loc window-erase-button-text}"/>
+            <OptionButton Name="OverrideMenu" Access="Public" HorizontalExpand="True" ToolTip="{Loc entity-spawn-window-override-menu-tooltip}" />
+        </BoxContainer>
+        <Label Name="RotationLabel" Access="Public"/>
+        <EntitySpawnButton Name="MeasureButton" Access="Public" Visible="False"/>
+    </BoxContainer>
+</DefaultWindow>

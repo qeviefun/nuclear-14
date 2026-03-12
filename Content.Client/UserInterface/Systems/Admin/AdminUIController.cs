@@ -229,10 +229,12 @@ public sealed class AdminUIController : UIController,
         var uid = info.Entity;
         var function = args.Function;
 
+        // #Misfits Change - Left-click: enter aghost mode (if needed) and follow the clicked entity.
+        // Right-click: open variable viewer (previously left-click behaviour).
         if (function == EngineKeyFunctions.UIClick)
-            _conHost.ExecuteCommand($"vv {uid}");
+            _conHost.ExecuteCommand($"ghostfollow {uid}");
         else if (function == EngineKeyFunctions.UIRightClick)
-            _verb.OpenVerbMenu(uid, true);
+            _conHost.ExecuteCommand($"vv {uid}");
         else
             return;
 

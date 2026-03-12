@@ -50,8 +50,30 @@ public partial class PdaWindow : BaseWindow
         AccentV.Visible = false;
     }
 
+    private const int DragMarginSize = 7;
+
     protected override DragMode GetDragModeFor(Vector2 relativeMousePos)
     {
-        return DragMode.Move;
+        var mode = DragMode.Move;
+
+        if (relativeMousePos.Y < DragMarginSize)
+        {
+            mode = DragMode.Top;
+        }
+        else if (relativeMousePos.Y > Size.Y - DragMarginSize)
+        {
+            mode = DragMode.Bottom;
+        }
+
+        if (relativeMousePos.X < DragMarginSize)
+        {
+            mode |= DragMode.Left;
+        }
+        else if (relativeMousePos.X > Size.X - DragMarginSize)
+        {
+            mode |= DragMode.Right;
+        }
+
+        return mode;
     }
 }

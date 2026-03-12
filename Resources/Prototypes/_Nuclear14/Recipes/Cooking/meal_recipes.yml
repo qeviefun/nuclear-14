@@ -221,15 +221,15 @@
     N14CookedFoodBreadBun: 1
     N14FoodMeatMirelurkClaw: 2 #N14 change. Not like mirelurks are in but it's good to have it set up I guess.
 
-#- type: microwaveMealRecipe
-#  id: N14RecipeCarpBurger
-#  name: fillet-o-carp burger recipe
-#  result: N14CookedFoodBurgerCarp
-#  time: 10
-#  solids:
-#    N14CookedFoodBreadBun: 1
-#    FoodMeatFish: 1 # a mystery for later
-#    N14FoodCheeseSlice: 1
+- type: microwaveMealRecipe
+  id: N14RecipeCarpBurger
+  name: fillet-o-carp burger recipe
+  result: N14CookedFoodBurgerCarp
+  time: 10
+  solids:
+    N14CookedFoodBreadBun: 1
+    FoodMeatFish: 1
+    N14FoodCheeseSlice: 1
 
 - type: microwaveMealRecipe
   id: N14RecipeFiveBurger
@@ -380,16 +380,16 @@
 
 #Slices Only
 
-#- type: microwaveMealRecipe
-#  id: N14RecipeBaguette
-#  name: baguette recipe
-#  result: N14CookedFoodBreadBaguette
-#  time: 15
-#  reagents:
-#    TableSalt: 5
-#    Blackpepper: 5
-#  solids:
-#    N14FoodDough: 1
+- type: microwaveMealRecipe
+  id: N14RecipeBaguette
+  name: baguette recipe
+  result: N14CookedFoodBreadBaguette
+  time: 15
+  reagents:
+    TableSalt: 5
+    Blackpepper: 5
+  solids:
+    N14FoodDough: 1
 
 - type: microwaveMealRecipe
   id: N14RecipeButteredToast
@@ -601,18 +601,18 @@
     N14FloraProduceWildCarrot: 1 #N14 change
 
 #Soups & Stew
-# - type: microwaveMealRecipe
-  # id: N14RecipeBisque
-  # name: bisque recipe
-  # result: N14CookedFoodSoupBisque
-  # time: 10
-  # reagents:
-    # Water: 10
-  # solids:
-    # FoodBowlBig: 1
-    # N14FloraProduceWildTato: 1 #N14 change
-    # N14FloraProduceWildCaveFungus: 1 #N14 change
-    # N14FoodMeatFish: 1 #alas for thee no fishee -Hazel
+- type: microwaveMealRecipe
+  id: N14RecipeBisque
+  name: bisque recipe
+  result: N14CookedFoodSoupBisque
+  time: 10
+  reagents:
+    Water: 10
+  solids:
+    FoodBowlBig: 1
+    N14FloraProduceWildTato: 1 #N14 change
+    N14FloraProduceWildCaveFungus: 1 #N14 change
+    N14FoodMeatFish: 1
 
 #- type: microwaveMealRecipe
 #  id: N14RecipeMeatballSoup
@@ -1193,16 +1193,16 @@
     N14FoodWatermelonSlice: 2
 
 # Kebabs
-#all of these lack N14 entities and don't work currently it seems
+#Misfits Change /Tweak/: Only keep the variants disabled that still lack bespoke art or would overlap with upstream skewer metamorph recipes.
 
-#- type: microwaveMealRecipe
-#  id: N14RecipeMeatKebab
-#  name: meat kebab recipe
-#  result: N14CookedFoodMeatKebab
-#  time: 5
-#  solids:
-#    N14FoodMeatRadCutlet: 3
-#    FoodKebabSkewer: 1
+- type: microwaveMealRecipe
+  id: N14RecipeMeatKebab
+  name: meat kebab recipe
+  result: N14CookedFoodMeatKebab
+  time: 5
+  solids:
+    N14FoodMeatRadCutlet: 3
+    FoodKebabSkewer: 1
 
 # - type: microwaveMealRecipe
   # id: N14RecipeHawaiianKebab
@@ -1247,16 +1247,16 @@
   #   FoodMeatRat: 2
     # FoodKebabSkewer: 1
 
-# - type: microwaveMealRecipe
-  # id: N14RecipeSnakeKebab
-  # name: snake kebab recipe
-  # result: N14FoodMeatSnakeKebab
-  # time: 15
-  # reagents:
-    # Wine: 5
-  # solids:
-    # FoodMeatSnake: 1 #in theory this is a slam dunk fallout-replace
-    # FoodKebabSkewer: 1
+- type: microwaveMealRecipe
+  id: N14RecipeSnakeKebab
+  name: snake kebab recipe
+  result: N14FoodMeatSnakeKebab
+  time: 15
+  reagents:
+    Wine: 5
+  solids:
+    FoodMeatSnake: 1
+    FoodKebabSkewer: 1
 
 - type: microwaveMealRecipe
   id: N14RecipeFoodMealSoftTaco
@@ -1270,14 +1270,14 @@
     N14FoodCheeseSlice: 1
     N14FoodMeatRadCutlet: 1 #N14 change
 
-#- type: microwaveMealRecipe
-#  id: N14RecipeFoodBakedChevreChaud
-#  name: chevre chaud recipe
-#  result: N14CookedFoodBakedChevreChaud
-#  time: 5
-#  solids:
-#    N14FoodChevreSlice: 1
-#    N14CookedFoodBreadBaguetteSlice: 1
+- type: microwaveMealRecipe
+  id: N14RecipeFoodBakedChevreChaud
+  name: chevre chaud recipe
+  result: N14CookedFoodBakedChevreChaud
+  time: 5
+  solids:
+    N14FoodChevreSlice: 1
+    N14CookedFoodBreadBaguetteSlice: 1
 
 - type: microwaveMealRecipe
   id: N14RecipeCannabisButter
@@ -1339,17 +1339,17 @@
     N14FoodMeatRadchicken: 1 #N14 change
     N14FoodCheeseSlice: 1
 
-# - type: microwaveMealRecipe
-  # id: N14RecipeTacoFish
-  # name: fish taco recipe
-  # result: N14CookedFoodTacoFish
-  # time: 10
-  # solids:
-    # N14CookedFoodTacoShell: 1
-    # N14FoodMeatFish: 1 #again, someday there could be fishing... maybe
-    # N14FoodOnionRedSlice: 2 #N14 change
-    # N14FloraProduceWildTato: 1 #N14 change
-    # N14FloraProduceWildCabbage: 1 #N14 change
+- type: microwaveMealRecipe
+  id: N14RecipeTacoFish
+  name: fish taco recipe
+  result: N14CookedFoodTacoFish
+  time: 10
+  solids:
+    N14CookedFoodTacoShell: 1
+    N14FoodMeatFish: 1
+    N14FoodOnionRedSlice: 2 #N14 change
+    N14FloraProduceWildTato: 1 #N14 change
+    N14FloraProduceWildCabbage: 1 #N14 change
 
 - type: microwaveMealRecipe
   id: N14RecipeTacoRat

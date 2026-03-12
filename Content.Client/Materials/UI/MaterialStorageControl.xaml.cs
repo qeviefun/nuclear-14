@@ -15,7 +15,10 @@ public sealed partial class MaterialStorageControl : ScrollContainer
 {
     [Dependency] private readonly IEntityManager _entityManager = default!;
 
+    // #Misfits Change Fix: Show raw materials sitting in the bench storage container in the
+    // same material list as the internal material storage so workbench UI reflects actual inputs.
     private readonly MaterialSiloSystem _materialSilo;
+    private readonly MaterialStorageSystem _materialStorage;
 
     private EntityUid? _owner;
 
@@ -27,6 +30,7 @@ public sealed partial class MaterialStorageControl : ScrollContainer
         IoCManager.InjectDependencies(this);
 
         _materialSilo = _entityManager.System<MaterialSiloSystem>();
+        _materialStorage = _entityManager.System<MaterialStorageSystem>();
     }
 
     public void SetOwner(EntityUid owner)
@@ -64,7 +68,12 @@ public sealed partial class MaterialStorageControl : ScrollContainer
             ConnectToSiloLabel.Visible = false;
         }
 
-        if (_currentMaterials.Equals(mats))
+        foreach (var (mat, amount) in _materialStorage.GetStoredMaterialAmounts(_owner.Value))
+        {
+            mats[mat] = mats.GetValueOrDefault(mat) + amount;
+        }
+
+        if (_currentMaterials.Count == mats.Count && _currentMaterials.All(pair => mats.GetValueOrDefault(pair.Key) == pair.Value))
             return;
 
         var missing = new List<string>();
@@ -106,6 +115,6 @@ public sealed partial class MaterialStorageControl : ScrollContainer
         }
 
         _currentMaterials = mats;
-        NoMatsLabel.Visible = ChildCount == 1;
+        NoMatsLabel.Visible = MaterialList.ChildCount == 0;
     }
 }

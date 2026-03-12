@@ -2,8 +2,10 @@
 using Content.Shared._Misfits.Sound;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Systems;
+using Content.Server.NPC.Components;
 using Robust.Server.Audio;
 using Robust.Shared.Audio;
+using Robust.Shared.Random;
 
 namespace Content.Server._Misfits.Sound;
 
@@ -15,12 +17,15 @@ namespace Content.Server._Misfits.Sound;
 public sealed class AggroSoundSystem : EntitySystem
 {
     [Dependency] private readonly AudioSystem _audio = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<AggroSoundComponent, MeleeAttackEvent>(OnMeleeAttack);
         SubscribeLocalEvent<AggroSoundComponent, GunShotEvent>(OnGunShot);
+        SubscribeLocalEvent<NPCMeleeCombatComponent, ComponentInit>(OnMeleeCombatStartup);
+        SubscribeLocalEvent<NPCRangedCombatComponent, ComponentInit>(OnRangedCombatStartup);
     }
 
     private void OnMeleeAttack(Entity<AggroSoundComponent> entity, ref MeleeAttackEvent args)
@@ -35,13 +40,31 @@ public sealed class AggroSoundSystem : EntitySystem
         TryPlayAggro(entity);
     }
 
+    // Misfits Change /Fix: Prime the aggro icon as soon as hostile NPC combat starts,
+    // so ranged mobs like assaultrons show the exclamation mark on aggro instead of only after their first attack.
+    private void OnMeleeCombatStartup(EntityUid uid, NPCMeleeCombatComponent component, ComponentInit args)
+    {
+        if (TryComp<AggroSoundComponent>(uid, out var aggro))
+            TryPlayAggro((uid, aggro));
+    }
+
+    private void OnRangedCombatStartup(EntityUid uid, NPCRangedCombatComponent component, ComponentInit args)
+    {
+        if (TryComp<AggroSoundComponent>(uid, out var aggro))
+            TryPlayAggro((uid, aggro));
+    }
+
     private void TryPlayAggro(Entity<AggroSoundComponent> entity)
     {
         if (entity.Comp.CooldownRemaining > 0f)
             return;
 
         _audio.PlayPvs(entity.Comp.Sound, entity.Owner);
-        entity.Comp.CooldownRemaining = entity.Comp.CooldownDuration;
+        // Pick a random cooldown each play so mobs in a group do not vocalize in sync.
+        entity.Comp.CooldownRemaining = _random.NextFloat(entity.Comp.CooldownMin, entity.Comp.CooldownMax);
+        // Misfits Change /Fix: Dirty the component so clients see the updated CooldownRemaining
+        // and the aggro status icon (ShowAggroIconSystem) appears correctly.
+        Dirty(entity.Owner, entity.Comp);
     }
 
     public override void Update(float frameTime)
@@ -49,10 +72,16 @@ public sealed class AggroSoundSystem : EntitySystem
         base.Update(frameTime);
 
         var query = EntityQueryEnumerator<AggroSoundComponent>();
-        while (query.MoveNext(out _, out var aggro))
+        while (query.MoveNext(out var uid, out var aggro))
         {
-            if (aggro.CooldownRemaining > 0f)
-                aggro.CooldownRemaining -= frameTime;
+            if (aggro.CooldownRemaining <= 0f)
+                continue;
+
+            aggro.CooldownRemaining -= frameTime;
+
+            // Misfits Change /Fix: Dirty when cooldown expires so clients hide the aggro icon.
+            if (aggro.CooldownRemaining <= 0f)
+                Dirty(uid, aggro);
         }
     }
 }

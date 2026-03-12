@@ -12,8 +12,8 @@
   - type: Cartridge
     programName: notekeeper-program-name
     icon:
-      sprite:  Objects/Misc/books.rsi
-      state: book_icon
+      sprite: _Nuclear14/Objects/Misc/pipboy.rsi
+      state: pda
   - type: NotekeeperCartridge
 
 - type: entity
@@ -30,8 +30,8 @@
   - type: Cartridge
     programName: news-read-program-name
     icon:
-      sprite: Interface/Misc/program_icons.rsi
-      state: news_read
+      sprite: _Nuclear14/Objects/Misc/pipboy.rsi
+      state: pda
   - type: NewsReaderCartridge
 
 - type: entity
@@ -48,8 +48,8 @@
     - type: Cartridge
       programName: crew-manifest-program-name
       icon:
-        sprite: Interface/Misc/program_icons.rsi
-        state: crew_manifest
+        sprite: _Nuclear14/Objects/Misc/pipboy.rsi
+        state: pda
     - type: CrewManifestCartridge
 
 - type: entity

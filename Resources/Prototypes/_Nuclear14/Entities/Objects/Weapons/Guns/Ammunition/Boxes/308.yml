@@ -21,6 +21,7 @@
     steps: 2
     zeroVisible: false
   - type: Appearance
+  - type: FoldableAmmoBox #Misfits Change /Add/: Empty cardboard ammo boxes can fold back into one cardboard sheet.
 
 - type: entity
   parent: BaseMagazineBox308

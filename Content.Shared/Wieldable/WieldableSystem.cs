@@ -7,6 +7,7 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Item;
+using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Timing;
 using Content.Shared.Verbs;
@@ -33,6 +34,7 @@ public sealed class WieldableSystem : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly UseDelaySystem _delay = default!;
     [Dependency] private readonly SharedGunSystem _gun = default!;
+    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly INetManager _netManager = default!;
 
@@ -46,6 +48,7 @@ public sealed class WieldableSystem : EntitySystem
         SubscribeLocalEvent<WieldableComponent, VirtualItemDeletedEvent>(OnVirtualItemDeleted);
         SubscribeLocalEvent<WieldableComponent, GetVerbsEvent<InteractionVerb>>(AddToggleWieldVerb);
         SubscribeLocalEvent<WieldableComponent, HandDeselectedEvent>(OnDeselectWieldable);
+        SubscribeLocalEvent<WieldableComponent, HeldRelayedEvent<RefreshMovementSpeedModifiersEvent>>(OnRefreshMovementSpeedModifiers);
 
         SubscribeLocalEvent<MeleeRequiresWieldComponent, AttemptMeleeEvent>(OnMeleeAttempt);
         SubscribeLocalEvent<GunRequiresWieldComponent, ExaminedEvent>(OnExamineRequires);
@@ -104,6 +107,23 @@ public sealed class WieldableSystem : EntitySystem
             return;
 
         TryUnwield(uid, component, args.User);
+    }
+
+    // #Misfits Change /Add/ - Wielded weapons apply a configurable held-item slowdown through the normal movement refresh relay.
+    private void OnRefreshMovementSpeedModifiers(EntityUid uid, WieldableComponent component, ref HeldRelayedEvent<RefreshMovementSpeedModifiersEvent> args)
+    {
+        if (!component.Wielded)
+            return;
+
+        var speedModifier = component.WieldedSpeedModifier;
+
+        if (speedModifier == null && (HasComp<MeleeWeaponComponent>(uid) || HasComp<GunComponent>(uid)))
+            speedModifier = WieldableComponent.DefaultWeaponWieldedSpeedModifier;
+
+        if (speedModifier == null)
+            return;
+
+        args.Args.ModifySpeed(speedModifier.Value, speedModifier.Value);
     }
 
     private void OnGunRefreshModifiers(Entity<GunWieldBonusComponent> bonus, ref GunRefreshModifiersEvent args)
@@ -259,6 +279,8 @@ public sealed class WieldableSystem : EntitySystem
         var targEv = new ItemWieldedEvent();
         RaiseLocalEvent(used, ref targEv);
 
+        _movementSpeedModifier.RefreshMovementSpeedModifiers(user);
+
         Dirty(used, component);
         return true;
     }
@@ -279,6 +301,7 @@ public sealed class WieldableSystem : EntitySystem
         var targEv = new ItemUnwieldedEvent(user);
 
         RaiseLocalEvent(used, targEv);
+        _movementSpeedModifier.RefreshMovementSpeedModifiers(user);
         return true;
     }
 
@@ -313,7 +336,9 @@ public sealed class WieldableSystem : EntitySystem
         if (!component.Wielded || uid != args.Unequipped)
             return;
 
+        component.Wielded = false;
         RaiseLocalEvent(uid, new ItemUnwieldedEvent(args.User, force: true), true);
+        _movementSpeedModifier.RefreshMovementSpeedModifiers(args.User);
     }
 
     private void OnVirtualItemDeleted(EntityUid uid, WieldableComponent component, VirtualItemDeletedEvent args)

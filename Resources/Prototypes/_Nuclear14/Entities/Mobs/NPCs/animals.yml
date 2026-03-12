@@ -66,7 +66,6 @@
       params:
         volume: -3
         maxDistance: 10
-    cooldownDuration: 25
  #- type: Reproductive
    #breedChance: 0.05
    #birthPopup: reproductive-birth-popup
@@ -156,7 +155,6 @@
       params:
         volume: -3
         maxDistance: 10
-    cooldownDuration: 25
   - type: Butcherable
     spawned:
     - id: N14FoodMeatPigrat
@@ -241,7 +239,6 @@
       params:
         volume: -3
         maxDistance: 10
-    cooldownDuration: 25
  #- type: Reproductive
    #breedChance: 0.05
    #birthPopup: reproductive-birth-popup
@@ -340,7 +337,6 @@
       params:
         volume: -3
         maxDistance: 10
-    cooldownDuration: 25
   - type: NoSlip
  #- type: Reproductive
    #breedChance: 0.05

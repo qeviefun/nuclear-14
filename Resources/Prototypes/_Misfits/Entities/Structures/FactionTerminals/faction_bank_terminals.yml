@@ -1,0 +1,115 @@
+# #Misfits Add - Faction ATM (currency wallet terminal) entities.
+# Spawned in-game by admins via the Entity Spawn Panel.
+# Activating (E key) or right-clicking → "Access Bank Terminal" opens the
+# player's persistent currency wallet window.
+#
+# Prototype IDs for the spawn panel:
+#   MisfitsATMNCR
+#   MisfitsATMLegion
+#   MisfitsATMBoS
+#   MisfitsATMVault
+#   MisfitsATMTown
+#   MisfitsATMWasteland
+#
+# Deletion: right-click → Debug → Delete (ConfirmationPopup) — already provided
+# by AdminVerbSystem. Deleting the entity also purges its JSON placement record.
+
+# ── Base (abstract) ───────────────────────────────────────────────────────────
+
+- type: entity
+  id: MisfitsATMBase
+  abstract: true
+  parent: BaseStructure
+  # All terminals share the same brand name — faction flavour lives in the description.
+  name: Mobile Banking System
+  description: Deposit your currency here today! One hundred percent safe!
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: FactionBankTerminal       # interaction handled by FactionBankTerminalSystem
+  - type: InteractionOutline
+  # Use the unpowered fitness vending machine sprite as a visual stand-in.
+  - type: Sprite
+    noRot: true
+    sprite: Structures/Machines/VendingMachines/fitness.rsi
+    layers:
+    - state: "off"
+    - state: "off"
+      shader: unshaded
+    - state: "screen"
+      shader: unshaded
+  - type: Icon
+    sprite: Structures/Machines/VendingMachines/fitness.rsi
+    state: "off"
+  - type: Appearance
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+# ── NCR ───────────────────────────────────────────────────────────────────────
+
+- type: entity
+  id: MisfitsATMNCR
+  parent: MisfitsATMBase
+  suffix: NCR
+  components:
+  - type: FactionBankTerminal
+    faction: NCR
+
+# ── Caesar's Legion ───────────────────────────────────────────────────────────
+
+- type: entity
+  id: MisfitsATMLegion
+  parent: MisfitsATMBase
+  suffix: Legion
+  components:
+  - type: FactionBankTerminal
+    faction: Legion
+
+# ── Brotherhood of Steel ─────────────────────────────────────────────────────
+
+- type: entity
+  id: MisfitsATMBoS
+  parent: MisfitsATMBase
+  suffix: BoS
+  components:
+  - type: FactionBankTerminal
+    faction: BrotherhoodOfSteel
+
+# ── Vault Dwellers ────────────────────────────────────────────────────────────
+
+- type: entity
+  id: MisfitsATMVault
+  parent: MisfitsATMBase
+  suffix: Vault
+  components:
+  - type: FactionBankTerminal
+    faction: VaultDwellers
+
+# ── Townsfolk ─────────────────────────────────────────────────────────────────
+
+- type: entity
+  id: MisfitsATMTown
+  parent: MisfitsATMBase
+  suffix: Town
+  components:
+  - type: FactionBankTerminal
+    faction: Townsfolk
+
+# ── Wasteland ─────────────────────────────────────────────────────────────────
+
+- type: entity
+  id: MisfitsATMWasteland
+  parent: MisfitsATMBase
+  suffix: Wasteland
+  components:
+  - type: FactionBankTerminal
+    faction: Wasteland

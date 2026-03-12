@@ -1,12 +1,15 @@
 using Content.Server.Body.Components;
+using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Humanoid;
+using Content.Shared.Chat;
 using Content.Shared._Shitmed.Body.Part;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Systems;
 using Content.Shared.Humanoid;
 using Content.Shared.Mind;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
@@ -22,6 +25,7 @@ namespace Content.Server.Body.Systems;
 
 public sealed class BodySystem : SharedBodySystem
 {
+    [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly GameTicker _ticker = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly HumanoidAppearanceSystem _humanoidSystem = default!;
@@ -132,6 +136,16 @@ public sealed class BodySystem : SharedBodySystem
             splatDirection: splatDirection, splatModifier: splatModifier, splatCone: splatCone,
             gib: gib, contents: contents); // Shitmed Change
 
+        // #Misfits Change Add: full gibbing is a dramatic visible state change worth surfacing in emote chat.
+        if (HasComp<MobStateComponent>(bodyId))
+        {
+            _chat.TrySendInGameICMessage(bodyId,
+                Loc.GetString("misfits-chat-gib-body"),
+                InGameICChatType.Emote,
+                ChatTransmitRange.Normal,
+                ignoreActionBlocker: true);
+        }
+
         var ev = new BeingGibbedEvent(gibs);
         RaiseLocalEvent(bodyId, ref ev);
 
@@ -160,6 +174,17 @@ public sealed class BodySystem : SharedBodySystem
 
         var gibs = base.GibPart(partId, part, launchGibs: launchGibs,
             splatDirection: splatDirection, splatModifier: splatModifier, splatCone: splatCone);
+
+        // #Misfits Change Add: announce visible limb loss from the parent body when possible.
+        if (part.Body is { } bodyUid && HasComp<MobStateComponent>(bodyUid))
+        {
+            var slotName = GetSlotFromBodyPart(part);
+            _chat.TrySendInGameICMessage(bodyUid,
+                Loc.GetString("misfits-chat-gib-part", ("part", slotName)),
+                InGameICChatType.Emote,
+                ChatTransmitRange.Normal,
+                ignoreActionBlocker: true);
+        }
 
         var ev = new BeingGibbedEvent(gibs);
         RaiseLocalEvent(partId, ref ev);

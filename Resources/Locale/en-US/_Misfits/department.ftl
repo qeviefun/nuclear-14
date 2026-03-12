@@ -8,3 +8,6 @@ department-Robots = Robots
 department-Robots-description = Autonomous robots navigating the wasteland under their own living minds.
 department-FEVMutants = FEV Mutants
 department-FEVMutants-description = Hulking FEV-mutated humanoids, feared and misunderstood throughout the wasteland.
+Enclave = Enclave
+department-Enclave = Enclave
+department-Enclave-description = An isolated Enclave remnant cell relying on strict access control, advanced kit, and technological superiority.

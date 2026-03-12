@@ -23,6 +23,7 @@ id-card-access-level-caravan-guard = Blue Line
 id-card-access-level-waste-chaplain = Church
 id-card-access-level-waste-farmer = Farmhouse
 
+id-card-access-level-ncr-captain = NCRA CO Office
 id-card-access-level-ncr-lt = NCRA Office
 id-card-access-level-ncr-ranger = NCRR Post
 id-card-access-level-ncr-sgt = NCRA Armory

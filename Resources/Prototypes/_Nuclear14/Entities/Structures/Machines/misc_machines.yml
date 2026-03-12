@@ -75,6 +75,19 @@
   - type: Sprite
     layers:
     - state: wartable_broken
+  # #Misfits Add - Repurposed as NCR CO tactical map terminal.
+  # Overrides the parent's Brotherhood-feed WastelandMap with an NCR feed.
+  # Restricted to NCRCaptain access level only. All NCR dogtags inherit
+  # IdCardNCR from N14IDNCRDogtag, so every NCR member appears as a blip.
+  - type: WastelandMap
+    mapTexturePath: _Misfits/Maps/wendover_map.png
+    mapTitle: NCR Tactical Map - Wendover
+    worldBounds: "-517,-308,484,311"
+    tacticalFeed: NCR
+  - type: AccessReader
+    access: [["NCRCaptain"]]
+  - type: ActivatableUIRequiresAccess
+  # End Misfits Add
   - type: Destructible
     thresholds:
     - trigger:

@@ -24,5 +24,6 @@
     lineLength: 5
     intensity: 5
     tileBreakScale: 0
-    approachSound: /Audio/_Nuclear14/Effects/airplane_fly_by.ogg
+    # #Misfits Change: Use the imported Vertibird pass-in for the approach while leaving the existing gun run SFX in place.
+    approachSound: /Audio/_Misfits/N14/Vehicles/vertibird_start.ogg
     fireSound: /Audio/_Nuclear14/Effects/a10_warthog_brrrt.ogg

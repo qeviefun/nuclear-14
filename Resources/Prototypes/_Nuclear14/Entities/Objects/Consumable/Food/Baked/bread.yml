@@ -300,6 +300,15 @@
     layers:
     - state: plain-slice
 
+#Misfits Change /Add/: Alias upstream baguettes so N14 recipes can use them without forking art or slice behavior.
+- type: entity
+  parent: FoodBreadBaguette
+  id: N14CookedFoodBreadBaguette
+
+- type: entity
+  parent: FoodBreadBaguetteSlice
+  id: N14CookedFoodBreadBaguetteSlice
+
 - type: entity
   name: radroll
   parent: N14CookedFoodBreadBase

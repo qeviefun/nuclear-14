@@ -2,7 +2,7 @@
                 xmlns:pda="clr-namespace:Content.Client.PDA"
                 xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
                 MinSize="576 450"
-                SetSize="576 450">
+                SetSize="700 550">
     <!-- This: (Margin="1 1 3 0") is necessary so the navigation bar doesn't sticks into the black content border. -->
     <BoxContainer Name="NavigationBar" HorizontalExpand="True" MinHeight="32" Margin="1 1 3 0">
         <pda:PdaNavigationButton Name="HomeButton" SetWidth="32" CurrentTabBorderThickness="0 0 2 0" IsCurrent="True"/>
@@ -46,6 +46,39 @@
             <ContainerButton Name="StationAlertLevelInstructionsButton">
                 <RichTextLabel Name="StationAlertLevelInstructions" Access="Public"/>
             </ContainerButton>
+            <!-- #Misfits Add - Separator before health section -->
+            <Control MinHeight="8"/>
+            <!-- #Misfits Add - Health Status body doll diagram for Pip-Boy home screen -->
+            <RichTextLabel Name="HealthStatusLabel" Access="Public" Margin="0 2 0 0"/>
+            <RichTextLabel Name="ConditionsLabel" Access="Public" Margin="0 2 0 0"/>
+            <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 4 0 0">
+                <!-- Left side labels -->
+                <BoxContainer Orientation="Vertical" VerticalAlignment="Center" MinWidth="60">
+                    <RichTextLabel Name="LabelHead" Access="Public" Margin="0 0 4 0"/>
+                    <RichTextLabel Name="LabelLeftArm" Access="Public" Margin="0 10 4 0"/>
+                    <RichTextLabel Name="LabelLeftLeg" Access="Public" Margin="0 10 4 0"/>
+                </BoxContainer>
+                <!-- Body doll composite -->
+                <PanelContainer MinSize="112 112" Margin="4 0">
+                    <TextureRect Name="DollHead" Stretch="KeepAspectCentered" SetSize="112 112" Access="Public"/>
+                    <TextureRect Name="DollTorso" Stretch="KeepAspectCentered" SetSize="112 112" Access="Public"/>
+                    <TextureRect Name="DollGroin" Stretch="KeepAspectCentered" SetSize="112 112" Access="Public"/>
+                    <TextureRect Name="DollLeftArm" Stretch="KeepAspectCentered" SetSize="112 112" Access="Public"/>
+                    <TextureRect Name="DollLeftHand" Stretch="KeepAspectCentered" SetSize="112 112" Access="Public"/>
+                    <TextureRect Name="DollRightArm" Stretch="KeepAspectCentered" SetSize="112 112" Access="Public"/>
+                    <TextureRect Name="DollRightHand" Stretch="KeepAspectCentered" SetSize="112 112" Access="Public"/>
+                    <TextureRect Name="DollLeftLeg" Stretch="KeepAspectCentered" SetSize="112 112" Access="Public"/>
+                    <TextureRect Name="DollLeftFoot" Stretch="KeepAspectCentered" SetSize="112 112" Access="Public"/>
+                    <TextureRect Name="DollRightLeg" Stretch="KeepAspectCentered" SetSize="112 112" Access="Public"/>
+                    <TextureRect Name="DollRightFoot" Stretch="KeepAspectCentered" SetSize="112 112" Access="Public"/>
+                </PanelContainer>
+                <!-- Right side labels -->
+                <BoxContainer Orientation="Vertical" VerticalAlignment="Center" MinWidth="60">
+                    <RichTextLabel Name="LabelTorso" Access="Public" Margin="4 0 0 0"/>
+                    <RichTextLabel Name="LabelRightArm" Access="Public" Margin="4 10 0 0"/>
+                    <RichTextLabel Name="LabelRightLeg" Access="Public" Margin="4 10 0 0"/>
+                </BoxContainer>
+            </BoxContainer>
         </BoxContainer>
         <ScrollContainer HorizontalExpand="True" VerticalExpand="True" HScrollEnabled="True">
             <BoxContainer Orientation="Vertical"
@@ -88,7 +121,8 @@
     </BoxContainer>
     <BoxContainer Name="ContentFooter" HorizontalExpand="True" SetHeight="28" Margin="1 0 2 1">
         <controls:StripeBack HasBottomEdge="False" HasMargins="False" HorizontalExpand="True">
-            <Label Text="Robust#OS ™" VerticalAlignment="Center" Margin="6 0" StyleClasses="PdaContentFooterText"/>
+            <!-- #Misfits Change - RobCo Industries branding for Nuclear-14 Pip-Boy -->
+            <Label Text="RobCo Industries ™" VerticalAlignment="Center" Margin="6 0" StyleClasses="PdaContentFooterText"/>
             <Label Name="AddressLabel" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="6 0" StyleClasses="PdaContentFooterText"/>
         </controls:StripeBack>
     </BoxContainer>

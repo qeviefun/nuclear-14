@@ -6,6 +6,7 @@
             <Label Name="MapTitle" Text="Map" StyleClasses="LabelBig" Align="Center" Margin="6"/>
         </PanelContainer>
         <PanelContainer Name="MapContainer" HorizontalExpand="True" VerticalExpand="True"
+                        MinHeight="300"
                         StyleClasses="AngleRect" Margin="0 4 0 0"/>
         <BoxContainer Orientation="Vertical" Margin="0 4 0 0">
             <PanelContainer StyleClasses="LowDivider"/>

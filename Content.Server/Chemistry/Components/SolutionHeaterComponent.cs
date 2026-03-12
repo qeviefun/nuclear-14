@@ -3,6 +3,7 @@ namespace Content.Server.Chemistry.Components;
 [RegisterComponent]
 public sealed partial class SolutionHeaterComponent : Component
 {
+    // #Misfits Change /Fix/ Some heaters, like bonfires, should only run while they are actually lit.
     /// <summary>
     ///     How much heat is added per second to the solution, with no upgrades.
     /// </summary>
@@ -26,4 +27,7 @@ public sealed partial class SolutionHeaterComponent : Component
     /// </summary>
     [DataField]
     public float PartRatingHeatMultiplier = 1.5f;
+
+    [DataField]
+    public bool RequireHot;
 }

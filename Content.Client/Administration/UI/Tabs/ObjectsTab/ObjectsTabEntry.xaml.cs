@@ -10,12 +10,14 @@ public sealed partial class ObjectsTabEntry : PanelContainer
 {
     public NetEntity AssocEntity;
 
-    public ObjectsTabEntry(string name, NetEntity nent, StyleBox styleBox)
+    // #Misfits Change - Added prototype parameter to show entity prototype ID in Objects tab
+    public ObjectsTabEntry(string name, NetEntity nent, string prototype, StyleBox styleBox)
     {
         RobustXamlLoader.Load(this);
         AssocEntity = nent;
         EIDLabel.Text = nent.ToString();
         NameLabel.Text = name;
+        PrototypeLabel.Text = prototype;
         BackgroundColorPanel.PanelOverride = styleBox;
     }
 }

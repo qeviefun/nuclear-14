@@ -345,6 +345,13 @@
       - id: N14ClothingBeltMedicalFilled
       - id: N14ClothingHandsGlovesNitrile
       - id: N14ClothingHeadHatNCRBeretMedic
+      - id: Scalpel
+      - id: Hemostat
+      - id: Retractor
+      - id: Cautery
+      - id: SawElectric
+      - id: Bonesetter
+      - id: BoneGel
       - id: N14WeaponSMG9mm
       - id: N14MagazineSMG9mm
         amount: 3
@@ -476,9 +483,10 @@
       - id: ClothingBeltNCR
       - id: N14ClothingHeadHatNCRHelmetMetalDesert # Forge-Change
       - id: N14ClothingNeckCloakNCR # Forge-Change
-      - id: N14WeaponRifleGrenade
-      - id: 40mmGrenadeFrag
-        amount: 4
+      - id: GrenadeFrag # #Misfits Change /Tweak/: replace launcher kit explosives with throwable grenades only.
+        amount: 2
+      - id: GrenadeFrag
+        amount: 2
       - id: SmokeGrenade
       - id: N14WeaponPistol45Colt
       - id: N14MagazinePistol45
@@ -910,7 +918,7 @@
     items:
       - id: ClothingBeltNCR
       - id: N14WeaponRifle556Scout
-      - id: Magazine556Rifle
+      - id: LongMagazine556Rifle
         amount: 4
       - id: MagazineBox556
       - id: N14Stimpak

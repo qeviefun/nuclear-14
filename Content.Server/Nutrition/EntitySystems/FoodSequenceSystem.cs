@@ -152,6 +152,7 @@ public sealed class FoodSequenceSystem : SharedFoodSequenceSystem
             start.Comp.Finished = true;
 
         UpdateFoodName(start);
+        EnsureSequenceStartFood(start);
         MergeFoodSolutions(start, element);
         MergeFlavorProfiles(start, element);
         MergeTrash(start, element);
@@ -162,6 +163,22 @@ public sealed class FoodSequenceSystem : SharedFoodSequenceSystem
 
         QueueDel(element);
         return true;
+    }
+
+    private void EnsureSequenceStartFood(Entity<FoodSequenceStartPointComponent> start)
+    {
+        if (HasComp<FoodComponent>(start))
+            return;
+
+        if (!_solutionContainer.TryGetSolution(start.Owner, start.Comp.Solution, out _, out _))
+            return;
+
+        // Non-food sequence bases like the plain skewer should become edible once they actually contain food.
+        var startFood = EnsureComp<FoodComponent>(start);
+        startFood.Solution = start.Comp.Solution;
+
+        if (MetaData(start).EntityPrototype?.ID is { } prototypeId)
+            startFood.Trash.Add(prototypeId);
     }
 
     private void UpdateFoodName(Entity<FoodSequenceStartPointComponent> start)

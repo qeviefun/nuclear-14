@@ -1,9 +1,11 @@
 // #Misfits Change - Persistent currency system
 using System.IO;
 using System.Text.Json;
+using Content.Server.Chat.Managers;
 using Content.Server.Mind;
 using Content.Shared._Misfits.Currency;
 using Content.Shared._Misfits.Currency.Components;
+using Content.Shared.Chat;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
@@ -24,6 +26,7 @@ public sealed class PersistentCurrencySystem : EntitySystem
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly SharedStackSystem _stack = default!;
     [Dependency] private readonly MindSystem _mind = default!;
+    [Dependency] private readonly IChatManager _chatManager = default!; // #Misfits Change - for private deposit notifications
 
     // #Misfits Change - Sawmill for wallet logging
     private ISawmill _log = default!;
@@ -67,6 +70,8 @@ public sealed class PersistentCurrencySystem : EntitySystem
         LoadCurrencyData();
     }
 
+    // #Misfits Change - Z key now silently deposits held currency and posts a private chat confirmation
+    // instead of opening the wallet window.
     private void OnOpenWallet(Entity<PersistentCurrencyComponent> ent, ref OpenCurrencyWalletEvent args)
     {
         if (args.Handled)
@@ -77,16 +82,69 @@ public sealed class PersistentCurrencySystem : EntitySystem
         if (!TryComp<ActorComponent>(ent, out var actor))
             return;
 
+        var uid = ent.Owner;
         var comp = ent.Comp;
-        var msg = new CurrencyWalletStateMessage
+        var session = actor.PlayerSession;
+
+        // Find a ConsumableCurrencyComponent item in any held hand
+        EntityUid? heldItem = null;
+        foreach (var held in _hands.EnumerateHeld(uid))
         {
-            Bottlecaps = comp.Bottlecaps,
-            NCRDollars = comp.NCRDollars,
-            LegionDenarii = comp.LegionDenarii,
-            PrewarMoney = comp.PrewarMoney,
+            if (HasComp<ConsumableCurrencyComponent>(held))
+            {
+                heldItem = held;
+                break;
+            }
+        }
+
+        if (heldItem == null)
+        {
+            // Nothing to deposit — inform the player privately
+            var nothingMsg = "You are not holding any currency to deposit.";
+            _chatManager.ChatMessageToOne(ChatChannel.Server, nothingMsg, nothingMsg, EntityUid.Invalid, false, session.Channel);
+            return;
+        }
+
+        if (!TryComp<ConsumableCurrencyComponent>(heldItem.Value, out var currency))
+            return;
+
+        // Calculate amount (stack-aware)
+        var amount = currency.ValuePerUnit;
+        if (TryComp<StackComponent>(heldItem.Value, out var stackComp))
+            amount *= stackComp.Count;
+
+        // Determine display name for the currency type
+        var typeName = currency.CurrencyType switch
+        {
+            CurrencyType.Bottlecaps    => "Bottlecaps",
+            CurrencyType.NCRDollars    => "NCR Dollars",
+            CurrencyType.LegionDenarii => "Denarii",
+            CurrencyType.PrewarMoney   => "Pre-War Money",
+            _                          => "Currency"
         };
 
-        RaiseNetworkEvent(msg, actor.PlayerSession.Channel);
+        // Credit the balance
+        switch (currency.CurrencyType)
+        {
+            case CurrencyType.Bottlecaps:    comp.Bottlecaps    += amount; break;
+            case CurrencyType.NCRDollars:    comp.NCRDollars    += amount; break;
+            case CurrencyType.LegionDenarii: comp.LegionDenarii += amount; break;
+            case CurrencyType.PrewarMoney:   comp.PrewarMoney   += amount; break;
+        }
+
+        var total = GetBalance(comp, currency.CurrencyType);
+
+        Dirty(uid, comp);
+
+        if (comp.UserId != null && comp.CharacterName != null)
+            SaveCurrency(comp.UserId, comp.CharacterName, comp);
+
+        // Remove the deposited item
+        QueueDel(heldItem.Value);
+
+        // Send a private chat message only the player can see
+        var depositMsg = $"You have deposited {amount} {typeName} into your bank account. You now have {total} {typeName}.";
+        _chatManager.ChatMessageToOne(ChatChannel.Server, depositMsg, depositMsg, EntityUid.Invalid, false, session.Channel);
     }
 
     // #Misfits Change - handles wallet open request from the dedicated HUD button

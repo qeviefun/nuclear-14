@@ -140,24 +140,18 @@
   - type: Hunger
     starvationDamage:
       types:
-        Cold: 0.15
+        Starvation: 0.15 # Misfits Change - was Cold: 0.15, now uses dedicated Starvation damage type
     starvingSlowdownModifier: 0.5
   - type: Thirst
+    dehydrationDamage:
+      types:
+        Dehydration: 0.15 # Misfits Add - dedicated Dehydration damage type applied at ThirstThreshold.Dead
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: SuperMutant
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.0
     baseSprintSpeed: 3.5
-  - type: IdleSound
-  - type: SpamEmitSound
-    minInterval: 15
-    maxInterval: 50
-    sound:
-      collection: N14SupermutantIdle
-      params:
-        volume: -7
-        maxDistance: 6
   - type: MobThresholds
     thresholds:
       0: Alive

@@ -1,114 +1,122 @@
-- type: loadout
-  id: LoadoutLegionFrumentariiReconArmor
-  category: Roles
-  cost: 8
-  exclusive: true
-  requirements:
-    - !type:CharacterJobRequirement
-      jobs:
-        - CaesarLegionFrumentarii
-  items:
-    - N14ClothingLegionReconArmor
-
-- type: loadout
-  id: LoadoutLegionFrumentariiReconnaissanceArmor
-  category: Roles
-  cost: 8
-  exclusive: true
-  requirements:
-    - !type:CharacterJobRequirement
-      jobs:
-        - CaesarLegionFrumentarii
-    - !type:CharacterPlaytimeRequirement
-      tracker: CaesarLegionFrumentarii
-      min: 36000 # 10 hours veterancy unlock
-  items:
-    - N14ClothingOuterLegionnaireReconnaissanceArmor
-
-- type: loadout
-  id: LoadoutLegionDeadVeteranHelmet
-  category: Roles
-  cost: 2
-  exclusive: true
-  requirements:
-    - !type:CharacterJobRequirement
-      jobs:
-        - CaesarLegionDean
-    - !type:CharacterPlaytimeRequirement
-      tracker: CaesarLegionDean
-      min: 216000 # 60 hours veterancy unlock
-  items:
-    - N14ClothingHeadHatDeanVeteranHelmet
-
-- type: loadout
-  id: LoadoutLegionDeadPrimeHelmet
-  category: Roles
-  cost: 2
-  exclusive: true
-  requirements:
-    - !type:CharacterJobRequirement
-      jobs:
-        - CaesarLegionDean
-    - !type:CharacterPlaytimeRequirement
-      tracker: CaesarLegionDean
-      min: 72000 # 20 hours veterancy unlock
-  items:
-    - N14ClothingHeadHatDeanPrimeHelmet
-
-- type: loadout
-  id: LoadoutLegionDeadRecruitHelmet
-  category: Roles
-  cost: 2
-  exclusive: true
-  requirements:
-    - !type:CharacterJobRequirement
-      jobs:
-        - CaesarLegionDean
-  items:
-    - N14ClothingHeadHatDeanRecruitHelmet
-
-- type: loadout
-  id: LoadoutLegionDeadVeteranArmor
-  category: Roles
-  cost: 6
-  exclusive: true
-  requirements:
-    - !type:CharacterJobRequirement
-      jobs:
-        - CaesarLegionDean
-    - !type:CharacterPlaytimeRequirement
-      tracker: CaesarLegionDean
-      min: 216000 # 60 hours veterancy unlock
-  items:
-    - N14ClothingOuterDeanLegionnaireVeteranArmor
-
-- type: loadout
-  id: LoadoutLegionDeadPrimeArmor
-  category: Roles
-  cost: 6
-  exclusive: true
-  requirements:
-    - !type:CharacterJobRequirement
-      jobs:
-        - CaesarLegionDean
-    - !type:CharacterPlaytimeRequirement
-      tracker: CaesarLegionDean
-      min: 72000 # 20 hours veterancy unlock
-  items:
-    - N14ClothingOuterDeanLegionnairePrimeArmor
-
-- type: loadout
-  id: LoadoutLegionDeadRecruitArmor
-  category: Roles
-  cost: 6
-  exclusive: true
-  requirements:
-    - !type:CharacterJobRequirement
-      jobs:
-        - CaesarLegionDean
-  items:
-    - N14ClothingOuterDeanLegionnaireRecruitArmor
-
+# Misfits Change - Disabled: armor/weapons removed from roundstart loadout menu
+#- type: loadout
+#  id: LoadoutLegionFrumentariiReconArmor
+#  category: Roles
+#  cost: 8
+#  exclusive: true
+#  requirements:
+#    - !type:CharacterJobRequirement
+#      jobs:
+#        - CaesarLegionFrumentarii
+#  items:
+#    - N14ClothingLegionReconArmor
+#
+# Misfits Change - Disabled: armor/weapons removed from roundstart loadout menu
+#- type: loadout
+#  id: LoadoutLegionFrumentariiReconnaissanceArmor
+#  category: Roles
+#  cost: 8
+#  exclusive: true
+#  requirements:
+#    - !type:CharacterJobRequirement
+#      jobs:
+#        - CaesarLegionFrumentarii
+#    - !type:CharacterPlaytimeRequirement
+#      tracker: CaesarLegionFrumentarii
+#      min: 36000 # 10 hours veterancy unlock
+#  items:
+#    - N14ClothingOuterLegionnaireReconnaissanceArmor
+#
+# Misfits Change - Disabled: armor/weapons removed from roundstart loadout menu
+#- type: loadout
+#  id: LoadoutLegionDeadVeteranHelmet
+#  category: Roles
+#  cost: 2
+#  exclusive: true
+#  requirements:
+#    - !type:CharacterJobRequirement
+#      jobs:
+#        - CaesarLegionDean
+#    - !type:CharacterPlaytimeRequirement
+#      tracker: CaesarLegionDean
+#      min: 216000 # 60 hours veterancy unlock
+#  items:
+#    - N14ClothingHeadHatDeanVeteranHelmet
+#
+# Misfits Change - Disabled: armor/weapons removed from roundstart loadout menu
+#- type: loadout
+#  id: LoadoutLegionDeadPrimeHelmet
+#  category: Roles
+#  cost: 2
+#  exclusive: true
+#  requirements:
+#    - !type:CharacterJobRequirement
+#      jobs:
+#        - CaesarLegionDean
+#    - !type:CharacterPlaytimeRequirement
+#      tracker: CaesarLegionDean
+#      min: 72000 # 20 hours veterancy unlock
+#  items:
+#    - N14ClothingHeadHatDeanPrimeHelmet
+#
+# Misfits Change - Disabled: armor/weapons removed from roundstart loadout menu
+#- type: loadout
+#  id: LoadoutLegionDeadRecruitHelmet
+#  category: Roles
+#  cost: 2
+#  exclusive: true
+#  requirements:
+#    - !type:CharacterJobRequirement
+#      jobs:
+#        - CaesarLegionDean
+#  items:
+#    - N14ClothingHeadHatDeanRecruitHelmet
+#
+# Misfits Change - Disabled: armor/weapons removed from roundstart loadout menu
+#- type: loadout
+#  id: LoadoutLegionDeadVeteranArmor
+#  category: Roles
+#  cost: 6
+#  exclusive: true
+#  requirements:
+#    - !type:CharacterJobRequirement
+#      jobs:
+#        - CaesarLegionDean
+#    - !type:CharacterPlaytimeRequirement
+#      tracker: CaesarLegionDean
+#      min: 216000 # 60 hours veterancy unlock
+#  items:
+#    - N14ClothingOuterDeanLegionnaireVeteranArmor
+#
+# Misfits Change - Disabled: armor/weapons removed from roundstart loadout menu
+#- type: loadout
+#  id: LoadoutLegionDeadPrimeArmor
+#  category: Roles
+#  cost: 6
+#  exclusive: true
+#  requirements:
+#    - !type:CharacterJobRequirement
+#      jobs:
+#        - CaesarLegionDean
+#    - !type:CharacterPlaytimeRequirement
+#      tracker: CaesarLegionDean
+#      min: 72000 # 20 hours veterancy unlock
+#  items:
+#    - N14ClothingOuterDeanLegionnairePrimeArmor
+#
+# Misfits Change - Disabled: armor/weapons removed from roundstart loadout menu
+#- type: loadout
+#  id: LoadoutLegionDeadRecruitArmor
+#  category: Roles
+#  cost: 6
+#  exclusive: true
+#  requirements:
+#    - !type:CharacterJobRequirement
+#      jobs:
+#        - CaesarLegionDean
+#  items:
+#    - N14ClothingOuterDeanLegionnaireRecruitArmor
+#
 - type: loadout
   id: LoadoutLegionCloakBlack
   category: Roles

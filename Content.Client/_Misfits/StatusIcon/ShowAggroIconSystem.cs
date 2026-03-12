@@ -1,6 +1,7 @@
-// Misfits Change - Shows a red exclamation mark above mobs that have recently entered combat,
-// and above players/NPCs while combat mode (Num1) is active.
-using Content.Shared._Misfits.Sound;
+// Misfits Change - Shows a red exclamation mark above players while combat mode (Num1) is active.
+// Misfits Tweak - Removed NPC aggro exclamation mark; icon now only shows for non-NPC entities (players).
+using Content.Client.NPC.HTN;
+// using Content.Shared._Misfits.Sound; // Misfits Tweak - AggroSoundComponent subscription removed; NPCs no longer show aggro icon on aggro
 using Content.Shared.CombatMode;
 using Content.Shared.StatusIcon;
 using Content.Shared.StatusIcon.Components;
@@ -9,10 +10,10 @@ using Robust.Shared.Prototypes;
 namespace Content.Client._Misfits.StatusIcon;
 
 /// <summary>
-/// Shows a red exclamation mark status icon in two cases:
-/// 1. Above any mob with <see cref="AggroSoundComponent"/> while its aggro cooldown is active.
-/// 2. Above any entity with <see cref="CombatModeComponent"/> while combat mode is toggled on.
+/// Shows a red exclamation mark status icon above any non-NPC entity (i.e. players)
+/// with <see cref="CombatModeComponent"/> while combat mode is toggled on via Num1.
 /// Visible to all nearby players — no HUD equipment required.
+/// NPC aggro exclamation mark intentionally removed per Misfits design.
 /// </summary>
 public sealed class ShowAggroIconSystem : EntitySystem
 {
@@ -21,22 +22,28 @@ public sealed class ShowAggroIconSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<AggroSoundComponent, GetStatusIconsEvent>(OnGetAggroStatusIcons);
+        // Misfits Tweak - AggroSoundComponent handler removed; NPCs should not show exclamation mark on aggro
+        // SubscribeLocalEvent<AggroSoundComponent, GetStatusIconsEvent>(OnGetAggroStatusIcons);
         SubscribeLocalEvent<CombatModeComponent, GetStatusIconsEvent>(OnGetCombatModeStatusIcons);
     }
 
-    private void OnGetAggroStatusIcons(EntityUid uid, AggroSoundComponent comp, ref GetStatusIconsEvent ev)
-    {
-        if (comp.CooldownRemaining <= 0f)
-            return;
-
-        if (_prototype.TryIndex<FactionIconPrototype>("N14AggroIcon", out var icon))
-            ev.StatusIcons.Add(icon);
-    }
+    // Misfits Tweak - Kept for reference but no longer subscribed; removing NPC aggro icon
+    // private void OnGetAggroStatusIcons(EntityUid uid, AggroSoundComponent comp, ref GetStatusIconsEvent ev)
+    // {
+    //     if (comp.CooldownRemaining <= 0f)
+    //         return;
+    //
+    //     if (_prototype.TryIndex<FactionIconPrototype>("N14AggroIcon", out var icon))
+    //         ev.StatusIcons.Add(icon);
+    // }
 
     private void OnGetCombatModeStatusIcons(EntityUid uid, CombatModeComponent comp, ref GetStatusIconsEvent ev)
     {
         if (!comp.IsInCombatMode)
+            return;
+
+        // Misfits Tweak - Only show the combat mode exclamation mark for players, not NPCs
+        if (HasComp<HTNComponent>(uid))
             return;
 
         if (_prototype.TryIndex<FactionIconPrototype>("N14AggroIcon", out var icon))

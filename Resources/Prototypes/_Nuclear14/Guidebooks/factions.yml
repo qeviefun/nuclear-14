@@ -49,12 +49,12 @@
   text: "/ServerInfo/_Nuclear14/Guidebooks/Factions/Wastelanders/index.xml"
   filterEnabled: True
 
-# Caravan Company
-- type: guideEntry
-  id: N14CaravanCompany
-  name: guide-entry-caravancompany
-  text: "/ServerInfo/_Nuclear14/Guidebooks/Factions/CaravanCompany/index.xml"
-  filterEnabled: True
+# Caravan Company — #Misfits Tweak: commented out; not currently active on server
+# - type: guideEntry
+#   id: N14CaravanCompany
+#   name: guide-entry-caravancompany
+#   text: "/ServerInfo/_Nuclear14/Guidebooks/Factions/CaravanCompany/index.xml"
+#   filterEnabled: True
 
 # Brotherhood of Steel
 - type: guideEntry
@@ -81,7 +81,7 @@
   - N14Enclave
   - N14FollowersOfTheApocalypse
   - N14Zetan
-  - N14CaravanCompany
+  # - N14CaravanCompany # Misfits Tweak: commented out; not currently active on server
 
 - type: guideEntry
   id: N14ChildrenOfAtom
