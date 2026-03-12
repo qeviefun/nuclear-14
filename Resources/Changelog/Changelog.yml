@@ -1141,3 +1141,22 @@ Entries:
   id: 5632
   time: '2026-03-12T01:28:38.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/103
+- author: Dpellowski
+  changes:
+    - type: Add
+      message: >-
+        Persistent currency system now uses PostgreSQL/SQLite database instead
+        of JSON file storage
+    - type: Add
+      message: >-
+        Automatic one-time migration from currency_data.json to database on
+        first run
+    - type: Tweak
+      message: >-
+        Only Bottle Caps are now persistent across rounds; other currencies work
+        as in-round transient items
+    - type: Tweak
+      message: Wallet UI simplified to display only Bottle Caps
+  id: 5633
+  time: '2026-03-12T02:36:49.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/105
