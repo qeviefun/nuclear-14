@@ -301,21 +301,22 @@
     - ClothingNeckOldMantle
 # Corvax-Add End
 
-- type: loadout
-  id: LoadoutNCRuniformHelmetDesert
-  category: Roles
-  cost: 2
-  exclusive: true
-  requirements:
-    - !type:CharacterJobRequirement
-      jobs:
-        - NCRRangerVeteran
-    - !type:CharacterPlaytimeRequirement
-      tracker: NCRRangerVeteran
-      min: 216000 # 60 hours veterancy unlock "First Tour"
-  items:
-    - N14ClothingHeadHatRangerHelmetDesert
-
+# Misfits Change - Disabled: armor with resistance values removed from roundstart loadout menu
+#- type: loadout
+#  id: LoadoutNCRuniformHelmetDesert
+#  category: Roles
+#  cost: 2
+#  exclusive: true
+#  requirements:
+#    - !type:CharacterJobRequirement
+#      jobs:
+#        - NCRRangerVeteran
+#    - !type:CharacterPlaytimeRequirement
+#      tracker: NCRRangerVeteran
+#      min: 216000 # 60 hours veterancy unlock "First Tour"
+#  items:
+#    - N14ClothingHeadHatRangerHelmetDesert
+#
 - type: loadout
   id: LoadoutNCRuniformMaskDesert
   category: Roles
@@ -363,21 +364,22 @@
 #  items:
 #    - N14ClothingOuterRangerEliteOld
 #
-- type: loadout
-  id: LoadoutNCRRangerHelmetEliteOld1
-  category: Roles
-  cost: 2
-  exclusive: true
-  requirements:
-    - !type:CharacterJobRequirement
-      jobs:
-        - NCRRangerVeteran
-    - !type:CharacterPlaytimeRequirement
-      tracker: NCRRangerVeteran
-      min: 216000 # 60 hours veterancy unlock "First Tour"
-  items:
-    - N14ClothingHeadHatRangerHelmetEliteOld
-
+# Misfits Change - Disabled: armor with resistance values removed from roundstart loadout menu
+#- type: loadout
+#  id: LoadoutNCRRangerHelmetEliteOld1
+#  category: Roles
+#  cost: 2
+#  exclusive: true
+#  requirements:
+#    - !type:CharacterJobRequirement
+#      jobs:
+#        - NCRRangerVeteran
+#    - !type:CharacterPlaytimeRequirement
+#      tracker: NCRRangerVeteran
+#      min: 216000 # 60 hours veterancy unlock "First Tour"
+#  items:
+#    - N14ClothingHeadHatRangerHelmetEliteOld
+#
 # Corvax-Add Start
 - type: loadout
   id: LoadoutNCRClothingMaskGasRangerElite2
@@ -424,63 +426,67 @@
   items:
     - ClothingMaskGasRangerModif
 
-- type: loadout
-  id: LoadoutNCRN14ClothingHeadHatRangerHelmetFox2
-  category: Roles
-  cost: 2
-  exclusive: true
-  requirements:
-    - !type:CharacterJobRequirement
-      jobs:
-        - NCRRangerVeteran
-    - !type:CharacterPlaytimeRequirement
-      tracker: NCRRangerVeteran
-      min: 72000 # 1200 minutes
-  items:
-    - N14ClothingHeadHatRangerHelmetFox
-
-- type: loadout
-  id: LoadoutNCRN14ClothingHeadHatRangerHelmetPrice2
-  category: Roles
-  cost: 2
-  exclusive: true
-  requirements:
-    - !type:CharacterJobRequirement
-      jobs:
-        - NCRRangerVeteran
-    - !type:CharacterPlaytimeRequirement
-      tracker: NCRRangerVeteran
-      min: 72000 # 1200 minutes
-  items:
-    - N14ClothingHeadHatRangerHelmetPrice
-
-- type: loadout
-  id: LoadoutNCRN14ClothingHeadHatRangerHelmetModif2
-  category: Roles
-  cost: 2
-  exclusive: true
-  requirements:
-    - !type:CharacterJobRequirement
-      jobs:
-        - NCRRangerVeteran
-    - !type:CharacterPlaytimeRequirement
-      tracker: NCRRangerVeteran
-      min: 216000 # 60 hours veterancy unlock "First Tour"
-  items:
-    - N14ClothingHeadHatRangerHelmetModif
-
-- type: loadout
-  id: LoadoutNCRN14ClothingHeadHatRangerHelmet2
-  category: Roles
-  cost: 2
-  exclusive: true
-  requirements:
-    - !type:CharacterJobRequirement
-      jobs:
-        - NCRRangerVeteran
-  items:
-    - N14ClothingHeadHatRangerHelmet
-
+# Misfits Change - Disabled: armor with resistance values removed from roundstart loadout menu
+#- type: loadout
+#  id: LoadoutNCRN14ClothingHeadHatRangerHelmetFox2
+#  category: Roles
+#  cost: 2
+#  exclusive: true
+#  requirements:
+#    - !type:CharacterJobRequirement
+#      jobs:
+#        - NCRRangerVeteran
+#    - !type:CharacterPlaytimeRequirement
+#      tracker: NCRRangerVeteran
+#      min: 72000 # 1200 minutes
+#  items:
+#    - N14ClothingHeadHatRangerHelmetFox
+#
+# Misfits Change - Disabled: armor with resistance values removed from roundstart loadout menu
+#- type: loadout
+#  id: LoadoutNCRN14ClothingHeadHatRangerHelmetPrice2
+#  category: Roles
+#  cost: 2
+#  exclusive: true
+#  requirements:
+#    - !type:CharacterJobRequirement
+#      jobs:
+#        - NCRRangerVeteran
+#    - !type:CharacterPlaytimeRequirement
+#      tracker: NCRRangerVeteran
+#      min: 72000 # 1200 minutes
+#  items:
+#    - N14ClothingHeadHatRangerHelmetPrice
+#
+# Misfits Change - Disabled: armor with resistance values removed from roundstart loadout menu
+#- type: loadout
+#  id: LoadoutNCRN14ClothingHeadHatRangerHelmetModif2
+#  category: Roles
+#  cost: 2
+#  exclusive: true
+#  requirements:
+#    - !type:CharacterJobRequirement
+#      jobs:
+#        - NCRRangerVeteran
+#    - !type:CharacterPlaytimeRequirement
+#      tracker: NCRRangerVeteran
+#      min: 216000 # 60 hours veterancy unlock "First Tour"
+#  items:
+#    - N14ClothingHeadHatRangerHelmetModif
+#
+# Misfits Change - Disabled: armor with resistance values removed from roundstart loadout menu
+#- type: loadout
+#  id: LoadoutNCRN14ClothingHeadHatRangerHelmet2
+#  category: Roles
+#  cost: 2
+#  exclusive: true
+#  requirements:
+#    - !type:CharacterJobRequirement
+#      jobs:
+#        - NCRRangerVeteran
+#  items:
+#    - N14ClothingHeadHatRangerHelmet
+#
 # Misfits Change - Disabled: armor/weapons removed from roundstart loadout menu
 #- type: loadout
 #  id: LoadoutNCRN14ClothingOuterRangerWeathered

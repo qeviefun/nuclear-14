@@ -1,7 +1,7 @@
 - type: job
   id: CaesarLegionLegionnaireVeteran
   setPreference: true
-  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+  hideIfPlaytimeRequirementsNotMet: false # #Misfits Tweak - all jobs visible in selection
   jobWhitelistBypassesRoleTimers: true # #Misfits Change
   weight: 80
   showBorder: true

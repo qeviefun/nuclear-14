@@ -79,24 +79,25 @@
         startingItem: PowerCellMedium
 
 
-- type: entity
-  parent: N14ClothingHeadsetLightScribe
-  id: N14ClothingHeadsetBOSMidwestLightScribe
-  name: Brotherhood scribe headset
-  components:
-  - type: ContainerFill
-    containers:
-      key_slots:
-      - EncryptionKeyBrotherhoodOfSteel
-      - EncryptionKeyWastelandGlobal
-
-- type: entity
-  parent: N14ClothingHeadsetLightScribe
-  id: N14ClothingHeadsetBOSWashingtonLightScribe
-  name: Brotherhood scribe headset
-  components:
-  - type: ContainerFill
-    containers:
-      key_slots:
-      - EncryptionKeyBrotherhoodOfSteel
-      - EncryptionKeyWastelandGlobal
+#Misfits Change /Comment-out/: Duplicate BoS light scribe headsets removed — consolidated into _Misfits/Entities/Clothing/Ears/bos_headsets.yml.
+#- type: entity
+#  parent: N14ClothingHeadsetLightScribe
+#  id: N14ClothingHeadsetBOSMidwestLightScribe
+#  name: Brotherhood scribe headset
+#  components:
+#  - type: ContainerFill
+#    containers:
+#      key_slots:
+#      - EncryptionKeyBrotherhoodOfSteel
+#      - EncryptionKeyWastelandGlobal
+#
+#- type: entity
+#  parent: N14ClothingHeadsetLightScribe
+#  id: N14ClothingHeadsetBOSWashingtonLightScribe
+#  name: Brotherhood scribe headset
+#  components:
+#  - type: ContainerFill
+#    containers:
+#      key_slots:
+#      - EncryptionKeyBrotherhoodOfSteel
+#      - EncryptionKeyWastelandGlobal

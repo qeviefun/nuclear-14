@@ -38,14 +38,15 @@ job-description-caesar-legion-recruit = Enter the Legion at its lowest free rank
 job-name-caesar-legion-slave = Legion Slave
 job-description-caesar-legion-slave = You are a slave of Caesar's Legion. Obey, survive, and remember that your life belongs to your masters.
 
-# Western BoS
-job-name-bos-west-elder-comm = Brotherhood Elder
-job-description-bos-west-elder-comm = Command the entire Brotherhood chapter and decide its doctrine, diplomacy, and strategic goals.
-job-name-bos-west-paladin = Brotherhood Senior Paladin
-job-description-bos-west-paladin = Serve as a seasoned paladin trusted with the Brotherhood's most dangerous operations.
-job-name-bos-west-knight = Brotherhood Senior Knight
-job-description-bos-west-knight = Act as an experienced knight who anchors Brotherhood patrols and defends recovered assets.
-job-name-bos-west-scribe = Brotherhood Head Scribe
-job-description-bos-west-scribe = Lead the scribes, control technical doctrine, and safeguard the chapter's knowledge.
-job-name-bos-west-gunsmith = Brotherhood Squire
-job-description-bos-west-gunsmith = Maintain Brotherhood equipment while training under the chapter's senior members.
+# Misfits Change /Comment-out/: Western BoS chapter removed.
+# # Western BoS
+# job-name-bos-west-elder-comm = Brotherhood Elder
+# job-description-bos-west-elder-comm = Command the entire Brotherhood chapter and decide its doctrine, diplomacy, and strategic goals.
+# job-name-bos-west-paladin = Brotherhood Senior Paladin
+# job-description-bos-west-paladin = Serve as a seasoned paladin trusted with the Brotherhood's most dangerous operations.
+# job-name-bos-west-knight = Brotherhood Senior Knight
+# job-description-bos-west-knight = Act as an experienced knight who anchors Brotherhood patrols and defends recovered assets.
+# job-name-bos-west-scribe = Brotherhood Head Scribe
+# job-description-bos-west-scribe = Lead the scribes, control technical doctrine, and safeguard the chapter's knowledge.
+# job-name-bos-west-gunsmith = Brotherhood Squire
+# job-description-bos-west-gunsmith = Maintain Brotherhood equipment while training under the chapter's senior members.

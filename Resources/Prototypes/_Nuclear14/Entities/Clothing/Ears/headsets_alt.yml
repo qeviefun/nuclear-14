@@ -133,37 +133,38 @@
   - type: Clothing
     sprite: Clothing/Ears/Headsets/science.rsi
 
-- type: entity
-  parent: N14ClothingHeadsetAlt
-  id: N14ClothingHeadsetBOSMidwest
-  name: Brotherhood radio earpiece
-  components:
-  - type: ContainerFill
-    containers:
-      key_slots:
-      - EncryptionKeyBrotherhoodOfSteel
-      - EncryptionKeyWastelandGlobal
-  - type: Sprite
-    sprite: Clothing/Ears/Headsets/command.rsi
-  - type: Clothing
-    sprite: Clothing/Ears/Headsets/command.rsi
-
-- type: entity
-  parent: N14ClothingHeadsetAlt
-  id: N14ClothingHeadsetBOSWashington
-  name: Brotherhood radio earpiece
-  components:
-  - type: ContainerFill
-    containers:
-      key_slots:
-      - EncryptionKeyBrotherhoodOfSteel
-      - EncryptionKeyWastelandGlobal
-  - type: Sprite
-    sprite: Clothing/Ears/Headsets/security.rsi
-  - type: Clothing
-    sprite: Clothing/Ears/Headsets/security.rsi
-  - type: Item
-    sprite: Clothing/Ears/Headsets/security.rsi
+#Misfits Change /Comment-out/: Duplicate BoS headsets removed — consolidated into _Misfits/Entities/Clothing/Ears/bos_headsets.yml.
+#- type: entity
+#  parent: N14ClothingHeadsetAlt
+#  id: N14ClothingHeadsetBOSMidwest
+#  name: Brotherhood radio earpiece
+#  components:
+#  - type: ContainerFill
+#    containers:
+#      key_slots:
+#      - EncryptionKeyBrotherhoodOfSteel
+#      - EncryptionKeyWastelandGlobal
+#  - type: Sprite
+#    sprite: Clothing/Ears/Headsets/command.rsi
+#  - type: Clothing
+#    sprite: Clothing/Ears/Headsets/command.rsi
+#
+#- type: entity
+#  parent: N14ClothingHeadsetAlt
+#  id: N14ClothingHeadsetBOSWashington
+#  name: Brotherhood radio earpiece
+#  components:
+#  - type: ContainerFill
+#    containers:
+#      key_slots:
+#      - EncryptionKeyBrotherhoodOfSteel
+#      - EncryptionKeyWastelandGlobal
+#  - type: Sprite
+#    sprite: Clothing/Ears/Headsets/security.rsi
+#  - type: Clothing
+#    sprite: Clothing/Ears/Headsets/security.rsi
+#  - type: Item
+#    sprite: Clothing/Ears/Headsets/security.rsi
 
 - type: entity
   parent: N14ClothingHeadsetAlt

@@ -1,8 +1,8 @@
 - type: job
   id: NCRCaptain
-  setPreference: false
-  hideWithoutJobWhitelist: true # #Misfits Change
-  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+  setPreference: true # #Misfits Tweak - visible in job selection
+  hideWithoutJobWhitelist: false # #Misfits Tweak - visible in all menus
+  hideIfPlaytimeRequirementsNotMet: false # #Misfits Tweak - all jobs visible in selection
   jobWhitelistBypassesRoleTimers: true # #Misfits Change
   overrideConsoleVisibility: false
   canBeAntag: true

@@ -191,7 +191,7 @@
   - type: SSDIndicator
   - type: StandingState
   - type: SpeechSynthesis # Forge-Fallout-Barks
-  - type: CameraFollow # Forge-Change
+  #- type: CameraFollow # Forge-Change # Misfits Change: Commented out - Camera Follow mechanism disabled
   - type: Fingerprint
   - type: Dna
   - type: Scent

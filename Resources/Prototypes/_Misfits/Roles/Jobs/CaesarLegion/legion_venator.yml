@@ -1,7 +1,7 @@
 - type: job
   id: CaesarLegionFrumentarii
   setPreference: true
-  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+  hideIfPlaytimeRequirementsNotMet: false # #Misfits Tweak - all jobs visible in selection
   jobWhitelistBypassesRoleTimers: true # #Misfits Change
   weight: 50
   name: job-name-caesar-legion-frumentarii
@@ -11,7 +11,7 @@
   - !type:CharacterDepartmentTimeRequirement
      department: CaesarLegion
      min: 0 #12 hours test
-  - !type:CharacterWhitelistRequirement
+  #- !type:CharacterWhitelistRequirement # #Misfits Tweak - whitelist removed, accessible up to Vet Decanus
   - !type:CharacterSpeciesRequirement
     species:
     - Human

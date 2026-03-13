@@ -1,8 +1,8 @@
 - type: job
   id: BoSWestElderCommander
-  setPreference: false
-  hideWithoutJobWhitelist: true # #Misfits Change
-  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+  setPreference: true # #Misfits Tweak - visible in job selection
+  hideWithoutJobWhitelist: false # #Misfits Tweak - visible in all menus
+  hideIfPlaytimeRequirementsNotMet: false # #Misfits Tweak - all jobs visible in selection
   jobWhitelistBypassesRoleTimers: true # #Misfits Change
   weight: 120
   name: job-name-bos-west-elder-comm
@@ -36,16 +36,15 @@
 - type: startingGear
   id: BoSWestElderCommanderGear
   equipment:
-    jumpsuit: N14ClothingUniformBosReconWest
+    jumpsuit: N14ClothingUniformJumpskirtBOSBlack  #Misfits Change /Tweak/: New consolidated BoS gear
     back: N14ClothingBackpackMilitary
-    shoes: N14ClothingBootsCombatFilled
-    head:  N14ClothingHeadHatBrotherhoodFieldCap
-    outerClothing: N14ClothingOuterCombatArmorCaptainBOS
+    shoes: N14ClothingBootsLeatherFilled
+    outerClothing: N14ClothingOuterBrotherhoodElderCoat
     hands: N14ClothingHandsGlovesCombat
     pocket1: BoSBrotherhoodElderKits
     id: N14IDBrotherhoodOfSteelHolotagElder
     ears: N14ClothingHeadsetBrotherhoodOfSteel
-    belt: N14ClothingBeltBoSWesternKnight
+    belt: N14ClothingBeltBoSWebbing
   storage:
     back:
     - N14BoxPlasticFilledMilitary

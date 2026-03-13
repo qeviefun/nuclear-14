@@ -56,7 +56,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: N14CurrencyCap100
+    - id: N14CurrencyPrewarMoney100 # Misfits Change: Replaced bottlecaps with pre-war money — caps removed from starting loadout wallets
 
 - type: entity
   id: N14WalletCash
@@ -65,7 +65,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: N14CurrencyCap50
+    - id: N14CurrencyPrewarMoney50 # Misfits Change: Replaced bottlecaps with pre-war money — caps removed from starting loadout wallets
 
 # Military
 - type: entity

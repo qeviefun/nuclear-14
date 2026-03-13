@@ -1,8 +1,8 @@
 - type: job
   id: CaesarLegionCenturion
   setPreference: true
-  hideWithoutJobWhitelist: true # #Misfits Change
-  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+  hideWithoutJobWhitelist: false # #Misfits Tweak - visible in all menus
+  hideIfPlaytimeRequirementsNotMet: false # #Misfits Tweak - all jobs visible in selection
   jobWhitelistBypassesRoleTimers: true # #Misfits Change
   weight: 110
   name: job-name-caesar-legion-centurion
@@ -11,10 +11,10 @@
   requirements:
   - !type:CharacterDepartmentTimeRequirement
       department: CaesarLegion
-      min: 216000 # 60 hours
-  - !type:CharacterPlaytimeRequirement
+      min: 0 # #Misfits Tweak - gated by Veteran Decanus role time instead
+  - !type:CharacterPlaytimeRequirement # #Misfits Tweak - 20 hours as Veteran Decanus to unlock Centurion
       tracker: CaesarLegionVeteranDecanus
-      min: 43200 # 12 hours
+      min: 72000 # 20 hours
   - !type:CharacterSpeciesRequirement
     species:
     - Human

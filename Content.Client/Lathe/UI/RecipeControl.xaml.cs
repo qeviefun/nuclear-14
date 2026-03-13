@@ -20,10 +20,11 @@ public sealed partial class RecipeControl : Control
         RecipeDisplayContainer.AddChild(displayControl);
         Button.Disabled = !canProduce;
         TooltipTextSupplier = tooltipTextSupplier;
-        // #Misfits Fix: Attach tooltip to the outer Control rather than the Button so
-        // it shows even when the button is disabled (insufficient materials), letting
-        // players see what materials they still need before they can craft.
-        TooltipSupplier = SupplyTooltip;
+        // #Misfits Fix: Tooltip must be on Button (the directly-hovered control) because
+        // RobustToolbox's tooltip system only checks CurrentlyHovered.TooltipSupplier and
+        // does NOT walk up to parent controls. Disabled buttons still receive hover events
+        // so this works whether or not the player has the required materials.
+        Button.TooltipSupplier = SupplyTooltip;
 
         Button.OnPressed += (_) =>
         {

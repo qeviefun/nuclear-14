@@ -30,20 +30,21 @@
 #  items:
 #    - N14ClothingOuterWBoSSeniorKArmor
 #
-- type: loadout
-  id: LoadoutBoSWashingtonFieldScribe
-  category: Uniform
-  cost: 1
-  exclusive: true
-  requirements:
-    - !type:CharacterJobRequirement
-      jobs:
-        - BoSWashingtonScribe
-    - !type:CharacterPlaytimeRequirement
-      tracker: BoSWashingtonScribe
-      min: 72000 # 20 hours veterancy unlock
-  items:
-    - N14ClothingUniformJumpsuitBOSWashingtonFieldScribe
+#Misfits Change /Comment-out/: Washington BoS field scribe loadout removed — job no longer exists.
+#- type: loadout
+#  id: LoadoutBoSWashingtonFieldScribe
+#  category: Uniform
+#  cost: 1
+#  exclusive: true
+#  requirements:
+#    - !type:CharacterJobRequirement
+#      jobs:
+#        - BoSWashingtonScribe
+#    - !type:CharacterPlaytimeRequirement
+#      tracker: BoSWashingtonScribe
+#      min: 72000 # 20 hours veterancy unlock
+#  items:
+#    - N14ClothingUniformJumpsuitBOSWashingtonFieldScribe
 
 # Misfits Change - Disabled: armor/weapons removed from roundstart loadout menu
 #- type: loadout

@@ -1,14 +1,14 @@
 - type: job
   id: NCRWS
   setPreference: true
-  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+  hideIfPlaytimeRequirementsNotMet: false # #Misfits Tweak - all jobs visible in selection
   jobWhitelistBypassesRoleTimers: true # #Misfits Change
   weight: 40
   showBorder: true
   overrideConsoleVisibility: false
   canBeAntag: false
-  name: job-name-ncr-corporal
-  description: job-description-ncr-corporal
+  name: job-name-ncr-specialist # #Misfits Tweak - renamed from Corporal to Specialist
+  description: job-description-ncr-specialist # #Misfits Tweak - renamed from Corporal to Specialist
   playTimeTracker: NCRWS
   requirements:
     - !type:CharacterSpeciesRequirement
@@ -27,6 +27,7 @@
   alwaysUseSpawner: true
   access:
   - NCR
+  - NCRMedic # #Misfits Add - medic access folded in from consolidated NCR Medic role
   special:
   - !type:AddComponentSpecial
     components:

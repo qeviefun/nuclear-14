@@ -1,7 +1,7 @@
 - type: job
   id: BoSMidScribe
   setPreference: true
-  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+  hideIfPlaytimeRequirementsNotMet: false # #Misfits Tweak - all jobs visible in selection
   jobWhitelistBypassesRoleTimers: true # #Misfits Change
   weight: 60
   overrideConsoleVisibility: true
@@ -34,15 +34,17 @@
 - type: startingGear
   id: BoSMidScribeGear
   equipment:
-    jumpsuit: N14ClothingUniformJumpsuitBOSScribe
-    back: N14ClothingBackpackSatchelMilitary # Corvax-Change
+    jumpsuit: N14ClothingUniformJumpskirtBOSBlack  #Misfits Change /Tweak/: New consolidated BoS gear
+    back: N14ClothingBackpackSatchelMilitary
     shoes: N14ClothingBootsLeatherFilled
-    outerClothing: N14ClothingOuterBosScribe
+    outerClothing: N14ClothingOuterBrotherhoodMidwestFieldScribeCoat
     pocket1: BoSBrotherhoodSeniorScribeKits
     id: N14IDBrotherhoodOfSteelHolotagSeniorScribe
     ears: N14ClothingHeadsetBrotherhoodOfSteelScribe
-  storage: # Corvax-Change
+    belt: ClothingBeltMilitary
+  storage:
     back:
+    - NCClothingOuterBosReconArmor
     - N14BoxPlasticFilledMilitary
 
 - type: playTimeTracker

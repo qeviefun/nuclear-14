@@ -307,6 +307,7 @@ reagent-name-antiseptic = Antiseptic
 reagent-desc-antiseptic = A cleaning solution made from Abraxo Cleaner and some Rubbing Alcohol.
 
 # Ores, Metals, Materials
+materials-circuitry = circuitry # #Misfits Add: was a raw name string in the material prototype with no FTL entry — triggered WARN in MaterialDisplay.xaml.cs
 materials-aluminum = aluminum
 materials-antchitin = chitin
 materials-charcoal = charcoal

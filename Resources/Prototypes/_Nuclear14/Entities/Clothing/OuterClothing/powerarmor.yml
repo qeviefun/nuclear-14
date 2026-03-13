@@ -62,6 +62,12 @@
     innate: true
     spread: 90
   - type: SpearBlock # #Misfits Change Add: Power armor deflects thrown polearms; falls to ground instead of embedding.
+  - type: PowerArmorBrace # #Misfits Change Add: Grants wearer a hotkey to brace (anchor in place, immobile but can fire, slight damage resistance). 5-second cooldown between stance changes.
+    activeModifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
   - type: EmitsSoundOnMove # Corvax-Change
     soundCollection:
       collection: N14FootstepPowerArmor
@@ -592,8 +598,8 @@
 - type: entity
   parent: N14ClothingOuterPowerArmorWashT51
   id: N14ClothingOuterPowerArmorWashT51Elite
-  name: elite T-51 power armor
-  description: A set of T-51 with some upgrades over the pre-war design and painjob made by the Washington Brotherhood. It even has pouches!
+  name: T-51b power armor #Misfits Tweak: Renamed from "elite T-51" to lore-accurate T-51b designation
+  description: A pinnacle of pre-war military engineering, the T-51b was standard issue for front-line infantry units during the Sino-American conflict. This suit's fusion-powered servos and composite plating have withstood the test of time.
   components:
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/t51washelite.rsi

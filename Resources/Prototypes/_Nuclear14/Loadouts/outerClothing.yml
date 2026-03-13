@@ -172,26 +172,27 @@
 #  items:
 #    - N14ClothingOuterBattlecoatCoat
 #
-- type: loadout
-  id: N14LoadoutOuterCoatBattlecoatTan
-  category: Outer
-  cost: 3
-  requirements:
-    - !type:CharacterItemGroupRequirement
-      group: N14LoadoutOuter
-    - !type:CharacterDepartmentRequirement # Forge-Change
-      inverted: true
-      departments:
-      - Vault
-    - !type:CharacterJobRequirement # Forge-Change
-      inverted: true
-      jobs:
-      - BoSMidSerf
-      - CaesarLegionSlave
-      - NCRPisoner
-  items:
-    - N14ClothingOuterBattlecoatTan
-
+# Misfits Change - Disabled: armor with resistance values removed from roundstart loadout menu
+#- type: loadout
+#  id: N14LoadoutOuterCoatBattlecoatTan
+#  category: Outer
+#  cost: 3
+#  requirements:
+#    - !type:CharacterItemGroupRequirement
+#      group: N14LoadoutOuter
+#    - !type:CharacterDepartmentRequirement # Forge-Change
+#      inverted: true
+#      departments:
+#      - Vault
+#    - !type:CharacterJobRequirement # Forge-Change
+#      inverted: true
+#      jobs:
+#      - BoSMidSerf
+#      - CaesarLegionSlave
+#      - NCRPisoner
+#  items:
+#    - N14ClothingOuterBattlecoatTan
+#
 - type: loadout
   id: N14LoadoutOuterCoatDuster
   category: Outer
@@ -260,22 +261,23 @@
   items:
     - N14ClothingOuterCoatLeatherCoat
 
-- type: loadout
-  id: N14ClothingOuterTownCoat
-  category: Outer
-  cost: 1
-  requirements:
-    - !type:CharacterItemGroupRequirement
-      group: N14LoadoutOuter
-    - !type:CharacterJobRequirement # Forge-Change
-      inverted: true
-      jobs:
-      - BoSMidSerf
-      - CaesarLegionSlave
-      - NCRPisoner
-  items:
-    - N14ClothingOuterTownCoat
-
+# Misfits Change - Disabled: armor with resistance values removed from roundstart loadout menu
+#- type: loadout
+#  id: N14ClothingOuterTownCoat
+#  category: Outer
+#  cost: 1
+#  requirements:
+#    - !type:CharacterItemGroupRequirement
+#      group: N14LoadoutOuter
+#    - !type:CharacterJobRequirement # Forge-Change
+#      inverted: true
+#      jobs:
+#      - BoSMidSerf
+#      - CaesarLegionSlave
+#      - NCRPisoner
+#  items:
+#    - N14ClothingOuterTownCoat
+#
 # Misfits Change - Disabled: armor/weapons removed from roundstart loadout menu
 #- type: loadout
 #  id: N14ClothingOuterTownMediumCoat

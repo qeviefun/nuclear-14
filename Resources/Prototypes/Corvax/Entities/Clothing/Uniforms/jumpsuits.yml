@@ -42,91 +42,92 @@
   - type: Clothing
     sprite: Corvax/Clothing/Uniforms/Jumpsuit/sheriffsuit.rsi
 
-- type: entity
-  parent: ClothingUniformBase
-  id: NCClothingUniformJumpsuitWesternBoS
-  name: Western BoS Uniform
-  description: A rugged uniform of the Western Brotherhood of Steel, symbolizing strength and unity.
-  components:
-  - type: Sprite
-    sprite: Corvax/Clothing/Uniforms/Jumpsuit/westernBoS.rsi
-  - type: Clothing
-    sprite: Corvax/Clothing/Uniforms/Jumpsuit/westernBoS.rsi
-
-- type: entity
-  parent: N14ClothingUniformBase
-  id: N14ClothingUniformJumpsuitBOSWest
-  name: Western BoS Uniform
-  description: A uniform worn by members of the Brotherhood of Steel. This one is green.
-  components:
-  - type: Sprite
-    sprite: Corvax/Clothing/Uniforms/Jumpsuit/westernwest.rsi
-  - type: Clothing
-    sprite: Corvax/Clothing/Uniforms/Jumpsuit/westernwest.rsi
-
-- type: entity
-  parent: N14ClothingUniformBase
-  id: N14ClothingUniformBosReconWest
-  name: Western BoS Uniform
-  description: A uniform worn by members of the Brotherhood of Steel. This one is green.
-  components:
-  - type: Sprite
-    sprite: Corvax/Clothing/Uniforms/Jumpsuit/westernwestelder.rsi
-  - type: Clothing
-    sprite: Corvax/Clothing/Uniforms/Jumpsuit/westernwestelder.rsi
-
-- type: entity
-  parent: N14ClothingUniformBase
-  id: N14ClothingUniformJumpsuitBOSWestScribe
-  name: Western BoS Scribe Uniform
-  description: A uniform worn by members of the Brotherhood of Steel. This one is green.
-  components:
-  - type: Sprite
-    sprite: Corvax/Clothing/Uniforms/Jumpsuit/westernwestscribe.rsi
-  - type: Clothing
-    sprite: Corvax/Clothing/Uniforms/Jumpsuit/westernwestscribe.rsi
-
-- type: entity
-  parent: N14ClothingUniformBase
-  id: N14ClothingUniformJumpsuitBOSWestPaladin
-  name: Western BoS Paladin Uniform
-  description: A uniform worn by members of the Brotherhood of Steel. This one is green.
-  components:
-  - type: Sprite
-    sprite: Corvax/Clothing/Uniforms/Jumpsuit/paladin.rsi
-  - type: Clothing
-    sprite: Corvax/Clothing/Uniforms/Jumpsuit/paladin.rsi
-
-- type: entity
-  parent: N14ClothingUniformBase
-  id: N14ClothingUniformJumpsuitBOSWestKnight
-  name: Western BoS Knight Uniform
-  description: A uniform worn by members of the Brotherhood of Steel. This one is green.
-  components:
-  - type: Sprite
-    sprite: Corvax/Clothing/Uniforms/Jumpsuit/khing.rsi
-  - type: Clothing
-    sprite: Corvax/Clothing/Uniforms/Jumpsuit/khing.rsi
-
-- type: entity
-  parent: N14ClothingUniformBase
-  id: N14ClothingUniformJumpsuitBOSWestScout
-  name: Western BoS Scout Uniform
-  description: A uniform worn by members of the Brotherhood of Steel. This one is green.
-  components:
-  - type: Sprite
-    sprite: Corvax/Clothing/Uniforms/Jumpsuit/scout.rsi
-  - type: Clothing
-    sprite: Corvax/Clothing/Uniforms/Jumpsuit/scout.rsi
-
-- type: entity
-  parent: N14ClothingUniformBase
-  id: N14ClothingUniformJumpsuitInquisitorBOS
-  components:
-  - type: Sprite
-    sprite: Corvax/Clothing/Uniforms/Jumpsuit/InquisitorUniform.rsi
-  - type: Clothing
-    sprite: Corvax/Clothing/Uniforms/Jumpsuit/InquisitorUniform.rsi
+#Misfits Change /Comment-out/: Western BoS and Inquisitor uniforms removed — no Western BoS chapter or Inquisitor role in Misfits.
+#- type: entity
+#  parent: ClothingUniformBase
+#  id: NCClothingUniformJumpsuitWesternBoS
+#  name: Western BoS Uniform
+#  description: A rugged uniform of the Western Brotherhood of Steel, symbolizing strength and unity.
+#  components:
+#  - type: Sprite
+#    sprite: Corvax/Clothing/Uniforms/Jumpsuit/westernBoS.rsi
+#  - type: Clothing
+#    sprite: Corvax/Clothing/Uniforms/Jumpsuit/westernBoS.rsi
+#
+#- type: entity
+#  parent: N14ClothingUniformBase
+#  id: N14ClothingUniformJumpsuitBOSWest
+#  name: Western BoS Uniform
+#  description: A uniform worn by members of the Brotherhood of Steel. This one is green.
+#  components:
+#  - type: Sprite
+#    sprite: Corvax/Clothing/Uniforms/Jumpsuit/westernwest.rsi
+#  - type: Clothing
+#    sprite: Corvax/Clothing/Uniforms/Jumpsuit/westernwest.rsi
+#
+#- type: entity
+#  parent: N14ClothingUniformBase
+#  id: N14ClothingUniformBosReconWest
+#  name: Western BoS Uniform
+#  description: A uniform worn by members of the Brotherhood of Steel. This one is green.
+#  components:
+#  - type: Sprite
+#    sprite: Corvax/Clothing/Uniforms/Jumpsuit/westernwestelder.rsi
+#  - type: Clothing
+#    sprite: Corvax/Clothing/Uniforms/Jumpsuit/westernwestelder.rsi
+#
+#- type: entity
+#  parent: N14ClothingUniformBase
+#  id: N14ClothingUniformJumpsuitBOSWestScribe
+#  name: Western BoS Scribe Uniform
+#  description: A uniform worn by members of the Brotherhood of Steel. This one is green.
+#  components:
+#  - type: Sprite
+#    sprite: Corvax/Clothing/Uniforms/Jumpsuit/westernwestscribe.rsi
+#  - type: Clothing
+#    sprite: Corvax/Clothing/Uniforms/Jumpsuit/westernwestscribe.rsi
+#
+#- type: entity
+#  parent: N14ClothingUniformBase
+#  id: N14ClothingUniformJumpsuitBOSWestPaladin
+#  name: Western BoS Paladin Uniform
+#  description: A uniform worn by members of the Brotherhood of Steel. This one is green.
+#  components:
+#  - type: Sprite
+#    sprite: Corvax/Clothing/Uniforms/Jumpsuit/paladin.rsi
+#  - type: Clothing
+#    sprite: Corvax/Clothing/Uniforms/Jumpsuit/paladin.rsi
+#
+#- type: entity
+#  parent: N14ClothingUniformBase
+#  id: N14ClothingUniformJumpsuitBOSWestKnight
+#  name: Western BoS Knight Uniform
+#  description: A uniform worn by members of the Brotherhood of Steel. This one is green.
+#  components:
+#  - type: Sprite
+#    sprite: Corvax/Clothing/Uniforms/Jumpsuit/khing.rsi
+#  - type: Clothing
+#    sprite: Corvax/Clothing/Uniforms/Jumpsuit/khing.rsi
+#
+#- type: entity
+#  parent: N14ClothingUniformBase
+#  id: N14ClothingUniformJumpsuitBOSWestScout
+#  name: Western BoS Scout Uniform
+#  description: A uniform worn by members of the Brotherhood of Steel. This one is green.
+#  components:
+#  - type: Sprite
+#    sprite: Corvax/Clothing/Uniforms/Jumpsuit/scout.rsi
+#  - type: Clothing
+#    sprite: Corvax/Clothing/Uniforms/Jumpsuit/scout.rsi
+#
+#- type: entity
+#  parent: N14ClothingUniformBase
+#  id: N14ClothingUniformJumpsuitInquisitorBOS
+#  components:
+#  - type: Sprite
+#    sprite: Corvax/Clothing/Uniforms/Jumpsuit/InquisitorUniform.rsi
+#  - type: Clothing
+#    sprite: Corvax/Clothing/Uniforms/Jumpsuit/InquisitorUniform.rsi
 
 - type: entity
   parent: N14ClothingUniformBase

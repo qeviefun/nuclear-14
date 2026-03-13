@@ -44,29 +44,31 @@
     faction: NCR
     role: NCRPisoner
 
+#Misfits Change /Comment-out/: BoS bandages removed — consolidated into _Misfits BoS structure.
 #MARK: BoS
-- type: entity
-  parent: Clothing
-  id: NCClothingBandageBoSBase
-  abstract: true
-  components:
-  - type: Sprite
-    sprite: Corvax/Clothing/Bandage/bandageBOS.rsi
-    state: icon
-  - type: Clothing
-    sprite: Corvax/Clothing/Bandage/bandageBOS.rsi
-    slots: [ bandage ]
+#- type: entity
+#  parent: Clothing
+#  id: NCClothingBandageBoSBase
+#  abstract: true
+#  components:
+#  - type: Sprite
+#    sprite: Corvax/Clothing/Bandage/bandageBOS.rsi
+#    state: icon
+#  - type: Clothing
+#    sprite: Corvax/Clothing/Bandage/bandageBOS.rsi
+#    slots: [ bandage ]
+#
+#- type: entity
+#  parent: NCClothingBandageBoSBase
+#  id: NCClothingBandageBoSRecruit
+#  name: BoS Recruit Bandage
+#  description: A bandage used by the Brotherhood of Steel recruits.
+#  components:
+#  - type: ClothingFactionAndRoleAdd
+#    faction: BrotherhoodOfSteel
+#    role: BoSMidSquire
 
-- type: entity
-  parent: NCClothingBandageBoSBase
-  id: NCClothingBandageBoSRecruit
-  name: BoS Recruit Bandage
-  description: A bandage used by the Brotherhood of Steel recruits.
-  components:
-  - type: ClothingFactionAndRoleAdd
-    faction: BrotherhoodOfSteel
-    role: BoSMidSquire
-
+#Misfits Change /Tweak/: Un-commented Serf collar — still used by active Midwest BoS Serf job.
 - type: entity
   parent: Clothing
   id: NCClothingCollarBoSBase

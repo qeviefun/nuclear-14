@@ -10,17 +10,18 @@ job-description-bos-mid-scribe = Coordinate research, catalog technology, and ad
 job-name-bos-mid-squire = Brotherhood Squire
 job-description-bos-mid-squire = Train under the Brotherhood's veterans and prove you are ready for higher duties.
 
-# Washington Brotherhood
-job-name-bos-washington-commander = Brotherhood Head Knight
-job-description-bos-washington-commander = Oversee the Brotherhood's knightly orders, logistics, and battlefield readiness.
-job-name-bos-washington-initiate = Brotherhood Initiate
-job-description-bos-washington-initiate = Learn the Brotherhood's code, follow orders, and earn your place in the chapter.
-job-name-bos-washington-knight = Brotherhood Knight
-job-description-bos-washington-knight = Protect the chapter, escort missions, and recover technology in the field.
-job-name-bos-washington-paladin = Brotherhood Paladin
-job-description-bos-washington-paladin = Fight as the Brotherhood's frontline heavy infantry and defend the chapter's interests.
-job-name-bos-washington-scribe = Brotherhood Scribe
-job-description-bos-washington-scribe = Support the chapter with research, medicine, and technical expertise.
+#Misfits Change /Comment-out/: Washington BoS job names removed — will create new prototypes.
+## Washington Brotherhood
+#job-name-bos-washington-commander = Brotherhood Head Knight
+#job-description-bos-washington-commander = Oversee the Brotherhood's knightly orders, logistics, and battlefield readiness.
+#job-name-bos-washington-initiate = Brotherhood Initiate
+#job-description-bos-washington-initiate = Learn the Brotherhood's code, follow orders, and earn your place in the chapter.
+#job-name-bos-washington-knight = Brotherhood Knight
+#job-description-bos-washington-knight = Protect the chapter, escort missions, and recover technology in the field.
+#job-name-bos-washington-paladin = Brotherhood Paladin
+#job-description-bos-washington-paladin = Fight as the Brotherhood's frontline heavy infantry and defend the chapter's interests.
+#job-name-bos-washington-scribe = Brotherhood Scribe
+#job-description-bos-washington-scribe = Support the chapter with research, medicine, and technical expertise.
 
 # Caravan
 job-name-caravan-leader = Caravan Leader
@@ -39,7 +40,7 @@ job-name-ncr-doctor = NCR Medical Doctor
 job-description-ncr-doctor = Oversee battlefield care, keep the detachment alive, and direct NCR medical treatment.
 job-name-ncr-medic = NCR Medic
 job-description-ncr-medic = Treat wounded NCR personnel in the field and keep the column moving.
-job-name-ncr-first-sergeant = NCR First Sergeant
+job-name-ncr-first-sergeant = NCR Sergeant First Class
 job-description-ncr-first-sergeant = Maintain discipline, coordinate the enlisted ranks, and keep the NCR line together under the captain and lieutenant.
 job-name-ncr-staff-sergeant = NCR Staff Sergeant
 job-description-ncr-staff-sergeant = Lead NCR troops in the field and enforce the orders of the command staff.
@@ -59,10 +60,13 @@ job-name-ncr-soldier = NCR Private
 job-description-ncr-soldier = Serve as a line trooper of the NCR and carry out orders from your NCOs and officers.
 job-name-ncr-engineer = NCR Engineer
 job-description-ncr-engineer = Maintain NCR equipment, build defenses, and keep the detachment operational.
-job-name-ncr-corporal = NCR Corporal
-job-description-ncr-corporal = Act as a veteran enlisted trooper and anchor the line under the NCO corps.
-job-name-ncr-ws = NCR Corporal
-job-description-ncr-ws = Act as a veteran enlisted trooper and anchor the line under the NCO corps.
+job-name-ncr-corporal = NCR Specialist
+job-description-ncr-corporal = Serve as a trained specialist — whether in combat, engineering, or medicine — and anchor the line under the NCO corps.
+job-name-ncr-ws = NCR Specialist
+job-description-ncr-ws = Serve as a trained specialist — whether in combat, engineering, or medicine — and anchor the line under the NCO corps.
+# #Misfits Add - new locale keys for the Specialist rename
+job-name-ncr-specialist = NCR Specialist
+job-description-ncr-specialist = Serve as a trained specialist — whether in combat, engineering, or medicine — and anchor the line under the NCO corps.
 job-name-ncr-ranger = NCR Ranger
 job-description-ncr-ranger = The most experienced and robust soldiers form part of this elite group of the NCR Army, lead troops or act by yourself under the orders of the Republic.
 job-name-ncr-ranger-veteran = NCR Ranger Veteran

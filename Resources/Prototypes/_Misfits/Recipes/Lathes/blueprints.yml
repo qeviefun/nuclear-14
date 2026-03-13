@@ -1,0 +1,222 @@
+# #Misfits Add: Faction blueprint lathe recipes.
+#
+# Two groups of recipes in this file:
+#
+# SECTION A — Blueprint PRINTING recipes (workbench → blueprint paper item from Paper: 100)
+#   These allow players to print faction blueprint items at the armor workbench.
+#   The result entity has STBlueprintComponent so these appear in the Blueprint tab of the lathe UI.
+#
+# SECTION B — Blueprint CRAFTING recipes (workbench → faction armor when blueprint is in storage)
+#   These are discovered dynamically by AddStorageBlueprintRecipes when the matching blueprint item
+#   is placed inside the workbench's storage container.  They appear in the Items tab because the
+#   result entity is the actual armor (no STBlueprintComponent).  Materials only cover the fabric
+#   ingredients (Cloth + Thread); the base-armor item requirement from the hand-crafting recipe is
+#   intentionally omitted here since the lathe system cannot consume physical entity items.
+#
+# Faction coverage: Brotherhood of Steel, Caesar's Legion, New California Republic (armor only).
+# Power-armor conversions at N14WorkbenchStation use the hand-crafting system exclusively.
+
+# ===========================================================================
+# SECTION A – BLUEPRINT PRINTING RECIPES (result = blueprint item, cost = Paper)
+# ===========================================================================
+
+# --- Brotherhood of Steel ---
+
+- type: latheRecipe
+  id: N14ClothingOuterMBoSInitiateArmorBlueprint
+  result: N14ClothingOuterMBoSInitiateArmorBlueprint
+  category: N14Blueprints
+  completetime: 1
+  availableFaction:
+    - BrotherhoodOfSteel
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: N14ClothingOuterMidwestArmorBlueprint
+  result: N14ClothingOuterMidwestArmorBlueprint
+  category: N14Blueprints
+  completetime: 1
+  availableFaction:
+    - BrotherhoodOfSteel
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: N14ClothingOuterMidwestArmorMK2Blueprint
+  result: N14ClothingOuterMidwestArmorMK2Blueprint
+  category: N14Blueprints
+  completetime: 1
+  availableFaction:
+    - BrotherhoodOfSteel
+  materials:
+    Paper: 100
+
+# --- Caesar's Legion ---
+
+- type: latheRecipe
+  id: N14ClothingOuterLegionnaireBaseArmorBlueprint
+  result: N14ClothingOuterLegionnaireBaseArmorBlueprint
+  category: N14Blueprints
+  completetime: 1
+  availableFaction:
+    - CaesarLegion
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: N14ClothingOuterLegionnaireVeteranArmorBlueprint
+  result: N14ClothingOuterLegionnaireVeteranArmorBlueprint
+  category: N14Blueprints
+  completetime: 1
+  availableFaction:
+    - CaesarLegion
+  materials:
+    Paper: 100
+
+# --- New California Republic ---
+
+- type: latheRecipe
+  id: N14ClothingOuterNCRVestDesertBlueprint
+  result: N14ClothingOuterNCRVestDesertBlueprint
+  category: N14Blueprints
+  completetime: 1
+  availableFaction:
+    - NCR
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: N14ClothingOuterNCRCombatArmorBlueprint
+  result: N14ClothingOuterNCRCombatArmorBlueprint
+  category: N14Blueprints
+  completetime: 1
+  availableFaction:
+    - NCR
+  materials:
+    Paper: 100
+
+- type: latheRecipe
+  id: N14ClothingOuterNCRCombatArmorMK2Blueprint
+  result: N14ClothingOuterNCRCombatArmorMK2Blueprint
+  category: N14Blueprints
+  completetime: 1
+  availableFaction:
+    - NCR
+  materials:
+    Paper: 100
+
+# ===========================================================================
+# SECTION B – BLUEPRINT CRAFTING RECIPES (result = final armor, found via AddStorageBlueprintRecipes)
+#
+# These are NOT added to any workbench staticRecipes.  They are discovered
+# automatically when the matching blueprint entity is inside the workbench
+# storage container.  See Content.Server/Lathe/LatheSystem.cs
+# AddStorageBlueprintRecipes() for the lookup logic.
+#
+# Material cost = only the fabric items from the hand-crafting recipes:
+#   Cloth  : 100 per MaterialCloth1 unit required
+#   Thread : 100 per N14MaterialThread1 unit required
+# ===========================================================================
+
+# --- Brotherhood of Steel ---
+
+# N14ClothingOuterMBoSInitiateArmorRecipe requires: Cloth x1, Thread x2
+- type: latheRecipe
+  id: N14ClothingOuterMBoSInitiateArmorBlueprintCraft
+  result: N14ClothingOuterMBoSInitiateArmor
+  category: N14Armor
+  completetime: 7
+  availableFaction:
+    - BrotherhoodOfSteel
+  materials:
+    Cloth: 100
+    Thread: 200
+
+# N14ClothingOuterMidwestArmorRecipe requires: Cloth x2, Thread x3
+- type: latheRecipe
+  id: N14ClothingOuterMidwestArmorBlueprintCraft
+  result: N14ClothingOuterMidwestArmor
+  category: N14Armor
+  completetime: 7
+  availableFaction:
+    - BrotherhoodOfSteel
+  materials:
+    Cloth: 200
+    Thread: 300
+
+# N14ClothingOuterMidwestArmorMK2Recipe requires: Cloth x3, Thread x4
+- type: latheRecipe
+  id: N14ClothingOuterMidwestArmorMK2BlueprintCraft
+  result: N14ClothingOuterMidwestArmorMK2
+  category: N14Armor
+  completetime: 7
+  availableFaction:
+    - BrotherhoodOfSteel
+  materials:
+    Cloth: 300
+    Thread: 400
+
+# --- Caesar's Legion ---
+
+# N14ClothingOuterLegionnaireBaseArmorRecipe requires: Cloth x1, Thread x2
+- type: latheRecipe
+  id: N14ClothingOuterLegionnaireBaseArmorBlueprintCraft
+  result: N14ClothingOuterLegionnaireBaseArmor
+  category: N14Armor
+  completetime: 7
+  availableFaction:
+    - CaesarLegion
+  materials:
+    Cloth: 100
+    Thread: 200
+
+# N14ClothingOuterLegionnaireVeteranArmorRecipe requires: Cloth x2, Thread x3
+- type: latheRecipe
+  id: N14ClothingOuterLegionnaireVeteranArmorBlueprintCraft
+  result: N14ClothingOuterLegionnaireVeteranArmor
+  category: N14Armor
+  completetime: 7
+  availableFaction:
+    - CaesarLegion
+  materials:
+    Cloth: 200
+    Thread: 300
+
+# --- New California Republic ---
+
+# N14ClothingOuterNCRVestDesertRecipe requires: Cloth x1, Thread x2
+- type: latheRecipe
+  id: N14ClothingOuterNCRVestDesertBlueprintCraft
+  result: N14ClothingOuterNCRVestDesert
+  category: N14Armor
+  completetime: 7
+  availableFaction:
+    - NCR
+  materials:
+    Cloth: 100
+    Thread: 200
+
+# N14ClothingOuterNCRCombatArmorRecipe requires: Cloth x2, Thread x3
+- type: latheRecipe
+  id: N14ClothingOuterNCRCombatArmorBlueprintCraft
+  result: N14ClothingOuterNCRCombatArmor
+  category: N14Armor
+  completetime: 7
+  availableFaction:
+    - NCR
+  materials:
+    Cloth: 200
+    Thread: 300
+
+# N14ClothingOuterNCRCombatArmorMK2Recipe requires: Cloth x3, Thread x4
+- type: latheRecipe
+  id: N14ClothingOuterNCRCombatArmorMK2BlueprintCraft
+  result: N14ClothingOuterNCRCombatArmorMK2
+  category: N14Armor
+  completetime: 7
+  availableFaction:
+    - NCR
+  materials:
+    Cloth: 300
+    Thread: 400

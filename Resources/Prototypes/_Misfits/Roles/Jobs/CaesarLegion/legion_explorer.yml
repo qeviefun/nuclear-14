@@ -1,7 +1,7 @@
 - type: job
   id: CaesarLegionExplorer
   setPreference: true
-  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+  hideIfPlaytimeRequirementsNotMet: false # #Misfits Tweak - all jobs visible in selection
   jobWhitelistBypassesRoleTimers: true # #Misfits Change
   weight: 40
   name: job-name-caesar-legion-explorer
@@ -10,7 +10,7 @@
   requirements:
   - !type:CharacterDepartmentTimeRequirement
       department: CaesarLegion
-      min: 300 # 5 hours
+      min: 0 # #Misfits Tweak - accessible up to Vet Decanus
   - !type:CharacterSpeciesRequirement
     species:
     - Human

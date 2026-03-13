@@ -62,7 +62,7 @@
     - type: Icon
       state: paladin
     - type: Loadout
-      prototypes: [BoSMidInquisitorGear] # Forge-Add-End
+      prototypes: [] # Misfits Fix: BoSMidInquisitorGear prototype commented out # Forge-Add-End
 
 - type: entity # Forge-Add-Start
   parent: BoSMidPaladinCommander

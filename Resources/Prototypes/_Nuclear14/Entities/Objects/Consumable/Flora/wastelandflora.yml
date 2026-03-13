@@ -660,6 +660,7 @@
   components:
   - type: Sprite
     state: AgaveLeaf
+  #Misfits Fix: Re-enabled Stack — map entities require StackComponent to deserialize (was commented out but maps still reference it)
   - type: Stack
     stackType: AgaveLeaf
     count: 1
@@ -686,6 +687,7 @@
   components:
   - type: Sprite
     state: BananaYucca
+  #Misfits Fix: Re-enabled Stack — map entities require StackComponent to deserialize
   - type: Stack
     stackType: WildBananaYucca
     count: 1
@@ -712,6 +714,7 @@
   components:
   - type: Sprite
     state: BarrelCactusFruit
+  #Misfits Fix: Re-enabled Stack — map entities require StackComponent to deserialize
   - type: Stack
     stackType: BarrelCactusFruit
     count: 1
@@ -740,6 +743,7 @@
   - type: Sprite
     sprite: _Nuclear14/Objects/Specific/Hydroponics/blackberry.rsi
     state: produce
+  #Misfits Fix: Re-enabled Stack — map entities require StackComponent to deserialize
   - type: Stack
     stackType: WildBlackberries
     count: 1
@@ -766,6 +770,7 @@
   components:
   - type: Sprite
     state: BrocFlower
+  #Misfits Fix: Re-enabled Stack — map entities require StackComponent to deserialize
   - type: Stack
     stackType: BrocFlower
     count: 1
@@ -792,6 +797,7 @@
   components:
   - type: Sprite
     state: BuffaloGourd
+  #Misfits Fix: Re-enabled Stack — map entities require StackComponent to deserialize
   - type: Stack
     stackType: WildBuffaloGourd
     count: 1
@@ -819,6 +825,7 @@
   - type: Sprite
     sprite: _Nuclear14/Objects/Specific/Hydroponics/cabbage.rsi
     state: produce
+  #Misfits Fix: Re-enabled Stack — map entities require StackComponent to deserialize
   - type: Stack
     stackType: WildCabbage
     count: 1
@@ -849,6 +856,7 @@
   - type: Sprite
     sprite: _Nuclear14/Objects/Specific/Hydroponics/carrot.rsi
     state: produce
+  #Misfits Fix: Re-enabled Stack — map entities require StackComponent to deserialize
   - type: Stack
     stackType: WildCarrot
     count: 1
@@ -878,6 +886,7 @@
   components:
   - type: Sprite
     state: CaveFungus
+  #Misfits Fix: Re-enabled Stack — map entities require StackComponent to deserialize
   - type: Stack
     stackType: CaveFungus
     count: 1
@@ -902,6 +911,7 @@
   components:
   - type: Sprite
     state: CaveFungusRad
+  #Misfits Fix: Re-enabled Stack — map entities require StackComponent to deserialize
   - type: Stack
     stackType: CaveFungusRad
     count: 1
@@ -926,6 +936,7 @@
   components:
   - type: Sprite
     state: CoyoteTobacco
+  #Misfits Fix: Re-enabled Stack — map entities require StackComponent to deserialize
   - type: Stack
     stackType: CoyoteTobacco
     count: 1
@@ -952,6 +963,7 @@
   components:
   - type: Sprite
     state: Datura
+  #Misfits Fix: Re-enabled Stack — map entities require StackComponent to deserialize
   - type: Stack
     stackType: DaturaFlower
     count: 1
@@ -979,6 +991,7 @@
   - type: Sprite
     sprite: _Nuclear14/Objects/Specific/Hydroponics/jalapeno.rsi #WHERE WHERE WHERE
     state: produce
+  #Misfits Fix: Re-enabled Stack — map entities require StackComponent to deserialize
   - type: Stack
     stackType: WildGlowpepper
     count: 1
@@ -1006,6 +1019,7 @@
   - type: Sprite
     sprite: _Nuclear14/Objects/Specific/Hydroponics/maize.rsi
     state: produce
+  #Misfits Fix: Re-enabled Stack — map entities require StackComponent to deserialize
   - type: Stack
     stackType: WildMaize
     count: 1
@@ -1032,6 +1046,7 @@
   components:
   - type: Sprite
     state: MesquitePod
+  #Misfits Fix: Re-enabled Stack — map entities require StackComponent to deserialize
   - type: Stack
     stackType: MesquitePods
     count: 1
@@ -1058,6 +1073,7 @@
   components:
   - type: Sprite
     state: Mutfruit
+  #Misfits Fix: Re-enabled Stack — map entities require StackComponent to deserialize
   - type: Stack
     stackType: Mutfruit
     count: 1
@@ -1085,6 +1101,7 @@
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/nettle.rsi
     state: produce
+  #Misfits Fix: Re-enabled Stack — map entities require StackComponent to deserialize
   - type: Stack
     stackType: Nettles
     count: 1
@@ -1112,6 +1129,7 @@
   - type: Sprite
     sprite: _Nuclear14/Objects/Specific/Hydroponics/onion.rsi
     state: produce
+  #Misfits Fix: Re-enabled Stack — map entities require StackComponent to deserialize
   - type: Stack
     stackType: WildOnion
     count: 1
@@ -1143,6 +1161,7 @@
   components:
   - type: Sprite
     state: PinyonNuts
+  #Misfits Fix: Re-enabled Stack — map entities require StackComponent to deserialize
   - type: Stack
     stackType: PinyonNuts
     count: 1
@@ -1169,6 +1188,7 @@
   components:
   - type: Sprite
     state: PricklyPear
+  #Misfits Fix: Re-enabled Stack — map entities require StackComponent to deserialize
   - type: Stack
     stackType: PricklyPear
     count: 1
@@ -1211,6 +1231,7 @@
   - type: Sprite
     sprite: _Nuclear14/Objects/Specific/Hydroponics/starlight.rsi
     state: produce
+  #Misfits Fix: Re-enabled Stack — map entities require StackComponent to deserialize
   - type: Stack
     stackType: WildStarlightBerries
     count: 1
@@ -1238,6 +1259,7 @@
   - type: Sprite
     sprite: _Nuclear14/Objects/Specific/Hydroponics/tarberry.rsi
     state: produce
+  #Misfits Fix: Re-enabled Stack — map entities require StackComponent to deserialize
   - type: Stack
     stackType: WildTarberries
     count: 1
@@ -1264,6 +1286,7 @@
   components:
   - type: Sprite
     state: Tato
+  #Misfits Fix: Re-enabled Stack — map entities require StackComponent to deserialize
   - type: Stack
     stackType: WildTato #This should be used in place of... either tomatoes, potatoes, or both, I guess. -Hazel
     count: 1
@@ -1290,6 +1313,7 @@
   components:
   - type: Sprite
     state: WhiteHorsenettle
+  #Misfits Fix: Re-enabled Stack — map entities require StackComponent to deserialize
   - type: Stack
     stackType: WildWhiteHorsenettle
     count: 1
@@ -1316,6 +1340,7 @@
   components:
   - type: Sprite
     state: xander_root
+  #Misfits Fix: Re-enabled Stack — map entities require StackComponent to deserialize
   - type: Stack
     stackType: XanderRoot
     count: 1

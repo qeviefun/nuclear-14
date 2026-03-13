@@ -1,20 +1,21 @@
-- type: entity
-  parent: ClothingOuterStorageBase
-  id: NCClothingOuterRobeScribeWesternBoS
-  name: Western BoS Scribe Robe
-  description: An elegant robe symbolizing the status and knowledge of the scribe of the Western Brotherhood of Steel. It provides comfort and protection in the harsh post-apocalyptic world.
-  components:
-  - type: Sprite
-    sprite: Corvax/Clothing/OuterClothing/Coats_and_outer/robeWesternBoS.rsi
-  - type: Clothing
-    sprite: Corvax/Clothing/OuterClothing/Coats_and_outer/robeWesternBoS.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.8
-        Slash: 0.85
-        Piercing: 0.9
-        Heat: 0.85
+#Misfits Change /Comment-out/: Western BoS scribe robe removed — no Western BoS chapter in Misfits.
+#- type: entity
+#  parent: ClothingOuterStorageBase
+#  id: NCClothingOuterRobeScribeWesternBoS
+#  name: Western BoS Scribe Robe
+#  description: An elegant robe symbolizing the status and knowledge of the scribe of the Western Brotherhood of Steel. It provides comfort and protection in the harsh post-apocalyptic world.
+#  components:
+#  - type: Sprite
+#    sprite: Corvax/Clothing/OuterClothing/Coats_and_outer/robeWesternBoS.rsi
+#  - type: Clothing
+#    sprite: Corvax/Clothing/OuterClothing/Coats_and_outer/robeWesternBoS.rsi
+#  - type: Armor
+#    modifiers:
+#      coefficients:
+#        Blunt: 0.8
+#        Slash: 0.85
+#        Piercing: 0.9
+#        Heat: 0.85
 
 - type: entity
   parent: ClothingOuterHardsuitBase
@@ -35,38 +36,39 @@
     clothingPrototype: N14ClothingHeadHatHelmetRadHelmetEnclave
     slot: head
 
-- type: entity
-  parent: N14ClothingOuterBase
-  id: N14ClothingOuterBOSInquisitorCoat
-  components:
-  - type: Sprite
-    sprite: Corvax/Clothing/OuterClothing/Coats_and_outer/InquisitorCoat.rsi
-  - type: Clothing
-    sprite: Corvax/Clothing/OuterClothing/Coats_and_outer/InquisitorCoat.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.8
-        Slash: 0.8
-        Piercing: 0.8
-        Heat: 0.75
-  - type: ExplosionResistance
-    damageCoefficient: 0.85
-
-- type: entity
-  parent: N14ClothingOuterBase
-  id: N14ClothingOuterBOSInquisitorBlackCoat
-  components:
-  - type: Sprite
-    sprite: Corvax/Clothing/OuterClothing/Coats_and_outer/InquisitorBlackCoat.rsi
-  - type: Clothing
-    sprite: Corvax/Clothing/OuterClothing/Coats_and_outer/InquisitorBlackCoat.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.75
-        Slash: 0.75
-        Piercing: 0.7
-        Heat: 0.65
-  - type: ExplosionResistance
-    damageCoefficient: 0.8
+#Misfits Change /Comment-out/: Inquisitor coats removed — no Inquisitor role in Misfits.
+#- type: entity
+#  parent: N14ClothingOuterBase
+#  id: N14ClothingOuterBOSInquisitorCoat
+#  components:
+#  - type: Sprite
+#    sprite: Corvax/Clothing/OuterClothing/Coats_and_outer/InquisitorCoat.rsi
+#  - type: Clothing
+#    sprite: Corvax/Clothing/OuterClothing/Coats_and_outer/InquisitorCoat.rsi
+#  - type: Armor
+#    modifiers:
+#      coefficients:
+#        Blunt: 0.8
+#        Slash: 0.8
+#        Piercing: 0.8
+#        Heat: 0.75
+#  - type: ExplosionResistance
+#    damageCoefficient: 0.85
+#
+#- type: entity
+#  parent: N14ClothingOuterBase
+#  id: N14ClothingOuterBOSInquisitorBlackCoat
+#  components:
+#  - type: Sprite
+#    sprite: Corvax/Clothing/OuterClothing/Coats_and_outer/InquisitorBlackCoat.rsi
+#  - type: Clothing
+#    sprite: Corvax/Clothing/OuterClothing/Coats_and_outer/InquisitorBlackCoat.rsi
+#  - type: Armor
+#    modifiers:
+#      coefficients:
+#        Blunt: 0.75
+#        Slash: 0.75
+#        Piercing: 0.7
+#        Heat: 0.65
+#  - type: ExplosionResistance
+#    damageCoefficient: 0.8

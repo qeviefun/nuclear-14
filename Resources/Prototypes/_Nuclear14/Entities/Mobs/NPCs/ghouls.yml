@@ -190,6 +190,7 @@
       1000: Dead
   - type: StaminaDamageResistance
     coefficient: 0
+  - type: NoPull #Misfits Add - Maypole is too large to be grabbed
   - type: AggroSound #Misfits Change
     sound:
       collection: N14GhoulAggro

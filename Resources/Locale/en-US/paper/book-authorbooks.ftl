@@ -197,13 +197,32 @@ book-text-temple = My dear brothers and sisters, I stand before you today to spe
       But why, you may ask, does this matter to us? Why should we care about the nature of the divine? The answer is that understanding the divine is essential to our own spiritual growth and development. By recognizing the complexity and diversity of the divine, we gain a deeper appreciation for the intricacies of the world around us, and we can begin to see our own place within it.
       So let us embrace the many gods that make up the divine, and let us strive to learn from each of them. May we be blessed with the wisdom, strength, and love of the divine, and may we continue to grow and evolve in our own spiritual journeys.
 
-book-text-watched = I don't know who "they" are, but I can feel their eyes on me. It's like a prickling sensation on the back of my neck, and it won't go away. No matter where I go or what I do, I can feel them watching me.
-      It's not just my imagination, either. I've caught glimpses of shadowy figures in the corners of my vision, lurking just out of sight. I've heard footsteps echoing down the halls when I know I'm alone. And there have been times when I've felt a hand on my shoulder, only to turn around and find no one there.
-      I've tried to ignore it, tried to tell myself that it's just paranoia. But the feeling is too strong, too real. I can't shake the sense that something is very wrong.
-      I've started to keep a log of all the strange occurrences, but it only adds to my unease. The entries pile up day after day, documenting every instance of the feeling of being watched. It's like a never-ending nightmare that I can't wake up from.
-      The worst part is not knowing who is behind it all. It could be anyone on this space station, or it could be something more sinister. I've tried to approach Joe Mendez, the Head of Security, about it, but he just brushes me off. He says there's nothing to worry about, that it's just my imagination getting the best of me.
-      But I know that's not true. The feeling of being watched is too strong, too persistent. I'm starting to fear for my safety. What if "they" are planning something? What if I'm in danger?
-      I don't know what to do, but I can't keep living like this. The constant surveillance is driving me to madness. I need to find out who is behind it all and put a stop to it before it's too late.
+# book-text-watched = I don't know who "they" are, but I can feel their eyes on me. It's like a prickling sensation on the back of my neck, and it won't go away. No matter where I go or what I do, I can feel them watching me.
+#       It's not just my imagination, either. I've caught glimpses of shadowy figures in the corners of my vision, lurking just out of sight. I've heard footsteps echoing down the halls when I know I'm alone. And there have been times when I've felt a hand on my shoulder, only to turn around and find no one there.
+#       I've tried to ignore it, tried to tell myself that it's just paranoia. But the feeling is too strong, too real. I can't shake the sense that something is very wrong.
+#       I've started to keep a log of all the strange occurrences, but it only adds to my unease. The entries pile up day after day, documenting every instance of the feeling of being watched. It's like a never-ending nightmare that I can't wake up from.
+#       The worst part is not knowing who is behind it all. It could be anyone on this space station, or it could be something more sinister. I've tried to approach Joe Mendez, the Head of Security, about it, but he just brushes me off. He says there's nothing to worry about, that it's just my imagination getting the best of me.
+#       But I know that's not true. The feeling of being watched is too strong, too persistent. I'm starting to fear for my safety. What if "they" are planning something? What if I'm in danger?
+#       I don't know what to do, but I can't keep living like this. The constant surveillance is driving me to madness. I need to find out who is behind it all and put a stop to it before it's too late.
+
+# #Misfits Change: replaced book-text-watched with a pre-war Fallout / real Cold War satellite surveillance theme.
+book-text-sentinel-satellite =
+      SENTINEL: America's Eyes in the Sky
+      Published 2065 — U.S. Department of Defense Declassified Archives Initiative
+
+      The first artificial satellite to breach the heavens was Sputnik — a Soviet beachball of transistors and antennas that sent the free world into a spiral of paranoia. That was 1957. The United States responded not with fear, but with ingenuity. Within months, Explorer 1 climbed into orbit, and with it, a new era of American dominance above the clouds began.
+
+      But the real revolution came in secret. Codenamed CORONA, the CIA and the fledgling National Reconnaissance Office quietly launched a series of camera-equipped film capsules into polar orbit beginning in 1960. Each pass over Soviet territory captured more strategic intelligence than all U-2 overflights combined. Recovery was just as elegant: the film canisters re-entered the atmosphere and were snatched mid-air by specially equipped aircraft over the Pacific.
+
+      SAMOS, MIDAS, and their successors followed. By the time of the Cuban Missile Crisis, American satellites had already mapped every missile silo the Soviets possessed. The President knew exactly what the enemy had — before a single shot was fired.
+
+      The HEXAGON program, operational from 1971, carried film rolls the size of a Buick and returned imagery of such resolution that analysts could read the markings off Soviet aircraft parked on distant runways. Orbiting at roughly 160 nautical miles, each satellite photographed more territory in a single pass than a fleet of reconnaissance aircraft could cover in a week.
+
+      Their successors flew higher, saw further, and transmitted in real time. By the twenty-first century, America's orbital constellation was the envy — and the dread — of every nation on Earth. The program never slept. It needed no sleep. It simply watched.
+
+      What is the legacy of all this? The men and women of the NRO — those whose names still cannot be printed — prevented more than one war. Each satellite that arced silently over the Eurasian landmass was a quiet reminder: America was watching.
+
+      It always had been.
 
 book-text-medical-officer = Dr. John Smith was a seasoned medical officer aboard the research station, SS Horizon. He had seen it all: from viral outbreaks to mechanical malfunctions, and everything in between. But nothing had prepared him for what was about to happen.
       It was a routine day when the alarms blared, signaling an incoming Syndicate attack. Smith sprang into action, quickly gathering his medical supplies and heading for the emergency meeting room. He was joined by a few crew members, including the Captain, the Chief Engineer, and the Head of Security.

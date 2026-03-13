@@ -391,103 +391,105 @@
   - type: PresetIdCard
     job: BoSMidSquire
 
-- type: entity
-  parent: [ N14IDPassportBlank, AgentPreset ]
-  id: N14IDWashingtonBrotherhoodHolotagAgent
-  name: initiate's holotags
-  description: An ID holotag worn by the Brotherhood of Steel.
-  suffix: Recruit, Agent
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/identification.rsi
-    state: bos_holotag
-  - type: IdCard # #Misfits Add - display "holotags" instead of default "ID card"
-    nameLocId: n14-id-holotag-name
-    fullNameLocId: n14-id-holotag-full-name
-  - type: PresetIdCard
-    job: BoSWashingtonInitiate
+#Misfits Change /Comment-out/: Washington BoS agent holotag removed — job no longer exists.
+#- type: entity
+#  parent: [ N14IDPassportBlank, AgentPreset ]
+#  id: N14IDWashingtonBrotherhoodHolotagAgent
+#  name: initiate's holotags
+#  description: An ID holotag worn by the Brotherhood of Steel.
+#  suffix: Recruit, Agent
+#  components:
+#  - type: Sprite
+#    sprite: _Nuclear14/Objects/Misc/identification.rsi
+#    state: bos_holotag
+#  - type: IdCard # #Misfits Add - display "holotags" instead of default "ID card"
+#    nameLocId: n14-id-holotag-name
+#    fullNameLocId: n14-id-holotag-full-name
+#  - type: PresetIdCard
+#    job: BoSWashingtonInitiate
 
-#MARK: Washington BoS
-
-- type: entity
-  parent: N14IDPassportBlank
-  id: N14IDWashingtonBrotherhoodHolotagRecruit
-  name: initiate's holotags
-  description: An ID holotag worn by a Brotherhood initiate.
-  suffix: Recruit
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/identification.rsi
-    state: bos_holotag
-  - type: IdCard # #Misfits Add - display "holotags" instead of default "ID card"
-    nameLocId: n14-id-holotag-name
-    fullNameLocId: n14-id-holotag-full-name
-  - type: PresetIdCard
-    job: BoSWashingtonInitiate
-
-- type: entity
-  parent: N14IDPassportBlank
-  id: N14IDWashingtonBrotherhoodHolotagSoldier
-  name: knight's holotags
-  description: An ID holotag worn by a Brotherhood knight.
-  suffix: Soldier
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/identification.rsi
-    state: bos_holotag
-  - type: IdCard # #Misfits Add - display "holotags" instead of default "ID card"
-    nameLocId: n14-id-holotag-name
-    fullNameLocId: n14-id-holotag-full-name
-  - type: PresetIdCard
-    job: BoSWashingtonKnight
-
-- type: entity
-  parent: N14IDPassportBlank
-  id: N14IDWashingtonBrotherhoodHolotagResearcher
-  name: scribe's holotags
-  description: An ID holotag worn by a Brotherhood scribe.
-  suffix: Researcher
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/identification.rsi
-    state: bos_holotag
-  - type: IdCard # #Misfits Add - display "holotags" instead of default "ID card"
-    nameLocId: n14-id-holotag-name
-    fullNameLocId: n14-id-holotag-full-name
-  - type: PresetIdCard
-    job: BoSWashingtonScribe
-
-- type: entity
-  parent: N14IDPassportBlank
-  id: N14IDWashingtonBrotherhoodHolotagCaptain
-  name: paladin's holotags
-  description: An ID holotag worn by a Brotherhood paladin.
-  suffix: Captain
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/identification.rsi
-    state: bos_holotag
-  - type: IdCard # #Misfits Add - display "holotags" instead of default "ID card"
-    nameLocId: n14-id-holotag-name
-    fullNameLocId: n14-id-holotag-full-name
-  - type: PresetIdCard
-    job: BoSWashingtonPaladin
-
-- type: entity
-  parent: N14IDPassportBlank
-  id: N14IDWashingtonBrotherhoodHolotagCommander
-  name: head knight's holotags
-  description: An ID holotag worn by the Head Knight of the Brotherhood of Steel.
-  suffix: Commander
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/identification.rsi
-    state: bos_holotag
-  - type: IdCard # #Misfits Add - display "holotags" instead of default "ID card"
-    nameLocId: n14-id-holotag-name
-    fullNameLocId: n14-id-holotag-full-name
-  - type: PresetIdCard
-    job: BoSWashingtonCommander
+#Misfits Change /Comment-out/: Washington BoS holotags removed — will create new prototypes.
+##MARK: Washington BoS
+#
+#- type: entity
+#  parent: N14IDPassportBlank
+#  id: N14IDWashingtonBrotherhoodHolotagRecruit
+#  name: initiate's holotags
+#  description: An ID holotag worn by a Brotherhood initiate.
+#  suffix: Recruit
+#  components:
+#  - type: Sprite
+#    sprite: _Nuclear14/Objects/Misc/identification.rsi
+#    state: bos_holotag
+#  - type: IdCard # #Misfits Add - display "holotags" instead of default "ID card"
+#    nameLocId: n14-id-holotag-name
+#    fullNameLocId: n14-id-holotag-full-name
+#  - type: PresetIdCard
+#    job: BoSWashingtonInitiate
+#
+#- type: entity
+#  parent: N14IDPassportBlank
+#  id: N14IDWashingtonBrotherhoodHolotagSoldier
+#  name: knight's holotags
+#  description: An ID holotag worn by a Brotherhood knight.
+#  suffix: Soldier
+#  components:
+#  - type: Sprite
+#    sprite: _Nuclear14/Objects/Misc/identification.rsi
+#    state: bos_holotag
+#  - type: IdCard # #Misfits Add - display "holotags" instead of default "ID card"
+#    nameLocId: n14-id-holotag-name
+#    fullNameLocId: n14-id-holotag-full-name
+#  - type: PresetIdCard
+#    job: BoSWashingtonKnight
+#
+#- type: entity
+#  parent: N14IDPassportBlank
+#  id: N14IDWashingtonBrotherhoodHolotagResearcher
+#  name: scribe's holotags
+#  description: An ID holotag worn by a Brotherhood scribe.
+#  suffix: Researcher
+#  components:
+#  - type: Sprite
+#    sprite: _Nuclear14/Objects/Misc/identification.rsi
+#    state: bos_holotag
+#  - type: IdCard # #Misfits Add - display "holotags" instead of default "ID card"
+#    nameLocId: n14-id-holotag-name
+#    fullNameLocId: n14-id-holotag-full-name
+#  - type: PresetIdCard
+#    job: BoSWashingtonScribe
+#
+#- type: entity
+#  parent: N14IDPassportBlank
+#  id: N14IDWashingtonBrotherhoodHolotagCaptain
+#  name: paladin's holotags
+#  description: An ID holotag worn by a Brotherhood paladin.
+#  suffix: Captain
+#  components:
+#  - type: Sprite
+#    sprite: _Nuclear14/Objects/Misc/identification.rsi
+#    state: bos_holotag
+#  - type: IdCard # #Misfits Add - display "holotags" instead of default "ID card"
+#    nameLocId: n14-id-holotag-name
+#    fullNameLocId: n14-id-holotag-full-name
+#  - type: PresetIdCard
+#    job: BoSWashingtonPaladin
+#
+#- type: entity
+#  parent: N14IDPassportBlank
+#  id: N14IDWashingtonBrotherhoodHolotagCommander
+#  name: head knight's holotags
+#  description: An ID holotag worn by the Head Knight of the Brotherhood of Steel.
+#  suffix: Commander
+#  components:
+#  - type: Sprite
+#    sprite: _Nuclear14/Objects/Misc/identification.rsi
+#    state: bos_holotag
+#  - type: IdCard # #Misfits Add - display "holotags" instead of default "ID card"
+#    nameLocId: n14-id-holotag-name
+#    fullNameLocId: n14-id-holotag-full-name
+#  - type: PresetIdCard
+#    job: BoSWashingtonCommander
 
 #MARK: Key
 - type: entity

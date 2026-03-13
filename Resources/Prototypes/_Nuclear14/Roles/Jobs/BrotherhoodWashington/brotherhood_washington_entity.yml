@@ -9,7 +9,7 @@
     - type: RandomHumanoidAppearance
       randomizeName: true
     - type: Loadout
-      prototypes: [BoSWashingtonPaladinGear]
+      prototypes: [] # Misfits Fix: BoSWashingtonPaladinGear prototype commented out
     - type: NpcFactionMember
       factions:
       - BrotherhoodOfSteel
@@ -24,7 +24,7 @@
     - type: RandomHumanoidAppearance
       randomizeName: true
     - type: Loadout
-      prototypes: [BoSWashingtonCommanderGear]
+      prototypes: [] # Misfits Fix: BoSWashingtonCommanderGear prototype commented out
     - type: NpcFactionMember
       factions:
       - BrotherhoodOfSteel
@@ -39,7 +39,7 @@
     - type: RandomHumanoidAppearance
       randomizeName: true
     - type: Loadout
-      prototypes: [BoSWashingtonInitiateGear]
+      prototypes: [] # Misfits Fix: BoSWashingtonInitiateGear prototype commented out
     - type: NpcFactionMember
       factions:
       - BrotherhoodOfSteel
@@ -54,7 +54,7 @@
     - type: RandomHumanoidAppearance
       randomizeName: true
     - type: Loadout
-      prototypes: [BoSWashingtonScribeGear]
+      prototypes: [] # Misfits Fix: BoSWashingtonScribeGear prototype commented out
     - type: NpcFactionMember
       factions:
       - BrotherhoodOfSteel
@@ -69,7 +69,7 @@
     - type: RandomHumanoidAppearance
       randomizeName: true
     - type: Loadout
-      prototypes: [BoSWashingtonKnightGear]
+      prototypes: [] # Misfits Fix: BoSWashingtonKnightGear prototype commented out
     - type: NpcFactionMember
       factions:
       - BrotherhoodOfSteel

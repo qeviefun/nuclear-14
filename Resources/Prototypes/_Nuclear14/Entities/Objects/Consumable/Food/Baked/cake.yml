@@ -134,6 +134,8 @@
           Quantity: 5
         - ReagentId: Vitamin
           Quantity: 5
+        - ReagentId: Nutriment #Misfits Fix: carrot cake lacked direct hunger satiation; all other cakes carry Nutriment
+          Quantity: 10
 
 - type: entity
   name: slice of carrot cake
@@ -154,6 +156,8 @@
           Quantity: 1
         - ReagentId: Vitamin
           Quantity: 1
+        - ReagentId: Nutriment #Misfits Fix: proportional to whole cake fix (10/5 ratio = 2 per slice)
+          Quantity: 2
 
 # Tastes like sweetness, cake, carrot.
 

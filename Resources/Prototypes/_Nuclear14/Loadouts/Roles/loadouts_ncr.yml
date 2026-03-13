@@ -281,34 +281,36 @@
   items:
     - ClothingNeckPinNCRChiefPhysician
 
-- type: loadout
-  id: LoadoutNCRSnowHelmet
-  category: Head # Forge-Change
-  cost: 1
-  exclusive: true
-  requirements:
-    - !type:CharacterJobRequirement
-      jobs:
-        - NCRSoldier
-        - NCRSGT
-        - NCRWS # Forge-Change
-  items:
-    - N14ClothingHeadHatNCRHelmetMetalSnow
-
-- type: loadout
-  id: LoadoutNCRWoodsHelmet
-  category: Head # Forge-Change
-  cost: 1
-  exclusive: true
-  requirements:
-    - !type:CharacterJobRequirement
-      jobs:
-        - NCRSoldier
-        - NCRSGT
-        - NCRWS # Forge-Change
-  items:
-    - N14ClothingHeadHatNCRHelmetMetalWoods
-
+# Misfits Change - Disabled: armor with resistance values removed from roundstart loadout menu
+#- type: loadout
+#  id: LoadoutNCRSnowHelmet
+#  category: Head # Forge-Change
+#  cost: 1
+#  exclusive: true
+#  requirements:
+#    - !type:CharacterJobRequirement
+#      jobs:
+#        - NCRSoldier
+#        - NCRSGT
+#        - NCRWS # Forge-Change
+#  items:
+#    - N14ClothingHeadHatNCRHelmetMetalSnow
+#
+# Misfits Change - Disabled: armor with resistance values removed from roundstart loadout menu
+#- type: loadout
+#  id: LoadoutNCRWoodsHelmet
+#  category: Head # Forge-Change
+#  cost: 1
+#  exclusive: true
+#  requirements:
+#    - !type:CharacterJobRequirement
+#      jobs:
+#        - NCRSoldier
+#        - NCRSGT
+#        - NCRWS # Forge-Change
+#  items:
+#    - N14ClothingHeadHatNCRHelmetMetalWoods
+#
 - type: loadout
   id: LoadoutClothingEyesGlassesGoggles
   category: Roles
@@ -339,20 +341,21 @@
   items:
     - N14ClothingHandsGlovesNCR
 
-- type: loadout
-  id: LoadoutNCRWoodsHelmetGhillie
-  category: Head # Forge-Change
-  cost: 1
-  exclusive: true
-  requirements:
-    - !type:CharacterJobRequirement
-      jobs:
-        - NCRSoldier
-        - NCRSGT
-        - NCRWS # Forge-Change
-  items:
-    - N14ClothingHeadHatNCRHelmetMetalGhillie
-
+# Misfits Change - Disabled: armor with resistance values removed from roundstart loadout menu
+#- type: loadout
+#  id: LoadoutNCRWoodsHelmetGhillie
+#  category: Head # Forge-Change
+#  cost: 1
+#  exclusive: true
+#  requirements:
+#    - !type:CharacterJobRequirement
+#      jobs:
+#        - NCRSoldier
+#        - NCRSGT
+#        - NCRWS # Forge-Change
+#  items:
+#    - N14ClothingHeadHatNCRHelmetMetalGhillie
+#
 - type: loadout
   id: LoadoutNCRWhiteBoonie
   category: Head # Forge-Change

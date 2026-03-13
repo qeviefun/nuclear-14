@@ -2,16 +2,17 @@
 job-supervisors-bos-mid-knight = the Head Knight, Head Paladin, and Elder
 job-supervisors-bos-mid = the Elder and the chapter heads
 job-supervisors-bos-mid-commander = the Elder
-job-supervisors-bos-wash-initiate = the Brotherhood chain of command
-job-supervisors-bos-wash-knight = the Head Knight, Head Paladin, and Elder
-job-supervisors-bos-wash = the Elder and the chapter heads
-job-supervisors-bos-wash-commander = the Elder
+#Misfits Change /Comment-out/: Washington BoS supervisor strings removed — will create new prototypes.
+#job-supervisors-bos-wash-initiate = the Brotherhood chain of command
+#job-supervisors-bos-wash-knight = the Head Knight, Head Paladin, and Elder
+#job-supervisors-bos-wash = the Elder and the chapter heads
+#job-supervisors-bos-wash-commander = the Elder
 job-supervisors-caravan = the caravan leader
 job-supervisors-caravan-leader = your greed & Blue Line Co. leadership
 job-supervisors-ncr = the NCR chain of command
 job-supervisors-ncr-sergeant = the senior NCOs and officers of the NCR
 job-supervisors-ncr-sgt = the senior NCOs and officers of the NCR
-job-supervisors-ncr-staff-sergeant = the first sergeant, lieutenant, and captain of the NCR
+job-supervisors-ncr-staff-sergeant = the sergeant first class, lieutenant, and captain of the NCR
 job-supervisors-ncr-first-sergeant = the lieutenant and captain of the NCR
 job-supervisors-ncr-lt = the captain of the NCR
 job-supervisors-ncr-captain = NCR high command and your mission

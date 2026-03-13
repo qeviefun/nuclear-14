@@ -110,7 +110,7 @@
         key: HealingPowderHaze
         component: HealingPowderHaze
         type: Add
-        time: 5 #Misfits Change /Tweak:/ Reduced from 14s — effect was too long
+        time: 14
         refresh: false
       - !type:HealthChange
         damage:

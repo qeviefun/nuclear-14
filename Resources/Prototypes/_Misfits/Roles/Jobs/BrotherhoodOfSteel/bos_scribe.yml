@@ -1,14 +1,63 @@
+#Misfits Change /Comment-out/: Washington BoS Scribe job removed — will create new prototypes.
+#- type: job
+#  id: BoSWashingtonScribe
+#  setPreference: true
+#  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+#  jobWhitelistBypassesRoleTimers: true # #Misfits Change
+#  weight: 30
+#  overrideConsoleVisibility: true
+#  canBeAntag: false
+#  name: job-name-bos-washington-scribe
+#  description: job-description-bos-washington-scribe
+#  playTimeTracker: BoSWashingtonScribe
+#  requirements:
+#    - !type:CharacterSpeciesRequirement
+#      species:
+#      - Human
+#      - Ghoul
+#    - !type:CharacterDepartmentTimeRequirement
+#      department: BrotherhoodOfSteel
+#      min: 0 # 5 hours
+#  startingGear: BoSWashingtonScribeGear
+#  alwaysUseSpawner: true
+#  icon: "JobIconScientist"
+#  supervisors: job-name-bos-wash
+#  accessGroups:
+#  - BOSScribe
+#  special:
+#  - !type:AddComponentSpecial
+#    components:
+#      - type: NpcFactionMember
+#        factions:
+#          - BrotherhoodOfSteel
+#      - type: CPRTraining
+#
+#- type: startingGear
+#  id: BoSWashingtonScribeGear
+#  equipment:
+#    jumpsuit: N14ClothingUniformJumpsuitBOSBlack
+#    back: N14ClothingBackpackSatchelMilitaryFilled
+#    shoes: N14ClothingBootsLeatherFilled
+#    outerClothing: N14ClothingOuterBosScribe
+#    id: N14IDBrotherhoodOfSteelHolotagScribe
+#    ears: N14ClothingHeadsetBrotherhoodOfSteelScribe
+#    pocket1: BoSBrotherhoodScribeKits
+#
+#- type: playTimeTracker
+#  id: BoSWashingtonScribe
+
+#Misfits Change /Add/: New consolidated Brotherhood Scribe job.
 - type: job
-  id: BoSWashingtonScribe
+  id: BoSScribe
   setPreference: true
-  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
-  jobWhitelistBypassesRoleTimers: true # #Misfits Change
+  hideIfPlaytimeRequirementsNotMet: false # #Misfits Tweak - all jobs visible in selection
+  jobWhitelistBypassesRoleTimers: true
   weight: 30
   overrideConsoleVisibility: true
   canBeAntag: false
-  name: job-name-bos-washington-scribe
-  description: job-description-bos-washington-scribe
-  playTimeTracker: BoSWashingtonScribe
+  name: job-name-bos-scribe
+  description: job-description-bos-scribe
+  playTimeTracker: BoSScribe
   requirements:
     - !type:CharacterSpeciesRequirement
       species:
@@ -16,11 +65,11 @@
       - Ghoul
     - !type:CharacterDepartmentTimeRequirement
       department: BrotherhoodOfSteel
-      min: 0 # 5 hours
-  startingGear: BoSWashingtonScribeGear
+      min: 0 # #Misfits Tweak - BoS unlocked up to Senior
+  startingGear: BoSScribeGear
   alwaysUseSpawner: true
-  icon: "JobIconScientist"
-  supervisors: job-name-bos-wash
+  icon: "JobIconBosMScriptor"
+  supervisors: job-supervisors-bos-scribe
   accessGroups:
   - BOSScribe
   special:
@@ -32,15 +81,20 @@
       - type: CPRTraining
 
 - type: startingGear
-  id: BoSWashingtonScribeGear
+  id: BoSScribeGear
   equipment:
-    jumpsuit: N14ClothingUniformJumpsuitBOSBlack
-    back: N14ClothingBackpackSatchelMilitaryFilled
+    jumpsuit: N14ClothingUniformJumpskirtBOSBlack
+    back: N14ClothingBackpackSatchelMilitary
     shoes: N14ClothingBootsLeatherFilled
-    outerClothing: N14ClothingOuterBosScribe
+    outerClothing: N14ClothingOuterBrotherhoodMidwestFieldScribeCoat
+    pocket1: BoSBrotherhoodScribeKits
     id: N14IDBrotherhoodOfSteelHolotagScribe
     ears: N14ClothingHeadsetBrotherhoodOfSteelScribe
-    pocket1: BoSBrotherhoodScribeKits
+    belt: ClothingBeltMilitary
+  storage:
+    back:
+    - NCClothingOuterBosReconArmor
+    - N14BoxPlasticFilledMilitary
 
 - type: playTimeTracker
-  id: BoSWashingtonScribe
+  id: BoSScribe

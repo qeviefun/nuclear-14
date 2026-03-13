@@ -75,67 +75,68 @@
       - state: green
       - state: scribe
 
-# BOS Washington
-- type: entity
-  id: N14SpawnPointBoSWashingtonCommander
-  parent: N14SpawnPointWastelander
-  name: Brotherhood Head Knight
-  components:
-  - type: SpawnPoint
-    job_id: BoSWashingtonCommander
-  - type: Sprite
-    sprite: _Nuclear14/Markers/Jobs/boswashington.rsi
-    layers:
-      - state: green
-      - state: commander
-
-- type: entity
-  id: N14SpawnPointBoSWashingtonInitiate
-  parent: N14SpawnPointBoSWashingtonCommander
-  name: Brotherhood Initiate
-  components:
-  - type: SpawnPoint
-    job_id: BoSWashingtonInitiate
-  - type: Sprite
-    layers:
-      - state: green
-      - state: initiate
-
-- type: entity
-  id: N14SpawnPointBoSWashingtonPaladin
-  parent: N14SpawnPointBoSWashingtonCommander
-  name: Brotherhood Paladin
-  components:
-  - type: SpawnPoint
-    job_id: BoSWashingtonPaladin
-  - type: Sprite
-    layers:
-      - state: green
-      - state: paladin
-
-- type: entity
-  id: N14SpawnPointBoSWashingtonKnight
-  parent: N14SpawnPointBoSWashingtonCommander
-  name: Brotherhood Knight
-  components:
-  - type: SpawnPoint
-    job_id: BoSWashingtonKnight
-  - type: Sprite
-    layers:
-      - state: green
-      - state: knight
-
-- type: entity
-  id: N14SpawnPointBoSWashingtonScribe
-  parent: N14SpawnPointBoSWashingtonCommander
-  name: Brotherhood Scribe
-  components:
-  - type: SpawnPoint
-    job_id: BoSWashingtonScribe
-  - type: Sprite
-    layers:
-      - state: green
-      - state: scribe
+#Misfits Change /Comment-out/: Washington BoS spawn points removed — jobs no longer exist.
+## BOS Washington
+#- type: entity
+#  id: N14SpawnPointBoSWashingtonCommander
+#  parent: N14SpawnPointWastelander
+#  name: Brotherhood Head Knight
+#  components:
+#  - type: SpawnPoint
+#    job_id: BoSWashingtonCommander
+#  - type: Sprite
+#    sprite: _Nuclear14/Markers/Jobs/boswashington.rsi
+#    layers:
+#      - state: green
+#      - state: commander
+#
+#- type: entity
+#  id: N14SpawnPointBoSWashingtonInitiate
+#  parent: N14SpawnPointBoSWashingtonCommander
+#  name: Brotherhood Initiate
+#  components:
+#  - type: SpawnPoint
+#    job_id: BoSWashingtonInitiate
+#  - type: Sprite
+#    layers:
+#      - state: green
+#      - state: initiate
+#
+#- type: entity
+#  id: N14SpawnPointBoSWashingtonPaladin
+#  parent: N14SpawnPointBoSWashingtonCommander
+#  name: Brotherhood Paladin
+#  components:
+#  - type: SpawnPoint
+#    job_id: BoSWashingtonPaladin
+#  - type: Sprite
+#    layers:
+#      - state: green
+#      - state: paladin
+#
+#- type: entity
+#  id: N14SpawnPointBoSWashingtonKnight
+#  parent: N14SpawnPointBoSWashingtonCommander
+#  name: Brotherhood Knight
+#  components:
+#  - type: SpawnPoint
+#    job_id: BoSWashingtonKnight
+#  - type: Sprite
+#    layers:
+#      - state: green
+#      - state: knight
+#
+#- type: entity
+#  id: N14SpawnPointBoSWashingtonScribe
+#  parent: N14SpawnPointBoSWashingtonCommander
+#  name: Brotherhood Scribe
+#  components:
+#  - type: SpawnPoint
+#    job_id: BoSWashingtonScribe
+#  - type: Sprite
+#    layers:
+#      - state: green
+#      - state: scribe
 
 # Caravan Company
 #- type: entity

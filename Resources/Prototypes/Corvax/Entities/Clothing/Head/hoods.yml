@@ -12,6 +12,7 @@
     slots:
     - Hair
 
+#Misfits Change /Uncomment/: Re-enabled BoS recon hood — required by NCClothingOuterBosReconArmor toggleable clothing.
 - type: entity
   parent: ClothingHeadBase
   id: NCClothingHeadHatBoSReaconHood

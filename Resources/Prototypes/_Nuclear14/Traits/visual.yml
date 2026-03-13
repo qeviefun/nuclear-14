@@ -25,15 +25,15 @@
     - NCRSGT
     - NCRMPinvestigator
     - NCRWS
-    - NCREngineer
-    - NCRMedic
+    #- NCREngineer #Misfits Change /Comment-out/: consolidated into Specialist
+    #- NCRMedic #Misfits Change /Comment-out/: consolidated into Specialist
     - NCRPrivateFirstClass
     - NCRSoldier
     - NCRCadet
 #   - CaravanLeader
     - BoSMidPaladinCommander
     - BoSMidPaladin
-    - BoSMidInquisitor
+    #- BoSMidInquisitor # Misfits Fix: job prototype commented out
     - BoSMidScribe
     - BoSMidKnight
     - BoSMidSquire
@@ -85,12 +85,13 @@
   id: N14GooglyEyes #It's technically an augmentation and should be in the physical file & category, but effects sight and gotta put something in this category.
   category: Visual
   points: -5
-  requirements:
-  - !type:CharacterTraitRequirement
-    inverted: true
-    traits:
-    - N14ExtremeAugScribe
-    - N14ExtremeAugPaladin
+  # Misfits Fix: requirements block removed — all referenced N14ExtremeAug* traits are commented out
+  #requirements:
+  #- !type:CharacterTraitRequirement
+  #  inverted: true
+  #  traits:
+  #  - N14ExtremeAugScribe
+  #  - N14ExtremeAugPaladin
   functions:
   - !type:TraitAddComponent
     components:
@@ -105,8 +106,8 @@
   - !type:CharacterTraitRequirement
     inverted: true
     traits:
-    - N14ExtremeAugScribe
-    - N14ExtremeAugPaladin
+    #- N14ExtremeAugScribe # Misfits Fix: trait prototype commented out
+    #- N14ExtremeAugPaladin # Misfits Fix: trait prototype commented out
     - N14GooglyEyes
     - N14Blindness
   functions:

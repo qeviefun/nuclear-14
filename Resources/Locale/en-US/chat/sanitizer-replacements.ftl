@@ -18,7 +18,7 @@ chatsan-unimpressed = seems unimpressed.
 chatsan-waves = waves.
 chatsan-salutes = salutes.
 chatsan-tearfully-salutes = tearfully salutes.
-# chatsan-shrugs = shrugs.  # Misfits - no longer referenced (idk/idk. entries removed)
+chatsan-shrugs = shrugs.  # Misfits Add - re-enabled for idk / tbh acronyms
 chatsan-tearfully-smiles = tearfully smiles.
 chatsan-winks = winks.
 # Misfits Add - Extended emote strings to match the expanded SmileyToEmote dictionary
@@ -35,9 +35,14 @@ chatsan-dazed = looks dazed.
 chatsan-zips-lips = zips { POSS-ADJ($ent) } lips.
 chatsan-blows-kiss = blows a kiss.
 chatsan-cheers = throws { POSS-ADJ($ent) } arms up and cheers.
-# chatsan-chuckles = chuckles.  # Misfits - no longer referenced (heh/hehe/heehee removed)
+chatsan-chuckles = chuckles.  # Misfits Add - re-enabled for heh/hehe/heehee acronyms
 # chatsan-ponders = ponders.    # Misfits - no longer referenced (hmm/hm removed)
 # chatsan-disgusted = looks disgusted.  # Misfits - no longer referenced (ugh/eww/ew removed)
 chatsan-nervous = laughs nervously.
 chatsan-facepalms = facepalms.
+# Misfits Add - New emote strings for chat acronym conversions
+chatsan-laughs-heartily = laughs heartily.
+chatsan-rolls-laughing = rolls on the floor laughing.
+chatsan-shakes-head = shakes { POSS-ADJ($ent) } head.
+chatsan-nods = nods.
 # End Misfits Add

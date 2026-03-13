@@ -117,6 +117,16 @@
         conditions:
         - !type:ReagentThreshold
           min: 12
+      - !type:HealthChange #Misfits Change /Add:/ Overdose — suffocates the player when stacking too much Turbo
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+        damage:
+          types:
+            Asphyxiation: 6
+      - !type:OverdoseScaledDamage #Misfits Change /Add:/ Toxic damage scaling with excess Turbo in bloodstream
+        threshold: 15
+        damagePerUnit: 0.05
 
 
 - type: reagent
@@ -145,6 +155,16 @@
           groups:
             Brute: 0.2
         withdrawalStaminaDrain: 6.0
+      - !type:HealthChange #Misfits Change /Add:/ Overdose — suffocates the player when stacking too much Psycho
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+        damage:
+          types:
+            Asphyxiation: 20
+      - !type:OverdoseScaledDamage #Misfits Change /Add:/ Toxic damage scaling with excess Psycho in bloodstream
+        threshold: 30
+        damagePerUnit: 0.05
     Narcotic:
       effects:
       - !type:ChemAddMoodlet
@@ -236,6 +256,16 @@
           groups:
             Brute: 0.2
         withdrawalStaminaDrain: 8.0
+      - !type:HealthChange #Misfits Change /Add:/ Overdose — suffocates the player when stacking too much Buffout
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+        damage:
+          types:
+            Asphyxiation: 15
+      - !type:OverdoseScaledDamage #Misfits Change /Add:/ Toxic damage scaling with excess Buffout in bloodstream
+        threshold: 30
+        damagePerUnit: 0.05
       # TODO: Implement HealthIncreaseReagent effect type to temporarily boost max HP
       # - !type:HealthIncreaseReagent
       #   increaseAmount: 50
@@ -427,6 +457,16 @@
         time: 7
         refresh: true
       - !type:Jitter #Placeholder for when we get Special working again.
+      - !type:HealthChange #Misfits Change /Add:/ Overdose — suffocates the player when stacking too much Med-X
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+        damage:
+          types:
+            Asphyxiation: 20
+      - !type:OverdoseScaledDamage #Misfits Change /Add:/ Toxic damage scaling with excess Med-X in bloodstream
+        threshold: 30
+        damagePerUnit: 0.05
 
 - type: reagent
   id: Hydra
@@ -461,6 +501,16 @@
             Poison: 0.3
         withdrawalStaminaDrain: 3.0
       - !type:Jitter
+      - !type:HealthChange #Misfits Change /Add:/ Overdose — suffocates the player when stacking too much Hydra
+        conditions:
+        - !type:ReagentThreshold
+          min: 22
+        damage:
+          types:
+            Asphyxiation: 15
+      - !type:OverdoseScaledDamage #Misfits Change /Add:/ Toxic damage scaling with excess Hydra in bloodstream
+        threshold: 22
+        damagePerUnit: 0.05
 
 #MARK: Tribal Chems
 - type: reagent

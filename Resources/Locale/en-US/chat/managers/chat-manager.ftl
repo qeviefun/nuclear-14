@@ -34,8 +34,9 @@ chat-manager-entity-whisper-unknown-wrap-message = [BubbleHeader][font size=10][
 
 # THE() is not used here because the entity and its name can technically be disconnected if a nameOverride is passed...
 # #Misfits Change - wrap name in [Name] tags so client can apply chat name color
+# #Misfits Fix - Capitalize "The" for sentence-start emote messages when no ID is present
 chat-manager-entity-me-wrap-message = [italic]{ PROPER($entity) ->
-    *[false] the [Name]{$entityName}[/Name] {$message}[/italic]
+    *[false] The [Name]{$entityName}[/Name] {$message}[/italic]
      [true] [Name]{$entityName}[/Name] {$message}[/italic]
     }
 

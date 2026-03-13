@@ -464,6 +464,18 @@
           - !type:DoActsBehavior
             acts: ["Destruction"]
 
+# Misfits Add - Procedural ore variant for Wendover; ~33% of placed rocks become random ore veins at round start
+- type: entity
+  parent: N14WallRockDroughtSlanted
+  id: N14WallRockDroughtSlantedMining
+  name: rock wall
+  suffix: Random Ore Yield
+  description: A drought rock wall. Could be hiding something.
+  components:
+  - type: OreVein
+    oreChance: 0.33
+    oreRarityPrototypeId: RandomOreDistributionStandard
+
 - type: entity
   parent: BaseWallIndestructible
   id: N14WallRockMammothSlantedIndestructible

@@ -16,7 +16,7 @@
       Dead: 0
     starvationDamage:
       types:
-        Starvation: 0.15 # Misfits Change - was Cold: 0.15, now uses dedicated Starvation damage type
+        Cold: 0.15 # Misfits Change - use Cold damage for Malnutrition instead of custom Starvation type (no brute/bleed from hunger)
     starvingSlowdownModifier: 0.5
   - type: Icon # It will not have an icon in the adminspawn menu without this. Body parts seem fine for whatever reason.
     sprite: Mobs/Species/Human/parts.rsi
@@ -24,7 +24,7 @@
   - type: Thirst
     dehydrationDamage:
       types:
-        Dehydration: 0.15 # Misfits Add - dedicated Dehydration damage type applied at ThirstThreshold.Dead
+        Cold: 0.15 # Misfits Change - use Cold damage for Dehydration instead of custom Dehydration type (no brute/bleed from thirst)
   - type: Carriable # Carrying system from nyanotrasen.
   - type: Butcherable
     butcheringType: Spike

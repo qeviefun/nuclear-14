@@ -1,0 +1,21 @@
+# #Misfits Add: Toggle action for the power armor brace stance mechanic.
+# Granted automatically when the suit is equipped in the outer clothing slot.
+# The wearer is anchored (immobile but can still fire) while the stance is active.
+# useDelay: 5 enforces a 5-second cooldown in both directions — once braced the
+# wearer cannot unbrace for 5 seconds, and vice versa.
+
+- type: entity
+  id: ActionTogglePowerArmorBrace
+  name: Brace Stance
+  description: Lock your power armor's servos into a stationary firing position. You cannot move, but gain extra damage resistance. 5-second cooldown between stance changes.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    useDelay: 5
+    icon:
+      sprite: Objects/Weapons/Melee/shields.rsi
+      state: teleriot-icon
+    iconOn:
+      sprite: Objects/Weapons/Melee/shields.rsi
+      state: teleriot-on
+    event: !type:ToggleActionEvent

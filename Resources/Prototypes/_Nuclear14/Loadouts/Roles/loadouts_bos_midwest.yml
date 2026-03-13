@@ -14,21 +14,22 @@
 #  items:
 #    - N14ClothingOuterMidwestReconArmor
 #
-- type: loadout
-  id: LoadoutBoSMidwestReconHelmet
-  category: Roles
-  cost: 6
-  exclusive: true
-  requirements:
-    - !type:CharacterJobRequirement
-      jobs:
-        - BoSMidPaladin
-    - !type:CharacterPlaytimeRequirement
-      tracker: BoSMidPaladin
-      min: 54000 # 15 hours veterancy unlock
-  items:
-    - N14ClothingHeadHatBrotherhoodMidwestHelmetRecon
-
+# Misfits Change - Disabled: armor with resistance values removed from roundstart loadout menu
+#- type: loadout
+#  id: LoadoutBoSMidwestReconHelmet
+#  category: Roles
+#  cost: 6
+#  exclusive: true
+#  requirements:
+#    - !type:CharacterJobRequirement
+#      jobs:
+#        - BoSMidPaladin
+#    - !type:CharacterPlaytimeRequirement
+#      tracker: BoSMidPaladin
+#      min: 54000 # 15 hours veterancy unlock
+#  items:
+#    - N14ClothingHeadHatBrotherhoodMidwestHelmetRecon
+#
 # Misfits Change - Disabled: armor/weapons removed from roundstart loadout menu
 #- type: loadout
 #  id: LoadoutClothingOuterMBoSSquireArmor

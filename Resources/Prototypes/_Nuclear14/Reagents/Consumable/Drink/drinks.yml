@@ -51,6 +51,10 @@
   name: reagent-name-tea-broc
   desc: reagent-desc-tea-broc
   metabolisms:
+    Drink: #Misfits Fix: defining Medicine: replaces the inherited Drink: from BaseDrink, so we must re-declare it to restore thirst satiation
+      effects:
+      - !type:SatiateThirst
+        factor: 3
     Medicine:
       effects:
       - !type:HealthChange
@@ -65,6 +69,10 @@
   name: reagent-name-tea-datura
   desc: reagent-desc-tea-datura
   metabolisms:
+    Drink: #Misfits Fix: defining Poison: replaces the inherited Drink: from BaseDrink; re-declare it so datura tea still quenches thirst (TeaWhiteHorsenettle inherits this fix)
+      effects:
+      - !type:SatiateThirst
+        factor: 3
     Poison:
       effects:
       - !type:HealthChange

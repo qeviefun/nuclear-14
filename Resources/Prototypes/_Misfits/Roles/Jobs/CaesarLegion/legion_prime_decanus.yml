@@ -1,7 +1,7 @@
 - type: job
   id: CaesarLegionPrimeDecanus
   setPreference: true
-  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+  hideIfPlaytimeRequirementsNotMet: false # #Misfits Tweak - all jobs visible in selection
   jobWhitelistBypassesRoleTimers: true # #Misfits Change
   weight: 95
   name: job-name-caesar-legion-prime-decanus
@@ -10,10 +10,10 @@
   requirements:
   - !type:CharacterDepartmentTimeRequirement
       department: CaesarLegion
-      min: 108000 # 30 hours
+      min: 0 # #Misfits Tweak - accessible up to Vet Decanus
   - !type:CharacterPlaytimeRequirement
       tracker: CaesarLegionDean
-      min: 18000 # 5 hours as Decanus
+      min: 0 # #Misfits Tweak - accessible up to Vet Decanus
   - !type:CharacterSpeciesRequirement
     species:
     - Human

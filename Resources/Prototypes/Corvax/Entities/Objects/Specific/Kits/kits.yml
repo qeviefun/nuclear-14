@@ -1104,260 +1104,261 @@
     sound:
       path: /Audio/Effects/unwrap.ogg
 
-# Washington BoS kits
-
-- type: entity
-  name: Washington BoS Base Kit
-  parent: KitBase
-  id: KitBaseWashingtonBoS
-  description: "A set of Washington Brotherhood of Steel equipment."
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponLaserPistol
-      - id: N14PowerCellSmall
-        amount: 2
-      - id: N14WeaponLaserRifleAuto
-      - id: N14PowerCellHigh
-        amount: 3
-      - id: N14Stimpak
-      - id: BoxMRE
-    sound:
-      path: /Audio/Effects/unwrap.ogg
-
-- type: entity
-  name: Washington BoS Wattz Kit
-  parent: KitBase
-  id: KitWattzWashingtonBoS
-  description: "A set of Washington Brotherhood of Steel equipment."
-  components:
-  - type: Sprite
-    state: marksman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponLaserPistol
-      - id: N14PowerCellSmall
-        amount: 2
-      - id: N14WeaponLaserRifleWattz2000
-      - id: N14PowerCellFocused
-        amount: 2
-      - id: N14Stimpak
-      - id: BoxMRE
-    sound:
-      path: /Audio/Effects/unwrap.ogg
-
-- type: entity
-  name: Washington BoS Auto Kit
-  parent: KitBase
-  id: KitAutoWashingtonBoS
-  description: "A set of Washington Brotherhood of Steel equipment."
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponLaserPistol
-      - id: N14PowerCellSmall
-        amount: 2
-      - id: N14WeaponLaserRifleRecharger
-      - id: N14Stimpak
-      - id: BoxMRE
-    sound:
-      path: /Audio/Effects/unwrap.ogg
-
-- type: entity
-  name: Washington BoS Proto Kit
-  parent: KitBase
-  id: KitProtoWashingtonBoS
-  description: "A set of Washington Brotherhood of Steel equipment."
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponLaserPistol
-      - id: N14PowerCellSmall
-        amount: 2
-      - id: N14WeaponLaserRiflePrototypeAER14
-      - id: N14PowerCellAdvanced
-        amount: 3
-      - id: N14Stimpak
-      - id: BoxMRE
-    sound:
-      path: /Audio/Effects/unwrap.ogg
-
-- type: entity
-  name: Washington BoS Command Base Kit
-  parent: KitBase
-  id: KitCommandBaseWashingtonBoS
-  description: "A set of Washington Brotherhood of Steel equipment."
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponLaserPistol
-      - id: N14PowerCellSmall
-        amount: 2
-      - id: N14WeaponLaserRifleAuto
-      - id: N14PowerCellHigh
-        amount: 3
-      - id: N14Stimpak
-      - id: BoxMRE
-    sound:
-      path: /Audio/Effects/unwrap.ogg
-
-- type: entity
-  name: Washington BoS Command Multi Kit
-  parent: KitBase
-  id: KitCommandMultiWashingtonBoS
-  description: "A set of Washington Brotherhood of Steel equipment."
-  components:
-  - type: Sprite
-    state: marksman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponLaserPistol
-      - id: N14PowerCellSmall
-        amount: 2
-      - id: N14WeaponLaserRifleYk42b
-      - id: N14PowerCellFocusedYk42b
-        amount: 3
-      - id: N14Stimpak
-      - id: BoxMRE
-    sound:
-      path: /Audio/Effects/unwrap.ogg
-
-- type: entity
-  name: Washington BoS Command Caster Kit
-  parent: KitBase
-  id: KitCommandCasterWashingtonBoS
-  description: "A set of Washington Brotherhood of Steel equipment."
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponLaserPistol
-      - id: N14PowerCellSmall
-        amount: 2
-      - id: N14WeaponLaserRifleRecharger
-      - id: N14Stimpak
-      - id: BoxMRE
-    sound:
-      path: /Audio/Effects/unwrap.ogg
-
-- type: entity
-  name: Washington BoS Command Wattz Kit
-  parent: KitBase
-  id: KitCommandWattzWashingtonBoS
-  description: "A set of Washington Brotherhood of Steel equipment."
-  components:
-  - type: Sprite
-    state: marksman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponLaserPistol
-      - id: N14PowerCellSmall
-        amount: 2
-      - id: N14WeaponLaserRifleWattz3000
-      - id: N14PowerCellFocused
-        amount: 3
-      - id: N14Stimpak
-      - id: BoxMRE
-    sound:
-      path: /Audio/Effects/unwrap.ogg
-
-- type: entity
-  name: Washington BoS Command Gatling Kit
-  parent: KitBase
-  id: KitCommandGatlingWashingtonBoS
-  description: "A set of Washington Brotherhood of Steel equipment."
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponLaserPistol
-      - id: N14PowerCellSmall
-        amount: 2
-      - id: N14WeaponLaserGatling
-      - id: N14PowerCellFusion
-      - id: N14Stimpak
-      - id: BoxMRE
-    sound:
-      path: /Audio/Effects/unwrap.ogg
-
-- type: entity
-  name: Washington BoS Scribe Engineer Kit
-  parent: KitBase
-  id: KitScribeEngineerWashingtonBoS
-  description: "A set of Washington Brotherhood of Steel equipment."
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: SheetSteel10
-      - id: SheetPlastic10
-      - id: ClothingHandsGlovesColorYellow
-      - id: N14ClothingBeltUtilityFilled
-      - id: ClothingHeadBrotherhoodScribeHeadset
-      - id: N14WeaponLaserPistol
-      - id: N14PowerCellSmall
-        amount: 2
-      - id: N14WeaponLaserRifleAuto
-      - id: N14PowerCellHigh
-        amount: 3
-      - id: N14Stimpak
-      - id: BoxMRE
-    sound:
-      path: /Audio/Effects/unwrap.ogg
-
-- type: entity
-  name: Washington BoS Scribe Medic Kit
-  parent: KitBase
-  id: KitScribeMedicWashingtonBoS
-  description: "A set of Washington Brotherhood of Steel equipment."
-  components:
-  - type: Sprite
-    state: medic
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14MedkitBruteFilled
-      - id: N14CombatKnife
-      - id: N14ClothingBeltMedicalFilled
-      - id: ClothingHeadBrotherhoodScribeHeadset
-      - id: N14WeaponLaserPistolRecharger
-      - id: ClothingHandsGlovesChemist
-      - id: N14Stimpak
-      - id: BoxMRE
-    sound:
-      path: /Audio/Effects/unwrap.ogg
+#Misfits Change /Comment-out/: Washington BoS kits removed — will create new prototypes.
+## Washington BoS kits
+#
+#- type: entity
+#  name: Washington BoS Base Kit
+#  parent: KitBase
+#  id: KitBaseWashingtonBoS
+#  description: "A set of Washington Brotherhood of Steel equipment."
+#  components:
+#  - type: Sprite
+#    state: rifleman
+#  - type: Item
+#    size: Huge
+#  - type: SpawnItemsOnUse
+#    items:
+#      - id: N14WeaponLaserPistol
+#      - id: N14PowerCellSmall
+#        amount: 2
+#      - id: N14WeaponLaserRifleAuto
+#      - id: N14PowerCellHigh
+#        amount: 3
+#      - id: N14Stimpak
+#      - id: BoxMRE
+#    sound:
+#      path: /Audio/Effects/unwrap.ogg
+#
+#- type: entity
+#  name: Washington BoS Wattz Kit
+#  parent: KitBase
+#  id: KitWattzWashingtonBoS
+#  description: "A set of Washington Brotherhood of Steel equipment."
+#  components:
+#  - type: Sprite
+#    state: marksman
+#  - type: Item
+#    size: Huge
+#  - type: SpawnItemsOnUse
+#    items:
+#      - id: N14WeaponLaserPistol
+#      - id: N14PowerCellSmall
+#        amount: 2
+#      - id: N14WeaponLaserRifleWattz2000
+#      - id: N14PowerCellFocused
+#        amount: 2
+#      - id: N14Stimpak
+#      - id: BoxMRE
+#    sound:
+#      path: /Audio/Effects/unwrap.ogg
+#
+#- type: entity
+#  name: Washington BoS Auto Kit
+#  parent: KitBase
+#  id: KitAutoWashingtonBoS
+#  description: "A set of Washington Brotherhood of Steel equipment."
+#  components:
+#  - type: Sprite
+#    state: rifleman
+#  - type: Item
+#    size: Huge
+#  - type: SpawnItemsOnUse
+#    items:
+#      - id: N14WeaponLaserPistol
+#      - id: N14PowerCellSmall
+#        amount: 2
+#      - id: N14WeaponLaserRifleRecharger
+#      - id: N14Stimpak
+#      - id: BoxMRE
+#    sound:
+#      path: /Audio/Effects/unwrap.ogg
+#
+#- type: entity
+#  name: Washington BoS Proto Kit
+#  parent: KitBase
+#  id: KitProtoWashingtonBoS
+#  description: "A set of Washington Brotherhood of Steel equipment."
+#  components:
+#  - type: Sprite
+#    state: rifleman
+#  - type: Item
+#    size: Huge
+#  - type: SpawnItemsOnUse
+#    items:
+#      - id: N14WeaponLaserPistol
+#      - id: N14PowerCellSmall
+#        amount: 2
+#      - id: N14WeaponLaserRiflePrototypeAER14
+#      - id: N14PowerCellAdvanced
+#        amount: 3
+#      - id: N14Stimpak
+#      - id: BoxMRE
+#    sound:
+#      path: /Audio/Effects/unwrap.ogg
+#
+#- type: entity
+#  name: Washington BoS Command Base Kit
+#  parent: KitBase
+#  id: KitCommandBaseWashingtonBoS
+#  description: "A set of Washington Brotherhood of Steel equipment."
+#  components:
+#  - type: Sprite
+#    state: rifleman
+#  - type: Item
+#    size: Huge
+#  - type: SpawnItemsOnUse
+#    items:
+#      - id: N14WeaponLaserPistol
+#      - id: N14PowerCellSmall
+#        amount: 2
+#      - id: N14WeaponLaserRifleAuto
+#      - id: N14PowerCellHigh
+#        amount: 3
+#      - id: N14Stimpak
+#      - id: BoxMRE
+#    sound:
+#      path: /Audio/Effects/unwrap.ogg
+#
+#- type: entity
+#  name: Washington BoS Command Multi Kit
+#  parent: KitBase
+#  id: KitCommandMultiWashingtonBoS
+#  description: "A set of Washington Brotherhood of Steel equipment."
+#  components:
+#  - type: Sprite
+#    state: marksman
+#  - type: Item
+#    size: Huge
+#  - type: SpawnItemsOnUse
+#    items:
+#      - id: N14WeaponLaserPistol
+#      - id: N14PowerCellSmall
+#        amount: 2
+#      - id: N14WeaponLaserRifleYk42b
+#      - id: N14PowerCellFocusedYk42b
+#        amount: 3
+#      - id: N14Stimpak
+#      - id: BoxMRE
+#    sound:
+#      path: /Audio/Effects/unwrap.ogg
+#
+#- type: entity
+#  name: Washington BoS Command Caster Kit
+#  parent: KitBase
+#  id: KitCommandCasterWashingtonBoS
+#  description: "A set of Washington Brotherhood of Steel equipment."
+#  components:
+#  - type: Sprite
+#    state: rifleman
+#  - type: Item
+#    size: Huge
+#  - type: SpawnItemsOnUse
+#    items:
+#      - id: N14WeaponLaserPistol
+#      - id: N14PowerCellSmall
+#        amount: 2
+#      - id: N14WeaponLaserRifleRecharger
+#      - id: N14Stimpak
+#      - id: BoxMRE
+#    sound:
+#      path: /Audio/Effects/unwrap.ogg
+#
+#- type: entity
+#  name: Washington BoS Command Wattz Kit
+#  parent: KitBase
+#  id: KitCommandWattzWashingtonBoS
+#  description: "A set of Washington Brotherhood of Steel equipment."
+#  components:
+#  - type: Sprite
+#    state: marksman
+#  - type: Item
+#    size: Huge
+#  - type: SpawnItemsOnUse
+#    items:
+#      - id: N14WeaponLaserPistol
+#      - id: N14PowerCellSmall
+#        amount: 2
+#      - id: N14WeaponLaserRifleWattz3000
+#      - id: N14PowerCellFocused
+#        amount: 3
+#      - id: N14Stimpak
+#      - id: BoxMRE
+#    sound:
+#      path: /Audio/Effects/unwrap.ogg
+#
+#- type: entity
+#  name: Washington BoS Command Gatling Kit
+#  parent: KitBase
+#  id: KitCommandGatlingWashingtonBoS
+#  description: "A set of Washington Brotherhood of Steel equipment."
+#  components:
+#  - type: Sprite
+#    state: rifleman
+#  - type: Item
+#    size: Huge
+#  - type: SpawnItemsOnUse
+#    items:
+#      - id: N14WeaponLaserPistol
+#      - id: N14PowerCellSmall
+#        amount: 2
+#      - id: N14WeaponLaserGatling
+#      - id: N14PowerCellFusion
+#      - id: N14Stimpak
+#      - id: BoxMRE
+#    sound:
+#      path: /Audio/Effects/unwrap.ogg
+#
+#- type: entity
+#  name: Washington BoS Scribe Engineer Kit
+#  parent: KitBase
+#  id: KitScribeEngineerWashingtonBoS
+#  description: "A set of Washington Brotherhood of Steel equipment."
+#  components:
+#  - type: Sprite
+#    state: rifleman
+#  - type: Item
+#    size: Huge
+#  - type: SpawnItemsOnUse
+#    items:
+#      - id: SheetSteel10
+#      - id: SheetPlastic10
+#      - id: ClothingHandsGlovesColorYellow
+#      - id: N14ClothingBeltUtilityFilled
+#      - id: ClothingHeadBrotherhoodScribeHeadset
+#      - id: N14WeaponLaserPistol
+#      - id: N14PowerCellSmall
+#        amount: 2
+#      - id: N14WeaponLaserRifleAuto
+#      - id: N14PowerCellHigh
+#        amount: 3
+#      - id: N14Stimpak
+#      - id: BoxMRE
+#    sound:
+#      path: /Audio/Effects/unwrap.ogg
+#
+#- type: entity
+#  name: Washington BoS Scribe Medic Kit
+#  parent: KitBase
+#  id: KitScribeMedicWashingtonBoS
+#  description: "A set of Washington Brotherhood of Steel equipment."
+#  components:
+#  - type: Sprite
+#    state: medic
+#  - type: Item
+#    size: Huge
+#  - type: SpawnItemsOnUse
+#    items:
+#      - id: N14MedkitBruteFilled
+#      - id: N14CombatKnife
+#      - id: N14ClothingBeltMedicalFilled
+#      - id: ClothingHeadBrotherhoodScribeHeadset
+#      - id: N14WeaponLaserPistolRecharger
+#      - id: ClothingHandsGlovesChemist
+#      - id: N14Stimpak
+#      - id: BoxMRE
+#    sound:
+#      path: /Audio/Effects/unwrap.ogg
 
 # Ranger
 
@@ -1384,385 +1385,388 @@
     sound:
       path: /Audio/Effects/unwrap.ogg
 
-#All of the Broother Western kits
-- type: entity
-  name: elderss laser kit
-  parent: KitBase
-  id: KitBrotherWest_Elderlas
-  description: Standard Laser kit
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponLaserRifleYk42b
-      - id: N14WeaponLaserMagnetoPistol
-      - id: N14PowerCellMagnetoSmall
-        amount: 2
-      - id: N14PowerCellFocusedYk42b
-        amount: 3
-      - id: N14CleanGauze10
-      - id: N14Stimpak
-      - id: GrenadeShrapnel
+#Misfits Change /Comment-out/: Western BoS Elder & Paladin kits removed — no Western BoS chapter.
+##All of the Broother Western kits
+#- type: entity
+#  name: elderss laser kit
+#  parent: KitBase
+#  id: KitBrotherWest_Elderlas
+#  description: Standard Laser kit
+#  components:
+#  - type: Sprite
+#    state: rifleman
+#  - type: Item
+#    size: Huge
+#  - type: SpawnItemsOnUse
+#    items:
+#      - id: N14WeaponLaserRifleYk42b
+#      - id: N14WeaponLaserMagnetoPistol
+#      - id: N14PowerCellMagnetoSmall
+#        amount: 2
+#      - id: N14PowerCellFocusedYk42b
+#        amount: 3
+#      - id: N14CleanGauze10
+#      - id: N14Stimpak
+#      - id: GrenadeShrapnel
+#
+#- type: entity
+#  name: elderss Rifle kit
+#  parent: KitBase
+#  id: KitBrotherWest_Elderrifle
+#  description: Standard Rifle kit
+#  components:
+#  - type: Sprite
+#    state: rifleman
+#  - type: Item
+#    size: Huge
+#  - type: SpawnItemsOnUse
+#    items:
+#      - id: N14WeaponRifleAk112pn
+#      - id: N14WeaponPistol45Colt
+#      - id: N14MagazinePistol45
+#        amount: 3
+#      - id: MagazineDrum545Rifle
+#        amount: 2
+#      - id: N14CleanGauze10
+#      - id: N14Stimpak
+#      - id: MagazineBox545
+#      - id: GrenadeShrapnel
+#
+#- type: entity
+#  name: Paladin laser kit
+#  parent: KitBase
+#  id: KitBrotherWest_Paladinlas
+#  description: Standard Laser kit
+#  components:
+#  - type: Sprite
+#    state: rifleman
+#  - type: Item
+#    size: Huge
+#  - type: SpawnItemsOnUse
+#    items:
+#      - id: N14WeaponLaserRifleAuto
+#      - id: N14WeaponLaserPistol
+#      - id: N14PowerCellSmall
+#        amount: 2
+#      - id: N14PowerCellHigh
+#        amount: 3
+#      - id: N14CleanGauze10
+#      - id: N14Stimpak
+#
+#- type: entity
+#  name: Paladin Rifle kit
+#  parent: KitBase
+#  id: KitBrotherWest_Paladinrifle
+#  description: Standard Rifle kit
+#  components:
+#  - type: Sprite
+#    state: rifleman
+#  - type: Item
+#    size: Huge
+#  - type: SpawnItemsOnUse
+#    items:
+#      - id: N14WeaponRifleAk112pn
+#      - id: N14WeaponPistol45Colt
+#      - id: N14MagazinePistol45
+#        amount: 3
+#      - id: MagazineDrum545Rifle
+#        amount: 2
+#      - id: N14CleanGauze10
+#      - id: N14Stimpak
+#      - id: MagazineBox545
+#
+#- type: entity
+#  name: Paladin Prototype Laser kit
+#  parent: KitBase
+#  id: KitBrotherWest_Paladinplasma
+#  description: Standard Rifle kit
+#  components:
+#  - type: Sprite
+#    state: rifleman
+#  - type: Item
+#    size: Huge
+#  - type: SpawnItemsOnUse
+#    items:
+#      - id: N14WeaponLaserRiflePrototypeAER14
+#      - id: N14WeaponLaserMagnetoPistol
+#      - id: N14PowerCellMagnetoSmall
+#        amount: 2
+#      - id: N14PowerCellAdvanced
+#        amount: 3
+#      - id: N14CleanGauze10
+#      - id: N14Stimpak
+#      - id: CigaretteWeldingFuel
 
-- type: entity
-  name: elderss Rifle kit
-  parent: KitBase
-  id: KitBrotherWest_Elderrifle
-  description: Standard Rifle kit
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponRifleAk112pn
-      - id: N14WeaponPistol45Colt
-      - id: N14MagazinePistol45
-        amount: 3
-      - id: MagazineDrum545Rifle
-        amount: 2
-      - id: N14CleanGauze10
-      - id: N14Stimpak
-      - id: MagazineBox545
-      - id: GrenadeShrapnel
+#Misfits Change /Comment-out/: Western BoS kits removed — no Western BoS chapter.
+#- type: entity
+#  name: knight Rifle kit
+#  parent: KitBase
+#  id: KitBrotherWest_Knightrifle
+#  description: Standard Rifle kit
+#  components:
+#  - type: Sprite
+#    state: rifleman
+#  - type: Item
+#    size: Huge
+#  - type: SpawnItemsOnUse
+#    items:
+#      - id: N14WeaponRifleAk112
+#      - id: N14WeaponPistol45Colt
+#      - id: N14MagazinePistol45
+#        amount: 2
+#      - id: Magazine545Rifle
+#        amount: 3
+#      - id: N14CleanGauze10
+#      - id: N14Stimpak
+#      - id: MagazineBox545
+#      - id: N14ClothingHeadHatBrotherCapralHelmet
+#      - id: ClothingMaskGasBrootherWestern
+#      - id: N14ClothingEyesGlassesMachinegun
+#
+#- type: entity
+#  name: knight Laser kit
+#  parent: KitBase
+#  id: KitBrotherWest_Knightlaser
+#  description: Standard Rifle kit
+#  components:
+#  - type: Sprite
+#    state: rifleman
+#  - type: Item
+#    size: Huge
+#  - type: SpawnItemsOnUse
+#    items:
+#      - id: N14WeaponLaserRifle
+#      - id: N14WeaponLaserPistol
+#      - id: N14PowerCellSmall
+#        amount: 2
+#      - id: N14PowerCellHigh
+#        amount: 3
+#      - id: N14CleanGauze10
+#      - id: N14Stimpak
+#      - id: N14ClothingHeadHatBeretknighBoS
+#      - id: N14ClothingEyesGlassesMachinegun
+#      - id: ClothingMaskGasBrootherWestern
+#
+#- type: entity
+#  name: knight Crude Laser kit
+#  parent: KitBase
+#  id: KitBrotherWest_Knightplasma
+#  description: Standard Rifle kit
+#  components:
+#  - type: Sprite
+#    state: rifleman
+#  - type: Item
+#    size: Huge
+#  - type: SpawnItemsOnUse
+#    items:
+#      - id: N14WeaponLaserRifleCrude
+#      - id: N14WeaponPistol12mm
+#      - id: N14MagazinePistol12mm
+#        amount: 2
+#      - id: N14PowerCellHigh
+#        amount: 3
+#      - id: N14CleanGauze10
+#      - id: N14Stimpak
+#      - id: N14NukaNade
+#      - id: N14ClothingHeadHatCapkhighbluBoS
+#      - id: N14ClothingEyesGlassesMachinegun
+#      - id: ClothingMaskGasBrootherWestern
+#
+#- type: entity
+#  name: squire Rifle kit
+#  parent: KitBase
+#  id: KitBrotherWest_Squirerifle
+#  description: Standard Rifle kit
+#  components:
+#  - type: Sprite
+#    state: rifleman
+#  - type: Item
+#    size: Huge
+#  - type: SpawnItemsOnUse
+#    items:
+#      - id: N14WeaponRifleAk112
+#      - id: Magazine545Rifle
+#        amount: 3
+#      - id: N14CleanGauze10
+#      - id: N14Stimpak
+#      - id: MagazineBox545
+#      - id: N14ClothingHeadHatBrotherHelmet
+#      - id: N14ClothingEyesGlassesMachinegun
+#      - id: ClothingMaskGasBrootherWestern
+#
+#- type: entity
+#  name: squire Laser kit
+#  parent: KitBase
+#  id: KitBrotherWest_Squirelaser
+#  description: Standard Rifle kit
+#  components:
+#  - type: Sprite
+#    state: rifleman
+#  - type: Item
+#    size: Huge
+#  - type: SpawnItemsOnUse
+#    items:
+#      - id: N14WeaponLaserRifleCrude
+#      - id: N14PowerCellHigh
+#        amount: 3
+#      - id: N14CleanGauze10
+#      - id: N14Stimpak
+#      - id: N14ClothingEyesGlassesMachinegun
+#
+#- type: entity
+#  name: squire Laser Sidearm kit
+#  parent: KitBase
+#  id: KitBrotherWest_Squireplasma
+#  description: Standard Rifle kit
+#  components:
+#  - type: Sprite
+#    state: rifleman
+#  - type: Item
+#    size: Huge
+#  - type: SpawnItemsOnUse
+#    items:
+#      - id: N14WeaponLaserPistol
+#      - id: N14PowerCellSmall
+#        amount: 2
+#      - id: N14CleanGauze10
+#      - id: N14Stimpak
+#      - id: N14NukaNade
+#        amount: 1
+#      - id: ClothingMaskGasBrootherWestern
+#
+#- type: entity
+#  name: Scribe rifle kit
+#  parent: KitBase
+#  id: KitBrotherWest_Scriberifle
+#  description: Standard Rifle kit
+#  components:
+#  - type: Sprite
+#    state: rifleman
+#  - type: Item
+#    size: Huge
+#  - type: SpawnItemsOnUse
+#    items:
+#      - id: N14WeaponShotgunSawedOff
+#      - id: MagazineBox12gauge
+#      - id: N14CleanGauze10
+#      - id: N14Stimpak
+#      - id: N14ClothingBeltBosLeatherunl
+#      - id: N14Gunpowder10
+#      - id: N14IngotLead1
+#        amount: 5
+#
+#- type: entity
+#  name: Scribe laser kit
+#  parent: KitBase
+#  id: KitBrotherWest_Scribelaser
+#  description: Standard laser kit
+#  components:
+#  - type: Sprite
+#    state: rifleman
+#  - type: Item
+#    size: Huge
+#  - type: SpawnItemsOnUse
+#    items:
+#      - id: N14WeaponLaserMagnetoPistol
+#      - id: N14PowerCellMagnetoSmall
+#        amount: 3
+#      - id: N14HandheldHealthAnalyzer
+#      - id: N14Stimpak
+#      - id: N14MedkitFilled
+#      - id: N14ClothingBeltMedicalFilled
+#
+#- type: entity
+#  name: Scribe Engineer kit
+#  parent: KitBase
+#  id: KitBrotherWest_Scribeplasma
+#  description: Standard Engineer kit
+#  components:
+#  - type: Sprite
+#    state: rifleman
+#  - type: Item
+#    size: Huge
+#  - type: SpawnItemsOnUse
+#    items:
+#      - id: N14WeaponLaserPistol
+#      - id: N14PowerCellSmall
+#        amount: 2
+#      - id: N14ClothingOuterRadSuit
+#      - id: N14Stimpak
+#      - id: N14ClothingMaskHazmatHelmet
+#      - id: N14ClothingBeltUtilityFilled
+#      - id: SheetSteel
+#      - id: SheetGlass
 
-- type: entity
-  name: Paladin laser kit
-  parent: KitBase
-  id: KitBrotherWest_Paladinlas
-  description: Standard Laser kit
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponLaserRifleAuto
-      - id: N14WeaponLaserPistol
-      - id: N14PowerCellSmall
-        amount: 2
-      - id: N14PowerCellHigh
-        amount: 3
-      - id: N14CleanGauze10
-      - id: N14Stimpak
-
-- type: entity
-  name: Paladin Rifle kit
-  parent: KitBase
-  id: KitBrotherWest_Paladinrifle
-  description: Standard Rifle kit
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponRifleAk112pn
-      - id: N14WeaponPistol45Colt
-      - id: N14MagazinePistol45
-        amount: 3
-      - id: MagazineDrum545Rifle
-        amount: 2
-      - id: N14CleanGauze10
-      - id: N14Stimpak
-      - id: MagazineBox545
-
-- type: entity
-  name: Paladin Prototype Laser kit
-  parent: KitBase
-  id: KitBrotherWest_Paladinplasma
-  description: Standard Rifle kit
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponLaserRiflePrototypeAER14
-      - id: N14WeaponLaserMagnetoPistol
-      - id: N14PowerCellMagnetoSmall
-        amount: 2
-      - id: N14PowerCellAdvanced
-        amount: 3
-      - id: N14CleanGauze10
-      - id: N14Stimpak
-      - id: CigaretteWeldingFuel
-
-- type: entity
-  name: knight Rifle kit
-  parent: KitBase
-  id: KitBrotherWest_Knightrifle
-  description: Standard Rifle kit
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponRifleAk112
-      - id: N14WeaponPistol45Colt
-      - id: N14MagazinePistol45
-        amount: 2
-      - id: Magazine545Rifle
-        amount: 3
-      - id: N14CleanGauze10
-      - id: N14Stimpak
-      - id: MagazineBox545
-      - id: N14ClothingHeadHatBrotherCapralHelmet
-      - id: ClothingMaskGasBrootherWestern
-      - id: N14ClothingEyesGlassesMachinegun
-
-- type: entity
-  name: knight Laser kit
-  parent: KitBase
-  id: KitBrotherWest_Knightlaser
-  description: Standard Rifle kit
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponLaserRifle
-      - id: N14WeaponLaserPistol
-      - id: N14PowerCellSmall
-        amount: 2
-      - id: N14PowerCellHigh
-        amount: 3
-      - id: N14CleanGauze10
-      - id: N14Stimpak
-      - id: N14ClothingHeadHatBeretknighBoS
-      - id: N14ClothingEyesGlassesMachinegun
-      - id: ClothingMaskGasBrootherWestern
-
-- type: entity
-  name: knight Crude Laser kit
-  parent: KitBase
-  id: KitBrotherWest_Knightplasma
-  description: Standard Rifle kit
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponLaserRifleCrude
-      - id: N14WeaponPistol12mm
-      - id: N14MagazinePistol12mm
-        amount: 2
-      - id: N14PowerCellHigh
-        amount: 3
-      - id: N14CleanGauze10
-      - id: N14Stimpak
-      - id: N14NukaNade
-      - id: N14ClothingHeadHatCapkhighbluBoS
-      - id: N14ClothingEyesGlassesMachinegun
-      - id: ClothingMaskGasBrootherWestern
-
-- type: entity
-  name: squire Rifle kit
-  parent: KitBase
-  id: KitBrotherWest_Squirerifle
-  description: Standard Rifle kit
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponRifleAk112
-      - id: Magazine545Rifle
-        amount: 3
-      - id: N14CleanGauze10
-      - id: N14Stimpak
-      - id: MagazineBox545
-      - id: N14ClothingHeadHatBrotherHelmet
-      - id: N14ClothingEyesGlassesMachinegun
-      - id: ClothingMaskGasBrootherWestern
-
-- type: entity
-  name: squire Laser kit
-  parent: KitBase
-  id: KitBrotherWest_Squirelaser
-  description: Standard Rifle kit
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponLaserRifleCrude
-      - id: N14PowerCellHigh
-        amount: 3
-      - id: N14CleanGauze10
-      - id: N14Stimpak
-      - id: N14ClothingEyesGlassesMachinegun
-
-- type: entity
-  name: squire Laser Sidearm kit
-  parent: KitBase
-  id: KitBrotherWest_Squireplasma
-  description: Standard Rifle kit
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponLaserPistol
-      - id: N14PowerCellSmall
-        amount: 2
-      - id: N14CleanGauze10
-      - id: N14Stimpak
-      - id: N14NukaNade
-        amount: 1
-      - id: ClothingMaskGasBrootherWestern
-
-- type: entity
-  name: Scribe rifle kit
-  parent: KitBase
-  id: KitBrotherWest_Scriberifle
-  description: Standard Rifle kit
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponShotgunSawedOff
-      - id: MagazineBox12gauge
-      - id: N14CleanGauze10
-      - id: N14Stimpak
-      - id: N14ClothingBeltBosLeatherunl
-      - id: N14Gunpowder10
-      - id: N14IngotLead1
-        amount: 5
-
-- type: entity
-  name: Scribe laser kit
-  parent: KitBase
-  id: KitBrotherWest_Scribelaser
-  description: Standard laser kit
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponLaserMagnetoPistol
-      - id: N14PowerCellMagnetoSmall
-        amount: 3
-      - id: N14HandheldHealthAnalyzer
-      - id: N14Stimpak
-      - id: N14MedkitFilled
-      - id: N14ClothingBeltMedicalFilled
-
-- type: entity
-  name: Scribe Engineer kit
-  parent: KitBase
-  id: KitBrotherWest_Scribeplasma
-  description: Standard Engineer kit
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponLaserPistol
-      - id: N14PowerCellSmall
-        amount: 2
-      - id: N14ClothingOuterRadSuit
-      - id: N14Stimpak
-      - id: N14ClothingMaskHazmatHelmet
-      - id: N14ClothingBeltUtilityFilled
-      - id: SheetSteel
-      - id: SheetGlass
-
-##MARK: Inquisitor Midwest Kits
-- type: entity
-  name: Inquisitor Inspector Kit
-  parent: KitBase
-  id: KitInquisitorInspector
-  description: Standard Inspector kit
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponRevolver45-70Hunter
-      - id: N14CeremonialSword
-      - id: ClothingBeltRevolver
-      - id: N14Stimpak
-        amount: 2
-      - id: N14MedkitCombatFilled
-      - id: SpeedLoader45-70
-        amount: 2
-      - id: MagazineBox45-70
-      - id: N14BoxCardboardMREBoxKFilled
-      - id: N14CleanGauze10
-
-- type: entity
-  name: Inquisitor Crusader Kit
-  parent: KitBase
-  id: KitInquisitorCrusader
-  description: Standard Crusader kit
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponRifle556Carbine
-      - id: N14ClothingBeltBoSWebbing
-      - id: N14Stimpak
-        amount: 2
-      - id: LongMagazine556Rifle
-        amount: 3
-      - id: MagazineBox556
-      - id: N14BoxCardboardMREBoxKFilled
-      - id: N14CleanGauze10
-
-- type: entity
-  name: Inquisitor Laser Kit
-  parent: KitBase
-  id: KitInquisitorPlasma
-  description: Standard Laser kit
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponLaserRifleWattz3000
-      - id: N14ClothingBeltBoSWebbing
-      - id: N14Stimpak
-        amount: 2
-      - id: N14PowerCellFocused
-        amount: 3
-      - id: N14SuperStimpak
-      - id: N14BoxCardboardMREBoxKFilled
-      - id: N14CleanGauze10
-      - id: N14Ointment10
+#Misfits Change /Comment-out/: Inquisitor kits removed — no Inquisitor role.
+###MARK: Inquisitor Midwest Kits
+#- type: entity
+#  name: Inquisitor Inspector Kit
+#  parent: KitBase
+#  id: KitInquisitorInspector
+#  description: Standard Inspector kit
+#  components:
+#  - type: Sprite
+#    state: rifleman
+#  - type: Item
+#    size: Huge
+#  - type: SpawnItemsOnUse
+#    items:
+#      - id: N14WeaponRevolver45-70Hunter
+#      - id: N14CeremonialSword
+#      - id: ClothingBeltRevolver
+#      - id: N14Stimpak
+#        amount: 2
+#      - id: N14MedkitCombatFilled
+#      - id: SpeedLoader45-70
+#        amount: 2
+#      - id: MagazineBox45-70
+#      - id: N14BoxCardboardMREBoxKFilled
+#      - id: N14CleanGauze10
+#
+#- type: entity
+#  name: Inquisitor Crusader Kit
+#  parent: KitBase
+#  id: KitInquisitorCrusader
+#  description: Standard Crusader kit
+#  components:
+#  - type: Sprite
+#    state: rifleman
+#  - type: Item
+#    size: Huge
+#  - type: SpawnItemsOnUse
+#    items:
+#      - id: N14WeaponRifle556Carbine
+#      - id: N14ClothingBeltBoSWebbing
+#      - id: N14Stimpak
+#        amount: 2
+#      - id: LongMagazine556Rifle
+#        amount: 3
+#      - id: MagazineBox556
+#      - id: N14BoxCardboardMREBoxKFilled
+#      - id: N14CleanGauze10
+#
+#- type: entity
+#  name: Inquisitor Laser Kit
+#  parent: KitBase
+#  id: KitInquisitorPlasma
+#  description: Standard Laser kit
+#  components:
+#  - type: Sprite
+#    state: rifleman
+#  - type: Item
+#    size: Huge
+#  - type: SpawnItemsOnUse
+#    items:
+#      - id: N14WeaponLaserRifleWattz3000
+#      - id: N14ClothingBeltBoSWebbing
+#      - id: N14Stimpak
+#        amount: 2
+#      - id: N14PowerCellFocused
+#        amount: 3
+#      - id: N14SuperStimpak
+#      - id: N14BoxCardboardMREBoxKFilled
+#      - id: N14CleanGauze10
+#      - id: N14Ointment10
 
 - type: entity
   name: Military Police Kit

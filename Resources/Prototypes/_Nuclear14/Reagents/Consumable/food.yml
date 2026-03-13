@@ -63,6 +63,8 @@
             Burn: -1
     Food:
       effects:
+      - !type:SatiateHunger #Misfits Fix: food reagent was adjusting Sugar but never satiating hunger
+        factor: 3
       - !type:AdjustReagent
         reagent: Sugar
         amount: 0.4

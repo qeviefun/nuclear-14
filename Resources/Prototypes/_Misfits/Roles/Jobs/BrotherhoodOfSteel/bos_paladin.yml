@@ -1,26 +1,77 @@
+#Misfits Change /Comment-out/: Washington BoS Paladin job removed — will create new prototypes.
+#- type: job
+#  id: BoSWashingtonPaladin
+#  setPreference: true
+#  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+#  jobWhitelistBypassesRoleTimers: true # #Misfits Change
+#  weight: 50
+#  showBorder: true
+#  overrideConsoleVisibility: true
+#  canBeAntag: false
+#  name: job-name-bos-washington-paladin
+#  description: job-description-bos-washington-paladin
+#  playTimeTracker: BoSWashingtonPaladin
+#  requirements:
+#    - !type:CharacterSpeciesRequirement
+#      species:
+#      - Human
+#    - !type:CharacterDepartmentTimeRequirement
+#      department: BrotherhoodOfSteel
+#      min: 0 # 15 hours
+#  startingGear: BoSWashingtonPaladinGear
+#  alwaysUseSpawner: true
+#  icon: "JobIconPassenger"
+#  supervisors: job-name-bos-wash
+#  accessGroups:
+#  - BOSPaladin
+#  special:
+#  - !type:AddComponentSpecial
+#    components:
+#      - type: NpcFactionMember
+#        factions:
+#          - BrotherhoodOfSteel
+#
+#- type: startingGear
+#  id: BoSWashingtonPaladinGear
+#  equipment:
+#    jumpsuit: N14ClothingUniformJumpsuitBOSRed
+#    back: N14ClothingBackpackSatchelMilitaryFilled
+#    shoes: N14ClothingBootsLeatherFilled
+#    outerClothing: N14ClothingOuterCombatArmorBOSMK2
+#    head: N14ClothingHeadHatBrotherhoodFieldCap
+#    id: N14IDBrotherhoodOfSteelHolotagPaladin
+#    ears: N14ClothingHeadsetBrotherhoodOfSteel
+#    belt: ClothingBeltBoSWebbing
+#    pocket1: BoSBrotherhoodPaladinKits
+#
+#- type: playTimeTracker
+#  id: BoSWashingtonPaladin
+
+#Misfits Change /Add/: New consolidated Brotherhood Paladin job.
 - type: job
-  id: BoSWashingtonPaladin
+  id: BoSPaladin
   setPreference: true
-  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
-  jobWhitelistBypassesRoleTimers: true # #Misfits Change
+  hideIfPlaytimeRequirementsNotMet: false # #Misfits Tweak - all jobs visible in selection
+  jobWhitelistBypassesRoleTimers: true
   weight: 50
   showBorder: true
   overrideConsoleVisibility: true
   canBeAntag: false
-  name: job-name-bos-washington-paladin
-  description: job-description-bos-washington-paladin
-  playTimeTracker: BoSWashingtonPaladin
+  name: job-name-bos-paladin
+  description: job-description-bos-paladin
+  playTimeTracker: BoSPaladin
   requirements:
     - !type:CharacterSpeciesRequirement
       species:
       - Human
+      - Ghoul
     - !type:CharacterDepartmentTimeRequirement
       department: BrotherhoodOfSteel
-      min: 0 # 15 hours
-  startingGear: BoSWashingtonPaladinGear
+      min: 0 # #Misfits Tweak - BoS unlocked up to Senior
+  startingGear: BoSPaladinGear
   alwaysUseSpawner: true
-  icon: "JobIconPassenger"
-  supervisors: job-name-bos-wash
+  icon: "JobIconBosMPaladin"
+  supervisors: job-supervisors-bos-paladin
   accessGroups:
   - BOSPaladin
   special:
@@ -31,17 +82,21 @@
           - BrotherhoodOfSteel
 
 - type: startingGear
-  id: BoSWashingtonPaladinGear
+  id: BoSPaladinGear
   equipment:
-    jumpsuit: N14ClothingUniformJumpsuitBOSRed
-    back: N14ClothingBackpackSatchelMilitaryFilled
+    jumpsuit: N14ClothingUniformBosRecon
+    back: N14ClothingBackpackMilitary
     shoes: N14ClothingBootsLeatherFilled
-    outerClothing: N14ClothingOuterCombatArmorBOSMK2
-    head: N14ClothingHeadHatBrotherhoodFieldCap
+    head: N14ClothingHeadHatCapkhighBoS
+    outerClothing: N14ClothingOuterPowerArmorT45
+    hands: N14ClothingHandsGlovesCombat
+    pocket1: BoSBrotherhoodPaladinKits
     id: N14IDBrotherhoodOfSteelHolotagPaladin
     ears: N14ClothingHeadsetBrotherhoodOfSteel
-    belt: ClothingBeltBoSWebbing
-    pocket1: BoSBrotherhoodPaladinKits
+    belt: N14ClothingBeltBoSWebbing
+  storage:
+    back:
+    - N14BoxPlasticFilledMilitary
 
 - type: playTimeTracker
-  id: BoSWashingtonPaladin
+  id: BoSPaladin

@@ -1907,7 +1907,7 @@
 - type: entity
   parent: N14FalloutArmorBase
   id: N14ClothingOuterTownGuardLight
-  name: the Guard's armor
+  name: the Guard's light armor # Misfits Fix - renamed to distinguish from riot variant
   description: An old piece of armor or maybe a replica of one. Nothing more than sheets of metal held together by leather straps, surprisingly sturdy thing.
   components:
   - type: Sprite
@@ -1929,7 +1929,7 @@
 - type: entity
   parent: N14ClothingOuterTownGuardLight
   id: N14ClothingOuterTownGuardRiot
-  name: the Guard's armor
+  name: the Guard's riot armor # Misfits Fix - renamed to distinguish from light variant
   description: An old piece of armor or maybe a replica of one, surprisingly sturdy thing. Additional plating over the left arm for extra protection in melee combat.
   components:
   - type: Sprite

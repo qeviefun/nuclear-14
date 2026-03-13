@@ -89,13 +89,14 @@
       - state: green
       - state: scribe
 
+#Misfits Change /Tweak/: Overwrote old Washington BoS spawn points with new consolidated Brotherhood jobs.
 - type: entity
   parent: SpawnPointJobBase
-  id: MisfitsSpawnPointBoSWashingtonCommander
+  id: MisfitsSpawnPointBoSHeadKnight
   name: Brotherhood Head Knight
   components:
   - type: SpawnPoint
-    job_id: BoSWashingtonCommander
+    job_id: BoSHeadKnight
   - type: Sprite
     sprite: _Nuclear14/Markers/Jobs/boswashington.rsi
     layers:
@@ -103,49 +104,48 @@
       - state: commander
 
 - type: entity
-  parent: MisfitsSpawnPointBoSWashingtonCommander
-  id: MisfitsSpawnPointBoSWashingtonPaladin
+  parent: MisfitsSpawnPointBoSHeadKnight
+  id: MisfitsSpawnPointBoSPaladin
   name: Brotherhood Paladin
   components:
   - type: SpawnPoint
-    job_id: BoSWashingtonPaladin
+    job_id: BoSPaladin
   - type: Sprite
     layers:
       - state: green
       - state: paladin
 
 - type: entity
-  parent: MisfitsSpawnPointBoSWashingtonCommander
-  id: MisfitsSpawnPointBoSWashingtonKnight
+  parent: MisfitsSpawnPointBoSHeadKnight
+  id: MisfitsSpawnPointBoSKnight
   name: Brotherhood Knight
   components:
   - type: SpawnPoint
-    job_id: BoSWashingtonKnight
+    job_id: BoSKnight
   - type: Sprite
     layers:
       - state: green
       - state: knight
 
 - type: entity
-  parent: MisfitsSpawnPointBoSWashingtonCommander
-  id: MisfitsSpawnPointBoSWashingtonScribe
+  parent: MisfitsSpawnPointBoSHeadKnight
+  id: MisfitsSpawnPointBoSScribe
   name: Brotherhood Scribe
   components:
   - type: SpawnPoint
-    job_id: BoSWashingtonScribe
+    job_id: BoSScribe
   - type: Sprite
     layers:
       - state: green
       - state: scribe
 
-# Brotherhood of Steel - Washington Initiate
 - type: entity
   parent: SpawnPointJobBase
-  id: MisfitsSpawnPointBoSWashingtonInitiate
+  id: MisfitsSpawnPointBoSInitiate
   name: Brotherhood Initiate
   components:
   - type: SpawnPoint
-    job_id: BoSWashingtonInitiate
+    job_id: BoSInitiate
   - type: Sprite
     sprite: Corvax/Markers/jobs.rsi
     layers:
@@ -210,6 +210,19 @@
   components:
   - type: SpawnPoint
     job_id: CaesarLegionExplorer
+  - type: Sprite
+    layers:
+      - state: green
+      - state: venator
+
+# #Misfits Add - Orator spawn point was missing, causing BoS base fallback
+- type: entity
+  parent: MisfitsSpawnPointCaesarLegionCenturion
+  id: MisfitsSpawnPointCaesarLegionOrator
+  name: Legion Orator
+  components:
+  - type: SpawnPoint
+    job_id: CaesarLegionOrator
   - type: Sprite
     layers:
       - state: green
@@ -413,7 +426,7 @@
 - type: entity
   parent: MisfitsSpawnPointNCRCadet
   id: MisfitsSpawnPointNCRFirstSergeant
-  name: NCR First Sergeant
+  name: NCR Sergeant First Class
   components:
   - type: SpawnPoint
     job_id: NCRFirstSergeant
@@ -437,7 +450,7 @@
 - type: entity
   parent: MisfitsSpawnPointNCRCadet
   id: MisfitsSpawnPointNCRWS
-  name: NCR Corporal
+  name: NCR Specialist # #Misfits Tweak - renamed from Corporal
   components:
   - type: SpawnPoint
     job_id: NCRWS

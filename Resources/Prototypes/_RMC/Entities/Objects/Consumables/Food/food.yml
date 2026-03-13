@@ -187,7 +187,7 @@
   - type: Sprite
     layers:
     - state: bowl
-    - state: mango-rice
+    - state: rice #Misfits Fix - mango-rice state does not exist in bowl.rsi, using rice instead
 
 - type: entity
   name: banh mi

@@ -139,121 +139,122 @@
   - type: Wires
     layoutId: HighSec
 
-#MARK: BoS Washington
-- type: entity
-  parent: N14DoorAirlockTall
-  id: N14DoorBunkerLockedBoSWashingtonTall
-  suffix: BoSWashington, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsBOSWashington ]
-  - type: Wires
-    layoutId: HighSec
-
-- type: entity
-  parent: N14DoorBunkerGlass # needs replaced
-  id: N14DoorBunkerGlassLockedBoSWashingtonTall
-  suffix: BoSWashington, Locked
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsBOSWashington ]
-  - type: Wires
-    layoutId: HighSec
-
-- type: entity
-  parent: N14DoorAirlockTall
-  id: N14DoorBunkerLockedBoSWashingtonScribeTall
-  suffix: BoSWashington, Locked, Scribe
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsBOSWashingtonScribe ]
-  - type: Wires
-    layoutId: HighSec
-
-- type: entity
-  parent: N14DoorBunkerGlass # needs replaced
-  id: N14DoorBunkerGlassLockedBoSWashingtonScribeTall
-  suffix: BoSWashington, Locked, Scribe
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsBOSWashingtonScribe ]
-  - type: Wires
-    layoutId: HighSec
-
-- type: entity
-  parent: N14DoorAirlockTall
-  id: N14DoorBunkerLockedBoSWashingtonKnightTall
-  suffix: BoSWashington, Locked, Knight
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsBOSWashingtonKnight ]
-  - type: Wires
-    layoutId: HighSec
-
-- type: entity
-  parent: N14DoorBunkerGlass # needs replaced
-  id: N14DoorBunkerGlassLockedBoSWashingtonKnightTall
-  suffix: BoSWashington, Locked, Knight
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsBOSWashingtonKnight ]
-  - type: Wires
-    layoutId: HighSec
-
-- type: entity
-  parent: N14DoorAirlockTall
-  id: N14DoorBunkerLockedBoSWashingtonPaladinTall
-  suffix: BoSWashington, Locked, PaladinTall
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsBOSWashingtonPaladin ]
-  - type: Wires
-    layoutId: HighSec
-
-- type: entity
-  parent: N14DoorBunkerGlass # needs replaced
-  id: N14DoorBunkerGlassLockedBoSWashingtonPaladinTall
-  suffix: BoSWashington, Locked, Paladin
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsBOSWashingtonPaladin ]
-  - type: Wires
-    layoutId: HighSec
-
-- type: entity
-  parent: N14DoorAirlockTall
-  id: N14DoorBunkerLockedBoSWashingtonCommanderTall
-  suffix: BOSWashington, Locked, Elder
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsBoSWashingtonCommander ]
-  - type: Wires
-    layoutId: HighSec
-
-- type: entity
-  parent: N14DoorBunkerGlass # needs replaced
-  id: N14DoorBunkerGlassLockedBoSWashingtonCommanderTall
-  suffix: BOSWashington, Locked, Elder
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsBoSWashingtonCommander ]
-  - type: Wires
-    layoutId: HighSec
+#Misfits Change /Comment-out/: Washington BoS tall doors removed — will create new prototypes.
+##MARK: BoS Washington
+#- type: entity
+#  parent: N14DoorAirlockTall
+#  id: N14DoorBunkerLockedBoSWashingtonTall
+#  suffix: BoSWashington, Locked
+#  components:
+#  - type: ContainerFill
+#    containers:
+#      board: [ DoorElectronicsBOSWashington ]
+#  - type: Wires
+#    layoutId: HighSec
+#
+#- type: entity
+#  parent: N14DoorBunkerGlass # needs replaced
+#  id: N14DoorBunkerGlassLockedBoSWashingtonTall
+#  suffix: BoSWashington, Locked
+#  categories: [ HideSpawnMenu ]
+#  components:
+#  - type: ContainerFill
+#    containers:
+#      board: [ DoorElectronicsBOSWashington ]
+#  - type: Wires
+#    layoutId: HighSec
+#
+#- type: entity
+#  parent: N14DoorAirlockTall
+#  id: N14DoorBunkerLockedBoSWashingtonScribeTall
+#  suffix: BoSWashington, Locked, Scribe
+#  components:
+#  - type: ContainerFill
+#    containers:
+#      board: [ DoorElectronicsBOSWashingtonScribe ]
+#  - type: Wires
+#    layoutId: HighSec
+#
+#- type: entity
+#  parent: N14DoorBunkerGlass # needs replaced
+#  id: N14DoorBunkerGlassLockedBoSWashingtonScribeTall
+#  suffix: BoSWashington, Locked, Scribe
+#  categories: [ HideSpawnMenu ]
+#  components:
+#  - type: ContainerFill
+#    containers:
+#      board: [ DoorElectronicsBOSWashingtonScribe ]
+#  - type: Wires
+#    layoutId: HighSec
+#
+#- type: entity
+#  parent: N14DoorAirlockTall
+#  id: N14DoorBunkerLockedBoSWashingtonKnightTall
+#  suffix: BoSWashington, Locked, Knight
+#  components:
+#  - type: ContainerFill
+#    containers:
+#      board: [ DoorElectronicsBOSWashingtonKnight ]
+#  - type: Wires
+#    layoutId: HighSec
+#
+#- type: entity
+#  parent: N14DoorBunkerGlass # needs replaced
+#  id: N14DoorBunkerGlassLockedBoSWashingtonKnightTall
+#  suffix: BoSWashington, Locked, Knight
+#  categories: [ HideSpawnMenu ]
+#  components:
+#  - type: ContainerFill
+#    containers:
+#      board: [ DoorElectronicsBOSWashingtonKnight ]
+#  - type: Wires
+#    layoutId: HighSec
+#
+#- type: entity
+#  parent: N14DoorAirlockTall
+#  id: N14DoorBunkerLockedBoSWashingtonPaladinTall
+#  suffix: BoSWashington, Locked, PaladinTall
+#  components:
+#  - type: ContainerFill
+#    containers:
+#      board: [ DoorElectronicsBOSWashingtonPaladin ]
+#  - type: Wires
+#    layoutId: HighSec
+#
+#- type: entity
+#  parent: N14DoorBunkerGlass # needs replaced
+#  id: N14DoorBunkerGlassLockedBoSWashingtonPaladinTall
+#  suffix: BoSWashington, Locked, Paladin
+#  categories: [ HideSpawnMenu ]
+#  components:
+#  - type: ContainerFill
+#    containers:
+#      board: [ DoorElectronicsBOSWashingtonPaladin ]
+#  - type: Wires
+#    layoutId: HighSec
+#
+#- type: entity
+#  parent: N14DoorAirlockTall
+#  id: N14DoorBunkerLockedBoSWashingtonCommanderTall
+#  suffix: BOSWashington, Locked, Elder
+#  components:
+#  - type: ContainerFill
+#    containers:
+#      board: [ DoorElectronicsBoSWashingtonCommander ]
+#  - type: Wires
+#    layoutId: HighSec
+#
+#- type: entity
+#  parent: N14DoorBunkerGlass # needs replaced
+#  id: N14DoorBunkerGlassLockedBoSWashingtonCommanderTall
+#  suffix: BOSWashington, Locked, Elder
+#  categories: [ HideSpawnMenu ]
+#  components:
+#  - type: ContainerFill
+#    containers:
+#      board: [ DoorElectronicsBoSWashingtonCommander ]
+#  - type: Wires
+#    layoutId: HighSec
 
 #MARK: Townie
 

@@ -7,8 +7,9 @@
   - !type:CharacterJobRequirement
     jobs:
     - NCRSoldier
-    - NCREngineer
-    - NCRMedic
+    #- NCREngineer #Misfits Change /Comment-out/: consolidated into Specialist
+    #- NCRMedic #Misfits Change /Comment-out/: consolidated into Specialist
+    - NCRWS # #Misfits Add - Specialist absorbs former Engineer/Medic
   - !type:CharacterPlaytimeRequirement
     tracker: NCRSoldier
     min: 12000 # 5 hours veterancy unlock
@@ -24,8 +25,8 @@
   - !type:CharacterJobRequirement
     jobs:
     - NCRSoldier
-    - NCREngineer
-    - NCRMedic
+    #- NCREngineer #Misfits Change /Comment-out/: consolidated into Specialist
+    #- NCRMedic #Misfits Change /Comment-out/: consolidated into Specialist
     - NCRWS
   - !type:CharacterPlaytimeRequirement
     tracker: NCRSoldier
@@ -42,8 +43,8 @@
   - !type:CharacterJobRequirement
     jobs:
     - NCRSoldier
-    - NCREngineer
-    - NCRMedic
+    #- NCREngineer #Misfits Change /Comment-out/: consolidated into Specialist
+    #- NCRMedic #Misfits Change /Comment-out/: consolidated into Specialist
     - NCRWS
   - !type:CharacterPlaytimeRequirement
     tracker: NCRSoldier

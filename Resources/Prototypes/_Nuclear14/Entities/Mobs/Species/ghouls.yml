@@ -68,12 +68,12 @@
   - type: Hunger
     starvationDamage:
       types:
-        Starvation: 0.15 # Misfits Change - was Cold: 0.15, now uses dedicated Starvation damage type
+        Cold: 0.15 # Misfits Change - use Cold damage for Malnutrition instead of custom Starvation type (no brute/bleed from hunger)
     starvingSlowdownModifier: 0.5
   - type: Thirst
     dehydrationDamage:
       types:
-        Dehydration: 0.15 # Misfits Add - dedicated Dehydration damage type applied at ThirstThreshold.Dead
+        Cold: 0.15 # Misfits Change - use Cold damage for Dehydration instead of custom Dehydration type (no brute/bleed from thirst)
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Ghoul
@@ -168,12 +168,11 @@
   - type: Hunger
     starvationDamage:
       types:
-        Starvation: 0.5 # Misfits Change - was Cold: 0.5
-        Bloodloss: 0.5
+        Cold: 0.5 # Misfits Change - use Cold damage instead of Starvation+Bloodloss (no brute/bleed from hunger)
   - type: Thirst
     dehydrationDamage:
       types:
-        Dehydration: 0.25 # Misfits Add - glowing ghouls dehydrate faster, higher damage rate
+        Cold: 0.25 # Misfits Change - use Cold damage for Dehydration instead of custom Dehydration type (glowing ghouls dehydrate faster)
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: GhoulGlowing

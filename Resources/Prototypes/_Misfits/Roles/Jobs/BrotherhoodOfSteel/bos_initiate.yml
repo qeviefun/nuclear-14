@@ -1,14 +1,66 @@
+#Misfits Change /Comment-out/: Washington BoS Initiate job removed — will create new prototypes.
+#- type: job
+#  id: BoSWashingtonInitiate
+#  setPreference: true
+#  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+#  jobWhitelistBypassesRoleTimers: true # #Misfits Change
+#  weight: 10
+#  overrideConsoleVisibility: true
+#  canBeAntag: false
+#  name: job-name-bos-washington-initiate
+#  description: job-description-bos-washington-initiate
+#  playTimeTracker: BoSWashingtonInitiate
+#  requirements:
+#    - !type:CharacterLogicOrRequirement
+#      requirements:
+#        - !type:CharacterSpeciesRequirement
+#          species:
+#            - Human
+#            - Ghoul
+#    - !type:CharacterOverallTimeRequirement
+#      min: 0
+#  startingGear: BoSWashingtonInitiateGear
+#  alwaysUseSpawner: true
+#  icon: "JobIconPassenger"
+#  supervisors: job-supervisors-bos-wash-initiate
+#  accessGroups:
+#  - BOSInitiate
+#  special:
+#  - !type:AddComponentSpecial
+#    components:
+#      - type: NpcFactionMember
+#        factions:
+#          - BrotherhoodOfSteel
+#
+#- type: startingGear
+#  id: BoSWashingtonInitiateGear
+#  equipment:
+#    head: N14ClothingHeadHatBrotherhoodBeret
+#    jumpsuit: N14ClothingUniformJumpsuitBOSRed
+#    back: N14ClothingBackpackMilitaryFilled
+#    shoes: N14ClothingBootsLeatherFilled
+#    id: N14IDBrotherhoodOfSteelHolotagInitiate
+#    ears: N14ClothingHeadsetBrotherhoodOfSteel
+#    outerClothing: N14ClothingOuterCombatArmorBOS
+#    belt: ClothingBeltBoSWebbing
+#    pocket1: BoSBrotherhoodInitiateKits
+#
+#- type: playTimeTracker
+#  id: BoSWashingtonInitiate
+
+#Misfits Change /Add/: New consolidated Brotherhood Initiate job.
 - type: job
-  id: BoSWashingtonInitiate
+  id: BoSInitiate
   setPreference: true
-  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
-  jobWhitelistBypassesRoleTimers: true # #Misfits Change
+  hideIfPlaytimeRequirementsNotMet: false # #Misfits Tweak - all jobs visible in selection
+  jobWhitelistBypassesRoleTimers: true
   weight: 10
+  showBorder: true
   overrideConsoleVisibility: true
   canBeAntag: false
-  name: job-name-bos-washington-initiate
-  description: job-description-bos-washington-initiate
-  playTimeTracker: BoSWashingtonInitiate
+  name: job-name-bos-initiate
+  description: job-description-bos-initiate
+  playTimeTracker: BoSInitiate
   requirements:
     - !type:CharacterLogicOrRequirement
       requirements:
@@ -18,10 +70,10 @@
             - Ghoul
     - !type:CharacterOverallTimeRequirement
       min: 0
-  startingGear: BoSWashingtonInitiateGear
+  startingGear: BoSInitiateGear
   alwaysUseSpawner: true
-  icon: "JobIconPassenger"
-  supervisors: job-supervisors-bos-wash-initiate
+  icon: "JobIconBosMSquire"
+  supervisors: job-supervisors-bos-initiate
   accessGroups:
   - BOSInitiate
   special:
@@ -32,17 +84,18 @@
           - BrotherhoodOfSteel
 
 - type: startingGear
-  id: BoSWashingtonInitiateGear
+  id: BoSInitiateGear
   equipment:
-    head: N14ClothingHeadHatBrotherhoodBeret
-    jumpsuit: N14ClothingUniformJumpsuitBOSRed
-    back: N14ClothingBackpackMilitaryFilled
+    jumpsuit: N14ClothingUniformJumpskirtBOSBlack
+    back: N14ClothingBackpackMilitary
     shoes: N14ClothingBootsLeatherFilled
+    pocket1: BoSBrotherhoodInitiateKits
     id: N14IDBrotherhoodOfSteelHolotagInitiate
     ears: N14ClothingHeadsetBrotherhoodOfSteel
-    outerClothing: N14ClothingOuterCombatArmorBOS
-    belt: ClothingBeltBoSWebbing
-    pocket1: BoSBrotherhoodInitiateKits
+    belt: ClothingBeltMilitary
+  storage:
+    back:
+    - N14BoxPlasticFilledMilitary
 
 - type: playTimeTracker
-  id: BoSWashingtonInitiate
+  id: BoSInitiate

@@ -266,9 +266,6 @@
     sprite: _RMC/Objects/Clothing/Pouches/flare.rsi
     layers:
     - state: icon
-    - state: open #Misfits Fix - flare.rsi has open/closed not partial/full
-      map: [ "enum.CMItemSlotsLayers.Fill" ]
-      visible: false
     - state: closed #Misfits Fix - flare.rsi has open/closed not partial/full
       map: [ "enum.CMItemSlotsLayers.Fill" ]
       visible: false

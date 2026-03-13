@@ -1,8 +1,8 @@
 - type: job
   id: BoSWestScribe
   setPreference: true
-  hideWithoutJobWhitelist: true # #Misfits Change
-  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+  hideWithoutJobWhitelist: false # #Misfits Tweak - BoS Heads not whitelisted
+  hideIfPlaytimeRequirementsNotMet: false # #Misfits Tweak - all jobs visible in selection
   jobWhitelistBypassesRoleTimers: true # #Misfits Change
   weight: 90
   name: job-name-bos-west-scribe
@@ -14,7 +14,10 @@
       - Human
     - !type:CharacterDepartmentTimeRequirement
       department: BrotherhoodOfSteel
-      min: 0 # 15 hours
+      min: 0 # #Misfits Tweak - gated by Senior Scribe role time instead
+    - !type:CharacterPlaytimeRequirement # #Misfits Tweak - 20 hours as Senior Scribe to unlock Head Scribe
+      tracker: BoSMidScribe
+      min: 72000 # 20 hours
   startingGear: BoSWestScribeGear
   alwaysUseSpawner: true
   icon: "JobIconBosMScriptor"
@@ -32,15 +35,18 @@
 - type: startingGear
   id: BoSWestScribeGear
   equipment:
-    jumpsuit: N14ClothingUniformJumpsuitBOSWestScribe
-    outerClothing: N14ClothingOuterBosScribe
+    jumpsuit: N14ClothingUniformJumpskirtBOSBlack  #Misfits Change /Tweak/: New consolidated BoS gear
+    outerClothing: N14ClothingOuterBrotherhoodMidwestFieldScribeCoat
     back: N14ClothingBackpackSatchelMilitary
-    shoes: N14ClothingBootsLeather
+    shoes: N14ClothingBootsLeatherFilled
+    head: N14ClothingHeadHatBeretknighBoS
     pocket1: BoSBrotherhoodHeadScribeKits
     id: N14IDBrotherhoodOfSteelHolotagHeadScribe
     ears: N14ClothingHeadsetBrotherhoodOfSteelScribe
+    belt: ClothingBeltMilitary
   storage:
     back:
+    - NCClothingOuterBosReconArmor
     - N14BoxPlasticFilledMilitary
 
 - type: playTimeTracker

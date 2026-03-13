@@ -12,9 +12,6 @@
     sprite: _RMC/Objects/Clothing/Pouches/bayonet.rsi
     layers:
     - state: icon
-    - state: open #Misfits Fix - bayonet.rsi has open/closed not partial/full
-      map: [ "enum.CMItemSlotsLayers.Fill" ]
-      visible: false
     - state: closed #Misfits Fix - bayonet.rsi has open/closed not partial/full
       map: [ "enum.CMItemSlotsLayers.Fill" ]
       visible: false

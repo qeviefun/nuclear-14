@@ -1031,6 +1031,7 @@
 
 # Brotherhood Midwestern Chapter Kits
 # MBoS Initiate & Squire Kits
+#Misfits Change /Tweak/: Initiate kit stripped to wattz pistol only + stimpak per consolidated BoS loadout design.
 - type: entity
   name: BoS Initiate Laser Kit
   parent: KitBase
@@ -1043,13 +1044,11 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14WeaponLaserRifleCrude
-      - id: N14PowerCellHigh
-        amount: 3
-      - id: N14WeaponPistol12mm
-      - id: N14MagazinePistol12mm
+      - id: N14WeaponLaserPistol
+      - id: N14PowerCellSmall
         amount: 2
       - id: N14CleanGauze10
+      - id: N14Stimpak
       - id: N14BoxCardboardMREBoxKFilled
 
 - type: entity
@@ -1084,6 +1083,7 @@
     state: rifleman
   - type: Item
     size: Huge
+  #Misfits Change /Tweak/: Added stimpak to knight laser kit.
   - type: SpawnItemsOnUse
     items:
       - id: N14WeaponLaserRifle
@@ -1093,6 +1093,7 @@
       - id: N14MagazinePistol12mm
         amount: 2
       - id: N14CleanGauze10
+      - id: N14Stimpak
       - id: N14BoxCardboardMREBoxKFilled
 
 - type: entity
@@ -1105,6 +1106,7 @@
     state: rifleman
   - type: Item
     size: Huge
+  #Misfits Change /Tweak/: Added stimpak to knight ballistic kit.
   - type: SpawnItemsOnUse
     items:
       - id: N14WeaponRifle556Carbine
@@ -1114,6 +1116,7 @@
       - id: N14PowerCellSmall
         amount: 2
       - id: N14CleanGauze10
+      - id: N14Stimpak
       - id: N14BoxCardboardMREBoxKFilled
 
 # MBoS Scribe Medic Kit
@@ -1189,8 +1192,9 @@
       - id: N14BoxCardboardMREBoxKFilled
 
 # MBoS Paladin Kits
+#Misfits Change /Tweak/: Replaced auto laser rifle with auto shotgun + laser pistol sidearm.
 - type: entity
-  name: BoS Paladin Laser Kit
+  name: BoS Paladin Shotgun Kit
   parent: KitBase
   id: KitMBoS_PalLas
   description: A crate containing everything a member of the Brotherhood might need.
@@ -1201,11 +1205,11 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14WeaponLaserRifleAuto
-      - id: N14PowerCellHigh
+      - id: N14WeaponShotgunAuto
+      - id: N14MagazineShotgun12
         amount: 3
-      - id: N14WeaponPistol12mm
-      - id: N14MagazinePistol12mm
+      - id: N14WeaponLaserPistol
+      - id: N14PowerCellSmall
         amount: 2
       - id: N14CleanGauze10
       - id: N14Stimpak
@@ -1233,8 +1237,9 @@
       - id: N14Stimpak
       - id: N14BoxCardboardMREBoxKFilled
 
+#Misfits Change /Tweak/: Replaced Wattz 2000 sniper with Bozar GRA across all ranks.
 - type: entity
-  name: BoS Paladin Sniper Kit
+  name: BoS Paladin Bozar Kit
   parent: KitBase
   id: KitMBoS_PalSni
   description: A crate containing everything a member of the Brotherhood might need.
@@ -1245,8 +1250,8 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14WeaponLaserRifleWattz2000
-      - id: N14PowerCellFocused
+      - id: N14WeaponRifleBozarGRA
+      - id: Magazine556Rifle30
         amount: 3
       - id: N14WeaponPistol12mm
       - id: N14MagazinePistol12mm
@@ -1278,253 +1283,254 @@
       - id: N14BoxCardboardMREBoxKFilled
 
 
-# Brotherhood Washington Chapter Kits
-# WBoS Initiate & Squire Kits
-- type: entity
-  name: BoS Initiate Laser Kit
-  parent: KitBase
-  id: KitWBoS_IniPla
-  description: A crate containing everything a member of the Brotherhood might need.
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponLaserRifleCrude
-      - id: N14PowerCellHigh
-        amount: 3
-      - id: N14WeaponPistolWebley
-      - id: N14MagazinePistol9mm
-        amount: 2
-      - id: N14CleanGauze10
-      - id: N14BoxCardboardMREBoxKFilled
-
-- type: entity
-  name: BoS Initiate Ballistic Kit
-  parent: KitBase
-  id: KitWBoS_IniBal
-  description: A crate containing everything a member of the Brotherhood might need.
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponRifle556CarbineOld
-      - id: Magazine556Rifle
-        amount: 3
-      - id: N14WeaponLaserPistol
-      - id: N14PowerCellSmall
-        amount: 2
-      - id: N14CleanGauze10
-      - id: N14BoxCardboardMREBoxKFilled
-
-# WBoS Knight & Senior Knight kits
-- type: entity
-  name: BoS Knight Laser Kit
-  parent: KitBase
-  id: KitWBoS_KniPla
-  description: A crate containing everything a member of the Brotherhood might need.
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponLaserRifle
-      - id: N14PowerCellHigh
-        amount: 3
-      - id: N14WeaponPistolWebley
-      - id: N14MagazinePistol9mm
-        amount: 2
-      - id: N14CleanGauze10
-      - id: N14BoxCardboardMREBoxKFilled
-
-- type: entity
-  name: BoS Knight Ballistic Kit
-  parent: KitBase
-  id: KitWBoS_KniBal
-  description: A crate containing everything a member of the Brotherhood might need.
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponRifle556Carbine
-      - id: LongMagazine556Rifle
-        amount: 3
-      - id: N14WeaponLaserPistol
-      - id: N14PowerCellSmall
-        amount: 2
-      - id: N14CleanGauze10
-      - id: N14BoxCardboardMREBoxKFilled
-
-# WBoS Scribe Medic Kit
-- type: entity
-  name: BoS Scribe Medical Kit
-  parent: KitBase
-  id: KitWBoS_ScrMed
-  description: A crate containing everything a member of the Brotherhood of Steel Scribes might need for keeping the fighting forces alive.
-  components:
-  - type: Sprite
-    state: medic
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponLaserPistol
-      - id: N14PowerCellSmall
-        amount: 2
-      - id: N14CleanGauze10
-      - id: N14Ointment10
-      - id: N14SuperStimpak
-      - id: N14ClothingBeltMedicalFilled
-      - id: ClothingMaskSterile
-      - id: N14ClothingOuterBrotherhoodMedicalScribeRobes
-      - id: ClothingHandsGlovesChemist
-      - id: N14BoxCardboardMREBoxKFilled
-
-# WBoS Scribe Field Kit
-- type: entity
-  name: BoS Scribe Field Kit
-  parent: KitBase
-  id: KitWBoS_ScrFld
-  description: A crate containing everything a member of the Brotherhood of Steel Scribes might need for supporting their unit in the field.
-  components:
-  - type: Sprite
-    state: pointman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponLaserPistol
-      - id: N14PowerCellSmall
-        amount: 2
-      - id: N14CleanGauze10
-      - id: N14Ointment10
-      - id: N14ClothingHandsGlovesCombat
-      - id: N14ClothingBeltBoSWebbing
-      - id: N14ClothingOuterBrotherhoodFieldScribeCoat
-      - id: N14BoxCardboardMREBoxKFilled
-
-# WBoS Scribe Engineer Kit
-- type: entity
-  name: BoS Scribe Engineer Kit
-  parent: KitBase
-  id: KitWBoS_ScrEng
-  description: A crate containing everything a member of the Brotherhood of Steel Scribes might need for their general engineering needs.
-  components:
-  - type: Sprite
-    state: pointman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponLaserPistol
-      - id: N14PowerCellSmall
-        amount: 2
-      - id: N14CleanGauze10
-      - id: N14Ointment10
-      - id: N14ClothingOuterBosScribe
-      - id: N14ClothingEyesGlassesWelding
-      - id: ClothingHandsGlovesColorYellow
-      - id: N14ClothingBeltUtilityFilled
-      - id: N14BoxCardboardMREBoxKFilled
-
-# WBoS Paladin Kits
-- type: entity
-  name: BoS Paladin Automatic Laser Kit
-  parent: KitBase
-  id: KitWBoS_PalPla
-  description: A crate containing everything a member of the Brotherhood might need.
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponLaserRifleAuto
-      - id: N14PowerCellHigh
-        amount: 3
-      - id: N14WeaponPistolWebley
-      - id: N14MagazinePistol9mm
-        amount: 2
-      - id: N14CleanGauze10
-      - id: N14Stimpak
-      - id: N14BoxCardboardMREBoxKFilled
-
-- type: entity
-  name: BoS Paladin Sniper Kit
-  parent: KitBase
-  id: KitWBoS_PalSni
-  description: A crate containing everything a member of the Brotherhood might need.
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponRifle762MarksmanCanadian
-      - id: Magazine762AmmoShort
-        amount: 3
-      - id: N14WeaponLaserPistol
-      - id: N14PowerCellSmall
-        amount: 2
-      - id: N14CleanGauze10
-      - id: N14Stimpak
-      - id: N14BoxCardboardMREBoxKFilled
-
-- type: entity
-  name: BoS Paladin Ballistic Kit
-  parent: KitBase
-  id: KitWBoS_PalBal
-  description: A crate containing everything a member of the Brotherhood might need.
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponRifle556Carbine
-      - id: LongMagazine556Rifle
-        amount: 3
-      - id: N14WeaponLaserPistol
-      - id: N14PowerCellSmall
-        amount: 2
-      - id: N14CleanGauze10
-      - id: N14Stimpak
-      - id: N14BoxCardboardMREBoxKFilled
-
-- type: entity
-  name: BoS Paladin Laser Kit
-  parent: KitBase
-  id: KitWBoS_PalLas
-  description: A crate containing everything a member of the Brotherhood might need.
-  components:
-  - type: Sprite
-    state: rifleman
-  - type: Item
-    size: Huge
-  - type: SpawnItemsOnUse
-    items:
-      - id: N14WeaponLaserRifle
-      - id: N14PowerCellHigh
-        amount: 3
-      - id: N14WeaponLaserPistol
-      - id: N14PowerCellSmall
-        amount: 2
-      - id: N14CleanGauze10
-      - id: N14Stimpak
-      - id: N14BoxCardboardMREBoxKFilled
+#Misfits Change /Comment-out/: Washington BoS kits removed — will create new prototypes.
+## Brotherhood Washington Chapter Kits
+## WBoS Initiate & Squire Kits
+#- type: entity
+#  name: BoS Initiate Laser Kit
+#  parent: KitBase
+#  id: KitWBoS_IniPla
+#  description: A crate containing everything a member of the Brotherhood might need.
+#  components:
+#  - type: Sprite
+#    state: rifleman
+#  - type: Item
+#    size: Huge
+#  - type: SpawnItemsOnUse
+#    items:
+#      - id: N14WeaponLaserRifleCrude
+#      - id: N14PowerCellHigh
+#        amount: 3
+#      - id: N14WeaponPistolWebley
+#      - id: N14MagazinePistol9mm
+#        amount: 2
+#      - id: N14CleanGauze10
+#      - id: N14BoxCardboardMREBoxKFilled
+#
+#- type: entity
+#  name: BoS Initiate Ballistic Kit
+#  parent: KitBase
+#  id: KitWBoS_IniBal
+#  description: A crate containing everything a member of the Brotherhood might need.
+#  components:
+#  - type: Sprite
+#    state: rifleman
+#  - type: Item
+#    size: Huge
+#  - type: SpawnItemsOnUse
+#    items:
+#      - id: N14WeaponRifle556CarbineOld
+#      - id: Magazine556Rifle
+#        amount: 3
+#      - id: N14WeaponLaserPistol
+#      - id: N14PowerCellSmall
+#        amount: 2
+#      - id: N14CleanGauze10
+#      - id: N14BoxCardboardMREBoxKFilled
+#
+## WBoS Knight & Senior Knight kits
+#- type: entity
+#  name: BoS Knight Laser Kit
+#  parent: KitBase
+#  id: KitWBoS_KniPla
+#  description: A crate containing everything a member of the Brotherhood might need.
+#  components:
+#  - type: Sprite
+#    state: rifleman
+#  - type: Item
+#    size: Huge
+#  - type: SpawnItemsOnUse
+#    items:
+#      - id: N14WeaponLaserRifle
+#      - id: N14PowerCellHigh
+#        amount: 3
+#      - id: N14WeaponPistolWebley
+#      - id: N14MagazinePistol9mm
+#        amount: 2
+#      - id: N14CleanGauze10
+#      - id: N14BoxCardboardMREBoxKFilled
+#
+#- type: entity
+#  name: BoS Knight Ballistic Kit
+#  parent: KitBase
+#  id: KitWBoS_KniBal
+#  description: A crate containing everything a member of the Brotherhood might need.
+#  components:
+#  - type: Sprite
+#    state: rifleman
+#  - type: Item
+#    size: Huge
+#  - type: SpawnItemsOnUse
+#    items:
+#      - id: N14WeaponRifle556Carbine
+#      - id: LongMagazine556Rifle
+#        amount: 3
+#      - id: N14WeaponLaserPistol
+#      - id: N14PowerCellSmall
+#        amount: 2
+#      - id: N14CleanGauze10
+#      - id: N14BoxCardboardMREBoxKFilled
+#
+## WBoS Scribe Medic Kit
+#- type: entity
+#  name: BoS Scribe Medical Kit
+#  parent: KitBase
+#  id: KitWBoS_ScrMed
+#  description: A crate containing everything a member of the Brotherhood of Steel Scribes might need for keeping the fighting forces alive.
+#  components:
+#  - type: Sprite
+#    state: medic
+#  - type: Item
+#    size: Huge
+#  - type: SpawnItemsOnUse
+#    items:
+#      - id: N14WeaponLaserPistol
+#      - id: N14PowerCellSmall
+#        amount: 2
+#      - id: N14CleanGauze10
+#      - id: N14Ointment10
+#      - id: N14SuperStimpak
+#      - id: N14ClothingBeltMedicalFilled
+#      - id: ClothingMaskSterile
+#      - id: N14ClothingOuterBrotherhoodMedicalScribeRobes
+#      - id: ClothingHandsGlovesChemist
+#      - id: N14BoxCardboardMREBoxKFilled
+#
+## WBoS Scribe Field Kit
+#- type: entity
+#  name: BoS Scribe Field Kit
+#  parent: KitBase
+#  id: KitWBoS_ScrFld
+#  description: A crate containing everything a member of the Brotherhood of Steel Scribes might need for supporting their unit in the field.
+#  components:
+#  - type: Sprite
+#    state: pointman
+#  - type: Item
+#    size: Huge
+#  - type: SpawnItemsOnUse
+#    items:
+#      - id: N14WeaponLaserPistol
+#      - id: N14PowerCellSmall
+#        amount: 2
+#      - id: N14CleanGauze10
+#      - id: N14Ointment10
+#      - id: N14ClothingHandsGlovesCombat
+#      - id: N14ClothingBeltBoSWebbing
+#      - id: N14ClothingOuterBrotherhoodFieldScribeCoat
+#      - id: N14BoxCardboardMREBoxKFilled
+#
+## WBoS Scribe Engineer Kit
+#- type: entity
+#  name: BoS Scribe Engineer Kit
+#  parent: KitBase
+#  id: KitWBoS_ScrEng
+#  description: A crate containing everything a member of the Brotherhood of Steel Scribes might need for their general engineering needs.
+#  components:
+#  - type: Sprite
+#    state: pointman
+#  - type: Item
+#    size: Huge
+#  - type: SpawnItemsOnUse
+#    items:
+#      - id: N14WeaponLaserPistol
+#      - id: N14PowerCellSmall
+#        amount: 2
+#      - id: N14CleanGauze10
+#      - id: N14Ointment10
+#      - id: N14ClothingOuterBosScribe
+#      - id: N14ClothingEyesGlassesWelding
+#      - id: ClothingHandsGlovesColorYellow
+#      - id: N14ClothingBeltUtilityFilled
+#      - id: N14BoxCardboardMREBoxKFilled
+#
+## WBoS Paladin Kits
+#- type: entity
+#  name: BoS Paladin Automatic Laser Kit
+#  parent: KitBase
+#  id: KitWBoS_PalPla
+#  description: A crate containing everything a member of the Brotherhood might need.
+#  components:
+#  - type: Sprite
+#    state: rifleman
+#  - type: Item
+#    size: Huge
+#  - type: SpawnItemsOnUse
+#    items:
+#      - id: N14WeaponLaserRifleAuto
+#      - id: N14PowerCellHigh
+#        amount: 3
+#      - id: N14WeaponPistolWebley
+#      - id: N14MagazinePistol9mm
+#        amount: 2
+#      - id: N14CleanGauze10
+#      - id: N14Stimpak
+#      - id: N14BoxCardboardMREBoxKFilled
+#
+#- type: entity
+#  name: BoS Paladin Sniper Kit
+#  parent: KitBase
+#  id: KitWBoS_PalSni
+#  description: A crate containing everything a member of the Brotherhood might need.
+#  components:
+#  - type: Sprite
+#    state: rifleman
+#  - type: Item
+#    size: Huge
+#  - type: SpawnItemsOnUse
+#    items:
+#      - id: N14WeaponRifle762MarksmanCanadian
+#      - id: Magazine762AmmoShort
+#        amount: 3
+#      - id: N14WeaponLaserPistol
+#      - id: N14PowerCellSmall
+#        amount: 2
+#      - id: N14CleanGauze10
+#      - id: N14Stimpak
+#      - id: N14BoxCardboardMREBoxKFilled
+#
+#- type: entity
+#  name: BoS Paladin Ballistic Kit
+#  parent: KitBase
+#  id: KitWBoS_PalBal
+#  description: A crate containing everything a member of the Brotherhood might need.
+#  components:
+#  - type: Sprite
+#    state: rifleman
+#  - type: Item
+#    size: Huge
+#  - type: SpawnItemsOnUse
+#    items:
+#      - id: N14WeaponRifle556Carbine
+#      - id: LongMagazine556Rifle
+#        amount: 3
+#      - id: N14WeaponLaserPistol
+#      - id: N14PowerCellSmall
+#        amount: 2
+#      - id: N14CleanGauze10
+#      - id: N14Stimpak
+#      - id: N14BoxCardboardMREBoxKFilled
+#
+#- type: entity
+#  name: BoS Paladin Laser Kit
+#  parent: KitBase
+#  id: KitWBoS_PalLas
+#  description: A crate containing everything a member of the Brotherhood might need.
+#  components:
+#  - type: Sprite
+#    state: rifleman
+#  - type: Item
+#    size: Huge
+#  - type: SpawnItemsOnUse
+#    items:
+#      - id: N14WeaponLaserRifle
+#      - id: N14PowerCellHigh
+#        amount: 3
+#      - id: N14WeaponLaserPistol
+#      - id: N14PowerCellSmall
+#        amount: 2
+#      - id: N14CleanGauze10
+#      - id: N14Stimpak
+#      - id: N14BoxCardboardMREBoxKFilled
 
 
 # Tribal kits

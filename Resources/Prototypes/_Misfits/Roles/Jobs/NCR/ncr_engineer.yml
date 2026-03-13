@@ -1,9 +1,9 @@
+#Misfits Change /Tweak/: NCR Engineer role consolidated into NCR Specialist (NCRWS).
+#  Engineer loadout kits (Mechanic, Demolition, Breacher) are now available in the Specialist's undecided loadout.
+#  Job kept defined but hidden so existing spawner/entity references don't break.
 - type: job
   id: NCREngineer
-  setPreference: true
-  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
-  jobWhitelistBypassesRoleTimers: true # #Misfits Change
-  weight: 80
+  setPreference: false # #Misfits Tweak - hidden from character creation, role consolidated into Specialist
   overrideConsoleVisibility: false
   canBeAntag: false
   name: job-name-ncr-engineer
@@ -14,9 +14,6 @@
       species:
       - Human
       - Ghoul
-    - !type:CharacterDepartmentTimeRequirement
-      department: NCR
-      min: 0 # 5 hours
   startingGear: NCREngineerGear
   icon: "JobIconWarden"
   supervisors: job-supervisors-ncr-sergeant

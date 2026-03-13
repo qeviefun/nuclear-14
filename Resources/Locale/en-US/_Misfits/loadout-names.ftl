@@ -226,20 +226,20 @@ loadout-name-N14WastelandTribalSpear = wasteland tribal spear
 # NCR loadouts
 loadout-name-LoadoutNCRPinRecruit = NCR recruit pin
 loadout-name-LoadoutNCRPinPrivateSoldier = NCR private soldier pin
-loadout-name-LoadoutNCRPinPrivateNCRWS = NCR private pin (NCRWS)
+loadout-name-LoadoutNCRPinPrivateNCRWS = NCR private pin (Specialist)
 loadout-name-LoadoutNCRPinPrivate1stSoldier = NCR private 1st class pin (soldier)
-loadout-name-LoadoutNCRPinPrivate1stNCRWS = NCR private 1st class pin (NCRWS)
+loadout-name-LoadoutNCRPinPrivate1stNCRWS = NCR private 1st class pin (Specialist)
 loadout-name-LoadoutNCRPinCorporalSoldier = NCR corporal pin (soldier)
-loadout-name-LoadoutNCRPinCorporalNCRWS = NCR corporal pin (NCRWS)
+loadout-name-LoadoutNCRPinCorporalNCRWS = NCR corporal pin (Specialist)
 loadout-name-LoadoutNCRPinSpecialistSoldier = NCR specialist pin (soldier)
-loadout-name-LoadoutNCRPinSpecialistSNCRWS = NCR specialist pin (NCRWS)
+loadout-name-LoadoutNCRPinSpecialistSNCRWS = NCR specialist pin (Specialist)
 loadout-name-LoadoutNCRPinSergeant = NCR sergeant pin
 loadout-name-LoadoutNCRPinSergeant1st = NCR sergeant 1st class pin
 loadout-name-LoadoutNCRPinMasterSergeant = NCR master sergeant pin
 loadout-name-LoadoutNCRPinSergeantMajor = NCR sergeant major pin
 loadout-name-LoadoutNCRPinPrivateFirstClass = NCR private first class pin
 loadout-name-LoadoutNCRPinStaffSergeant = NCR staff sergeant pin
-loadout-name-LoadoutNCRPinFirstSergeant = NCR first sergeant pin
+loadout-name-LoadoutNCRPinFirstSergeant = NCR sergeant first class pin
 loadout-name-LoadoutNCRPinSecondLieutenant = NCR second lieutenant pin
 loadout-name-LoadoutNCRPinFirstlLieutenant = NCR first lieutenant pin
 loadout-name-LoadoutNCRPinCaptain = NCR captain pin
@@ -328,21 +328,22 @@ loadout-name-LoadoutMaskBoSMidwestLiner = Brotherhood liner mask (Midwest)
 loadout-name-LoadoutMaskBoSMidwestLinerElite = Brotherhood elite liner mask (Midwest)
 loadout-name-LoadoutMaskBoSMidwestLinerBlack = Brotherhood black liner mask (Midwest)
 loadout-name-LoadoutClothingOuterMBoSSquireArmor = Brotherhood squire armor (Midwest outer)
-loadout-name-LoadoutClothingOuterBOSInquisitorBlackCoat = Brotherhood inquisitor black coat
-loadout-name-LoadoutClothingOuterBOSInquisitorBattleArmor = Brotherhood inquisitor battle armor
-loadout-name-LoadoutClothingHeadHatBoSInquisitorBattleHelmet = Brotherhood inquisitor battle helmet
-loadout-name-LoadoutClothingHeadHatBoSInquisitorBattleHelmetHood = Brotherhood inquisitor battle helmet (hooded)
-loadout-name-LoadoutClothingHeadHatBoSInquisitorBlackHat = Brotherhood inquisitor black hat
-loadout-name-LoadoutClothingHeadHatBoSInquisitorHat = Brotherhood inquisitor hat
-
-# Brotherhood of Steel loadouts (Washington)
-loadout-name-LoadoutBoSWashingtonSquire = Brotherhood squire armor (Washington)
-loadout-name-LoadoutBoSWashingtonSeniorKnight = Brotherhood senior knight armor (Washington)
-loadout-name-LoadoutBoSWashingtonFieldScribe = Brotherhood field scribe outfit (Washington)
-loadout-name-LoadoutBoSWashingtonPA = Brotherhood power armor (Washington)
-loadout-name-LoadoutBoSWashingtonPACommander = Brotherhood commander power armor (Washington)
-loadout-name-LoadoutBoSWashingtonPaladinT51Armor = Brotherhood paladin T-51 armor (Washington)
-loadout-name-LoadoutBoSWashingtonCommanderT60Armor = Brotherhood commander T-60 armor (Washington)
+# Misfits Change /Comment-out/: Inquisitor role and Washington BoS loadouts removed — consolidated.
+# loadout-name-LoadoutClothingOuterBOSInquisitorBlackCoat = Brotherhood inquisitor black coat
+# loadout-name-LoadoutClothingOuterBOSInquisitorBattleArmor = Brotherhood inquisitor battle armor
+# loadout-name-LoadoutClothingHeadHatBoSInquisitorBattleHelmet = Brotherhood inquisitor battle helmet
+# loadout-name-LoadoutClothingHeadHatBoSInquisitorBattleHelmetHood = Brotherhood inquisitor battle helmet (hooded)
+# loadout-name-LoadoutClothingHeadHatBoSInquisitorBlackHat = Brotherhood inquisitor black hat
+# loadout-name-LoadoutClothingHeadHatBoSInquisitorHat = Brotherhood inquisitor hat
+#
+# # Brotherhood of Steel loadouts (Washington)
+# loadout-name-LoadoutBoSWashingtonSquire = Brotherhood squire armor (Washington)
+# loadout-name-LoadoutBoSWashingtonSeniorKnight = Brotherhood senior knight armor (Washington)
+# loadout-name-LoadoutBoSWashingtonFieldScribe = Brotherhood field scribe outfit (Washington)
+# loadout-name-LoadoutBoSWashingtonPA = Brotherhood power armor (Washington)
+# loadout-name-LoadoutBoSWashingtonPACommander = Brotherhood commander power armor (Washington)
+# loadout-name-LoadoutBoSWashingtonPaladinT51Armor = Brotherhood paladin T-51 armor (Washington)
+# loadout-name-LoadoutBoSWashingtonCommanderT60Armor = Brotherhood commander T-60 armor (Washington)
 
 # Legion loadouts
 loadout-name-LoadoutLegionDeadRecruitArmor = Legion recruit armor

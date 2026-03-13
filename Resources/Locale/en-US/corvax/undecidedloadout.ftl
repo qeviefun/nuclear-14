@@ -151,73 +151,74 @@ undecided-loadout-category-recruit-healer-description =
     2 healing poultices, 2 dirty stimpaks, 1 bruise kit, 1 ointment,
     2 K-rations, 1 bottle of water, 1 mustard.
 
-# Washington BoS
-undecided-loadout-category-washington-base-name = Standard BoS Kit
-undecided-loadout-category-washington-base-description =
-    A box with everything needed for a Brotherhood of Steel member.
-    Contains: 1 automatic laser rifle, 1 laser pistol, 3 high-capacity power cells,
-    2 small power cells, a stimulator, and a dry ration.
-
-undecided-loadout-category-washington-wattz-name = Wattz BoS Kit
-undecided-loadout-category-washington-wattz-description =
-    A box with everything needed for a Brotherhood of Steel member.
-    Contains: 1 "Wattz 2000" laser rifle, 1 laser pistol, 2 focused power cells,
-    2 small power cells, a stimulator, and a dry ration.
-
-undecided-loadout-category-washington-auto-name = Automatic BoS Kit
-undecided-loadout-category-washington-auto-description =
-    A box with everything needed for a Brotherhood of Steel member.
-    Contains: 1 charging rifle, 1 laser pistol, 2 pistol batteries,
-    a stimulator, and a dry ration.
-
-undecided-loadout-category-washington-proto-name = Prototype BoS Kit
-undecided-loadout-category-washington-proto-description =
-    A box with everything needed for a Brotherhood of Steel member.
-    Contains: 1 prototype AER14 laser rifle, 1 laser pistol, 3 rifle batteries,
-    2 pistol batteries, a stimulator, and a dry ration.
-
-undecided-loadout-category-washington-command-base-name = Standard BoS Command Kit
-undecided-loadout-category-washington-command-base-description =
-    A box with everything needed to command the Brotherhood of Steel.
-    Contains: 1 automatic laser rifle, 1 laser pistol, 3 high-capacity power cells,
-    2 small power cells, 1 stimpak, and 1 dry ration.
-
-undecided-loadout-category-washington-command-multi-name = Focused BoS Command Kit
-undecided-loadout-category-washington-command-multi-description =
-    A box with everything needed to command the Brotherhood of Steel.
-    Contains: 1 YK42B laser rifle, 1 laser pistol, 3 focused YK42B power cells,
-    2 small power cells, 1 stimpak, and 1 dry ration.
-
-undecided-loadout-category-washington-command-caster-name = Strike BoS Command Kit
-undecided-loadout-category-washington-command-caster-description =
-    A box with everything needed to command the Brotherhood of Steel.
-    Contains: 1 charging laser rifle, 1 laser pistol,
-    2 small power cells, 1 stimpak, and 1 dry ration.
-
-undecided-loadout-category-washington-command-wattz-name = Wattz BoS Command Kit
-undecided-loadout-category-washington-command-wattz-description =
-    A box with everything needed to command the Brotherhood of Steel.
-    Contains: 1 Wattz 3000 laser rifle, 1 laser pistol, 3 focused power cells,
-    2 small power cells, 1 stimpak, and 1 dry ration.
-
-undecided-loadout-category-washington-command-gatling-name = Gatling BoS Command Kit
-undecided-loadout-category-washington-command-gatling-description =
-    A box with everything needed to command the Brotherhood of Steel.
-    Contains: 1 gatling laser, 1 laser pistol, 1 fusion cell,
-    2 small power cells, 1 stimpak, and 1 dry ration.
-
-undecided-loadout-category-washington-scribe-engineer-name = BoS Scribe Engineer Kit
-undecided-loadout-category-washington-scribe-engineer-description =
-    A box with gear needed to maintain the base and perform technical work.
-    Contains: 1 automatic AER9 laser rifle, 1 laser pistol, 3 rifle batteries,
-    2 pistol batteries, 1 utility belt, engineering equipment,
-    a stimulator, and a dry ration.
-
-undecided-loadout-category-washington-scribe-medic-name = BoS Scribe Medic Kit
-undecided-loadout-category-washington-scribe-medic-description =
-    A box with gear needed to keep Brotherhood fighters alive.
-    Contains: 1 charging pistol, 1 medical belt, 1 kit for treating gunshot wounds,
-    1 scribe medical uniform, 1 knife, a stimulator, and a dry ration.
+#Misfits Change /Comment-out/: Washington BoS Corvax kit locale removed — will create new prototypes.
+## Washington BoS
+#undecided-loadout-category-washington-base-name = Standard BoS Kit
+#undecided-loadout-category-washington-base-description =
+#    A box with everything needed for a Brotherhood of Steel member.
+#    Contains: 1 automatic laser rifle, 1 laser pistol, 3 high-capacity power cells,
+#    2 small power cells, a stimulator, and a dry ration.
+#
+#undecided-loadout-category-washington-wattz-name = Wattz BoS Kit
+#undecided-loadout-category-washington-wattz-description =
+#    A box with everything needed for a Brotherhood of Steel member.
+#    Contains: 1 "Wattz 2000" laser rifle, 1 laser pistol, 2 focused power cells,
+#    2 small power cells, a stimulator, and a dry ration.
+#
+#undecided-loadout-category-washington-auto-name = Automatic BoS Kit
+#undecided-loadout-category-washington-auto-description =
+#    A box with everything needed for a Brotherhood of Steel member.
+#    Contains: 1 charging rifle, 1 laser pistol, 2 pistol batteries,
+#    a stimulator, and a dry ration.
+#
+#undecided-loadout-category-washington-proto-name = Prototype BoS Kit
+#undecided-loadout-category-washington-proto-description =
+#    A box with everything needed for a Brotherhood of Steel member.
+#    Contains: 1 prototype AER14 laser rifle, 1 laser pistol, 3 rifle batteries,
+#    2 pistol batteries, a stimulator, and a dry ration.
+#
+#undecided-loadout-category-washington-command-base-name = Standard BoS Command Kit
+#undecided-loadout-category-washington-command-base-description =
+#    A box with everything needed to command the Brotherhood of Steel.
+#    Contains: 1 automatic laser rifle, 1 laser pistol, 3 high-capacity power cells,
+#    2 small power cells, 1 stimpak, and 1 dry ration.
+#
+#undecided-loadout-category-washington-command-multi-name = Focused BoS Command Kit
+#undecided-loadout-category-washington-command-multi-description =
+#    A box with everything needed to command the Brotherhood of Steel.
+#    Contains: 1 YK42B laser rifle, 1 laser pistol, 3 focused YK42B power cells,
+#    2 small power cells, 1 stimpak, and 1 dry ration.
+#
+#undecided-loadout-category-washington-command-caster-name = Strike BoS Command Kit
+#undecided-loadout-category-washington-command-caster-description =
+#    A box with everything needed to command the Brotherhood of Steel.
+#    Contains: 1 charging laser rifle, 1 laser pistol,
+#    2 small power cells, 1 stimpak, and 1 dry ration.
+#
+#undecided-loadout-category-washington-command-wattz-name = Wattz BoS Command Kit
+#undecided-loadout-category-washington-command-wattz-description =
+#    A box with everything needed to command the Brotherhood of Steel.
+#    Contains: 1 Wattz 3000 laser rifle, 1 laser pistol, 3 focused power cells,
+#    2 small power cells, 1 stimpak, and 1 dry ration.
+#
+#undecided-loadout-category-washington-command-gatling-name = Gatling BoS Command Kit
+#undecided-loadout-category-washington-command-gatling-description =
+#    A box with everything needed to command the Brotherhood of Steel.
+#    Contains: 1 gatling laser, 1 laser pistol, 1 fusion cell,
+#    2 small power cells, 1 stimpak, and 1 dry ration.
+#
+#undecided-loadout-category-washington-scribe-engineer-name = BoS Scribe Engineer Kit
+#undecided-loadout-category-washington-scribe-engineer-description =
+#    A box with gear needed to maintain the base and perform technical work.
+#    Contains: 1 automatic AER9 laser rifle, 1 laser pistol, 3 rifle batteries,
+#    2 pistol batteries, 1 utility belt, engineering equipment,
+#    a stimulator, and a dry ration.
+#
+#undecided-loadout-category-washington-scribe-medic-name = BoS Scribe Medic Kit
+#undecided-loadout-category-washington-scribe-medic-description =
+#    A box with gear needed to keep Brotherhood fighters alive.
+#    Contains: 1 charging pistol, 1 medical belt, 1 kit for treating gunshot wounds,
+#    1 scribe medical uniform, 1 knife, a stimulator, and a dry ration.
 
 # Misfits Change /Fix/: restore missing undecided loadout localization entries used by Corvax and Forge kit prototypes.
 
@@ -317,27 +318,28 @@ undecided-loadout-category-elder-laser-description =
     3 focused YK42B power cells, 2 small magneto cells,
     1 roll of gauze, 1 stimpak, and 1 shrapnel grenade.
 
-# Midwest Brotherhood Inquisitors
-undecided-loadout-category-inquisitorinspector-name = Inquisitor Inspector Kit
-undecided-loadout-category-inquisitorinspector-description =
-    A box with investigative gear for a Brotherhood inquisitor.
-    Contains: 1 hunting revolver, 2 45-70 speedloaders,
-    1 box of 45-70 ammo, 1 ceremonial sword, 1 revolver belt,
-    2 stimpaks, 1 combat medkit, 1 K-ration box, and 1 roll of gauze.
-
-undecided-loadout-category-inquisitorcrusader-name = Inquisitor Crusader Kit
-undecided-loadout-category-inquisitorcrusader-description =
-    A box with frontline equipment for a Brotherhood inquisitor.
-    Contains: 1 5.56 carbine, 3 long rifle magazines, 1 box of 5.56 ammo,
-    1 Brotherhood webbing, 2 stimpaks, 1 K-ration box,
-    and 1 roll of gauze.
-
-undecided-loadout-category-inquisitorplasma-name = Inquisitor Laser Kit
-undecided-loadout-category-inquisitorplasma-description =
-    A box with heavy laser gear for a Brotherhood inquisitor.
-    Contains: 1 Wattz 3000 laser rifle, 3 focused power cells,
-    1 Brotherhood webbing, 2 stimpaks, 1 super stimpak,
-    1 K-ration box, 1 roll of gauze, and 1 ointment pack.
+# Misfits Change /Comment-out/: Inquisitor role removed — no Inquisitor chapter.
+# # Midwest Brotherhood Inquisitors
+# undecided-loadout-category-inquisitorinspector-name = Inquisitor Inspector Kit
+# undecided-loadout-category-inquisitorinspector-description =
+#     A box with investigative gear for a Brotherhood inquisitor.
+#     Contains: 1 hunting revolver, 2 45-70 speedloaders,
+#     1 box of 45-70 ammo, 1 ceremonial sword, 1 revolver belt,
+#     2 stimpaks, 1 combat medkit, 1 K-ration box, and 1 roll of gauze.
+#
+# undecided-loadout-category-inquisitorcrusader-name = Inquisitor Crusader Kit
+# undecided-loadout-category-inquisitorcrusader-description =
+#     A box with frontline equipment for a Brotherhood inquisitor.
+#     Contains: 1 5.56 carbine, 3 long rifle magazines, 1 box of 5.56 ammo,
+#     1 Brotherhood webbing, 2 stimpaks, 1 K-ration box,
+#     and 1 roll of gauze.
+#
+# undecided-loadout-category-inquisitorplasma-name = Inquisitor Laser Kit
+# undecided-loadout-category-inquisitorplasma-description =
+#     A box with heavy laser gear for a Brotherhood inquisitor.
+#     Contains: 1 Wattz 3000 laser rifle, 3 focused power cells,
+#     1 Brotherhood webbing, 2 stimpaks, 1 super stimpak,
+#     1 K-ration box, 1 roll of gauze, and 1 ointment pack.
 
 # NCR Military Police
 undecided-loadout-category-NCRMPMilitaryPolice-name = Military Police Kit

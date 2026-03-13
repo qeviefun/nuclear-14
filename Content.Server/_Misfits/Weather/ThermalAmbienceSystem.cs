@@ -18,6 +18,7 @@ using Content.Server.Temperature.Components;
 using Content.Server.Weather;
 using Content.Shared._NC14.DayNightCycle;
 using Content.Shared.Atmos;
+using Content.Shared.Ghost;
 using Content.Shared.Light.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
@@ -256,6 +257,9 @@ public sealed class ThermalAmbienceSystem : EntitySystem
                 continue;
             if (TryComp<MobStateComponent>(uid, out var mobState) && _mobState.IsDead(uid, mobState))
                 continue;
+            // Skip ghosts and aghosts — they have no physical body to feel temperature. #Misfits Fix
+            if (HasComp<GhostComponent>(uid))
+                continue;
 
             ProcessPlayerThermalFlavor(uid, actor.PlayerSession, tempComp);
         }
@@ -337,6 +341,9 @@ public sealed class ThermalAmbienceSystem : EntitySystem
             if (actor.PlayerSession.AttachedEntity != uid)
                 continue;
             if (TryComp<MobStateComponent>(uid, out var mobState) && _mobState.IsDead(uid, mobState))
+                continue;
+            // Skip ghosts and aghosts — they have no physical body to feel outdoor temperature. #Misfits Fix
+            if (HasComp<GhostComponent>(uid))
                 continue;
 
             // Look up which temperature tier the map this player is on is currently in.

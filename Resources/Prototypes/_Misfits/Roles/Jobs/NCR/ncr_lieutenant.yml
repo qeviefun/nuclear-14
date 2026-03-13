@@ -1,8 +1,8 @@
 - type: job
   id: NCRLT
   setPreference: true
-  hideWithoutJobWhitelist: true # #Misfits Change
-  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+  hideWithoutJobWhitelist: false # #Misfits Tweak - NCR LT accessible without whitelist
+  hideIfPlaytimeRequirementsNotMet: false # #Misfits Tweak - all jobs visible in selection
   jobWhitelistBypassesRoleTimers: true # #Misfits Change
   overrideConsoleVisibility: false
   canBeAntag: true
@@ -16,10 +16,10 @@
       - Ghoul
     - !type:CharacterDepartmentTimeRequirement
       department: NCR
-      min: 216000 # 60 hours Corvax-Change
+      min: 0 # #Misfits Tweak - NCR LT accessible to all
     - !type:CharacterPlaytimeRequirement # Corvax-Add
       tracker: NCRNCO
-      min: 43200 # 12 hours
+      min: 0 # #Misfits Tweak - NCR LT accessible to all
   weight: 110
   startingGear: NCRLTGear
   icon: "JobIconNcrLeader" # Corvax-Change

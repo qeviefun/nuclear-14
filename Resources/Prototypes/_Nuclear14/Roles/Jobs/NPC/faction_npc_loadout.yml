@@ -35,25 +35,26 @@
     head: N14ClothingHeadHatArmyCap
     gloves: N14ClothingHandsGlovesBrownBiker
 
-# Washington chapter NPCs
-- type: startingGear
-  id: WBoSInitiateNPC
-  equipment:
-    jumpsuit: N14ClothingUniformJumpsuitMechanic
-    outerClothing: N14ClothingOuterWBoSInitiateArmor
-    shoes: N14ClothingBootsBlack
-    mask: N14ClothingMaskBrownBalaclava
-    belt: ClothingBeltRope
-
-- type: startingGear
-  id: WBoSKnightNPC
-  equipment:
-    jumpsuit: N14ClothingUniformJumpsuitBOSRed
-    outerClothing: N14ClothingOuterWBoSKnightArmor
-    shoes: N14ClothingBootsBlack
-    head: N14ClothingHeadHatBrotherhoodBeret
-    mask: N14ClothingMaskBlackBalaclava
-    gloves: N14ClothingHandsGlovesBlackBiker
+#Misfits Change /Comment-out/: Washington chapter NPCs removed — will create new prototypes.
+## Washington chapter NPCs
+#- type: startingGear
+#  id: WBoSInitiateNPC
+#  equipment:
+#    jumpsuit: N14ClothingUniformJumpsuitMechanic
+#    outerClothing: N14ClothingOuterWBoSInitiateArmor
+#    shoes: N14ClothingBootsBlack
+#    mask: N14ClothingMaskBrownBalaclava
+#    belt: ClothingBeltRope
+#
+#- type: startingGear
+#  id: WBoSKnightNPC
+#  equipment:
+#    jumpsuit: N14ClothingUniformJumpsuitBOSRed
+#    outerClothing: N14ClothingOuterWBoSKnightArmor
+#    shoes: N14ClothingBootsBlack
+#    head: N14ClothingHeadHatBrotherhoodBeret
+#    mask: N14ClothingMaskBlackBalaclava
+#    gloves: N14ClothingHandsGlovesBlackBiker
 
 # NCR Army NPCs
 - type: startingGear

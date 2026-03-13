@@ -130,11 +130,12 @@ trait-description-N14PetDogMBoS =
     Your little buddy was taught tactics and has a vest to keep him safe. You might even be able to store stuff in it.
     (The trait creates a ghost role for another player, there is guarantee that someone takes it.)
 
-trait-name-N14PetDogWBoS = Cybernetic Dog
-trait-description-N14PetDogWBoS =
-    You (might) have a cybernetic canine that follows and obeys you.
-    This dog is not your best friend, it's a mutilated killing machine. At least it's immune to radiation poisoning.
-    (The trait creates a ghost role for another player, there is guarantee that someone takes it.)
+#Misfits Change /Comment-out/: Washington BoS pet traits removed — will create new prototypes.
+#trait-name-N14PetDogWBoS = Cybernetic Dog
+#trait-description-N14PetDogWBoS =
+#    You (might) have a cybernetic canine that follows and obeys you.
+#    This dog is not your best friend, it's a mutilated killing machine. At least it's immune to radiation poisoning.
+#    (The trait creates a ghost role for another player, there is guarantee that someone takes it.)
 
 trait-name-N14PetEyebot = Eyebot Follower
 trait-description-N14PetEyebot =
@@ -148,11 +149,12 @@ trait-description-N14PetEyebotMBoS =
     It cannot carry stuff for you, but has a laser weapon and can play tunes from the town's frequency.
     (The trait creates a ghost role for another player, there is guarantee that someone takes it.)
 
-trait-name-N14PetEyebotWBoS = Eyebot Follower
-trait-description-N14PetEyebotWBoS =
-    You (might) have an Eyebot that follows and obeys you.
-    It cannot carry stuff for you, but has a laser weapon and can play tunes from the town's frequency.
-    (The trait creates a ghost role for another player, there is guarantee that someone takes it.)
+#Misfits Change /Comment-out/: Washington BoS eyebot trait removed — will create new prototypes.
+#trait-name-N14PetEyebotWBoS = Eyebot Follower
+#trait-description-N14PetEyebotWBoS =
+#    You (might) have an Eyebot that follows and obeys you.
+#    It cannot carry stuff for you, but has a laser weapon and can play tunes from the town's frequency.
+#    (The trait creates a ghost role for another player, there is guarantee that someone takes it.)
 
 trait-name-N14PillowKnuckles = Pillow Knuckles
 trait-description-N14PillowKnuckles =

@@ -50,36 +50,42 @@
           NCRCaptain: [ 1, 1 ]
           NCRLT: [ 1, 1 ]
           RangerVeteran: [ 1, 1 ]
-          Ranger: [ 2, 2 ]
+          Ranger: [ 1, 1 ]
           RangerRecruit: [ 1, 1 ]
           NCRFirstSergeant: [ 1, 1 ]
           NCRStaffSergeant: [ 1, 1 ]
           NCRSGT: [ 1, 1 ]
-          NCRWS: [ 1, 1 ]
-          NCREngineer: [ 2, 2 ]
+          NCRWS: [ 3, 3 ] # #Misfits Tweak - increased: absorbs Engineer (2) + Medic (1) slots
+          #NCREngineer: [ 2, 2 ] #Misfits Change /Comment-out/: consolidated into Specialist
           NCRDoctor: [ 1, 1 ]
-          NCRMedic: [ 1, 1 ]
-          NCRPrivateFirstClass: [ 2, 2 ]
+          #NCRMedic: [ 1, 1 ] #Misfits Change /Comment-out/: consolidated into Specialist
+          NCRPrivateFirstClass: [ 4, 4 ]
           NCRSoldier: [ 4, 4 ]
-          NCRCadet: [ 5, 5 ]
-          NCRPisoner : [ 3, 3 ]
+          NCRCadet: [ 6, 6 ]
+          NCRPisoner : [ 2, 2 ]
           NCRMPinvestigator : [ 1, 1 ]
           # CaravanLeader: [ 1, 1 ]
           # CaravanTrader: [ 1, 1 ]
           # CaravanGuard: [ 2, 2 ]
           BoSWestElderCommander: [ 1, 1 ] # Misfits Change
-          BoSWashingtonCommander: [ 1, 1 ] # Misfits Change
-          BoSWashingtonPaladin: [ 1, 1 ] # #Misfits Change - activated
-          BoSWashingtonScribe: [ 2, 1 ] # #Misfits Change - activated
-          BoSWashingtonKnight: [ 2, 2 ] # #Misfits Change - activated
+          #Misfits Change /Comment-out/: Washington BoS map spawners removed.
+          # BoSWashingtonCommander: [ 1, 1 ]
+          # BoSWashingtonPaladin: [ 1, 1 ]
+          # BoSWashingtonScribe: [ 2, 1 ]
+          # BoSWashingtonKnight: [ 2, 2 ]
           # BoSWashingtonInitiate: [ 0, 2 ]
           BoSMidPaladinCommander: [ 1, 1 ]
+          BoSHeadKnight: [ 1, 1 ]  #Misfits Change /Add/: New consolidated BoS jobs
           BoSWestScribe: [ 1, 1 ] # Misfits Change
-          BoSMidPaladin: [ 2, 3 ]
-          BoSMidKnight: [ 2, 3 ]
-          BoSMidScribe: [ 1, 2 ]
-          BoSMidSquire: [ 2, 2 ]
-          BoSWashingtonInitiate: [ 3, 3 ]
+          BoSMidPaladin: [ 2, 2 ]
+          BoSMidKnight: [ 3, 3 ]
+          BoSMidScribe: [ 3, 3 ]
+          BoSPaladin: [ 2, 2 ]  #Misfits Change /Add/
+          BoSKnight: [ 3, 3 ]  #Misfits Change /Add/
+          BoSScribe: [ 3, 3 ]  #Misfits Change /Add/
+          BoSMidSquire: [ 3, 3 ]
+          BoSInitiate: [ 3, 3 ]  #Misfits Change /Add/
+          # BoSWashingtonInitiate: [ 3, 3 ] #Misfits Change /Comment-out/: Washington BoS removed
           Overseer: [ 1, 1 ]
           VaultDoctor: [ 2, 2 ]
           VaultDweller: [ 4, 4 ]
@@ -98,9 +104,9 @@
           CaesarLegionExplorer: [ 1, 2 ] # Misfits-Legion
           CaesarLegionOrator: [ 1, 1 ] # Misfits-Legion
           CaesarLegionHoundmaster: [ 1, 1 ] # Forge-Legion
-          CaesarLegionRecruit: [ 2, 2 ] # Forge-Legion
-          CaesarLegionAuxilia: [ 2, 2 ] # #Misfits Change - activated
-          CaesarLegionSlave: [ 3, 3 ] # Forge-Legion
+          CaesarLegionRecruit: [ 6, 6 ] # Forge-Legion
+          CaesarLegionAuxilia: [ 4, 4 ] # #Misfits Change - activated
+          CaesarLegionSlave: [ 4, 4 ] # Forge-Legion
           Raider: [ 3, 3 ] # #Misfits Change - activated
           Followers: [ 2, 2 ]
           SyntheticMrHandy: [ 1, 2 ]

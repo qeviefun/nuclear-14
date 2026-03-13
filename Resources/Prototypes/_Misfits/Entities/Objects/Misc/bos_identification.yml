@@ -10,67 +10,68 @@
 # If you add a new BOS holotag entity that does NOT inherit from N14IDBrotherhoodWashingtonHolotagInitiate,
 # you must manually add the Tag component with IdCardBrotherhood.
 
-##MARK: Brotherhood Washington
-- type: entity
-  parent: N14IDPassportBlank
-  id: N14IDBrotherhoodWashingtonHolotagInitiate
-  name: initiate's holotags
-  description: An ID holotag worn by a Brotherhood initiate.
-  suffix: Initiate
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/identification.rsi
-    state: bos_holotag
-  - type: IdCard
-    nameLocId: n14-id-holotag-name
-    fullNameLocId: n14-id-holotag-full-name
-  - type: PresetIdCard
-    job: BoSWashingtonInitiate
-  - type: Tag
-    tags:
-    - IdCardBrotherhood  # enables BOS shared map - see tags.yml comment for full faction map checklist
-  - type: ClothingAddFaction
-    faction: BrotherhoodOfSteel
-
-- type: entity
-  parent: N14IDBrotherhoodWashingtonHolotagInitiate
-  id: N14IDBrotherhoodWashingtonHolotagScribe
-  name: scribe's holotags
-  description: An ID holotag worn by a Brotherhood scribe.
-  suffix: Scribe
-  components:
-  - type: PresetIdCard
-    job: BoSWashingtonScribe
-
-- type: entity
-  parent: N14IDBrotherhoodWashingtonHolotagInitiate
-  id: N14IDBrotherhoodWashingtonHolotagKnight
-  name: knight's holotags
-  description: An ID holotag worn by a Brotherhood knight.
-  suffix: Knight
-  components:
-  - type: PresetIdCard
-    job: BoSWashingtonKnight
-
-- type: entity
-  parent: N14IDBrotherhoodWashingtonHolotagInitiate
-  id: N14IDBrotherhoodWashingtonHolotagPaladin
-  name: paladin's holotags
-  description: An ID holotag worn by a Brotherhood paladin.
-  suffix: Paladin
-  components:
-  - type: PresetIdCard
-    job: BoSWashingtonPaladin
-
-- type: entity
-  parent: N14IDBrotherhoodWashingtonHolotagInitiate
-  id: N14IDBrotherhoodWashingtonHolotagCommander
-  name: head knight's holotags
-  description: An ID holotag worn by the Head Knight of the Brotherhood of Steel.
-  suffix: Head Knight
-  components:
-  - type: PresetIdCard
-    job: BoSWashingtonCommander
+#Misfits Change /Comment-out/: Washington BoS holotags removed — will create new prototypes.
+###MARK: Brotherhood Washington
+#- type: entity
+#  parent: N14IDPassportBlank
+#  id: N14IDBrotherhoodWashingtonHolotagInitiate
+#  name: initiate's holotags
+#  description: An ID holotag worn by a Brotherhood initiate.
+#  suffix: Initiate
+#  components:
+#  - type: Sprite
+#    sprite: _Nuclear14/Objects/Misc/identification.rsi
+#    state: bos_holotag
+#  - type: IdCard
+#    nameLocId: n14-id-holotag-name
+#    fullNameLocId: n14-id-holotag-full-name
+#  - type: PresetIdCard
+#    job: BoSWashingtonInitiate
+#  - type: Tag
+#    tags:
+#    - IdCardBrotherhood  # enables BOS shared map - see tags.yml comment for full faction map checklist
+#  - type: ClothingAddFaction
+#    faction: BrotherhoodOfSteel
+#
+#- type: entity
+#  parent: N14IDBrotherhoodWashingtonHolotagInitiate
+#  id: N14IDBrotherhoodWashingtonHolotagScribe
+#  name: scribe's holotags
+#  description: An ID holotag worn by a Brotherhood scribe.
+#  suffix: Scribe
+#  components:
+#  - type: PresetIdCard
+#    job: BoSWashingtonScribe
+#
+#- type: entity
+#  parent: N14IDBrotherhoodWashingtonHolotagInitiate
+#  id: N14IDBrotherhoodWashingtonHolotagKnight
+#  name: knight's holotags
+#  description: An ID holotag worn by a Brotherhood knight.
+#  suffix: Knight
+#  components:
+#  - type: PresetIdCard
+#    job: BoSWashingtonKnight
+#
+#- type: entity
+#  parent: N14IDBrotherhoodWashingtonHolotagInitiate
+#  id: N14IDBrotherhoodWashingtonHolotagPaladin
+#  name: paladin's holotags
+#  description: An ID holotag worn by a Brotherhood paladin.
+#  suffix: Paladin
+#  components:
+#  - type: PresetIdCard
+#    job: BoSWashingtonPaladin
+#
+#- type: entity
+#  parent: N14IDBrotherhoodWashingtonHolotagInitiate
+#  id: N14IDBrotherhoodWashingtonHolotagCommander
+#  name: head knight's holotags
+#  description: An ID holotag worn by the Head Knight of the Brotherhood of Steel.
+#  suffix: Head Knight
+#  components:
+#  - type: PresetIdCard
+#    job: BoSWashingtonCommander
 
 ##MARK: Brotherhood Midwest
 - type: entity
@@ -162,7 +163,7 @@
   suffix: Initiate
   components:
   - type: PresetIdCard
-    job: BoSWashingtonInitiate
+    job: BoSInitiate  #Misfits Change /Tweak/: Updated to new consolidated BoS Initiate job
 
 - type: entity
   parent: N14IDBrotherhoodOfSteelHolotagBase
@@ -182,7 +183,7 @@
   suffix: Scribe
   components:
   - type: PresetIdCard
-    job: BoSWashingtonScribe
+    job: BoSScribe  #Misfits Change /Tweak/: Updated to new consolidated BoS Scribe job
 
 - type: entity
   parent: N14IDBrotherhoodOfSteelHolotagBase
@@ -212,7 +213,7 @@
   suffix: Knight
   components:
   - type: PresetIdCard
-    job: BoSWashingtonKnight
+    job: BoSKnight  #Misfits Change /Tweak/: Updated to new consolidated BoS Knight job
 
 - type: entity
   parent: N14IDBrotherhoodOfSteelHolotagBase
@@ -232,7 +233,7 @@
   suffix: Head Knight
   components:
   - type: PresetIdCard
-    job: BoSWashingtonCommander
+    job: BoSHeadKnight  #Misfits Change /Tweak/: Updated to new consolidated BoS Head Knight job
 
 - type: entity
   parent: N14IDBrotherhoodOfSteelHolotagBase
@@ -242,7 +243,7 @@
   suffix: Paladin
   components:
   - type: PresetIdCard
-    job: BoSWashingtonPaladin
+    job: BoSPaladin  #Misfits Change /Tweak/: Updated to new consolidated BoS Paladin job
 
 - type: entity
   parent: N14IDBrotherhoodOfSteelHolotagBase
@@ -274,13 +275,13 @@
   - type: PresetIdCard
     job: BoSWestElderCommander
 
-##MARK: NCR WS Dogtag
+##MARK: NCR Specialist Dogtag # #Misfits Tweak - renamed from WS/Corporal
 - type: entity
   parent: N14IDNCRDogtag
   id: N14IDNCRDogtagWS
-  name: weapon specialist's dogtags
-  description: An ID dogtag worn by decently ranking members of the NCR.
-  suffix: WS
+  name: specialist's dogtags
+  description: An ID dogtag worn by NCR specialists.
+  suffix: Specialist
   components:
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/identification.rsi

@@ -138,8 +138,8 @@
   - !type:CharacterJobRequirement
     jobs:
     - NCRSoldier
-    - NCREngineer
-    - NCRMedic
+    #- NCREngineer #Misfits Change /Comment-out/: consolidated into Specialist
+    #- NCRMedic #Misfits Change /Comment-out/: consolidated into Specialist
     - NCRWS
   items:
   - N14ClothingOuterNCRVestDesertCoat
@@ -156,8 +156,8 @@
   - !type:CharacterJobRequirement
     jobs:
     - NCRSoldier
-    - NCREngineer
-    - NCRMedic
+    #- NCREngineer #Misfits Change /Comment-out/: consolidated into Specialist
+    #- NCRMedic #Misfits Change /Comment-out/: consolidated into Specialist
     - NCRWS
   - !type:CharacterPlaytimeRequirement
     tracker: NCRSoldier
@@ -177,8 +177,8 @@
   - !type:CharacterJobRequirement
     jobs:
     - NCRSoldier
-    - NCREngineer
-    - NCRMedic
+    #- NCREngineer #Misfits Change /Comment-out/: consolidated into Specialist
+    #- NCRMedic #Misfits Change /Comment-out/: consolidated into Specialist
     - NCRWS
   - !type:CharacterPlaytimeRequirement
     tracker: NCRSoldier

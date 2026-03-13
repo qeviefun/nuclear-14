@@ -33,19 +33,25 @@
   - BoSWestElderCommander        # Elder          | _Misfits/Roles/Jobs/BrotherhoodOfSteel/bos_elder.yml
   # Head Officers
   - BoSMidPaladinCommander       # Head Paladin   | _Misfits/Roles/Jobs/BrotherhoodOfSteel/bos_headpaladin.yml
-  - BoSWashingtonCommander       # Head Knight    | _Misfits/Roles/Jobs/BrotherhoodOfSteel/bos_headknight.yml
+  #Misfits Change /Comment-out/: Washington BoS jobs removed from faction — prototypes commented out.
+  #- BoSWashingtonCommander       # Head Knight (old Washington)
+  - BoSHeadKnight                # Head Knight    | _Misfits/Roles/Jobs/BrotherhoodOfSteel/bos_headknight.yml  #Misfits Change /Add/
   - BoSWestScribe                # Head Scribe    | _Misfits/Roles/Jobs/BrotherhoodOfSteel/bos_headscribe.yml
   # Senior Members
   - BoSMidPaladin                # Senior Paladin | _Misfits/Roles/Jobs/BrotherhoodOfSteel/bos_seniorpaladin.yml
   - BoSMidKnight                 # Senior Knight  | _Misfits/Roles/Jobs/BrotherhoodOfSteel/bos_seniorknight.yml
   - BoSMidScribe                 # Senior Scribe  | _Misfits/Roles/Jobs/BrotherhoodOfSteel/bos_seniorscribe.yml
   # Members
-  - BoSWashingtonPaladin         # Paladin        | _Misfits/Roles/Jobs/BrotherhoodOfSteel/bos_paladin.yml
-  - BoSWashingtonKnight          # Knight         | _Misfits/Roles/Jobs/BrotherhoodOfSteel/bos_knight.yml
-  - BoSWashingtonScribe          # Scribe         | _Misfits/Roles/Jobs/BrotherhoodOfSteel/bos_scribe.yml
+  #- BoSWashingtonPaladin         # Paladin (old Washington)
+  #- BoSWashingtonKnight          # Knight (old Washington)
+  #- BoSWashingtonScribe          # Scribe (old Washington)
+  - BoSPaladin                   # Paladin        | _Misfits/Roles/Jobs/BrotherhoodOfSteel/bos_paladin.yml  #Misfits Change /Add/
+  - BoSKnight                    # Knight         | _Misfits/Roles/Jobs/BrotherhoodOfSteel/bos_knight.yml  #Misfits Change /Add/
+  - BoSScribe                    # Scribe         | _Misfits/Roles/Jobs/BrotherhoodOfSteel/bos_scribe.yml  #Misfits Change /Add/
   # Recruits
   - BoSMidSquire                 # Squire         | _Misfits/Roles/Jobs/BrotherhoodOfSteel/bos_squire.yml
-  - BoSWashingtonInitiate        # Initiate       | _Misfits/Roles/Jobs/BrotherhoodOfSteel/bos_initiate.yml
+  #- BoSWashingtonInitiate        # Initiate (old Washington)
+  - BoSInitiate                  # Initiate       | _Misfits/Roles/Jobs/BrotherhoodOfSteel/bos_initiate.yml  #Misfits Change /Add/
 
 #- type: department
 #  id: CaravanCompany
@@ -66,13 +72,13 @@
   - NCRLT                # NCR Lieutenant          | _Misfits/Roles/Jobs/NCR/ncr_lieutenant.yml
   - NCRDoctor            # NCR Medical Doctor      | _Misfits/Roles/Jobs/NCR/ncr_doctor.yml
   # NCOs
-  - NCRFirstSergeant     # NCR First Sergeant      | _Misfits/Roles/Jobs/NCR/ncr_first_sergeant.yml
+  - NCRFirstSergeant     # NCR Sergeant First Class | _Misfits/Roles/Jobs/NCR/ncr_first_sergeant.yml
   - NCRStaffSergeant     # NCR Staff Sergeant      | _Misfits/Roles/Jobs/NCR/ncr_staff_sergeant.yml
   - NCRSGT               # NCR Sergeant            | _Misfits/Roles/Jobs/NCR/ncr_sergeant.yml
   # Enlisted
-  - NCRWS                # NCR Corporal            | _Misfits/Roles/Jobs/NCR/ncr_corporal.yml
-  - NCRMedic             # NCR Medic               | _Misfits/Roles/Jobs/NCR/ncr_medic.yml
-  - NCREngineer          # NCR Engineer            | _Misfits/Roles/Jobs/NCR/ncr_engineer.yml
+  - NCRWS                # NCR Specialist          | _Misfits/Roles/Jobs/NCR/ncr_corporal.yml
+  #- NCRMedic             # NCR Medic (consolidated into Specialist) #Misfits Change /Comment-out/
+  #- NCREngineer          # NCR Engineer (consolidated into Specialist) #Misfits Change /Comment-out/
   - NCRPrivateFirstClass # NCR Private First Class | _Misfits/Roles/Jobs/NCR/ncr_private_first_class.yml
   - NCRSoldier           # NCR Private             | _Misfits/Roles/Jobs/NCR/ncr_private.yml
   - NCRCadet             # NCR Recruit             | _Misfits/Roles/Jobs/NCR/ncr_recruit.yml

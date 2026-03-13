@@ -1,32 +1,33 @@
-- type: entity
-  parent: N14DoorBunker
-  id: N14CorvaxDoorBunkerLockedBoSWashingtonInitiate
-  suffix: Corvax, BoSWashinton, Locked, Initiate
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ CorvaxDoorElectronicsBOSWashingtonInitiate ]
-  - type: Wires
-    layoutId: HighSec
-
-- type: entity
-  parent: N14DoorBunkerGlass
-  id: N14DoorBunkerGlassLockedBoSWashingtonInitiate
-  suffix: Corvax, BoSWashinton, Locked, Initiate
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ CorvaxDoorElectronicsBOSWashingtonInitiate ]
-  - type: Wires
-    layoutId: HighSec
-
-- type: entity
-  parent: DoorElectronics
-  id: CorvaxDoorElectronicsBOSWashingtonInitiate
-  suffix: BOSW Initiate, Locked
-  components:
-  - type: AccessReader
-    access: [["WashingtonInitiate"]]
+#Misfits Change /Comment-out/: Washington BoS door entities removed — will create new prototypes.
+#- type: entity
+#  parent: N14DoorBunker
+#  id: N14CorvaxDoorBunkerLockedBoSWashingtonInitiate
+#  suffix: Corvax, BoSWashinton, Locked, Initiate
+#  components:
+#  - type: ContainerFill
+#    containers:
+#      board: [ CorvaxDoorElectronicsBOSWashingtonInitiate ]
+#  - type: Wires
+#    layoutId: HighSec
+#
+#- type: entity
+#  parent: N14DoorBunkerGlass
+#  id: N14DoorBunkerGlassLockedBoSWashingtonInitiate
+#  suffix: Corvax, BoSWashinton, Locked, Initiate
+#  components:
+#  - type: ContainerFill
+#    containers:
+#      board: [ CorvaxDoorElectronicsBOSWashingtonInitiate ]
+#  - type: Wires
+#    layoutId: HighSec
+#
+#- type: entity
+#  parent: DoorElectronics
+#  id: CorvaxDoorElectronicsBOSWashingtonInitiate
+#  suffix: BOSW Initiate, Locked
+#  components:
+#  - type: AccessReader
+#    access: [["WashingtonInitiate"]]
 
 #MARK: BoS Midwest 3X
 - type: entity

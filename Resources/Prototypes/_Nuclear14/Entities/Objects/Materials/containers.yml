@@ -50,6 +50,13 @@
     solution: tank
   - type: ExaminableSolution
     solution: tank
+  #Misfits Fix - added SolutionTransfer so clicking a RefillableSolution target (e.g. generator) transfers fuel
+  - type: SolutionTransfer
+    canSend: true
+    canReceive: false
+    canChangeTransferAmount: true
+    maxTransferAmount: 250
+    transferAmount: 50
   - type: ReagentTank
     tankType: Fuel
   - type: DamageOnToolInteract

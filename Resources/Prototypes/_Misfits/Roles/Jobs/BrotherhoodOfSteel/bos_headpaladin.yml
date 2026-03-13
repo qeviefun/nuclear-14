@@ -1,8 +1,8 @@
 - type: job
   id: BoSMidPaladinCommander
   setPreference: true
-  hideWithoutJobWhitelist: true # #Misfits Change
-  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+  hideWithoutJobWhitelist: false # #Misfits Tweak - BoS Heads not whitelisted
+  hideIfPlaytimeRequirementsNotMet: false # #Misfits Tweak - all jobs visible in selection
   jobWhitelistBypassesRoleTimers: true # #Misfits Change
   weight: 110
   showBorder: true
@@ -17,10 +17,10 @@
       - Human
     - !type:CharacterDepartmentTimeRequirement
       department: BrotherhoodOfSteel
-      min: 216000 # 60 hours Corvax-Change
-    - !type:CharacterPlaytimeRequirement # Corvax-Add
+      min: 0 # #Misfits Tweak - gated by Senior Paladin role time instead
+    - !type:CharacterPlaytimeRequirement # #Misfits Tweak - 20 hours as Senior Paladin to unlock Head Paladin
       tracker: BoSMidPaladin
-      min: 43200 # 12 hours
+      min: 72000 # 20 hours
     - !type:CharacterLogicOrRequirement
       requirements:
         - !type:CharacterSpeciesRequirement
@@ -43,17 +43,17 @@
 - type: startingGear
   id: BoSMidPaladinCommanderGear
   equipment:
-    jumpsuit: N14ClothingUniformBosRecon
-    back: N14ClothingBackpackMilitary # Corvax-Change
+    jumpsuit: N14ClothingUniformBosRecon  #Misfits Change /Tweak/: New consolidated BoS gear
+    back: N14ClothingBackpackMilitary
     shoes: N14ClothingBootsLeatherFilled
-    head:  N14ClothingHeadHatBrotherhoodFieldCap
-    outerClothing: N14ClothingOuterPowerArmorT51
+    head: N14ClothingHeadHatBeretknighBoS
+    outerClothing: N14ClothingOuterPowerArmorWashT51Elite #Misfits Tweak: Head Paladin wears T-51b (was T-51BC commander)
     hands: N14ClothingHandsGlovesCombat
     pocket1: BoSBrotherhoodHeadPaladinKits
     id: N14IDBrotherhoodOfSteelHolotagHeadPaladin
     ears: N14ClothingHeadsetBrotherhoodOfSteel
-    belt: ClothingBeltMilitary
-  storage: # Corvax-Change
+    belt: N14ClothingBeltBoSWebbing
+  storage:
     back:
     - N14BoxPlasticFilledMilitary
 

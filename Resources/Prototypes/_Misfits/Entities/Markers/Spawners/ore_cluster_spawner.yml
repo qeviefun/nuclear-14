@@ -1,0 +1,56 @@
+# Misfits Add - Procedural ore cluster spawner marker entities.
+# Place one (or more) of these on Wendover wherever a mining zone should appear.
+# On MapInit they generate a random-shaped rock blob on unoccupied tiles,
+# then delete themselves — no persistent entity, fresh layout every round.
+
+# Base abstract (override wallEntity / radii / fillChance in children as needed)
+- type: entity
+  id: MisfitsOreClusterSpawnerBase
+  abstract: true
+  name: ore cluster spawner
+  description: Invisible procedural rock cluster marker. Places mineable rock entities on round start.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    visible: false  # invisible in-world; only visible in the map editor
+
+# Default: drought rock walls matching Wendover's aesthetic, ~4–9 tile radius
+- type: entity
+  id: MisfitsOreClusterSpawner
+  parent: MisfitsOreClusterSpawnerBase
+  suffix: Drought Rock
+  components:
+  - type: MisfitsOreClusterSpawner
+    wallEntity: N14WallRockDroughtSlantedMining
+    minRadius: 4
+    maxRadius: 9
+    fillChance: 0.65
+
+# Smaller variant (~2–5 tile radius) for tight mining pockets
+- type: entity
+  id: MisfitsOreClusterSpawnerSmall
+  parent: MisfitsOreClusterSpawnerBase
+  suffix: Drought Rock Small
+  components:
+  - type: MisfitsOreClusterSpawner
+    wallEntity: N14WallRockDroughtSlantedMining
+    minRadius: 2
+    maxRadius: 5
+    fillChance: 0.70
+
+# Dense variant — higher fill for solid-looking cave walls
+- type: entity
+  id: MisfitsOreClusterSpawnerDense
+  parent: MisfitsOreClusterSpawnerBase
+  suffix: Drought Rock Dense
+  components:
+  - type: MisfitsOreClusterSpawner
+    wallEntity: N14WallRockDroughtSlantedMining
+    minRadius: 5
+    maxRadius: 9
+    fillChance: 0.85

@@ -44,7 +44,7 @@ The NCR believes in democracy, organized law enforcement, and expansion by diplo
 
 <ColorBox Color="#fbc02d">
   <Box Margin="2">
-  [bold]First Sergeant[/bold]
+  [bold]Sergeant First Class[/bold]
   </Box>
 </ColorBox>
 <Box>
@@ -57,7 +57,7 @@ The NCR believes in democracy, organized law enforcement, and expansion by diplo
   </Box>
 </ColorBox>
 <Box>
-[color=#a4885c]Your role:[/color] Senior squad leader. Lead your troops in the field, coordinate with the First Sergeant, and handle the mid-level decisions that keep small-unit operations running. You have enough rank to make things happen without waiting for permission.
+[color=#a4885c]Your role:[/color] Senior squad leader. Lead your troops in the field, coordinate with the Sergeant First Class, and handle the mid-level decisions that keep small-unit operations running. You have enough rank to make things happen without waiting for permission.
 </Box>
 
 <ColorBox Color="#fbc02d">
@@ -73,29 +73,11 @@ The NCR believes in democracy, organized law enforcement, and expansion by diplo
 
 <ColorBox Color="#fbc02d">
   <Box Margin="2">
-  [bold]Corporal[/bold]
+  [bold]Specialist[/bold]
   </Box>
 </ColorBox>
 <Box>
-[color=#a4885c]Your role:[/color] Lead enlisted soldier. Carry out Sergeant-level orders and help mentor newer Privates. When the Sergeant is occupied, you keep the squad moving. Your experience is trusted — use it.
-</Box>
-
-<ColorBox Color="#fbc02d">
-  <Box Margin="2">
-  [bold]Engineer[/bold]
-  </Box>
-</ColorBox>
-<Box>
-[color=#a4885c]Your role:[/color] Maintain NCR equipment and manage field fortifications. When weapons malfunction or defensive positions need building, it falls to you. The detachment's operational readiness depends on your work.
-</Box>
-
-<ColorBox Color="#fbc02d">
-  <Box Margin="2">
-  [bold]Medic[/bold]
-  </Box>
-</ColorBox>
-<Box>
-[color=#a4885c]Your role:[/color] Field medical support. Keep soldiers alive and in the fight. When authorized, extend aid to civilian allies — a well-timed stimpak earns loyalty that no patrol can buy.
+[color=#a4885c]Your role:[/color] Trained specialist serving in combat, engineering, or medical roles as needed. Pick your loadout to match the mission — whether that means holding the line with heavy weapons, building fortifications, or keeping soldiers alive in the field. Your versatility is what makes the NCR work.
 </Box>
 
 <ColorBox Color="#fbc02d">

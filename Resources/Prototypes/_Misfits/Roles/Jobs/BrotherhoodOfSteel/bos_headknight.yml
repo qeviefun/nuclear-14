@@ -1,26 +1,82 @@
+#Misfits Change /Comment-out/: Washington BoS Commander job removed — will create new prototypes.
+#- type: job
+#  id: BoSWashingtonCommander
+#  setPreference: true
+#  hideWithoutJobWhitelist: true # #Misfits Change
+#  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+#  jobWhitelistBypassesRoleTimers: true # #Misfits Change
+#  weight: 100
+#  overrideConsoleVisibility: false
+#  canBeAntag: true
+#  name: job-name-bos-washington-commander
+#  description: job-description-bos-washington-commander
+#  playTimeTracker: BoSWashingtonCommander
+#  requirements:
+#    - !type:CharacterSpeciesRequirement
+#      species:
+#      - Human
+#    - !type:CharacterDepartmentTimeRequirement
+#      department: BrotherhoodOfSteel
+#      min: 72000 #20 hours
+#  startingGear: BoSWashingtonCommanderGear
+#  alwaysUseSpawner: true
+#  icon: "JobIconHeadOfSecurity"
+#  supervisors: job-supervisors-bos-wash-commander
+#  requireAdminNotify: true
+#  accessGroups:
+#  - BOSHeadKnight
+#  special:
+#  - !type:AddComponentSpecial
+#    components:
+#      - type: NpcFactionMember
+#        factions:
+#          - BrotherhoodOfSteel
+#
+#- type: startingGear
+#  id: BoSWashingtonCommanderGear
+#  equipment:
+#    jumpsuit: N14ClothingUniformJumpsuitBOSBlack
+#    back: N14ClothingBackpackSatchelMilitaryFilled
+#    shoes: N14ClothingBootsLeatherFilled
+#    neck: N14ClothingNeckCloakBrotherhoodWashington
+#    outerClothing: N14ClothingOuterCombatArmorCaptainBOS
+#    head: N14ClothingHeadHatBrotherhoodFieldCap
+#    id: N14IDBrotherhoodOfSteelHolotagHeadKnight
+#    ears: N14ClothingHeadsetBrotherhoodOfSteel
+#    belt: ClothingBeltBoSWebbing
+#    pocket1: BoSBrotherhoodHeadKnightKits
+#
+#- type: playTimeTracker
+#  id: BoSWashingtonCommander
+
+#Misfits Change /Add/: New consolidated Brotherhood Head Knight job.
 - type: job
-  id: BoSWashingtonCommander
+  id: BoSHeadKnight
   setPreference: true
-  hideWithoutJobWhitelist: true # #Misfits Change
-  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
-  jobWhitelistBypassesRoleTimers: true # #Misfits Change
+  hideWithoutJobWhitelist: false # #Misfits Tweak - BoS Heads not whitelisted
+  hideIfPlaytimeRequirementsNotMet: false # #Misfits Tweak - all jobs visible in selection
+  jobWhitelistBypassesRoleTimers: true
   weight: 100
+  #showBorder: true #Misfits Tweak: Removed border so head ranks group together visually
   overrideConsoleVisibility: false
-  canBeAntag: true
-  name: job-name-bos-washington-commander
-  description: job-description-bos-washington-commander
-  playTimeTracker: BoSWashingtonCommander
+  canBeAntag: false
+  name: job-name-bos-headknight
+  description: job-description-bos-headknight
+  playTimeTracker: BoSHeadKnight
   requirements:
     - !type:CharacterSpeciesRequirement
       species:
       - Human
     - !type:CharacterDepartmentTimeRequirement
       department: BrotherhoodOfSteel
-      min: 72000 #20 hours
-  startingGear: BoSWashingtonCommanderGear
+      min: 0 # #Misfits Tweak - gated by Senior Knight role time instead
+    - !type:CharacterPlaytimeRequirement # #Misfits Tweak - 20 hours as Senior Knight to unlock Head Knight
+      tracker: BoSMidKnight
+      min: 72000 # 20 hours
+  startingGear: BoSHeadKnightGear
   alwaysUseSpawner: true
-  icon: "JobIconHeadOfSecurity"
-  supervisors: job-supervisors-bos-wash-commander
+  icon: "JobIconBosMKnight"
+  supervisors: job-supervisors-bos-headknight
   requireAdminNotify: true
   accessGroups:
   - BOSHeadKnight
@@ -32,18 +88,22 @@
           - BrotherhoodOfSteel
 
 - type: startingGear
-  id: BoSWashingtonCommanderGear
+  id: BoSHeadKnightGear
   equipment:
-    jumpsuit: N14ClothingUniformJumpsuitBOSBlack
-    back: N14ClothingBackpackSatchelMilitaryFilled
+    jumpsuit: N14ClothingUniformJumpskirtBOSBlack
+    back: N14ClothingBackpackMilitary
     shoes: N14ClothingBootsLeatherFilled
-    neck: N14ClothingNeckCloakBrotherhoodWashington
+    head: N14ClothingHeadHatBeretknighBoS
     outerClothing: N14ClothingOuterCombatArmorCaptainBOS
-    head: N14ClothingHeadHatBrotherhoodFieldCap
+    hands: N14ClothingHandsGlovesCombat
+    pocket1: BoSBrotherhoodHeadKnightKits
     id: N14IDBrotherhoodOfSteelHolotagHeadKnight
     ears: N14ClothingHeadsetBrotherhoodOfSteel
     belt: ClothingBeltBoSWebbing
-    pocket1: BoSBrotherhoodHeadKnightKits
+  storage:
+    back:
+    - N14ClothingHeadHatBrotherhoodHelmetPaladin
+    - N14BoxPlasticFilledMilitary
 
 - type: playTimeTracker
-  id: BoSWashingtonCommander
+  id: BoSHeadKnight

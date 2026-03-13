@@ -1,4 +1,4 @@
-// #Misfits Add - arm/disarm verb cycle, armed-gate on step trigger, appearance sync, ambient beep, unanchor-block, knockdown
+// #Misfits Add - arm/disarm verb cycle, armed-gate on step trigger, appearance sync, ambient beep, unanchor-block, knockdown, thrown-item trigger
 using Content.Server.DoAfter;
 using Content.Server.Explosion.EntitySystems;
 using Content.Shared._Misfits.LandMines;
@@ -10,6 +10,7 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Popups;
 using Content.Shared.StepTrigger.Systems;
 using Content.Shared.Stunnable;
+using Content.Shared.Throwing;
 using Content.Shared.Verbs;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -43,6 +44,8 @@ public sealed class LandMineSystem : EntitySystem
         SubscribeLocalEvent<LandMineComponent, UnanchorAttemptEvent>(OnUnanchorAttempt);
         // #Misfits Add - optional knockdown on trigger (used by concussion mine)
         SubscribeLocalEvent<LandMineComponent, TriggerEvent>(HandleKnockdownTrigger);
+        // #Misfits Add - trigger when a thrown entity lands on an armed mine
+        SubscribeLocalEvent<LandMineComponent, ThrowHitByEvent>(HandleThrowHit);
     }
 
     private void HandleStepOnTriggered(EntityUid uid, LandMineComponent component, ref StepTriggeredOnEvent args)
@@ -65,6 +68,29 @@ public sealed class LandMineSystem : EntitySystem
     private static void HandleStepTriggerAttempt(EntityUid uid, LandMineComponent component, ref StepTriggerAttemptEvent args)
     {
         args.Continue = component.Armed;
+    }
+
+    // #Misfits Add - detonate when a thrown entity hits an armed, anchored mine
+    private void HandleThrowHit(EntityUid uid, LandMineComponent component, ThrowHitByEvent args)
+    {
+        // Only react when armed and still bolted to the floor
+        if (!component.Armed || !Transform(uid).Anchored)
+            return;
+
+        // Show the warning popup to the thrower if one exists
+        if (args.User is { } thrower)
+        {
+            _popupSystem.PopupCoordinates(
+                Loc.GetString("land-mine-triggered", ("mine", uid)),
+                Transform(uid).Coordinates,
+                thrower,
+                PopupType.LargeCaution);
+        }
+
+        _audioSystem.PlayPvs(component.Sound, uid);
+
+        // Pass the thrower as the event user so knockdown (if any) applies to them
+        _trigger.Trigger(uid, args.User);
     }
 
     // #Misfits Add - knock down the tripper if KnockdownDuration is configured (concussion mine)

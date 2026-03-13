@@ -2,7 +2,7 @@
 - type: job
   id: CaesarLegionAuxilia
   setPreference: true
-  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+  hideIfPlaytimeRequirementsNotMet: false # #Misfits Tweak - all jobs visible in selection
   jobWhitelistBypassesRoleTimers: true # #Misfits Change
   weight: 30
   name: job-name-caesar-legion-auxilia

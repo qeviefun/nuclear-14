@@ -2,6 +2,7 @@ using Content.Shared.Chemistry.Reagent;
 using Content.Shared.FixedPoint;
 using Content.Shared.Lathe.Prototypes;
 using Content.Shared.Materials;
+using Content.Shared.Roles; // #Misfits Add: for faction whitelist
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
@@ -77,5 +78,14 @@ namespace Content.Shared.Research.Prototypes
         /// </summary>
         [DataField]
         public uint MiningPoints;
+
+        /// <summary>
+        /// #Misfits Add: Optional faction whitelist (DepartmentPrototype IDs).
+        /// When non-empty, only players whose job belongs to one of these factions
+        /// are allowed to queue this recipe at a lathe.
+        /// Mirrors CraftingPrototype.AvailableFaction for the lathe queue system.
+        /// </summary>
+        [DataField]
+        public List<ProtoId<DepartmentPrototype>> AvailableFaction = new();
     }
 }

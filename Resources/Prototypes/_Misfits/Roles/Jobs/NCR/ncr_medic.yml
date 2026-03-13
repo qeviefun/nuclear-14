@@ -1,10 +1,11 @@
+#Misfits Change /Tweak/: NCR Medic role consolidated into NCR Specialist (NCRWS).
+#  Medic loadout kits (Surgeon, Doctor, Combat Medic) are now available in the Specialist's undecided loadout.
+#  NCRMedic access has been added to the Specialist job.
+#  Job kept defined but hidden so existing spawner/entity references don't break.
 - type: job
   id: NCRMedic
-  setPreference: true
-  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
-  jobWhitelistBypassesRoleTimers: true # #Misfits Change
-  weight: 90
-  overrideConsoleVisibility: true
+  setPreference: false # #Misfits Tweak - hidden from character creation, role consolidated into Specialist
+  overrideConsoleVisibility: false
   canBeAntag: false
   name: job-name-ncr-medic
   description: job-description-ncr-medic
@@ -14,9 +15,6 @@
       species:
       - Human
       - Ghoul
-    - !type:CharacterDepartmentTimeRequirement
-      department: NCR
-      min: 0 # 3 hours Corvax-Change
   startingGear: NCRMedicGear
   icon: "JobIconNcrMedic" # Corvax-Change
   supervisors: job-supervisors-ncr-sergeant

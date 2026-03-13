@@ -46,12 +46,13 @@
   category: Speech
   points: -2
   requirements:
-  - !type:CharacterTraitRequirement
-    inverted: true
-    traits:
-    - N14ExtremeAugKnight
-    - N14ExtremeAugScribe
-    - N14ExtremeAugPaladin
+  # Misfits Fix: CharacterTraitRequirement block removed — all referenced N14ExtremeAug* traits are commented out
+  #- !type:CharacterTraitRequirement
+  #  inverted: true
+  #  traits:
+  #  - N14ExtremeAugKnight
+  #  - N14ExtremeAugScribe
+  #  - N14ExtremeAugPaladin
   - !type:CharacterDepartmentRequirement
     departments:
     - BrotherhoodOfSteel
@@ -94,12 +95,12 @@
     # Forge-Change-Start
     - NCRMPinvestigator
     - NCRWS
-    - NCREngineer
-    - NCRMedic
+    #- NCREngineer #Misfits Change /Comment-out/: consolidated into Specialist
+    #- NCRMedic #Misfits Change /Comment-out/: consolidated into Specialist
     - NCRPrivateFirstClass
     - NCRSoldier
     - NCRCadet
-    - BoSMidInquisitor
+    #- BoSMidInquisitor # Misfits Fix: job prototype commented out
     - BoSMidScribe
     - BoSMidKnight
     - BoSMidSquire

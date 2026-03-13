@@ -87,7 +87,7 @@ public sealed partial class MaterialDisplay : PanelContainer
             {
                 Name = $"{sheetsToEject}",
                 Access = AccessLevel.Public,
-                Text = Loc.GetString($"{sheetsToEject}"),
+                Text = $"{sheetsToEject}", // #Misfits Fix: was Loc.GetString($"{sheetsToEject}") which logged WARN for "1"/"5"/"10" — plain numbers are not locale keys
                 MinWidth = 45,
                 StyleClasses = { styleClass }
             };

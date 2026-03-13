@@ -413,6 +413,18 @@
           state: rock_west
         - state: rock_salt
 
+# Misfits Add - Procedural ore vein variant for random distribution on Wendover
+- type: entity
+  id: N14WallRockMining
+  parent: N14WallRock
+  name: rock
+  suffix: Random Ore Yield
+  description: A rocky outcrop. Could be hiding something.
+  components:
+  - type: OreVein
+    oreChance: 0.33
+    oreRarityPrototypeId: RandomOreDistributionStandard
+
 # Basalt variants
 - type: entity
   id: N14WallRockBasalt
@@ -566,6 +578,18 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_wall_west
         - state: rock_salt
+
+# Misfits Add - Procedural ore vein variant for random distribution on Wendover
+- type: entity
+  id: N14WallRockBasaltMining
+  parent: N14WallRockBasalt
+  name: basalt
+  suffix: Random Ore Yield
+  description: A basalt outcrop. Could be hiding something.
+  components:
+  - type: OreVein
+    oreChance: 0.33
+    oreRarityPrototypeId: RandomOreDistributionStandard
 
 # Sand variants
 - type: entity
@@ -721,6 +745,18 @@
           state: rock_sand_west
         - state: rock_salt
 
+# Misfits Add - Procedural ore vein variant for random distribution on Wendover
+- type: entity
+  id: N14WallRockSandMining
+  parent: N14WallRockSand
+  name: sandstone
+  suffix: Random Ore Yield
+  description: A sandstone outcrop. Could be hiding something.
+  components:
+  - type: OreVein
+    oreChance: 0.33
+    oreRarityPrototypeId: RandomOreDistributionStandard
+
 # Andesite variants
 - type: entity
   id: N14WallRockAndesite
@@ -874,6 +910,18 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_andesite_west
         - state: rock_salt
+
+# Misfits Add - Procedural ore vein variant for random distribution on Wendover
+- type: entity
+  id: N14WallRockAndesiteMining
+  parent: N14WallRockAndesite
+  name: andesite
+  suffix: Random Ore Yield
+  description: An andesite outcrop. Could be hiding something.
+  components:
+  - type: OreVein
+    oreChance: 0.33
+    oreRarityPrototypeId: RandomOreDistributionStandard
 
 # Cold Mountain Rock.
 - type: entity

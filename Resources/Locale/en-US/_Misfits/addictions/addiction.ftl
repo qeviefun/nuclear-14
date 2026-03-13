@@ -24,6 +24,10 @@ addiction-drug-fading-nearly   = Your craving for { $drug } is almost gone.
 addiction-drug-clean           = The last of your { $drug } craving fades away.
 
 # Guidebook descriptions
+reagent-effect-guidebook-overdose-toxic = { $chance ->
+    [1] Causes
+    *[other] cause
+} toxic poisoning when taken in excess
 reagent-effect-guidebook-addicted = { $chance ->
     [1] Causes
     *[other] cause

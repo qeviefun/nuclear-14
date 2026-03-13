@@ -46,22 +46,22 @@
         - NCRStaffSergeant
         - NCRSGT
         - NCRWS
-        - NCREngineer
+        #- NCREngineer #Misfits Change /Comment-out/: consolidated into Specialist
         - NCRPrivateFirstClass
         - NCRSoldier
         - NCRCadet
 #        - CaravanGuard
-        - BoSWashingtonCommander
-        - BoSWashingtonPaladin
-        - BoSWashingtonKnight
-        - BoSWashingtonInitiate
+        #- BoSWashingtonCommander #Misfits Change /Comment-out/: Washington BoS removed
+        #- BoSWashingtonPaladin
+        #- BoSWashingtonKnight
+        #- BoSWashingtonInitiate
         - BoSMidPaladinCommander
         - BoSMidPaladin
         - BoSMidKnight
         - BoSMidSquire
         # Forge-Change-Start
         - NCRMPinvestigator
-        - BoSMidInquisitor
+        #- BoSMidInquisitor # Misfits Fix: job prototype commented out
         - BoSWestElderCommander
         - CaesarLegionCenturion
         - CaesarLegionLegate
@@ -107,8 +107,8 @@
         - TribalHealer
         - TownDoctor
         - NCRDoctor
-        - NCRMedic
-        - BoSWashingtonScribe
+        #- NCRMedic #Misfits Change /Comment-out/: consolidated into Specialist
+        #- BoSWashingtonScribe #Misfits Change /Comment-out/: Washington BoS removed
         - BoSMidScribe
         - VaultDoctor
         - Followers # Forge-Change
@@ -278,27 +278,28 @@
         - type: GhostRoleMobSpawner
           prototype: N14MobPetEyebotMBoS
 
-- type: trait
-  id: N14PetEyebotWBoS
-  category: Mental
-  points: -6
-  requirements:
-    - !type:CharacterDepartmentRequirement
-      departments:
-        - BrotherhoodOfSteel
-    - !type:CharacterTraitRequirement
-      inverted: true
-      traits:
-        - N14PetDogWBoS
-  functions:
-    - !type:TraitAddComponent
-      components:
-        - type: GhostRole
-          name: ghost-role-information-n14pet-eyebot-wbos-name
-          description: ghost-role-information-n14pet-eyebot-description
-          rules: ghost-role-component-default-rules
-        - type: GhostRoleMobSpawner
-          prototype: N14MobPetEyebotWBoS
+#Misfits Change /Comment-out/: Washington BoS eyebot pet trait removed — locale commented out.
+#- type: trait
+#  id: N14PetEyebotWBoS
+#  category: Mental
+#  points: -6
+#  requirements:
+#    - !type:CharacterDepartmentRequirement
+#      departments:
+#        - BrotherhoodOfSteel
+#    - !type:CharacterTraitRequirement
+#      inverted: true
+#      traits:
+#        - N14PetDogWBoS
+#  functions:
+#    - !type:TraitAddComponent
+#      components:
+#        - type: GhostRole
+#          name: ghost-role-information-n14pet-eyebot-wbos-name
+#          description: ghost-role-information-n14pet-eyebot-description
+#          rules: ghost-role-component-default-rules
+#        - type: GhostRoleMobSpawner
+#          prototype: N14MobPetEyebotWBoS
 
 # All the dog pet traits because every faction that has turrets needs their own variant
 - type: trait
@@ -353,29 +354,30 @@
         - type: GhostRoleMobSpawner
           prototype: N14MobPetDogMBoS
 
-- type: trait
-  id: N14PetDogWBoS
-  category: Mental
-  points: -6
-  requirements:
-    - !type:CharacterOverallTimeRequirement
-      min: 72000
-    - !type:CharacterDepartmentRequirement
-      departments:
-        - BrotherhoodOfSteel
-    - !type:CharacterTraitRequirement
-      inverted: true
-      traits:
-        - N14PetEyebotWBoS
-  functions:
-    - !type:TraitAddComponent
-      components:
-        - type: GhostRole
-          name: ghost-role-information-n14pet-dog-wbos-name
-          description: ghost-role-information-n14pet-generic-description
-          rules: ghost-role-component-default-rules
-        - type: GhostRoleMobSpawner
-          prototype: N14MobPetDogWBoS
+#Misfits Change /Comment-out/: Washington BoS dog pet trait removed — locale commented out.
+#- type: trait
+#  id: N14PetDogWBoS
+#  category: Mental
+#  points: -6
+#  requirements:
+#    - !type:CharacterOverallTimeRequirement
+#      min: 72000
+#    - !type:CharacterDepartmentRequirement
+#      departments:
+#        - BrotherhoodOfSteel
+#    - !type:CharacterTraitRequirement
+#      inverted: true
+#      traits:
+#        - N14PetEyebotWBoS
+#  functions:
+#    - !type:TraitAddComponent
+#      components:
+#        - type: GhostRole
+#          name: ghost-role-information-n14pet-dog-wbos-name
+#          description: ghost-role-information-n14pet-generic-description
+#          rules: ghost-role-component-default-rules
+#        - type: GhostRoleMobSpawner
+#          prototype: N14MobPetDogWBoS
 
 # - type: trait
 #   id: N14PetDogCC

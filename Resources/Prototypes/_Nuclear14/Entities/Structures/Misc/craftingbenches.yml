@@ -276,6 +276,21 @@
     - N14ClothingOuterCombatArmorBlueprint
     - N14ClothingOuterCombatArmorMK2Blueprint
     # Forge-Change-End
+    # #Misfits Add: Faction armor blueprint printing recipes.
+    # Printing these at the armorbench costs Paper: 100 each.
+    # Possessing the resulting blueprint item is what gates the upgrade craft
+    # (CraftingPrototype with availableFaction restricts who can USE it).
+    # Brotherhood of Steel armor blueprints
+    - N14ClothingOuterMBoSInitiateArmorBlueprint
+    - N14ClothingOuterMidwestArmorBlueprint
+    - N14ClothingOuterMidwestArmorMK2Blueprint
+    # Caesar's Legion armor blueprints
+    - N14ClothingOuterLegionnaireBaseArmorBlueprint
+    - N14ClothingOuterLegionnaireVeteranArmorBlueprint
+    # New California Republic armor blueprints
+    - N14ClothingOuterNCRVestDesertBlueprint
+    - N14ClothingOuterNCRCombatArmorBlueprint
+    - N14ClothingOuterNCRCombatArmorMK2Blueprint
     # Other
     - N14MaterialLeather
     - ClothingBeltQuiver # In misc.yml

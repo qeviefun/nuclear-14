@@ -201,107 +201,108 @@
       - sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/assaultcarbine.rsi
         state: inhand-right  # Only part we change, the gun sprite.
 
-# Washington chapter's humanoid NPCs for event making and such.
-- type: entity
-  name: BoS Initiate
-  parent: N14BaseMobRaider
-  id: N14MobNPCWBoSInitiate
-  suffix: NPC
-  description: A low-ranked member of the Washington Brotherhood, probably tasked with support duties. He is barely a threat, but still is one.
-  components:
-    - type: NpcFactionMember
-      friendlyOrderable: true
-      factions:
-      - BrotherhoodOfSteelSecureArea
-    - type: Loadout
-      prototypes:
-        - WBoSInitiateNPC
-
-- type: entity
-  name: BoS Knight
-  parent: N14BaseMobRaider
-  id: N14MobNPCWBoSKnight
-  suffix: NPC
-  description: A soldier of the Washington Brotherhood, not the most skilled and easily forgetable. Still, he might be dangerous.
-  components:
-    - type: NpcFactionMember
-      friendlyOrderable: true
-      factions:
-      - BrotherhoodOfSteelSecureArea
-    - type: Gun
-      minAngle: 4
-      maxAngle: 9
-      angleIncrease: 4
-      angleDecay: 16
-      fireRate: 2.5
-      soundGunshot:
-        collection: N14CarbineGunshot
-      useKey: false
-      selectedMode: SemiAuto
-      availableModes:
-        - SemiAuto
-    - type: BasicEntityAmmoProvider
-      proto: N14Cartridge556Rifle
-      capacity: 35
-      count: 35
-    - type: RechargeBasicEntityAmmo
-      rechargeCooldown: 2
-      rechargeSound:
-        path: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
-    - type: Loadout
-      prototypes:
-        - WBoSKnightNPC
-    - type: Sprite
-      layers: # Long boring part to make sure layering is correct
-      - map: [ "enum.HumanoidVisualLayers.Chest" ]
-      - map: [ "enum.HumanoidVisualLayers.Head" ]
-      - map: [ "enum.HumanoidVisualLayers.Snout" ]
-      - map: [ "enum.HumanoidVisualLayers.Eyes" ]
-      - map: [ "enum.HumanoidVisualLayers.Face" ]
-      - map: [ "enum.HumanoidVisualLayers.RArm" ]
-      - map: [ "enum.HumanoidVisualLayers.LArm" ]
-      - map: [ "enum.HumanoidVisualLayers.RLeg" ]
-      - map: [ "enum.HumanoidVisualLayers.LLeg" ]
-      - shader: StencilClear
-        sprite: Mobs/Species/Human/parts.rsi
-      - shader: StencilMask
-        map: ["enum.HumanoidVisualLayers.StencilMask"]
-        sprite: Mobs/Customization/masking_helpers.rsi
-        state: unisex_full
-        visible: false
-      - map: ["jumpsuit"]
-      - map: ["enum.HumanoidVisualLayers.LFoot"]
-      - map: ["enum.HumanoidVisualLayers.RFoot"]
-      - map: ["enum.HumanoidVisualLayers.LHand"]
-      - map: ["enum.HumanoidVisualLayers.RHand"]
-      - map: [ "gloves" ]
-      - map: [ "shoes" ]
-      - map: [ "ears" ]
-      - map: [ "innerBelt" ]
-      - map: [ "innerNeck" ]
-      - map: [ "outerClothing" ]
-      - map: [ "eyes" ]
-      - map: [ "belt" ]
-      - map: [ "id" ]
-      - map: [ "neck" ]
-      - map: [ "back" ]
-      - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
-      - map: [ "enum.HumanoidVisualLayers.Hair" ]
-      - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
-      - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
-      - map: [ "enum.HumanoidVisualLayers.Tail" ]
-      - map: [ "enum.HumanoidVisualLayers.Wings" ]
-      - map: [ "mask" ]
-      - map: [ "head" ]
-      - map: [ "pocket1" ]
-      - map: [ "pocket2" ]
-      - map: ["enum.HumanoidVisualLayers.Handcuffs"]
-        color: "#ffffff"
-        sprite: Objects/Misc/handcuffs.rsi
-        state: body-overlay-2
-        visible: false
-      - sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/assaultcarbine.rsi
-        state: inhand-right  # Only part we change, the gun sprite.
+#Misfits Change /Comment-out/: Washington chapter NPC humanoids removed — loadouts commented out.
+## Washington chapter's humanoid NPCs for event making and such.
+#- type: entity
+#  name: BoS Initiate
+#  parent: N14BaseMobRaider
+#  id: N14MobNPCWBoSInitiate
+#  suffix: NPC
+#  description: A low-ranked member of the Washington Brotherhood, probably tasked with support duties. He is barely a threat, but still is one.
+#  components:
+#    - type: NpcFactionMember
+#      friendlyOrderable: true
+#      factions:
+#      - BrotherhoodOfSteelSecureArea
+#    - type: Loadout
+#      prototypes:
+#        - WBoSInitiateNPC
+#
+#- type: entity
+#  name: BoS Knight
+#  parent: N14BaseMobRaider
+#  id: N14MobNPCWBoSKnight
+#  suffix: NPC
+#  description: A soldier of the Washington Brotherhood, not the most skilled and easily forgetable. Still, he might be dangerous.
+#  components:
+#    - type: NpcFactionMember
+#      friendlyOrderable: true
+#      factions:
+#      - BrotherhoodOfSteelSecureArea
+#    - type: Gun
+#      minAngle: 4
+#      maxAngle: 9
+#      angleIncrease: 4
+#      angleDecay: 16
+#      fireRate: 2.5
+#      soundGunshot:
+#        collection: N14CarbineGunshot
+#      useKey: false
+#      selectedMode: SemiAuto
+#      availableModes:
+#        - SemiAuto
+#    - type: BasicEntityAmmoProvider
+#      proto: N14Cartridge556Rifle
+#      capacity: 35
+#      count: 35
+#    - type: RechargeBasicEntityAmmo
+#      rechargeCooldown: 2
+#      rechargeSound:
+#        path: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+#    - type: Loadout
+#      prototypes:
+#        - WBoSKnightNPC
+#    - type: Sprite
+#      layers: # Long boring part to make sure layering is correct
+#      - map: [ "enum.HumanoidVisualLayers.Chest" ]
+#      - map: [ "enum.HumanoidVisualLayers.Head" ]
+#      - map: [ "enum.HumanoidVisualLayers.Snout" ]
+#      - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+#      - map: [ "enum.HumanoidVisualLayers.Face" ]
+#      - map: [ "enum.HumanoidVisualLayers.RArm" ]
+#      - map: [ "enum.HumanoidVisualLayers.LArm" ]
+#      - map: [ "enum.HumanoidVisualLayers.RLeg" ]
+#      - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+#      - shader: StencilClear
+#        sprite: Mobs/Species/Human/parts.rsi
+#      - shader: StencilMask
+#        map: ["enum.HumanoidVisualLayers.StencilMask"]
+#        sprite: Mobs/Customization/masking_helpers.rsi
+#        state: unisex_full
+#        visible: false
+#      - map: ["jumpsuit"]
+#      - map: ["enum.HumanoidVisualLayers.LFoot"]
+#      - map: ["enum.HumanoidVisualLayers.RFoot"]
+#      - map: ["enum.HumanoidVisualLayers.LHand"]
+#      - map: ["enum.HumanoidVisualLayers.RHand"]
+#      - map: [ "gloves" ]
+#      - map: [ "shoes" ]
+#      - map: [ "ears" ]
+#      - map: [ "innerBelt" ]
+#      - map: [ "innerNeck" ]
+#      - map: [ "outerClothing" ]
+#      - map: [ "eyes" ]
+#      - map: [ "belt" ]
+#      - map: [ "id" ]
+#      - map: [ "neck" ]
+#      - map: [ "back" ]
+#      - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
+#      - map: [ "enum.HumanoidVisualLayers.Hair" ]
+#      - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
+#      - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+#      - map: [ "enum.HumanoidVisualLayers.Tail" ]
+#      - map: [ "enum.HumanoidVisualLayers.Wings" ]
+#      - map: [ "mask" ]
+#      - map: [ "head" ]
+#      - map: [ "pocket1" ]
+#      - map: [ "pocket2" ]
+#      - map: ["enum.HumanoidVisualLayers.Handcuffs"]
+#        color: "#ffffff"
+#        sprite: Objects/Misc/handcuffs.rsi
+#        state: body-overlay-2
+#        visible: false
+#      - sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/assaultcarbine.rsi
+#        state: inhand-right  # Only part we change, the gun sprite.
 
 # The NCR Army's humanoid NPCs for event making and such.
 - type: entity

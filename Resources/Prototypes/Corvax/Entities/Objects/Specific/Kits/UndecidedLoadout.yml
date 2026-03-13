@@ -229,160 +229,162 @@
     - AuxiliaryMeleeSet
     - AuxiliaryHealerSet
 
-#Washington kits
+#Misfits Change /Comment-out/: Washington BoS undecided loadout entities removed — will create new prototypes.
+##Washington kits
+#
+#- type: entity
+#  id: BoSWashingtonStandartKits
+#  name: Undecided BoS Kit
+#  description: please only take one
+#  parent: BaseItem
+#  components:
+#  - type: Sprite
+#    sprite: _Nuclear14/Objects/Misc/kits.rsi
+#    state: rifleman
+#  - type: UndecidedLoadoutBackpack
+#    possibleSets:
+#    - BaseWashingtonBoSSet
+#    - WattzWashingtonBoSSet
+#    - AutoWashingtonBoSSet
+#    - ProtoWashingtonBoSSet
+#  - type: ActivatableUI
+#    key: enum.UndecidedLoadoutBackpackUIKey.Key
+#  - type: UserInterface
+#    interfaces:
+#      enum.UndecidedLoadoutBackpackUIKey.Key:
+#        type: UndecidedLoadoutBackpackBoundUserInterface
+#
+#- type: entity
+#  id: BoSWashingtonScribeKits
+#  name: Undecided BoS Kit
+#  description: please only take one
+#  parent: BaseItem
+#  components:
+#  - type: Sprite
+#    sprite: _Nuclear14/Objects/Misc/kits.rsi
+#    state: rifleman
+#  - type: UndecidedLoadoutBackpack
+#    possibleSets:
+#    - ScribeMedicWashingtonBoSSet
+#    - ScribeEngineerWashingtonBoSSet
+#  - type: ActivatableUI
+#    key: enum.UndecidedLoadoutBackpackUIKey.Key
+#  - type: UserInterface
+#    interfaces:
+#      enum.UndecidedLoadoutBackpackUIKey.Key:
+#        type: UndecidedLoadoutBackpackBoundUserInterface
+#
+#- type: entity
+#  id: BoSWashingtonCommandKits
+#  name: Undecided BoS Kit
+#  description: please only take one
+#  parent: BaseItem
+#  components:
+#  - type: Sprite
+#    sprite: _Nuclear14/Objects/Misc/kits.rsi
+#    state: rifleman
+#  - type: UndecidedLoadoutBackpack
+#    possibleSets:
+#    - CommandBaseWashingtonBoSSet
+#    - CommandMultiWashingtonBoSSet
+#    - CommandCasterWashingtonBoSSet
+#    - CommandWattzWashingtonBoSSet
+#    - CommandGatlingWashingtonBoSSet
+#  - type: ActivatableUI
+#    key: enum.UndecidedLoadoutBackpackUIKey.Key
+#  - type: UserInterface
+#    interfaces:
+#      enum.UndecidedLoadoutBackpackUIKey.Key:
+#        type: UndecidedLoadoutBackpackBoundUserInterface
 
-- type: entity
-  id: BoSWashingtonStandartKits
-  name: Undecided BoS Kit
-  description: please only take one
-  parent: BaseItem
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: rifleman
-  - type: UndecidedLoadoutBackpack
-    possibleSets:
-    - BaseWashingtonBoSSet
-    - WattzWashingtonBoSSet
-    - AutoWashingtonBoSSet
-    - ProtoWashingtonBoSSet
-  - type: ActivatableUI
-    key: enum.UndecidedLoadoutBackpackUIKey.Key
-  - type: UserInterface
-    interfaces:
-      enum.UndecidedLoadoutBackpackUIKey.Key:
-        type: UndecidedLoadoutBackpackBoundUserInterface
-
-- type: entity
-  id: BoSWashingtonScribeKits
-  name: Undecided BoS Kit
-  description: please only take one
-  parent: BaseItem
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: rifleman
-  - type: UndecidedLoadoutBackpack
-    possibleSets:
-    - ScribeMedicWashingtonBoSSet
-    - ScribeEngineerWashingtonBoSSet
-  - type: ActivatableUI
-    key: enum.UndecidedLoadoutBackpackUIKey.Key
-  - type: UserInterface
-    interfaces:
-      enum.UndecidedLoadoutBackpackUIKey.Key:
-        type: UndecidedLoadoutBackpackBoundUserInterface
-
-- type: entity
-  id: BoSWashingtonCommandKits
-  name: Undecided BoS Kit
-  description: please only take one
-  parent: BaseItem
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: rifleman
-  - type: UndecidedLoadoutBackpack
-    possibleSets:
-    - CommandBaseWashingtonBoSSet
-    - CommandMultiWashingtonBoSSet
-    - CommandCasterWashingtonBoSSet
-    - CommandWattzWashingtonBoSSet
-    - CommandGatlingWashingtonBoSSet
-  - type: ActivatableUI
-    key: enum.UndecidedLoadoutBackpackUIKey.Key
-  - type: UserInterface
-    interfaces:
-      enum.UndecidedLoadoutBackpackUIKey.Key:
-        type: UndecidedLoadoutBackpackBoundUserInterface
-
-# Brother West Elder kits
-- type: entity
-  id: BoSWesternElderKits
-  name: BoS West Elder Kit
-  parent: BaseLoadoutKit
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: rifleman
-  - type: UndecidedLoadoutBackpack
-    possibleSets:
-    - KitBrotherWest_ElderlasSet
-    - KitBrotherWest_ElderrifleSet
-
-# Brother West Paladin kits
-- type: entity
-  id: BoSWesternPaladinKits
-  name: Undecided Paladin Kit
-  parent: BaseLoadoutKit
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: rifleman
-  - type: UndecidedLoadoutBackpack
-    possibleSets:
-    - KitBrotherWest_PaladinlasSet
-    - KitBrotherWest_PaladinrifleSet
-    - KitBrotherWest_PaladinplasmaSet
-
-# Brother West Knight kits
-- type: entity
-  id: BoSWesternKnightKits
-  name: Undecided Knight Kit
-  parent: BaseLoadoutKit
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: rifleman
-  - type: UndecidedLoadoutBackpack
-    possibleSets:
-    - KitBrotherWest_KnightrifleSet
-    - KitBrotherWest_KnightlaserSet
-    - KitBrotherWest_KnightplasmaSet
-
-# Brother West Squire kits
-- type: entity
-  id: BoSWesternSquireKits
-  name: Undecided Squire Kit
-  parent: BaseLoadoutKit
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: rifleman
-  - type: UndecidedLoadoutBackpack
-    possibleSets:
-    - KitBrotherWest_SquirerifleSet
-    - KitBrotherWest_SquirelaserSet
-    - KitBrotherWest_SquireplasmaSet
-
-# Brother West Scribe kits
-- type: entity
-  id: BoSWesternScribeKits
-  name: Undecided Scribe Kit
-  parent: BaseLoadoutKit
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: rifleman
-  - type: UndecidedLoadoutBackpack
-    possibleSets:
-    - KitBrotherWest_ScriberifleSet
-    - KitBrotherWest_ScribelaserSet
-    - KitBrotherWest_ScribeplasmaSet
-
-#Inquisitor Brother Kits
-- type: entity
-  id: BoSMidwestInquisitorKits
-  parent: BaseLoadoutKit
-  components:
-  - type: Sprite
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: marksman
-  - type: UndecidedLoadoutBackpack
-    possibleSets:
-    - KitMidwestInquisitorInspectorSet
-    - KitMidwestInquisitorCrusaderSet
-    - KitMidwestInquisitorPlasmaSet
+#Misfits Change /Comment-out/: Western BoS undecided loadout entities removed — no Western BoS chapter.
+## Brother West Elder kits
+#- type: entity
+#  id: BoSWesternElderKits
+#  name: BoS West Elder Kit
+#  parent: BaseLoadoutKit
+#  components:
+#  - type: Sprite
+#    sprite: _Nuclear14/Objects/Misc/kits.rsi
+#    state: rifleman
+#  - type: UndecidedLoadoutBackpack
+#    possibleSets:
+#    - KitBrotherWest_ElderlasSet
+#    - KitBrotherWest_ElderrifleSet
+#
+## Brother West Paladin kits
+#- type: entity
+#  id: BoSWesternPaladinKits
+#  name: Undecided Paladin Kit
+#  parent: BaseLoadoutKit
+#  components:
+#  - type: Sprite
+#    sprite: _Nuclear14/Objects/Misc/kits.rsi
+#    state: rifleman
+#  - type: UndecidedLoadoutBackpack
+#    possibleSets:
+#    - KitBrotherWest_PaladinlasSet
+#    - KitBrotherWest_PaladinrifleSet
+#    - KitBrotherWest_PaladinplasmaSet
+#
+## Brother West Knight kits
+#- type: entity
+#  id: BoSWesternKnightKits
+#  name: Undecided Knight Kit
+#  parent: BaseLoadoutKit
+#  components:
+#  - type: Sprite
+#    sprite: _Nuclear14/Objects/Misc/kits.rsi
+#    state: rifleman
+#  - type: UndecidedLoadoutBackpack
+#    possibleSets:
+#    - KitBrotherWest_KnightrifleSet
+#    - KitBrotherWest_KnightlaserSet
+#    - KitBrotherWest_KnightplasmaSet
+#
+## Brother West Squire kits
+#- type: entity
+#  id: BoSWesternSquireKits
+#  name: Undecided Squire Kit
+#  parent: BaseLoadoutKit
+#  components:
+#  - type: Sprite
+#    sprite: _Nuclear14/Objects/Misc/kits.rsi
+#    state: rifleman
+#  - type: UndecidedLoadoutBackpack
+#    possibleSets:
+#    - KitBrotherWest_SquirerifleSet
+#    - KitBrotherWest_SquirelaserSet
+#    - KitBrotherWest_SquireplasmaSet
+#
+## Brother West Scribe kits
+#- type: entity
+#  id: BoSWesternScribeKits
+#  name: Undecided Scribe Kit
+#  parent: BaseLoadoutKit
+#  components:
+#  - type: Sprite
+#    sprite: _Nuclear14/Objects/Misc/kits.rsi
+#    state: rifleman
+#  - type: UndecidedLoadoutBackpack
+#    possibleSets:
+#    - KitBrotherWest_ScriberifleSet
+#    - KitBrotherWest_ScribelaserSet
+#    - KitBrotherWest_ScribeplasmaSet
+#
+##Inquisitor Brother Kits
+#- type: entity
+#  id: BoSMidwestInquisitorKits
+#  parent: BaseLoadoutKit
+#  components:
+#  - type: Sprite
+#    sprite: _Nuclear14/Objects/Misc/kits.rsi
+#    state: marksman
+#  - type: UndecidedLoadoutBackpack
+#    possibleSets:
+#    - KitMidwestInquisitorInspectorSet
+#    - KitMidwestInquisitorCrusaderSet
+#    - KitMidwestInquisitorPlasmaSet
 
 # NCRMP Investegator Kits
 - type: entity
@@ -892,117 +894,118 @@
   content:
   - KitRecruitHealer
 
-# Washington BoS
-
-- type: UndecidedLoadoutBackpackSet
-  id: BaseWashingtonBoSSet
-  name: undecided-loadout-category-washington-base-name
-  description: undecided-loadout-category-washington-base-description
-  sprite:
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: rifleman
-  content:
-  - KitBaseWashingtonBoS
-
-- type: UndecidedLoadoutBackpackSet
-  id: WattzWashingtonBoSSet
-  name: undecided-loadout-category-washington-wattz-name
-  description: undecided-loadout-category-washington-wattz-description
-  sprite:
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: marksman
-  content:
-  - KitWattzWashingtonBoS
-
-- type: UndecidedLoadoutBackpackSet
-  id: AutoWashingtonBoSSet
-  name: undecided-loadout-category-washington-auto-name
-  description: undecided-loadout-category-washington-auto-description
-  sprite:
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: rifleman
-  content:
-  - KitAutoWashingtonBoS
-
-- type: UndecidedLoadoutBackpackSet
-  id: ProtoWashingtonBoSSet
-  name: undecided-loadout-category-washington-proto-name
-  description: undecided-loadout-category-washington-proto-description
-  sprite:
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: rifleman
-  content:
-  - KitProtoWashingtonBoS
-
-- type: UndecidedLoadoutBackpackSet
-  id: CommandBaseWashingtonBoSSet
-  name: undecided-loadout-category-washington-command-base-name
-  description: undecided-loadout-category-washington-command-base-description
-  sprite:
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: rifleman
-  content:
-  - KitCommandBaseWashingtonBoS
-
-- type: UndecidedLoadoutBackpackSet
-  id: CommandMultiWashingtonBoSSet
-  name: undecided-loadout-category-washington-command-multi-name
-  description: undecided-loadout-category-washington-command-multi-description
-  sprite:
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: marksman
-  content:
-  - KitCommandMultiWashingtonBoS
-
-- type: UndecidedLoadoutBackpackSet
-  id: CommandCasterWashingtonBoSSet
-  name: undecided-loadout-category-washington-command-caster-name
-  description: undecided-loadout-category-washington-command-caster-description
-  sprite:
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: rifleman
-  content:
-  - KitCommandCasterWashingtonBoS
-
-- type: UndecidedLoadoutBackpackSet
-  id: CommandWattzWashingtonBoSSet
-  name: undecided-loadout-category-washington-command-wattz-name
-  description: undecided-loadout-category-washington-command-wattz-description
-  sprite:
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: marksman
-  content:
-  - KitCommandWattzWashingtonBoS
-
-- type: UndecidedLoadoutBackpackSet
-  id: CommandGatlingWashingtonBoSSet
-  name: undecided-loadout-category-washington-command-gatling-name
-  description: undecided-loadout-category-washington-command-gatling-description
-  sprite:
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: rifleman
-  content:
-  - KitCommandGatlingWashingtonBoS
-
-- type: UndecidedLoadoutBackpackSet
-  id: ScribeEngineerWashingtonBoSSet
-  name: undecided-loadout-category-washington-scribe-engineer-name
-  description: undecided-loadout-category-washington-scribe-engineer-description
-  sprite:
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: rifleman
-  content:
-  - KitScribeEngineerWashingtonBoS
-
-- type: UndecidedLoadoutBackpackSet
-  id: ScribeMedicWashingtonBoSSet
-  name: undecided-loadout-category-washington-scribe-medic-name
-  description: undecided-loadout-category-washington-scribe-medic-description
-  sprite:
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: medic
-  content:
-  - KitScribeMedicWashingtonBoS
+#Misfits Change /Comment-out/: Washington BoS kit sets removed — will create new prototypes.
+## Washington BoS
+#
+#- type: UndecidedLoadoutBackpackSet
+#  id: BaseWashingtonBoSSet
+#  name: undecided-loadout-category-washington-base-name
+#  description: undecided-loadout-category-washington-base-description
+#  sprite:
+#    sprite: _Nuclear14/Objects/Misc/kits.rsi
+#    state: rifleman
+#  content:
+#  - KitBaseWashingtonBoS
+#
+#- type: UndecidedLoadoutBackpackSet
+#  id: WattzWashingtonBoSSet
+#  name: undecided-loadout-category-washington-wattz-name
+#  description: undecided-loadout-category-washington-wattz-description
+#  sprite:
+#    sprite: _Nuclear14/Objects/Misc/kits.rsi
+#    state: marksman
+#  content:
+#  - KitWattzWashingtonBoS
+#
+#- type: UndecidedLoadoutBackpackSet
+#  id: AutoWashingtonBoSSet
+#  name: undecided-loadout-category-washington-auto-name
+#  description: undecided-loadout-category-washington-auto-description
+#  sprite:
+#    sprite: _Nuclear14/Objects/Misc/kits.rsi
+#    state: rifleman
+#  content:
+#  - KitAutoWashingtonBoS
+#
+#- type: UndecidedLoadoutBackpackSet
+#  id: ProtoWashingtonBoSSet
+#  name: undecided-loadout-category-washington-proto-name
+#  description: undecided-loadout-category-washington-proto-description
+#  sprite:
+#    sprite: _Nuclear14/Objects/Misc/kits.rsi
+#    state: rifleman
+#  content:
+#  - KitProtoWashingtonBoS
+#
+#- type: UndecidedLoadoutBackpackSet
+#  id: CommandBaseWashingtonBoSSet
+#  name: undecided-loadout-category-washington-command-base-name
+#  description: undecided-loadout-category-washington-command-base-description
+#  sprite:
+#    sprite: _Nuclear14/Objects/Misc/kits.rsi
+#    state: rifleman
+#  content:
+#  - KitCommandBaseWashingtonBoS
+#
+#- type: UndecidedLoadoutBackpackSet
+#  id: CommandMultiWashingtonBoSSet
+#  name: undecided-loadout-category-washington-command-multi-name
+#  description: undecided-loadout-category-washington-command-multi-description
+#  sprite:
+#    sprite: _Nuclear14/Objects/Misc/kits.rsi
+#    state: marksman
+#  content:
+#  - KitCommandMultiWashingtonBoS
+#
+#- type: UndecidedLoadoutBackpackSet
+#  id: CommandCasterWashingtonBoSSet
+#  name: undecided-loadout-category-washington-command-caster-name
+#  description: undecided-loadout-category-washington-command-caster-description
+#  sprite:
+#    sprite: _Nuclear14/Objects/Misc/kits.rsi
+#    state: rifleman
+#  content:
+#  - KitCommandCasterWashingtonBoS
+#
+#- type: UndecidedLoadoutBackpackSet
+#  id: CommandWattzWashingtonBoSSet
+#  name: undecided-loadout-category-washington-command-wattz-name
+#  description: undecided-loadout-category-washington-command-wattz-description
+#  sprite:
+#    sprite: _Nuclear14/Objects/Misc/kits.rsi
+#    state: marksman
+#  content:
+#  - KitCommandWattzWashingtonBoS
+#
+#- type: UndecidedLoadoutBackpackSet
+#  id: CommandGatlingWashingtonBoSSet
+#  name: undecided-loadout-category-washington-command-gatling-name
+#  description: undecided-loadout-category-washington-command-gatling-description
+#  sprite:
+#    sprite: _Nuclear14/Objects/Misc/kits.rsi
+#    state: rifleman
+#  content:
+#  - KitCommandGatlingWashingtonBoS
+#
+#- type: UndecidedLoadoutBackpackSet
+#  id: ScribeEngineerWashingtonBoSSet
+#  name: undecided-loadout-category-washington-scribe-engineer-name
+#  description: undecided-loadout-category-washington-scribe-engineer-description
+#  sprite:
+#    sprite: _Nuclear14/Objects/Misc/kits.rsi
+#    state: rifleman
+#  content:
+#  - KitScribeEngineerWashingtonBoS
+#
+#- type: UndecidedLoadoutBackpackSet
+#  id: ScribeMedicWashingtonBoSSet
+#  name: undecided-loadout-category-washington-scribe-medic-name
+#  description: undecided-loadout-category-washington-scribe-medic-description
+#  sprite:
+#    sprite: _Nuclear14/Objects/Misc/kits.rsi
+#    state: medic
+#  content:
+#  - KitScribeMedicWashingtonBoS
 
 # Ranger
 
@@ -1016,181 +1019,182 @@
   content:
   - KitSMGRanger
 
-# Brother West Scribe kits
-- type: UndecidedLoadoutBackpackSet
-  id: KitBrotherWest_ScriberifleSet
-  name: undecided-loadout-category-scribe-rifle-name
-  description: undecided-loadout-category-scribe-rifle-description
-  sprite:
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: rifleman
-  content:
-  - KitBrotherWest_Scriberifle
-
-- type: UndecidedLoadoutBackpackSet
-  id: KitBrotherWest_ScribelaserSet
-  name: undecided-loadout-category-scribe-laser-name
-  description: undecided-loadout-category-scribe-laser-description
-  sprite:
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: rifleman
-  content:
-  - KitBrotherWest_Scribelaser
-
-- type: UndecidedLoadoutBackpackSet
-  id: KitBrotherWest_ScribeplasmaSet
-  name: undecided-loadout-category-scribe-plasma-name
-  description: undecided-loadout-category-scribe-plasma-description
-  sprite:
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: rifleman
-  content:
-  - KitBrotherWest_Scribeplasma
-
-# Brother West Squire kits
-- type: UndecidedLoadoutBackpackSet
-  id: KitBrotherWest_SquirerifleSet
-  name: undecided-loadout-category-squire-rifle-name
-  description: undecided-loadout-category-squire-rifle-description
-  sprite:
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: rifleman
-  content:
-  - KitBrotherWest_Squirerifle
-
-- type: UndecidedLoadoutBackpackSet
-  id: KitBrotherWest_SquirelaserSet
-  name: undecided-loadout-category-squire-laser-name
-  description: undecided-loadout-category-squire-laser-description
-  sprite:
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: rifleman
-  content:
-  - KitBrotherWest_Squirelaser
-
-- type: UndecidedLoadoutBackpackSet
-  id: KitBrotherWest_SquireplasmaSet
-  name: undecided-loadout-category-squire-plasma-name
-  description: undecided-loadout-category-squire-plasma-description
-  sprite:
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: rifleman
-  content:
-  - KitBrotherWest_Squireplasma
-
-# Brother West Knight kits
-- type: UndecidedLoadoutBackpackSet
-  id: KitBrotherWest_KnightrifleSet
-  name: undecided-loadout-category-knight-rifle-name
-  description: undecided-loadout-category-knight-rifle-description
-  sprite:
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: rifleman
-  content:
-  - KitBrotherWest_Knightrifle
-
-- type: UndecidedLoadoutBackpackSet
-  id: KitBrotherWest_KnightlaserSet
-  name: undecided-loadout-category-knight-laser-name
-  description: undecided-loadout-category-knight-laser-description
-  sprite:
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: rifleman
-  content:
-  - KitBrotherWest_Knightlaser
-
-- type: UndecidedLoadoutBackpackSet
-  id: KitBrotherWest_KnightplasmaSet
-  name: undecided-loadout-category-knight-plasma-name
-  description: undecided-loadout-category-knight-plasma-description
-  sprite:
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: rifleman
-  content:
-  - KitBrotherWest_Knightplasma
-
-# Brother West Paladin kits
-- type: UndecidedLoadoutBackpackSet
-  id: KitBrotherWest_PaladinrifleSet
-  name: undecided-loadout-category-paladin-rifle-name
-  description: undecided-loadout-category-paladin-rifle-description
-  sprite:
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: rifleman
-  content:
-  - KitBrotherWest_Paladinrifle
-
-- type: UndecidedLoadoutBackpackSet
-  id: KitBrotherWest_PaladinlasSet
-  name: undecided-loadout-category-paladin-laser-name
-  description: undecided-loadout-category-paladin-laser-description
-  sprite:
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: rifleman
-  content:
-  - KitBrotherWest_Paladinlas
-
-- type: UndecidedLoadoutBackpackSet
-  id: KitBrotherWest_PaladinplasmaSet
-  name: undecided-loadout-category-paladin-plasma-name
-  description: undecided-loadout-category-paladin-plasma-description
-  sprite:
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: rifleman
-  content:
-  - KitBrotherWest_Paladinplasma
-
-# Brother West Elder kits
-- type: UndecidedLoadoutBackpackSet
-  id: KitBrotherWest_ElderrifleSet
-  name: undecided-loadout-category-elder-rifle-name
-  description: undecided-loadout-category-elder-rifle-description
-  sprite:
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: rifleman
-  content:
-  - KitBrotherWest_Elderrifle
-
-- type: UndecidedLoadoutBackpackSet
-  id: KitBrotherWest_ElderlasSet
-  name: undecided-loadout-category-elder-laser-name
-  description: undecided-loadout-category-elder-laser-description
-  sprite:
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: rifleman
-  content:
-  - KitBrotherWest_Elderlas
-
-# Inquisitor Brother Kits
-- type: UndecidedLoadoutBackpackSet
-  id: KitMidwestInquisitorInspectorSet
-  name: undecided-loadout-category-inquisitorinspector-name
-  description: undecided-loadout-category-inquisitorinspector-description
-  sprite:
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: rifleman
-  content:
-  - KitInquisitorInspector
-
-- type: UndecidedLoadoutBackpackSet
-  id: KitMidwestInquisitorCrusaderSet
-  name: undecided-loadout-category-inquisitorcrusader-name
-  description: undecided-loadout-category-inquisitorcrusader-description
-  sprite:
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: rifleman
-  content:
-  - KitInquisitorCrusader
-
-- type: UndecidedLoadoutBackpackSet
-  id: KitMidwestInquisitorPlasmaSet
-  name: undecided-loadout-category-inquisitorplasma-name
-  description: undecided-loadout-category-inquisitorplasma-description
-  sprite:
-    sprite: _Nuclear14/Objects/Misc/kits.rsi
-    state: rifleman
-  content:
-  - KitInquisitorPlasma
+#Misfits Change /Comment-out/: Western BoS kit sets removed — no Western BoS chapter.
+## Brother West Scribe kits
+#- type: UndecidedLoadoutBackpackSet
+#  id: KitBrotherWest_ScriberifleSet
+#  name: undecided-loadout-category-scribe-rifle-name
+#  description: undecided-loadout-category-scribe-rifle-description
+#  sprite:
+#    sprite: _Nuclear14/Objects/Misc/kits.rsi
+#    state: rifleman
+#  content:
+#  - KitBrotherWest_Scriberifle
+#
+#- type: UndecidedLoadoutBackpackSet
+#  id: KitBrotherWest_ScribelaserSet
+#  name: undecided-loadout-category-scribe-laser-name
+#  description: undecided-loadout-category-scribe-laser-description
+#  sprite:
+#    sprite: _Nuclear14/Objects/Misc/kits.rsi
+#    state: rifleman
+#  content:
+#  - KitBrotherWest_Scribelaser
+#
+#- type: UndecidedLoadoutBackpackSet
+#  id: KitBrotherWest_ScribeplasmaSet
+#  name: undecided-loadout-category-scribe-plasma-name
+#  description: undecided-loadout-category-scribe-plasma-description
+#  sprite:
+#    sprite: _Nuclear14/Objects/Misc/kits.rsi
+#    state: rifleman
+#  content:
+#  - KitBrotherWest_Scribeplasma
+#
+## Brother West Squire kits
+#- type: UndecidedLoadoutBackpackSet
+#  id: KitBrotherWest_SquirerifleSet
+#  name: undecided-loadout-category-squire-rifle-name
+#  description: undecided-loadout-category-squire-rifle-description
+#  sprite:
+#    sprite: _Nuclear14/Objects/Misc/kits.rsi
+#    state: rifleman
+#  content:
+#  - KitBrotherWest_Squirerifle
+#
+#- type: UndecidedLoadoutBackpackSet
+#  id: KitBrotherWest_SquirelaserSet
+#  name: undecided-loadout-category-squire-laser-name
+#  description: undecided-loadout-category-squire-laser-description
+#  sprite:
+#    sprite: _Nuclear14/Objects/Misc/kits.rsi
+#    state: rifleman
+#  content:
+#  - KitBrotherWest_Squirelaser
+#
+#- type: UndecidedLoadoutBackpackSet
+#  id: KitBrotherWest_SquireplasmaSet
+#  name: undecided-loadout-category-squire-plasma-name
+#  description: undecided-loadout-category-squire-plasma-description
+#  sprite:
+#    sprite: _Nuclear14/Objects/Misc/kits.rsi
+#    state: rifleman
+#  content:
+#  - KitBrotherWest_Squireplasma
+#
+## Brother West Knight kits
+#- type: UndecidedLoadoutBackpackSet
+#  id: KitBrotherWest_KnightrifleSet
+#  name: undecided-loadout-category-knight-rifle-name
+#  description: undecided-loadout-category-knight-rifle-description
+#  sprite:
+#    sprite: _Nuclear14/Objects/Misc/kits.rsi
+#    state: rifleman
+#  content:
+#  - KitBrotherWest_Knightrifle
+#
+#- type: UndecidedLoadoutBackpackSet
+#  id: KitBrotherWest_KnightlaserSet
+#  name: undecided-loadout-category-knight-laser-name
+#  description: undecided-loadout-category-knight-laser-description
+#  sprite:
+#    sprite: _Nuclear14/Objects/Misc/kits.rsi
+#    state: rifleman
+#  content:
+#  - KitBrotherWest_Knightlaser
+#
+#- type: UndecidedLoadoutBackpackSet
+#  id: KitBrotherWest_KnightplasmaSet
+#  name: undecided-loadout-category-knight-plasma-name
+#  description: undecided-loadout-category-knight-plasma-description
+#  sprite:
+#    sprite: _Nuclear14/Objects/Misc/kits.rsi
+#    state: rifleman
+#  content:
+#  - KitBrotherWest_Knightplasma
+#
+## Brother West Paladin kits
+#- type: UndecidedLoadoutBackpackSet
+#  id: KitBrotherWest_PaladinrifleSet
+#  name: undecided-loadout-category-paladin-rifle-name
+#  description: undecided-loadout-category-paladin-rifle-description
+#  sprite:
+#    sprite: _Nuclear14/Objects/Misc/kits.rsi
+#    state: rifleman
+#  content:
+#  - KitBrotherWest_Paladinrifle
+#
+#- type: UndecidedLoadoutBackpackSet
+#  id: KitBrotherWest_PaladinlasSet
+#  name: undecided-loadout-category-paladin-laser-name
+#  description: undecided-loadout-category-paladin-laser-description
+#  sprite:
+#    sprite: _Nuclear14/Objects/Misc/kits.rsi
+#    state: rifleman
+#  content:
+#  - KitBrotherWest_Paladinlas
+#
+#- type: UndecidedLoadoutBackpackSet
+#  id: KitBrotherWest_PaladinplasmaSet
+#  name: undecided-loadout-category-paladin-plasma-name
+#  description: undecided-loadout-category-paladin-plasma-description
+#  sprite:
+#    sprite: _Nuclear14/Objects/Misc/kits.rsi
+#    state: rifleman
+#  content:
+#  - KitBrotherWest_Paladinplasma
+#
+## Brother West Elder kits
+#- type: UndecidedLoadoutBackpackSet
+#  id: KitBrotherWest_ElderrifleSet
+#  name: undecided-loadout-category-elder-rifle-name
+#  description: undecided-loadout-category-elder-rifle-description
+#  sprite:
+#    sprite: _Nuclear14/Objects/Misc/kits.rsi
+#    state: rifleman
+#  content:
+#  - KitBrotherWest_Elderrifle
+#
+#- type: UndecidedLoadoutBackpackSet
+#  id: KitBrotherWest_ElderlasSet
+#  name: undecided-loadout-category-elder-laser-name
+#  description: undecided-loadout-category-elder-laser-description
+#  sprite:
+#    sprite: _Nuclear14/Objects/Misc/kits.rsi
+#    state: rifleman
+#  content:
+#  - KitBrotherWest_Elderlas
+#
+## Inquisitor Brother Kits
+#- type: UndecidedLoadoutBackpackSet
+#  id: KitMidwestInquisitorInspectorSet
+#  name: undecided-loadout-category-inquisitorinspector-name
+#  description: undecided-loadout-category-inquisitorinspector-description
+#  sprite:
+#    sprite: _Nuclear14/Objects/Misc/kits.rsi
+#    state: rifleman
+#  content:
+#  - KitInquisitorInspector
+#
+#- type: UndecidedLoadoutBackpackSet
+#  id: KitMidwestInquisitorCrusaderSet
+#  name: undecided-loadout-category-inquisitorcrusader-name
+#  description: undecided-loadout-category-inquisitorcrusader-description
+#  sprite:
+#    sprite: _Nuclear14/Objects/Misc/kits.rsi
+#    state: rifleman
+#  content:
+#  - KitInquisitorCrusader
+#
+#- type: UndecidedLoadoutBackpackSet
+#  id: KitMidwestInquisitorPlasmaSet
+#  name: undecided-loadout-category-inquisitorplasma-name
+#  description: undecided-loadout-category-inquisitorplasma-description
+#  sprite:
+#    sprite: _Nuclear14/Objects/Misc/kits.rsi
+#    state: rifleman
+#  content:
+#  - KitInquisitorPlasma
 
 - type: UndecidedLoadoutBackpackSet
   id: KitNCRMPMilitaryPoliceSet

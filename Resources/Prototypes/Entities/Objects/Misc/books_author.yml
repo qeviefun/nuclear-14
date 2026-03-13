@@ -486,8 +486,8 @@
 - type: entity
   parent: BookBase
   id: BookWatched
-  name: watched
-  description: The book is in good condition, with a slightly worn cover that features a dark and ominous space station looming in the background. The title "Watched" is written in bold letters that seem to be staring back at the reader, conveying the feeling of being constantly observed. The blurb on the back cover hints at a thrilling and suspenseful tale of paranoia and danger in a confined setting.
+  name: sentinel #Misfits Change: renamed from "watched" to a pre-war Fallout/real-satellite theme
+  description: 'A well-worn hardcover decorated with a stylized satellite in polar orbit over a relief map of the Earth. "Sentinel: America''s Eyes in the Sky" is stenciled across the cover in crisp government typography. A Department of Defense seal sits beneath the title. Published under the declassified archives initiative of 2065.' #Misfits Change
   components:
     - type: Sprite
       sprite: Objects/Misc/books.rsi
@@ -503,7 +503,7 @@
       - state: detail_bookmark
         color: "#bfbfbf"
     - type: Paper
-      content: book-text-watched
+      content: book-text-sentinel-satellite #Misfits Change: replaced book-text-watched
 
 - type: entity
   parent: BookBase

@@ -1,14 +1,65 @@
+#Misfits Change /Comment-out/: Washington BoS Knight job removed — will create new prototypes.
+#- type: job
+#  id: BoSWashingtonKnight
+#  setPreference: true
+#  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+#  jobWhitelistBypassesRoleTimers: true # #Misfits Change
+#  weight: 40
+#  overrideConsoleVisibility: true
+#  canBeAntag: false
+#  name: job-name-bos-washington-knight
+#  description: job-description-bos-washington-knight
+#  playTimeTracker: BoSWashingtonKnight
+#  requirements:
+#    - !type:CharacterSpeciesRequirement
+#      species:
+#      - Human
+#      - Ghoul
+#    - !type:CharacterDepartmentTimeRequirement
+#      department: BrotherhoodOfSteel
+#      min: 0
+#  startingGear: BoSWashingtonKnightGear
+#  alwaysUseSpawner: true
+#  icon: "JobIconPassenger"
+#  supervisors: job-supervisors-bos-wash-knight
+#  accessGroups:
+#  - BOSKnight
+#  special:
+#  - !type:AddComponentSpecial
+#    components:
+#      - type: NpcFactionMember
+#        factions:
+#          - BrotherhoodOfSteel
+#
+#- type: startingGear
+#  id: BoSWashingtonKnightGear
+#  equipment:
+#    jumpsuit: N14ClothingUniformJumpsuitBOSRed
+#    back: N14ClothingBackpackMilitaryFilled
+#    shoes: N14ClothingBootsLeatherFilled
+#    hands: N14ClothingHandsGlovesCombat
+#    head: N14ClothingHeadHatBrotherhoodHelmet
+#    outerClothing: N14ClothingOuterCombatArmorBOS
+#    id: N14IDBrotherhoodOfSteelHolotagKnight
+#    ears: N14ClothingHeadsetBrotherhoodOfSteel
+#    belt: ClothingBeltBoSWebbing
+#    pocket1: BoSBrotherhoodKnightKits
+#
+#- type: playTimeTracker
+#  id: BoSWashingtonKnight
+
+#Misfits Change /Add/: New consolidated Brotherhood Knight job.
 - type: job
-  id: BoSWashingtonKnight
+  id: BoSKnight
   setPreference: true
-  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
-  jobWhitelistBypassesRoleTimers: true # #Misfits Change
+  hideIfPlaytimeRequirementsNotMet: false # #Misfits Tweak - all jobs visible in selection
+  jobWhitelistBypassesRoleTimers: true
   weight: 40
   overrideConsoleVisibility: true
   canBeAntag: false
-  name: job-name-bos-washington-knight
-  description: job-description-bos-washington-knight
-  playTimeTracker: BoSWashingtonKnight
+  name: job-name-bos-knight
+  description: job-description-bos-knight
+  playTimeTracker: BoSKnight
   requirements:
     - !type:CharacterSpeciesRequirement
       species:
@@ -16,11 +67,11 @@
       - Ghoul
     - !type:CharacterDepartmentTimeRequirement
       department: BrotherhoodOfSteel
-      min: 0
-  startingGear: BoSWashingtonKnightGear
+      min: 0 # #Misfits Tweak - BoS unlocked up to Senior
+  startingGear: BoSKnightGear
   alwaysUseSpawner: true
-  icon: "JobIconPassenger"
-  supervisors: job-supervisors-bos-wash-knight
+  icon: "JobIconBosMKnight"
+  supervisors: job-supervisors-bos-knight
   accessGroups:
   - BOSKnight
   special:
@@ -31,18 +82,22 @@
           - BrotherhoodOfSteel
 
 - type: startingGear
-  id: BoSWashingtonKnightGear
+  id: BoSKnightGear
   equipment:
-    jumpsuit: N14ClothingUniformJumpsuitBOSRed
-    back: N14ClothingBackpackMilitaryFilled
+    jumpsuit: N14ClothingUniformJumpskirtBOSBlack
+    back: N14ClothingBackpackMilitary
     shoes: N14ClothingBootsLeatherFilled
+    head: N14ClothingHeadHatCapkhighBoS
+    outerClothing: N14ClothingOuterCombatArmorBOSMK2
     hands: N14ClothingHandsGlovesCombat
-    head: N14ClothingHeadHatBrotherhoodHelmet
-    outerClothing: N14ClothingOuterCombatArmorBOS
+    pocket1: BoSBrotherhoodKnightKits
     id: N14IDBrotherhoodOfSteelHolotagKnight
     ears: N14ClothingHeadsetBrotherhoodOfSteel
     belt: ClothingBeltBoSWebbing
-    pocket1: BoSBrotherhoodKnightKits
+  storage:
+    back:
+    - N14ClothingHeadHatBrotherhoodHelmetMK2
+    - N14BoxPlasticFilledMilitary
 
 - type: playTimeTracker
-  id: BoSWashingtonKnight
+  id: BoSKnight

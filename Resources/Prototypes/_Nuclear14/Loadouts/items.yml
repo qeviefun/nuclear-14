@@ -221,16 +221,17 @@
     - N14FoodPorkBeans
 
 # Misc
-- type: loadout
-  id: N14CurrencyCap100
-  category: Items
-  cost: 5
-  requirements:
-  - !type:CharacterJobRequirement # Forge-Change
-      inverted: true
-      jobs:
-      - BoSMidSerf
-      - CaesarLegionSlave
-      - NCRPisoner
-  items:
-    - N14CurrencyCap100
+# Misfits Change: Removed bottlecap (N14CurrencyCap100) loadout entry — caps are no longer granted to players at round start via loadouts.
+#- type: loadout
+#  id: N14CurrencyCap100
+#  category: Items
+#  cost: 5
+#  requirements:
+#  - !type:CharacterJobRequirement # Forge-Change
+#      inverted: true
+#      jobs:
+#      - BoSMidSerf
+#      - CaesarLegionSlave
+#      - NCRPisoner
+#  items:
+#    - N14CurrencyCap100

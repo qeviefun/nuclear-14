@@ -184,6 +184,35 @@ public sealed class ChatSanitizationManager : IChatSanitizationManager
         // Facepalm
         { ">_<;", "chatsan-facepalms" },
         // End Misfits Add
+
+        // Misfits Add - Chat acronyms converted to emote actions instead of spoken text
+        // Laughter variants — ordered longest→shortest to avoid partial matches (lmfao before lmao)
+        { "lmfao", "chatsan-laughs-heartily" }, // laughing my f***ing ass off
+        { "rofl", "chatsan-rolls-laughing" },    // rolling on the floor laughing
+        { "lmao", "chatsan-laughs-heartily" },   // laughing my ass off
+        { "heehee", "chatsan-chuckles" },        // quiet giggle
+        { "hehe", "chatsan-chuckles" },          // quiet laugh
+        { "heh", "chatsan-chuckles" },           // understated chuckle
+        { "kek", "chatsan-laughs" },             // kek (lol variant)
+        { "lel", "chatsan-laughs" },             // lel (lol variant)
+        { "lol", "chatsan-laughs" },             // laugh out loud
+        // Confusion / uncertainty
+        { "omfg", "chatsan-surprised" },         // oh my f***ing god
+        { "omg", "chatsan-surprised" },          // oh my god
+        { "wtf", "chatsan-confused" },           // what the f***
+        { "tbh", "chatsan-shrugs" },             // to be honest
+        { "idk", "chatsan-shrugs" },             // I don't know
+        // Head / physical gestures
+        { "smh", "chatsan-shakes-head" },        // shaking my head
+        { "fml", "chatsan-facepalms" },          // f*** my life
+        { "ngl", "chatsan-shifty" },             // not gonna lie (glances sideways)
+        // Social gestures
+        { "tysm", "chatsan-beams" },             // thank you so much
+        { "thx", "chatsan-nods" },               // thanks
+        { "brb", "chatsan-waves" },              // be right back
+        { "afk", "chatsan-waves" },              // away from keyboard
+        { "np", "chatsan-nods" },                // no problem
+        // End Misfits Add (acronyms)
     };
 
     private bool _doSanitize;

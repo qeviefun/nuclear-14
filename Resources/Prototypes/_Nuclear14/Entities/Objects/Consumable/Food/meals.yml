@@ -90,6 +90,8 @@
         reagents:
         - ReagentId: JuiceCarrot
           Quantity: 20
+        - ReagentId: Nutriment #Misfits Fix: carrot fries had only JuiceCarrot (drink reagent), providing no direct hunger satiation
+          Quantity: 10
 # Tastes like carrots, salt.
 
 - type: entity

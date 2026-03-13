@@ -1,7 +1,7 @@
 - type: job
   id: CaesarLegionOrator
   setPreference: true
-  hideIfPlaytimeRequirementsNotMet: true # #Misfits Change
+  hideIfPlaytimeRequirementsNotMet: false # #Misfits Tweak - all jobs visible in selection
   jobWhitelistBypassesRoleTimers: true # #Misfits Change
   weight: 35
   name: job-name-caesar-legion-orator
@@ -10,8 +10,8 @@
   requirements:
   - !type:CharacterDepartmentTimeRequirement
       department: CaesarLegion
-      min: 900 # 15 hours
-  - !type:CharacterWhitelistRequirement
+      min: 0 # #Misfits Tweak - accessible up to Vet Decanus
+  #- !type:CharacterWhitelistRequirement # #Misfits Tweak - whitelist removed, accessible up to Vet Decanus
   - !type:CharacterSpeciesRequirement
     species:
     - Human

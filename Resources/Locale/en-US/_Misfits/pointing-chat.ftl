@@ -17,6 +17,15 @@ misfits-chat-carry-drop = puts down {$carried}
 misfits-chat-carry-throw = throws {$victim}
 misfits-chat-double-grab-throw = hurls {$victim} across the room
 
+## EscapeInventorySystem / ResistLockerSystem
+# Broadcast when a carried or locked-in entity struggles.
+misfits-chat-struggle-carried = struggles against {$carrier}'s grip
+misfits-chat-locker-struggle = struggles inside {$container}
+
+## InjectorSystem / HypospraySystem
+# Broadcast when a player injects another entity.
+misfits-chat-inject-other = injects {$target} with {$item}
+
 ## CuffingChatSystem
 # Broadcast when a player successfully restrains another entity with handcuffs.
 misfits-chat-cuff-applied = restrains {$target}
@@ -56,6 +65,13 @@ misfits-chat-blocking-stop = lowers {$shield}
 # Emote broadcast when a power armor suit fully deploys or retracts its attached pieces.
 misfits-chat-power-armor-close = locks into {$armor}
 misfits-chat-power-armor-open = disengages {$armor}
+# Emote broadcast when the wearer enters or exits the brace stance via hotkey.
+misfits-chat-power-armor-brace-activate = locks {$armor}'s servos and braces for fire
+misfits-chat-power-armor-brace-deactivate = releases {$armor}'s servos and resumes movement
+
+## PowerArmorBraceSystem
+# Client-side popup when the wearer tries to brace but is not standing on a valid grid tile.
+power-armor-brace-cant-here = You can't brace here.
 
 ## BodySystem
 # Emote broadcast when a mob is fully gibbed.
