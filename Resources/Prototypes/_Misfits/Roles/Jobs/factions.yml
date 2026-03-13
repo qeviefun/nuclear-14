@@ -28,3 +28,29 @@
   - EnclaveOfficer
   - EnclaveSoldier
   - EnclaveScientist
+
+# #Misfits Add — Caesar's Legion department. Groups all Legion roles for the
+# character-creation screen and for department-based requirements/lookups.
+- type: department
+  id: CaesarLegion
+  description: department-CaesarLegion-description
+  color: "#8b0000"
+  weight: -99
+  roles:
+  - CaesarLegionLegate
+  - CaesarLegionCenturion
+  - CaesarLegionOrator
+  - CaesarLegionPrimeDecanus
+  - CaesarLegionVeteranDecanus
+  - CaesarLegionDean
+  - CaesarLegionVexillarius
+  - CaesarLegionHoundmaster
+  - CaesarLegionFrumentarii
+  - CaesarLegionExplorer
+  - CaesarLegionLegionnaireVeteran
+  - CaesarLegionLegionnaireWarrior
+  - CaesarLegionLegionnaireRecruit
+  - CaesarLegionAuxilia
+  - CaesarLegionRecruit
+  - CaesarLegionSlave
+

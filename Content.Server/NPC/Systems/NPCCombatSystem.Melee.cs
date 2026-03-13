@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Server._Misfits.NPC.Components; // #Misfits Add - aggro warning gate
 using Content.Server.NPC.Components;
 using Content.Server.NPC.HTN;
 using Content.Shared.CombatMode;
@@ -53,6 +54,10 @@ public sealed partial class NPCCombatSystem
                 RemComp<NPCMeleeCombatComponent>(uid);
                 continue;
             }
+
+            // #Misfits Add - skip pursuit and attack while the aggro warning delay is active.
+            if (HasComp<AggroWarningComponent>(uid))
+                continue;
 
             Attack(uid, comp, curTime, physicsQuery, xformQuery);
         }
