@@ -1717,3 +1717,10 @@ Entries:
   id: 5649
   time: '2026-03-15T03:51:48.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/132
+- author: Dpellowski
+  changes:
+    - type: Add
+      message: Automatic updates on publishes!
+  id: 5650
+  time: '2026-03-15T13:21:27.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/130
