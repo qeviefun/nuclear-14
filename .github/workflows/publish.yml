@@ -44,7 +44,6 @@ jobs:
         GITHUB_REPOSITORY: ${{ vars.GITHUB_REPOSITORY }}
 
     - name: Notify watchdog to update server
-      if: ${{ secrets.SERVER_SSH_KEY != '' }}
       env:
         SSH_KEY: ${{ secrets.SERVER_SSH_KEY }}
         SERVER_HOST: ${{ secrets.SERVER_HOST }}
