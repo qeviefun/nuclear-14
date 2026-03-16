@@ -1,3 +1,5 @@
+// N14 scope system — DISABLED. System removed; file preserved for history.
+#if false
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
@@ -45,3 +47,4 @@ public sealed partial class N14ScopeComponent : Component
     [ViewVariables]
     public EntityUid? CurrentUser;
 }
+#endif

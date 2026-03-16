@@ -118,8 +118,8 @@
 - type: Tag
   id: GearSmall
 
-- type: Tag
-  id: RifleScope
+# - type: Tag
+#   id: RifleScope
 
 - type: Tag
   id: RifleStock1

@@ -59,6 +59,7 @@ public sealed class PowerArmorIntegritySystem : EntitySystem
         SubscribeLocalEvent<PowerArmorIntegrityComponent, ClothingGotUnequippedEvent>(OnUnequipped);
 
         // Block self-repair: can't weld your own suit while wearing it.
+        // #Misfits Fix: ordering must match the other InteractUsingEvent subscription in this system.
         SubscribeLocalEvent<PowerArmorIntegrityComponent, InteractUsingEvent>(OnInteractUsing, before: new[] { typeof(SharedArmorSystem) });
 
         // Forward welder interactions on the wearer to the armor entity so

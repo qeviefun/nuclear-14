@@ -53,7 +53,10 @@ public sealed class SurgeryBui : BoundUserInterface
 
     private void Update(SurgeryBuiState state)
     {
-        if (!_entities.TryGetComponent(_player.LocalEntity, out SurgeryTargetComponent? surgeryTargetComp)
+        // #Misfits Fix: Check the target/patient's CanOperate flag (Owner), not the surgeon's.
+        // Robot surgeons (e.g. Mr. Handy) have no SurgeryTargetComponent so the old
+        // _player.LocalEntity check silently blocked the UI for any non-standard species.
+        if (!_entities.TryGetComponent(Owner, out SurgeryTargetComponent? surgeryTargetComp)
             || !surgeryTargetComp.CanOperate)
             return;
 
@@ -285,7 +288,7 @@ public sealed class SurgeryBui : BoundUserInterface
             || !_window.IsOpen
             || _part == null
             || !_entities.HasComponent<SurgeryComponent>(_surgery?.Ent)
-            || !_entities.TryGetComponent(_player.LocalEntity ?? EntityUid.Invalid, out SurgeryTargetComponent? surgeryComp)
+            || !_entities.TryGetComponent(Owner, out SurgeryTargetComponent? surgeryComp) // #Misfits Fix: check the patient, not the surgeon
             || !surgeryComp.CanOperate)
             return;
 

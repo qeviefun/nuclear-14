@@ -43,7 +43,8 @@ public sealed class MapViewerControl : Control
     public MapViewerControl()
     {
         IoCManager.InjectDependencies(this);
-        _blipLabelFont = new VectorFont(_resourceCache.GetResource<FontResource>("/Fonts/NotoSans/NotoSans-Bold.ttf"), 12);
+        // #Misfits Tweak - Reduced font size from 12 to 8 so map labels are legible and don't crowd the map
+        _blipLabelFont = new VectorFont(_resourceCache.GetResource<FontResource>("/Fonts/NotoSans/NotoSans-Bold.ttf"), 8);
         // Must be Stop to receive mouse wheel, click, and move events.
         MouseFilter = MouseFilterMode.Stop;
         RectClipContent = true;
@@ -353,9 +354,9 @@ public sealed class MapViewerControl : Control
         if (string.IsNullOrWhiteSpace(label))
             return;
 
-        var labelPos = markerPos + new Vector2(18f, -18f);
+        var labelPos = markerPos + new Vector2(14f, -14f);
         var textDimensions = handle.GetDimensions(_blipLabelFont, label, 1f);
-        var padding = new Vector2(6f, 4f);
+        var padding = new Vector2(4f, 2f); // #Misfits Tweak - tighter padding for smaller font
         var rectTopLeft = labelPos - padding;
         var rectBottomRight = labelPos + textDimensions + padding;
 
@@ -452,7 +453,7 @@ public sealed class MapViewerControl : Control
             return;
 
         var textDimensions = handle.GetDimensions(_blipLabelFont, label, 1f);
-        var padding = new Vector2(6f, 4f);
+        var padding = new Vector2(4f, 2f); // #Misfits Tweak - tighter padding for smaller font
         handle.DrawRect(new UIBox2(position - padding, position + textDimensions + padding), new Color(0f, 0f, 0f, 0.82f));
         handle.DrawString(_blipLabelFont, position, label, color);
     }

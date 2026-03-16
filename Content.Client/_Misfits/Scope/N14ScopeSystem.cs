@@ -1,3 +1,5 @@
+// N14 scope system — DISABLED. System removed; file preserved for history.
+#if false
 using System.Numerics;
 using Content.Shared._Misfits.Scope;
 using Robust.Client.GameObjects;
@@ -47,3 +49,4 @@ public sealed class N14ScopeSystem : SharedN14ScopeSystem
         _eye.SetOffset(user, Vector2.Zero, eye);
     }
 }
+#endif

@@ -1,3 +1,5 @@
+// N14 scope system — DISABLED. System removed; file preserved for history.
+#if false
 using Content.Shared.Actions;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Hands;
@@ -201,3 +203,4 @@ public abstract class SharedN14ScopeSystem : EntitySystem
     /// <summary>Called when the scope is toggled OFF or the gun is dropped. Client override resets eye offset.</summary>
     protected virtual void OnScopeDeactivated(Entity<N14ScopeComponent> scope, EntityUid user) { }
 }
+#endif

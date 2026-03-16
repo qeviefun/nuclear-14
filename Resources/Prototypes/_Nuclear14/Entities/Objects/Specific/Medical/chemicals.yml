@@ -605,6 +605,9 @@
   id: N14HealingPowder
   description: A bag of tribal healing powder. Nausiating.
   components:
+  - type: Tag
+    tags:
+    - N14TribalMedicine # #Misfits Fix: tag allows storage in the Medical Belt
   - type: Sprite
     sprite: _Nuclear14/Objects/Specific/Medical/drugs.rsi
     state: healingpowder
