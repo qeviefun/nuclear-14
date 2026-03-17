@@ -1,5 +1,6 @@
 # TODO move this to tiles once tile smoothing is supported
-# Misfits Change - Added Physics and Fixtures so catwalk is physically solid (floor-level, non-blocking to mobs)
+# Misfits Change - Added Physics and Fixtures so catwalk has a physics body (needed for interaction/RCD)
+# Misfits Fix - Fixture has NO layer, so it is fully transparent to all projectiles (bullets, lasers, hitscan)
 - type: entity
   id: Catwalk
   name: catwalk
@@ -64,5 +65,4 @@
         shape:
           !type:PhysShapeAabb
           bounds: "-0.5,-0.5,0.5,0.5"
-        layer:
-        - Opaque # Misfits Change - removed BulletImpassable so bullets pass through catwalks
+        # Misfits Fix - no layer defined so bullets AND lasers (Opaque hitscan) both pass through catwalks
