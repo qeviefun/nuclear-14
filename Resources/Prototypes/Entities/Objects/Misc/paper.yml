@@ -30,6 +30,11 @@
     - Document
     - Trash
     - Paper
+    - Sheet
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      Paper: 100
   - type: Appearance
   - type: FaxableObject
   - type: PaperVisuals

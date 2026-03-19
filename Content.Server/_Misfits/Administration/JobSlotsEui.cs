@@ -1,4 +1,6 @@
 // #Misfits Change - Server-side EUI for the Job Slots admin panel
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using Content.Server.Administration.Managers;
 using Content.Server.EUI;
@@ -30,19 +32,8 @@ public sealed class JobSlotsEui : BaseEui
     private StationJobsSystem StationJobs => _entManager.System<StationJobsSystem>();
     private StationSystem StationSystem => _entManager.System<StationSystem>();
 
-    // Only show Fallout-relevant departments – mirrors WhitelistSearchEui.
-    private static readonly HashSet<string> AllowedDepartments = new()
-    {
-        "BrotherhoodOfSteel",
-        "CaesarLegion",
-        "NCR",
-        "Townsfolk",
-        "FEVMutants",
-        "Tribe",
-        "Robots",
-        "Vault",
-        "Raider",
-    };
+    // Used for station jobs that are not assigned to any department prototype.
+    private const string UncategorizedDepartmentId = "Uncategorized";
 
     private EntityUid? _station;
     private string? _stationName;
@@ -93,32 +84,65 @@ public sealed class JobSlotsEui : BaseEui
         var canManage = _admin.HasAdminFlag(Player, AdminFlags.Admin);
         var depts = new List<JobSlotDepartmentInfo>();
 
+        if (_station == null)
+            return new JobSlotsEuiState(_stationName, canManage, depts);
+
+        var stationJobs = StationJobs.GetJobs(_station.Value);
+        var stationJobIds = new HashSet<string>(stationJobs.Keys.Where(id => _proto.HasIndex<JobPrototype>(id)));
+
+        // Build a job -> departments map from prototypes, then only display jobs
+        // that exist on the current station (map-specific role config).
+        var jobsByDepartment = new Dictionary<string, List<ProtoId<JobPrototype>>>();
+
         foreach (var dept in _proto.EnumeratePrototypes<DepartmentPrototype>()
                      .OrderByDescending(d => d.Weight)
                      .ThenBy(d => d.ID))
         {
-            if (!AllowedDepartments.Contains(dept.ID))
-                continue;
-
-            // Sort jobs by display weight descending, then ID ascending.
             var sortedRoles = dept.Roles
-                .Where(id => _proto.HasIndex<JobPrototype>(id))
+                .Where(id => stationJobIds.Contains(id))
                 .Select(id => (id, proto: _proto.Index<JobPrototype>(id)))
                 .OrderByDescending(t => t.proto.RealDisplayWeight)
                 .ThenBy(t => t.proto.ID)
+                .Select(t => t.id)
                 .ToList();
 
             if (sortedRoles.Count == 0)
                 continue;
 
+            jobsByDepartment[dept.ID] = sortedRoles;
+        }
+
+        // Include station jobs that do not appear in any department prototype.
+        var assignedJobs = new HashSet<string>(jobsByDepartment
+            .SelectMany(x => x.Value)
+            .Select(id => (string) id));
+        var uncategorized = stationJobIds
+            .Where(id => !assignedJobs.Contains(id))
+            .Select(id => (id, proto: _proto.Index<JobPrototype>(id)))
+            .OrderByDescending(t => t.proto.RealDisplayWeight)
+            .ThenBy(t => t.proto.ID)
+            .Select(t => (ProtoId<JobPrototype>) t.id)
+            .ToList();
+
+        if (uncategorized.Count > 0)
+            jobsByDepartment[UncategorizedDepartmentId] = uncategorized;
+
+        var orderedDepartmentIds = jobsByDepartment.Keys
+            .OrderByDescending(GetDepartmentWeight)
+            .ThenBy(id => id, StringComparer.Ordinal)
+            .ToList();
+
+        foreach (var deptId in orderedDepartmentIds)
+        {
+            var sortedRoles = jobsByDepartment[deptId];
+
             var jobs = new List<JobSlotInfo>();
-            foreach (var (jobId, _) in sortedRoles)
+            foreach (var jobId in sortedRoles)
             {
-                int? slots = 0;
+                int? slots = null;
                 var hasCfg = false;
 
-                if (_station != null &&
-                    StationJobs.TryGetJobSlot(_station.Value, jobId, out var slotData))
+                if (StationJobs.TryGetJobSlot(_station.Value, jobId, out var slotData))
                 {
                     hasCfg = true;
                     slots = slotData is null ? null : (int) slotData.Value;
@@ -127,10 +151,22 @@ public sealed class JobSlotsEui : BaseEui
                 jobs.Add(new JobSlotInfo(jobId, slots, hasCfg));
             }
 
-            depts.Add(new JobSlotDepartmentInfo(dept.ID, jobs));
+            if (jobs.Count == 0)
+                continue;
+
+            depts.Add(new JobSlotDepartmentInfo(deptId, jobs));
         }
 
         return new JobSlotsEuiState(_stationName, canManage, depts);
+    }
+
+    private int GetDepartmentWeight(string departmentId)
+    {
+        if (_proto.TryIndex<DepartmentPrototype>(departmentId, out var dept))
+            return dept.Weight;
+
+        // Keep synthetic / unknown groups after real departments.
+        return int.MinValue;
     }
 
     // -------------------------------------------------------------------------

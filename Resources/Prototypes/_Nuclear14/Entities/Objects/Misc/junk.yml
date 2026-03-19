@@ -9,10 +9,12 @@
   - type: Sprite
     sprite: _Nuclear14/Objects/Misc/crafting_junk.rsi
   # - type: Craftable # Corvax-Change  # #Misfits Remove: Stalker14 crafting system
+  - type: Material
   - type: Tag
     tags:
     - JunkItem
     - Trash
+    - RawMaterial
 
 - type: entity
   parent: N14JunkItemBase
@@ -62,6 +64,7 @@
     tags:
     - JunkItem
     - Trash
+    - RawMaterial
   - type: ToolRefinable
     refineResult:
     - id: SheetGlass1

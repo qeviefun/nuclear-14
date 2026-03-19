@@ -122,9 +122,12 @@
   - type: Tag
     tags:
       - RawLeather
+  - type: Material
   - type: PhysicalComposition
     materialComposition:
       RawLeather: 600
+  - type: Item
+    size: Normal
   # - type: Craftable # Corvax-Change  # #Misfits Remove: Stalker14 crafting system
   - type: StaticPrice # Forge-Change
     price: 3

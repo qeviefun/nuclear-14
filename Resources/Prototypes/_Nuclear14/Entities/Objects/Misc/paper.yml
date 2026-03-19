@@ -32,6 +32,11 @@
   - type: Tag
     tags:
     - Magazine
+    - Sheet
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      Paper: 100
   - type: Appearance
   - type: PaperVisuals
   - type: Flammable
