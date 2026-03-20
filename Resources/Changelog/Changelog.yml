@@ -1799,3 +1799,48 @@ Entries:
   id: 5655
   time: '2026-03-19T23:00:39.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/147
+- author: Dpellowski
+  changes:
+    - type: Fix
+      message: >-
+        Fixed paper not being recognized as a crafting material in workbenches
+        by updating all recipes to use N14Paper instead of vanilla Paper
+    - type: Fix
+      message: >-
+        Fixed N14Magazine entity using vanilla Paper material instead of
+        N14Paper in its PhysicalComposition
+    - type: Fix
+      message: >-
+        Fixed CPR system subscribing to InteractHandEvent globally instead of
+        scoping it to entities with MobStateComponent
+    - type: Fix
+      message: >-
+        Simplified Caesar's Legion Auxilia and Orator playtime requirements to
+        only require Legion Recruit time instead of an OR with Legion Slave
+    - type: Fix
+      message: >-
+        Simplified Followers, Tribal, Tribal Farmer, and Tribal Healer playtime
+        requirements to only require Wastelander time instead of an OR with
+        Survivor
+    - type: Tweak
+      message: >-
+        Whitelist department filter now uses an exclusion list of vanilla SS14
+        departments instead of an allowlist, so new Nuclear14/Misfits factions
+        appear automatically
+    - type: Tweak
+      message: >-
+        Added jobWhitelistBypassesRoleTimers to all Enclave roles, NCR Engineer,
+        NCR Medic, and Super Mutant so whitelisted players can skip playtime
+        requirements
+    - type: Tweak
+      message: >-
+        Added whitelist bypass support for CharacterLogicAndRequirement,
+        CharacterLogicOrRequirement, and CharacterLogicXorRequirement so nested
+        requirements can be bypassed properly
+    - type: Add
+      message: >-
+        BoS Elder and Senior Paladin now spawn with PowerArmorProficiency,
+        allowing them to equip power armor
+  id: 5656
+  time: '2026-03-20T00:27:30.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/148
