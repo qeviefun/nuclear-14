@@ -4,7 +4,7 @@
   hideWithoutJobWhitelist: false # #Misfits Tweak - accessible up to Vet Decanus, no whitelist
   hideIfPlaytimeRequirementsNotMet: false # #Misfits Tweak - all jobs visible in selection
   jobWhitelistBypassesRoleTimers: true # #Misfits Change
-  weight: 100
+  weight: 150
   showBorder: true
   name: job-name-caesar-legion-veteran-decanus
   description: job-description-caesar-legion-veteran-decanus

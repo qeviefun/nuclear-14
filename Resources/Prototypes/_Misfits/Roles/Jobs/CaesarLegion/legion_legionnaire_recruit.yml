@@ -3,7 +3,7 @@
   setPreference: true
   hideIfPlaytimeRequirementsNotMet: false # #Misfits Tweak - all jobs visible in selection
   jobWhitelistBypassesRoleTimers: true # #Misfits Change
-  weight: 60
+  weight: 40
   name: job-name-caesar-legion-legionnaire-recruit
   description: job-description-caesar-legionnaire-recruit
   playTimeTracker: CaesarLegionLegionnaireRecruit

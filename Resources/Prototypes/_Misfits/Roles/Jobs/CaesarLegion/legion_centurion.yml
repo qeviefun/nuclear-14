@@ -4,7 +4,7 @@
   hideWithoutJobWhitelist: false # #Misfits Tweak - visible in all menus
   hideIfPlaytimeRequirementsNotMet: false # #Misfits Tweak - all jobs visible in selection
   jobWhitelistBypassesRoleTimers: true # #Misfits Change
-  weight: 110
+  weight: 190
   name: job-name-caesar-legion-centurion
   description: job-description-caesar-legion-centurion
   playTimeTracker: CaesarLegionCenturion

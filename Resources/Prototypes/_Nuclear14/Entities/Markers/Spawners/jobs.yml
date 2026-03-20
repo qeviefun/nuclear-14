@@ -310,18 +310,18 @@
       - state: green
       - state: ranger
 
-#Misfits Change /Comment-out/: NCRRangerVeteran consolidated into RangerVeteran. Use N14SpawnPointRangerVeteran instead.
-#- type: entity
-#  id: N14SpawnPointNCRRangerVeteran
-#  parent: N14SpawnPointNCRCadet
-#  name: NCR ranger veteran
-#  components:
-#  - type: SpawnPoint
-#    job_id: NCRRangerVeteran
-#  - type: Sprite
-#    layers:
-#      - state: green
-#      - state: rangerveteran
+#Misfits Fix - keep legacy spawnpoint prototype id for map compatibility, but route to consolidated RangerVeteran job.
+- type: entity
+  id: N14SpawnPointNCRRangerVeteran
+  parent: N14SpawnPointNCRCadet
+  name: NCR veteran ranger
+  components:
+  - type: SpawnPoint
+    job_id: RangerVeteran
+  - type: Sprite
+    layers:
+      - state: green
+      - state: rangerveteran
 
 - type: entity
   id: N14SpawnPointNCRSoldier

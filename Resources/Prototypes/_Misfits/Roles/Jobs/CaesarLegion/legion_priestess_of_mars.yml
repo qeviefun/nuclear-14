@@ -1,0 +1,70 @@
+# legion_priestess_of_mars.yml
+# Priestess of Mars — Caesar's Legion female religious role.
+# Senior support-officer tier (equivalent to Centurion's tier) beneath command.
+# CaesarLegionSlave is the female-accessible entry rank; playtime gates placed there.
+
+- type: job
+  id: CaesarLegionPriestessOfMars
+  setPreference: true
+  hideWithoutJobWhitelist: false  # visible in all menus regardless of whitelist
+  overrideConsoleVisibility: true # force display in crew manifest + job picker
+  hideIfPlaytimeRequirementsNotMet: false
+  jobWhitelistBypassesRoleTimers: true
+  weight: 170  # Support-officer tier: below Centurion (190), above NCO group (150)
+  name: job-name-caesar-legion-priestess-of-mars
+  description: job-description-caesar-legion-priestess-of-mars
+  playTimeTracker: CaesarLegionPriestessOfMars
+  requirements:
+    # Priestess is a senior officer — requires meaningful Legion service.
+    # CaesarLegionSlave is the female-accessible entry rank, so hours gate placed there.
+    - !type:CharacterPlaytimeRequirement
+      tracker: CaesarLegionSlave
+      min: 18000 # 5 hours as a Slave (matches Centurion entry bar for the female path)
+    - !type:CharacterSpeciesRequirement
+      species:
+        - Human
+    - !type:CharacterSexRequirement
+      sex: Female
+    - !type:CharacterGenderRequirement
+      gender: Female
+  startingGear: CaesarLegionPriestessOfMarsGear
+  alwaysUseSpawner: true
+  icon: "JobIconlegionerRecruit"
+  supervisors: job-name-caesar-legion-other
+  canBeAntag: false
+  # Priestesses share base Legion access; they are not combatants and gain
+  # no additional restricted-area access beyond a standard Recruit.
+  accessGroups:
+    - CaesarLegionRecruit
+  special:
+    - !type:AddComponentSpecial
+      components:
+        - type: NpcFactionMember
+          factions:
+            - CaesarLegion
+        - type: ReplacementAccent
+          accent: latin
+    - !type:AddTraitSpecial
+      traits: [ LanguageLatin ]
+
+# Starting loadout — full ceremonial outfit using the Priestess of Mars items.
+- type: startingGear
+  id: CaesarLegionPriestessOfMarsGear
+  equipment:
+    jumpsuit: N14PriestessOfMarsRobes
+    neck: N14PriestessOfMarsCloak
+    mask: N14PriestessOfMarsVeil
+    gloves: N14PriestessOfMarsGloves
+    shoes: N14PriestessOfMarsBoots
+    belt: N14PriestessOfMarsSatchel
+    ears: N14ClothingHeadsetLegion
+    back: N14ClothingBackpackMilitary
+    id: N14IDLegionaryMedalRecruit
+  storage:
+    back:
+      - N14HealingPowder
+      - N14HealingPowder
+
+# Playtime tracker — accumulated hours unlock future female Legion ranks.
+- type: playTimeTracker
+  id: CaesarLegionPriestessOfMars

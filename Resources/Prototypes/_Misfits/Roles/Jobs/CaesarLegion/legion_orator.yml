@@ -3,14 +3,16 @@
   setPreference: true
   hideIfPlaytimeRequirementsNotMet: false # #Misfits Tweak - all jobs visible in selection
   jobWhitelistBypassesRoleTimers: true # #Misfits Change
-  weight: 35
+  weight: 180
+  showBorder: true  # Starts the "Support Officers" tier block below Centurion/Legate
   name: job-name-caesar-legion-orator
   description: job-description-caesar-legion-orator
   playTimeTracker: CaesarLegionOrator
   requirements:
+    # Locked behind the same prerequisite as Centurion — Orator is a senior officer role.
     - !type:CharacterPlaytimeRequirement
-      tracker: CaesarLegionRecruit
-      min: 18000 # 5 hours
+      tracker: CaesarLegionVeteranDecanus
+      min: 18000 # 5 hours on Veteran Decanus (matches Centurion entry bar)
     - !type:CharacterSpeciesRequirement
       species:
       - Human

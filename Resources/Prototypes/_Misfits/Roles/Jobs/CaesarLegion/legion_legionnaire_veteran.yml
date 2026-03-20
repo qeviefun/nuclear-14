@@ -3,7 +3,7 @@
   setPreference: true
   hideIfPlaytimeRequirementsNotMet: false # #Misfits Tweak - all jobs visible in selection
   jobWhitelistBypassesRoleTimers: true # #Misfits Change
-  weight: 80
+  weight: 60
   showBorder: true
   name: job-name-caesar-legion-legionnaire-veteran
   description: job-description-caesar-legion-legionnaire-veteran

@@ -22,7 +22,7 @@
     - NCRCaptain
     - NCRMPinvestigator
     - NCRRanger
-    - NCRRangerVeteran
+    - RangerVeteran #Misfits Change - consolidated NCRRangerVeteran into RangerVeteran
   - !type:CharacterPlaytimeRequirement
     tracker: NCRSoldier
     min: 12000 # 5 hours veterancy unlock
@@ -53,7 +53,7 @@
     - NCRCaptain
     - NCRMPinvestigator
     - NCRRanger
-    - NCRRangerVeteran
+    - RangerVeteran #Misfits Change - consolidated NCRRangerVeteran into RangerVeteran
   - !type:CharacterPlaytimeRequirement
     tracker: NCRSoldier
     min: 36000 # 10 hours veterancy unlock
@@ -84,7 +84,7 @@
     - NCRCaptain
     - NCRMPinvestigator
     - NCRRanger
-    - NCRRangerVeteran
+    - RangerVeteran #Misfits Change - consolidated NCRRangerVeteran into RangerVeteran
   - !type:CharacterPlaytimeRequirement
     tracker: NCRSoldier
     min: 72000 # 20 hours veterancy unlock

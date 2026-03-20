@@ -173,6 +173,9 @@
   # Command (Whitelisted)
   - CaesarLegionLegate          # Legate              | _Misfits/Roles/Jobs/CaesarLegion/legion_legate.yml
   - CaesarLegionCenturion       # Centurion           | _Misfits/Roles/Jobs/CaesarLegion/legion_centurion.yml
+  # Support Officers #Misfits Add: Orator and Priestess sit in their own tier between Command and NCOs.
+  - CaesarLegionOrator          # Orator              | _Misfits/Roles/Jobs/CaesarLegion/legion_orator.yml
+  - CaesarLegionPriestessOfMars # Priestess of Mars   | _Misfits/Roles/Jobs/CaesarLegion/legion_priestess_of_mars.yml
   # Senior NCOs
   - CaesarLegionVeteranDecanus  # Veteran Decanus     | _Misfits/Roles/Jobs/CaesarLegion/legion_veteran_decanus.yml
   - CaesarLegionPrimeDecanus    # Prime Decanus       | _Misfits/Roles/Jobs/CaesarLegion/legion_prime_decanus.yml
@@ -186,7 +189,6 @@
   - CaesarLegionFrumentarii     # Frumentarii         | _Misfits/Roles/Jobs/CaesarLegion/legion_venator.yml
   - CaesarLegionVexillarius     # Vexillarius         | _Misfits/Roles/Jobs/CaesarLegion/legion_vexillarius.yml
   - CaesarLegionExplorer        # Explorer            | _Misfits/Roles/Jobs/CaesarLegion/legion_explorer.yml
-  - CaesarLegionOrator          # Orator              | _Misfits/Roles/Jobs/CaesarLegion/legion_orator.yml
   - CaesarLegionAuxilia         # Auxilia             | _Misfits/Roles/Jobs/CaesarLegion/legion_auxilia.yml
   # Recruits
   - CaesarLegionRecruit         # Recruit             | _Misfits/Roles/Jobs/CaesarLegion/legion_recruit.yml

@@ -1,0 +1,70 @@
+# ncr_major.yml
+# NCR Major — the senior command billet above Captain.
+# Whitelist-only: hidden from the job picker without an admin-granted whitelist.
+# Requires meaningful time as Captain before promotion is possible.
+
+- type: job
+  id: NCRMajor
+  setPreference: true
+  hideWithoutJobWhitelist: true   # Whitelist-only; only visible to whitelisted players
+  hideIfPlaytimeRequirementsNotMet: false
+  jobWhitelistBypassesRoleTimers: true
+  weight: 130                      # Above Captain (120), below any future General billet
+  name: job-name-ncr-major
+  description: job-description-ncr-major
+  playTimeTracker: NCRMajor
+  requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+        - Human
+        - Ghoul
+    - !type:CharacterPlaytimeRequirement
+      tracker: NCRCaptain
+      min: 18000  # 5 hours as Captain before eligible for Major
+  startingGear: NCRMajorGear
+  icon: "JobIconNcrLeader"
+  supervisors: job-supervisors-ncr-captain
+  requireAdminNotify: true
+  alwaysUseSpawner: true
+  canBeAntag: false
+  access:
+    - NCR
+    - NCRSGT
+    - NCRMedic
+    - NCRLT
+    - NCRCaptain
+    - NCRMajor
+  special:
+    - !type:AddComponentSpecial
+      components:
+        - type: NpcFactionMember
+          factions:
+            - Wastelander
+            - NCR
+
+# Major shares the Captain's visual loadout — distinct rank is represented via
+# the access level. If a Major-specific collar pin or dogtag is added later,
+# update neck: and id: here accordingly.
+- type: startingGear
+  id: NCRMajorGear
+  equipment:
+    head: N14ClothingHeadHatNCRBeretOfficer
+    back: N14ClothingBackpackNCR
+    jumpsuit: N14ClothingOfficerUniformNCRDesert
+    outerClothing: N14ClothingOuterNCRDressJacketCO
+    shoes: N14ClothingBootsCombatFilled
+    neck: ClothingNeckPinNCRCaptain
+    belt: ClothingBeltNCR
+    eyes: ClothingEyesGlassesSunglasses
+    ears: N14ClothingHeadsetNCR
+    pocket1: NCRcaptainloadoutkits
+    pocket2: RadioHandheld
+    id: N14IDNCRDogtagCaptain
+  innerClothingSkirt: N14ClothingOfficerUniformNCRDesert
+  satchel: N14ClothingBackpackSatchelNCRFilled
+  storage:
+    back:
+      - N14BoxPlasticFilledMilitaryNCR
+
+- type: playTimeTracker
+  id: NCRMajor

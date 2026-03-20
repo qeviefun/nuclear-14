@@ -69,3 +69,19 @@
   - NCRMedic
   - NCRLT
   - NCRCaptain
+
+# #Misfits Add: NCR Major — top whitelist-only command billet above Captain.
+- type: accessLevel
+  id: NCRMajor
+  name: id-card-access-level-ncr-major
+
+- type: accessGroup
+  id: NCRMajor
+  # #Misfits Add: NCR Major inherits all Captain access plus Major-level command spaces.
+  tags:
+  - NCR
+  - NCRSGT
+  - NCRMedic
+  - NCRLT
+  - NCRCaptain
+  - NCRMajor

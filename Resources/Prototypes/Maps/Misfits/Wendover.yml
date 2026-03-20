@@ -104,6 +104,7 @@
           CaesarLegionPrimeDecanus: [ 1, 1 ] # Misfits-Legion
           CaesarLegionExplorer: [ 1, 2 ] # Misfits-Legion
           CaesarLegionOrator: [ 1, 1 ] # Misfits-Legion
+          CaesarLegionPriestessOfMars: [ 1, 1 ] # Misfits-Legion — Priestess of Mars late-join slot
           CaesarLegionHoundmaster: [ 1, 1 ] # Forge-Legion
           CaesarLegionRecruit: [ 6, 6 ] # Forge-Legion
           CaesarLegionAuxilia: [ 4, 4 ] # #Misfits Change - activated
