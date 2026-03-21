@@ -1,6 +1,7 @@
 - type: job
   id: RangerChief #admin lead
   setPreference: false
+  alwaysUseSpawner: true
   name: job-name-ranger-chief
   description: job-description-ranger-chief
   playTimeTracker: RangerChief

@@ -1,6 +1,7 @@
 - type: job
   id: RangerVeteran
   setPreference: true
+  alwaysUseSpawner: true
   jobWhitelistBypassesRoleTimers: true
   name: job-name-ranger-veteran-n14
   description: job-description-ranger-veteran-n14
