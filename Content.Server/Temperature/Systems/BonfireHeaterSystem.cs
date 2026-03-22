@@ -24,7 +24,7 @@ public sealed class BonfireHeaterSystem : EntitySystem
         base.Initialize();
         // Gate the step-trigger so it only fires when the bonfire is actually lit,
         // and only on mobs — not dropped items or placed food sitting on the surface.
-        SubscribeLocalEvent<BonfireHeaterComponent, ref StepTriggerAttemptEvent>(OnStepTriggerAttempt);
+        SubscribeLocalEvent<BonfireHeaterComponent, StepTriggerAttemptEvent>(OnStepTriggerAttempt);
     }
 
     // #Misfits Add: Cancel step-trigger attempts if the bonfire is not on fire or the tripper
