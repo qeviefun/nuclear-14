@@ -1,0 +1,297 @@
+# Blueprint tier categories for faction-specific crafting
+# Each faction has 4 tiers per workbench type (Weapons, Armor, Ammo)
+# Tiers are DPS/Protection-weighted: T1 has most items, T4 has fewest
+
+# === NCR ===
+- type: latheCategory
+  id: N14BlueprintNCRWeaponsT1
+  name: NCR Weapons - Tier 1
+
+- type: latheCategory
+  id: N14BlueprintNCRWeaponsT2
+  name: NCR Weapons - Tier 2
+
+- type: latheCategory
+  id: N14BlueprintNCRWeaponsT3
+  name: NCR Weapons - Tier 3
+
+- type: latheCategory
+  id: N14BlueprintNCRWeaponsT4
+  name: NCR Weapons - Tier 4
+
+- type: latheCategory
+  id: N14BlueprintNCRArmorT1
+  name: NCR Armor - Tier 1
+
+- type: latheCategory
+  id: N14BlueprintNCRArmorT2
+  name: NCR Armor - Tier 2
+
+- type: latheCategory
+  id: N14BlueprintNCRArmorT3
+  name: NCR Armor - Tier 3
+
+- type: latheCategory
+  id: N14BlueprintNCRArmorT4
+  name: NCR Armor - Tier 4
+
+- type: latheCategory
+  id: N14BlueprintNCRAmmoT1
+  name: NCR Ammo - Tier 1
+
+- type: latheCategory
+  id: N14BlueprintNCRAmmoT2
+  name: NCR Ammo - Tier 2
+
+- type: latheCategory
+  id: N14BlueprintNCRAmmoT3
+  name: NCR Ammo - Tier 3
+
+- type: latheCategory
+  id: N14BlueprintNCRAmmoT4
+  name: NCR Ammo - Tier 4
+
+# === CAESAR'S LEGION ===
+- type: latheCategory
+  id: N14BlueprintLegionWeaponsT1
+  name: Legion Weapons - Tier 1
+
+- type: latheCategory
+  id: N14BlueprintLegionWeaponsT2
+  name: Legion Weapons - Tier 2
+
+- type: latheCategory
+  id: N14BlueprintLegionWeaponsT3
+  name: Legion Weapons - Tier 3
+
+- type: latheCategory
+  id: N14BlueprintLegionWeaponsT4
+  name: Legion Weapons - Tier 4
+
+- type: latheCategory
+  id: N14BlueprintLegionArmorT1
+  name: Legion Armor - Tier 1
+
+- type: latheCategory
+  id: N14BlueprintLegionArmorT2
+  name: Legion Armor - Tier 2
+
+- type: latheCategory
+  id: N14BlueprintLegionArmorT3
+  name: Legion Armor - Tier 3
+
+- type: latheCategory
+  id: N14BlueprintLegionArmorT4
+  name: Legion Armor - Tier 4
+
+- type: latheCategory
+  id: N14BlueprintLegionAmmoT1
+  name: Legion Ammo - Tier 1
+
+- type: latheCategory
+  id: N14BlueprintLegionAmmoT2
+  name: Legion Ammo - Tier 2
+
+- type: latheCategory
+  id: N14BlueprintLegionAmmoT3
+  name: Legion Ammo - Tier 3
+
+- type: latheCategory
+  id: N14BlueprintLegionAmmoT4
+  name: Legion Ammo - Tier 4
+
+# === BROTHERHOOD OF STEEL ===
+- type: latheCategory
+  id: N14BlueprintBoSWeaponsT1
+  name: BoS Weapons - Tier 1
+
+- type: latheCategory
+  id: N14BlueprintBoSWeaponsT2
+  name: BoS Weapons - Tier 2
+
+- type: latheCategory
+  id: N14BlueprintBoSWeaponsT3
+  name: BoS Weapons - Tier 3
+
+- type: latheCategory
+  id: N14BlueprintBoSWeaponsT4
+  name: BoS Weapons - Tier 4
+
+- type: latheCategory
+  id: N14BlueprintBoSArmorT1
+  name: BoS Armor - Tier 1
+
+- type: latheCategory
+  id: N14BlueprintBoSArmorT2
+  name: BoS Armor - Tier 2
+
+- type: latheCategory
+  id: N14BlueprintBoSArmorT3
+  name: BoS Armor - Tier 3
+
+- type: latheCategory
+  id: N14BlueprintBoSArmorT4
+  name: BoS Armor - Tier 4
+
+- type: latheCategory
+  id: N14BlueprintBoSAmmoT1
+  name: BoS Ammo - Tier 1
+
+- type: latheCategory
+  id: N14BlueprintBoSAmmoT2
+  name: BoS Ammo - Tier 2
+
+- type: latheCategory
+  id: N14BlueprintBoSAmmoT3
+  name: BoS Ammo - Tier 3
+
+- type: latheCategory
+  id: N14BlueprintBoSAmmoT4
+  name: BoS Ammo - Tier 4
+
+# === TOWNSFOLK ===
+- type: latheCategory
+  id: N14BlueprintTownWeaponsT1
+  name: Town Weapons - Tier 1
+
+- type: latheCategory
+  id: N14BlueprintTownWeaponsT2
+  name: Town Weapons - Tier 2
+
+- type: latheCategory
+  id: N14BlueprintTownWeaponsT3
+  name: Town Weapons - Tier 3
+
+- type: latheCategory
+  id: N14BlueprintTownWeaponsT4
+  name: Town Weapons - Tier 4
+
+- type: latheCategory
+  id: N14BlueprintTownArmorT1
+  name: Town Armor - Tier 1
+
+- type: latheCategory
+  id: N14BlueprintTownArmorT2
+  name: Town Armor - Tier 2
+
+- type: latheCategory
+  id: N14BlueprintTownArmorT3
+  name: Town Armor - Tier 3
+
+- type: latheCategory
+  id: N14BlueprintTownArmorT4
+  name: Town Armor - Tier 4
+
+- type: latheCategory
+  id: N14BlueprintTownAmmoT1
+  name: Town Ammo - Tier 1
+
+- type: latheCategory
+  id: N14BlueprintTownAmmoT2
+  name: Town Ammo - Tier 2
+
+- type: latheCategory
+  id: N14BlueprintTownAmmoT3
+  name: Town Ammo - Tier 3
+
+- type: latheCategory
+  id: N14BlueprintTownAmmoT4
+  name: Town Ammo - Tier 4
+
+# === VAULT ===
+- type: latheCategory
+  id: N14BlueprintVaultWeaponsT1
+  name: Vault Weapons - Tier 1
+
+- type: latheCategory
+  id: N14BlueprintVaultWeaponsT2
+  name: Vault Weapons - Tier 2
+
+- type: latheCategory
+  id: N14BlueprintVaultWeaponsT3
+  name: Vault Weapons - Tier 3
+
+- type: latheCategory
+  id: N14BlueprintVaultWeaponsT4
+  name: Vault Weapons - Tier 4
+
+- type: latheCategory
+  id: N14BlueprintVaultArmorT1
+  name: Vault Armor - Tier 1
+
+- type: latheCategory
+  id: N14BlueprintVaultArmorT2
+  name: Vault Armor - Tier 2
+
+- type: latheCategory
+  id: N14BlueprintVaultArmorT3
+  name: Vault Armor - Tier 3
+
+- type: latheCategory
+  id: N14BlueprintVaultArmorT4
+  name: Vault Armor - Tier 4
+
+- type: latheCategory
+  id: N14BlueprintVaultAmmoT1
+  name: Vault Ammo - Tier 1
+
+- type: latheCategory
+  id: N14BlueprintVaultAmmoT2
+  name: Vault Ammo - Tier 2
+
+- type: latheCategory
+  id: N14BlueprintVaultAmmoT3
+  name: Vault Ammo - Tier 3
+
+- type: latheCategory
+  id: N14BlueprintVaultAmmoT4
+  name: Vault Ammo - Tier 4
+
+# === TRIBE ===
+- type: latheCategory
+  id: N14BlueprintTribeWeaponsT1
+  name: Tribe Weapons - Tier 1
+
+- type: latheCategory
+  id: N14BlueprintTribeWeaponsT2
+  name: Tribe Weapons - Tier 2
+
+- type: latheCategory
+  id: N14BlueprintTribeWeaponsT3
+  name: Tribe Weapons - Tier 3
+
+- type: latheCategory
+  id: N14BlueprintTribeWeaponsT4
+  name: Tribe Weapons - Tier 4
+
+- type: latheCategory
+  id: N14BlueprintTribeArmorT1
+  name: Tribe Armor - Tier 1
+
+- type: latheCategory
+  id: N14BlueprintTribeArmorT2
+  name: Tribe Armor - Tier 2
+
+- type: latheCategory
+  id: N14BlueprintTribeArmorT3
+  name: Tribe Armor - Tier 3
+
+- type: latheCategory
+  id: N14BlueprintTribeArmorT4
+  name: Tribe Armor - Tier 4
+
+- type: latheCategory
+  id: N14BlueprintTribeAmmoT1
+  name: Tribe Ammo - Tier 1
+
+- type: latheCategory
+  id: N14BlueprintTribeAmmoT2
+  name: Tribe Ammo - Tier 2
+
+- type: latheCategory
+  id: N14BlueprintTribeAmmoT3
+  name: Tribe Ammo - Tier 3
+
+- type: latheCategory
+  id: N14BlueprintTribeAmmoT4
+  name: Tribe Ammo - Tier 4
