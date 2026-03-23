@@ -683,40 +683,12 @@
     Circuitry: 50
 
 - type: latheRecipe
-  id: N14BPNCRArmorRangerCombat
-  result: N14ClothingOuterRangerCombat
-  category: N14BlueprintNCRArmorT4
-  completetime: 20
-  requiresBlueprint: true
-  availableFaction:
-  - NCR
-  - Rangers
-  materials:
-    Steel: 600
-    Leather: 400
-    Cloth: 350
-    Thread: 250
-    N14Iron: 100
 
 - type: latheRecipe
-  id: N14BPNCRArmorRangerElite
-  result: N14ClothingOuterRangerElite
-  category: N14BlueprintNCRArmorT4
-  completetime: 22
-  requiresBlueprint: true
-  availableFaction:
-  - NCR
-  - Rangers
-  materials:
-    Steel: 700
-    Leather: 450
-    Cloth: 350
-    Thread: 250
-    N14Iron: 150
 
 - type: latheRecipe
-  id: N14BPNCRArmorPowerArmorT51NCR
-  result: N14ClothingOuterPowerArmorT51NCR
+  id: N14BPNCRArmorPowerArmorT45Sierra
+  result: N14ClothingOuterPowerArmorT45Sierra
   category: N14BlueprintNCRArmorT4
   completetime: 30
   requiresBlueprint: true
@@ -1559,15 +1531,6 @@
 
 # --- Legion Tier 4 Armor ---
 - type: latheRecipe
-  id: N14BPLegionArmorHeavyCenturionArmor
-  result: N14ClothingOuterHeavyCenturionArmor
-  category: N14BlueprintLegionArmorT4
-  completetime: 25
-  requiresBlueprint: true
-  availableFaction:
-  - CaesarLegion
-  materials:
-    Steel: 800
     Leather: 400
     N14Iron: 300
     Cloth: 250

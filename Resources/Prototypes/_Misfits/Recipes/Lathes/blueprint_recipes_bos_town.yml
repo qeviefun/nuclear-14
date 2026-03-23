@@ -311,35 +311,6 @@
     Leather: 50
 
 - type: latheRecipe
-  id: N14BPBoSArmorMBoSInitiateArmor
-  result: N14ClothingOuterMBoSInitiateArmor
-  category: N14BlueprintBoSArmorT1
-  completetime: 7
-  requiresBlueprint: true
-  availableFaction:
-  - BrotherhoodOfSteel
-  materials:
-    Cloth: 100
-    Thread: 75
-    Steel: 75
-    Leather: 50
-
-- type: latheRecipe
-  id: N14BPBoSArmorBosScribe
-  result: N14ClothingOuterBosScribe
-  category: N14BlueprintBoSArmorT1
-  completetime: 5
-  requiresBlueprint: true
-  availableFaction:
-  - BrotherhoodOfSteel
-  materials:
-    Cloth: 125
-    Thread: 100
-    Leather: 75
-
-# --- BoS Tier 2 Armor ---
-- type: latheRecipe
-  id: N14BPBoSArmorWBoSSquireArmor
   result: N14ClothingOuterWBoSSquireArmor
   category: N14BlueprintBoSArmorT2
   completetime: 10
@@ -505,34 +476,8 @@
     N14Brass: 100
 
 - type: latheRecipe
-  id: N14BPBoSArmorPowerArmorT51
-  result: N14ClothingOuterPowerArmorT51
-  category: N14BlueprintBoSArmorT4
-  completetime: 35
-  requiresBlueprint: true
-  availableFaction:
-  - BrotherhoodOfSteel
-  materials:
-    Steel: 1800
-    N14Iron: 600
-    Circuitry: 300
-    ScrapElectronic: 250
-    N14Brass: 125
 
 - type: latheRecipe
-  id: N14BPBoSArmorPowerArmorT60
-  result: N14ClothingOuterPowerArmorT60
-  category: N14BlueprintBoSArmorT4
-  completetime: 40
-  requiresBlueprint: true
-  availableFaction:
-  - BrotherhoodOfSteel
-  materials:
-    Steel: 2000
-    N14Iron: 700
-    Circuitry: 350
-    ScrapElectronic: 300
-    N14Brass: 150
     N14Gold: 50
 
 # =====================================================================
