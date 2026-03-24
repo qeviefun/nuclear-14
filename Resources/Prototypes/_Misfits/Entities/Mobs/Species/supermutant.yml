@@ -126,8 +126,9 @@
   - type: MeleeThrowOnHit
     speed: 15
     lifetime: 0.025
-  # Misfits Change - stuns the grabbed target for 5 seconds on successful carry.
+  # Misfits Change - stuns the grabbed target for 1 second on successful carry.
   - type: GrabStun
+    stunTime: 1
 
 - type: entity
   save: false
