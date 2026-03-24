@@ -17,6 +17,11 @@
   - type: Appearance
   - type: Extractable
     grindableSolutionName: food
+  # #Misfits Add: Allow clicking produce onto the compost box to pour its food solution in.
+  - type: DrainableSolution
+    solution: food
+  - type: SolutionTransfer
+    canChangeTransferAmount: false
 
 # For produce that can be immediately eaten
 
@@ -33,6 +38,11 @@
   - type: Appearance
   - type: Extractable
     grindableSolutionName: food
+  # #Misfits Add: Allow clicking food produce onto the compost box to pour its food solution in.
+  - type: DrainableSolution
+    solution: food
+  - type: SolutionTransfer
+    canChangeTransferAmount: false
 
 # Subclasses
 
