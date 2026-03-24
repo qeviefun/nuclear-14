@@ -1992,3 +1992,10 @@ Entries:
   id: 5668
   time: '2026-03-23T21:20:46.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/167
+- author: Cythisiax
+  changes:
+    - type: Tweak
+      message: Buffed Asphyxiation, 6 aphysx heal was defeated by ticks.
+  id: 5669
+  time: '2026-03-24T03:33:24.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/168
