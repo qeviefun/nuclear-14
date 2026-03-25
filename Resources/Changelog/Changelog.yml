@@ -2056,3 +2056,26 @@ Entries:
   id: 5671
   time: '2026-03-24T20:59:49.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/178
+- author: Chancerous1
+  changes:
+    - type: Add
+      message: Gave NCR prison chess, checkers, dice and cards.
+    - type: Add
+      message: Gave NCR prison bunker hatch
+    - type: Fix
+      message: OOB Clipping at enclave base
+    - type: Fix
+      message: Legion gate tables no longer climbable to prevent clipping
+    - type: Fix
+      message: Moved Legions chair to prevent clipping
+    - type: Tweak
+      message: Made NCR prison walls indestructible to prevent easy/early escaping
+    - type: Tweak
+      message: Relocated BoS auto plasma rifle to dungeon
+    - type: Tweak
+      message: Relocated BoS supersledge to dungeon
+    - type: Tweak
+      message: Deleted BoS funny hehe haha overpowered closet & items
+  id: 5672
+  time: '2026-03-25T16:09:59.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/183
