@@ -1,5 +1,5 @@
 - type: language
-  id: Chinese #SolCommon
+  id: Chinese # Misfits Change: keep legacy ID for compatibility while exposing this selectable language as Spanish in-game.
   isVisibleLanguage: false
   speech:
     color: "#df57aaee"
@@ -7,135 +7,73 @@
     !type:SyllableObfuscation
     minSyllables: 1
     maxSyllables: 4
-    replacement: # Corvax-Change
-    - ay
+    replacement: # Misfits Change: Spanish-style syllables fit the setting better than the old Chinese phonemes.
+    - a
+    - al
     - an
-    - ba
-    - bay
-    - ban
-    - bey
-    - bo
-    - bu
-    - vey
-    - ga
-    - gan
-    - go
-    - gu
-    - guy
-    - gun
+    - ar
+    - as
+    - ca
+    - ce
+    - ci
+    - co
     - da
-    - dan
-    - dao
-    - den
+    - de
     - di
-    - din
     - do
-    - du
-    - dun
-    - zhan
-    - zhe
-    - zhen
-    - zhi
-    - zho
-    - zhu
-    - zi
-    - zyan
-    - zyao
-    - kay
-    - kan
-    - kao
-    - ke
-    - ki
-    - ko
-    - ku
-    - kun
+    - el
+    - en
+    - er
+    - es
     - la
-    - lay
-    - lan
     - le
-    - li
-    - lin
     - lo
-    - lu
-    - lun
+    - los
     - ma
-    - may
-    - man
     - me
     - mi
-    - min
     - mo
-    - mu
     - na
-    - nay
-    - nan
     - ne
-    - ni
-    - nin
     - no
-    - nu
-    - nyu
+    - nos
     - pa
-    - pan
     - pe
-    - pi
     - po
-    - pu
-    - ran
+    - por
+    - que
+    - qui
+    - ra
+    - re
     - ro
-    - ru
-    - sa
-    - san
+    - se
+    - si
     - so
-    - su
-    - sun
     - ta
-    - tan
     - te
-    - ti
     - to
-    - tu
-    - tun
-    - fa
-    - fan
-    - fey
-    - fo
-    - fu
-    - khay
-    - khan
-    - khao
-    - khe
-    - khi
-    - kho
-    - khu
-    - khua
-    - khuan
-    - khun
-    - tsay
-    - tsan
-    - tse
-    - tsi
-    - tso
-    - tsu
-    - cha
-    - chan
-    - chao
-    - che
-    - chi
-    - cho
-    - chu
-    - shan
-    - shao
-    - she
-    - shi
-    - sho
-    - shu
-    - shchi
-    - shchu
-    - yuan
-    - yuy
+    - tra
+    - una
+    - uno
+    - va
+    - ve
     - ya
-    - yan
-    - yao
-    - e
-    - yo
+    - lle
+    - lla
+    - llo
+    - rio
+    - ria
+    - con
+    - del
+    - esta
+    - esto
+    - para
+    - bueno
+    - vamos
+    - amigo
+    - amiga
+    - nada
+    - donde
+    - pero
+    - hasta
+    - luego

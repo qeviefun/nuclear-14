@@ -2,9 +2,9 @@
 language-English-description = The common language of the Wasteland.
 chat-language-English-name = E
 
-language-Chinese-name = Chinese
-language-Chinese-description = You can understand and speak the Chinese language. Whether through learning or backstory.
-chat-language-Chinese-name = C
+language-Chinese-name = Spanish
+language-Chinese-description = You can understand and speak the Spanish language. Whether through learning or backstory.
+chat-language-Chinese-name = S
 
 language-Tribal-name = Tribal
 language-Tribal-description = You can understand and speak the local Tribal language. Whether through learning or backstory.
