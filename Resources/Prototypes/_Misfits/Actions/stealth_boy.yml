@@ -1,10 +1,10 @@
-# #Misfits Add: Hotkey action for the Stealth Boy consumable.
-# Granted while the device is held or equipped so it mirrors other toggleable utility items.
+# #Misfits Add: Hotkey action for the Stealth Boy wearable.
+# Granted while the device is held or equipped so the wearer can trigger the cloak directly.
 
 - type: entity
   id: ActionActivateStealthBoy
   name: Activate Stealth Boy
-  description: Trigger the Stealth Boy's light-bending field and fade from view for a short time.
+  description: Trigger the Stealth Boy's light-bending field and vanish from sight for a short time.
   categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction

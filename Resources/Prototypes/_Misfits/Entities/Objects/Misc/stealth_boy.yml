@@ -1,21 +1,24 @@
-# #Misfits Add - Stealth Boy item. Uses Pip-Boy sprite from _Nuclear14, tinted blue.
-# Activates via UseInHand or its hotkey action. Fades the user's sprite to near-invisible for 30 seconds.
-# One-time use — deleted on activation.
-# #Misfits Change - Parented to N14BasePipboy so it also functions as a full Pip-Boy
-# with all preinstalled cartridges (Hub, Groups, Directory, Settings, Map, etc.).
+# #Misfits Add - Stealth Boy item. Uses the Pip-Boy sprite from _Nuclear14, tinted blue,
+# but only functions as a wearable cloaking device.
+# #Misfits Fix - Keep the device as a simple id-slot wearable so activating it cannot
+# tear down PDA slots, cartridges, or inserted IDs.
 
 - type: entity
   id: MisfitsStealthBoy
   name: Stealth Boy
   description: A pre-war personal stealth device developed by RobCo Industries. Generates a
     light-bending field around the wearer, rendering them nearly invisible for a short time.
-    One-time use only.
-  parent: N14BasePipboy
+  parent: Clothing
   components:
   - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/pipboy.rsi
+    state: pda
     color: "#4488FF"  # Blue tint to distinguish from a standard Pip-Boy
-  - type: PdaBorderColor
-    borderColor: "#4488FF"
+    scale: 0.75, 0.75
+  - type: Clothing
+    sprite: _Nuclear14/Objects/Misc/pipboy.rsi
+    slots:
+    - idcard
   - type: Item
     size: Small
     sprite: _Nuclear14/Objects/Misc/pipboy.rsi
@@ -24,7 +27,7 @@
     duration: 30
     fadeInTime: 1.5
     fadeOutTime: 2
-    minOpacity: 0.15
+    visibility: -1
   - type: ActionGrant
     actions:
     - ActionActivateStealthBoy

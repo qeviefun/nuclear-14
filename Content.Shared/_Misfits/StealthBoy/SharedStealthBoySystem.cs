@@ -4,6 +4,8 @@
 using Content.Shared.Actions;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
+using Content.Shared.Stealth;
+using Content.Shared.Stealth.Components;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
 
@@ -14,12 +16,14 @@ public abstract class SharedStealthBoySystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedStealthSystem _stealth = default!;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<StealthBoyComponent, UseInHandEvent>(OnUseInHand);
         SubscribeLocalEvent<StealthBoyComponent, ActivateStealthBoyActionEvent>(OnActivateAction);
+        SubscribeLocalEvent<StealthBoyActiveComponent, ComponentShutdown>(OnActiveShutdown);
     }
 
     private void OnUseInHand(Entity<StealthBoyComponent> ent, ref UseInHandEvent args)
@@ -27,11 +31,10 @@ public abstract class SharedStealthBoySystem : EntitySystem
         if (args.Handled)
             return;
 
-        // Already cloaked — do nothing (single-use, consumed on activation)
-        if (HasComp<StealthBoyActiveComponent>(args.User))
+        if (HasComp<StealthBoyActiveComponent>(args.User) || HasComp<StealthComponent>(args.User))
         {
             if (_net.IsServer)
-                _popup.PopupEntity("The Stealth Boy is already active.", ent, args.User);
+                _popup.PopupEntity("You are already cloaked.", ent, args.User);
             return;
         }
 
@@ -44,6 +47,14 @@ public abstract class SharedStealthBoySystem : EntitySystem
         if (args.Handled)
             return;
 
+        if (HasComp<StealthBoyActiveComponent>(args.Performer) || HasComp<StealthComponent>(args.Performer))
+        {
+            if (_net.IsServer)
+                _popup.PopupEntity("You are already cloaked.", ent, args.Performer);
+            args.Handled = true;
+            return;
+        }
+
         args.Handled = true;
         Activate(ent, args.Performer);
     }
@@ -54,19 +65,27 @@ public abstract class SharedStealthBoySystem : EntitySystem
         var active = EnsureComp<StealthBoyActiveComponent>(user);
         active.StartTime = now;
         active.EndTime = now + item.Comp.Duration;
-        active.MinOpacity = item.Comp.MinOpacity;
+        active.TargetVisibility = item.Comp.Visibility;
         active.FadeInTime = item.Comp.FadeInTime;
         active.FadeOutTime = item.Comp.FadeOutTime;
-        active.Opacity = 1f;
         active.FadingOut = false;
+        active.FadeOutStart = TimeSpan.Zero;
         Dirty(user, active);
 
-        // Consume the item
+        EnsureComp<StealthComponent>(user);
+        _stealth.SetEnabled(user, true);
+        _stealth.SetVisibility(user, 1f);
+
         if (_net.IsServer)
-        {
             _popup.PopupEntity("The Stealth Boy hums and you feel yourself fade from view.", user, user);
-            QueueDel(item);
-        }
+    }
+
+    private void OnActiveShutdown(Entity<StealthBoyActiveComponent> ent, ref ComponentShutdown args)
+    {
+        if (Terminating(ent))
+            return;
+
+        RemCompDeferred<StealthComponent>(ent);
     }
 
     public override void Update(float frameTime)
@@ -83,52 +102,51 @@ public abstract class SharedStealthBoySystem : EntitySystem
 
             if (!active.FadingOut)
             {
-                // Fade in phase: interpolate opacity down to MinOpacity
+                // Fade in phase: interpolate visibility down to the stealth threshold.
                 var fadeElapsed = (now - active.StartTime) / active.FadeInTime;
-                var opacity = active.FadeInTime > TimeSpan.Zero
-                    ? (float)(1.0 - (1.0 - active.MinOpacity) * Math.Min(1.0, fadeElapsed))
-                    : active.MinOpacity;
+                var visibility = active.FadeInTime > TimeSpan.Zero
+                    ? (float)(1.0 + (active.TargetVisibility - 1.0) * Math.Min(1.0, fadeElapsed))
+                    : active.TargetVisibility;
 
-                // Check if duration expired → start fade-out
+                SetVisibility(uid, visibility);
+
                 if (now >= active.EndTime)
                 {
                     active.FadingOut = true;
                     active.FadeOutStart = now;
-                    active.Opacity = active.MinOpacity;
                     Dirty(uid, active);
                     continue;
-                }
-
-                if (Math.Abs(opacity - active.Opacity) > 0.01f)
-                {
-                    active.Opacity = opacity;
-                    Dirty(uid, active);
                 }
             }
             else
             {
-                // Fade out phase: interpolate opacity back to 1
+                // Fade out phase: interpolate visibility back to normal.
                 var fadeOutElapsed = (now - active.FadeOutStart) / active.FadeOutTime;
-                var opacity = active.FadeOutTime > TimeSpan.Zero
-                    ? (float)(active.MinOpacity + (1.0 - active.MinOpacity) * Math.Min(1.0, fadeOutElapsed))
+                var visibility = active.FadeOutTime > TimeSpan.Zero
+                    ? (float)(active.TargetVisibility + (1.0 - active.TargetVisibility) * Math.Min(1.0, fadeOutElapsed))
                     : 1f;
+
+                SetVisibility(uid, visibility);
 
                 if (fadeOutElapsed >= 1.0)
                 {
-                    // Fade-out complete: remove component
+                    _stealth.SetVisibility(uid, 1f);
+                    RemCompDeferred<StealthComponent>(uid);
                     RemCompDeferred<StealthBoyActiveComponent>(uid);
                     if (_net.IsServer)
                         _popup.PopupEntity("You reappear as the Stealth Boy power fades.", uid, uid);
                     continue;
                 }
-
-                if (Math.Abs(opacity - active.Opacity) > 0.01f)
-                {
-                    active.Opacity = opacity;
-                    Dirty(uid, active);
-                }
             }
         }
+    }
+
+    private void SetVisibility(EntityUid uid, float visibility)
+    {
+        if (!HasComp<StealthComponent>(uid))
+            return;
+
+        _stealth.SetVisibility(uid, visibility);
     }
 }
 

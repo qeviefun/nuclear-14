@@ -7,7 +7,7 @@ namespace Content.Shared._Misfits.StealthBoy;
 
 /// <summary>
 /// Applied to the player entity (not the item) while actively cloaked.
-/// Client reads Opacity to drive sprite alpha.
+/// Tracks the timer and target stealth intensity for the shared stealth system.
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(raiseAfterAutoHandleState: true)]
 public sealed partial class StealthBoyActiveComponent : Component
@@ -25,16 +25,10 @@ public sealed partial class StealthBoyActiveComponent : Component
     public TimeSpan StartTime;
 
     /// <summary>
-    /// Current rendered opacity — interpolated by the client-side visualizer.
+    /// Target visibility while the Stealth Boy is fully active.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float Opacity = 1f;
-
-    /// <summary>
-    /// Minimum opacity while fully cloaked.
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public float MinOpacity = 0.15f;
+    public float TargetVisibility = -1f;
 
     /// <summary>
     /// Fade-in duration copied from StealthBoyComponent at activation.

@@ -1,12 +1,12 @@
 // #Misfits Add - Stealth Boy item component. When activated, grants the holder
-// temporary active invisibility for Duration seconds. Single-use, consumed on activation.
+// temporary invisibility for Duration seconds without altering their inventory state.
 using Robust.Shared.GameStates;
 
 namespace Content.Shared._Misfits.StealthBoy;
 
 /// <summary>
 /// Placed on the Stealth Boy item. Activating it (Z-key / Use In Hand) applies
-/// temporary invisibility to the activating player.
+/// temporary stealth to the activating player.
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class StealthBoyComponent : Component
@@ -30,8 +30,8 @@ public sealed partial class StealthBoyComponent : Component
     public TimeSpan FadeOutTime = TimeSpan.FromSeconds(2);
 
     /// <summary>
-    /// Minimum opacity while cloaked (0 = fully invisible, 1 = fully visible).
+    /// Target stealth visibility while cloaked (-1 = fully hidden, 1 = fully visible).
     /// </summary>
     [DataField]
-    public float MinOpacity = 0.15f;
+    public float Visibility = -1f;
 }

@@ -10,7 +10,9 @@ namespace Content.Shared.Stealth.Components;
 /// Use other components (like StealthOnMove) to modify this component's visibility based on certain conditions.
 /// </summary>
 [RegisterComponent, NetworkedComponent]
-[Access(typeof(SharedStealthSystem))]
+// #Misfits Add - Allow the Stealth Boy system to drive the core stealth component instead of
+// maintaining a second invisibility implementation that can desync equipment visuals.
+[Access(typeof(SharedStealthSystem), typeof(Content.Shared._Misfits.StealthBoy.SharedStealthBoySystem))]
 public sealed partial class StealthComponent : Component
 {
     /// <summary>

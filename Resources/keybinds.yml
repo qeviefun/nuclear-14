@@ -76,13 +76,13 @@ binds:
 - function: CameraReset
   type: State
   key: NumpadNum8
-# [Misfits] Zoom keybinds disabled — prevents meta abuse via extended view range (NumpadNum4/5/6).
-#- function: ZoomOut
-#  type: State
-#  key: NumpadNum4
-#- function: ZoomIn
-#  type: State
-#  key: NumpadNum6
+# [Misfits] ZoomOut/ZoomIn re-enabled — zoom is limited server-side via fov.allow_player_zoom and MaxZoom cap.
+- function: ZoomOut
+  type: State
+  key: NumpadNum4
+- function: ZoomIn
+  type: State
+  key: NumpadNum6
 #- function: ResetZoom
 #  type: State
 #  key: NumpadNum5
