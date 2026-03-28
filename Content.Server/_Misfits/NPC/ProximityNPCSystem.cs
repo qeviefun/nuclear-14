@@ -2,6 +2,7 @@ using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
 using Content.Shared._Misfits.CCVar;
 using Content.Shared._Misfits.NPC;
+using Content.Shared.Movement.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
@@ -26,6 +27,11 @@ namespace Content.Server._Misfits.NPC;
 /// snapshots all proximity NPCs, then processes a small batch each tick until done.
 /// This spreads the spatial query cost evenly across ticks and prevents a single
 /// burst from blowing the tick budget and causing movement rubberbanding.
+///
+/// InputMover optimisation: Sleeping NPCs also have <see cref="InputMoverComponent"/>
+/// removed so <c>SharedMoverController.UpdateBeforeSolve</c> skips them entirely.
+/// At 3 physics substeps/tick this eliminates ~4500 HandleMobMovement calls/tick for
+/// 1500 sleeping NPCs. The component is re-added before waking.
 /// </summary>
 public sealed class ProximityNPCSystem : EntitySystem
 {
@@ -55,12 +61,30 @@ public sealed class ProximityNPCSystem : EntitySystem
         // Subscribe AFTER HTNSystem so our sleep call overrides HTN's default WakeNPC on map init.
         SubscribeLocalEvent<ProximityNPCComponent, MapInitEvent>(OnMapInit,
             after: [typeof(HTNSystem)]);
+
+        // Safety: if an admin ghost-possesses a sleeping NPC, ensure it can accept input.
+        SubscribeLocalEvent<ProximityNPCComponent, PlayerAttachedEvent>(OnPlayerAttached);
     }
 
     private void OnMapInit(Entity<ProximityNPCComponent> ent, ref MapInitEvent args)
     {
         if (ent.Comp.StartAsleep)
+        {
             _npc.SleepNPC(ent);
+
+            // Remove InputMover so MoverController.UpdateBeforeSolve skips this entity
+            // entirely — no HandleMobMovement per physics substep while asleep.
+            RemCompDeferred<InputMoverComponent>(ent);
+        }
+    }
+
+    /// <summary>
+    /// If a player possesses an NPC that had its InputMoverComponent stripped while
+    /// sleeping, re-add it so the player can actually move.
+    /// </summary>
+    private void OnPlayerAttached(Entity<ProximityNPCComponent> ent, ref PlayerAttachedEvent args)
+    {
+        EnsureComp<InputMoverComponent>(ent);
     }
 
     public override void Update(float frameTime)
@@ -125,14 +149,23 @@ public sealed class ProximityNPCSystem : EntitySystem
             {
                 // Sleeping — wake if any player has entered the wake radius.
                 if (HasPlayerWithin(mapPos, prox.WakeRange))
+                {
+                    // Add InputMover BEFORE wake so steering can write to it on the first tick.
+                    EnsureComp<InputMoverComponent>(uid);
                     _npc.WakeNPC(uid);
+                }
             }
             else
             {
                 // Awake — sleep if all players have left the sleep radius.
                 // The sleep radius being larger than the wake radius prevents thrashing.
                 if (!HasPlayerWithin(mapPos, prox.SleepRange))
+                {
+                    // Sleep first (stops HTN/steering writes), then strip InputMover
+                    // so MoverController.UpdateBeforeSolve skips this entity.
                     _npc.SleepNPC(uid);
+                    RemCompDeferred<InputMoverComponent>(uid);
+                }
             }
         }
 

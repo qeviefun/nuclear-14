@@ -385,6 +385,8 @@
   abstract: true
   id: N14MobWave
   components:
+  - type: ProximityNPC # Misfits Tweak — wave mobs inherit ProximityNPC from their hostile parent; override to stay awake so they rush immediately
+    startAsleep: false
   - type: HTN
     rootTask:
       task: N14HostileCompound
