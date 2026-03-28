@@ -108,6 +108,7 @@
   - type: NpcFactionMember
     factions:
     - WastelandAnimal
+  - type: ProximityNPC # Misfits Add — sleep distant NPCs to reduce tick load
   - type: HTN
     rootTask:
       task: N14RangedHostileCompound
@@ -444,6 +445,7 @@
 #    whitelist:
 #      components:
 #      - HumanoidAppearance
+  - type: ProximityNPC # Misfits Add — sleep distant NPCs to reduce tick load
   - type: HTN
     rootTask:
       task: SimpleFollowHostileCompound # HTN compound must include FollowCompound so pet can follow its owner

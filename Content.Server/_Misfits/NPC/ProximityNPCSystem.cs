@@ -6,6 +6,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
+using Robust.Shared.Timing;
 
 namespace Content.Server._Misfits.NPC;
 
@@ -20,16 +21,27 @@ namespace Content.Server._Misfits.NPC;
 /// How it differs from RMC-14: RMC wakes xenonids when the dropship lands on-planet.
 /// We instead perform a periodic spatial query against connected player positions,
 /// which works for an always-on-grid (no vessel/space) game mode.
+///
+/// Performance: Uses a work-queue pattern — every <c>_checkInterval</c> seconds it
+/// snapshots all proximity NPCs, then processes a small batch each tick until done.
+/// This spreads the spatial query cost evenly across ticks and prevents a single
+/// burst from blowing the tick budget and causing movement rubberbanding.
 /// </summary>
 public sealed class ProximityNPCSystem : EntitySystem
 {
     [Dependency] private readonly IConfigurationManager _config = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly NPCSystem _npc = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     private float _accumulator;
     private float _checkInterval;
+
+    // Work-queue: snapshot of NPCs to check, processed across multiple ticks.
+    private readonly List<EntityUid> _pending = new();
+    private int _pendingIndex;
+    private int _budgetPerTick;
 
     // Reused across calls to avoid allocating a new HashSet per NPC per scan.
     private readonly HashSet<Entity<ActorComponent>> _playerBuffer = new();
@@ -55,14 +67,54 @@ public sealed class ProximityNPCSystem : EntitySystem
     {
         base.Update(frameTime);
 
+        // If pending work remains from a previous snapshot, keep processing.
+        if (_pendingIndex < _pending.Count)
+        {
+            ProcessBatch();
+            return;
+        }
+
+        // No pending work — wait for the next check interval.
         _accumulator += frameTime;
         if (_accumulator < _checkInterval)
             return;
         _accumulator -= _checkInterval;
 
-        var query = EntityQueryEnumerator<ProximityNPCComponent, TransformComponent>();
-        while (query.MoveNext(out var uid, out var prox, out var xform))
+        // Take a new snapshot of all proximity NPCs to spread across coming ticks.
+        _pending.Clear();
+        var query = EntityQueryEnumerator<ProximityNPCComponent>();
+        while (query.MoveNext(out var uid, out _))
+            _pending.Add(uid);
+
+        if (_pending.Count == 0)
+            return;
+
+        _pendingIndex = 0;
+
+        // Budget: spread evenly so all NPCs are checked within one interval.
+        // e.g. 500 NPCs / (5s × 30 tick/s) = ~3.3 → 4 per tick.
+        var ticksAvailable = _checkInterval * _timing.TickRate;
+        _budgetPerTick = Math.Max(1, (int) Math.Ceiling(_pending.Count / ticksAvailable));
+
+        ProcessBatch();
+    }
+
+    /// <summary>
+    /// Processes up to <see cref="_budgetPerTick"/> NPCs from the pending queue.
+    /// Each NPC gets a single spatial query to determine if any player is nearby.
+    /// </summary>
+    private void ProcessBatch()
+    {
+        var end = Math.Min(_pendingIndex + _budgetPerTick, _pending.Count);
+
+        for (var i = _pendingIndex; i < end; i++)
         {
+            var uid = _pending[i];
+
+            if (!TryComp<ProximityNPCComponent>(uid, out var prox) ||
+                !TryComp<TransformComponent>(uid, out var xform))
+                continue;
+
             if (xform.MapID == MapId.Nullspace)
                 continue;
 
@@ -83,6 +135,8 @@ public sealed class ProximityNPCSystem : EntitySystem
                     _npc.SleepNPC(uid);
             }
         }
+
+        _pendingIndex = end;
     }
 
     /// <summary>
