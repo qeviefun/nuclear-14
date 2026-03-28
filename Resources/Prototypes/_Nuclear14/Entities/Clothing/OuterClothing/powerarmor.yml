@@ -382,14 +382,8 @@
   name: BoS Power Armor
   description: A unknown model of power armor manufactured by the Brotherhood of Steel. It supports a lighter plating than the normal but is more ergonomic, allowing easier movement.
   components:
-  - type: PowerArmorIntegrity # #Misfits Tweak: Midwest BoS — well-maintained, T-51-tier durability
+  - type: PowerArmorIntegrity
     maxIntegrity: 250
-    absorptionRatio: 0.55
-    degradationTiers:
-    - threshold: 0.66
-      absorption: 0.40
-    - threshold: 0.33
-      absorption: 0.22
   - type: Sprite
     sprite: _Nuclear14/Clothing/OuterClothing/PowerArmor/midwest.rsi
   - type: Clothing
