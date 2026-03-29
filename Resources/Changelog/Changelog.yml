@@ -2363,3 +2363,14 @@ Entries:
   id: 5686
   time: '2026-03-28T22:11:11.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/205
+- author: Cythisiax
+  changes:
+    - type: Tweak
+      message: >-
+        Forgot to removed MFCs and use relevant 556 for Bozar in loadoutkit
+        replacement.
+    - type: Fix
+      message: Aggro blip from NPCs still playing post-death
+  id: 5687
+  time: '2026-03-29T08:36:54.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/209
