@@ -2292,3 +2292,74 @@ Entries:
   id: 5685
   time: '2026-03-28T20:11:38.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/204
+- author: cythisiax
+  changes:
+    - type: Add
+      message: >-
+        NPC Proximity Wake/Sleep system. NPCs now sleep when no player is within
+        60 tiles and wake when a player enters 40-tile range. Scan work is
+        time-sliced across ticks to prevent frame spikes.
+    - type: Add
+      message: >-
+        Sleeping NPCs have their InputMoverComponent stripped, eliminating
+        ~4,500 no-op physics movement calls per tick. Restored automatically on
+        wake or admin ghost-possession.
+    - type: Add
+      message: >-
+        Lag compensation framework. Client stamps last confirmed tick on shoot
+        and action events; server applies a small range-tolerance margin for
+        high-latency players.
+    - type: Add
+      message: >-
+        PVS convenience facade (MisfitsPvsSystem) for future force-send
+        overrides without coupling to engine internals.
+    - type: Add
+      message: >-
+        Client-side network prediction defaults (tick bias 2, lag bias 0.025) to
+        smooth movement prediction for all players.
+    - type: Add
+      message: >-
+        Performance CVars: misfits.lag_compensation_ms,
+        misfits.lag_compensation_margin_tiles,
+        misfits.proximity_npc_check_interval.
+    - type: Fix
+      message: >-
+        Removed dead no-op entity query in
+        SharedMoverController.UpdateAfterSolve that iterated every InputMover
+        entity 2-3x per tick doing nothing.
+    - type: Fix
+      message: >-
+        Wave defense mobs (N14MobWave) no longer inherit startAsleep from their
+        hostile parent. They now spawn awake as intended.
+    - type: Fix
+      message: >-
+        MobGhoulAggro and MobRobotAggro neutral faction sync interval doubled
+        from 5s to 10s, reducing O(mobs x players) scan overhead.
+    - type: Fix
+      message: >-
+        WastelandMap blip scan interval slowed from 0.5s to 2.5s. The tactical
+        map is informational, not real-time.
+    - type: Remove
+      message: >-
+        NeedFlavorText system (hunger/thirst cosmetic messages) disabled at
+        scale. Two per-player entity-query passes every tick were too expensive
+        at 70+ players. Can be re-enabled by uncommenting.
+    - type: Remove
+      message: >-
+        ThermalAmbience system (temperature flavor text) disabled at scale.
+        Per-player atmospheric scans added measurable tick cost. Can be
+        re-enabled by uncommenting.
+    - type: Tweak
+      message: >-
+        NPC tick budget spread via work-queue pattern. Proximity checks
+        distributed evenly across the scan interval instead of processing all
+        NPCs in a single frame.
+    - type: Tweak
+      message: >-
+        mnw.toml network tuning: net.buffer_size=3, net.mtu=1200,
+        net.mtu_expand=true, sys.win_tick_period=1.
+    - type: Tweak
+      message: 'mnw.toml NPC budget: npc.max_updates=512, npc.pathfinding_time_ms=3.'
+  id: 5686
+  time: '2026-03-28T22:11:11.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/205
