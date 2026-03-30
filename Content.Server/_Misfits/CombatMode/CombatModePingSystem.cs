@@ -3,6 +3,8 @@
 // Cleans up stale entries for deleted entities to prevent memory leaks over long rounds.
 using Content.Server.NPC.HTN;
 using Content.Shared.CombatMode;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
 using Robust.Server.Audio;
 using Robust.Shared.Audio;
 using Robust.Shared.Timing;
@@ -28,11 +30,9 @@ public sealed class CombatModePingSystem : EntitySystem
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
 
-    // Seconds a player must wait before the ping can play again after being triggered.
-    private const float PingCooldownSeconds = 3f;
-
-    // #Misfits Tweak - NPCs get a longer cooldown to avoid flooding the network with audio
-    // packets when dozens of mobs aggro simultaneously.
+    // #Misfits Tweak - Cooldown raised to 10 s for both players and NPCs to reduce audio spam
+    // during large engagements; players were previously 3 s which could flood nearby clients.
+    private const float PingCooldownSeconds = 10f;
     private const float NpcPingCooldownSeconds = 10f;
 
     // Voice range in world units — matches SharedChatSystem.VoiceRange (10).
@@ -90,6 +90,12 @@ public sealed class CombatModePingSystem : EntitySystem
 
     private void OnCombatModeActivated(EntityUid uid, CombatModeComponent comp, CombatModeActivatedEvent args)
     {
+        // #Misfits Fix — Async HTN plan jobs queued before death can complete after the mob dies
+        // and re-add NPCMeleeCombatComponent, which calls SetInCombatMode(true) and fires this event.
+        // Guard here so dead mobs do not emit the combat-mode ping.
+        if (TryComp<MobStateComponent>(uid, out var mobState) && mobState.CurrentState != MobState.Alive)
+            return;
+
         var isNpc = HasComp<HTNComponent>(uid);
 
         // Use a longer cooldown for NPCs to avoid saturating the network send buffer.
