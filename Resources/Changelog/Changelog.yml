@@ -2445,3 +2445,53 @@ Entries:
   id: 5692
   time: '2026-03-30T14:38:55.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/214
+- author: cythisiax
+  changes:
+    - type: Add
+      message: >-
+        ColonelNothing headset sprites for all factions, and their supermutant
+        vault sprite.
+    - type: Add
+      message: >-
+        Pinky109's supermutant gladiator sprites + supermutant gladiator
+        latejoin with LegionSlaveID
+    - type: Add
+      message: Megaphone. Yes. That kind of megaphone. Prepare.
+    - type: Add
+      message: >-
+        Robot-aware character editor support with a dedicated Robot Model
+        selector for Protectron, Sentry Bot, and Robobrain variants, and
+        Assaultron
+    - type: Add
+      message: >-
+        New Sentry Bot gameplay systems for missile launch and overheat/cooldown
+        behavior.
+    - type: Add
+      message: >-
+        New Robobrain gameplay support systems/components/events (including
+        acidify behavior).
+    - type: Add
+      message: >-
+        New robot actions, naming datasets, and blueprint/lathe recipe support
+        for Robobrain content.
+    - type: Add
+      message: >-
+        New robot-integrated weapon/module content and supporting
+        ammo/projectile assets.
+    - type: Add
+      message: >-
+        New laser weaponry, and fallout13 items ported over. RCW, YK, Tesla,
+        etc.
+    - type: Tweak
+      message: >-
+        Roster button behavior to trigger the chat-equivalent players listing
+        flow. (/players)
+    - type: Fix
+      message: Robot skin tint not working, now does.
+    - type: Fix
+      message: >-
+        Sentry Bot movement overperformance via speed/balance correction. (Made
+        slower)
+  id: 5693
+  time: '2026-03-31T01:40:52.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/216
