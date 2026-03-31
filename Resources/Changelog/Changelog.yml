@@ -2539,3 +2539,16 @@ Entries:
   id: 5694
   time: '2026-03-31T18:13:06.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/217
+- author: cythisiax
+  changes:
+    - type: Tweak
+      message: >-
+        NCR Sergeant loadout no longer has N14WeaponLMGAutoRifle, replaced with
+        just N14WeaponLMG (balance)
+    - type: Remove
+      message: triple deathclaw spawn at the railyard that will literally kill anyone.
+    - type: Remove
+      message: nightstalker spawn right outside Legion base, worse than a single claw.
+  id: 5695
+  time: '2026-03-31T18:36:56.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/220
