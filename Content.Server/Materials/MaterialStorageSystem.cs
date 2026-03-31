@@ -72,28 +72,62 @@ public sealed class MaterialStorageSystem : SharedMaterialStorageSystem
         if (!component.CanEjectStoredMaterials || !_prototypeManager.TryIndex<MaterialPrototype>(msg.Material, out var material))
             return;
 
-        var volume = 0;
-
-        if (material.StackEntity != null)
-        {
-            if (!_prototypeManager.Index<EntityPrototype>(material.StackEntity)
-                    .TryGetComponent<PhysicalCompositionComponent>(out var composition, _componentFactory))
-                return;
-
-            var volumePerSheet = composition.MaterialComposition.FirstOrDefault(kvp => kvp.Key == msg.Material).Value;
-            var sheetsToExtract = Math.Min(msg.SheetsToExtract, _stackSystem.GetMaxCount(material.StackEntity));
-
-            volume = sheetsToExtract * volumePerSheet;
-        }
-
-        if (volume <= 0 || !TryChangeMaterialAmount(uid, msg.Material, -volume))
+        if (!TryGetVolumePerSheet(material, msg.Material, out var volumePerSheet))
             return;
 
-        var mats = SpawnMultipleFromMaterial(volume, material, Transform(uid).Coordinates, out _);
+        if (material.StackEntity == null)
+            return;
+
+        var stackEntityId = material.StackEntity.Value;
+
+        var sheetsToExtract = Math.Min(msg.SheetsToExtract, _stackSystem.GetMaxCount(stackEntityId));
+        var volume = sheetsToExtract * volumePerSheet;
+
+        if (volume <= 0)
+            return;
+
+        // #Misfits Fix: Withdraw should be able to eject material that exists in either the
+        // internal pool or the bench's attached storage container.
+        TryComp<StorageComponent>(uid, out var storage);
+        if (!TryConsumeAvailableMaterial(uid, msg.Material, volume, component, null, storage))
+            return;
+
+        var mats = SpawnMultipleFromMaterial(volume, material, Transform(uid).Coordinates, out var overflow);
+        if (overflow > 0)
+            TryChangeMaterialAmount(uid, msg.Material, overflow, component);
+
         foreach (var mat in mats.Where(mat => !TerminatingOrDeleted(mat)))
         {
             _stackSystem.TryMergeToContacts(mat);
         }
+    }
+
+    private bool TryGetVolumePerSheet(MaterialPrototype material, string materialId, out int volumePerSheet)
+    {
+        volumePerSheet = 0;
+
+        if (material.StackEntity == null)
+            return false;
+
+        var stackEntityId = material.StackEntity.Value;
+
+        if (!_prototypeManager.Index<EntityPrototype>(stackEntityId)
+                .TryGetComponent<PhysicalCompositionComponent>(out var composition, _componentFactory))
+            return false;
+
+        if (composition.MaterialComposition.TryGetValue(materialId, out volumePerSheet) && volumePerSheet > 0)
+            return true;
+
+        foreach (var (key, value) in composition.MaterialComposition)
+        {
+            if (!string.Equals(key, materialId, StringComparison.OrdinalIgnoreCase) || value <= 0)
+                continue;
+
+            volumePerSheet = value;
+            return true;
+        }
+
+        return false;
     }
 
     public override bool TryInsertMaterialEntity(EntityUid user,
