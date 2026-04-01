@@ -2552,3 +2552,12 @@ Entries:
   id: 5695
   time: '2026-03-31T18:36:56.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/220
+- author: Bradysgaming
+  changes:
+    - type: Add
+      message: Added Legion headsets to Gladiator Supermutants
+    - type: Add
+      message: Gave Gladiator Supermutants Latin
+  id: 5696
+  time: '2026-04-01T01:04:37.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/225
