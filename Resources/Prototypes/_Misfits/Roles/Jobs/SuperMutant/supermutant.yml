@@ -66,10 +66,12 @@
       - type: NpcFactionMember
         factions:
           - PlayerSuperMutant
-
+  - !type:AddTraitSpecial
+    traits: [ LanguageLatin ]
 - type: startingGear
   id: SuperMutantGladiatorGear
   equipment:
+    ears: N14ClothingHeadsetLegion
     jumpsuit: ClothingSuperMutantGladiatorLoincloth
     outerClothing: ClothingSuperMutantGladiatorArmor
     shoes: ClothingSuperMutantGladiatorBoots
