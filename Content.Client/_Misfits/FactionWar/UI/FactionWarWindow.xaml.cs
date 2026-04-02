@@ -96,9 +96,10 @@ public sealed partial class FactionWarWindow : FancyWindow
         {
             foreach (var war in activeWars)
             {
+                var phaseTag = war.Phase == WarPhase.Pending ? "[PENDING] " : "";
                 var entry = new Label
                 {
-                    Text   = $"{FactionWarConfig.FactionDisplayName(war.AggressorFaction)}" +
+                    Text   = $"{phaseTag}{FactionWarConfig.FactionDisplayName(war.AggressorFaction)}" +
                              $" ⚔ {FactionWarConfig.FactionDisplayName(war.TargetFaction)}" +
                              $" — \"{war.CasusBelli}\"",
                     Margin            = new Thickness(4, 2),

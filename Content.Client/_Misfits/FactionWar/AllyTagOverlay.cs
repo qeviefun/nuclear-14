@@ -1,5 +1,6 @@
 // #Misfits Add - Screen-space overlay that draws [ALLY] and [ENEMY] tags above in-world entities
 // when the local player's faction is engaged in an active war.
+// Tags faction members (existing war factions) and individual /warjoin participants.
 // Pattern mirrors AdminNameOverlay (Content.Client/Administration/AdminNameOverlay.cs).
 // All faction membership checks route through NpcFactionSystem.IsMember to satisfy RA0002
 // (NpcFactionMemberComponent.Factions is access-restricted to NpcFactionSystem).
@@ -20,16 +21,10 @@ namespace Content.Client._Misfits.FactionWar;
 /// <summary>
 /// Draws green <c>[ALLY]</c> or red <c>[ENEMY]</c> tags above entities whose faction is relevant
 /// to the current war state. Active only while the local player is involved in at least one war.
+/// Handles all faction members and individual /warjoin participants.
 /// </summary>
 internal sealed class AllyTagOverlay : Overlay
 {
-    // All NPC faction IDs that can resolve to a war faction (including aliases like Rangers → NCR).
-    private static readonly string[] WarFactionIds =
-    {
-        "NCR", "Rangers", "BrotherhoodOfSteel", "CaesarLegion",
-        "Townsfolk", "PlayerRaider",
-    };
-
     private readonly FactionWarClientSystem _warSystem;
     private readonly IEntityManager         _entityManager;
     private readonly IPlayerManager         _playerManager;
@@ -71,30 +66,27 @@ internal sealed class AllyTagOverlay : Overlay
         if (activeWars.Count == 0)
             return;
 
-        // Find the local player's war-capable faction from server-communicated data.
-        // NpcFactionMemberComponent.Factions is not synced to clients, so we rely on
-        // FactionWarClientSystem.LocalFactionId which is set by FactionWarPanelDataEvent.
-        var myFactionId = _warSystem.LocalFactionId;
-
-        if (myFactionId == null)
+        // The effective faction is the player's NPC war faction or their /warjoin side.
+        var effectiveFaction = _warSystem.LocalFactionId ?? _warSystem.LocalWarJoinSide;
+        if (effectiveFaction == null)
             return;
 
-        // Build the enemy faction list from active wars involving the local player's faction.
+        // Build the enemy faction list from active wars involving the effective faction.
         var enemyFactions = new List<string>(2);
         foreach (var war in activeWars)
         {
-            if (war.AggressorFaction == myFactionId)
+            if (war.AggressorFaction == effectiveFaction)
                 enemyFactions.Add(war.TargetFaction);
-            else if (war.TargetFaction == myFactionId)
+            else if (war.TargetFaction == effectiveFaction)
                 enemyFactions.Add(war.AggressorFaction);
         }
 
         // Build sets of all NPC faction IDs that map to our canonical war faction and to each enemy.
-        // e.g. if myFactionId = "NCR", allyNpcFactions = { "NCR", "Rangers" }.
-        var allyNpcFactions = new HashSet<string> { myFactionId };
+        // e.g. if effectiveFaction = "NCR", allyNpcFactions = { "NCR", "Rangers" }.
+        var allyNpcFactions = new HashSet<string> { effectiveFaction };
         foreach (var (raw, canonical) in FactionWarConfig.FactionAliases)
         {
-            if (canonical == myFactionId)
+            if (canonical == effectiveFaction)
                 allyNpcFactions.Add(raw);
         }
 
@@ -109,28 +101,26 @@ internal sealed class AllyTagOverlay : Overlay
         }
 
         var viewport = args.WorldAABB;
+        var participants = _warSystem.WarParticipants;
 
-        // Iterate all entities that have faction membership and a visible sprite.
+        // ── Pass 1: NPC faction members ────────────────────────────────────
         var query = _entityManager.AllEntityQueryEnumerator<NpcFactionMemberComponent, SpriteComponent>();
         while (query.MoveNext(out var uid, out _, out _))
         {
-            // Skip the local player's own entity.
             if (uid == localEntity.Value)
                 continue;
 
-            // Skip entities on a different map.
             if (_entityManager.GetComponent<TransformComponent>(uid).MapID != _eyeManager.CurrentMap)
                 continue;
 
-            // Skip if not in the viewport.
             var aabb = _entityLookup.GetWorldAABB(uid);
             if (!aabb.Intersects(viewport))
                 continue;
 
-            // Determine the tag. Check all NPC faction IDs that resolve to our war faction or enemies.
             string tag;
             Color  tagColor;
 
+            // Check NPC faction membership.
             var isAlly = false;
             foreach (var af in allyNpcFactions)
             {
@@ -158,14 +148,79 @@ internal sealed class AllyTagOverlay : Overlay
                     }
                 }
 
-                if (!isEnemy)
-                    continue;
+                if (isEnemy)
+                {
+                    tag      = "[ENEMY]";
+                    tagColor = new Color(1f, 0.3f, 0.3f);
+                }
+                else
+                {
+                    // Not a war-faction member — check if they're a warjoin participant.
+                    var netEnt = _entityManager.GetNetEntity(uid);
+                    if (participants.TryGetValue(netEnt, out var side))
+                    {
+                        if (side == effectiveFaction)
+                        {
+                            tag      = "[ALLY]";
+                            tagColor = Color.LimeGreen;
+                        }
+                        else
+                        {
+                            tag      = "[ENEMY]";
+                            tagColor = new Color(1f, 0.3f, 0.3f);
+                        }
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+            }
 
+            var screenCoords = _eyeManager.WorldToScreen(
+                aabb.Center + new Angle(-_eyeManager.CurrentEye.Rotation)
+                    .RotateVec(aabb.TopRight - aabb.Center)) + new Vector2(1f, 7f);
+
+            args.ScreenHandle.DrawString(_font, screenCoords, tag, tagColor);
+        }
+
+        // ── Pass 2: warjoin participants without NpcFactionMemberComponent ─
+        // Most players have NpcFactionMemberComponent and are caught by pass 1.
+        // This pass catches edge cases (entities without the component).
+        foreach (var (netEntity, side) in participants)
+        {
+            var uid = _entityManager.GetEntity(netEntity);
+            if (uid == localEntity.Value || !_entityManager.EntityExists(uid))
+                continue;
+
+            // Skip if already handled in pass 1 (has NpcFactionMemberComponent).
+            if (_entityManager.HasComponent<NpcFactionMemberComponent>(uid))
+                continue;
+
+            if (!_entityManager.TryGetComponent<SpriteComponent>(uid, out _))
+                continue;
+
+            if (_entityManager.GetComponent<TransformComponent>(uid).MapID != _eyeManager.CurrentMap)
+                continue;
+
+            var aabb = _entityLookup.GetWorldAABB(uid);
+            if (!aabb.Intersects(viewport))
+                continue;
+
+            string tag;
+            Color tagColor;
+
+            if (side == effectiveFaction)
+            {
+                tag      = "[ALLY]";
+                tagColor = Color.LimeGreen;
+            }
+            else
+            {
                 tag      = "[ENEMY]";
                 tagColor = new Color(1f, 0.3f, 0.3f);
             }
 
-            // Position above the entity's top-right corner — mirrors AdminNameOverlay placement.
             var screenCoords = _eyeManager.WorldToScreen(
                 aabb.Center + new Angle(-_eyeManager.CurrentEye.Rotation)
                     .RotateVec(aabb.TopRight - aabb.Center)) + new Vector2(1f, 7f);

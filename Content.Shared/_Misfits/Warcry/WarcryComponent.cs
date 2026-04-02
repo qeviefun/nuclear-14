@@ -45,7 +45,7 @@ public sealed partial class WarcryComponent : Component
     /// For example, 0.15 grants a 15% walk and sprint speed increase.
     /// </summary>
     [DataField]
-    public float SpeedBonus = 0.15f;
+    public float SpeedBonus = 0.50f;
 
     /// <summary>
     /// How long the buff lasts on affected allies.

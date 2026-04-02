@@ -1,6 +1,7 @@
 // #Misfits Add - Server-side faction war system.
-// Handles GUI form submissions from clients (declare/ceasefire) and the admin /warend command.
+// Handles GUI form submissions from clients (declare/ceasefire/warjoin) and the admin /warend command.
 // Active war state is maintained here and broadcast to all clients on every change.
+// Wars go through a 5-minute Pending phase (during which /warjoin is open) before becoming Active.
 
 using System.Linq;
 using Content.Server.Administration.Managers;
@@ -15,16 +16,19 @@ using Robust.Server.Player;
 using Robust.Shared.Console;
 using Robust.Shared.Enums;
 using Robust.Shared.Maths;
+using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
 namespace Content.Server._Misfits.FactionWar;
 
 /// <summary>
-/// Manages player-driven faction war declarations and ceasefires.
+/// Manages player-driven faction war declarations, ceasefires, and individual war enlistment.
 /// Rules enforced here (all game-logic stays server-side):
 ///   - One war per faction at a time (blocking both as aggressor and as target).
 ///   - Only the highest job-weight online member of the declaring faction may act.
+///   - Wars enter a 5-minute Pending phase before becoming Active.
+///   - During Pending, non-faction players may /warjoin on either side.
 ///   - /warend is admin-only and ends any specific war immediately.
 /// </summary>
 public sealed class FactionWarSystem : EntitySystem
@@ -36,12 +40,15 @@ public sealed class FactionWarSystem : EntitySystem
     [Dependency] private readonly MindSystem       _minds         = default!;
     [Dependency] private readonly NpcFactionSystem _npcFaction    = default!;
     [Dependency] private readonly IPlayerManager   _playerManager = default!;
-    [Dependency] private readonly IGameTiming       _gameTiming     = default!;
+    [Dependency] private readonly IGameTiming      _gameTiming    = default!;
 
     // ── Constants ──────────────────────────────────────────────────────────
 
     /// <summary>Minimum elapsed round time before war can be declared.</summary>
     private static readonly TimeSpan WarCooldownAfterRoundStart = TimeSpan.FromMinutes(30);
+
+    /// <summary>How long a war stays in Pending before becoming Active.</summary>
+    private static readonly TimeSpan WarPrepDuration = TimeSpan.FromMinutes(5);
 
     /// <summary>Minimum word count for casus belli.</summary>
     private const int MinCasusBelliWords = 5;
@@ -50,6 +57,15 @@ public sealed class FactionWarSystem : EntitySystem
 
     private readonly List<FactionWarEntry> _activeWars = new();
     private TimeSpan _roundStartTime;
+
+    /// <summary>Activation times for pending wars. Key = WarKey(aggressor, target).</summary>
+    private readonly Dictionary<string, TimeSpan> _warActivationTimes = new();
+
+    /// <summary>
+    /// Individual players who enlisted via /warjoin.
+    /// Key = player UserId, Value = (warKey, side faction ID).
+    /// </summary>
+    private readonly Dictionary<NetUserId, (string WarKey, string Side)> _warParticipants = new();
 
     // ── Lifecycle ──────────────────────────────────────────────────────────
 
@@ -69,6 +85,10 @@ public sealed class FactionWarSystem : EntitySystem
         SubscribeNetworkEvent<FactionWarDeclareRequestEvent>(OnDeclareRequest);
         SubscribeNetworkEvent<FactionWarCeasefireRequestEvent>(OnCeasefireRequest);
 
+        // Warjoin panel & enlistment.
+        SubscribeNetworkEvent<FactionWarJoinPanelRequestEvent>(OnWarJoinPanelRequest);
+        SubscribeNetworkEvent<FactionWarJoinRequestEvent>(OnWarJoinRequest);
+
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
         _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
     }
@@ -77,6 +97,54 @@ public sealed class FactionWarSystem : EntitySystem
     {
         base.Shutdown();
         _playerManager.PlayerStatusChanged -= OnPlayerStatusChanged;
+    }
+
+    // ── Tick: transition Pending → Active ──────────────────────────────────
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        if (_warActivationTimes.Count == 0)
+            return;
+
+        var now = _gameTiming.CurTime;
+        var activated = new List<FactionWarEntry>();
+
+        foreach (var war in _activeWars)
+        {
+            if (war.Phase != WarPhase.Pending)
+                continue;
+
+            var key = WarKey(war);
+            if (!_warActivationTimes.TryGetValue(key, out var activationTime))
+                continue;
+
+            if (now < activationTime)
+                continue;
+
+            war.Phase = WarPhase.Active;
+            _warActivationTimes.Remove(key);
+            activated.Add(war);
+        }
+
+        if (activated.Count == 0)
+            return;
+
+        BroadcastWarState();
+        SendPanelDataToAll();
+
+        foreach (var war in activated)
+        {
+            var aggDisplay = FactionDisplayName(war.AggressorFaction);
+            var tgtDisplay = FactionDisplayName(war.TargetFaction);
+
+            _chat.DispatchServerAnnouncement(
+                $"WAR HAS BEGUN\n" +
+                $"The conflict between {aggDisplay} and {tgtDisplay} is now active!\n" +
+                $"(/warjoin) is now closed for this conflict.",
+                Color.OrangeRed);
+        }
     }
 
     // ── GUI: Panel data request ─────────────────────────────────────────
@@ -136,7 +204,7 @@ public sealed class FactionWarSystem : EntitySystem
 
         data.EligibleTargets.Sort((a, b) => string.Compare(a.DisplayName, b.DisplayName, StringComparison.Ordinal));
 
-        // Ceasefire targets: wars involving player's faction.
+        // Ceasefire targets: wars involving player's faction (both pending and active).
         if (data.MyFactionId != null)
         {
             foreach (var war in _activeWars)
@@ -234,9 +302,15 @@ public sealed class FactionWarSystem : EntitySystem
             CasusBelli            = casusBelli,
             DeclarerCharacterName = Name(playerEntity),
             DeclarerJobName       = _jobs.MindTryGetJobName(mindId),
+            Phase                 = WarPhase.Pending,
         };
 
         _activeWars.Add(entry);
+
+        // Start the 5-minute preparation timer.
+        var warKey = WarKey(entry);
+        _warActivationTimes[warKey] = _gameTiming.CurTime + WarPrepDuration;
+
         BroadcastWarState();
         SendPanelDataToAll();
 
@@ -244,10 +318,11 @@ public sealed class FactionWarSystem : EntitySystem
         var targetDisplay    = FactionDisplayName(targetFactionId);
 
         _chat.DispatchServerAnnouncement(
-            $"⚔ WAR DECLARED ⚔\n" +
-            $"[{aggressorDisplay}] has declared war on [{targetDisplay}]!\n" +
+            $"WAR DECLARED\n" +
+            $"{aggressorDisplay} has declared war on {targetDisplay}!\n" +
             $"Casus Belli: \"{casusBelli}\"\n" +
-            $"— {entry.DeclarerCharacterName}, {entry.DeclarerJobName}",
+            $"{entry.DeclarerCharacterName}, {entry.DeclarerJobName}\n\n" +
+            $"War begins in 5 minutes. Use (/warjoin) to choose a side.",
             Color.OrangeRed);
 
         _chat.SendAdminAnnouncement(
@@ -255,7 +330,7 @@ public sealed class FactionWarSystem : EntitySystem
             $" {aggressorDisplay} vs {targetDisplay}. Casus: {casusBelli}");
 
         SendResult(player, true,
-            $"War declared on {targetDisplay}. All faction members have been notified.");
+            $"War declared on {targetDisplay}. War begins in 5 minutes. /warjoin is open.");
     }
 
     // ── GUI: Ceasefire ─────────────────────────────────────────────────────
@@ -303,9 +378,7 @@ public sealed class FactionWarSystem : EntitySystem
             return;
         }
 
-        _activeWars.Remove(war);
-        BroadcastWarState();
-        SendPanelDataToAll();
+        RemoveWar(war);
 
         var aggressorDisplay = FactionDisplayName(war.AggressorFaction);
         var targetDisplay    = FactionDisplayName(war.TargetFaction);
@@ -313,9 +386,9 @@ public sealed class FactionWarSystem : EntitySystem
         var jobName          = _jobs.MindTryGetJobName(mindId);
 
         _chat.DispatchServerAnnouncement(
-            $"✦ CEASEFIRE ✦\n" +
-            $"[{aggressorDisplay}] and [{targetDisplay}] have agreed to a ceasefire.\n" +
-            $"— {charName}, {jobName}",
+            $"CEASEFIRE\n" +
+            $"{aggressorDisplay} and {targetDisplay} have agreed to a ceasefire.\n" +
+            $"{charName}, {jobName}",
             Color.SkyBlue);
 
         _chat.SendAdminAnnouncement(
@@ -324,6 +397,86 @@ public sealed class FactionWarSystem : EntitySystem
 
         SendResult(player, true,
             $"Ceasefire declared. The conflict with {targetDisplay} has ended.");
+    }
+
+    // ── GUI: Warjoin panel data ────────────────────────────────────────────
+
+    private void OnWarJoinPanelRequest(FactionWarJoinPanelRequestEvent msg, EntitySessionEventArgs args)
+    {
+        var player = args.SenderSession;
+        var data = new FactionWarJoinPanelDataEvent();
+
+        if (player.AttachedEntity is { } playerEntity && TryGetWarFaction(playerEntity, out _))
+            data.AlreadyInFaction = true;
+
+        if (_warParticipants.TryGetValue(player.UserId, out var info))
+            data.AlreadyJoinedSide = info.Side;
+
+        data.PendingWars = _activeWars.Where(w => w.Phase == WarPhase.Pending).ToList();
+
+        if (data.PendingWars.Count == 0 && !data.AlreadyInFaction && data.AlreadyJoinedSide == null)
+            data.StatusMessage = Loc.GetString("faction-war-join-no-pending");
+
+        RaiseNetworkEvent(data, player);
+    }
+
+    // ── GUI: Warjoin enlistment ────────────────────────────────────────────
+
+    private void OnWarJoinRequest(FactionWarJoinRequestEvent msg, EntitySessionEventArgs args)
+    {
+        var player = args.SenderSession;
+
+        if (player.Status != SessionStatus.InGame ||
+            player.AttachedEntity is not { } playerEntity)
+        {
+            SendJoinResult(player, false, "You must be in-game to join a war.");
+            return;
+        }
+
+        if (TryGetWarFaction(playerEntity, out var existingFaction))
+        {
+            SendJoinResult(player, false,
+                $"You are already a member of {FactionDisplayName(existingFaction)}. Your faction participates automatically.");
+            return;
+        }
+
+        if (_warParticipants.ContainsKey(player.UserId))
+        {
+            SendJoinResult(player, false, "You have already joined a war.");
+            return;
+        }
+
+        var war = _activeWars.FirstOrDefault(w =>
+            w.AggressorFaction == msg.AggressorFaction &&
+            w.TargetFaction == msg.TargetFaction &&
+            w.Phase == WarPhase.Pending);
+
+        if (war == null)
+        {
+            SendJoinResult(player, false, "That war is not in a joinable state (must be pending).");
+            return;
+        }
+
+        if (msg.ChosenSide != war.AggressorFaction && msg.ChosenSide != war.TargetFaction)
+        {
+            SendJoinResult(player, false, "Invalid side selection.");
+            return;
+        }
+
+        var warKey = WarKey(war);
+        _warParticipants[player.UserId] = (warKey, msg.ChosenSide);
+        BroadcastParticipants();
+
+        var sideName = FactionDisplayName(msg.ChosenSide);
+        var charName = Name(playerEntity);
+
+        SendJoinResult(player, true,
+            $"You have joined the war on the side of {sideName}. You are now KOS to the enemy.");
+
+        _chat.SendAdminAnnouncement(
+            $"[FactionWar] {player.Name} ({charName}) joined war " +
+            $"{FactionDisplayName(msg.AggressorFaction)} vs {FactionDisplayName(msg.TargetFaction)} " +
+            $"on the side of {sideName}");
     }
 
     // ── /warend (admin only) ───────────────────────────────────────────────
@@ -355,17 +508,15 @@ public sealed class FactionWarSystem : EntitySystem
             return;
         }
 
-        _activeWars.Remove(war);
-        BroadcastWarState();
-        SendPanelDataToAll();
+        RemoveWar(war);
 
         var adminName        = shell.Player?.Name ?? "Server";
         var aggressorDisplay = FactionDisplayName(aggressorId);
         var targetDisplay    = FactionDisplayName(targetId);
 
         _chat.DispatchServerAnnouncement(
-            $"⚑ WAR ENDED BY COMMAND ⚑\n" +
-            $"The conflict between [{aggressorDisplay}] and [{targetDisplay}] has been resolved.",
+            $"WAR ENDED BY COMMAND\n" +
+            $"The conflict between {aggressorDisplay} and {targetDisplay} has been resolved.",
             Color.LightGray);
 
         _chat.SendAdminAnnouncement(
@@ -377,20 +528,51 @@ public sealed class FactionWarSystem : EntitySystem
     private void OnRoundRestart(RoundRestartCleanupEvent _)
     {
         _activeWars.Clear();
+        _warActivationTimes.Clear();
+        _warParticipants.Clear();
         _roundStartTime = _gameTiming.CurTime;
     }
 
     private void OnPlayerStatusChanged(object? sender, SessionStatusEventArgs e)
     {
-        if (e.NewStatus != SessionStatus.InGame || _activeWars.Count == 0)
+        if (e.NewStatus != SessionStatus.InGame)
             return;
 
-        RaiseNetworkEvent(
-            new FactionWarStateUpdatedEvent { ActiveWars = new List<FactionWarEntry>(_activeWars) },
-            e.Session);
+        if (_activeWars.Count > 0)
+        {
+            RaiseNetworkEvent(
+                new FactionWarStateUpdatedEvent { ActiveWars = new List<FactionWarEntry>(_activeWars) },
+                e.Session);
+        }
+
+        if (_warParticipants.Count > 0)
+            SendParticipantsTo(e.Session);
     }
 
     // ── Helpers ────────────────────────────────────────────────────────────
+
+    /// <summary>
+    /// Removes a war and all associated state (timer, participants), then broadcasts.
+    /// </summary>
+    private void RemoveWar(FactionWarEntry war)
+    {
+        _activeWars.Remove(war);
+
+        var warKey = WarKey(war);
+        _warActivationTimes.Remove(warKey);
+
+        // Remove all participants enlisted for this specific war.
+        var toRemove = _warParticipants
+            .Where(kvp => kvp.Value.WarKey == warKey)
+            .Select(kvp => kvp.Key)
+            .ToList();
+        foreach (var userId in toRemove)
+            _warParticipants.Remove(userId);
+
+        BroadcastWarState();
+        BroadcastParticipants();
+        SendPanelDataToAll();
+    }
 
     private void BroadcastWarState()
     {
@@ -406,6 +588,13 @@ public sealed class FactionWarSystem : EntitySystem
             session);
     }
 
+    private void SendJoinResult(ICommonSession session, bool success, string message)
+    {
+        RaiseNetworkEvent(
+            new FactionWarJoinResultEvent { Success = success, Message = message },
+            session);
+    }
+
     private void SendPanelDataToAll()
     {
         foreach (var session in _playerManager.Sessions)
@@ -413,6 +602,41 @@ public sealed class FactionWarSystem : EntitySystem
             if (session.Status == SessionStatus.InGame)
                 SendPanelData(session);
         }
+    }
+
+    /// <summary>Builds a NetEntity → side dictionary from the current participants.</summary>
+    private Dictionary<NetEntity, string> BuildParticipantDict()
+    {
+        var sessionByUserId = new Dictionary<NetUserId, ICommonSession>();
+        foreach (var session in _playerManager.Sessions)
+            sessionByUserId[session.UserId] = session;
+
+        var dict = new Dictionary<NetEntity, string>();
+        foreach (var (userId, (_, side)) in _warParticipants)
+        {
+            if (!sessionByUserId.TryGetValue(userId, out var session))
+                continue;
+            if (session.AttachedEntity is not { } entity)
+                continue;
+            dict[GetNetEntity(entity)] = side;
+        }
+        return dict;
+    }
+
+    private void BroadcastParticipants()
+    {
+        var dict = BuildParticipantDict();
+        RaiseNetworkEvent(
+            new FactionWarParticipantsUpdatedEvent { Participants = dict },
+            Filter.Broadcast());
+    }
+
+    private void SendParticipantsTo(ICommonSession session)
+    {
+        var dict = BuildParticipantDict();
+        RaiseNetworkEvent(
+            new FactionWarParticipantsUpdatedEvent { Participants = dict },
+            session);
     }
 
     private bool IsFactionInWar(string factionId) =>
@@ -480,4 +704,7 @@ public sealed class FactionWarSystem : EntitySystem
 
     public static string FactionDisplayName(string factionId) =>
         FactionWarConfig.FactionDisplayName(factionId);
+
+    private static string WarKey(FactionWarEntry war) =>
+        $"{war.AggressorFaction}|{war.TargetFaction}";
 }

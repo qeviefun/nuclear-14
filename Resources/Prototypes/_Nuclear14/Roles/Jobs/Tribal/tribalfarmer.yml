@@ -33,7 +33,7 @@
         action: ActionTribalWarcry
         targetDepartment: Tribe
         range: 6
-        speedBonus: 0.15
+        speedBonus: 0.50
         duration: 10
         overlayColor: "#3FAF63"
         speechVerb: MisfitsTribalWarcry

@@ -23,4 +23,16 @@ faction-war-ceasefire-button = ✦ Declare Ceasefire
 faction-war-confirm-button = ⚠ Press Again to Confirm
 faction-war-confirm-prompt = Are you sure? Press the button again to declare war.
 
+# /warjoin panel
+faction-war-join-window-title = Join War
+faction-war-join-cmd-desc = Opens the War Join panel to enlist in a pending war.
+faction-war-join-conflict-label = Conflict
+faction-war-join-side-label = Join Side
+faction-war-join-button = ⚔ Join War
+faction-war-join-confirm-button = ⚠ CONFIRM — You will be KOS
+faction-war-join-kos-confirm = You are about to become Kill-On-Sight to the enemy. Press again to confirm.
+faction-war-join-no-pending = No pending wars available to join.
+faction-war-join-already-faction = You are already in a war-capable faction. Your faction participates automatically.
+faction-war-join-already-joined = You have already joined a war on the side of { $side }.
+
 faction-war-cmd-desc = Opens the Faction War panel.

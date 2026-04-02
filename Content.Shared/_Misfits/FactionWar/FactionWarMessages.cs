@@ -61,6 +61,16 @@ public static class FactionWarConfig
 
 // ── Network message types ──────────────────────────────────────────────────
 
+/// <summary>War lifecycle phase.</summary>
+[Serializable, NetSerializable]
+public enum WarPhase : byte
+{
+    /// <summary>War declared but not yet active. /warjoin is open.</summary>
+    Pending,
+    /// <summary>War is active. /warjoin is closed.</summary>
+    Active,
+}
+
 /// <summary>
 /// A single active war declaration, transmitted as part of <see cref="FactionWarStateUpdatedEvent"/>.
 /// </summary>
@@ -81,6 +91,9 @@ public sealed class FactionWarEntry
 
     /// <summary>Localised job title of the declaring player at time of declaration.</summary>
     public string DeclarerJobName = string.Empty;
+
+    /// <summary>Current phase of this war (Pending during 5-min prep, Active after).</summary>
+    public WarPhase Phase = WarPhase.Pending;
 }
 
 /// <summary>
@@ -156,4 +169,56 @@ public sealed class FactionWarCommandResultEvent : EntityEventArgs
 {
     public bool   Success = false;
     public string Message = string.Empty;
+}
+
+// ── /warjoin network messages ─────────────────────────────────────────────
+
+/// <summary>
+/// Client → server. Player opened the warjoin panel and needs pending-war data.
+/// Server responds with <see cref="FactionWarJoinPanelDataEvent"/>.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class FactionWarJoinPanelRequestEvent : EntityEventArgs { }
+
+/// <summary>
+/// Server → the requesting client. Pre-computed data for the warjoin panel.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class FactionWarJoinPanelDataEvent : EntityEventArgs
+{
+    public List<FactionWarEntry> PendingWars = new();
+    public bool AlreadyInFaction;
+    public string? AlreadyJoinedSide;
+    public string? StatusMessage;
+}
+
+/// <summary>
+/// Client → server. Player requests to join a war on a specific side.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class FactionWarJoinRequestEvent : EntityEventArgs
+{
+    public string AggressorFaction = string.Empty;
+    public string TargetFaction    = string.Empty;
+    public string ChosenSide       = string.Empty;
+}
+
+/// <summary>
+/// Server → the requesting client only. Warjoin-specific result feedback.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class FactionWarJoinResultEvent : EntityEventArgs
+{
+    public bool   Success = false;
+    public string Message = string.Empty;
+}
+
+/// <summary>
+/// Server → all clients. Broadcast whenever the individual war-participant list changes.
+/// Maps each participant entity to the faction side they are fighting for.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class FactionWarParticipantsUpdatedEvent : EntityEventArgs
+{
+    public Dictionary<NetEntity, string> Participants = new();
 }

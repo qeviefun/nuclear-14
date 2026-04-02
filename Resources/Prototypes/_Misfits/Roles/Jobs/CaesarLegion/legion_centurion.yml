@@ -38,7 +38,7 @@
         action: ActionLegionWarcry
         targetDepartment: CaesarLegion
         range: 6
-        speedBonus: 0.15
+        speedBonus: 0.50
         duration: 10
         overlayColor: "#D64545"
         speechVerb: MisfitsLegionWarcry

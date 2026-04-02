@@ -1,8 +1,9 @@
 // #Misfits Add - Client-side faction war system.
 // Receives war state syncs from the server and manages the AllyTagOverlay lifecycle.
-// Registers the /war client console command that opens the FactionWarWindow GUI.
+// Registers the /war and /warjoin client console commands that open their respective GUIs.
 // All faction detection is done server-side (NpcFactionMemberComponent.Factions is not
-// synced to clients); the server sends pre-computed panel data via FactionWarPanelDataEvent.
+// synced to clients); the server sends pre-computed panel data via network events.
+// Individual war participants (via /warjoin) are tracked and exposed for the overlay.
 
 using System.Linq;
 using Content.Client._Misfits.FactionWar.UI;
@@ -18,8 +19,9 @@ using Robust.Shared.Console;
 namespace Content.Client._Misfits.FactionWar;
 
 /// <summary>
-/// Manages the <see cref="AllyTagOverlay"/> and the <see cref="FactionWarWindow"/> GUI.
-/// The /war client command opens the GUI panel; all game-logic validation stays server-side.
+/// Manages the <see cref="AllyTagOverlay"/> and the <see cref="FactionWarWindow"/>/<see cref="WarJoinWindow"/> GUIs.
+/// The /war client command opens the faction war panel; /warjoin opens the enlistment panel.
+/// All game-logic validation stays server-side.
 /// </summary>
 public sealed class FactionWarClientSystem : EntitySystem
 {
@@ -42,9 +44,23 @@ public sealed class FactionWarClientSystem : EntitySystem
     /// </summary>
     public string? LocalFactionId { get; private set; }
 
+    /// <summary>
+    /// If the local player enlisted via /warjoin, this is the faction side they joined.
+    /// Used by the overlay when LocalFactionId is null (non-faction player).
+    /// </summary>
+    public string? LocalWarJoinSide { get; private set; }
+
+    /// <summary>
+    /// Individual war participants: NetEntity → faction side they are fighting for.
+    /// Broadcast by the server. Used by the overlay to tag warjoin'd players.
+    /// </summary>
+    public IReadOnlyDictionary<NetEntity, string> WarParticipants => _warParticipants;
+
     private List<FactionWarEntry> _activeWars = new();
+    private Dictionary<NetEntity, string> _warParticipants = new();
     private AllyTagOverlay?    _overlay;
     private FactionWarWindow?  _window;
+    private WarJoinWindow?     _warJoinWindow;
 
     public override void Initialize()
     {
@@ -53,12 +69,21 @@ public sealed class FactionWarClientSystem : EntitySystem
         SubscribeNetworkEvent<FactionWarStateUpdatedEvent>(OnWarStateUpdated);
         SubscribeNetworkEvent<FactionWarPanelDataEvent>(OnPanelData);
         SubscribeNetworkEvent<FactionWarCommandResultEvent>(OnCommandResult);
+        SubscribeNetworkEvent<FactionWarJoinPanelDataEvent>(OnJoinPanelData);
+        SubscribeNetworkEvent<FactionWarJoinResultEvent>(OnJoinResult);
+        SubscribeNetworkEvent<FactionWarParticipantsUpdatedEvent>(OnParticipantsUpdated);
 
         _conHost.RegisterCommand(
             "war",
             Loc.GetString("faction-war-cmd-desc"),
             "war",
             OpenWarPanel);
+
+        _conHost.RegisterCommand(
+            "warjoin",
+            Loc.GetString("faction-war-join-cmd-desc"),
+            "warjoin",
+            OpenWarJoinPanel);
     }
 
     public override void Shutdown()
@@ -66,6 +91,8 @@ public sealed class FactionWarClientSystem : EntitySystem
         base.Shutdown();
         _window?.Close();
         _window = null;
+        _warJoinWindow?.Close();
+        _warJoinWindow = null;
         RemoveOverlay();
     }
 
@@ -75,6 +102,10 @@ public sealed class FactionWarClientSystem : EntitySystem
     {
         _activeWars = msg.ActiveWars;
         UpdateOverlayVisibility();
+
+        // Refresh warjoin panel if open (pending wars may have changed phase).
+        if (_warJoinWindow != null)
+            RaiseNetworkEvent(new FactionWarJoinPanelRequestEvent());
     }
 
     private void OnPanelData(FactionWarPanelDataEvent msg)
@@ -112,20 +143,64 @@ public sealed class FactionWarClientSystem : EntitySystem
         _window?.ShowResult(msg.Success, msg.Message);
     }
 
+    private void OnJoinPanelData(FactionWarJoinPanelDataEvent msg)
+    {
+        if (_warJoinWindow == null)
+            return;
+
+        _warJoinWindow.UpdateState(
+            msg.PendingWars,
+            msg.AlreadyInFaction,
+            msg.AlreadyJoinedSide,
+            msg.StatusMessage);
+
+        // If the player just successfully joined, cache their side for the overlay.
+        if (msg.AlreadyJoinedSide != null)
+        {
+            LocalWarJoinSide = msg.AlreadyJoinedSide;
+            UpdateOverlayVisibility();
+        }
+    }
+
+    private void OnJoinResult(FactionWarJoinResultEvent msg)
+    {
+        _warJoinWindow?.ShowResult(msg.Success, msg.Message);
+
+        // If join succeeded, refresh panel data to update the UI state.
+        if (msg.Success)
+            RaiseNetworkEvent(new FactionWarJoinPanelRequestEvent());
+    }
+
+    private void OnParticipantsUpdated(FactionWarParticipantsUpdatedEvent msg)
+    {
+        _warParticipants = msg.Participants;
+        UpdateOverlayVisibility();
+    }
+
     // ── /war client command ────────────────────────────────────────────────
 
     private void OpenWarPanel(IConsoleShell shell, string argStr, string[] args)
     {
-        EnsureWindow();
+        EnsureWarWindow();
         _window!.OpenCentered();
 
         // Ask server for fresh panel data (faction detection must happen server-side).
         RaiseNetworkEvent(new FactionWarOpenPanelRequestEvent());
     }
 
+    // ── /warjoin client command ────────────────────────────────────────────
+
+    private void OpenWarJoinPanel(IConsoleShell shell, string argStr, string[] args)
+    {
+        EnsureWarJoinWindow();
+        _warJoinWindow!.OpenCentered();
+
+        RaiseNetworkEvent(new FactionWarJoinPanelRequestEvent());
+    }
+
     // ── Window lifecycle ───────────────────────────────────────────────────
 
-    private void EnsureWindow()
+    private void EnsureWarWindow()
     {
         if (_window != null)
             return;
@@ -151,21 +226,47 @@ public sealed class FactionWarClientSystem : EntitySystem
         };
     }
 
+    private void EnsureWarJoinWindow()
+    {
+        if (_warJoinWindow != null)
+            return;
+
+        _warJoinWindow = new WarJoinWindow();
+        _warJoinWindow.OnClose += () => _warJoinWindow = null;
+
+        _warJoinWindow.OnJoinWar += (aggressor, target, chosenSide) =>
+        {
+            RaiseNetworkEvent(new FactionWarJoinRequestEvent
+            {
+                AggressorFaction = aggressor,
+                TargetFaction    = target,
+                ChosenSide       = chosenSide,
+            });
+        };
+    }
+
     // ── Overlay lifecycle ──────────────────────────────────────────────────
 
     private void UpdateOverlayVisibility()
     {
-        // Use server-communicated LocalFactionId instead of client-side IsMember
-        // (factions are not synced to the client).
-        if (LocalFactionId == null || _activeWars.Count == 0)
+        if (_activeWars.Count == 0)
         {
             RemoveOverlay();
             return;
         }
 
-        var involved = _activeWars.Any(w =>
-            w.AggressorFaction == LocalFactionId ||
-            w.TargetFaction    == LocalFactionId);
+        // Either the player is in a war faction or they joined via /warjoin.
+        var effectiveFaction = LocalFactionId ?? LocalWarJoinSide;
+        if (effectiveFaction == null)
+        {
+            // Even without a faction, if there are participants the overlay may apply later.
+            RemoveOverlay();
+            return;
+        }
+
+        var involved = LocalWarJoinSide != null || _activeWars.Any(w =>
+            w.AggressorFaction == effectiveFaction ||
+            w.TargetFaction    == effectiveFaction);
 
         if (involved)
             EnsureOverlay();
