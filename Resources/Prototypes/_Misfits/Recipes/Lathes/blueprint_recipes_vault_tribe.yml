@@ -305,14 +305,15 @@
   id: N14BPVaultAmmoPowerCellSmall
   result: N14MicrofusionCellRed
   category: N14BlueprintVaultAmmoT2
-  completetime: 5
+  completetime: 4
   requiresBlueprint: true
   availableFaction:
   - Vault
   materials:
-    Glass: 75
-    Circuitry: 50
-    ScrapElectronic: 25
+    Glass: 10
+    Circuitry: 10
+    ScrapElectronic: 10
+    Lead: 10
 
 - type: latheRecipe
   id: N14BPVaultAmmoMag10mmSMG
@@ -337,38 +338,39 @@
   availableFaction:
   - Vault
   materials:
-    Glass: 150
-    Circuitry: 1
-    ScrapElectronic: 75
-    Plastic: 25
+    Glass: 20
+    Circuitry: 10
+    ScrapElectronic: 10
+    Lead: 20
 
 - type: latheRecipe
   id: N14BPVaultAmmoPlasmaCell
   result: N14PlasmaCartridgeSmall
   category: N14BlueprintVaultAmmoT3
-  completetime: 9
+  completetime: 8
   requiresBlueprint: true
   availableFaction:
   - Vault
   materials:
-    Glass: 175
-    Circuitry: 125
-    ScrapElectronic: 75
+    Glass: 25
+    Circuitry: 10
+    ScrapElectronic: 10
+    Lead: 25
 
 # --- Vault Tier 4 Ammo ---
 - type: latheRecipe
   id: N14BPVaultAmmoPlasmaCartridge
   result: N14PlasmaCartridge
   category: N14BlueprintVaultAmmoT4
-  completetime: 12
+  completetime: 10
   requiresBlueprint: true
   availableFaction:
   - Vault
   materials:
-    Glass: 275
-    Circuitry: 2
-    ScrapElectronic: 150
-    Plastic: 50
+    Glass: 40
+    Circuitry: 10
+    ScrapElectronic: 10
+    Lead: 40
 
 - type: latheRecipe
   id: N14BPVaultAmmoPowerCellAdvanced
@@ -379,10 +381,11 @@
   availableFaction:
   - Vault
   materials:
-    Glass: 250
-    Circuitry: 2
-    ScrapElectronic: 125
-    Plastic: 50
+    Glass: 35
+    Circuitry: 10
+    ScrapElectronic: 10
+    Lead: 35
+    N14Silver: 2
 
 # =====================================================================
 # TRIBE WEAPON RECIPES

@@ -592,9 +592,11 @@
   materials:
     Glass: 10
 
-    Circuitry: 5
+    Circuitry: 10
 
-    ScrapElectronic: 5
+    ScrapElectronic: 10
+
+    Lead: 10
 
 
 - type: latheRecipe
@@ -608,9 +610,11 @@
   materials:
     Glass: 10
 
-    Circuitry: 5
+    Circuitry: 10
 
-    ScrapElectronic: 5
+    ScrapElectronic: 10
+
+    Lead: 10
 
 
 - type: latheRecipe
@@ -634,36 +638,36 @@
   id: N14BPBoSAmmoPowerCellHigh
   result: N14MicrofusionCellGreen
   category: N14BlueprintBoSAmmoT2
-  completetime: 7
+  completetime: 8
   requiresBlueprint: true
   availableFaction:
   - BrotherhoodOfSteel
   materials:
-    Glass: 25
+    Glass: 20
 
-    Circuitry: 20
+    Circuitry: 10
 
     ScrapElectronic: 10
 
-    Plastic: 5
+    Lead: 20
 
 
 - type: latheRecipe
   id: N14BPBoSAmmoElectronChargePackGreen
   result: N14ElectronChargePackGreen
   category: N14BlueprintBoSAmmoT2
-  completetime: 7
+  completetime: 8
   requiresBlueprint: true
   availableFaction:
   - BrotherhoodOfSteel
   materials:
-    Glass: 25
+    Glass: 20
 
-    Circuitry: 20
+    Circuitry: 10
 
     ScrapElectronic: 10
 
-    Plastic: 5
+    Lead: 20
 
 
 - type: latheRecipe
@@ -677,9 +681,11 @@
   materials:
     Glass: 25
 
-    Circuitry: 20
+    Circuitry: 10
 
     ScrapElectronic: 10
+
+    Lead: 25
 
 
 # --- BoS Tier 3 Ammo ---
@@ -687,36 +693,40 @@
   id: N14BPBoSAmmoPowerCellAdvanced
   result: N14MicrofusionCellBlue
   category: N14BlueprintBoSAmmoT3
-  completetime: 10
+  completetime: 12
   requiresBlueprint: true
   availableFaction:
   - BrotherhoodOfSteel
   materials:
-    Glass: 40
+    Glass: 35
 
-    Circuitry: 35
+    Circuitry: 10
 
-    ScrapElectronic: 20
+    ScrapElectronic: 10
 
-    Plastic: 10
+    Lead: 35
+
+    N14Silver: 2
 
 
 - type: latheRecipe
   id: N14BPBoSAmmoElectronChargePackBlue
   result: N14ElectronChargePackBlue
   category: N14BlueprintBoSAmmoT3
-  completetime: 10
+  completetime: 12
   requiresBlueprint: true
   availableFaction:
   - BrotherhoodOfSteel
   materials:
-    Glass: 40
+    Glass: 35
 
-    Circuitry: 35
+    Circuitry: 10
 
-    ScrapElectronic: 20
+    ScrapElectronic: 10
 
-    Plastic: 10
+    Lead: 35
+
+    N14Silver: 2
 
 
 - type: latheRecipe
@@ -730,9 +740,11 @@
   materials:
     Glass: 40
 
-    Circuitry: 35
+    Circuitry: 10
 
-    ScrapElectronic: 20
+    ScrapElectronic: 10
+
+    Lead: 40
 
 
 # --- BoS Tier 4 Ammo ---
@@ -747,31 +759,33 @@
   materials:
     Glass: 85
 
-    Circuitry: 65
+    Circuitry: 10
 
-    ScrapElectronic: 50
+    ScrapElectronic: 10
 
     N14Gold: 5
 
-    Plastic: 20
+    Lead: 85
 
 
 - type: latheRecipe
   id: N14BPBoSAmmoPowerCellFocused
   result: N14MicrofusionCellHighCapBlue
   category: N14BlueprintBoSAmmoT4
-  completetime: 15
+  completetime: 20
   requiresBlueprint: true
   availableFaction:
   - BrotherhoodOfSteel
   materials:
-    Glass: 90
+    Glass: 80
 
-    Circuitry: 65
+    Circuitry: 10
 
-    ScrapElectronic: 50
+    ScrapElectronic: 10
 
-    N14Silver: 10
+    N14Silver: 8
+
+    Lead: 80
 
 
 # --- BoS Tier 5 Ammo ---
@@ -784,15 +798,15 @@
   availableFaction:
   - BrotherhoodOfSteel
   materials:
-    Glass: 120
+    Glass: 50
 
-    Circuitry: 100
+    Circuitry: 10
 
-    ScrapElectronic: 75
+    ScrapElectronic: 10
 
-    N14Gold: 15
+    N14Gold: 5
 
-    Plastic: 25
+    Lead: 50
 
 
 - type: latheRecipe
@@ -804,35 +818,35 @@
   availableFaction:
   - BrotherhoodOfSteel
   materials:
-    Glass: 120
+    Glass: 50
 
-    Circuitry: 100
+    Circuitry: 10
 
-    ScrapElectronic: 75
+    ScrapElectronic: 10
 
-    N14Gold: 15
+    N14Gold: 5
 
-    Plastic: 25
+    Lead: 50
 
 
 - type: latheRecipe
   id: N14BPBoSAmmoMicrofusionHighCapViolet
   result: N14MicrofusionCellHighCapViolet
   category: N14BlueprintBoSAmmoT5
-  completetime: 25
+  completetime: 30
   requiresBlueprint: true
   availableFaction:
   - BrotherhoodOfSteel
   materials:
-    Glass: 200
+    Glass: 100
 
-    Circuitry: 150
+    Circuitry: 10
 
-    ScrapElectronic: 100
+    ScrapElectronic: 10
 
-    N14Gold: 25
+    N14Gold: 10
 
-    Plastic: 40
+    Lead: 100
 
 
 # =====================================================================
