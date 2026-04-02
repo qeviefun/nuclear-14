@@ -106,6 +106,9 @@ public sealed class FactionWarSystem : EntitySystem
         SubscribeNetworkEvent<FactionWarJoinPanelRequestEvent>(OnWarJoinPanelRequest);
         SubscribeNetworkEvent<FactionWarJoinRequestEvent>(OnWarJoinRequest);
 
+        // Admin force-war GUI.
+        SubscribeNetworkEvent<FactionWarForceRequestEvent>(OnForceWarRequest);
+
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
         _playerManager.PlayerStatusChanged += OnPlayerStatusChanged;
     }
@@ -658,6 +661,100 @@ public sealed class FactionWarSystem : EntitySystem
             $"[FactionWar] Admin {adminName} force-declared war: {aggDisplay} vs {tgtDisplay}. Casus: {casus}");
 
         shell.WriteLine($"War declared: {aggDisplay} vs {tgtDisplay} (pending 5 min).");
+    }
+
+    // ── GUI: Admin Force War ───────────────────────────────────────────────
+
+    /// <summary>
+    /// Handles the admin Force War GUI request. Same logic as ForceWarCommand but
+    /// receives input from the client GUI and sends result feedback back.
+    /// </summary>
+    private void OnForceWarRequest(FactionWarForceRequestEvent msg, EntitySessionEventArgs args)
+    {
+        var player = args.SenderSession;
+
+        // Admin check — reject non-admins silently.
+        if (!_adminManager.IsAdmin(player))
+        {
+            RaiseNetworkEvent(new FactionWarForceResultEvent
+                { Success = false, Message = "You must be an admin to use this." }, player);
+            return;
+        }
+
+        var aggressorId = msg.AggressorFaction.Trim();
+        var targetId    = msg.TargetFaction.Trim();
+        var casus       = msg.CasusBelli.Trim();
+
+        if (string.IsNullOrEmpty(casus))
+            casus = "Admin-forced war (testing)";
+
+        if (!FactionWarConfig.WarCapableFactions.Contains(aggressorId))
+        {
+            RaiseNetworkEvent(new FactionWarForceResultEvent
+                { Success = false, Message = $"'{aggressorId}' is not a war-capable faction." }, player);
+            return;
+        }
+        if (!FactionWarConfig.WarCapableFactions.Contains(targetId))
+        {
+            RaiseNetworkEvent(new FactionWarForceResultEvent
+                { Success = false, Message = $"'{targetId}' is not a war-capable faction." }, player);
+            return;
+        }
+        if (aggressorId == targetId)
+        {
+            RaiseNetworkEvent(new FactionWarForceResultEvent
+                { Success = false, Message = "Aggressor and target cannot be the same faction." }, player);
+            return;
+        }
+        if (IsFactionInWar(aggressorId))
+        {
+            RaiseNetworkEvent(new FactionWarForceResultEvent
+                { Success = false, Message = $"{FactionDisplayName(aggressorId)} is already in a war." }, player);
+            return;
+        }
+        if (IsFactionInWar(targetId))
+        {
+            RaiseNetworkEvent(new FactionWarForceResultEvent
+                { Success = false, Message = $"{FactionDisplayName(targetId)} is already in a war." }, player);
+            return;
+        }
+
+        var adminName = player.Name;
+
+        var entry = new FactionWarEntry
+        {
+            AggressorFaction      = aggressorId,
+            TargetFaction         = targetId,
+            CasusBelli            = casus,
+            DeclarerCharacterName = adminName,
+            DeclarerJobName       = "Admin",
+            Phase                 = WarPhase.Pending,
+        };
+
+        _activeWars.Add(entry);
+
+        var warKey = WarKey(entry);
+        _warActivationTimes[warKey] = _gameTiming.CurTime + WarPrepDuration;
+
+        BroadcastWarState();
+        SendPanelDataToAll();
+
+        var aggDisplay = FactionDisplayName(aggressorId);
+        var tgtDisplay = FactionDisplayName(targetId);
+
+        _chat.DispatchServerAnnouncement(
+            $"WAR DECLARED\n" +
+            $"{aggDisplay} has declared war on {tgtDisplay}!\n" +
+            $"Casus Belli: \"{casus}\"\n" +
+            $"{adminName}, Admin\n\n" +
+            $"War begins in 5 minutes. Use (/warjoin) to choose a side.",
+            Color.OrangeRed);
+
+        _chat.SendAdminAnnouncement(
+            $"[FactionWar] Admin {adminName} force-declared war: {aggDisplay} vs {tgtDisplay}. Casus: {casus}");
+
+        RaiseNetworkEvent(new FactionWarForceResultEvent
+            { Success = true, Message = $"War declared: {aggDisplay} vs {tgtDisplay} (pending 5 min)." }, player);
     }
 
     // ── Round lifecycle ────────────────────────────────────────────────────

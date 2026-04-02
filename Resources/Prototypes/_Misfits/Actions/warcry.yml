@@ -30,4 +30,3 @@
     useDelay: 45
     icon: Interface/Alerts/Fire/fire.png
     event: !type:PerformWarcryActionEvent
-    event: !type:PerformWarcryActionEvent

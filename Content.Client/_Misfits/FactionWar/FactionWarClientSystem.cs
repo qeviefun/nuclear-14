@@ -59,6 +59,7 @@ public sealed class FactionWarClientSystem : EntitySystem
     private AllyTagOverlay?    _overlay;
     private FactionWarWindow?  _window;
     private WarJoinWindow?     _warJoinWindow;
+    private ForceWarWindow?    _forceWarWindow;
 
     public override void Initialize()
     {
@@ -70,6 +71,7 @@ public sealed class FactionWarClientSystem : EntitySystem
         SubscribeNetworkEvent<FactionWarJoinPanelDataEvent>(OnJoinPanelData);
         SubscribeNetworkEvent<FactionWarJoinResultEvent>(OnJoinResult);
         SubscribeNetworkEvent<FactionWarParticipantsUpdatedEvent>(OnParticipantsUpdated);
+        SubscribeNetworkEvent<FactionWarForceResultEvent>(OnForceWarResult);
 
         _conHost.RegisterCommand(
             "war",
@@ -82,6 +84,12 @@ public sealed class FactionWarClientSystem : EntitySystem
             Loc.GetString("faction-war-join-cmd-desc"),
             "warjoin",
             OpenWarJoinPanel);
+
+        _conHost.RegisterCommand(
+            "forcewar",
+            "Open the admin Force War panel.",
+            "forcewar",
+            OpenForceWarPanel);
     }
 
     public override void Shutdown()
@@ -91,6 +99,8 @@ public sealed class FactionWarClientSystem : EntitySystem
         _window = null;
         _warJoinWindow?.Close();
         _warJoinWindow = null;
+        _forceWarWindow?.Close();
+        _forceWarWindow = null;
         RemoveOverlay();
     }
 
@@ -179,6 +189,11 @@ public sealed class FactionWarClientSystem : EntitySystem
         UpdateOverlayVisibility();
     }
 
+    private void OnForceWarResult(FactionWarForceResultEvent msg)
+    {
+        _forceWarWindow?.ShowResult(msg.Success, msg.Message);
+    }
+
     // ── /war client command ────────────────────────────────────────────────
 
     private void OpenWarPanel(IConsoleShell shell, string argStr, string[] args)
@@ -198,6 +213,14 @@ public sealed class FactionWarClientSystem : EntitySystem
         _warJoinWindow!.OpenCentered();
 
         RaiseNetworkEvent(new FactionWarJoinPanelRequestEvent());
+    }
+
+    // ── /forcewar client command (admin) ────────────────────────────────────
+
+    private void OpenForceWarPanel(IConsoleShell shell, string argStr, string[] args)
+    {
+        EnsureForceWarWindow();
+        _forceWarWindow!.OpenCentered();
     }
 
     // ── Window lifecycle ───────────────────────────────────────────────────
@@ -243,6 +266,25 @@ public sealed class FactionWarClientSystem : EntitySystem
                 AggressorFaction = aggressor,
                 TargetFaction    = target,
                 ChosenSide       = chosenSide,
+            });
+        };
+    }
+
+    private void EnsureForceWarWindow()
+    {
+        if (_forceWarWindow != null)
+            return;
+
+        _forceWarWindow = new ForceWarWindow();
+        _forceWarWindow.OnClose += () => _forceWarWindow = null;
+
+        _forceWarWindow.OnForceWar += (aggressor, target, casus) =>
+        {
+            RaiseNetworkEvent(new FactionWarForceRequestEvent
+            {
+                AggressorFaction = aggressor,
+                TargetFaction    = target,
+                CasusBelli       = casus,
             });
         };
     }

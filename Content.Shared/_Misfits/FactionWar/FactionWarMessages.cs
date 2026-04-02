@@ -222,3 +222,27 @@ public sealed class FactionWarParticipantsUpdatedEvent : EntityEventArgs
 {
     public Dictionary<NetEntity, string> Participants = new();
 }
+
+// ── /forcewar admin network messages ──────────────────────────────────────
+
+/// <summary>
+/// Client → server. Admin requests to force-declare a war between two factions.
+/// Bypasses round-start cooldown, post-war cooldown, and rank checks.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class FactionWarForceRequestEvent : EntityEventArgs
+{
+    public string AggressorFaction = string.Empty;
+    public string TargetFaction    = string.Empty;
+    public string CasusBelli       = string.Empty;
+}
+
+/// <summary>
+/// Server → the requesting admin client. Result feedback for the forcewar GUI.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class FactionWarForceResultEvent : EntityEventArgs
+{
+    public bool   Success = false;
+    public string Message = string.Empty;
+}
