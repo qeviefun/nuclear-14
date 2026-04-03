@@ -123,14 +123,6 @@
 		{
             "name": "standard_asymmetry",
             "directions": 4
-        },
-		{
-            "name": "gloomy",
-            "directions": 4
-        },
-		{
-            "name": "gloomylong",
-            "directions": 4
         }
     ]
 }
