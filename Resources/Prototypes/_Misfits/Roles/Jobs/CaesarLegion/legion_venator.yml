@@ -28,10 +28,10 @@
       - type: NpcFactionMember
         factions:
           - CaesarLegion
-      - type: ReplacementAccent
-        accent: latin
-  - !type:AddTraitSpecial
-    traits: [ LanguageLatin ]
+#      - type: ReplacementAccent  # #Misfits Removed - forced latin speech replacement removed per request; Frumentarii should be able to speak normally
+#        accent: latin
+#  - !type:AddTraitSpecial  # #Misfits Removed - LanguageLatin tied to forced accent, removed alongside it
+#    traits: [ LanguageLatin ]
 
 - type: startingGear
   id: CaesarLegionFrumentariiGear
@@ -45,7 +45,7 @@
     gloves: N14ClothingHandsGlovesTribal
     belt: N14Gladius
     suitstorage: N14PilumSpear
-    pocket1: LegionVenatorloadoutkits
+    pocket1: KitFrumentariiBlackOps  # #Misfits Change - deep-cover black ops kit replaces venator weapon kit
     id: N14IDLegionaryMedalFrumentarii
   innerClothingSkirt: N14ClothingUniformJumpsuitLegionnaireOther
   storage:

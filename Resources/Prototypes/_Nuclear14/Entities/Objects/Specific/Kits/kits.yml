@@ -487,6 +487,10 @@
       - id: N14ClothingHeadHatNCRHelmetMetalDesert # Forge-Change
       - id: N14ClothingNeckCloakNCR # Forge-Change
       # #Misfits Change: removed 4x GrenadeFrag — no grenade launcher in this kit, grenades were orphaned
+      # #Misfits Fix - Added grenade rifle + 40mm rounds so the Grenadier kit actually has a primary weapon
+      - id: N14WeaponRifleGrenade
+      - id: 40mmGrenadeFrag
+        amount: 4
       - id: SmokeGrenade
       - id: N14WeaponPistol45Colt
       - id: N14MagazinePistol45
@@ -957,7 +961,7 @@
   name: veteran ranger heavy sniper kit
   parent: KitBase
   id: KitHeavySniperRangerVeteran
-  description: A cache containing the belongings of a Veteran Ranger.
+  description: A cache containing the belongings of a Veteran Ranger. # #Misfits Change - Veteran Ranger carries the semi-auto Anti-Materiel rifle with full magazines
   components:
   - type: Sprite
     state: marksman
@@ -966,7 +970,7 @@
   - type: SpawnItemsOnUse
     items:
       - id: ClothingBeltNCRPouches
-      - id: N14WeaponSniper50AntiMateriel
+      - id: N14WeaponSniper50AntiMateriel  # #Misfits Change - Veteran Ranger gets the semi-auto magazine-fed AMR
       - id: N14Magazine50AMR
         amount: 4
       - id: MagazineBox50

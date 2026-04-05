@@ -1,0 +1,193 @@
+<Document>
+# Armor
+
+[textlink="View Full Wiki Page" link="https://ss14.misfitsystems.net/wiki/index.php/Armor"]
+
+<p>Protection in the Wasteland ranges from scrapped leather to pre-war powered exoskeletons. What you wear determines whether you walk away from a firefight.</p>
+
+<hr/>
+
+## Power Armor
+
+<p>The pinnacle of pre-war personal protection. Requires training to operate effectively.</p>
+
+<Table Columns="3">
+  <Box>
+    [bold][color=#a4885c]Model[/color][/bold]
+  </Box>
+  <Box>
+    [bold][color=#a4885c]Description[/color][/bold]
+  </Box>
+  <Box>
+    [bold][color=#a4885c]Primary Users[/color][/bold]
+  </Box>
+  <Box>
+    [bold]T-45[/bold]
+  </Box>
+  <Box>
+    First-generation. Heavy, reliable.
+  </Box>
+  <Box>
+    BoS, NCR (salvaged)
+  </Box>
+  <Box>
+    [bold]T-51[/bold]
+  </Box>
+  <Box>
+    Iconic pre-war infantry armor. Superior protection and ergonomics vs T-45.
+  </Box>
+  <Box>
+    Brotherhood of Steel
+  </Box>
+  <Box>
+    [bold]T-60[/bold]
+  </Box>
+  <Box>
+    Advanced model. Improved plating and servos. Rare.
+  </Box>
+  <Box>
+    Brotherhood of Steel
+  </Box>
+  <Box>
+    [bold]T-60 Tesla[/bold]
+  </Box>
+  <Box>
+    T-60 with integrated Tesla coils for energy weapon amplification.
+  </Box>
+  <Box>
+    BoS (specialized)
+  </Box>
+  <Box>
+    [bold]Advanced PA Mk1[/bold]
+  </Box>
+  <Box>
+    Enclave-manufactured. Superior to Brotherhood equipment.
+  </Box>
+  <Box>
+    The Enclave
+  </Box>
+  <Box>
+    [bold]Advanced PA Mk2[/bold]
+  </Box>
+  <Box>
+    Top-of-the-line Enclave. Most advanced personal armor known.
+  </Box>
+  <Box>
+    The Enclave
+  </Box>
+  <Box>
+    [bold]Mk2 Hellfire[/bold]
+  </Box>
+  <Box>
+    Incendiary-hardened Mk2 for extreme combat environments.
+  </Box>
+  <Box>
+    The Enclave (elite)
+  </Box>
+  <Box>
+    [bold]Raider Power Armor[/bold]
+  </Box>
+  <Box>
+    Scavenged, jury-rigged. PA protection at PA weight without PA reliability.
+  </Box>
+  <Box>
+    Raiders, Outlaws
+  </Box>
+</Table>
+
+<hr/>
+
+## Faction Armor
+
+<ColorBox Color="#1a1a1a" OutlineColor="#4a6a99" OutlineThickness="1" Margin="5">
+  <Box Orientation="Vertical" Margin="8">
+    [bold][color=#4a6a99]Brotherhood of Steel[/color][/bold]
+    Knight Armor, Squire Armor, Head Knight Armor, Scribe Robes
+  </Box>
+</ColorBox>
+
+<ColorBox Color="#1a1a1a" OutlineColor="#a4885c" OutlineThickness="1" Margin="5">
+  <Box Orientation="Vertical" Margin="8">
+    [bold][color=#a4885c]NCR[/color][/bold]
+    Enhanced Vest, Pouched Combat Armor, Heavy Combat Armor, Elite Combat Armor, Command Armor, Field Medic Vest, Salvaged Metal Armor, Regional Camouflage variants
+  </Box>
+</ColorBox>
+
+<ColorBox Color="#1a1a1a" OutlineColor="#cc3333" OutlineThickness="1" Margin="5">
+  <Box Orientation="Vertical" Margin="8">
+    [bold][color=#cc3333]Caesar's Legion[/color][/bold]
+    Warrior Armor, Prime Decanus Armor, Veteran Decanus Armor
+  </Box>
+</ColorBox>
+
+<ColorBox Color="#1a1a1a" OutlineColor="#888888" OutlineThickness="1" Margin="5">
+  <Box Orientation="Vertical" Margin="8">
+    [bold][color=#888888]Outlaws[/color][/bold]
+    Fiend Armor, Jackal Armor, Viper Armor, Khan's Jacket, Khan's Armored Jacket, Khan Combat Armor
+  </Box>
+</ColorBox>
+
+<ColorBox Color="#1a1a1a" OutlineColor="#336699" OutlineThickness="1" Margin="5">
+  <Box Orientation="Vertical" Margin="8">
+    [bold][color=#336699]Enclave[/color][/bold]
+    Rank Pins (15 military ranks), Peacekeeper armor variants
+  </Box>
+</ColorBox>
+
+<hr/>
+
+## General Armor
+
+<ul>
+<li>[bold]Leather Armor[/bold] — Light, common, minimal protection.</li>
+<li>[bold]Metal Armor[/bold] — Solid protection, heavy, scrap-built variants.</li>
+<li>[bold]Reinforced Armor[/bold] — Upgraded leather/metal with extra plating.</li>
+<li>[bold]Tribal Armor[/bold] — Handcrafted, light, culturally significant.</li>
+<li>[bold]Chitin / Insect Armor[/bold] — Harvested from creatures, surprisingly effective.</li>
+<li>[bold]Rad Armor[/bold] — Specialized radiation protection.</li>
+</ul>
+
+<hr/>
+
+## Creature-Sourced Armor
+
+<Table Columns="2">
+  <Box>
+    [bold][color=#a4885c]Item[/color][/bold]
+  </Box>
+  <Box>
+    [bold][color=#a4885c]Source[/color][/bold]
+  </Box>
+  <Box>
+    Deathclaw Cloak
+  </Box>
+  <Box>
+    Deathclaw hide
+  </Box>
+  <Box>
+    Razorclaw Armor
+  </Box>
+  <Box>
+    Razorclaw hide
+  </Box>
+  <Box>
+    Raven Cloak
+  </Box>
+  <Box>
+    Wasteland raven feathers
+  </Box>
+  <Box>
+    Deathclaw Hood
+  </Box>
+  <Box>
+    Deathclaw skull
+  </Box>
+  <Box>
+    Razorclaw Helm
+  </Box>
+  <Box>
+    Razorclaw skull
+  </Box>
+</Table>
+
+</Document>

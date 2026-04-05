@@ -56,6 +56,9 @@ public sealed class FactionWarSystem : EntitySystem
     /// <summary>Cooldown after a war ends before the same faction can declare again.</summary>
     private static readonly TimeSpan WarCooldownAfterEnd = TimeSpan.FromMinutes(10);
 
+    // #Misfits Add - Maximum duration an active war can last before auto-ceasefire.
+    private static readonly TimeSpan WarMaxDuration = TimeSpan.FromMinutes(30);
+
     // ── State ──────────────────────────────────────────────────────────────
 
     private readonly List<FactionWarEntry> _activeWars = new();
@@ -72,6 +75,9 @@ public sealed class FactionWarSystem : EntitySystem
 
     /// <summary>Per-faction cooldown after a war ends. Key = faction ID, Value = earliest next war time.</summary>
     private readonly Dictionary<string, TimeSpan> _factionWarCooldowns = new();
+
+    // #Misfits Add - Auto-ceasefire deadline for active wars. Key = WarKey, Value = expiry time.
+    private readonly Dictionary<string, TimeSpan> _warAutoEndTimes = new();
 
     /// <summary>Interval between periodic participant broadcasts (keeps overlay fresh).</summary>
     private static readonly TimeSpan ParticipantBroadcastInterval = TimeSpan.FromSeconds(2);
@@ -132,7 +138,7 @@ public sealed class FactionWarSystem : EntitySystem
         _playerManager.PlayerStatusChanged -= OnPlayerStatusChanged;
     }
 
-    // ── Tick: transition Pending → Active, periodic participant broadcast ─
+    // ── Tick: transition Pending → Active, auto-ceasefire, participant broadcast ─
 
     public override void Update(float frameTime)
     {
@@ -157,44 +163,86 @@ public sealed class FactionWarSystem : EntitySystem
             }
         }
 
-        if (_warActivationTimes.Count == 0)
-            return;
-
-        var activated = new List<FactionWarEntry>();
-
-        foreach (var war in _activeWars)
+        // ── Pending → Active transitions ──────────────────────────────
+        if (_warActivationTimes.Count > 0)
         {
-            if (war.Phase != WarPhase.Pending)
-                continue;
+            var activated = new List<FactionWarEntry>();
 
-            var key = WarKey(war);
-            if (!_warActivationTimes.TryGetValue(key, out var activationTime))
-                continue;
+            foreach (var war in _activeWars)
+            {
+                if (war.Phase != WarPhase.Pending)
+                    continue;
 
-            if (now < activationTime)
-                continue;
+                var key = WarKey(war);
+                if (!_warActivationTimes.TryGetValue(key, out var activationTime))
+                    continue;
 
-            war.Phase = WarPhase.Active;
-            _warActivationTimes.Remove(key);
-            activated.Add(war);
+                if (now < activationTime)
+                    continue;
+
+                war.Phase = WarPhase.Active;
+                _warActivationTimes.Remove(key);
+                activated.Add(war);
+
+                // #Misfits Add - Start the 30-minute auto-ceasefire countdown.
+                _warAutoEndTimes[key] = now + WarMaxDuration;
+            }
+
+            if (activated.Count > 0)
+            {
+                BroadcastWarState();
+                SendPanelDataToAll();
+
+                foreach (var war in activated)
+                {
+                    var aggDisplay = FactionDisplayName(war.AggressorFaction);
+                    var tgtDisplay = FactionDisplayName(war.TargetFaction);
+
+                    _chat.DispatchServerAnnouncement(
+                        $"WAR HAS BEGUN\n" +
+                        $"The conflict between {aggDisplay} and {tgtDisplay} is now active!\n" +
+                        $"(/warjoin) is now closed for this conflict.\n" +
+                        $"Auto-ceasefire in 30 minutes.",
+                        Color.OrangeRed);
+                }
+            }
         }
 
-        if (activated.Count == 0)
-            return;
-
-        BroadcastWarState();
-        SendPanelDataToAll();
-
-        foreach (var war in activated)
+        // ── Auto-ceasefire expiry check ───────────────────────────────
+        // #Misfits Add - End wars that have exceeded WarMaxDuration.
+        if (_warAutoEndTimes.Count > 0)
         {
-            var aggDisplay = FactionDisplayName(war.AggressorFaction);
-            var tgtDisplay = FactionDisplayName(war.TargetFaction);
+            var expired = new List<FactionWarEntry>();
 
-            _chat.DispatchServerAnnouncement(
-                $"WAR HAS BEGUN\n" +
-                $"The conflict between {aggDisplay} and {tgtDisplay} is now active!\n" +
-                $"(/warjoin) is now closed for this conflict.",
-                Color.OrangeRed);
+            foreach (var war in _activeWars)
+            {
+                if (war.Phase != WarPhase.Active)
+                    continue;
+
+                var key = WarKey(war);
+                if (!_warAutoEndTimes.TryGetValue(key, out var endTime))
+                    continue;
+
+                if (now >= endTime)
+                    expired.Add(war);
+            }
+
+            foreach (var war in expired)
+            {
+                var aggDisplay = FactionDisplayName(war.AggressorFaction);
+                var tgtDisplay = FactionDisplayName(war.TargetFaction);
+
+                _chat.DispatchServerAnnouncement(
+                    Loc.GetString("faction-war-auto-ceasefire-announcement",
+                        ("aggressor", aggDisplay),
+                        ("target", tgtDisplay)),
+                    Color.SkyBlue);
+
+                _chat.SendAdminAnnouncement(
+                    $"[FactionWar] Auto-ceasefire triggered: {aggDisplay} vs {tgtDisplay} (30-minute limit).");
+
+                RemoveWar(war);
+            }
         }
     }
 
@@ -488,15 +536,26 @@ public sealed class FactionWarSystem : EntitySystem
         var player = args.SenderSession;
         var data = new FactionWarJoinPanelDataEvent();
 
-        if (player.AttachedEntity is { } playerEntity && TryGetWarFaction(playerEntity, out _))
-            data.AlreadyInFaction = true;
+        // #Misfits Change - Faction members can now individually warjoin. Populate
+        // IsTopRanking / MyWarFactionId so the client knows whether to show faction-wide enlist.
+        if (player.AttachedEntity is { } playerEntity && TryGetWarFaction(playerEntity, out var playerFaction))
+        {
+            data.MyWarFactionId = playerFaction;
+
+            if (_minds.TryGetMind(playerEntity, out var mindId, out _))
+            {
+                var myWeight  = GetJobWeight(mindId);
+                var topWeight = GetFactionTopWeight(playerFaction);
+                data.IsTopRanking = myWeight > 0 && myWeight >= topWeight;
+            }
+        }
 
         if (_warParticipants.TryGetValue(player.UserId, out var info))
             data.AlreadyJoinedSide = info.Side;
 
         data.PendingWars = _activeWars.Where(w => w.Phase == WarPhase.Pending).ToList();
 
-        if (data.PendingWars.Count == 0 && !data.AlreadyInFaction && data.AlreadyJoinedSide == null)
+        if (data.PendingWars.Count == 0 && data.AlreadyJoinedSide == null)
             data.StatusMessage = Loc.GetString("faction-war-join-no-pending");
 
         RaiseNetworkEvent(data, player);
@@ -515,12 +574,10 @@ public sealed class FactionWarSystem : EntitySystem
             return;
         }
 
-        if (TryGetWarFaction(playerEntity, out var existingFaction))
-        {
-            SendJoinResult(player, false,
-                $"You are already a member of {FactionDisplayName(existingFaction)}. Your faction participates automatically.");
-            return;
-        }
+        // #Misfits Change - Removed the AlreadyInFaction rejection. Faction members can now
+        // individually warjoin. The old block was:
+        // if (TryGetWarFaction(playerEntity, out var existingFaction))
+        //     SendJoinResult(player, false, "You are already a member of...");
 
         if (_warParticipants.ContainsKey(player.UserId))
         {
@@ -545,6 +602,14 @@ public sealed class FactionWarSystem : EntitySystem
             return;
         }
 
+        // #Misfits Add - Faction-wide enlistment: top-ranking member enlists all online faction members.
+        if (msg.FactionWide)
+        {
+            HandleFactionWideJoin(player, playerEntity, war, msg.ChosenSide);
+            return;
+        }
+
+        // Individual join path (available to everyone).
         var warKey = WarKey(war);
         _warParticipants[player.UserId] = (warKey, msg.ChosenSide);
         BroadcastParticipants();
@@ -559,6 +624,102 @@ public sealed class FactionWarSystem : EntitySystem
             $"[FactionWar] {player.Name} ({charName}) joined war " +
             $"{FactionDisplayName(msg.AggressorFaction)} vs {FactionDisplayName(msg.TargetFaction)} " +
             $"on the side of {sideName}");
+    }
+
+    /// <summary>
+    /// Enlists all online members of the sender's war-capable faction into a pending war.
+    /// Only the highest-ranking online member may trigger this.
+    /// Wastelanders are never auto-enlisted.
+    /// </summary>
+    private void HandleFactionWideJoin(
+        ICommonSession player,
+        EntityUid playerEntity,
+        FactionWarEntry war,
+        string chosenSide)
+    {
+        // Verify the sender is in a war-capable faction (not Wastelander).
+        if (!TryGetWarFaction(playerEntity, out var myFaction))
+        {
+            SendJoinResult(player, false, "You are not in a war-capable faction.");
+            return;
+        }
+
+        // Verify sender is the top-ranking online member.
+        if (!_minds.TryGetMind(playerEntity, out var senderMind, out _))
+        {
+            SendJoinResult(player, false, "You have no mind entity.");
+            return;
+        }
+
+        var senderWeight = GetJobWeight(senderMind);
+        var topWeight = GetFactionTopWeight(myFaction);
+        if (senderWeight < topWeight)
+        {
+            SendJoinResult(player, false,
+                "Only the highest-ranking online member can enlist the entire faction.");
+            return;
+        }
+
+        // Build the set of NPC faction IDs to iterate (canonical + aliases).
+        var factionIds = new List<string> { myFaction };
+        foreach (var (raw, canonical) in FactionWarConfig.FactionAliases)
+        {
+            if (canonical == myFaction)
+                factionIds.Add(raw);
+        }
+
+        var warKey = WarKey(war);
+        var enlisted = 0;
+
+        // Iterate all online faction members and add them to _warParticipants.
+        var query = EntityQueryEnumerator<NpcFactionMemberComponent, ActorComponent>();
+        while (query.MoveNext(out var entity, out _, out var actor))
+        {
+            if (actor.PlayerSession.Status != SessionStatus.InGame)
+                continue;
+
+            var isMember = false;
+            foreach (var fid in factionIds)
+            {
+                if (_npcFaction.IsMember(entity, fid))
+                {
+                    isMember = true;
+                    break;
+                }
+            }
+            if (!isMember)
+                continue;
+
+            var userId = actor.PlayerSession.UserId;
+
+            // Skip if already enlisted in any war.
+            if (_warParticipants.ContainsKey(userId))
+                continue;
+
+            _warParticipants[userId] = (warKey, chosenSide);
+            enlisted++;
+        }
+
+        BroadcastParticipants();
+
+        var sideName = FactionDisplayName(chosenSide);
+        var factionDisplay = FactionDisplayName(myFaction);
+        var charName = Name(playerEntity);
+
+        SendJoinResult(player, true,
+            $"Enlisted {enlisted} members of {factionDisplay} on the side of {sideName}.");
+
+        _chat.DispatchServerAnnouncement(
+            $"FACTION ENLISTMENT\n" +
+            $"{charName} has enlisted all of {factionDisplay} into the war " +
+            $"({FactionDisplayName(war.AggressorFaction)} vs {FactionDisplayName(war.TargetFaction)}) " +
+            $"on the side of {sideName}!",
+            Color.Orange);
+
+        _chat.SendAdminAnnouncement(
+            $"[FactionWar] {player.Name} ({charName}) faction-wide enlisted {factionDisplay} " +
+            $"({enlisted} members) in war {FactionDisplayName(war.AggressorFaction)} vs " +
+            $"{FactionDisplayName(war.TargetFaction)} on the side of {sideName}");
     }
 
     // ── /warend (admin only) ───────────────────────────────────────────────
@@ -841,6 +1002,7 @@ public sealed class FactionWarSystem : EntitySystem
     {
         _activeWars.Clear();
         _warActivationTimes.Clear();
+        _warAutoEndTimes.Clear(); // #Misfits Add - Clear auto-ceasefire timers on round restart.
         _warParticipants.Clear();
         _factionWarCooldowns.Clear();
         _panelOpenSessions.Clear();
@@ -882,6 +1044,9 @@ public sealed class FactionWarSystem : EntitySystem
 
         var warKey = WarKey(war);
         _warActivationTimes.Remove(warKey);
+
+        // #Misfits Add - Cancel auto-ceasefire timer if one was running.
+        _warAutoEndTimes.Remove(warKey);
 
         // Set per-faction cooldown so neither side can immediately re-declare.
         var cooldownEnd = _gameTiming.CurTime + WarCooldownAfterEnd;

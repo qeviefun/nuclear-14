@@ -1,0 +1,110 @@
+<Document>
+# Super Mutants
+
+[textlink="View Full Wiki Page" link="https://ss14.misfitsystems.net/wiki/index.php/Super_Mutants"]
+
+<p>Humans exposed to Forced Evolutionary Virus (FEV). Transformed into massive green-skinned creatures with immense physical power and near-total radiation immunity. Most lost higher cognitive function. Some retained intelligence.</p>
+
+<hr/>
+
+## Physical Characteristics
+
+<ul>
+<li>[bold]1.5x human scale[/bold] — towering over normal humans</li>
+<li>[bold]Extreme physical strength[/bold] and resilience</li>
+<li>[bold]Near-total radiation immunity[/bold]</li>
+<li>[bold]Greatly extended lifespan[/bold] — centuries, no confirmed upper limit</li>
+<li>Skin ranges from olive green to deep yellow-green</li>
+</ul>
+
+<hr/>
+
+## Roles
+
+<p>All Super Mutant roles require [bold][color=#cc3333]whitelist[/color][/bold] and are locked to the Super Mutant species.</p>
+
+<ColorBox Color="#1a1a1a" OutlineColor="#669933" OutlineThickness="1" Margin="5">
+  <Box Orientation="Vertical" Margin="8">
+    [bold][color=#669933]Super Mutant[/color][/bold]
+    FEV-mutated human. Your size is both advantage and curse — feared by most, trusted by few. How you use your strength defines what you are.
+  </Box>
+</ColorBox>
+
+<ColorBox Color="#1a1a1a" OutlineColor="#cc3333" OutlineThickness="1" Margin="5">
+  <Box Orientation="Vertical" Margin="8">
+    [bold][color=#cc3333]Super Mutant Gladiator[/color][/bold]
+    Combat is your purpose. Arena-tested, wasteland-hardened. Always looking for the next worthy challenge.
+  </Box>
+</ColorBox>
+
+<hr/>
+
+## Faction Relations
+
+<Table Columns="3">
+  <Box>
+    [bold][color=#a4885c]Faction[/color][/bold]
+  </Box>
+  <Box>
+    [bold][color=#a4885c]Standing[/color][/bold]
+  </Box>
+  <Box>
+    [bold][color=#a4885c]Notes[/color][/bold]
+  </Box>
+  <Box>
+    Brotherhood of Steel
+  </Box>
+  <Box>
+    [bold][color=#cc3333]Kill on Sight[/color][/bold]
+  </Box>
+  <Box>
+    Classified as Biological Abominations. No exceptions.
+  </Box>
+  <Box>
+    NCR
+  </Box>
+  <Box>
+    [color=#cc3333]Hostile[/color]
+  </Box>
+  <Box>
+    Treated as hostile wildlife.
+  </Box>
+  <Box>
+    Caesar's Legion
+  </Box>
+  <Box>
+    [color=#cc3333]Hostile[/color]
+  </Box>
+  <Box>
+    Too dangerous to enslave, too proud to submit.
+  </Box>
+  <Box>
+    Townsfolk
+  </Box>
+  <Box>
+    [color=#ffb000]Fearful[/color]
+  </Box>
+  <Box>
+    Clears the street. Trust takes time.
+  </Box>
+  <Box>
+    Wastelanders
+  </Box>
+  <Box>
+    [color=#a4885c]Variable[/color]
+  </Box>
+  <Box>
+    Some trade, some run, some shoot first.
+  </Box>
+  <Box>
+    Other Super Mutants
+  </Box>
+  <Box>
+    Neutral
+  </Box>
+  <Box>
+    Shared blood does not mean shared purpose.
+  </Box>
+</Table>
+
+</Document>

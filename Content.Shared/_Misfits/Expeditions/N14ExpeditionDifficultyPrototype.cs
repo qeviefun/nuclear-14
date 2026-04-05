@@ -131,6 +131,15 @@ public sealed partial class N14ExpeditionMapEntry
     /// </summary>
     [DataField]
     public int ProceduralHubCount { get; private set; } = 2;
+
+    // #Misfits Add - YAML-pinnable environmental states for procedural maps
+    /// <summary>
+    /// Environmental conditions applied to this procedural map entry.
+    /// Multiple states stack — e.g. [Abandoned, Damaged] compounds both modifiers.
+    /// When empty, the generator auto-picks 1–2 states valid for the theme.
+    /// </summary>
+    [DataField]
+    public List<EnvironmentalState> ProceduralEnvironmentalStates { get; private set; } = new();
 }
 
 /// <summary>

@@ -1,123 +1,119 @@
 <Document>
 # Blueprints &amp; Crafting
 
-Blueprint crafting is the workbench-based side of the Wasteland crafting system. If you have the right blueprint, bench, resources, and tools, you can turn scrap and rare parts into faction gear, armor, and weapons.
+[textlink="View Full Wiki Page" link="https://ss14.misfitsystems.net/wiki/index.php/Crafting"]
+
+<p>Blueprint crafting is the workbench-based side of the Wasteland crafting system. If you have the right blueprint, bench, resources, and tools, you can turn scrap and rare parts into faction gear, armor, and weapons.</p>
+
+<hr/>
 
 ## Crafting Basics
 
-Blueprints define what you can make and what each recipe needs.
+<p>[bold]Blueprints[/bold] define what you can make and what each recipe needs.</p>
+<ul>
+<li>[bold]T-45 Power Armor Blueprint[/bold] — example BoS blueprint</li>
+<li>[bold]Tribal Rifle Blueprint[/bold] — example Tribal blueprint</li>
+</ul>
 
-<Box>
-<GuideEntityEmbed Entity="N14ClothingOuterPowerArmorT45Blueprint"/>
-<GuideEntityEmbed Entity="N14WeaponSniper556TribalBlueprint"/>
-</Box>
+<p>[bold]Workbenches[/bold] determine where a recipe can be completed.</p>
+<ul>
+<li>[bold]Weapon Bench[/bold] — used for weapons and weapon modifications</li>
+</ul>
 
-Workbenches determine where a recipe can be completed.
+<p>[bold]Resources[/bold] can be raw materials, scrap parts, or intermediate crafted components.</p>
+<ul>
+<li>[bold]Scrap Electronic[/bold] — salvaged from junk</li>
+<li>[bold]Advanced Gun Frame[/bold] — intermediate crafting component</li>
+</ul>
 
-<Box>
-<GuideEntityEmbed Entity="N14WorkbenchWeaponbench"/>
-</Box>
+<p>[bold]Tools[/bold] are required by many recipes, but they are not consumed during crafting.</p>
+<ul>
+<li>[bold]Screwdriver[/bold], [bold]Welder[/bold], [bold]Wrench[/bold]</li>
+</ul>
 
-Resources can be raw materials, scrap parts, or intermediate crafted components.
+<p>Some blueprints are faction-locked, so access can depend on who you are and which bench you can use.</p>
 
-<Box>
-<GuideEntityEmbed Entity="N14ScrapElectronic"/>
-<GuideEntityEmbed Entity="N14JunkGunpartsAdvancedFrame"/>
-</Box>
-
-Tools are required by many recipes, but they are not consumed during crafting.
-
-<Box>
-<GuideEntityEmbed Entity="N14Screwdriver"/>
-<GuideEntityEmbed Entity="N14Welder"/>
-<GuideEntityEmbed Entity="N14Wrench"/>
-</Box>
-
-Some blueprints are faction-locked, so access can depend on who you are and which bench you can use.
-
-<Box>
-<GuideEntityEmbed Entity="N14DecorationFlagNCR"/>
-<GuideEntityEmbed Entity="N14FlagWallWesternBrotherhood"/>
-</Box>
+<hr/>
 
 ## How to Craft
 
-Find or buy a blueprint, gather the listed resources, then take everything to the correct workbench. Open the crafting interface, select the blueprint, and confirm the recipe.
+<p>Find or buy a blueprint, gather the listed resources, then take everything to the correct workbench. Open the crafting interface, select the blueprint, and confirm the recipe.</p>
 
-If the recipe is available and you meet the requirements, the crafted item will appear in your inventory or next to the bench.
+<p>If the recipe is available and you meet the requirements, the crafted item will appear in your inventory or next to the bench.</p>
+
+<hr/>
 
 ## Blueprint Categories
 
-Blueprints are found by exploring the Wasteland, looting enemies, or trading with faction vendors. Click an entry to see its full recipe and workbench requirements.
+<p>Blueprints are found by exploring the Wasteland, looting enemies, or trading with faction vendors.</p>
 
-### Brotherhood of Steel
+<hr/>
 
-Power armor restoration and Brotherhood field gear, usually recovered from patrols, bunkers, and chapter stockpiles.
+## Brotherhood of Steel
 
-<Box>
-<GuideEntityEmbed Entity="N14ClothingOuterPowerArmorT45Blueprint" Caption="T-45 Power Armor"/>
-<GuideEntityEmbed Entity="N14ClothingOuterPowerArmorT60TeslaBlueprint" Caption="T-60 Tesla Armor"/>
-<GuideEntityEmbed Entity="N14ClothingOuterMBoSInitiateArmorBlueprint" Caption="BoS Initiate Armor"/>
-</Box>
-<Box>
-<GuideEntityEmbed Entity="N14ClothingOuterMidwestArmorBlueprint" Caption="Midwest Armor"/>
-<GuideEntityEmbed Entity="N14ClothingOuterMidwestArmorMK2Blueprint" Caption="Midwest Armor MK2"/>
-</Box>
+<p>Power armor restoration and Brotherhood field gear, usually recovered from patrols, bunkers, and chapter stockpiles.</p>
 
-### NCR
+<ul>
+<li>[bold]T-45 Power Armor[/bold] — standard Brotherhood power armor</li>
+<li>[bold]T-60 Tesla Armor[/bold] — advanced Brotherhood energy armor</li>
+<li>[bold]BoS Initiate Armor[/bold] — entry-level Brotherhood plating</li>
+<li>[bold]Midwest Armor[/bold] — Midwest chapter armor pattern</li>
+<li>[bold]Midwest Armor MK2[/bold] — upgraded Midwest armor</li>
+</ul>
 
-NCR armor patterns and restored military equipment, most commonly found in camps, depots, and quartermaster caches.
+<hr/>
 
-<Box>
-<GuideEntityEmbed Entity="N14ClothingOuterPowerArmorT45NCRBlueprint" Caption="T-45 NCR Armor"/>
-<GuideEntityEmbed Entity="N14ClothingOuterPowerArmorT51NCRBlueprint" Caption="T-51 NCR Armor"/>
-<GuideEntityEmbed Entity="N14ClothingOuterPowerArmorT60NCRBlueprint" Caption="T-60 NCR Armor"/>
-<GuideEntityEmbed Entity="N14ClothingOuterPowerArmorRaiderBlueprint" Caption="Raider Power Armor"/>
-<GuideEntityEmbed Entity="N14ClothingOuterPowerArmorAdvanced1NCRBlueprint" Caption="Advanced NCR Armor"/>
-</Box>
-<Box>
-<GuideEntityEmbed Entity="N14ClothingOuterNCRVestDesertBlueprint" Caption="NCR Desert Vest"/>
-<GuideEntityEmbed Entity="N14ClothingOuterNCRCombatArmorBlueprint" Caption="NCR Combat Armor"/>
-<GuideEntityEmbed Entity="N14ClothingOuterNCRCombatArmorMK2Blueprint" Caption="NCR Combat Armor MK2"/>
-</Box>
+## NCR
 
-### Legion
+<p>NCR armor patterns and restored military equipment, most commonly found in camps, depots, and quartermaster caches.</p>
 
-Legion armor blueprints recovered from outposts, patrol leaders, and veteran warriors.
+<ul>
+<li>[bold]T-45 NCR Armor[/bold] — NCR-modified power armor</li>
+<li>[bold]T-51 NCR Armor[/bold] — NCR-modified power armor</li>
+<li>[bold]T-60 NCR Armor[/bold] — NCR-modified power armor</li>
+<li>[bold]Raider Power Armor[/bold] — salvaged power armor</li>
+<li>[bold]Advanced NCR Armor[/bold] — top-tier NCR power armor</li>
+<li>[bold]NCR Desert Vest[/bold] — standard NCR field vest</li>
+<li>[bold]NCR Combat Armor[/bold] — NCR standard combat armor</li>
+<li>[bold]NCR Combat Armor MK2[/bold] — upgraded NCR combat armor</li>
+</ul>
 
-<Box>
-<GuideEntityEmbed Entity="N14ClothingOuterLegionnaireBaseArmorBlueprint" Caption="Legionnaire Armor"/>
-<GuideEntityEmbed Entity="N14ClothingOuterLegionnaireVeteranArmorBlueprint" Caption="Veteran Legionnaire Armor"/>
-</Box>
+<hr/>
 
-### Tribal
+## Legion
 
-Handcrafted tribal weapons and armor, usually traded by tribal groups or found in remote camps.
+<p>Legion armor blueprints recovered from outposts, patrol leaders, and veteran warriors.</p>
 
-<Box>
-<GuideEntityEmbed Entity="N14WeaponRevolver45-70HandcannonBlueprint" Caption="Handcannon"/>
-<GuideEntityEmbed Entity="N14WeaponRevolver44TribalBlueprint" Caption="Tribal Handgun"/>
-<!-- #Misfits Remove: Corvax modification kit blueprints removed -->
-<!-- <GuideEntityEmbed Entity="N14ModificationkitRevolver44TribalBlueprint" Caption="Revolver Upgrade Kit"/> -->
-<!-- <GuideEntityEmbed Entity="N14ModificationkitRevolver44TribalUpgradedBlueprint" Caption="Revolver Upgrade Extra Kit"/> -->
-</Box>
-<Box>
-<GuideEntityEmbed Entity="N14WeaponSniper556TribalBlueprint" Caption="Tribal Rifle"/>
-<GuideEntityEmbed Entity="N14WeaponSniper556TribalUpgradedBlueprint" Caption="Tribal Assault Rifle"/>
-<GuideEntityEmbed Entity="N14ClothingOuterCombatTribalBlueprint" Caption="Tribal Combat Armor"/>
-</Box>
+<ul>
+<li>[bold]Legionnaire Armor[/bold] — standard Legion armor</li>
+<li>[bold]Veteran Legionnaire Armor[/bold] — upgraded Legion armor for veterans</li>
+</ul>
 
-### Miscellaneous
+<hr/>
 
-Faction-neutral blueprints available to any capable crafter with the right bench and parts.
+## Tribal
 
-<Box>
-<GuideEntityEmbed Entity="N14WeaponLaserRevolverBlueprint" Caption="Laser Revolver"/>
-<GuideEntityEmbed Entity="N14WeaponLaserRifleMakeshiftBlueprint" Caption="Makeshift Laser Rifle"/>
-<GuideEntityEmbed Entity="N14WeaponRifle556PipeBlueprint" Caption="Pipe Rifle (.556)"/>
-</Box>
-<Box>
-<GuideEntityEmbed Entity="N14ClothingOuterCombatArmorBlueprint" Caption="Combat Armor"/>
-<GuideEntityEmbed Entity="N14ClothingOuterCombatArmorMK2Blueprint" Caption="Combat Armor MK2"/>
-</Box>
+<p>Handcrafted tribal weapons and armor, usually traded by tribal groups or found in remote camps.</p>
+
+<ul>
+<li>[bold]Handcannon[/bold] — .45-70 tribal revolver</li>
+<li>[bold]Tribal Handgun[/bold] — .44 tribal revolver</li>
+<li>[bold]Tribal Rifle[/bold] — .556 tribal sniper rifle</li>
+<li>[bold]Tribal Assault Rifle[/bold] — upgraded .556 tribal rifle</li>
+<li>[bold]Tribal Combat Armor[/bold] — handcrafted tribal plating</li>
+</ul>
+
+<hr/>
+
+## Miscellaneous
+
+<p>Faction-neutral blueprints available to any capable crafter with the right bench and parts.</p>
+
+<ul>
+<li>[bold]Laser Revolver[/bold] — energy sidearm</li>
+<li>[bold]Makeshift Laser Rifle[/bold] — cobbled-together energy weapon</li>
+<li>[bold]Pipe Rifle (.556)[/bold] — improvised ballistic rifle</li>
+<li>[bold]Combat Armor[/bold] — standard wasteland combat armor</li>
+<li>[bold]Combat Armor MK2[/bold] — upgraded combat armor</li>
+</ul>
 </Document>

@@ -1,13 +1,40 @@
 <Document>
 # Enclave
 
-The Enclave are the remnants of the pre-war United States government — a shadow organization that survived the nuclear exchange in offshore platforms and hardened facilities, preserving their personnel, their technology, and their ideology through two centuries of wasteland history.
+[textlink="View Full Wiki Page" link="https://ss14.misfitsystems.net/wiki/index.php/The_Enclave"]
 
-They consider themselves the legal successors of America. Everyone else — ghouls, mutants, virtually all surface survivors contaminated by post-war radiation — is subhuman in their view, to be eliminated so the land can be reclaimed for "pure" humans.
+<Table Columns="2">
+  <Box>[bold]Status[/bold]</Box>
+  <Box>Active — Covert operations</Box>
+  <Box>[bold]Location[/bold]</Box>
+  <Box>Classified</Box>
+  <Box>[bold]Leadership[/bold]</Box>
+  <Box>Enclave Officer Corps</Box>
+  <Box>[bold]Ideology[/bold]</Box>
+  <Box>American restoration, genetic purity</Box>
+  <Box>[bold]Motto[/bold]</Box>
+  <Box>[italic]"God Bless the Enclave. God Bless America."[/italic]</Box>
+</Table>
+
+<hr/>
+
+<p>The Enclave are the remnants of the pre-war United States government — a shadow organization that survived the nuclear exchange in offshore platforms and hardened facilities, preserving their personnel, their technology, and their ideology through two centuries of wasteland history.</p>
+
+<p>They consider themselves the legal successors of America. Everyone else — ghouls, mutants, virtually all surface survivors contaminated by post-war radiation — is subhuman in their view, to be eliminated so the land can be reclaimed for "pure" humans.</p>
+
+<hr/>
 
 ## Philosophy
 
-The Enclave operates with cold bureaucratic efficiency in service of a genocidal agenda they genuinely believe is necessary and just. Their goal is not survival but restoration — the forced re-establishment of federal authority over land they view as rightfully theirs. They are the most technologically advanced faction in the Wasteland, constrained only by small numbers and the universal hostility of everyone who understands their intentions.
+<ColorBox Color="#1a1a1a" OutlineColor="#263238" OutlineThickness="1" Margin="5">
+  <Box Orientation="Vertical" Margin="8">
+    [italic]"The Enclave operates with cold bureaucratic efficiency in service of a genocidal agenda they genuinely believe is necessary and just."[/italic]
+  </Box>
+</ColorBox>
+
+<p>Their goal is not survival but restoration — the forced re-establishment of federal authority over land they view as rightfully theirs. They are the most technologically advanced faction in the Wasteland, constrained only by small numbers and the universal hostility of everyone who understands their intentions.</p>
+
+<hr/>
 
 ## Roles
 
@@ -22,6 +49,8 @@ The Enclave operates with cold bureaucratic efficiency in service of a genocidal
 [color=#a4885c]Your role:[/color] Command local Enclave operations. Pursue the Enclave's agenda with precision and control. Your orders come from above — your judgment determines how those orders manifest on the ground.
 </Box>
 
+<br/>
+
 <ColorBox Color="#263238">
   <Box Margin="2">
   [bold]Enclave Soldier[/bold]
@@ -32,6 +61,8 @@ The Enclave operates with cold bureaucratic efficiency in service of a genocidal
 
 [color=#a4885c]Your role:[/color] Execute orders with precision and overwhelming force. You are the Enclave's fist. Your equipment outperforms virtually everything else in the field — and you are expected to make full use of that advantage.
 </Box>
+
+<br/>
 
 <ColorBox Color="#263238">
   <Box Margin="2">
@@ -44,7 +75,9 @@ The Enclave operates with cold bureaucratic efficiency in service of a genocidal
 [color=#a4885c]Your role:[/color] Develop and maintain Enclave technology. Conduct research assignments. Your work is what justifies the Enclave's belief in their own indispensability — ensure it is worth that justification.
 </Box>
 
-## Relations
+<hr/>
 
-The Enclave does not negotiate with "contaminated" populations. They operate covertly until ready to move openly. Discovery of their presence creates a hard choice for other factions: expose them and invite retaliation, or stay silent and wait for the inevitable hammer to fall.
+## Faction Relations
+
+<p>The Enclave does not negotiate with "contaminated" populations. They operate covertly until ready to move openly. Discovery of their presence creates a hard choice for other factions: expose them and invite retaliation, or stay silent and wait for the inevitable hammer to fall.</p>
 </Document>

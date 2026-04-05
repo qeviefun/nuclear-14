@@ -148,6 +148,15 @@ public sealed partial class GunSystem : SharedGunSystem
                     break;
                 case HitscanPrototype hitscan:
 
+                    // #Misfits Add - Override hitscan proto if gun specifies one.
+                    // This lets weapons control their own beam color and base damage
+                    // independently of which cell is inserted.
+                    if (TryComp<GunDamageBonusComponent>(gunUid, out var gunOverride) &&
+                        gunOverride.HitscanProtoOverride != null)
+                    {
+                        hitscan = ProtoManager.Index<HitscanPrototype>(gunOverride.HitscanProtoOverride);
+                    }
+
                     EntityUid? lastHit = null;
 
                     var from = fromMap;

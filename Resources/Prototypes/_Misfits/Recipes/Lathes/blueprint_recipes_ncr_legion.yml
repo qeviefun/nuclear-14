@@ -605,6 +605,29 @@
     Circuitry: 15
 
 
+# --- NCR Tier 5 Weapons (Anti-Materiel) ---
+# #Misfits Add - costs so much scrap metal to make these dang things
+- type: latheRecipe
+  id: N14BPNCRWeaponAntiMateriel
+  result: N14WeaponSniper50AntiMateriel
+  category: N14BlueprintNCRWeaponsT5
+  completetime: 35
+  requiresBlueprint: true
+  availableFaction:
+  - NCR
+  - Rangers
+  materials:
+    Steel: 20000
+
+    N14Iron: 60
+
+    N14Brass: 50
+
+    Scrap: 80
+
+    Glass: 20
+
+
 # =====================================================================
 # NCR ARMOR RECIPES
 # =====================================================================

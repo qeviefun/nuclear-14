@@ -19,6 +19,10 @@
       - type: NpcFactionMember
         factions:
           - Rangers
+  # #Misfits Removed - Disabled auto-grant pending testing; use training manuals instead
+  #- !type:AddComponentSpecial
+  #  components:
+  #    - type: GrantRangerCombat
   requirements:
     - !type:CharacterWhitelistRequirement
     - !type:CharacterSpeciesRequirement # #Misfits Change - robots and super mutants cannot be Rangers

@@ -14,6 +14,10 @@ ticket-system-resolved = [{$type} TICKET #{$id}] Resolved by {$admin}.
 ticket-system-reopened = [{$type} TICKET #{$id}] Reopened by {$admin}.
 ticket-system-auto-claimed = [{$type} TICKET #{$id}] Auto-claimed by {$admin} on first reply.
 ticket-system-auto-resolved-disconnect = [{$type} TICKET #{$id}] Auto-resolved — player disconnected.
+# #Misfits Add - Player-facing resolve notification (sent only to the player, not admin panel)
+ticket-system-resolved-with-cooldown = Your ticket has been resolved. If you need further assistance, please wait 1 minute before opening a new one.
+# #Misfits Add - Player-facing cooldown block message (sent only to the player when they attempt to re-ticket too quickly)
+ticket-system-cooldown-blocked = Please wait one minute after resolution before making a new ticket.
 ticket-system-toast-new-title = New Ticket
 ticket-system-toast-new-body = Ticket #{$id} from {$player}
 ticket-system-toast-claimed-title = Ticket Claimed

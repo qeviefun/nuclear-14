@@ -5,14 +5,16 @@
   name: guide-entry-factions
   text: "/ServerInfo/_Nuclear14/Guidebooks/Factions/factions.xml"
   children:
-  - N14NCR
+  - N14NCR               # #Misfits Tweak - reordered: NCR first
   - N14BrotherhoodOfSteel
   - N14CaesarsLegion
+  - N14Tribes
   - N14Townsfolk
   - N14VaultDwellers
   - N14Wastelanders
-  - N14Tribes
   - N14MinorFactions
+  - MisfitsOutlaws        # #Misfits Add - outlaw gangs
+  # MisfitsSynthetics and MisfitsSuperMutants moved to MisfitsWhitelists section
 
 # NCR
 - type: guideEntry
@@ -77,9 +79,9 @@
   name: guide-entry-minorfactions
   text: "/ServerInfo/_Nuclear14/Guidebooks/Factions/MinorFactions/index.xml"
   children:
+  - N14Enclave                   # #Misfits Tweak - Enclave first in Minor Factions
+  - N14FollowersOfTheApocalypse  # #Misfits Tweak - Followers second in Minor Factions
   - N14ChildrenOfAtom
-  - N14Enclave
-  - N14FollowersOfTheApocalypse
   - N14Zetan
   # - N14CaravanCompany # Misfits Tweak: commented out; not currently active on server
 
@@ -89,16 +91,18 @@
   text: "/ServerInfo/_Nuclear14/Guidebooks/Factions/MinorFactions/ChildrenOfAtom/index.xml"
   filterEnabled: True
 
+# #Misfits Change - point to expanded Misfits Enclave page
 - type: guideEntry
   id: N14Enclave
   name: guide-entry-enclave
-  text: "/ServerInfo/_Nuclear14/Guidebooks/Factions/MinorFactions/Enclave/index.xml"
+  text: "/ServerInfo/_Misfits/Guidebooks/Enclave.xml"
   filterEnabled: True
 
+# #Misfits Change - point to expanded Misfits Followers page
 - type: guideEntry
   id: N14FollowersOfTheApocalypse
   name: guide-entry-followersoftheapocalypse
-  text: "/ServerInfo/_Nuclear14/Guidebooks/Factions/MinorFactions/FollowersOfTheApocalypse/index.xml"
+  text: "/ServerInfo/_Misfits/Guidebooks/Followers.xml"
   filterEnabled: True
 
 - type: guideEntry

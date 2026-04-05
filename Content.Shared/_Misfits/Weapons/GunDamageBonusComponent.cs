@@ -1,9 +1,10 @@
 using Content.Shared.Damage;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
-// #Misfits Add - Gun-side bonus damage and fire cost multiplier for weapons like the Wattz series.
-// Adds flat bonus damage on top of whatever the inserted cell's hitscan proto provides,
-// and optionally multiplies the cell's fireCost when inserted (e.g. 2.0 = half the shots).
+// #Misfits Add - Gun-side damage, fire cost, and hitscan override for energy weapons.
+// Allows each weapon to control its own beam color and damage independently of the cell.
+// The cell provides charge; the weapon determines what fires.
 
 namespace Content.Shared._Misfits.Weapons;
 
@@ -11,7 +12,14 @@ namespace Content.Shared._Misfits.Weapons;
 public sealed partial class GunDamageBonusComponent : Component
 {
     /// <summary>
-    /// Flat bonus damage added on top of whatever the cell's hitscan deals.
+    /// If set, the gun uses this hitscan prototype instead of whatever the cell provides.
+    /// This controls beam visuals AND base damage — the cell only supplies charge.
+    /// </summary>
+    [DataField("hitscanProtoOverride"), AutoNetworkedField]
+    public string? HitscanProtoOverride;
+
+    /// <summary>
+    /// Flat bonus damage added on top of the hitscan's base damage.
     /// Applied server-side when the hitscan hits a target.
     /// </summary>
     [DataField("bonusDamage"), AutoNetworkedField]

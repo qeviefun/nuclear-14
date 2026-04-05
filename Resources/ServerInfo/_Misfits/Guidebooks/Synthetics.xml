@@ -1,0 +1,335 @@
+<Document>
+# Synthetics
+
+[textlink="View Full Wiki Page" link="https://ss14.misfitsystems.net/wiki/index.php/Synthetics"]
+
+<p>Pre-war robotic units still operational in the Wendover region. Player-controlled chassis with integrated armament. All synthetic roles require [bold][color=#cc3333]whitelist[/color][/bold].</p>
+
+<hr/>
+
+## Chassis Overview
+
+<Table Columns="4">
+  <Box>
+    [bold][color=#a4885c]Chassis[/color][/bold]
+  </Box>
+  <Box>
+    [bold][color=#a4885c]Role / Speed[/color][/bold]
+  </Box>
+  <Box>
+    [bold][color=#a4885c]HP[/color][/bold]
+  </Box>
+  <Box>
+    [bold][color=#a4885c]Built-In Weapon[/color][/bold]
+  </Box>
+  <Box>
+    [bold]Mr. Handy[/bold]
+  </Box>
+  <Box>
+    Domestic (2.5/4.5)
+  </Box>
+  <Box>
+    200
+  </Box>
+  <Box>
+    Flamer (30 fuel)
+  </Box>
+  <Box>
+    [bold]Protectron[/bold]
+  </Box>
+  <Box>
+    Civil Service (2.0/3.5)
+  </Box>
+  <Box>
+    200
+  </Box>
+  <Box>
+    Hand-Laser (9 cap)
+  </Box>
+  <Box>
+    [bold]Protectron Police[/bold]
+  </Box>
+  <Box>
+    Law Enforcement (2.0/3.5)
+  </Box>
+  <Box>
+    200
+  </Box>
+  <Box>
+    Electro-Shock (10 blunt + 12 shock)
+  </Box>
+  <Box>
+    [bold]Protectron Builder[/bold]
+  </Box>
+  <Box>
+    Engineering (2.0/3.5)
+  </Box>
+  <Box>
+    200
+  </Box>
+  <Box>
+    RCD + construction tools
+  </Box>
+  <Box>
+    [bold]Protectron Firefighter[/bold]
+  </Box>
+  <Box>
+    Emergency (2.0/3.5)
+  </Box>
+  <Box>
+    200
+  </Box>
+  <Box>
+    Cryo Emitter (6 cap)
+  </Box>
+  <Box>
+    [bold]Mr. Gutsy[/bold]
+  </Box>
+  <Box>
+    Military (2.5/4.5)
+  </Box>
+  <Box>
+    200
+  </Box>
+  <Box>
+    Plasma Caster (15 cap)
+  </Box>
+  <Box>
+    [bold]Assaultron[/bold]
+  </Box>
+  <Box>
+    Combat (3.0/6.0)
+  </Box>
+  <Box>
+    200
+  </Box>
+  <Box>
+    Head Laser (charged) + Claw (30 slash)
+  </Box>
+  <Box>
+    [bold]Assaultron Tesla[/bold]
+  </Box>
+  <Box>
+    Combat (3.0/6.0)
+  </Box>
+  <Box>
+    200
+  </Box>
+  <Box>
+    Tesla Discharge (chain-lightning)
+  </Box>
+  <Box>
+    [bold][color=#cc3333]Sentry Bot Minigun[/color][/bold]
+  </Box>
+  <Box>
+    Heavy Siege (1.0/1.5)
+  </Box>
+  <Box>
+    [color=#cc3333]350[/color]
+  </Box>
+  <Box>
+    5mm Gatling (30 cap) + 0.65x armor + 50% reflect
+  </Box>
+  <Box>
+    [bold][color=#cc3333]Sentry Bot Laser[/color][/bold]
+  </Box>
+  <Box>
+    Heavy Siege (1.0/1.5)
+  </Box>
+  <Box>
+    [color=#cc3333]350[/color]
+  </Box>
+  <Box>
+    Gatling Laser (20 cap) + 0.65x armor + 50% reflect
+  </Box>
+  <Box>
+    [bold]Robobrain[/bold]
+  </Box>
+  <Box>
+    Medical/Utility (1.5/3.0)
+  </Box>
+  <Box>
+    200
+  </Box>
+  <Box>
+    None (medical tools)
+  </Box>
+  <Box>
+    [bold]Robobrain Laser[/bold]
+  </Box>
+  <Box>
+    Medical/Combat (1.5/3.0)
+  </Box>
+  <Box>
+    200
+  </Box>
+  <Box>
+    Hand-Laser (9 cap)
+  </Box>
+</Table>
+
+<p>Sentry Bots are [bold]2.0x scale[/bold]. All others are 1.0x.</p>
+
+<hr/>
+
+## Jobs
+
+<Table Columns="2">
+  <Box>
+    [bold][color=#a4885c]Job[/color][/bold]
+  </Box>
+  <Box>
+    [bold][color=#a4885c]Chassis Options[/color][/bold]
+  </Box>
+  <Box>
+    Mr. Handy
+  </Box>
+  <Box>
+    Mr. Handy (3-handed)
+  </Box>
+  <Box>
+    Protectron
+  </Box>
+  <Box>
+    Standard, Police, Builder, Firefighter
+  </Box>
+  <Box>
+    Mr. Gutsy
+  </Box>
+  <Box>
+    Mr. Gutsy (military)
+  </Box>
+  <Box>
+    Assaultron
+  </Box>
+  <Box>
+    Standard, Tesla (fastest chassis)
+  </Box>
+  <Box>
+    Sentry Bot
+  </Box>
+  <Box>
+    Minigun, Laser (heaviest chassis)
+  </Box>
+  <Box>
+    Robobrain
+  </Box>
+  <Box>
+    Standard, Laser (medical focus)
+  </Box>
+</Table>
+
+<hr/>
+
+## Borg Modules
+
+<ul>
+<li>[bold]Integrated Hand-Laser[/bold] — Semi-auto laser, 9 capacity, rechargeable</li>
+<li>[bold]Plasma Caster[/bold] — Plasma projector, internal battery, self-recharging</li>
+<li>[bold]Integrated Flamer[/bold] — Full-auto incendiary, 30 fuel, auto-refill</li>
+<li>[bold]Cryo Emitter[/bold] — Cryo projector, 6 capacity, fire suppression</li>
+<li>[bold]Security Module[/bold] — Stun baton, handcuffs, flashlight</li>
+<li>[bold]Diagnosis Module[/bold] — Medical scanner and patient assessment</li>
+<li>[bold]Treatment Module[/bold] — Surgical tools, healing capability</li>
+<li>[bold]Tool Module[/bold] — Wrench, screwdriver, welder</li>
+<li>[bold]GPS Module[/bold] — Navigation and mapping (Wendover tactical map)</li>
+</ul>
+
+<hr/>
+
+## Hostile NPC Robots
+
+<Table Columns="3">
+  <Box>
+    [bold][color=#a4885c]Robot[/color][/bold]
+  </Box>
+  <Box>
+    [bold][color=#a4885c]HP[/color][/bold]
+  </Box>
+  <Box>
+    [bold][color=#a4885c]Armament[/color][/bold]
+  </Box>
+  <Box>
+    Protectron (Melee)
+  </Box>
+  <Box>
+    100
+  </Box>
+  <Box>
+    Melee (5 brute), slow patrol
+  </Box>
+  <Box>
+    Protectron Police
+  </Box>
+  <Box>
+    100
+  </Box>
+  <Box>
+    Hand-Laser (9 cap)
+  </Box>
+  <Box>
+    Mr. Handy (variants)
+  </Box>
+  <Box>
+    100
+  </Box>
+  <Box>
+    Claw / Saw / Hand-Laser
+  </Box>
+  <Box>
+    Mr. Gutsy
+  </Box>
+  <Box>
+    100
+  </Box>
+  <Box>
+    Plasma Caster (9 cap)
+  </Box>
+  <Box>
+    Assaultron
+  </Box>
+  <Box>
+    200
+  </Box>
+  <Box>
+    Claw (15 slash), fast (3.0/6.0)
+  </Box>
+  <Box>
+    Eyebot
+  </Box>
+  <Box>
+    100
+  </Box>
+  <Box>
+    Hand-Laser (9 cap), plays ambient music
+  </Box>
+  <Box>
+    Robobrain
+  </Box>
+  <Box>
+    100
+  </Box>
+  <Box>
+    Hand-Laser (9 cap)
+  </Box>
+  <Box>
+    [color=#cc3333]Sentry Bot (Gatling)[/color]
+  </Box>
+  <Box>
+    [color=#cc3333]350[/color]
+  </Box>
+  <Box>
+    Gatling Laser + Stomp (40 brute). [color=#cc3333]8-second death explosion.[/color]
+  </Box>
+  <Box>
+    [color=#cc3333]Sentry Bot (Ballistic)[/color]
+  </Box>
+  <Box>
+    [color=#cc3333]350[/color]
+  </Box>
+  <Box>
+    Missile Launcher. [color=#cc3333]8-second death explosion.[/color]
+  </Box>
+</Table>
+
+</Document>

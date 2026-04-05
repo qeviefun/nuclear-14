@@ -1,83 +1,89 @@
 <Document>
 # Bartending, Drinks, and Other Liquids
 
-Below is a list of all drink reagents and reactions you can find in Nuclear 14. They are roughly sorted by base reagents, then reactions and products. They are classified by their primary component.
+[textlink="View Full Wiki Page" link="https://ss14.misfitsystems.net/wiki/index.php/Bartending"]
+
+<p>Below is a list of all drink reagents and reactions you can find in Nuclear 14. They are roughly sorted by base reagents, then reactions and products.</p>
+
+<hr/>
 
 ## Animal Products
 
-Milk from domesticated wasteland animals. A rare and valuable source of nutrition.
+<p>Milk from domesticated wasteland animals. A rare and valuable source of nutrition.</p>
 
-<Box>
-<GuideReagentEmbed Reagent="N14MilkBrahmin"/>
-<GuideReagentEmbed Reagent="N14MilkBighorner"/>
-<GuideReagentEmbed Reagent="N14MilkRadstag"/>
-</Box>
+<ul>
+<li>[bold]Brahmin Milk[/bold] — from domesticated brahmin</li>
+<li>[bold]Bighorner Milk[/bold] — from bighorner herds</li>
+<li>[bold]Radstag Milk[/bold] — from radstag does</li>
+</ul>
+
+<hr/>
 
 ## Water and Base Liquids
 
-Water is the most essential liquid in the Wasteland. Always purify water before drinking — dirty and irradiated water can make you sick.
+<p>Water is the most essential liquid in the Wasteland. Always purify water before drinking — dirty and irradiated water can make you sick.</p>
 
-<Box>
-<GuideReagentEmbed Reagent="WaterFiltered"/>
-<GuideReagentEmbed Reagent="WaterDirty"/>
-<GuideReagentEmbed Reagent="WaterIrradiated"/>
-<GuideReagentEmbed Reagent="WaterSalt"/>
-</Box>
+<ul>
+<li>[bold]Filtered Water[/bold] — purified, safe to drink</li>
+<li>[bold]Dirty Water[/bold] — contaminated, causes illness</li>
+<li>[bold]Irradiated Water[/bold] — radioactive, avoid unless desperate</li>
+<li>[bold]Salt Water[/bold] — not drinkable without processing</li>
+</ul>
+
+<hr/>
 
 ## Plant Extracts
 
-Plant extracts obtained by grinding or pressing plant products. Used in cooking, crafting, and as drink ingredients.
+<p>Plant extracts obtained by grinding or pressing plant products. Used in cooking, crafting, and as drink ingredients. Check the crafting menu for available extract recipes.</p>
 
-<GuideReagentGroupEmbed Group="Extracts"/>
+<hr/>
 
 ## Plant Drinks, Teas, and Infusions
 
-Teas brewed from wasteland plants. Many have mild medicinal or nutritional properties.
+<p>Teas brewed from wasteland plants. Many have mild medicinal or nutritional properties.</p>
 
-<Box>
-<GuideReagentEmbed Reagent="TeaAgave"/>
-<GuideReagentEmbed Reagent="TeaBlackberry"/>
-<GuideReagentEmbed Reagent="TeaBarrelCactus"/>
-<GuideReagentEmbed Reagent="TeaBroc"/>
-<GuideReagentEmbed Reagent="TeaDatura"/>
-<GuideReagentEmbed Reagent="TeaHoneyMesquite"/>
-<GuideReagentEmbed Reagent="TeaMutfruit"/>
-</Box>
-<Box>
-<GuideReagentEmbed Reagent="TeaNettle"/>
-<GuideReagentEmbed Reagent="TeaPricklypear"/>
-<GuideReagentEmbed Reagent="TeaStarlightberry"/>
-<GuideReagentEmbed Reagent="TeaTarberry"/>
-<GuideReagentEmbed Reagent="TeaWhiteHorsenettle"/>
-<GuideReagentEmbed Reagent="TeaXander"/>
-<GuideReagentEmbed Reagent="TeaFireantNectar"/>
-</Box>
+<ul>
+<li>[bold]Agave Tea[/bold]</li>
+<li>[bold]Blackberry Tea[/bold]</li>
+<li>[bold]Barrel Cactus Tea[/bold]</li>
+<li>[bold]Broc Tea[/bold]</li>
+<li>[bold]Datura Tea[/bold] — [color=#a4885c]mildly toxic[/color]</li>
+<li>[bold]Honey Mesquite Tea[/bold]</li>
+<li>[bold]Mutfruit Tea[/bold]</li>
+<li>[bold]Nettle Tea[/bold]</li>
+<li>[bold]Prickly Pear Tea[/bold]</li>
+<li>[bold]Starlight Berry Tea[/bold]</li>
+<li>[bold]Tarberry Tea[/bold]</li>
+<li>[bold]White Horsenettle Tea[/bold] — [color=#a4885c]mildly toxic[/color]</li>
+<li>[bold]Xander Tea[/bold]</li>
+<li>[bold]Fire Ant Nectar Tea[/bold]</li>
+</ul>
+
+<hr/>
 
 ## Carbonated Drinks
 
-Nuka-Cola and other pre-war carbonated beverages. Highly sought after throughout the Wasteland.
+<p>Nuka-Cola and other pre-war carbonated beverages. Highly sought after throughout the Wasteland.</p>
 
-<Box>
-<GuideReagentEmbed Reagent="NukaCola"/>
-<GuideReagentEmbed Reagent="NukaColaQuantum"/>
-<GuideReagentEmbed Reagent="NukaColaQuartz"/>
-<GuideReagentEmbed Reagent="NukaColaClear"/>
-<GuideReagentEmbed Reagent="NukaColaCherry"/>
-<GuideReagentEmbed Reagent="NukaColaGrape"/>
-</Box>
-<Box>
-<GuideReagentEmbed Reagent="NukaColaWild"/>
-<GuideReagentEmbed Reagent="NukaColaOrange"/>
-<GuideReagentEmbed Reagent="NukaColaVictory"/>
-<GuideReagentEmbed Reagent="NukaColaYellow"/>
-<GuideReagentEmbed Reagent="IrradiatedNukaCola"/>
-<GuideReagentEmbed Reagent="Vim"/>
-<GuideReagentEmbed Reagent="VimCaptainsblend"/>
-</Box>
+<ul>
+<li>[bold]Nuka-Cola[/bold] — classic pre-war soda</li>
+<li>[bold]Nuka-Cola Quantum[/bold] — glowing isotope variant</li>
+<li>[bold]Nuka-Cola Quartz[/bold] — clear, shimmering formula</li>
+<li>[bold]Nuka-Cola Clear[/bold] — transparent variant</li>
+<li>[bold]Nuka-Cola Cherry[/bold] — cherry-flavored soda</li>
+<li>[bold]Nuka-Cola Grape[/bold] — grape-flavored soda</li>
+<li>[bold]Nuka-Cola Wild[/bold] — herbal-flavored variant</li>
+<li>[bold]Nuka-Cola Orange[/bold] — citrus variant</li>
+<li>[bold]Nuka-Cola Victory[/bold] — patriotic limited edition</li>
+<li>[bold]Nuka-Cola Yellow[/bold] — banana-flavored soda</li>
+<li>[bold]Irradiated Nuka-Cola[/bold] — contaminated, radioactive</li>
+<li>[bold]Vim[/bold] — regional soda brand</li>
+<li>[bold]Vim Captain's Blend[/bold] — premium Vim recipe</li>
+</ul>
+
+<hr/>
 
 ## Alcohol
 
-Alcoholic beverages brewed and distilled throughout the Wasteland.
-
-<GuideReagentGroupEmbed Group="N14Alcohol"/>
+<p>Alcoholic beverages brewed and distilled throughout the Wasteland. Check the crafting menu for available brewing recipes.</p>
 </Document>

@@ -33,7 +33,7 @@
 - type: UndecidedLoadoutBackpackSet
   id: NCRA_FirstSergeantVeteranSet
   name: Sergeant First Class Veteran Kit
-  description: Includes an NCR trench coat, a loaded revolver belt, a master sergeant pin, a battle rifle with 6 clips, a handheld radio, 2 smoke grenades, a frag grenade, a C ration MRE, a stimpak, a super stimpak, a RadAway blood bag, 2 gauze packs, and a flare.
+  description: Includes an NCR trench coat, a loaded revolver belt, a master sergeant pin, a battle rifle with 6 clips, a handheld radio, 2 smoke grenades, a stick of dynamite, a C ration MRE, a stimpak, a super stimpak, a RadAway blood bag, 2 gauze packs, and a flare. # #Misfits Fix - frag grenade replaced with dynamite
   sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
     state: pointman
@@ -43,10 +43,10 @@
 - type: UndecidedLoadoutBackpackSet
   id: NCRA_CaptainCommandSet
   name: Captain Command Kit
-  description: |-
+  description: |- # #Misfits Fix - frag grenade replaced with dynamite
     Includes NCR combat armor, a loaded captain's revolver belt,
         a captain pin, a battle rifle with 6 clips, a handheld radio,
-        2 smoke grenades, a frag grenade, a C ration MRE, a stimpak,
+        2 smoke grenades, a stick of dynamite, a C ration MRE, a stimpak,
         2 super stimpaks, a RadAway blood bag, 2 gauze packs, and a flare.
   sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
@@ -181,7 +181,7 @@
       - id: RadioHandheld
       - id: SmokeGrenade
         amount: 2
-      - id: GrenadeFrag
+      - id: N14Dynamite # #Misfits Fix - GrenadeFrag is a GL-only round (no matching launcher in kit); replaced with throwable dynamite
       - id: N14BoxCardboardMREBoxCFilled
       - id: N14Stimpak
       - id: N14SuperStimpak
@@ -213,7 +213,7 @@
       - id: RadioHandheld
       - id: SmokeGrenade
         amount: 2
-      - id: GrenadeFrag
+      - id: N14Dynamite # #Misfits Fix - GrenadeFrag is a GL-only round (no matching launcher in kit); replaced with throwable dynamite
       - id: N14BoxCardboardMREBoxCFilled
       - id: N14Stimpak
       - id: N14SuperStimpak
@@ -258,10 +258,10 @@
 - type: UndecidedLoadoutBackpackSet
   id: NCRA_CaptainServiceRifleSet
   name: Captain Field Officer Kit
-  description: |-
+  description: |- # #Misfits Fix - frag grenade replaced with dynamite
     Includes NCR combat armor, an NCR belt, a captain pin,
         a scoped service rifle with 6 magazines, a 9mm pistol with 3 magazines,
-        a handheld radio, 2 smoke grenades, a frag grenade, a C ration MRE,
+        a handheld radio, 2 smoke grenades, a stick of dynamite, a C ration MRE,
         a stimpak, 2 super stimpaks, a RadAway blood bag, 2 gauze packs, and a flare.
   sprite:
     sprite: _Nuclear14/Objects/Misc/kits.rsi
@@ -293,7 +293,7 @@
       - id: RadioHandheld
       - id: SmokeGrenade
         amount: 2
-      - id: GrenadeFrag
+      - id: N14Dynamite # #Misfits Fix - GrenadeFrag is a GL-only round (no matching launcher in kit); replaced with throwable dynamite
       - id: N14BoxCardboardMREBoxCFilled
       - id: N14Stimpak
       - id: N14SuperStimpak

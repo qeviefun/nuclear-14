@@ -1,9 +1,12 @@
 using System.Linq;
 using System.Numerics;
+using Content.Server.Atmos.EntitySystems; // #Misfits Add - SetMapAtmosphere for static breathable air on expedition maps
 using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
 using Content.Server.Gravity;
 using Content.Server.Procedural;
+using Content.Shared.Atmos; // #Misfits Add - GasMixture, Gas enum, Atmospherics constants
+using Content.Shared.Atmos.Components; // #Misfits Add - MapAtmosphereComponent
 using Content.Shared._Misfits.Expeditions;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs.Components;
@@ -41,6 +44,7 @@ public sealed class N14ExpeditionSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly AtmosphereSystem _atmosphere = default!; // #Misfits Add - set static breathable air on procedural maps
     [Dependency] private readonly GravitySystem _gravity = default!;
     [Dependency] private readonly DungeonSystem _dungeon = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
@@ -361,6 +365,13 @@ public sealed class N14ExpeditionSystem : EntitySystem
         EntityUid mapUid;
         EntityUid gridUid;
 
+        // #Misfits Fix - Hoist procedural generation outputs to outer scope so they're
+        // accessible after the if/else map-load chain for spawn + exit placement.
+        List<(Vector2i position, int factionIndex)>? hubPositions = null;
+        Dictionary<int, EntityCoordinates>? factionSpawnMap = null;
+        List<(Vector2i position, int factionIndex)>? proceduralHubs = null;
+        UndergroundGenParams? genParams = null;
+
         // Either reuse the existing map or load a new one
         if (existingExpedition != null)
         {
@@ -380,14 +391,13 @@ public sealed class N14ExpeditionSystem : EntitySystem
                 }
 
                 // Runtime vault generation path: create a fresh map and run DungeonSystem with a per-launch seed.
-                var mapId = _mapManager.CreateMap();
-                mapUid = _mapManager.GetMapEntityId(mapId);
-                var gridEnt = _mapManager.CreateGrid(mapId);
-                gridUid = gridEnt.Owner;
+                mapUid = _mapSystem.CreateMap(out var mapId);
+                var gridEnt = _mapManager.CreateGridEntity(mapId);
+                gridUid = gridEnt;
 
                 try
                 {
-                    _dungeon.GenerateDungeonAsync(dungeonConfig, gridUid, gridEnt, Vector2i.Zero, runtimeSeed)
+                    _dungeon.GenerateDungeonAsync(dungeonConfig, gridUid, gridEnt.Comp, Vector2i.Zero, runtimeSeed)
                         .GetAwaiter()
                         .GetResult();
                 }
@@ -408,13 +418,20 @@ public sealed class N14ExpeditionSystem : EntitySystem
             else if (mapEntry.RuntimeProcedural && mapEntry.ProceduralTheme.HasValue)
             {
                 // Create a fresh map and grid, then run the procedural generator
-                var mapId  = _mapManager.CreateMap();
-                mapUid     = _mapManager.GetMapEntityId(mapId);
-                var gridEnt = _mapManager.CreateGrid(mapId); // returns MapGridComponent
-                gridUid    = gridEnt.Owner;
+                mapUid = _mapSystem.CreateMap(out var mapId);
+                var gridEnt = _mapManager.CreateGridEntity(mapId);
+                gridUid = gridEnt;
+
+                // #Misfits Add - Set a static breathable atmosphere on the map entity so players don't
+                // suffocate, while avoiding per-tile gas simulation (no GridAtmosphereComponent added).
+                // Underground expedition grids have no piping or vents; full atmos sim is unnecessary.
+                var breathableMix = new GasMixture(Atmospherics.CellVolume) { Temperature = Atmospherics.T20C };
+                breathableMix.AdjustMoles(Gas.Oxygen, Atmospherics.OxygenMolesStandard);
+                breathableMix.AdjustMoles(Gas.Nitrogen, Atmospherics.NitrogenMolesStandard);
+                _atmosphere.SetMapAtmosphere(mapUid, false, breathableMix);
 
                 // Build generation parameters from the map entry data fields
-                var genParams = new UndergroundGenParams
+                genParams = new UndergroundGenParams
                 {
                     Seed               = runtimeSeed,
                     Theme              = mapEntry.ProceduralTheme.Value,
@@ -425,11 +442,19 @@ public sealed class N14ExpeditionSystem : EntitySystem
                     MaxRooms           = mapEntry.ProceduralMaxRooms,
                     HubCount           = mapEntry.ProceduralHubCount,
                     FactionSpawnGroups = mapEntry.FactionSpawns ?? new System.Collections.Generic.List<N14FactionSpawnGroup>(),
+                    // #Misfits Add - Forward YAML-pinned environmental states to the generator
+                    EnvironmentalStates = mapEntry.ProceduralEnvironmentalStates,
                 };
 
                 try
                 {
-                    _proceduralGen.GenerateMap(genParams, gridUid, gridEnt);
+                    // #Misfits Fix - Capture hub positions for player spawn + exit placement
+                    hubPositions = _proceduralGen.GenerateMap(genParams, gridUid, gridEnt.Comp);
+                    // Build faction spawn map from hub positions
+                    factionSpawnMap = new Dictionary<int, EntityCoordinates>();
+                    foreach (var (pos, fIdx) in hubPositions)
+                        factionSpawnMap[fIdx] = new EntityCoordinates(gridUid, new Vector2(pos.X, pos.Y));
+                    proceduralHubs = hubPositions;
                 }
                 catch (Exception e)
                 {
@@ -477,12 +502,37 @@ public sealed class N14ExpeditionSystem : EntitySystem
         var nearby = new HashSet<Entity<MobStateComponent>>();
         _lookup.GetEntitiesInRange(boardXform.Coordinates, board.GatherRadius, nearby);
 
-        // Determine spawn — majority-faction vote or grid origin
-        // #Misfits Add - procedural maps spawn everyone at grid centre (central congregation room)
-        var spawnCoords = (mapEntry.RuntimeProcedural && mapEntry.ProceduralGridSize > 0)
-            ? new EntityCoordinates(gridUid,
-                new System.Numerics.Vector2(mapEntry.ProceduralGridSize / 2f, mapEntry.ProceduralGridSize / 2f))
-            : ResolveFactionSpawn(mapEntry, nearby, gridUid);
+        // Determine spawn — per-faction hub for procedural maps, majority-faction vote for YAML maps
+        // #Misfits Fix - Procedural maps now spawn each faction at their hub instead of grid center
+        EntityCoordinates defaultSpawn;
+        Dictionary<int, EntityCoordinates>? procFactionSpawnMap = null;
+        List<(Vector2i position, int factionIndex)>? procHubPositions = null;
+        UndergroundGenParams? procGenParams = null;
+
+        if (mapEntry.RuntimeProcedural && mapEntry.ProceduralGridSize > 0)
+        {
+            // These locals are only in scope inside the procedural branch above;
+            // hoist them via the variables we declared just before the if/else chain.
+            // Re-read from the fields we stashed:
+            procFactionSpawnMap = existingExpedition == null
+                ? (factionSpawnMap ?? new Dictionary<int, EntityCoordinates>())
+                : new Dictionary<int, EntityCoordinates>();
+            procHubPositions = existingExpedition == null
+                ? (proceduralHubs ?? null)
+                : null;
+            procGenParams = existingExpedition == null
+                ? (genParams ?? null)
+                : null;
+
+            defaultSpawn = procFactionSpawnMap.Count > 0
+                ? procFactionSpawnMap.Values.First()
+                : new EntityCoordinates(gridUid,
+                      new Vector2(mapEntry.ProceduralGridSize / 2f, mapEntry.ProceduralGridSize / 2f));
+        }
+        else
+        {
+            defaultSpawn = ResolveFactionSpawn(mapEntry, nearby, gridUid);
+        }
 
         // Mark this new session
         var expedition = EnsureComp<N14ExpeditionComponent>(mapUid);
@@ -498,29 +548,40 @@ public sealed class N14ExpeditionSystem : EntitySystem
             DifficultyId = board.PendingDifficulty,
         };
 
-        // Track which entities belong to this session
+        // Track which entities belong to this session + teleport to per-faction hub positions
+        // #Misfits Fix - Per-faction spawn: each player goes to their faction's hub, not all to center
         foreach (var ent in nearby)
         {
+            EntityCoordinates dest = defaultSpawn;
+            if (mapEntry.RuntimeProcedural && procFactionSpawnMap is { Count: > 1 } && procGenParams != null)
+            {
+                // Find which faction group this entity belongs to
+                for (int fi = 0; fi < procGenParams.FactionSpawnGroups.Count; fi++)
+                {
+                    var group = procGenParams.FactionSpawnGroups[fi];
+                    if (_factions.IsMemberOfAny(
+                            (ent.Owner, (NpcFactionMemberComponent?) null),
+                            group.Factions)
+                        && procFactionSpawnMap.TryGetValue(fi, out var hubCoords))
+                    {
+                        dest = hubCoords;
+                        break;
+                    }
+                }
+            }
+
             session.Players.Add(ent);
+            TeleportEntitySafely(ent, dest);
         }
 
+        // #Misfits Fix - Re-register session, spawn exits, link board state
         expedition.Sessions.Add(session);
 
-        // Spawn exit points only once per map (not per session)
         if (existingExpedition == null)
-        {
-            SpawnExitPoints(mapEntry, gridUid, mapUid);
-        }
+            SpawnExitPoints(mapEntry, gridUid, mapUid, procHubPositions);
 
-        // Link board to this map
         board.ActiveExpedition = mapUid;
         Dirty(boardUid, board);
-
-        // Teleport all gathered mobs to the expedition
-        foreach (var ent in nearby)
-        {
-            TeleportEntitySafely(ent, spawnCoords);
-        }
 
         // Notify teleported players (popup + chat)
         var launchMsg = Loc.GetString("n14-expedition-launched",
@@ -589,11 +650,18 @@ public sealed class N14ExpeditionSystem : EntitySystem
             return;
         }
 
+        // #Misfits Fix - Resolve expedition map ID once; skip entities already extracted
+        var expMapId = Transform(mapUid).MapID;
+
         // Teleport each registered player back
         var playersToReturn = session.Players.ToList();
         foreach (var uid in playersToReturn)
         {
             if (!Exists(uid) || Deleted(uid))
+                continue;
+
+            // Skip entities that have already left the expedition map (e.g. early exit)
+            if (Transform(uid).MapID != expMapId)
                 continue;
 
             TeleportEntitySafely(uid, session.ReturnPoint);
@@ -622,7 +690,8 @@ public sealed class N14ExpeditionSystem : EntitySystem
     /// We sample 5-8 points from faction edge spawns so players can exit from
     /// multiple locations instead of walking back to a single entry location.
     /// </summary>
-    private void SpawnExitPoints(N14ExpeditionMapEntry mapEntry, EntityUid gridUid, EntityUid mapUid)
+    private void SpawnExitPoints(N14ExpeditionMapEntry mapEntry, EntityUid gridUid, EntityUid mapUid,
+        List<(Vector2i position, int factionIndex)>? proceduralHubs = null)
     {
         // Keep all exits bound to this expedition map so each player returns to their own board session.
         void SpawnExitAt(Vector2 position)
@@ -631,6 +700,14 @@ public sealed class N14ExpeditionSystem : EntitySystem
             var exitUid = Spawn("N14ExpeditionExitPoint", coords);
             var exitComp = EnsureComp<N14ExpeditionExitComponent>(exitUid);
             exitComp.ExpeditionMap = mapUid;
+        }
+
+        // #Misfits Fix - Procedural maps: place exits at hub positions instead of static spawns
+        if (proceduralHubs is { Count: > 0 })
+        {
+            foreach (var (pos, _) in proceduralHubs)
+                SpawnExitAt(new Vector2(pos.X, pos.Y));
+            return;
         }
 
         if (mapEntry.FactionSpawns is { Count: > 0 })

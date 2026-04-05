@@ -56,6 +56,10 @@
         - CaesarLegionPriestessOfMars
   - !type:AddTraitSpecial
     traits: [ LanguageLatin ]
+  # #Misfits Removed - Disabled auto-grant pending testing; use training manuals instead
+  #- !type:AddComponentSpecial
+  #  components:
+  #    - type: GrantLegionGladiatorial
 
 - type: startingGear
   id: CaesarLegionCenturionGear

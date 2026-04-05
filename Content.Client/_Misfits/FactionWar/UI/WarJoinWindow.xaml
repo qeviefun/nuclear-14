@@ -31,7 +31,10 @@
             <Label Text="{Loc faction-war-join-side-label}" VerticalAlignment="Center" MinWidth="100"/>
             <OptionButton Name="SideSelector" HorizontalExpand="True" Access="Public"/>
         </BoxContainer>
-
+        <!-- ── Faction-Wide Enlist (visible only to top-ranking faction members) ── -->
+        <CheckBox Name="FactionWideCheck" Text="{Loc faction-war-join-faction-wide}"
+                  Margin="10 4 10 0" Visible="False" Access="Public"/>
+        <RichTextLabel Name="FactionWideHint" Margin="10 0 10 4" Visible="False" Access="Public"/>
         <PanelContainer MinHeight="1" Modulate="#404040" Margin="10 6"/>
 
         <!-- ── Join Button ────────────────────────────────────────── -->

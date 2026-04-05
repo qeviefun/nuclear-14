@@ -170,7 +170,9 @@ public sealed class FactionWarClientSystem : EntitySystem
             msg.PendingWars,
             msg.AlreadyInFaction,
             msg.AlreadyJoinedSide,
-            msg.StatusMessage);
+            msg.StatusMessage,
+            msg.IsTopRanking,
+            msg.MyWarFactionId);
 
         // If the player just successfully joined, cache their side for the overlay.
         if (msg.AlreadyJoinedSide != null)
@@ -269,13 +271,14 @@ public sealed class FactionWarClientSystem : EntitySystem
         _warJoinWindow = new WarJoinWindow();
         _warJoinWindow.OnClose += () => _warJoinWindow = null;
 
-        _warJoinWindow.OnJoinWar += (aggressor, target, chosenSide) =>
+        _warJoinWindow.OnJoinWar += (aggressor, target, chosenSide, factionWide) =>
         {
             RaiseNetworkEvent(new FactionWarJoinRequestEvent
             {
                 AggressorFaction = aggressor,
                 TargetFaction    = target,
                 ChosenSide       = chosenSide,
+                FactionWide      = factionWide,
             });
         };
     }
@@ -321,12 +324,9 @@ public sealed class FactionWarClientSystem : EntitySystem
             return;
         }
 
-        // If any wars are active, keep the overlay enabled.
-        // The overlay's Draw() method checks the participant dict each frame and only
-        // renders tags when the local player is actually in the dict with a valid side.
-        // This avoids timing issues where the overlay gets removed before the server's
-        // periodic participant broadcast arrives (e.g. after respawn).
-        EnsureOverlay();
+        // #Misfits Removed - Overlay disabled for immersion and spy gameplay.
+        // The overlay is no longer added during wars. Uncomment to restore.
+        // EnsureOverlay();
     }
 
     private void EnsureOverlay()

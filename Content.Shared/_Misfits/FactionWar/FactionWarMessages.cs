@@ -190,6 +190,12 @@ public sealed class FactionWarJoinPanelDataEvent : EntityEventArgs
     public bool AlreadyInFaction;
     public string? AlreadyJoinedSide;
     public string? StatusMessage;
+
+    // #Misfits Add - Fields for faction-wide enlistment UI.
+    /// <summary>True if the player is the highest-ranking online member of their war-capable faction.</summary>
+    public bool IsTopRanking;
+    /// <summary>The player's canonical war-faction ID (null if unaffiliated or Wastelander).</summary>
+    public string? MyWarFactionId;
 }
 
 /// <summary>
@@ -201,6 +207,9 @@ public sealed class FactionWarJoinRequestEvent : EntityEventArgs
     public string AggressorFaction = string.Empty;
     public string TargetFaction    = string.Empty;
     public string ChosenSide       = string.Empty;
+
+    // #Misfits Add - When true, the top-ranking player enlists all online faction members at once.
+    public bool FactionWide;
 }
 
 /// <summary>

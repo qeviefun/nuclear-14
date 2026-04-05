@@ -1,6 +1,8 @@
 using Content.Shared._Misfits.Weapons;
 using Content.Shared.Weapons.Ranged.Components;
 using Robust.Shared.Containers;
+// #Misfits Fix - Use concrete HitscanBatteryAmmoProviderComponent; abstract BatteryAmmoProviderComponent
+// is not resolvable via TryComp in Robust ECS and caused NullReferenceException during entity spawn preview.
 
 // #Misfits Add - Handles fire cost multiplier for guns with GunDamageBonusComponent.
 // When a cell is inserted into a gun that has a FireCostMultiplier, the cell's
@@ -69,7 +71,7 @@ public sealed class GunDamageBonusSystem : EntitySystem
     /// </summary>
     private void ApplyFireCostMultiplier(EntityUid gunUid, EntityUid cellUid, GunDamageBonusComponent comp)
     {
-        if (!TryComp<BatteryAmmoProviderComponent>(cellUid, out var battery))
+        if (!TryComp<HitscanBatteryAmmoProviderComponent>(cellUid, out var battery))
             return;
 
         // Store original cost before modifying
@@ -86,7 +88,7 @@ public sealed class GunDamageBonusSystem : EntitySystem
         if (comp.OriginalFireCost == null)
             return;
 
-        if (!TryComp<BatteryAmmoProviderComponent>(cellUid, out var battery))
+        if (!TryComp<HitscanBatteryAmmoProviderComponent>(cellUid, out var battery))
             return;
 
         battery.FireCost = comp.OriginalFireCost.Value;

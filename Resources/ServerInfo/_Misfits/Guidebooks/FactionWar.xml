@@ -1,0 +1,128 @@
+<Document>
+# Faction War System
+
+[textlink="View Full Wiki Page" link="https://ss14.misfitsystems.net/wiki/index.php/Faction_War"]
+
+<p>The Wasteland is defined by conflict. The Faction War system provides a formal framework for organized warfare between player factions.</p>
+
+<hr/>
+
+## War-Capable Factions
+
+<p>Only factions with the infrastructure and numbers to sustain organized combat can declare war:</p>
+
+<ul>
+<li>[bold][color=#a4885c]New California Republic (NCR)[/color][/bold] — Rangers are aliased to NCR automatically</li>
+<li>[bold][color=#a4885c]Brotherhood of Steel[/color][/bold]</li>
+<li>[bold][color=#a4885c]Caesar's Legion[/color][/bold]</li>
+<li>[bold][color=#a4885c]Townsfolk[/color][/bold]</li>
+<li>[bold][color=#a4885c]Outlaws (Player Raiders)[/color][/bold]</li>
+</ul>
+
+<hr/>
+
+## War Timeline
+
+<p>Every war follows a strict four-phase cycle:</p>
+
+<ColorBox Color="#1a1a1a" OutlineColor="#a4885c" OutlineThickness="1" Margin="5">
+  <Box Orientation="Vertical" Margin="8">
+    [bold][color=#a4885c]Phase 1: Round-Start Cooldown[/color][/bold]
+    [color=#cccccc]Duration: 30 minutes[/color]
+    War declarations are locked. Factions use this time to set up and staff positions.
+  </Box>
+</ColorBox>
+
+<ColorBox Color="#1a1a1a" OutlineColor="#ffb000" OutlineThickness="1" Margin="5">
+  <Box Orientation="Vertical" Margin="8">
+    [bold][color=#ffb000]Phase 2: Pending Phase[/color][/bold]
+    [color=#cccccc]Duration: 5 minutes[/color]
+    Preparation window after declaration. Members use [bold]/warjoin[/bold] to opt in.
+  </Box>
+</ColorBox>
+
+<ColorBox Color="#1a1a1a" OutlineColor="#cc3333" OutlineThickness="1" Margin="5">
+  <Box Orientation="Vertical" Margin="8">
+    [bold][color=#cc3333]Phase 3: Active War[/color][/bold]
+    [color=#cccccc]Duration: 30 minutes[/color]
+    Combat is authorized between participating factions. Auto-ceasefire triggers after 30 minutes.
+  </Box>
+</ColorBox>
+
+<ColorBox Color="#1a1a1a" OutlineColor="#666666" OutlineThickness="1" Margin="5">
+  <Box Orientation="Vertical" Margin="8">
+    [bold][color=#888888]Phase 4: Post-War Cooldown[/color][/bold]
+    [color=#cccccc]Duration: 10 minutes[/color]
+    Both factions are locked from new declarations. Hostilities cease.
+  </Box>
+</ColorBox>
+
+<hr/>
+
+## Player Commands
+
+<Table Columns="2">
+  <Box>
+    [bold][color=#a4885c]Command[/color][/bold]
+  </Box>
+  <Box>
+    [bold][color=#a4885c]Description[/color][/bold]
+  </Box>
+  <Box>
+    [bold]/war &lt;faction> &lt;reason>[/bold]
+  </Box>
+  <Box>
+    Declare war. Reason (casus belli) must be 5+ words. Only usable by highest-ranking online member.
+  </Box>
+  <Box>
+    [bold]/warjoin[/bold]
+  </Box>
+  <Box>
+    Join a pending war during the 5-minute preparation phase. Any member of the involved faction can use this.
+  </Box>
+  <Box>
+    [bold]/ceasefire &lt;faction>[/bold]
+  </Box>
+  <Box>
+    End an active war early by mutual agreement. Only usable by highest-ranking online member.
+  </Box>
+</Table>
+
+<hr/>
+
+## Admin Commands
+
+<Table Columns="2">
+  <Box>
+    [bold][color=#a4885c]Command[/color][/bold]
+  </Box>
+  <Box>
+    [bold][color=#a4885c]Description[/color][/bold]
+  </Box>
+  <Box>
+    [bold]/warend &lt;aggressor> &lt;target>[/bold]
+  </Box>
+  <Box>
+    Force-end a war immediately.
+  </Box>
+  <Box>
+    [bold]/forcewar &lt;aggressor> &lt;target> [reason][/bold]
+  </Box>
+  <Box>
+    Force-start a war, bypassing cooldowns and rank checks.
+  </Box>
+</Table>
+
+<hr/>
+
+## Rules of Engagement
+
+<ul>
+<li>[bold]One war per faction at a time.[/bold] You cannot fight two wars simultaneously.</li>
+<li>[bold]Only the highest-ranking online member may declare or ceasefire.[/bold] Rank is determined by job weight.</li>
+<li>[bold]Casus belli is mandatory.[/bold] The reason must be at least 5 words.</li>
+<li>[bold]Auto-ceasefire after 30 minutes.[/bold] Wars do not run indefinitely.</li>
+<li>[bold]Wars are broadcast server-wide.[/bold] All players are notified when a war begins and ends.</li>
+</ul>
+
+</Document>

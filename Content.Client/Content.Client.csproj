@@ -36,4 +36,6 @@
   </ItemGroup>
   <Import Project="..\RobustToolbox\MSBuild\Robust.Properties.targets" />
   <Import Project="..\RobustToolbox\MSBuild\XamlIL.targets" />
+  <!-- #Misfits Add - CEF WebView dependency for live wiki integration -->
+  <Import Project="..\RobustToolbox\Imports\WebView.props" />
 </Project>

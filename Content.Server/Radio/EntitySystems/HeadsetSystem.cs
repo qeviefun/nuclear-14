@@ -46,10 +46,17 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
         if (!Resolve(uid, ref keyHolder))
             return;
 
-        if (keyHolder.Channels.Count == 0)
+        // #Misfits Add - merge key channels with passive listen-only channels (e.g. PBS broadcast).
+        // PassiveChannels are always received regardless of inserted encryption keys,
+        // but transmitting on them still requires the matching EncryptionKey (OnSpeak checks keyHolder.Channels).
+        var allReceiveChannels = new HashSet<string>(keyHolder.Channels);
+        allReceiveChannels.UnionWith(headset.PassiveChannels);
+
+        if (allReceiveChannels.Count == 0)
             RemComp<ActiveRadioComponent>(uid);
         else
-            EnsureComp<ActiveRadioComponent>(uid).Channels = new(keyHolder.Channels);
+            EnsureComp<ActiveRadioComponent>(uid).Channels = allReceiveChannels;
+        // End #Misfits Add
     }
 
     private void OnSpeak(EntityUid uid, WearingHeadsetComponent component, EntitySpokeEvent args)

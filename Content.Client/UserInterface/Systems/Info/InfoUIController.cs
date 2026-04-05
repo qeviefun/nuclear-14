@@ -1,3 +1,4 @@
+using Content.Client._Misfits.WebView; // #Misfits Add - WebView rules panel
 using Content.Client.Gameplay;
 using Content.Client.Guidebook;
 using Content.Client.Info;
@@ -19,7 +20,9 @@ public sealed class InfoUIController : UIController, IOnStateExited<GameplayStat
     [Dependency] private readonly INetManager _netManager = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
 
-    private RulesPopup? _rulesPopup;
+    // #Misfits Removed - replaced by MisfitsRulesWebPanel
+    // private RulesPopup? _rulesPopup;
+    private MisfitsRulesWebPanel? _rulesWebPanel; // #Misfits Add - WebView rules panel
     private RulesAndInfoWindow? _infoWindow;
 
     public override void Initialize()
@@ -53,20 +56,21 @@ public sealed class InfoUIController : UIController, IOnStateExited<GameplayStat
         _infoWindow = null;
     }
 
+    // #Misfits Change - ShowRules creates MisfitsRulesWebPanel (live wiki via CEF) instead of legacy RulesPopup
     private void ShowRules(float time)
     {
-        if (_rulesPopup != null)
+        if (_rulesWebPanel != null)
             return;
 
-        _rulesPopup = new RulesPopup
+        _rulesWebPanel = new MisfitsRulesWebPanel
         {
             Timer = time
         };
 
-        _rulesPopup.OnQuitPressed += OnQuitPressed;
-        _rulesPopup.OnAcceptPressed += OnAcceptPressed;
-        UIManager.WindowRoot.AddChild(_rulesPopup);
-        LayoutContainer.SetAnchorPreset(_rulesPopup, LayoutContainer.LayoutPreset.Wide);
+        _rulesWebPanel.OnQuitPressed += OnQuitPressed;
+        _rulesWebPanel.OnAcceptPressed += OnAcceptPressed;
+        UIManager.WindowRoot.AddChild(_rulesWebPanel);
+        LayoutContainer.SetAnchorPreset(_rulesWebPanel, LayoutContainer.LayoutPreset.Wide);
     }
 
     private void OnQuitPressed()
@@ -77,9 +81,9 @@ public sealed class InfoUIController : UIController, IOnStateExited<GameplayStat
     private void OnAcceptPressed()
     {
         _netManager.ClientSendMessage(new RulesAcceptedMessage());
-
-        _rulesPopup?.Orphan();
-        _rulesPopup = null;
+        // #Misfits Change - clean up WebView panel instead of legacy RulesPopup
+        _rulesWebPanel?.Orphan();
+        _rulesWebPanel = null;
     }
 
     public GuideEntryPrototype GetCoreRuleEntry()

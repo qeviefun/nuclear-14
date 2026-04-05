@@ -11,6 +11,7 @@ lathe-category-blueprint-ncr-weapons-t1 = NCR Weapons - Tier 1
 lathe-category-blueprint-ncr-weapons-t2 = NCR Weapons - Tier 2
 lathe-category-blueprint-ncr-weapons-t3 = NCR Weapons - Tier 3
 lathe-category-blueprint-ncr-weapons-t4 = NCR Weapons - Tier 4
+lathe-category-blueprint-ncr-weapons-t5 = NCR Weapons - Tier 5
 lathe-category-blueprint-ncr-armor-t1 = NCR Armor - Tier 1
 lathe-category-blueprint-ncr-armor-t2 = NCR Armor - Tier 2
 lathe-category-blueprint-ncr-armor-t3 = NCR Armor - Tier 3
