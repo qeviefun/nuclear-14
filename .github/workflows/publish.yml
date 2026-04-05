@@ -20,11 +20,9 @@ jobs:
         dotnet-version: 10.0.x
 
     - name: Get Engine Tag
-      # #Misfits Fix - Unshallow submodule and fetch tags so git describe can resolve engine version
       run: |
         cd RobustToolbox
-        git fetch origin --unshallow 2>/dev/null || true
-        git fetch origin --tags
+        git fetch --tags
 
     - name: Install dependencies
       run: dotnet restore
