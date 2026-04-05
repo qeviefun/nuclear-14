@@ -401,7 +401,6 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: WastelandAnimal
-  - type: Timer
   - type: TimedSpawner
     prototypes:
       - N14BrahminDung
