@@ -59,10 +59,6 @@ internal sealed class AllyTagOverlay : Overlay
 
     protected override void Draw(in OverlayDrawArgs args)
     {
-        // #Misfits Removed - Ally/enemy tag overlay disabled to preserve immersion and enable spy gameplay.
-        // All rendering logic is commented out below. To restore, uncomment the block.
-
-        /*
         var localEntity = _playerManager.LocalSession?.AttachedEntity;
         if (localEntity == null)
             return;
@@ -139,6 +135,5 @@ internal sealed class AllyTagOverlay : Overlay
 
             args.ScreenHandle.DrawString(_font, screenCoords, tag, tagColor);
         }
-        */
     }
 }

@@ -324,9 +324,7 @@ public sealed class FactionWarClientSystem : EntitySystem
             return;
         }
 
-        // #Misfits Removed - Overlay disabled for immersion and spy gameplay.
-        // The overlay is no longer added during wars. Uncomment to restore.
-        // EnsureOverlay();
+        EnsureOverlay();
     }
 
     private void EnsureOverlay()
