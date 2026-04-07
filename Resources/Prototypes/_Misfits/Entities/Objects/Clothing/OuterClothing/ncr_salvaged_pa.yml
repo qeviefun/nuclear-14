@@ -14,7 +14,7 @@
     no more babysitting from the exo-frame.
   components:
   # No PA training required — servos stripped to basics.
-  - type: N14PowerArmor  # #Misfits Fix - component name strips 'Component' suffix per SS14 registration convention
+  - type: N14PowerArmor
     requiresProficiency: false # #Misfits Add - waive training gate for this salvaged variant
   # 250 HP integrity pool (lower than standard NCR T45 at 325).
   - type: PowerArmorIntegrity
@@ -31,8 +31,17 @@
         Heat: 0.65
         Caustic: 0.75
         Radiation: 0.65
-  # 25% speed penalty while wearing — the stripped frame is still heavy.
-  # Does NOT apply an additional debuff on break (DisableServosLock handles that).
-  - type: ClothingSpeedModifier # #Misfits Add - 25% baseline slowdown from heavy frame weight
-    walkModifier: 0.25
-    sprintModifier: 0.25
+  # 25% speed penalty while wearing — no fusion core needed for this salvaged variant.
+  # Standalone modifier (does NOT rely on fusion core 4.5x compensation).
+  - type: ClothingSpeedModifier # #Misfits Tweak - standalone 25% slowdown, no fusion core required
+    walkModifier: 0.75
+    sprintModifier: 0.75
+  # #Misfits Tweak - Spawns helmet, gauntlets, and boots; NO fusion core (not needed for salvaged variant).
+  - type: ToggleableClothing
+    clothingPrototypes:
+      head: N14ClothingHeadHelmetPowerArmorT45NCR
+      gloves: N14ClothingPAGauntlets
+      shoes: N14ClothingPABoots
+  # #Misfits Tweak - Disable brace stance (servos stripped); slot mismatch prevents action from being granted.
+  - type: PowerArmorBrace
+    requiredSlot: BELT

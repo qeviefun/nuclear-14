@@ -376,6 +376,19 @@
       - state: green
       - state: lt
 
+# #Misfits Add - NCR Heavy Trooper spawn point; T4.5 heavy weapons specialist
+- type: entity
+  parent: MisfitsSpawnPointNCRCadet
+  id: MisfitsSpawnPointNCRHeavyTrooper
+  name: NCR Heavy Trooper
+  components:
+  - type: SpawnPoint
+    job_id: NCRHeavyTrooper
+  - type: Sprite
+    layers:
+      - state: green
+      - state: cadet
+
 - type: entity
   parent: SpawnPointJobBase
   id: MisfitsSpawnPointNCRCadet
