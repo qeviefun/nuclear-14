@@ -12,3 +12,16 @@ tribal-hunt-popup-needs-trophy = Hold a food trophy in your hand before offering
 tribal-hunt-popup-progress = {$user} offers a trophy. {$remaining} remaining.
 tribal-hunt-popup-complete = The hunt rite is complete. The tribe is blessed with speed for {$seconds} seconds.
 tribal-hunt-popup-failed = The hunt rite failed. No blessing was earned.
+
+tribal-hunt-gui-title = Tribal Hunt Tracker
+tribal-hunt-gui-header = War Party Hunt Feed
+tribal-hunt-gui-status = Status:
+tribal-hunt-gui-progress = Progress:
+tribal-hunt-gui-remaining = Time Left:
+tribal-hunt-gui-coordinates = Shared Coordinates
+tribal-hunt-gui-progress-value = {$offered} / {$required}
+tribal-hunt-gui-remaining-value = {$seconds}s
+tribal-hunt-gui-coordinate-pending = Awaiting fresh scout mark...
+tribal-hunt-gui-coordinate-format = X: {$x}, Y: {$y}
+tribal-hunt-gui-status-location-updated = Scout mark updated.
+tribal-hunt-gui-status-hunt-active = Hunt is active.

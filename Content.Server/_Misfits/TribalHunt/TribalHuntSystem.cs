@@ -8,8 +8,8 @@ using Content.Shared.Mind;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
-using Content.Shared.Popups;
 using Content.Shared.Roles.Jobs;
+using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
 namespace Content.Server._Misfits.TribalHunt;
@@ -26,10 +26,9 @@ public sealed class TribalHuntSystem : EntitySystem
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly LegendaryCreatureSpawnerSystem _legendarySpawner = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     private bool _activeHunt;
     private TimeSpan _huntExpiresAt;
@@ -40,6 +39,8 @@ public sealed class TribalHuntSystem : EntitySystem
     private EntityUid? _activeLegendaryCreature;
     private EntityUid? _activeHuntSessionId;
     private TimeSpan _lastLocationBroadcast;
+    private string _lastKnownCoordinates = string.Empty;
+    private bool _hasKnownCoordinates;
 
     public override void Initialize()
     {
@@ -81,7 +82,7 @@ public sealed class TribalHuntSystem : EntitySystem
         if (_activeLegendaryCreature != null && _timing.CurTime >= _lastLocationBroadcast + TimeSpan.FromSeconds(15))
         {
             _lastLocationBroadcast = _timing.CurTime;
-            BroadcastCreatureLocation();
+            UpdateCreatureLocation();
         }
 
         if (_timing.CurTime < _huntExpiresAt)
@@ -89,21 +90,24 @@ public sealed class TribalHuntSystem : EntitySystem
 
         _activeHunt = false;
         _activeLegendaryCreature = null;
-        BroadcastToDepartment("Tribe", "tribal-hunt-popup-legendary-escaped");
+        _hasKnownCoordinates = false;
+        _lastKnownCoordinates = string.Empty;
+        BroadcastUiToDepartment("Tribe", Loc.GetString("tribal-hunt-popup-legendary-escaped"));
     }
 
-    private void BroadcastCreatureLocation()
+    private void UpdateCreatureLocation()
     {
         if (_activeLegendaryCreature == null || !Exists(_activeLegendaryCreature))
             return;
 
-        if (!TryComp<TransformComponent>(_activeLegendaryCreature, out var creatureXform))
-            return;
+        var mapCoords = _transform.GetMapCoordinates(_activeLegendaryCreature.Value);
+        var position = mapCoords.Position;
+        _lastKnownCoordinates = Loc.GetString("tribal-hunt-gui-coordinate-format",
+            ("x", MathF.Round(position.X, 1)),
+            ("y", MathF.Round(position.Y, 1)));
+        _hasKnownCoordinates = true;
 
-        var location = creatureXform.Coordinates;
-        BroadcastToDepartment("Tribe",
-            "tribal-hunt-popup-creature-location",
-            ("location", location));
+        BroadcastUiToDepartment("Tribe", Loc.GetString("tribal-hunt-gui-status-location-updated"));
     }
 
     private void OnLeaderStartup(EntityUid uid, TribalHuntLeaderComponent component, ComponentStartup args)
@@ -119,6 +123,9 @@ public sealed class TribalHuntSystem : EntitySystem
     private void OnParticipantStartup(EntityUid uid, TribalHuntParticipantComponent component, ComponentStartup args)
     {
         _actions.AddAction(uid, ref component.OfferActionEntity, component.OfferAction);
+
+        if (_activeHunt)
+            SendUiUpdate(uid, component.TargetDepartment, Loc.GetString("tribal-hunt-gui-status-hunt-active"));
     }
 
     private void OnParticipantShutdown(EntityUid uid, TribalHuntParticipantComponent component, ComponentShutdown args)
@@ -135,7 +142,7 @@ public sealed class TribalHuntSystem : EntitySystem
 
         if (!CanLeadHunt(uid, component))
         {
-            _popup.PopupEntity(Loc.GetString("tribal-hunt-popup-cannot-lead"), uid, uid, PopupType.SmallCaution);
+            SendUiUpdateRaw(uid, Loc.GetString("tribal-hunt-popup-cannot-lead"));
             return;
         }
 
@@ -145,11 +152,8 @@ public sealed class TribalHuntSystem : EntitySystem
             if (remaining < 0)
                 remaining = 0;
 
-            _popup.PopupEntity(
-                Loc.GetString("tribal-hunt-popup-already-active", ("remaining", MathF.Ceiling((float) remaining))),
-                uid,
-                uid,
-                PopupType.SmallCaution);
+            SendUiUpdateRaw(uid,
+                Loc.GetString("tribal-hunt-popup-already-active", ("remaining", MathF.Ceiling((float) remaining))));
             return;
         }
 
@@ -161,9 +165,11 @@ public sealed class TribalHuntSystem : EntitySystem
         _rewardSpeedBonus = component.RewardSpeedBonus;
         _activeHuntSessionId = uid;  // Use leader as session ID
         _lastLocationBroadcast = _timing.CurTime;  // Initialize broadcast timer
+        _lastKnownCoordinates = Loc.GetString("tribal-hunt-gui-coordinate-pending");
+        _hasKnownCoordinates = false;
 
         // Spawn legendary creature on the map
-        if (TryComp<TransformComponent>(uid, out var leaderXform) && leaderXform.MapID != MapId.Nullspace)
+        if (TryComp(uid, out TransformComponent? leaderXform) && leaderXform.MapID != MapId.Nullspace)
         {
             _activeLegendaryCreature = _legendarySpawner.TrySpawnLegendaryCreature(
                 "TribalLegendaryBeast",
@@ -172,18 +178,16 @@ public sealed class TribalHuntSystem : EntitySystem
 
             if (_activeLegendaryCreature != null)
             {
-                BroadcastToDepartment(component.TargetDepartment,
-                    "tribal-hunt-popup-legendary-started",
-                    ("leader", uid),
-                    ("creature", _activeLegendaryCreature));
+                BroadcastUiToDepartment(component.TargetDepartment,
+                    Loc.GetString("tribal-hunt-popup-legendary-started"));
             }
         }
 
-        BroadcastToDepartment(component.TargetDepartment,
-            "tribal-hunt-popup-started",
-            ("leader", uid),
-            ("required", _requiredOfferings),
-            ("minutes", MathF.Ceiling((float) component.HuntDuration.TotalMinutes)));
+        BroadcastUiToDepartment(component.TargetDepartment,
+            Loc.GetString("tribal-hunt-popup-started",
+                ("leader", uid),
+                ("required", _requiredOfferings),
+                ("minutes", MathF.Ceiling((float) component.HuntDuration.TotalMinutes))));
     }
 
     private void OnOfferAction(EntityUid uid, TribalHuntParticipantComponent component, PerformTribalOfferTrophyActionEvent args)
@@ -195,19 +199,19 @@ public sealed class TribalHuntSystem : EntitySystem
 
         if (!IsInDepartment(uid, component.TargetDepartment))
         {
-            _popup.PopupEntity(Loc.GetString("tribal-hunt-popup-not-tribe"), uid, uid, PopupType.SmallCaution);
+            SendUiUpdateRaw(uid, Loc.GetString("tribal-hunt-popup-not-tribe"));
             return;
         }
 
         if (!_activeHunt)
         {
-            _popup.PopupEntity(Loc.GetString("tribal-hunt-popup-no-active"), uid, uid, PopupType.SmallCaution);
+            SendUiUpdateRaw(uid, Loc.GetString("tribal-hunt-popup-no-active"));
             return;
         }
 
         if (!TryGetHeldFood(uid, out var offering))
         {
-            _popup.PopupEntity(Loc.GetString("tribal-hunt-popup-needs-trophy"), uid, uid, PopupType.SmallCaution);
+            SendUiUpdateRaw(uid, Loc.GetString("tribal-hunt-popup-needs-trophy"));
             return;
         }
 
@@ -216,10 +220,10 @@ public sealed class TribalHuntSystem : EntitySystem
         _offeredSoFar++;
         var remaining = Math.Max(0, _requiredOfferings - _offeredSoFar);
 
-        BroadcastToDepartment(component.TargetDepartment,
-            "tribal-hunt-popup-progress",
-            ("user", uid),
-            ("remaining", remaining));
+        BroadcastUiToDepartment(component.TargetDepartment,
+            Loc.GetString("tribal-hunt-popup-progress",
+                ("user", uid),
+                ("remaining", remaining)));
 
         if (_offeredSoFar < _requiredOfferings)
             return;
@@ -230,6 +234,8 @@ public sealed class TribalHuntSystem : EntitySystem
     private void CompleteHunt(string departmentId)
     {
         _activeHunt = false;
+        _hasKnownCoordinates = false;
+        _lastKnownCoordinates = string.Empty;
 
         var expiry = _timing.CurTime + _rewardDuration;
         var query = EntityQueryEnumerator<MovementSpeedModifierComponent>();
@@ -250,9 +256,9 @@ public sealed class TribalHuntSystem : EntitySystem
             _movementSpeed.RefreshMovementSpeedModifiers(uid);
         }
 
-        BroadcastToDepartment(departmentId,
-            "tribal-hunt-popup-complete",
-            ("seconds", MathF.Ceiling((float) _rewardDuration.TotalSeconds)));
+        BroadcastUiToDepartment(departmentId,
+            Loc.GetString("tribal-hunt-popup-complete",
+                ("seconds", MathF.Ceiling((float) _rewardDuration.TotalSeconds))));
     }
 
     private bool TryGetHeldFood(EntityUid user, out EntityUid food)
@@ -298,7 +304,7 @@ public sealed class TribalHuntSystem : EntitySystem
         return _jobs.TryGetDepartment(jobPrototype.ID, out var department) && department.ID == departmentId;
     }
 
-    private void BroadcastToDepartment(string departmentId, string key, params (string, object)[] args)
+    private void BroadcastUiToDepartment(string departmentId, string statusText)
     {
         var query = EntityQueryEnumerator<TribalHuntParticipantComponent>();
         while (query.MoveNext(out var uid, out var comp))
@@ -306,8 +312,36 @@ public sealed class TribalHuntSystem : EntitySystem
             if (!IsInDepartment(uid, departmentId))
                 continue;
 
-            _popup.PopupEntity(Loc.GetString(key, args), uid, uid, PopupType.Small);
+            SendUiUpdate(uid, comp.TargetDepartment, statusText);
         }
+    }
+
+    private void SendUiUpdate(EntityUid uid, string departmentId, string statusText)
+    {
+        if (!IsInDepartment(uid, departmentId))
+            return;
+
+        SendUiUpdateRaw(uid, statusText);
+    }
+
+    private void SendUiUpdateRaw(EntityUid uid, string statusText)
+    {
+        if (!TryComp<ActorComponent>(uid, out var actor))
+            return;
+
+        var remaining = _activeHunt ? Math.Max(0, (int) Math.Ceiling((_huntExpiresAt - _timing.CurTime).TotalSeconds)) : 0;
+        var state = new TribalHuntUiState
+        {
+            Active = _activeHunt,
+            Offered = _offeredSoFar,
+            Required = _requiredOfferings,
+            SecondsRemaining = remaining,
+            StatusText = statusText,
+            CoordinatesKnown = _hasKnownCoordinates,
+            CoordinatesText = _lastKnownCoordinates,
+        };
+
+        RaiseNetworkEvent(new TribalHuntUiUpdateEvent { State = state }, actor.PlayerSession);
     }
 
     private void OnLegendaryCreatureShutdown(EntityUid uid, LegendaryCreatureComponent component, ComponentShutdown args)
