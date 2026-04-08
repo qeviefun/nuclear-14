@@ -1,0 +1,106 @@
+# Legendary tribal armor crafting recipes
+- type: latheRecipe
+  id: TribalLegendaryArmorHeadRecipe
+  name: Legendary Tribal Helm
+  description: Craft a legendary tribal helmet from legendary creature leather.
+  examinable: true
+  complexity: 12
+  completetime: 45
+  materials:
+    TribalLegendaryLeather: 2
+  result: TribalLegendaryArmorHead
+  requiredTech: []
+
+- type: latheRecipe
+  id: TribalLegendaryArmorChestRecipe
+  name: Legendary Tribal Chestplate
+  description: Craft a legendary tribal chestplate from legendary creature leather.
+  examinable: true
+  complexity: 15
+  completetime: 60
+  materials:
+    TribalLegendaryLeather: 4
+  result: TribalLegendaryArmorChest
+  requiredTech: []
+
+- type: latheRecipe
+  id: TribalLegendaryArmorLegsRecipe
+  name: Legendary Tribal Legguards
+  description: Craft legendary tribal legguards from legendary creature leather.
+  examinable: true
+  complexity: 15
+  completetime: 60
+  materials:
+    TribalLegendaryLeather: 4
+  result: TribalLegendaryArmorLegs
+  requiredTech: []
+
+- type: latheRecipe
+  id: TribalLegendaryArmorFeetRecipe
+  name: Legendary Tribal Boots
+  description: Craft legendary tribal boots from legendary creature leather.
+  examinable: true
+  complexity: 10
+  completetime: 30
+  materials:
+    TribalLegendaryLeather: 2
+  result: TribalLegendaryArmorFeet
+  requiredTech: []
+
+# Blueprint entities for crafting terminal access
+- type: entity
+  id: TribalLegendaryArmorHeadBlueprint
+  name: Blueprint - Legendary Tribal Helm
+  description: A crafting blueprint for legendary tribal armor.
+  parent: BaseItem
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/blueprints.rsi
+      state: blueprint
+    - type: Item
+      size: Small
+    - type: Blueprint
+      recipes:
+        - TribalLegendaryArmorHeadRecipe
+
+- type: entity
+  id: TribalLegendaryArmorChestBlueprint
+  name: Blueprint - Legendary Tribal Chestplate
+  parent: BaseItem
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/blueprints.rsi
+      state: blueprint
+    - type: Item
+      size: Small
+    - type: Blueprint
+      recipes:
+        - TribalLegendaryArmorChestRecipe
+
+- type: entity
+  id: TribalLegendaryArmorLegsBlueprint
+  name: Blueprint - Legendary Tribal Legguards
+  parent: BaseItem
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/blueprints.rsi
+      state: blueprint
+    - type: Item
+      size: Small
+    - type: Blueprint
+      recipes:
+        - TribalLegendaryArmorLegsRecipe
+
+- type: entity
+  id: TribalLegendaryArmorFeetBlueprint
+  name: Blueprint - Legendary Tribal Boots
+  parent: BaseItem
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/blueprints.rsi
+      state: blueprint
+    - type: Item
+      size: Small
+    - type: Blueprint
+      recipes:
+        - TribalLegendaryArmorFeetRecipe

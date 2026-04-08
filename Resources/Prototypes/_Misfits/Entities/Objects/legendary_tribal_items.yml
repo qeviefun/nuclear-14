@@ -1,0 +1,147 @@
+# Legendary Tribal Leather - crafting material
+- type: entity
+  id: TribalLegendaryLeather
+  name: Legendary Tribal Leather
+  description: Pristine leather from a legendary creature. Shimmers with an otherworldly sheen. Suitable for crafting legendary tribal armor.
+  parent: BaseItem
+  components:
+    - type: Sprite
+      sprite: Objects/Materials/sheets.rsi
+      state: leather
+      color: "#FFD700"
+    - type: Item
+      size: Small
+    - type: StackPrice
+      price: 50
+    - type: Damageable
+      damageContainer: Inorganic
+    - type: Flammable
+      fireSpread: true
+      canResistFire: false
+      allyFlammable: false
+      damage:
+        types:
+          Heat: 1
+    - type: PhysicalComposition
+      materialComposition:
+        Leather: 100
+
+# Legendary tribal armor - helmet
+- type: entity
+  id: TribalLegendaryArmorHead
+  name: Legendary Tribal Helm
+  description: An ornate tribal helmet crafted from legendary creature leather. Provides exceptional protection.
+  parent: ClothingHeadBase
+  components:
+    - type: Sprite
+      sprite: Clothing/Head/helmets.rsi
+      state: beret_black
+      color: "#FFD700"
+    - type: Clothing
+      sprite: Clothing/Head/helmets.rsi
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.6
+          Slash: 0.6
+          Piercing: 0.6
+          Heat: 0.65
+          Cold: 0.65
+          Radiation: 0.75
+          Poison: 0.75
+          Shock: 0.75
+          Caustic: 0.75
+          Cellular: 0.75
+          Bloodloss: 0.6
+          Asphyxiation: 0.6
+          Structural: 0.6
+
+# Legendary tribal armor - chest piece
+- type: entity
+  id: TribalLegendaryArmorChest
+  name: Legendary Tribal Chestplate
+  description: A legendary tribal chestplate offering superior protection across all damage types.
+  parent: ClothingOuterBaseLarge
+  components:
+    - type: Sprite
+      sprite: Clothing/OuterClothing/priority_suit.rsi
+      state: icon
+      color: "#FFD700"
+    - type: Clothing
+      sprite: Clothing/OuterClothing/priority_suit.rsi
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.6
+          Slash: 0.6
+          Piercing: 0.6
+          Heat: 0.65
+          Cold: 0.65
+          Radiation: 0.75
+          Poison: 0.75
+          Shock: 0.75
+          Caustic: 0.75
+          Cellular: 0.75
+          Bloodloss: 0.6
+          Asphyxiation: 0.6
+          Structural: 0.6
+
+# Legendary tribal armor - legs
+- type: entity
+  id: TribalLegendaryArmorLegs
+  name: Legendary Tribal Legguards
+  description: Legendary tribal legguards providing comprehensive lower body protection.
+  parent: ClothingOuterBaseLarge
+  components:
+    - type: Sprite
+      sprite: Clothing/OuterClothing/durathread_armor.rsi
+      state: icon
+      color: "#FFD700"
+    - type: Clothing
+      sprite: Clothing/OuterClothing/durathread_armor.rsi
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.6
+          Slash: 0.6
+          Piercing: 0.6
+          Heat: 0.65
+          Cold: 0.65
+          Radiation: 0.75
+          Poison: 0.75
+          Shock: 0.75
+          Caustic: 0.75
+          Cellular: 0.75
+          Bloodloss: 0.6
+          Asphyxiation: 0.6
+          Structural: 0.6
+
+# Legendary tribal armor - feet
+- type: entity
+  id: TribalLegendaryArmorFeet
+  name: Legendary Tribal Boots
+  description: Legendary tribal boots offering legendary protection for feet and lower legs.
+  parent: ClothingShoesBase
+  components:
+    - type: Sprite
+      sprite: Clothing/Shoes/boots.rsi
+      state: icon
+      color: "#FFD700"
+    - type: Clothing
+      sprite: Clothing/Shoes/boots.rsi
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.6
+          Slash: 0.6
+          Piercing: 0.6
+          Heat: 0.65
+          Cold: 0.65
+          Radiation: 0.75
+          Poison: 0.75
+          Shock: 0.75
+          Caustic: 0.75
+          Cellular: 0.75
+          Bloodloss: 0.6
+          Asphyxiation: 0.6
+          Structural: 0.6
