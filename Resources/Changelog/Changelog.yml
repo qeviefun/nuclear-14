@@ -2973,3 +2973,50 @@ Entries:
   id: 5715
   time: '2026-04-10T01:26:15.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/265
+- author: cythisiax
+  changes:
+    - type: Fix
+      message: >-
+        Legendary creature loot now spawns at correct coordinates by switching
+        from DestructionEventArgs to MobStateChangedEvent
+    - type: Fix
+      message: >-
+        Casings ejected without a throw angle (revolvers, manual cycling) now
+        have physics stripped immediately instead of persisting
+    - type: Fix
+      message: Ore box magnet no longer queries broadphase on nullspace/unloading maps
+    - type: Fix
+      message: >-
+        Persistent spawn erase now uses QueueDel to prevent broadphase
+        corruption during physics iteration
+    - type: Fix
+      message: >-
+        Tribal hunt legendary cleanup now uses QueueDel to prevent broadphase
+        corruption
+    - type: Fix
+      message: >-
+        Stale/dead hunters are now pruned from the joined hunters set each UI
+        tick
+    - type: Tweak
+      message: >-
+        Spent casing despawn reduced from 90s to 30s to further reduce entity
+        count during war
+    - type: Tweak
+      message: >-
+        Tribal hunt UI broadcasts during Active stage now only update joined
+        hunters instead of querying all participants
+    - type: Tweak
+      message: >-
+        Casing IsInDepartment check skipped during Active hunt stage (only
+        computed during Gathering)
+    - type: Add
+      message: >-
+        Global spent casing cap of 500 — oldest casings are deleted when
+        exceeded to prevent runaway accumulation during sustained firefights
+    - type: Add
+      message: >-
+        World cleanup system that auto-despawns blood puddles, footprints, and
+        giblets after 10 minutes
+  id: 5716
+  time: '2026-04-10T02:24:13.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/266
