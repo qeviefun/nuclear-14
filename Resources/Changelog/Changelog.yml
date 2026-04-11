@@ -3085,3 +3085,12 @@ Entries:
   id: 5721
   time: '2026-04-11T15:29:22.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/272
+- author: Bill Clinton
+  changes:
+    - type: Tweak
+      message: >-
+        gave decanus the legion HMG instead of chinese HMG and buffed priestess
+        gauntlets to be on par with the other melees.
+  id: 5722
+  time: '2026-04-11T22:41:50.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/274
