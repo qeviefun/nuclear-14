@@ -57,6 +57,69 @@
 #    - ScribeMedicWashingtonBoSSet
 
 - type: entity
+  name: Brotherhood Midwest Power Armor Kit
+  parent: KitBase
+  id: KitPowerArmorMidwest
+  description: A crate containing a set of power armor.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ClothingOuterPowerArmorMidwestCommander
+      
+- type: UndecidedLoadoutBackpackSet
+  id: PowerArmorMidwestSet
+  name: Midwest Power Armor
+  description: This kit contains a pristine set of midwestern power armor.
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitPowerArmorMidwest
+      
+- type: entity
+  name: Brotherhood Power Armor Kit
+  parent: KitBase
+  id: KitBoSPowerArmor
+  description: A crate containing a set of power armor.
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: Item
+    size: Huge
+  - type: SpawnItemsOnUse
+    items:
+      - id: N14ClothingOuterPowerArmorWashT51Elite
+      
+- type: UndecidedLoadoutBackpackSet
+  id: BoSPowerArmorSet
+  name: T-51b Power Armor
+  description: This kit contains a pristine set of T-51b Power Armor.
+  sprite:
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  content:
+  - KitBoSPowerArmor
+
+- type: entity
+  id: BoSPowerArmorKit
+  name: Undecided Brotherhood Power Armor Kit
+  parent: BaseLoadoutKit
+  components:
+  - type: Sprite
+    sprite: _Nuclear14/Objects/Misc/kits.rsi
+    state: rifleman
+  - type: UndecidedLoadoutBackpack
+    possibleSets:
+    - BoSPowerArmorSet
+    - PowerArmorMidwestSet
+
+- type: entity
   id: BoSBrotherhoodSeniorPaladinKits
   name: Undecided Brotherhood Senior Paladin Kit
   parent: BaseLoadoutKit
@@ -66,7 +129,8 @@
     state: rifleman
   - type: UndecidedLoadoutBackpack
     possibleSets:
-    - MBoS_KniLas_Set  #Misfits Tweak: AER-14 replaced with AER-9 (KniLas)
+    - MBoS_KniLas_Set 
+    #Misfits Tweak: AER-14 replaced with AER-9 (KniLas)
     - MBoS_PalLas_Set
     - MBoS_PalBal_Set
     #- MBoS_PalSni_Set  #Misfits Remove: Bozar removed from all Paladin ranks
