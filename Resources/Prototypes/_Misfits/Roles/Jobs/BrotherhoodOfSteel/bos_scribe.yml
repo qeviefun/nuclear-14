@@ -81,7 +81,6 @@
         factions:
           - BrotherhoodOfSteel
       - type: CPRTraining
-      - type: Pacified # #Misfits Add - Scribes are Pacifist by role
       - type: LanguageKnowledge # #Misfits Add: Scribes speak and understand Brotherhood binary code by default.
         speaks:
           - English
