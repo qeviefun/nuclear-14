@@ -26,7 +26,7 @@
   requirements:
     - !type:CharacterOverallTimeRequirement # #Misfits Fix - entry-level ranger uses overall playtime, not Rangers dept time
       min: 43200 # 12 hours
-    - !type:CharacterSpeciesRequirement # #Misfits Change - robots and super mutants cannot be Rangers
+    - !type:CharacterSpeciesRequirement # #Misfits Change - robots, super mutants, and glowing ghouls cannot be Rangers
       inverted: true
       species:
       - RobotMrHandy
@@ -42,6 +42,7 @@
       - RobotRobobrain
       - RobotRobobrainLaser
       - SuperMutant
+      - GhoulGlowing # #Misfits Tweak - glowing ghouls not allowed in NCR Rangers
 
 - type: startingGear
   id: NCRRangerRecruitGear

@@ -23,7 +23,7 @@
     - !type:CharacterDepartmentTimeRequirement # #Misfits Add - admin-only timelock (70h Rangers)
       department: Rangers
       min: 252000 # 70 hours — admin role
-    - !type:CharacterSpeciesRequirement # #Misfits Change - robots and super mutants cannot be Rangers
+    - !type:CharacterSpeciesRequirement # #Misfits Change - robots, super mutants, and glowing ghouls cannot be Rangers
       inverted: true
       species:
       - RobotMrHandy
@@ -39,6 +39,7 @@
       - RobotRobobrain
       - RobotRobobrainLaser
       - SuperMutant
+      - GhoulGlowing # #Misfits Tweak - glowing ghouls not allowed in NCR Rangers
   special:
   - !type:AddComponentSpecial
     components:
