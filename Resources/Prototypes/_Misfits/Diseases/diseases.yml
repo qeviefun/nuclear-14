@@ -43,8 +43,9 @@
       damage:
         Radiation: 3
   cures:
+    # #Misfits Tweak - RadAway is the Fallout-canonical radiation cure
     - !type:DiseaseReagentCure
-      reagent: Dylovene
+      reagent: RadAway
       minAmount: 10.0
     - !type:DiseaseJustWaitCure
       maxDuration: 360.0
@@ -86,8 +87,9 @@
       emoteId: Cough
       airTransmit: false
   cures:
+    # #Misfits Tweak - Antidote (ScorpionTail+Ethanol+Tarberries) for necrotic infection
     - !type:DiseaseReagentCure
-      reagent: Dermaline
+      reagent: Antidote
       minAmount: 15.0
 
 # --- MOLE RAT DISEASE ---
@@ -125,8 +127,9 @@
       damage:
         Poison: 2
   cures:
+    # #Misfits Tweak - HealingMixture (Stimpak) for mole rat disease
     - !type:DiseaseReagentCure
-      reagent: Tricordrazine
+      reagent: HealingMixture
       minAmount: 10.0
     - !type:DiseaseJustWaitCure
       maxDuration: 300.0
@@ -207,8 +210,9 @@
         Heat: 3
         Poison: 2
   cures:
+    # #Misfits Tweak - Bitterdrink (tribal BrocFlower+XanderRoot brew) for fever
     - !type:DiseaseReagentCure
-      reagent: Cryoxadone
+      reagent: Bitterdrink
       minAmount: 15.0
 
 # --- SPORE SICKNESS ---
@@ -252,8 +256,9 @@
       damage:
         Asphyxiation: 3
   cures:
+    # #Misfits Tweak - AntidoteMixture for fungal spore toxin
     - !type:DiseaseReagentCure
-      reagent: Spaceacillin
+      reagent: AntidoteMixture
       minAmount: 10.0
     - !type:DiseaseBodyTemperatureCure
       threshold: 320.0
@@ -307,8 +312,9 @@
         Poison: 4
         Cellular: 2
   cures:
+    # #Misfits Tweak - Hydra (ScorpionTail+Fungus+NightstalkerBlood) hardest cure for deadliest plague
     - !type:DiseaseReagentCure
-      reagent: Arithrazine
+      reagent: Hydra
       minAmount: 20.0
 
 # --- SWAMP ITCH ---
