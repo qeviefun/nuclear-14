@@ -1128,9 +1128,6 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14WeaponLaserPistol
-      - id: N14PowerCellSmall
-        amount: 2
       - id: N14HandheldHealthAnalyzer # #Misfits Add - BoS medics should spawn with health analyzer
       - id: N14CleanGauze10
       - id: N14Ointment10
@@ -1154,9 +1151,6 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14WeaponLaserPistol
-      - id: N14PowerCellSmall
-        amount: 2
       - id: N14CleanGauze10
       - id: N14Ointment10
       - id: N14ClothingHandsGlovesCombat
@@ -1177,9 +1171,6 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14WeaponLaserPistol
-      - id: N14PowerCellSmall
-        amount: 2
       - id: N14CleanGauze10
       - id: N14Ointment10
       - id: N14ClothingOuterMidwestBoSCoat
