@@ -3248,3 +3248,10 @@ Entries:
   id: 5738
   time: '2026-04-15T02:08:48.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/294
+- author: 3Ra3G
+  changes:
+    - type: Add
+      message: Added Vault-Tec pamphlet lore item
+  id: 5739
+  time: '2026-04-15T22:56:27.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/296
