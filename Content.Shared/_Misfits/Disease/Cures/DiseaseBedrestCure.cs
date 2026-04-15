@@ -1,18 +1,14 @@
-// #Misfits Removed - Moved to Content.Shared so client can resolve types during prototype YAML loading.
-/*
-// #Misfits Add - Disease cure: bedrest.
-// Cures the disease if the entity is buckled to something (lying in a bed).
+// #Misfits Fix - Moved from Content.Server to Content.Shared so client can resolve
+// the type during DiseasePrototype YAML deserialization.
 
-using Content.Shared._Misfits.Disease;
 using Content.Shared.Buckle.Components;
 
-namespace Content.Server._Misfits.Disease.Cures;
+namespace Content.Shared._Misfits.Disease.Cures;
 
 /// <summary>
 /// Disease is cured when the entity is buckled to furniture (bed rest).
 /// Represents the Fallout theme of resting to recover from illness.
 /// </summary>
-
 public sealed partial class DiseaseBedrestCure : DiseaseCure
 {
     public override bool Cure(DiseaseEffectArgs args)
@@ -22,4 +18,3 @@ public sealed partial class DiseaseBedrestCure : DiseaseCure
                && buckle.Buckled;
     }
 }
-*/

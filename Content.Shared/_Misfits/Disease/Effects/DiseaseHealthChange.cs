@@ -1,20 +1,14 @@
-// #Misfits Removed - Moved to Content.Shared so client can resolve types during prototype YAML loading.
-/*
-// #Misfits Add - Disease effect: deal typed damage to the afflicted entity.
-// Configurable damage types and amounts per tick.
+// #Misfits Fix - Moved from Content.Server to Content.Shared so client can resolve
+// the type during DiseasePrototype YAML deserialization.
 
-using Content.Shared._Misfits.Disease;
 using Content.Shared.Damage;
-using Content.Shared.Damage.Prototypes;
-using Robust.Shared.Prototypes;
 
-namespace Content.Server._Misfits.Disease.Effects;
+namespace Content.Shared._Misfits.Disease.Effects;
 
 /// <summary>
 /// Deals damage of specified types each tick. Used for diseases that cause
 /// direct harm (radiation sickness, poison buildup, organ failure, etc.).
 /// </summary>
-
 public sealed partial class DiseaseHealthChange : DiseaseEffect
 {
     /// <summary>Damage to apply per tick. Key = damage type ID, value = amount.</summary>
@@ -33,4 +27,3 @@ public sealed partial class DiseaseHealthChange : DiseaseEffect
         damageable.TryChangeDamage(args.DiseasedEntity, damageSpec, ignoreResistances: false);
     }
 }
-*/

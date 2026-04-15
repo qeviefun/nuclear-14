@@ -1,3 +1,5 @@
+// #Misfits Removed - Moved to Content.Shared so client can resolve types during prototype YAML loading.
+/*
 // #Misfits Add - Disease effect: inject/remove reagent from bloodstream.
 // Adds or removes a specified reagent from the entity's chemical solution.
 
@@ -46,3 +48,4 @@ public sealed partial class DiseaseAdjustReagent : DiseaseEffect
         }
     }
 }
+*/

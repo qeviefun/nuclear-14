@@ -1,18 +1,14 @@
-// #Misfits Removed - Moved to Content.Shared so client can resolve types during prototype YAML loading.
-/*
-// #Misfits Add - Disease effect: show a localized popup message to the afflicted entity.
-// Used for symptoms like "You feel nauseous...", "Your skin itches...", etc.
+// #Misfits Fix - Moved from Content.Server to Content.Shared so client can resolve
+// the type during DiseasePrototype YAML deserialization.
 
-using Content.Shared._Misfits.Disease;
 using Content.Shared.Popups;
 
-namespace Content.Server._Misfits.Disease.Effects;
+namespace Content.Shared._Misfits.Disease.Effects;
 
 /// <summary>
 /// Shows a localized popup message to the diseased entity. Used for flavor text
 /// symptoms at various disease stages.
 /// </summary>
-
 public sealed partial class DiseasePopUp : DiseaseEffect
 {
     /// <summary>Localization key for the popup message.</summary>
@@ -29,4 +25,3 @@ public sealed partial class DiseasePopUp : DiseaseEffect
         popup.PopupEntity(Loc.GetString(Message), args.DiseasedEntity, args.DiseasedEntity, Type);
     }
 }
-*/

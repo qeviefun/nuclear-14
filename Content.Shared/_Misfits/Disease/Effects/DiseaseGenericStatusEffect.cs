@@ -1,17 +1,14 @@
-// #Misfits Removed - Moved to Content.Shared so client can resolve types during prototype YAML loading.
-/*
-// #Misfits Add - Disease effect: apply a status effect (Jitter, TemporaryBlindness, etc.).
+// #Misfits Fix - Moved from Content.Server to Content.Shared so client can resolve
+// the type during DiseasePrototype YAML deserialization.
 
-using Content.Shared._Misfits.Disease;
 using Content.Shared.StatusEffect;
 
-namespace Content.Server._Misfits.Disease.Effects;
+namespace Content.Shared._Misfits.Disease.Effects;
 
 /// <summary>
 /// Applies a named status effect to the diseased entity for a specified duration.
 /// Uses the existing StatusEffectsSystem infrastructure.
 /// </summary>
-
 public sealed partial class DiseaseGenericStatusEffect : DiseaseEffect
 {
     /// <summary>Status effect key (e.g., "Jitter", "TemporaryBlindness", "Stutter").</summary>
@@ -35,11 +32,9 @@ public sealed partial class DiseaseGenericStatusEffect : DiseaseEffect
         var statusSys = args.EntityManager.System<StatusEffectsSystem>();
         var time = TimeSpan.FromSeconds(Duration);
 
-        // Use the overload with component name only if one is specified
         if (Component != null)
             statusSys.TryAddStatusEffect(args.DiseasedEntity, Key, time, Refresh, Component);
         else
             statusSys.TryAddStatusEffect(args.DiseasedEntity, Key, time, Refresh);
     }
 }
-*/

@@ -1,3 +1,5 @@
+// #Misfits Removed - Moved to Content.Shared so client can resolve types during prototype YAML loading.
+/*
 // #Misfits Add - Disease cure: reagent in bloodstream.
 // Cures the disease if the entity has enough of a specific reagent in their blood.
 
@@ -42,3 +44,4 @@ public sealed partial class DiseaseReagentCure : DiseaseCure
         return false;
     }
 }
+*/
