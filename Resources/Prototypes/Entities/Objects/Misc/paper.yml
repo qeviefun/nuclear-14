@@ -84,6 +84,28 @@
     sound: /Audio/SimpleStation14/Items/Handling/paper_drop.ogg
 
 - type: entity
+  id: VaultGuidePaper
+  parent: Paper
+  name: Ackerman Guide to the Vault
+  description: 'A very old looking pamphlet detailing the ins and outs of Vault life. Still looks in good condition'
+  components:
+  - type: Paper
+    content: book-text-vault-guide
+    escapeFormatting: false
+  - type: Sprite
+    sprite: Objects/Misc/bureaucracy.rsi
+    layers:
+    - state: paper
+      color: "#f3eb5a"
+    - state: paper_words
+      map: ["enum.PaperVisualLayers.Writing"]
+      color: "#f3eb5a"
+      visible: true
+    - state: paper_stamp-generic
+      map: ["enum.PaperVisualLayers.Stamp"]
+      visible: false
+
+- type: entity
   name: paper scrap
   parent: Paper
   id: PaperScrap
