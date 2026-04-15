@@ -1,3 +1,5 @@
+// #Misfits Removed - Moved to Content.Shared so client can resolve types during prototype YAML loading.
+/*
 // #Misfits Add - Disease effect: trigger vomiting on the afflicted entity.
 
 using Content.Server.Medical;
@@ -26,3 +28,4 @@ public sealed partial class DiseaseVomit : DiseaseEffect
         vomit.Vomit(args.DiseasedEntity, ThirstAmount, HungerAmount);
     }
 }
+*/

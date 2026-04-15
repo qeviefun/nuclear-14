@@ -1229,7 +1229,7 @@
   description: An old hunting rifle taken from discovered stockpiles and refurbished in Legion workshops. The standard heavy rifle of the Legion, still rare. Semi-auto only, fed by a 10-round en-bloc clip.
   components:
   - type: Clothing
-    sprite: _Nuclear14/Objects/Weapons/Guns/Rifles/sks.rsi
+    sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/hunting.rsi # #Misfits Tweak: hunting rifle RSI back-slot placeholder — sks.rsi equipped-BACKPACK state is not suitable
     quickEquip: false
     slots:
     - Back

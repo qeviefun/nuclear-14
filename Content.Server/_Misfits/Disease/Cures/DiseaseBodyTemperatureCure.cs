@@ -1,3 +1,5 @@
+// #Misfits Removed - Moved to Content.Shared so client can resolve types during prototype YAML loading.
+/*
 // #Misfits Add - Disease cure: body temperature threshold.
 // Cures the disease if the entity's body temperature is above/below a threshold.
 
@@ -31,3 +33,4 @@ public sealed partial class DiseaseBodyTemperatureCure : DiseaseCure
             : temp.CurrentTemperature <= Threshold;
     }
 }
+*/

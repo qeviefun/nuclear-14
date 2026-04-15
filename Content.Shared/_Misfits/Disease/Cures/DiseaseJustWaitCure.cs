@@ -1,18 +1,14 @@
-// #Misfits Removed - Moved to Content.Shared so client can resolve types during prototype YAML loading.
-/*
-// #Misfits Add - Disease cure: passage of time.
-// Cures the disease after a configurable duration has elapsed.
+// #Misfits Fix - Moved from Content.Server to Content.Shared so client can resolve
+// the type during DiseasePrototype YAML deserialization.
 
-using Content.Shared._Misfits.Disease;
 using Content.Shared._Misfits.Disease.Components;
 
-namespace Content.Server._Misfits.Disease.Cures;
+namespace Content.Shared._Misfits.Disease.Cures;
 
 /// <summary>
 /// Disease is cured automatically after enough total accumulated disease time.
 /// Represents the body naturally fighting off the illness over time.
 /// </summary>
-
 public sealed partial class DiseaseJustWaitCure : DiseaseCure
 {
     /// <summary>Total seconds of disease time before natural cure kicks in.</summary>
@@ -31,4 +27,3 @@ public sealed partial class DiseaseJustWaitCure : DiseaseCure
         return false;
     }
 }
-*/

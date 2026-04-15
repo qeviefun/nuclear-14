@@ -2,11 +2,18 @@
 // Handles disease progression, stage-based effects, airborne/contact transmission,
 // equipment protection, natural immunity, and cure condition checking.
 
-using Content.Server._Misfits.Disease.Effects;
+// #Misfits Fix - Removed: using Content.Server._Misfits.Disease.Effects;
+// Effect/Cure classes moved to Content.Shared for client-side type resolution.
+using Content.Server.Body.Components;
 using Content.Server.Chat.Systems;
 using Content.Server.Medical;
+using Content.Server.Temperature.Components;
 using Content.Shared._Misfits.Disease;
 using Content.Shared._Misfits.Disease.Components;
+using Content.Shared._Misfits.Disease.Cures;
+using Content.Shared._Misfits.Disease.Effects;
+using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.FixedPoint;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Mobs.Components;
@@ -31,6 +38,8 @@ public sealed class DiseaseSystem : EntitySystem
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private readonly VomitSystem _vomit = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
 
     /// <summary>Range in tiles for airborne disease spread.</summary>
     private const float AirborneRange = 3f;
@@ -120,6 +129,20 @@ public sealed class DiseaseSystem : EntitySystem
                         continue;
                     }
 
+                    // #Misfits Fix - Server-only effects handled inline because their
+                    // dependencies (VomitSystem, BloodstreamComponent) are server-only.
+                    if (effect is DiseaseVomit vomit)
+                    {
+                        HandleVomit(uid, vomit);
+                        continue;
+                    }
+
+                    if (effect is DiseaseAdjustReagent adjustReagent)
+                    {
+                        HandleAdjustReagent(uid, adjustReagent);
+                        continue;
+                    }
+
                     effect.Effect(effectArgs);
                 }
 
@@ -162,7 +185,17 @@ public sealed class DiseaseSystem : EntitySystem
         var args = new DiseaseEffectArgs(uid, disease, EntityManager);
         foreach (var cure in relevantCures)
         {
-            if (!cure.Cure(args))
+            // #Misfits Fix - Server-only cures handled inline because their
+            // dependencies (TemperatureComponent, BloodstreamComponent) are server-only.
+            bool cured;
+            if (cure is DiseaseBodyTemperatureCure tempCure)
+                cured = CheckBodyTemperatureCure(uid, tempCure);
+            else if (cure is DiseaseReagentCure reagentCure)
+                cured = CheckReagentCure(uid, reagentCure);
+            else
+                cured = cure.Cure(args);
+
+            if (!cured)
                 return false;
         }
 
@@ -250,6 +283,66 @@ public sealed class DiseaseSystem : EntitySystem
 
             TryInfect(target, disease.ID, disease.ContactSpread);
         }
+    }
+
+    /// <summary>
+    /// Handle vomit effect (server-only — VomitSystem is in Content.Server).
+    /// </summary>
+    private void HandleVomit(EntityUid uid, DiseaseVomit vomit)
+    {
+        _vomit.Vomit(uid, vomit.ThirstAmount, vomit.HungerAmount);
+    }
+
+    /// <summary>
+    /// Handle reagent injection/removal (server-only — BloodstreamComponent is in Content.Server).
+    /// </summary>
+    private void HandleAdjustReagent(EntityUid uid, DiseaseAdjustReagent adjustReagent)
+    {
+        if (!TryComp<BloodstreamComponent>(uid, out var blood))
+            return;
+
+        if (!_solution.ResolveSolution(uid, blood.ChemicalSolutionName,
+                ref blood.ChemicalSolution, out _))
+            return;
+
+        if (adjustReagent.Amount > 0)
+            _solution.TryAddReagent(blood.ChemicalSolution.Value, adjustReagent.Reagent, FixedPoint2.New(adjustReagent.Amount));
+        else
+            _solution.RemoveReagent(blood.ChemicalSolution.Value, adjustReagent.Reagent, FixedPoint2.New(-adjustReagent.Amount));
+    }
+
+    /// <summary>
+    /// Check body temperature cure condition (server-only — TemperatureComponent is in Content.Server).
+    /// </summary>
+    private bool CheckBodyTemperatureCure(EntityUid uid, DiseaseBodyTemperatureCure tempCure)
+    {
+        if (!TryComp<TemperatureComponent>(uid, out var temp))
+            return false;
+
+        return tempCure.MustBeAbove
+            ? temp.CurrentTemperature >= tempCure.Threshold
+            : temp.CurrentTemperature <= tempCure.Threshold;
+    }
+
+    /// <summary>
+    /// Check reagent cure condition (server-only — BloodstreamComponent is in Content.Server).
+    /// </summary>
+    private bool CheckReagentCure(EntityUid uid, DiseaseReagentCure reagentCure)
+    {
+        if (!TryComp<BloodstreamComponent>(uid, out var blood))
+            return false;
+
+        if (!_solution.ResolveSolution(uid, blood.ChemicalSolutionName,
+                ref blood.ChemicalSolution, out var solution))
+            return false;
+
+        foreach (var (reagentId, quantity) in solution.Contents)
+        {
+            if (reagentId.Prototype == reagentCure.Reagent && quantity.Float() >= reagentCure.MinAmount)
+                return true;
+        }
+
+        return false;
     }
 
     /// <summary>

@@ -18,8 +18,12 @@ public abstract partial class DiseaseEffect
     [DataField]
     public List<int> Stages { get; private set; } = new() { 0 };
 
-    /// <summary>Execute the effect on the target entity.</summary>
-    public abstract void Effect(DiseaseEffectArgs args);
+    /// <summary>
+    /// Execute the effect on the target entity.
+    /// Virtual (not abstract) so concrete types can live in Shared for client-side
+    /// type resolution even when their implementation is server-only.
+    /// </summary>
+    public virtual void Effect(DiseaseEffectArgs args) { }
 }
 
 /// <summary>

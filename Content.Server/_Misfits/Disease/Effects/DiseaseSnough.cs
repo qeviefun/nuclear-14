@@ -1,3 +1,5 @@
+// #Misfits Removed - Moved to Content.Shared so client can resolve types during prototype YAML loading.
+/*
 // #Misfits Add - Disease effect: trigger sneeze or cough emote.
 // Spreads the disease to nearby entities if the carrier isn't wearing a mask.
 
@@ -29,3 +31,4 @@ public sealed partial class DiseaseSnough : DiseaseEffect
         // The DiseaseSystem checks for DiseaseSnough effects and calls SneezeCough().
     }
 }
+*/

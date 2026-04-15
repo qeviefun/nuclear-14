@@ -14,7 +14,11 @@ public abstract partial class DiseaseCure
     [DataField]
     public List<int> Stages { get; private set; } = new() { 0 };
 
-    /// <summary>Check whether the cure condition is met.</summary>
+    /// <summary>
+    /// Check whether the cure condition is met.
+    /// Virtual (not abstract) so concrete types can live in Shared for client-side
+    /// type resolution even when their implementation is server-only.
+    /// </summary>
     /// <returns>True if the disease should be cured.</returns>
-    public abstract bool Cure(DiseaseEffectArgs args);
+    public virtual bool Cure(DiseaseEffectArgs args) => false;
 }
