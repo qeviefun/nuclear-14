@@ -68,9 +68,15 @@
     - type: loadout
       id: N14ClothingOuterdrylandersimple
     - type: loadout
-      id: N14ClothingOuterJacketBomber
+      id: N14LoadoutOuterCoatLeatherJacketVault
     - type: loadout
-      id: ClothingOuterCoatDetective
+      id: ClothingOuterCoatDetectiveVault
     - type: loadout
-      id: ClothingOuterCoatGentle
+      id: ClothingOuterCoatGentleVault
+    - type: loadout
+      id: N14ClothingOuterJacketBomberVault
+    - type: loadout
+      id: N14LoadoutOuterCoatLeatherJacket
+    - type: loadout
+      id: ClothingOuterDenimJacketVault
       

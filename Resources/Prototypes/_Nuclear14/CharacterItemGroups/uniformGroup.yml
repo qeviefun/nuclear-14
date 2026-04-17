@@ -80,12 +80,18 @@
     - type: loadout
       id: N14ClothingUniformJumpsuittribalpantsnecklace
     - type: loadout
-      id: ClothingOuterDenimJacket
+      id: N14LoadoutUniformJumpsuitDetectiveAltVault
     - type: loadout
-      id: ClothingOuterCoatDetective
+      id: N14LoadoutUniformJumpsuitCheckeredVault
     - type: loadout
-      id: ClothingOuterCoatGentle
+      id: N14LoadoutUniformJumpsuitPreWarRelaxedVault
     - type: loadout
-      id: N14ClothingOuterJacketBomber
+      id: N14LoadoutUniformJumpsuitPreWarCasualVault
     - type: loadout
-      id: N14LoadoutOuterCoatLeatherJacket
+      id: N14LoadoutUniformJumpsuitPreWarManagerVault
+    - type: loadout
+      id: N14LoadoutUniformJumpsuitBlueSuitVault 
+    - type: loadout
+      id: N14LoadoutUniformJumpsuitPreWarLumberjackVault
+    - type: loadout
+      id: N14LoadoutUniformJumpsuitAsylumDress

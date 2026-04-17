@@ -23,6 +23,13 @@ loadout-name-N14ClothingBackpackSatchelMilitary = military satchel
 loadout-name-N14ClothingBackpackSatchelTrekker = trekker satchel
 
 # Uniforms
+loadout-name-N14LoadoutUniformJumpsuitPreWarLumberjackVault = pre-war lumberjack outfit
+loadout-name-N14LoadoutUniformJumpsuitBlueSuitVault = blue suit
+loadout-name-N14LoadoutUniformJumpsuitPreWarManagerVault = pre-war manager outfit
+loadout-name-N14LoadoutUniformJumpsuitPreWarCasualVault = pre-war casual outfit
+loadout-name-N14LoadoutUniformJumpsuitPreWarRelaxedVault = pre-war relaxed outfit
+loadout-name-N14LoadoutUniformJumpsuitCheckeredVault = checkered suit
+loadout-name-N14LoadoutUniformJumpsuitDetectiveAltVault = detective suit
 loadout-name-N14LoadoutUniformJumpsuitVault14 = Vault 14 jumpsuit
 loadout-name-N14LoadoutUniformJumpskirtVault14 = Vault 14 jumpskirt
 loadout-name-N14LoadoutUniformJumpsuitSettlerRags = settler rags
@@ -67,9 +74,12 @@ loadout-name-N14LoadoutUniformJumpskirtDressLongSleeve = long sleeve dress
 loadout-name-N14LoadoutUniformJumpskirtDressFormalRed = formal red dress
 
 # Outer clothing
-loadout-name-ClothingOuterCoatGentle = gentle coat
-loadout-name-ClothingOuterCoatDetective = detective coat
-loadout-name-N14ClothingOuterJacketBomber = bomber jacket 
+loadout-name-ClothingOuterDenimJacketVault = denim jacket
+loadout-name-N14LoadoutOuterCoatLeatherJacket = leather jacket
+loadout-name-N14LoadoutOuterCoatLeatherJacketVault = leather jacket
+loadout-name-ClothingOuterCoatGentleVault = gentle coat
+loadout-name-ClothingOuterCoatDetectiveVault = detective coat
+loadout-name-N14ClothingOuterJacketBomberVault = bomber jacket 
 loadout-name-N14LoadoutOuterCoatLeatherDuster = leather duster
 loadout-name-N14LoadoutOuterCoatBattlecoat = battlecoat
 loadout-name-N14LoadoutOuterCoatBattlecoatTan = battlecoat (tan)
@@ -149,6 +159,7 @@ loadout-name-N14ClothingEyesSunGlasses = sunglasses
 loadout-name-N14ClothingDrylanderGoggles = drylander goggles
 
 # Hands
+loadout-name-N14LoadoutHandsGlovesDriver = driver gloves
 loadout-name-N14LoadoutHandsGlovesCloth = cloth gloves
 loadout-name-N14LoadoutHandsGlovesLeather = leather gloves
 loadout-name-N14LoadoutHandsGlovesBlackLeather = black leather gloves
