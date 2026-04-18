@@ -136,8 +136,13 @@ public sealed class FloorTileSystem : EntitySystem
                 var baseTurf = (ContentTileDefinition) _tileDefinitionManager[tile.Tile.TypeId];
                 var preserveUnderlay = false;
 
+                // #Misfits Tweak - Also accept the wasteland-chain rule so roads/concrete/hexacrete
+                // (subfloor, baseTurf=FloorWasteland, not indestructible) can be tiled over with
+                // the underlay preserved. Without this, placement silently fails on most outdoor
+                // ground tiles even though the player has a valid stack of tiles in hand.
                 if (!HasBaseTurf(currentTileDefinition, baseTurf.ID) &&
-                    CanPlaceOverPlanetarySubfloor(currentTileDefinition, baseTurf))
+                    (CanPlaceOverPlanetarySubfloor(currentTileDefinition, baseTurf) ||
+                     CanPlaceOverWastelandTerrain(currentTileDefinition, baseTurf)))
                 {
                     preserveUnderlay = true;
                 }
@@ -186,6 +191,38 @@ public sealed class FloorTileSystem : EntitySystem
                currentTile.IsSubFloor &&
                currentTile.Indestructible &&
                currentTile.ID != ContentTileDefinition.SpaceID;
+    }
+
+    // #Misfits Add - Allow placing crafted floor tiles on top of any non-station "outdoor" subfloor
+    // (roads, concrete paths, hexacrete, etc). The original CanPlaceOverPlanetarySubfloor check above
+    // only matched Indestructible subfloors (i.e. FloorWasteland itself), so painted/decorative
+    // ground tiles whose chain still ends at FloorWasteland could not be replaced. The underlay
+    // is preserved so prying the placed tile restores the original road/concrete beneath.
+    // We deliberately walk the BaseTurf chain instead of accepting any subfloor: this excludes
+    // station Plating (chain: Plating -> Lattice -> Space) and bare Lattice (Space) so vanilla
+    // station construction rules are unaffected.
+    private bool CanPlaceOverWastelandTerrain(ContentTileDefinition replacementTile, ContentTileDefinition currentTile)
+    {
+        if (replacementTile.IsSubFloor || !currentTile.IsSubFloor)
+            return false;
+
+        if (currentTile.MapAtmosphere) // skip space-exposed tiles like Lattice
+            return false;
+
+        var def = currentTile;
+        // Bound the walk to a small constant; tile inheritance chains are shallow.
+        for (var i = 0; i < 8 && def != null; i++)
+        {
+            if (def.ID == "FloorWasteland")
+                return true;
+
+            if (string.IsNullOrEmpty(def.BaseTurf) || def.BaseTurf == ContentTileDefinition.SpaceID)
+                return false;
+
+            def = (ContentTileDefinition) _tileDefinitionManager[def.BaseTurf];
+        }
+
+        return false;
     }
 
     private void PlaceAt(EntityUid user, EntityUid gridUid, MapGridComponent mapGrid, EntityCoordinates location,

@@ -11,6 +11,13 @@
     - type: Item
       sprite: _Nuclear14/Objects/Weapons/Melee/shield_light.rsi
       size: Ginormous
+    # #Misfits Fix - Add Clothing so metal shields can be equipped to Back / armor suitStorage (matches Legion shield behavior)
+    - type: Clothing
+      sprite: _Nuclear14/Objects/Weapons/Melee/shield_light.rsi
+      quickEquip: false
+      slots:
+      - Back
+      - suitStorage
     - type: Damageable
       damageContainer: Shield
     - type: Destructible
@@ -78,6 +85,9 @@
     - type: Sprite
       sprite: _Nuclear14/Objects/Weapons/Melee/shield_heavy.rsi
     - type: Item
+      sprite: _Nuclear14/Objects/Weapons/Melee/shield_heavy.rsi
+    # #Misfits Fix - Override Clothing sprite to match heavy shield RSI
+    - type: Clothing
       sprite: _Nuclear14/Objects/Weapons/Melee/shield_heavy.rsi
     - type: Destructible
       thresholds:

@@ -93,7 +93,11 @@ namespace Content.Server.Storage.EntitySystems
             if (component.Uses <= 0)
             {
                 args.Handled = true;
-                EntityManager.DeleteEntity(uid);
+                // #Misfits Fix - kit boxes (e.g. NCR Cadet/Private loadout kits) were not despawning after use, allowing infinite item spam.
+                // Strip the component first so any reentrant UseInHandEvent during PickupOrDrop becomes a no-op, then queue-delete so the
+                // entity remains valid for the rest of this handler (PickupOrDrop / audio call below) and is reaped at end-of-tick.
+                RemComp<SpawnItemsOnUseComponent>(uid);
+                QueueDel(uid);
             }
 
             if (entityToPlaceInHands != null)

@@ -462,7 +462,11 @@ public sealed class NcContractCard : PanelContainer
         if (!string.IsNullOrWhiteSpace(tooltip))
             targetRow.ToolTip = tooltip;
 
-        if (!string.IsNullOrWhiteSpace(protoId))
+        // #Misfits Fix - Skip EntityPrototypeView for abstract or unknown prototypes; otherwise
+        // EntMan.Spawn() throws EntityCreationException, which propagates out of AddChild() and
+        // tears down the entire contract list rebuild. This was leaving the trade vendor stuck
+        // open for the user (and locked out for everyone else) after silver-tier contract turn-ins.
+        if (!string.IsNullOrWhiteSpace(protoId) && targetProto is { Abstract: false })
         {
             var view = new EntityPrototypeView
             {
@@ -599,7 +603,10 @@ public sealed class NcContractCard : PanelContainer
                 if (!string.IsNullOrWhiteSpace(tooltip))
                     line.ToolTip = tooltip;
 
-                if (!string.IsNullOrWhiteSpace(id))
+                // #Misfits Fix - Same guard as BuildTargetRow: don't spawn abstract/unknown
+                // reward prototypes through EntityPrototypeView, or AddChild will throw and
+                // abort the contract list rebuild mid-way.
+                if (!string.IsNullOrWhiteSpace(id) && proto is { Abstract: false })
                 {
                     var view = new EntityPrototypeView
                     {

@@ -225,7 +225,11 @@ namespace Content.Server.Kitchen.EntitySystems
                             continue;
                         }
 
-                        if (metaData.EntityPrototype.ID == recipeSolid.Key)
+                        // #Misfits Fix - also match ancestor prototypes so child entities
+                        // (e.g. N14FoodMeatRadstag satisfying a brahmin recipe via parent chain)
+                        // are actually consumed instead of being returned to the player.
+                        if (metaData.EntityPrototype.ID == recipeSolid.Key ||
+                            IsPrototypeAncestor(metaData.EntityPrototype, recipeSolid.Key))
                         {
                             _container.Remove(item, component.Storage);
                             EntityManager.DeleteEntity(item);
@@ -234,6 +238,21 @@ namespace Content.Server.Kitchen.EntitySystems
                     }
                 }
             }
+        }
+
+        // #Misfits Fix - checks whether ancestorId appears anywhere in the prototype parent chain of proto.
+        // Used to ensure SubtractContents deletes child entities that satisfied a recipe via the ancestor walk.
+        private bool IsPrototypeAncestor(EntityPrototype proto, string ancestorId)
+        {
+            while (proto.Parents is { Length: > 0 })
+            {
+                var parentId = proto.Parents[0];
+                if (parentId == ancestorId)
+                    return true;
+                if (!_prototype.TryIndex<EntityPrototype>(parentId, out proto))
+                    break;
+            }
+            return false;
         }
 
         private void OnInit(Entity<MicrowaveComponent> ent, ref ComponentInit args)
@@ -477,6 +496,8 @@ namespace Content.Server.Kitchen.EntitySystems
                 return;
 
             var solidsDict = new Dictionary<string, int>();
+            // #Misfits Fix - exact-only dict (no ancestor walk) used to prefer specific recipes over generic parent ones
+            var exactSolidsDict = new Dictionary<string, int>();
             var reagentDict = new Dictionary<string, FixedPoint2>();
             var malfunctioning = false;
             // TODO use lists of Reagent quantities instead of reagent prototype ids.
@@ -520,6 +541,12 @@ namespace Content.Server.Kitchen.EntitySystems
                     solidsDict.Add(metaData.EntityPrototype.ID, 1);
                 }
 
+                // #Misfits Fix - track exact entity IDs separately so we can prefer specific recipes
+                if (exactSolidsDict.ContainsKey(metaData.EntityPrototype.ID))
+                    exactSolidsDict[metaData.EntityPrototype.ID]++;
+                else
+                    exactSolidsDict.Add(metaData.EntityPrototype.ID, 1);
+
                 // #Misfits Fix - also count this entity toward each ancestor prototype ID so
                 // child entities (e.g. N14FoodMeatBrahminCutlet) satisfy recipes that require
                 // their parent (e.g. N14FoodMeatRadCutlet).
@@ -558,8 +585,14 @@ namespace Content.Server.Kitchen.EntitySystems
 
             List<FoodRecipePrototype> recipes = getRecipesEv.Recipes;
             recipes.AddRange(_recipeManager.Recipes);
-            var portionedRecipe = recipes.Select(r =>
-                CanSatisfyRecipe(component, r, solidsDict, reagentDict)).FirstOrDefault(r => r.Item2 > 0);
+            // #Misfits Fix - prefer exact-match recipes (e.g. radstag recipe) over ancestor-match ones
+            // (e.g. brahmin recipe matching radstag via parent chain). This prevents wrong output when
+            // a more specific recipe exists for the entity that was actually placed in the microwave.
+            var portionedRecipe = recipes
+                .Select(r => CanSatisfyRecipe(component, r, solidsDict, reagentDict))
+                .Where(r => r.Item2 > 0)
+                .OrderByDescending(r => CanSatisfyRecipe(component, r.Item1, exactSolidsDict, reagentDict).Item2 > 0)
+                .FirstOrDefault();
 
             _audio.PlayPvs(component.StartCookingSound, uid);
             var activeComp = AddComp<ActiveMicrowaveComponent>(uid); //microwave is now cooking

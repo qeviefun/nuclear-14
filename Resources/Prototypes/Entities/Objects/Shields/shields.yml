@@ -12,6 +12,13 @@
       sprite: Objects/Weapons/Melee/shields.rsi
       size: Ginormous
       heldPrefix: riot
+    # #Misfits Fix - Add Clothing so shields can be equipped to Back / armor suitStorage (matches Legion shield behavior)
+    - type: Clothing
+      sprite: Objects/Weapons/Melee/shields.rsi
+      quickEquip: false
+      slots:
+      - Back
+      - suitStorage
     - type: Blocking
       passiveBlockModifier:
         coefficients:
@@ -243,6 +250,9 @@
     - type: Item
       sprite: Objects/Weapons/Melee/web-shield.rsi
       heldPrefix: icon
+    # #Misfits Fix - Override Clothing sprite to match web shield RSI
+    - type: Clothing
+      sprite: Objects/Weapons/Melee/web-shield.rsi
     - type: Blocking
       passiveBlockModifier:
         coefficients:
