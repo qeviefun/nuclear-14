@@ -3323,3 +3323,14 @@ Entries:
   id: 5743
   time: '2026-04-18T20:01:56.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/302
+- author: 3Ra3G
+  changes:
+    - type: Add
+      message: Added new Vault clothing variants for Dwellers, Overseers, and Security.
+    - type: Remove
+      message: Removed non-lore-fitting Vault clothing
+    - type: Fix
+      message: Fixed Asylum dress so it can no longer be worn together with uniforms.
+  id: 5744
+  time: '2026-04-18T20:02:17.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/299
