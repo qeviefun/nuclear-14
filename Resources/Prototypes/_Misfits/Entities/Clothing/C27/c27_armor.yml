@@ -1,0 +1,183 @@
+# #Misfits Add - C-27 humanoid robot outer armor: 3 tiers (light/medium/heavy) × 3 factions
+# (generic/NCR/BoS) = 9 concrete entities. Gated by MisfitsC27ArmorComponent (Phase D shared
+# system: only HumanoidAppearance.Species == "C27" can equip) AND by the C27Wearable tag
+# whitelist on the c27 inventory template's outerClothing slot.
+#
+# Heavy variants get the N14PowerArmor marker (`requiresProficiency: false`) so they trigger
+# the carry-restriction interactions used by N14 power-armor gameplay, but they DO NOT inherit
+# the human PA scaffolding (no bundled fusion core / gauntlets / boots — C-27 limbs are already
+# metal and don't need them).
+
+# === Abstract bases: tier templates ===
+
+- type: entity
+  abstract: true
+  parent: ClothingOuterBase
+  id: BaseC27Armor
+  components:
+  - type: MisfitsC27Armor
+  - type: Tag
+    tags:
+    - C27Wearable
+  - type: Clothing
+    slots:
+    - outerClothing
+
+- type: entity
+  abstract: true
+  parent: BaseC27Armor
+  id: BaseC27ArmorLight
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.90
+
+- type: entity
+  abstract: true
+  parent: BaseC27Armor
+  id: BaseC27ArmorMedium
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.70
+        Slash: 0.70
+        Piercing: 0.70
+        Heat: 0.80
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+
+- type: entity
+  abstract: true
+  parent: BaseC27Armor
+  id: BaseC27ArmorHeavy
+  components:
+  # Marker only — C-27 chassis already provides limb plating, so we skip the bundled
+  # ToggleableClothing / fusion core stack. requiresProficiency: false because the C-27
+  # species gate (MisfitsC27ArmorSystem) replaces the PA training quirk for these robots.
+  - type: N14PowerArmor
+    requiresProficiency: false
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.55
+        Slash: 0.55
+        Piercing: 0.55
+        Heat: 0.70
+        Caustic: 0.75
+        Radiation: 0.65
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+
+# === Concrete: Light tier ===
+
+- type: entity
+  parent: BaseC27ArmorLight
+  id: ClothingC27ArmorLightGeneric
+  name: c-27 light armor plating
+  description: A basic factory-issue armor plate set for C-27 chassis. Light, unbranded, and easy to repair.
+  components:
+  - type: Sprite
+    sprite: _Misfits/Clothing/OuterClothing/Armor/c27_light_generic.rsi
+  - type: Clothing
+    sprite: _Misfits/Clothing/OuterClothing/Armor/c27_light_generic.rsi
+
+- type: entity
+  parent: BaseC27ArmorLight
+  id: ClothingC27ArmorLightNCR
+  name: c-27 light armor plating (ncr issue)
+  description: NCR-issued light armor plates for C-27 conscripts. Painted in republic khaki.
+  components:
+  - type: Sprite
+    sprite: _Misfits/Clothing/OuterClothing/Armor/c27_light_ncr.rsi
+  - type: Clothing
+    sprite: _Misfits/Clothing/OuterClothing/Armor/c27_light_ncr.rsi
+
+- type: entity
+  parent: BaseC27ArmorLight
+  id: ClothingC27ArmorLightBoS
+  name: c-27 light armor plating (brotherhood issue)
+  description: Brotherhood of Steel light armor plates for C-27 auxiliaries. Painted in the Brotherhood's signature deep blue.
+  components:
+  - type: Sprite
+    sprite: _Misfits/Clothing/OuterClothing/Armor/c27_light_bos.rsi
+  - type: Clothing
+    sprite: _Misfits/Clothing/OuterClothing/Armor/c27_light_bos.rsi
+
+# === Concrete: Medium tier ===
+
+- type: entity
+  parent: BaseC27ArmorMedium
+  id: ClothingC27ArmorMediumGeneric
+  name: c-27 medium armor plating
+  description: Reinforced factory-issue armor plates for C-27 chassis. Heavier and stiffer than the light loadout, but still infantry-grade.
+  components:
+  - type: Sprite
+    sprite: _Misfits/Clothing/OuterClothing/Armor/c27_medium_generic.rsi
+  - type: Clothing
+    sprite: _Misfits/Clothing/OuterClothing/Armor/c27_medium_generic.rsi
+
+- type: entity
+  parent: BaseC27ArmorMedium
+  id: ClothingC27ArmorMediumNCR
+  name: c-27 medium armor plating (ncr issue)
+  description: NCR-issued reinforced plates for C-27 troopers. Standard republic frontline kit.
+  components:
+  - type: Sprite
+    sprite: _Misfits/Clothing/OuterClothing/Armor/c27_medium_ncr.rsi
+  - type: Clothing
+    sprite: _Misfits/Clothing/OuterClothing/Armor/c27_medium_ncr.rsi
+
+- type: entity
+  parent: BaseC27ArmorMedium
+  id: ClothingC27ArmorMediumBoS
+  name: c-27 medium armor plating (brotherhood issue)
+  description: Brotherhood of Steel reinforced plates for C-27 knights. Brotherhood blue with steel-plate accents.
+  components:
+  - type: Sprite
+    sprite: _Misfits/Clothing/OuterClothing/Armor/c27_medium_bos.rsi
+  - type: Clothing
+    sprite: _Misfits/Clothing/OuterClothing/Armor/c27_medium_bos.rsi
+
+# === Concrete: Heavy tier (PA-marker) ===
+
+- type: entity
+  parent: BaseC27ArmorHeavy
+  id: ClothingC27ArmorHeavyGeneric
+  name: c-27 heavy armor plating
+  description: Composite ablative plating bolted directly to the chassis. As close to a power-armor frame as a C-27 can get without one bolted on top.
+  components:
+  - type: Sprite
+    sprite: _Misfits/Clothing/OuterClothing/Armor/c27_heavy_generic.rsi
+  - type: Clothing
+    sprite: _Misfits/Clothing/OuterClothing/Armor/c27_heavy_generic.rsi
+
+- type: entity
+  parent: BaseC27ArmorHeavy
+  id: ClothingC27ArmorHeavyNCR
+  name: c-27 heavy armor plating (ncr issue)
+  description: NCR heavy composite plates for C-27 heavy troopers. Republic gold-and-khaki paint over heavy ablative plate.
+  components:
+  - type: Sprite
+    sprite: _Misfits/Clothing/OuterClothing/Armor/c27_heavy_ncr.rsi
+  - type: Clothing
+    sprite: _Misfits/Clothing/OuterClothing/Armor/c27_heavy_ncr.rsi
+
+- type: entity
+  parent: BaseC27ArmorHeavy
+  id: ClothingC27ArmorHeavyBoS
+  name: c-27 heavy armor plating (brotherhood issue)
+  description: Brotherhood of Steel heavy composite plates for C-27 paladins. Battle-worn brotherhood blue over reinforced ablative plating.
+  components:
+  - type: Sprite
+    sprite: _Misfits/Clothing/OuterClothing/Armor/c27_heavy_bos.rsi
+  - type: Clothing
+    sprite: _Misfits/Clothing/OuterClothing/Armor/c27_heavy_bos.rsi

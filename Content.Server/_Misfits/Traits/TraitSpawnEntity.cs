@@ -1,3 +1,5 @@
+using Content.Server._Misfits.Pets;
+using Content.Server.Ghost.Roles.Components;
 using Content.Shared.Traits;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
@@ -35,7 +37,16 @@ public sealed partial class TraitSpawnEntity : TraitFunction
 
         foreach (var proto in Prototypes)
         {
-            entityManager.SpawnEntity(proto, coords);
+            var spawned = entityManager.SpawnEntity(proto, coords);
+
+            // Tag pet ghost-role spawners with the owning player so the pet
+            // is later relocated to the player's live position when a ghost
+            // takes the role (handled by MisfitsPetSpawnerOwnerSystem).
+            if (entityManager.HasComponent<GhostRoleMobSpawnerComponent>(spawned))
+            {
+                var ownerComp = entityManager.EnsureComponent<MisfitsPetSpawnerOwnerComponent>(spawned);
+                ownerComp.Owner = uid;
+            }
         }
     }
 }

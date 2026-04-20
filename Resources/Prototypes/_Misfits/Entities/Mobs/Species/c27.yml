@@ -1,0 +1,206 @@
+# C-27 humanoid robot player mob entity. #Misfits Add
+# Player-controlled synthetic humanoid. Inherits BaseMobSpecies (NOT Organic) so we
+# skip Bloodstream/Respirator/AtmosStandard/Flammable — C-27 units don't breathe, bleed,
+# or burn from atmosphere. Phase F will layer in EMP handling, weld/cable healing,
+# auto-revive, sprint disable, and the rest of the spec stat package.
+
+- type: entity
+  save: false
+  name: c-27 humanoid robot
+  id: N14BaseMobC27
+  parent: BaseMobSpecies
+  abstract: true
+  components:
+  - type: HumanoidAppearance
+    species: C27
+  - type: Inventory
+    templateId: c27
+    speciesId: c27
+  - type: Body
+    prototype: C27
+    requiredLegs: 2
+  - type: Damageable
+    # #Misfits Tweak (Phase F) - Switched from Inorganic to Silicon so the existing welder
+    # WeldingHealing whitelist (Silicon) and CableStack Healing whitelist (Silicon) work out
+    # of the box: welder heals Brute, cable coils heal Heat/Shock. Both containers are
+    # functionally identical (Brute group + Heat + Shock types); body-part containers stay
+    # Inorganic since they're checked separately and don't gate mob-level healing.
+    damageContainer: Silicon
+    damageModifierSet: Metallic
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Critical
+      200: Dead
+    allowRevives: true # #Misfits Add (Phase F) - auto-revive when healed below crit per spec
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.4 # slower than humans (2.5) per spec
+    baseSprintSpeed: 2.4 # #Misfits Add (Phase F) - sprint disabled (matches walk = no acceleration on sprint key)
+  - type: Stamina
+    critThreshold: 120
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Pai
+  - type: Vocal
+    sounds:
+      Unsexed: MaleHuman
+  - type: TypingIndicator
+    proto: robot
+  - type: LanguageKnowledge
+    speaks:
+    - TauCetiBasic
+    - RobotTalk
+    understands:
+    - TauCetiBasic
+    - RobotTalk
+  - type: Icon
+    sprite: _Misfits/Mobs/Species/C27/parts.rsi
+    state: full
+  - type: Sprite
+    sprite: _Misfits/Mobs/Species/C27/parts.rsi
+    netsync: false
+    noRot: true
+    drawdepth: Mobs
+    layers:
+      - map: [ "enum.HumanoidVisualLayers.Chest" ]
+      - map: [ "enum.HumanoidVisualLayers.Head" ]
+      - map: [ "enum.HumanoidVisualLayers.Snout" ]
+      - map: [ "enum.HumanoidVisualLayers.RArm" ]
+      - map: [ "enum.HumanoidVisualLayers.LArm" ]
+      - map: [ "enum.HumanoidVisualLayers.RLeg" ]
+      - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+      - shader: StencilClear
+        sprite: _Misfits/Mobs/Species/C27/parts.rsi
+        state: l_leg
+      - shader: StencilMask
+        map: [ "enum.HumanoidVisualLayers.StencilMask" ]
+        sprite: Mobs/Customization/masking_helpers.rsi
+        state: unisex_full
+        visible: false
+      - map: [ "jumpsuit" ]
+      - map: [ "enum.HumanoidVisualLayers.LHand" ]
+      - map: [ "enum.HumanoidVisualLayers.RHand" ]
+      - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
+        color: "#ffffff"
+        sprite: Objects/Misc/handcuffs.rsi
+        state: body-overlay-2
+        visible: false
+      - map: [ "id" ]
+      - map: [ "gloves" ]
+      - map: [ "shoes" ]
+      - map: [ "ears" ]
+      - map: [ "outerClothing" ]
+      - map: [ "eyes" ]
+      - map: [ "belt" ]
+      - map: [ "neck" ]
+      - map: [ "back" ]
+      - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
+      - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+      - map: [ "mask" ]
+      - map: [ "head" ]
+      - map: [ "pocket1" ]
+      - map: [ "pocket2" ]
+  # === Phase F stat package ===
+  # #Misfits Add (Phase F) - C-27 marker. EMP handler reads tunables from this component.
+  - type: MisfitsC27
+  # #Misfits Add (Phase F) - Built-in flash protection (spec).
+  - type: FlashImmunity
+  # #Misfits Add (Phase F) - Glass-shard immunity. C-27 frames don't have proper shoes; spec
+  # explicitly waives the broken-glass stun penalty for them.
+  - type: StepTriggerImmune
+    whitelist:
+      types:
+      - Shard
+  # #Misfits Add (Phase F) - Welders restore Brute (uses upstream WeldingHealing on welders).
+  - type: WeldingHealable
+  # #Misfits Add (Phase F) - Sleep self-repair / passive maintenance protocols. Heals all
+  # supported damage groups slowly while alive or in crit. Combined with allowRevives this
+  # also drives the auto-revive pull-out-of-crit loop the spec describes.
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    - Critical
+    damage:
+      groups:
+        Brute: -0.3
+      types:
+        Heat: -0.3
+        Shock: -0.3
+  # #Misfits Add (Phase F) - Innate melee buff: chassis fist hits noticeably harder than a
+  # human punch (spec calls for melee buff to make the slow speed worth it).
+  - type: MeleeWeapon
+    soundHit:
+      collection: MetalThud
+    angle: 0
+    animation: WeaponArcFist
+    range: 1.5
+    damage:
+      types:
+        Blunt: 10
+
+# Spawnable variant for live play.
+- type: entity
+  save: true
+  name: c-27 humanoid robot
+  id: N14MobC27
+  parent: N14BaseMobC27
+  description: A C-27 humanoid robot. Pre-war General Atomics workshop frame, retrofitted for Wasteland service.
+  categories: [ HideSpawnMenu ]
+
+# Dummy variant used by the character editor preview.
+- type: entity
+  save: false
+  parent: MobHumanDummy
+  id: N14MobC27Dummy
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidAppearance
+    species: C27
+  - type: Icon
+    sprite: _Misfits/Mobs/Species/C27/parts.rsi
+    state: full
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    layers:
+      - map: [ "enum.HumanoidVisualLayers.Chest" ]
+      - map: [ "enum.HumanoidVisualLayers.Head" ]
+      - map: [ "enum.HumanoidVisualLayers.Snout" ]
+      - map: [ "enum.HumanoidVisualLayers.RArm" ]
+      - map: [ "enum.HumanoidVisualLayers.LArm" ]
+      - map: [ "enum.HumanoidVisualLayers.RLeg" ]
+      - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+      - shader: StencilClear
+        sprite: _Misfits/Mobs/Species/C27/parts.rsi
+        state: l_leg
+      - shader: StencilMask
+        map: [ "enum.HumanoidVisualLayers.StencilMask" ]
+        sprite: Mobs/Customization/masking_helpers.rsi
+        state: unisex_full
+        visible: false
+      - map: [ "jumpsuit" ]
+      - map: [ "enum.HumanoidVisualLayers.LHand" ]
+      - map: [ "enum.HumanoidVisualLayers.RHand" ]
+      - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
+        color: "#ffffff"
+        sprite: Objects/Misc/handcuffs.rsi
+        state: body-overlay-2
+        visible: false
+      - map: [ "id" ]
+      - map: [ "gloves" ]
+      - map: [ "shoes" ]
+      - map: [ "ears" ]
+      - map: [ "outerClothing" ]
+      - map: [ "eyes" ]
+      - map: [ "belt" ]
+      - map: [ "neck" ]
+      - map: [ "back" ]
+      - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
+      - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+      - map: [ "mask" ]
+      - map: [ "head" ]
+      - map: [ "pocket1" ]
+      - map: [ "pocket2" ]
+  - type: Inventory
+    templateId: c27
+    speciesId: c27

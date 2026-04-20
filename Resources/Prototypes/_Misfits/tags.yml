@@ -41,6 +41,12 @@
 - type: Tag
   id: SuperMutantWearable
 
+# #Misfits Add - Tag for C-27 humanoid robot species-specific armor/chassis clothing.
+# Used by the c27 inventory template to restrict the outerClothing slot to C-27 plating only,
+# and (combined with MisfitsC27ArmorComponent in Phase D) to enforce species-locked equipment.
+- type: Tag
+  id: C27Wearable
+
 # #Misfits Add - Tags for construction materials (cement/concrete/brick building system).
 # Referenced by TagComponent on N14MaterialCement, N14MaterialConcrete, and N14MaterialBrick.
 - type: Tag

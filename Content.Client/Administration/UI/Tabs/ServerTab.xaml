@@ -41,6 +41,12 @@
                 <cc:CommandButton Name="SetLoocButton" Command="setlooc" Text="{Loc server-looc-toggle}" ToggleMode="True" MinWidth="180" />
                 <Label Text="{Loc misfits-server-tab-looc-desc}" VerticalAlignment="Center" StyleClasses="LabelSubText" />
             </BoxContainer>
+            <!-- #Misfits Add - Population Adjust: live-raise the engine connection cap without restart -->
+            <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+                <Button Name="PopulationAdjustButton" Text="{Loc misfits-population-adjust-button}" MinWidth="180" />
+                <LineEdit Name="PopulationAdjustValue" PlaceHolder="{Loc misfits-population-adjust-placeholder}" MinWidth="80" />
+                <Label Text="{Loc misfits-server-tab-population-adjust-desc}" VerticalAlignment="Center" StyleClasses="LabelSubText" />
+            </BoxContainer>
         </BoxContainer>
     </ScrollContainer>
 </Control>

@@ -15,6 +15,9 @@ job-supervisors-chief-ranger = the Ranger code and your own judgment
 job-supervisors-ncr-ranger-recruit = the Patrol Rangers and Field Rangers above you # #Misfits Add
 job-supervisors-supermutant = your instincts and the strongest among you
 
+# #Misfits Add (Phase G) - C-27 Humanoid Robot supervisor string.
+job-supervisors-c27 = your factory directives and your own emergent judgement
+
 # #Misfits Add — New consolidated Brotherhood of Steel supervisor strings.
 job-supervisors-bos-west-elder = no one, but your duty to the Brotherhood
 # #Misfits Add: missing key — used by bos_headscribe.yml (Head Scribe reports to Elder)

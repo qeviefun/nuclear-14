@@ -1,0 +1,41 @@
+# C-27 humanoid robot body prototype. #Misfits Add
+# 8-part humanoid layout (head, torso, 2x arms, 2x hands, 2x legs) — no separate feet
+# because the DMI source sheet does not include foot sprites; legs are terminal.
+# Vital organs: posibrain (mind container) and optical sensors.
+
+- type: body
+  id: C27
+  name: "c-27 humanoid robot"
+  root: torso
+  slots:
+    head:
+      part: MisfitsHeadC27
+      connections:
+      - torso
+      organs:
+        brain: PositronicBrain # #Misfits Add - reuse existing posibrain organ entity
+        eyes: OrganHumanEyes   # #Misfits Add - optical sensors share the standard eyes organ slot
+    torso:
+      part: MisfitsTorsoC27
+      connections:
+      - right arm
+      - left arm
+      - right leg
+      - left leg
+      - head
+    right arm:
+      part: MisfitsRightArmC27
+      connections:
+      - right hand
+    left arm:
+      part: MisfitsLeftArmC27
+      connections:
+      - left hand
+    right hand:
+      part: MisfitsRightHandC27
+    left hand:
+      part: MisfitsLeftHandC27
+    right leg:
+      part: MisfitsRightLegC27
+    left leg:
+      part: MisfitsLeftLegC27

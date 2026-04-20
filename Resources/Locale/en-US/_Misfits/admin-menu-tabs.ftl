@@ -183,6 +183,11 @@ misfits-server-tab-persistent-decal-spawn-desc = Open the persistent decal spawn
 misfits-persistent-decal-spawn-window-title = Persistent Decal Spawn
 misfits-persistent-decal-spawn-window-notice = Decals placed via this panel persist across rounds.
 
+# Population Adjust (Server tab) — live-raises the engine connection cap without restart
+misfits-population-adjust-button = Population Adjust
+misfits-population-adjust-placeholder = e.g. 150
+misfits-server-tab-population-adjust-desc = Live-raise the server connection cap. Also syncs net.max_connections, game.maxplayers, game.soft_max_players. Does NOT update whitelist prototype caps.
+
 # Whitelisting tab button descriptions
 misfits-whitelisting-tab-role-whitelists-btn = Role Whitelists Menu
 misfits-whitelisting-tab-role-whitelists-desc = Search for players and manage their job/role whitelists.

@@ -50,6 +50,10 @@ job-description-supermutant = You are a hulking FEV-mutated humanoid, towering o
 job-name-supermutant-gladiator = Supermutant Gladiator
 job-description-supermutant-gladiator = You are an arena-forged supermutant who lives for close combat and spectacle. Wear your gladiator kit proudly and prove your strength in the wasteland.
 
+# #Misfits Add (Phase G) - C-27 Humanoid Robot job locale.
+job-name-c27 = C-27 Humanoid Robot
+job-description-c27 = You are a C-27 humanoid robot — a pre-war General Atomics workshop frame retrofitted for Wasteland service. Slow but durable, immune to flash and broken glass, and self-repairing. Choose your factory paint, serve your masters, or carve your own path through the wastes.
+
 # #Misfits Add — Western BoS chapter command-tier jobs (Elder + Head Scribe).
 # These keys were commented out in the Corvax locale when the Corvax west-BoS chapter
 # was removed, but the Misfits bos_elder.yml and bos_headscribe.yml prototypes still reference them.

@@ -1,5 +1,6 @@
 ## Species Names
 species-name-supermutant = Supermutant
+species-name-c27 = C-27 Humanoid Robot
 species-name-robot = Robot
 species-name-robot-mr-handy = Mr. Handy
 species-name-robot-protectron = Protectron

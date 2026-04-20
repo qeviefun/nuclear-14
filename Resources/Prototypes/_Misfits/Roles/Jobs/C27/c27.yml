@@ -1,0 +1,54 @@
+# C-27 Humanoid Robot — department + job + playtime tracker. #Misfits Add (Phase G)
+# Mirrors the Synthetics/SuperMutant whitelist-only species-job pattern: one department
+# ("C-27 Autonomous Unit") containing one job (C27), locked behind admin job whitelist
+# and CharacterSpeciesRequirement so only whitelisted players who selected the C27
+# species in the character editor can take the role. Registers PlayerRobot faction so
+# C-27 units share alliance rules with existing player robots / SentryBots / HostileRobots.
+# Cosmetic faction skin (NCR / BoS / Generic) is selected via the Phase C marking, not
+# via separate jobs.
+
+- type: department
+  id: C27Unit
+  description: department-C27Unit-description
+  color: "#8a96a3" # light brushed-steel grey, distinct from Robots (#607d8b)
+  weight: -100 # group with Robots / FEVMutants / Enclave special departments
+  roles:
+  - C27
+
+- type: job
+  id: C27
+  name: job-name-c27
+  description: job-description-c27
+  playTimeTracker: C27
+  icon: JobIconBorg
+  supervisors: job-supervisors-c27
+  canBeAntag: false
+  setPreference: true
+  overrideConsoleVisibility: true
+  whitelisted: true # admin job whitelist required (jobwhitelistadd <player> C27)
+  hideWithoutWhitelist: true
+  jobWhitelistBypassesRoleTimers: true
+  spawnLoadout: false # loadouts come in Phase H
+  applyTraits: true # allow trait/perk picks like SuperMutant
+  startingGear: C27Gear
+  requirements:
+  - !type:CharacterSpeciesRequirement
+    species:
+    - C27
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - PlayerRobot
+
+# Minimal starting gear: chassis jumpsuit (the visible "metal body" cosmetic) so the
+# C-27 doesn't spawn naked. Outer armor and helmet selection happen via the loadout
+# system in Phase H. The empty-id case still triggers EquipIdCard in StationSpawningSystem.
+- type: startingGear
+  id: C27Gear
+  equipment:
+    jumpsuit: ClothingC27Chassis
+
+- type: playTimeTracker
+  id: C27

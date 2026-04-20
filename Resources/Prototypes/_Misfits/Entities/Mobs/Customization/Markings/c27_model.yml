@@ -1,0 +1,49 @@
+# C-27 Humanoid Robot — cosmetic Model selector (Phase C). #Misfits Add
+# Three "factory paint" variants exposed as required Chest markings. They tint the body
+# torso sprite with a faction-themed color so the player can pick which manufacturer chassis
+# their C-27 was built as. Purely cosmetic — armor whitelists are gated separately in Phase D.
+
+- type: marking
+  id: C27ModelGeneric
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [C27]
+  forcedColoring: true
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#9a8a72" # neutral wasteland gunmetal — matches default skin tone
+  sprites:
+  - sprite: _Misfits/Mobs/Species/C27/parts.rsi
+    state: torso_m
+
+- type: marking
+  id: C27ModelNCR
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [C27]
+  forcedColoring: true
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#b59548" # NCR khaki/yellow
+  sprites:
+  - sprite: _Misfits/Mobs/Species/C27/parts.rsi
+    state: torso_m
+
+- type: marking
+  id: C27ModelBoS
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [C27]
+  forcedColoring: true
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#2c4a6e" # Brotherhood of Steel deep blue
+  sprites:
+  - sprite: _Misfits/Mobs/Species/C27/parts.rsi
+    state: torso_m

@@ -1,0 +1,106 @@
+# C-27 Humanoid Robot species. #Misfits Add
+# A whitelist-only synthetic humanoid race built around the SS13 Hail-Mary "Humanoid Robot" concept.
+# Same humanoid silhouette as humans (uses the same equipment slots) but with a metallic chassis
+# and species-locked outer armor (see _Misfits/InventoryTemplates/c27_inventory_template.yml).
+
+- type: species
+  id: C27
+  name: species-name-c27
+  roundStart: true
+  order: 4 # #Misfits Add - sort just after Super Mutant, before Robot variants
+  whitelistRequired: true # #Misfits Add - administrative whitelist gate
+  restrictedCustomization: true # #Misfits Add - keep marking choices controlled per faction skin
+  jobWhitelistUnlock: C27 # #Misfits Add (Phase G) - C27 job whitelist also unlocks species visibility
+  restrictedJobs: # #Misfits Add (Phase G) - C-27 chassis can only take the C27 job
+  - C27
+  prototype: N14MobC27
+  sprites: MobC27Sprites
+  markingLimits: MobC27MarkingLimits
+  dollPrototype: N14MobC27Dummy
+  skinColoration: Hues
+  defaultSkinTone: "#9a8a72"
+  minHeight: 1.0
+  defaultHeight: 1.0
+  maxHeight: 1.0
+  minWidth: 1.0
+  defaultWidth: 1.0
+  maxWidth: 1.0
+  sexes:
+  - Unsexed
+
+# Body sprite layer mapping for the C-27 humanoid robot.
+# All limbs use the unified C-27 parts.rsi (no sex/feet split — DMI source has no foot frames).
+- type: speciesBaseSprites
+  id: MobC27Sprites
+  sprites:
+    Head: MobC27Head
+    Chest: MobC27Torso
+    LArm: MobC27LArm
+    RArm: MobC27RArm
+    LHand: MobC27LHand
+    RHand: MobC27RHand
+    LLeg: MobC27LLeg
+    RLeg: MobC27RLeg
+
+# Marking allotments. Chest is required so every C-27 picks a faction "Model" paint
+# (Generic / NCR / Brotherhood) — see _Misfits/Entities/Mobs/Customization/Markings/c27_model.yml.
+- type: markingPoints
+  id: MobC27MarkingLimits
+  onlyWhitelisted: true
+  points:
+    Chest:
+      points: 1
+      required: true # #Misfits Add - force a Model selection on character creation
+      defaultMarkings: [C27ModelGeneric]
+    Head:
+      points: 1
+      required: false
+
+# --- Per-bodypart sprite definitions ---
+- type: humanoidBaseSprite
+  id: MobC27Head
+  baseSprite:
+    sprite: _Misfits/Mobs/Species/C27/parts.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: MobC27Torso
+  baseSprite:
+    sprite: _Misfits/Mobs/Species/C27/parts.rsi
+    state: torso_m
+
+- type: humanoidBaseSprite
+  id: MobC27LArm
+  baseSprite:
+    sprite: _Misfits/Mobs/Species/C27/parts.rsi
+    state: l_arm
+
+- type: humanoidBaseSprite
+  id: MobC27RArm
+  baseSprite:
+    sprite: _Misfits/Mobs/Species/C27/parts.rsi
+    state: r_arm
+
+- type: humanoidBaseSprite
+  id: MobC27LHand
+  baseSprite:
+    sprite: _Misfits/Mobs/Species/C27/parts.rsi
+    state: l_hand
+
+- type: humanoidBaseSprite
+  id: MobC27RHand
+  baseSprite:
+    sprite: _Misfits/Mobs/Species/C27/parts.rsi
+    state: r_hand
+
+- type: humanoidBaseSprite
+  id: MobC27LLeg
+  baseSprite:
+    sprite: _Misfits/Mobs/Species/C27/parts.rsi
+    state: l_leg
+
+- type: humanoidBaseSprite
+  id: MobC27RLeg
+  baseSprite:
+    sprite: _Misfits/Mobs/Species/C27/parts.rsi
+    state: r_leg

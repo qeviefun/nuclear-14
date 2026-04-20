@@ -1,0 +1,150 @@
+# C-27 humanoid robot body parts. #Misfits Add
+# Inorganic damage container — no Toxin/Airloss/Genetic; just Brute + Burn (Heat/Shock).
+# This makes them naturally immune to oxy/tox/rad damage at the part level (Phase F also
+# layers explicit damage modifiers on the mob entity itself).
+
+- type: entity
+  id: MisfitsPartC27
+  parent: [BaseItem, BasePart]
+  name: "c-27 chassis part"
+  abstract: true
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic # standard metallic resists; tweaked via mob-level modifier in Phase F
+  - type: BodyPart
+    severIntegrity: 150
+    integrityThresholds:
+      CriticallyWounded: 150
+      HeavilyWounded: 120
+      ModeratelyWounded: 90
+      SomewhatWounded: 60
+      LightlyWounded: 30
+      Healthy: 15
+  - type: ContainerContainer
+    containers:
+      bodypart: !type:Container
+        ents: []
+  - type: StaticPrice
+    price: 0
+  # No Extractable — robotic chassis pieces don't yield biological reagents.
+
+- type: entity
+  id: MisfitsTorsoC27
+  name: "c-27 torso"
+  parent: [MisfitsPartC27, BaseTorso]
+  components:
+  - type: Sprite
+    sprite: _Misfits/Mobs/Species/C27/parts.rsi
+    state: "torso_m"
+  - type: StaticPrice
+    price: 20
+  - type: Item
+    size: Large
+
+- type: entity
+  id: MisfitsHeadC27
+  name: "c-27 head"
+  parent: [MisfitsPartC27, BaseHead]
+  components:
+  - type: Sprite
+    sprite: _Misfits/Mobs/Species/C27/parts.rsi
+    state: "head_m"
+  - type: Icon
+    sprite: _Misfits/Mobs/Species/C27/parts.rsi
+    state: "head_m"
+  - type: BodyPart
+    partType: Head
+    vital: true
+  - type: Input
+    context: "ghost"
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 0
+    baseSprintSpeed: 0
+  - type: InputMover
+  - type: GhostOnMove
+  - type: Tag
+    tags:
+      - Head
+  - type: StaticPrice
+    price: 25 # head houses the posibrain — premium part
+  - type: Item
+    size: Normal
+
+- type: entity
+  id: MisfitsLeftArmC27
+  name: "left c-27 arm"
+  parent: [MisfitsPartC27, BaseLeftArm]
+  components:
+  - type: Sprite
+    sprite: _Misfits/Mobs/Species/C27/parts.rsi
+    state: "l_arm"
+  - type: StaticPrice
+    price: 12
+  - type: Item
+    size: Normal
+
+- type: entity
+  id: MisfitsRightArmC27
+  name: "right c-27 arm"
+  parent: [MisfitsPartC27, BaseRightArm]
+  components:
+  - type: Sprite
+    sprite: _Misfits/Mobs/Species/C27/parts.rsi
+    state: "r_arm"
+  - type: StaticPrice
+    price: 12
+  - type: Item
+    size: Normal
+
+- type: entity
+  id: MisfitsLeftHandC27
+  name: "left c-27 hand"
+  parent: [MisfitsPartC27, BaseLeftHand]
+  components:
+  - type: Sprite
+    sprite: _Misfits/Mobs/Species/C27/parts.rsi
+    state: "l_hand"
+  - type: StaticPrice
+    price: 6
+  - type: Item
+    size: Small
+
+- type: entity
+  id: MisfitsRightHandC27
+  name: "right c-27 hand"
+  parent: [MisfitsPartC27, BaseRightHand]
+  components:
+  - type: Sprite
+    sprite: _Misfits/Mobs/Species/C27/parts.rsi
+    state: "r_hand"
+  - type: StaticPrice
+    price: 6
+  - type: Item
+    size: Small
+
+- type: entity
+  id: MisfitsLeftLegC27
+  name: "left c-27 leg"
+  parent: [MisfitsPartC27, BaseLeftLeg]
+  components:
+  - type: Sprite
+    sprite: _Misfits/Mobs/Species/C27/parts.rsi
+    state: "l_leg"
+  - type: StaticPrice
+    price: 12
+  - type: Item
+    size: Normal
+
+- type: entity
+  id: MisfitsRightLegC27
+  name: "right c-27 leg"
+  parent: [MisfitsPartC27, BaseRightLeg]
+  components:
+  - type: Sprite
+    sprite: _Misfits/Mobs/Species/C27/parts.rsi
+    state: "r_leg"
+  - type: StaticPrice
+    price: 12
+  - type: Item
+    size: Normal

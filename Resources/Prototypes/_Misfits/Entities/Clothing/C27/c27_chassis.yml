@@ -1,0 +1,15 @@
+# #Misfits Add - C-27 humanoid robot chassis uniform.
+# This is the "factory body shell" jumpsuit worn under armor. The Sprite reuses the C-27 body
+# parts.rsi `Full body` state as the on-mob render (no dedicated chassis on-mob frame in the DMI).
+# No species gate: humans wearing it just look like they're cosplaying a robot — harmless.
+
+- type: entity
+  parent: UnsensoredClothingUniformBase
+  id: ClothingC27Chassis
+  name: c-27 chassis plating
+  description: A set of dull metal body plates that bolt onto the standard C-27 frame. Functionally a uniform — the unit's actual armor goes over this.
+  components:
+  - type: Sprite
+    sprite: _Misfits/Clothing/Uniforms/Jumpsuit/c27_chassis.rsi
+  - type: Clothing
+    sprite: _Misfits/Clothing/Uniforms/Jumpsuit/c27_chassis.rsi
