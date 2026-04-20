@@ -3364,3 +3364,10 @@ Entries:
   id: 5747
   time: '2026-04-20T04:44:46.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/306
+- author: Fox
+  changes:
+    - type: Fix
+      message: Fixed broken base SS14 Soundfont by adding a higher quality one
+  id: 5748
+  time: '2026-04-20T21:40:13.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/305
