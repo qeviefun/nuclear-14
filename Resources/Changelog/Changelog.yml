@@ -3371,3 +3371,36 @@ Entries:
   id: 5748
   time: '2026-04-20T21:40:13.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/305
+- author: Bill Clinton
+  changes:
+    - type: Add
+      message: >-
+        Gave NCRA specialist gunner the NCR .50 single shot sniper. Bring down
+        the pain on the heavy armor of legion and brotherhood.
+    - type: Remove
+      message: removed NCRA specialist BAR, NCR suffers legion celebrates
+    - type: Remove
+      message: Removed vet decanus M240B, legion suffers NCR celebrates
+    - type: Tweak
+      message: >-
+        Fixed the M60 to be an M60. Slower fire, heavy bullets, low mag capacity
+        relative to other MGs.
+    - type: Add
+      message: >-
+        decanus and prime decanus are now the M60 gunners. This spreads
+        responsibility across the roles while also making it more versatile. Be
+        the anchor in the horde.
+    - type: Tweak
+      message: >-
+        vet decanus given more specialized equipment for armor hunting and crowd
+        control. Beat them back on the frontline and crack open their powered
+        suits.
+    - type: Tweak
+      message: buffed super sledge since it wasn't performing as well as some others
+    - type: Tweak
+      message: >-
+        Changed NCRA specialist gunner kit from "gunner" to "heavy sniper" to
+        reflect their job and priorities 
+  id: 5749
+  time: '2026-04-20T21:41:08.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/307
