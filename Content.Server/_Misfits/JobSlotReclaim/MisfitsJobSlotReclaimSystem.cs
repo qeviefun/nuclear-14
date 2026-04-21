@@ -62,7 +62,9 @@ public sealed class MisfitsJobSlotReclaimSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawnComplete);
-        SubscribeLocalEvent<MobStateComponent, MobStateChangedEvent>(OnMobStateChanged);
+        // #Misfits Fix - Use broadcast subscription to avoid duplicate directed <MobStateComponent, MobStateChangedEvent>
+        //               registration conflict with SharedStunSystem (RobustToolbox only allows one subscriber per pair).
+        SubscribeLocalEvent<MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
     }
 
@@ -130,17 +132,17 @@ public sealed class MisfitsJobSlotReclaimSystem : EntitySystem
             ev.Profile.Name);
     }
 
-    private void OnMobStateChanged(Entity<MobStateComponent> ent, ref MobStateChangedEvent args)
+    private void OnMobStateChanged(MobStateChangedEvent args)
     {
         if (args.NewMobState == MobState.Dead)
         {
-            HandleDeath(ent.Owner);
+            HandleDeath(args.Target);
             return;
         }
 
         if (args.OldMobState == MobState.Dead && args.NewMobState != MobState.Dead)
         {
-            HandleRevive(ent.Owner);
+            HandleRevive(args.Target);
         }
     }
 
