@@ -44,6 +44,7 @@
             - CaesarLegion
         - type: ReplacementAccent
           accent: latin
+        - type: CPRTraining # Priestess is a former Auxilia and serves as Legion support officer; retains medical training.
         - type: Warcry
           action: ActionMarsWarcry
           targetDepartment: CaesarLegion
