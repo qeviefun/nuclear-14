@@ -353,13 +353,13 @@
             - tool: Prying
               doAfter: 5
           completed:
-            - !type:GivePrototype
+            - !type:SpawnPrototype
               prototype: MaterialWoodPlank1
               amount: 3
-            - !type:GivePrototype
+            - !type:SpawnPrototype
               prototype: MaterialCloth1
               amount: 3
-            - !type:DeleteEntity {}
+            - !type:DeleteEntity 
 
 - type: constructionGraph
   id: DecorationFlagOasis
@@ -387,14 +387,13 @@
             - tool: Cutting
               doAfter: 3
           completed:
-            - !type:GivePrototype
+            - !type:SpawnPrototype
               prototype: MaterialWoodPlank1
               amount: 3
-            - !type:GivePrototype
+            - !type:SpawnPrototype
               prototype: MaterialCloth1
               amount: 3
-            - !type:DeleteEntity {}
-
+            - !type:DeleteEntity 
 
 - type: constructionGraph
   id: DecorationFlagBrotherhoodWashington
@@ -402,8 +401,7 @@
   graph:
     - node: start
       edges:
-        - to: flagbcoas
-          steps:
+        - to: FlagBrotherhoodWashington
           steps:
             - material: WoodPlank
               amount: 5
@@ -423,13 +421,13 @@
             - tool: Prying
               doAfter: 5
           completed:
-            - !type:GivePrototype
+            - !type:SpawnPrototype
               prototype: MaterialWoodPlank1
               amount: 3
-            - !type:GivePrototype
+            - !type:SpawnPrototype
               prototype: MaterialCloth1
               amount: 3
-            - !type:DeleteEntity {}
+            - !type:DeleteEntity 
 
 - type: constructionGraph
   id: DecorationFlagEnclave
@@ -457,13 +455,13 @@
             - tool: Prying
               doAfter: 5
           completed:
-            - !type:GivePrototype
+            - !type:SpawnPrototype
               prototype: MaterialWoodPlank1
               amount: 3
-            - !type:GivePrototype
+            - !type:SpawnPrototype
               prototype: MaterialCloth1
               amount: 3
-            - !type:DeleteEntity {}
+            - !type:DeleteEntity 
 
 - type: constructionGraph
   id: DecorationFlagHighvalleyhills
@@ -490,13 +488,13 @@
             - tool: Prying
               doAfter: 5
           completed:
-            - !type:GivePrototype
+            - !type:SpawnPrototype
               prototype: MaterialWoodPlank1
               amount: 3
-            - !type:GivePrototype
+            - !type:SpawnPrototype
               prototype: MaterialCloth1
               amount: 3
-            - !type:DeleteEntity {}
+            - !type:DeleteEntity 
 
 - type: constructionGraph
   id: DecorationFlagVaultTecCityCoalition
@@ -523,13 +521,13 @@
             - tool: Prying
               doAfter: 5
           completed:
-            - !type:GivePrototype
+            - !type:SpawnPrototype
               prototype: MaterialWoodPlank1
               amount: 3
-            - !type:GivePrototype
+            - !type:SpawnPrototype
               prototype: MaterialCloth1
               amount: 3
-            - !type:DeleteEntity {}
+            - !type:DeleteEntity 
 
 - type: constructionGraph
   id: DecorationFlagKhans
@@ -557,13 +555,13 @@
             - tool: Prying
               doAfter: 5
           completed:
-            - !type:GivePrototype
+            - !type:SpawnPrototype
               prototype: MaterialWoodPlank1
               amount: 3
-            - !type:GivePrototype
+            - !type:SpawnPrototype
               prototype: MaterialCloth1
               amount: 3
-            - !type:DeleteEntity {}
+            - !type:DeleteEntity 
 
 - type: constructionGraph
   id: DecorationFlagChurch
@@ -591,10 +589,10 @@
             - tool: Prying
               doAfter: 5
           completed:
-            - !type:GivePrototype
+            - !type:SpawnPrototype
               prototype: MaterialWoodPlank1
               amount: 3
-            - !type:GivePrototype
+            - !type:SpawnPrototype
               prototype: MaterialCloth1
               amount: 3
-            - !type:DeleteEntity {}
+            - !type:DeleteEntity 
