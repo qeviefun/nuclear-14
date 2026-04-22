@@ -217,6 +217,11 @@ public sealed class DefibrillatorSystem : EntitySystem
         var sound = !result.Revived || !result.HasMindSession
             ? component.FailureSound
             : component.SuccessSound;
+        // #Misfits Tweak - When the consent prompt was sent the body is not yet revived
+        // (we're awaiting the player's choice), but the defib functioned correctly — play
+        // the success sound so the medic doesn't think the zap failed.
+        if (result.PromptSent)
+            sound = component.SuccessSound;
         _audio.PlayPvs(sound, uid);
 
         // if we don't have enough power left for another shot, turn it off

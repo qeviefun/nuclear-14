@@ -61,41 +61,93 @@ public sealed class ResuscitationSystem : EntitySystem
             return default;
 
         if (_rotting.IsRotten(target))
-            return new ResuscitationResult(false, true, false);
+            return new ResuscitationResult(false, true, false, false);
 
-        var revived = false;
-        if (_mobState.IsDead(target, mobState))
-            _damageable.TryChangeDamage(target, reviveHeal, true, origin: source);
+        // Only dead targets are subject to the consent flow. If they aren't dead there's
+        // nothing to revive here (callers gate on CanResuscitate, but stay defensive).
+        if (!_mobState.IsDead(target, mobState))
+            return new ResuscitationResult(false, false, false, false);
 
-        if (_mobThreshold.TryGetThresholdForState(target, MobState.Dead, out var threshold) &&
-            TryComp<DamageableComponent>(target, out var damageableComponent) &&
-            damageableComponent.TotalDamage < threshold)
-        {
-            _mobState.ChangeMobState(target, MobState.Critical, mobState, user);
-            revived = true;
-
-            if (!string.IsNullOrWhiteSpace(reviveDoKey))
-            {
-                _chat.TrySendInGameDoMessage(target,
-                    Loc.GetString(reviveDoKey, ("target", target)),
-                    ChatTransmitRange.Normal,
-                    hideLog: true,
-                    ignoreActionBlocker: true);
-            }
-        }
-
+        // Look up the ghost's session.
         ICommonSession? session = null;
-        if (_mind.TryGetMind(target, out _, out var mind) &&
-            mind.Session is { } playerSession)
+        MindComponent? mindComp = null;
+        if (_mind.TryGetMind(target, out _, out var mind) && mind.Session is { } playerSession)
         {
             session = playerSession;
-
-            if (mind.CurrentEntity != target)
-                _euiManager.OpenEui(new ReturnToBodyEui(mind, _mind), session);
+            mindComp = mind;
         }
 
-        return new ResuscitationResult(revived, false, session != null);
+        // No active session (SSD / disconnected) → cannot consent, do not revive.
+        // The caller's "no mind" feedback message still plays via HasMindSession=false.
+        if (session == null || mindComp == null)
+            return new ResuscitationResult(false, false, false, false);
+
+        // Mind is still attached to the body (player hasn't ghosted yet) → revive directly,
+        // no prompt needed since they're already "there".
+        if (mindComp.CurrentEntity == target)
+        {
+            var revivedNow = PerformRevive(source, target, user, reviveHeal, reviveDoKey, mobState, thresholds);
+            return new ResuscitationResult(revivedNow, false, true, false);
+        }
+
+        // Mind is ghosted → ask first. Heal + state change only run if the player accepts.
+        // Capture locals so the closure has stable references.
+        var sourceCopy = source;
+        var targetCopy = target;
+        var userCopy = user;
+        var healCopy = reviveHeal;
+        var keyCopy = reviveDoKey;
+        _euiManager.OpenEui(new ReturnToBodyEui(mindComp, _mind, () =>
+        {
+            // Re-validate at acceptance time — target may have been deleted, rotted,
+            // or already revived by another medic between prompt and acceptance.
+            if (Deleted(targetCopy) || _rotting.IsRotten(targetCopy))
+                return;
+            if (!TryComp<MobStateComponent>(targetCopy, out var ms) ||
+                !TryComp<MobThresholdsComponent>(targetCopy, out var th))
+                return;
+            if (!_mobState.IsDead(targetCopy, ms))
+                return;
+
+            PerformRevive(sourceCopy, targetCopy, userCopy, healCopy, keyCopy, ms, th);
+        }), session);
+
+        return new ResuscitationResult(false, false, true, true);
+    }
+
+    // #Misfits Add - Centralised heal + state transition. Called either immediately
+    // (mind in body) or from the ReturnToBodyEui accept callback (mind ghosted).
+    private bool PerformRevive(
+        EntityUid source,
+        EntityUid target,
+        EntityUid user,
+        DamageSpecifier reviveHeal,
+        string? reviveDoKey,
+        MobStateComponent mobState,
+        MobThresholdsComponent thresholds)
+    {
+        _damageable.TryChangeDamage(target, reviveHeal, true, origin: source);
+
+        if (!_mobThreshold.TryGetThresholdForState(target, MobState.Dead, out var threshold) ||
+            !TryComp<DamageableComponent>(target, out var damageableComponent) ||
+            damageableComponent.TotalDamage >= threshold)
+            return false;
+
+        _mobState.ChangeMobState(target, MobState.Critical, mobState, user);
+
+        if (!string.IsNullOrWhiteSpace(reviveDoKey))
+        {
+            _chat.TrySendInGameDoMessage(target,
+                Loc.GetString(reviveDoKey, ("target", target)),
+                ChatTransmitRange.Normal,
+                hideLog: true,
+                ignoreActionBlocker: true);
+        }
+
+        return true;
     }
 }
 
-public readonly record struct ResuscitationResult(bool Revived, bool Rotten, bool HasMindSession);
+// #Misfits Tweak - Added PromptSent so callers can distinguish "asked the player,
+// awaiting decision" from a hard failure and play an appropriate sound/message.
+public readonly record struct ResuscitationResult(bool Revived, bool Rotten, bool HasMindSession, bool PromptSent);

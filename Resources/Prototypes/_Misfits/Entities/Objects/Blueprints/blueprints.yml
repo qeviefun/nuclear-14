@@ -410,6 +410,7 @@
     - N14BPLegionAmmoBox50
     - N14BPLegionAmmo40mmGrenadeIncendiary
     - N14BPLegionAmmoMagazine308RifleLong  # #Misfits Add - .308 Long mag for Bren LMG
+    - N14BPLegionAmmoMagazine308M60Box     # #Misfits Add - .308 50-round box mag for M60 LMG
 
 # =====================================================================
 # BROTHERHOOD OF STEEL BLUEPRINTS

@@ -2492,5 +2492,21 @@
 
     N14Gunpowder: 15
 
+# #Misfits Add - T4 ammo for M60 LMG (.308 box magazine, 50-round box). Same material cost as Bren mag per design intent.
+- type: latheRecipe
+  id: N14BPLegionAmmoMagazine308M60Box
+  result: Magazine308M60Box
+  category: N14BlueprintLegionAmmoT4
+  completetime: 8
+  requiresBlueprint: true
+  availableFaction:
+  - CaesarLegion
+  materials:
+    Steel: 2500
+
+    Lead: 25
+
+    N14Gunpowder: 15
+
 
 

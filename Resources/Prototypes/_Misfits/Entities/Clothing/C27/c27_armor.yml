@@ -12,7 +12,10 @@
 
 - type: entity
   abstract: true
-  parent: ClothingOuterBase
+  # #Misfits Fix - add AllowSuitStorageClothing so the c27 inventory template's suitstorage
+  # slot (gated by dependsOnComponents: AllowSuitStorage) becomes usable while wearing C-27
+  # armor. Mirrors how standard combat armor enables suit storage in upstream armor.yml.
+  parent: [ClothingOuterBase, AllowSuitStorageClothing]
   id: BaseC27Armor
   components:
   - type: MisfitsC27Armor
