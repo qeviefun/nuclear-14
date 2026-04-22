@@ -1017,3 +1017,200 @@
     Lead: 150
     N14Gunpowder: 1
 
+# =====================================================================
+# #Misfits Add - HELMET RECIPES
+# Helmets pair with their armor tier so players can craft a matching head
+# slot when their issued one breaks. Material costs are scaled to be lighter
+# than the body armor they pair with.
+# =====================================================================
+
+# --- Vault Tier 1 Helmets (security riot) ---
+- type: latheRecipe
+  id: N14BPVaultArmorHelmetVaultRiot
+  result: N14ClothingHeadHatVaultRiot
+  category: N14BlueprintVaultArmorT1
+  completetime: 4
+  requiresBlueprint: true
+  availableFaction:
+  - Vault
+  materials:
+    Steel: 600
+    Plastic: 100
+    Cloth: 4
+
+# --- Vault Tier 2 Helmets (basic metal) ---
+- type: latheRecipe
+  id: N14BPVaultArmorHelmetMetal
+  result: N14ClothingHeadHatBaseHelmetMetal
+  category: N14BlueprintVaultArmorT2
+  completetime: 5
+  requiresBlueprint: true
+  availableFaction:
+  - Vault
+  materials:
+    Steel: 1200
+    Cloth: 5
+    Leather: 3
+
+# --- Vault Tier 3 Helmets (combat) ---
+- type: latheRecipe
+  id: N14BPVaultArmorHelmetCombat
+  result: N14ClothingHeadHatCombatHelmet
+  category: N14BlueprintVaultArmorT3
+  completetime: 8
+  requiresBlueprint: true
+  availableFaction:
+  - Vault
+  materials:
+    Steel: 2000
+    Cloth: 8
+    Leather: 4
+    Plastic: 100
+
+# --- Vault Tier 4 Helmets (combat MK2 / marine) ---
+- type: latheRecipe
+  id: N14BPVaultArmorHelmetCombatMK2
+  result: N14ClothingHeadHatCombatHelmetMK2
+  category: N14BlueprintVaultArmorT4
+  completetime: 12
+  requiresBlueprint: true
+  availableFaction:
+  - Vault
+  materials:
+    Steel: 4000
+    Cloth: 10
+    Leather: 5
+    Circuitry: 5
+
+- type: latheRecipe
+  id: N14BPVaultArmorHelmetMarine
+  result: N14ClothingHeadHatBaseHelmetmarine
+  category: N14BlueprintVaultArmorT4
+  completetime: 12
+  requiresBlueprint: true
+  availableFaction:
+  - Vault
+  materials:
+    Steel: 4000
+    Cloth: 10
+    Leather: 5
+    Circuitry: 5
+
+# --- Tribe Tier 1 Helmets (head wraps / drylander) ---
+- type: latheRecipe
+  id: N14BPTribeArmorHelmetTribalHeadWraps
+  result: N14ClothingTribalHeadWraps
+  category: N14BlueprintTribeArmorT1
+  completetime: 3
+  requiresBlueprint: true
+  availableFaction:
+  - Tribe
+  materials:
+    Cloth: 8
+    Thread: 5
+
+- type: latheRecipe
+  id: N14BPTribeArmorHelmetDrylanderGoggles
+  result: N14ClothingDrylanderGoggles
+  category: N14BlueprintTribeArmorT1
+  completetime: 4
+  requiresBlueprint: true
+  availableFaction:
+  - Tribe
+  materials:
+    Leather: 5
+    Cloth: 4
+    Glass: 100
+
+# --- Tribe Tier 2 Helmets (warrior wraps / hunter hood) ---
+- type: latheRecipe
+  id: N14BPTribeArmorHelmetTribalShemagh
+  result: N14ClothingTribalShemagh
+  category: N14BlueprintTribeArmorT2
+  completetime: 4
+  requiresBlueprint: true
+  availableFaction:
+  - Tribe
+  materials:
+    Cloth: 10
+    Thread: 6
+
+- type: latheRecipe
+  id: N14BPTribeArmorHelmetTribalHunterHood
+  result: N14ClothingTribalHunterHood
+  category: N14BlueprintTribeArmorT2
+  completetime: 5
+  requiresBlueprint: true
+  availableFaction:
+  - Tribe
+  materials:
+    Cloth: 12
+    Thread: 8
+    Leather: 5
+
+# --- Tribe Tier 3 Helmets (champion / shaman) ---
+- type: latheRecipe
+  id: N14BPTribeArmorHelmetTribalShamanHat
+  result: N14ClothingTribalShamanHat
+  category: N14BlueprintTribeArmorT3
+  completetime: 6
+  requiresBlueprint: true
+  availableFaction:
+  - Tribe
+  materials:
+    Cloth: 15
+    Thread: 10
+    Leather: 11
+
+- type: latheRecipe
+  id: N14BPTribeArmorHelmetTribalShamanHeadband
+  result: N14ClothingTribalShamanHeadband
+  category: N14BlueprintTribeArmorT3
+  completetime: 5
+  requiresBlueprint: true
+  availableFaction:
+  - Tribe
+  materials:
+    Cloth: 12
+    Thread: 8
+    Leather: 5
+
+- type: latheRecipe
+  id: N14BPTribeArmorHelmetHeadtakerwraps
+  result: N14ClothingHeadTakerwraps
+  category: N14BlueprintTribeArmorT3
+  completetime: 6
+  requiresBlueprint: true
+  availableFaction:
+  - Tribe
+  materials:
+    Cloth: 15
+    Thread: 10
+    Leather: 8
+
+# --- Tribe Tier 4 Helmets (sacred / elder) ---
+- type: latheRecipe
+  id: N14BPTribeArmorHelmetRadstagSkull
+  result: N14ClothingTribalRadstagSkull
+  category: N14BlueprintTribeArmorT4
+  completetime: 8
+  requiresBlueprint: true
+  availableFaction:
+  - Tribe
+  materials:
+    Leather: 25
+    Thread: 8
+
+- type: latheRecipe
+  id: N14BPTribeArmorHelmetEdlerSkullhelm
+  result: N14ClothingHeadHatEdlerSkullhelm
+  category: N14BlueprintTribeArmorT4
+  completetime: 10
+  requiresBlueprint: true
+  availableFaction:
+  - Tribe
+  materials:
+    Leather: 32
+    Steel: 1500
+    Thread: 10
+

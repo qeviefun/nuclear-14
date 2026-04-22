@@ -38,6 +38,11 @@ job-description-whitelegs = You are a White Leg of the Outlaws. Your tribe paint
 
 job-supervisors-outlaws = the Outlaws leadership
 
+# #Misfits Add - Vault Management: admin-only command role above Overseer
+job-name-vaultmanagement = Vault Management
+job-description-vaultmanagement = You are the administrative overseer of the Vault. Ensure the facility runs smoothly, manage its residents, and make the hard decisions no one else can. This role is reserved for server administrators.
+job-supervisors-vaultmanagement = the server administrators
+
 # #Misfits Add - NCR Major whitelist-only command billet
 job-name-ncr-major = NCR Major
 job-description-ncr-major = You are the senior command billet of the New California Republic in this region. Your authority supersedes the Captain. Your appointment is by administrative directive — act with restraint and purpose.

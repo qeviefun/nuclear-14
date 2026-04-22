@@ -124,6 +124,10 @@
     - N14BPNCRArmorVestSnow
     - N14BPNCRArmorVestWoods
     - N14BPNCRArmorVestDesert
+    # #Misfits Add - paired helmets so vest sets have matching head protection
+    - N14BPNCRArmorHelmetMetalSnow
+    - N14BPNCRArmorHelmetMetalWoods
+    - N14BPNCRArmorHelmetMetalDesert
 
 - type: entity
   parent: N14BlueprintBase
@@ -139,6 +143,12 @@
     - N14BPNCRArmorPouchedVestDesert
     - N14BPNCRArmorPouchedVestSnow
     - N14BPNCRArmorCFvest
+    # #Misfits Add - paired specialist helmets (radio, MP, medic, ghillie)
+    - N14BPNCRArmorHelmetMetalRadioWood
+    - N14BPNCRArmorHelmetMetalRadioSnow
+    - N14BPNCRArmorHelmetMetalMilitaryPolice
+    - N14BPNCRArmorHelmetMetalMedic
+    - N14BPNCRArmorHelmetMetalGhillie
 
 - type: entity
   parent: N14BlueprintBase
@@ -152,6 +162,11 @@
     - N14BPNCRArmorRangerVest
     - N14BPNCRArmorRangerCoat
     - N14BPNCRArmorRangerDuster
+    # #Misfits Add - paired combat and ranger helmets
+    - N14BPNCRArmorCombatHelmet
+    - N14BPNCRArmorRangerHelmet
+    - N14BPNCRArmorRangerHelmetDesert
+    - N14BPNCRArmorRangerHelmetOld
 
 - type: entity
   parent: N14BlueprintBase
@@ -163,6 +178,11 @@
     recipes:
     - N14BPNCRArmorCombatArmorMK2
     - N14BPNCRArmorPowerArmorT45Sierra
+    # #Misfits Add - paired elite combat and ranger helmets
+    - N14BPNCRArmorCombatHelmetMK2
+    - N14BPNCRArmorRangerHelmetElite
+    # #Misfits Removed - user requested no power armor helmet recipes
+    # - N14BPNCRArmorPowerHelmetT45NCR
 
 # --- NCR Ammo ---
 - type: entity
@@ -322,6 +342,9 @@
     recipes:
     - N14BPLegionArmorRecruitArmor
     - N14BPLegionArmorExplorerArmor
+    # #Misfits Add - paired tribal head wraps for recruits
+    - N14BPLegionArmorHelmetTribalShemagh
+    - N14BPLegionArmorHelmetTribalHeadWraps
 
 - type: entity
   parent: N14BlueprintBase
@@ -334,6 +357,9 @@
     - N14BPLegionArmorBaseArmor
     - N14BPLegionArmorVexillariusArmor
     - N14BPLegionArmorReconArmor
+    # #Misfits Add - paired legionnaire hoods
+    - N14BPLegionArmorHelmetTribalHood
+    - N14BPLegionArmorHelmetTribalOutcastHood
 
 - type: entity
   parent: N14BlueprintBase
@@ -347,6 +373,10 @@
     - N14BPLegionArmorOratorArmor
     - N14BPLegionArmorDeanRecruitArmor
     - N14BPLegionArmorReconnaissanceArmor
+    # #Misfits Add - paired veteran headgear (hunter hoods and trophy skulls)
+    - N14BPLegionArmorHelmetTribalHunterHood
+    - N14BPLegionArmorHelmetHeadtakerwraps
+    - N14BPLegionArmorHelmetMuffaloskull
 
 - type: entity
   parent: N14BlueprintBase
@@ -358,6 +388,9 @@
     recipes:
     - N14BPLegionArmorDeanVeteranArmor
     - N14BPLegionArmorDeanPrimeArmor
+    # #Misfits Add - paired looted pre-war helmets for Centurion-grade kits
+    - N14BPLegionArmorHelmetPrewarMilitaryHelmet
+    - N14BPLegionArmorHelmetMetalHelmet
 
 # --- Legion Ammo ---
 - type: entity
@@ -495,6 +528,8 @@
   - type: Blueprint
     recipes:
     - N14BPBoSArmorWBoSInitiateArmor
+    # #Misfits Add - paired initiate helmet
+    - N14BPBoSArmorHelmetBrotherhood
 
 - type: entity
   parent: N14BlueprintBase
@@ -507,6 +542,9 @@
     - N14BPBoSArmorWBoSSquireArmor
     - N14BPBoSArmorMBoSSquireArmor
     - N14BPBoSArmorMidwestArmor
+    # #Misfits Add - paired knight and midwest helmets
+    - N14BPBoSArmorHelmetBrotherhoodKnight
+    - N14BPBoSArmorHelmetBrotherhoodMidwest
 
 - type: entity
   parent: N14BlueprintBase
@@ -521,6 +559,11 @@
     - N14BPBoSArmorWBoSSeniorKArmor
     - N14BPBoSArmorMBoSSeniorKArmor
     - N14BPBoSArmorMidwestArmorMK2
+    # #Misfits Add - paired captain / paladin / MK2 / midwest veteran helmets
+    - N14BPBoSArmorHelmetBrotherhoodCaptain
+    - N14BPBoSArmorHelmetBrotherhoodPaladin
+    - N14BPBoSArmorHelmetBrotherhoodMK2
+    - N14BPBoSArmorHelmetBrotherhoodMidwestVeteran
 
 - type: entity
   parent: N14BlueprintBase
@@ -531,6 +574,8 @@
   - type: Blueprint
     recipes:
     - N14BPBoSArmorPowerArmorT45
+    # #Misfits Removed - user requested no power armor helmet recipes
+    # - N14BPBoSArmorPowerHelmetT45
 
 # --- BoS Ammo ---
 - type: entity
@@ -674,6 +719,8 @@
     - N14BPTownArmorVestLeather
     - N14BPTownArmorChitinArmor
     - N14BPTownArmorLightLeatherArmor
+    # #Misfits Add - paired basic town guard hat
+    - N14BPTownArmorHelmetTownGuard
 
 - type: entity
   parent: N14BlueprintBase
@@ -687,6 +734,9 @@
     - N14BPTownArmorTownGuardLight
     - N14BPTownArmorReinforcedLeatherArmor
     - N14BPTownArmorLeatherArmor
+    # #Misfits Add - paired Brodie and basic metal helmets
+    - N14BPTownArmorHelmetBrodie
+    - N14BPTownArmorHelmetMetal
 
 - type: entity
   parent: N14BlueprintBase
@@ -700,6 +750,10 @@
     - N14BPTownArmorPoliceCombat
     - N14BPTownArmorSheriffVest
     - N14BPTownArmorMetalArmor
+    # #Misfits Add - paired riot Brodie variants and RCMP helmet
+    - N14BPTownArmorHelmetBrodieCover
+    - N14BPTownArmorHelmetBrodieVisor
+    - N14BPTownArmorHelmetRCMP
 
 - type: entity
   parent: N14BlueprintBase
@@ -712,6 +766,10 @@
     - N14BPTownArmorCombatArmor
     - N14BPTownArmorScavengerHeavyArmor
     - N14BPTownArmorInsectArmor
+    # #Misfits Add - paired combat and pre-war military helmets
+    - N14BPTownArmorHelmetCombat
+    - N14BPTownArmorHelmetCombatCargo
+    - N14BPTownArmorHelmetPrewarMilitary
 
 # --- Town Ammo ---
 - type: entity
@@ -832,6 +890,8 @@
   - type: Blueprint
     recipes:
     - N14BPVaultArmorVaultSecVest
+    # #Misfits Add - paired vault security riot helmet
+    - N14BPVaultArmorHelmetVaultRiot
 
 - type: entity
   parent: N14BlueprintBase
@@ -843,6 +903,8 @@
     recipes:
     - N14BPVaultArmorLightLeatherArmor
     - N14BPVaultArmorReinforcedLeatherArmor
+    # #Misfits Add - paired basic metal helmet
+    - N14BPVaultArmorHelmetMetal
 
 - type: entity
   parent: N14BlueprintBase
@@ -854,6 +916,8 @@
     recipes:
     - N14BPVaultArmorCombatArmor
     - N14BPVaultArmorPoliceCombat
+    # #Misfits Add - paired combat helmet
+    - N14BPVaultArmorHelmetCombat
 
 - type: entity
   parent: N14BlueprintBase
@@ -865,6 +929,9 @@
     recipes:
     - N14BPVaultArmorCombatArmorMK2
     - N14BPVaultArmorMarineArmor
+    # #Misfits Add - paired combat MK2 and marine helmets
+    - N14BPVaultArmorHelmetCombatMK2
+    - N14BPVaultArmorHelmetMarine
 
 # --- Vault Ammo ---
 - type: entity
@@ -985,6 +1052,9 @@
     recipes:
     - N14BPTribeArmorTribalArmor
     - N14BPTribeArmorDrylanderSimple
+    # #Misfits Add - paired tribal head wraps and drylander goggles
+    - N14BPTribeArmorHelmetTribalHeadWraps
+    - N14BPTribeArmorHelmetDrylanderGoggles
 
 - type: entity
   parent: N14BlueprintBase
@@ -998,6 +1068,9 @@
     - N14BPTribeArmorForager
     - N14BPTribeArmorHunter
     - N14BPTribeArmorPoncho
+    # #Misfits Add - paired warrior shemagh and hunter hood
+    - N14BPTribeArmorHelmetTribalShemagh
+    - N14BPTribeArmorHelmetTribalHunterHood
 
 - type: entity
   parent: N14BlueprintBase
@@ -1011,6 +1084,10 @@
     - N14BPTribeArmorHeadtaker
     - N14BPTribeArmorShaman
     - N14BPTribeArmorCombatTribal
+    # #Misfits Add - paired shaman / champion headgear
+    - N14BPTribeArmorHelmetTribalShamanHat
+    - N14BPTribeArmorHelmetTribalShamanHeadband
+    - N14BPTribeArmorHelmetHeadtakerwraps
 
 - type: entity
   parent: N14BlueprintBase
@@ -1022,6 +1099,9 @@
     recipes:
     - N14BPTribeArmorRadArmor
     - N14BPTribeArmorInsectArmor
+    # #Misfits Add - paired sacred elder skull headgear
+    - N14BPTribeArmorHelmetRadstagSkull
+    - N14BPTribeArmorHelmetEdlerSkullhelm
 
 # --- Tribe Ammo ---
 - type: entity

@@ -1882,4 +1882,253 @@
 
     N14Gunpowder: 40
 
+# =====================================================================
+# #Misfits Add - HELMET RECIPES
+# Helmets pair with their armor tier so players can craft a matching head
+# slot when their issued one breaks. Material costs are scaled to be lighter
+# than the body armor they pair with.
+# =====================================================================
+
+# --- BoS Tier 1 Helmets (initiate) ---
+- type: latheRecipe
+  id: N14BPBoSArmorHelmetBrotherhood
+  result: N14ClothingHeadHatBrotherhoodHelmet
+  category: N14BlueprintBoSArmorT1
+  completetime: 5
+  requiresBlueprint: true
+  availableFaction:
+  - BrotherhoodOfSteel
+  materials:
+    Steel: 800
+    Cloth: 5
+    Leather: 3
+
+# --- BoS Tier 2 Helmets (squire / midwest) ---
+- type: latheRecipe
+  id: N14BPBoSArmorHelmetBrotherhoodKnight
+  result: N14ClothingHeadHatBrotherhoodHelmetKnight
+  category: N14BlueprintBoSArmorT2
+  completetime: 7
+  requiresBlueprint: true
+  availableFaction:
+  - BrotherhoodOfSteel
+  materials:
+    Steel: 1500
+    Cloth: 6
+    Leather: 4
+    ScrapElectronic: 3
+
+- type: latheRecipe
+  id: N14BPBoSArmorHelmetBrotherhoodMidwest
+  result: N14ClothingHeadHatBrotherhoodMidwestHelmet
+  category: N14BlueprintBoSArmorT2
+  completetime: 7
+  requiresBlueprint: true
+  availableFaction:
+  - BrotherhoodOfSteel
+  materials:
+    Steel: 1500
+    Cloth: 6
+    Leather: 4
+    ScrapElectronic: 3
+
+# --- BoS Tier 3 Helmets (knight / paladin / midwest veteran) ---
+- type: latheRecipe
+  id: N14BPBoSArmorHelmetBrotherhoodCaptain
+  result: N14ClothingHeadHatBrotherhoodHelmetCaptain
+  category: N14BlueprintBoSArmorT3
+  completetime: 10
+  requiresBlueprint: true
+  availableFaction:
+  - BrotherhoodOfSteel
+  materials:
+    Steel: 2500
+    Cloth: 8
+    Leather: 5
+    Circuitry: 4
+
+- type: latheRecipe
+  id: N14BPBoSArmorHelmetBrotherhoodPaladin
+  result: N14ClothingHeadHatBrotherhoodHelmetPaladin
+  category: N14BlueprintBoSArmorT3
+  completetime: 10
+  requiresBlueprint: true
+  availableFaction:
+  - BrotherhoodOfSteel
+  materials:
+    Steel: 2500
+    Cloth: 8
+    Leather: 5
+    Circuitry: 4
+
+- type: latheRecipe
+  id: N14BPBoSArmorHelmetBrotherhoodMK2
+  result: N14ClothingHeadHatBrotherhoodHelmetMK2
+  category: N14BlueprintBoSArmorT3
+  completetime: 11
+  requiresBlueprint: true
+  availableFaction:
+  - BrotherhoodOfSteel
+  materials:
+    Steel: 2800
+    Cloth: 8
+    Leather: 5
+    Circuitry: 5
+
+- type: latheRecipe
+  id: N14BPBoSArmorHelmetBrotherhoodMidwestVeteran
+  result: N14ClothingHeadHatBrotherhoodMidwestHelmetVeteran
+  category: N14BlueprintBoSArmorT3
+  completetime: 11
+  requiresBlueprint: true
+  availableFaction:
+  - BrotherhoodOfSteel
+  materials:
+    Steel: 2800
+    Cloth: 8
+    Leather: 5
+    Circuitry: 5
+
+# #Misfits Removed - user requested no power armor helmet recipes
+# --- BoS Tier 4 Helmets (T-45 power armor) ---
+# - type: latheRecipe
+#   id: N14BPBoSArmorPowerHelmetT45
+#   result: N14ClothingHeadHelmetPowerArmorT45BOS
+#   category: N14BlueprintBoSArmorT4
+#   completetime: 18
+#   requiresBlueprint: true
+#   availableFaction:
+#   - BrotherhoodOfSteel
+#   materials:
+#     Steel: 4500
+#     N14Iron: 15
+#     Circuitry: 12
+#     ScrapElectronic: 8
+#     N14Brass: 5
+
+# --- Town Tier 1 Helmets (basic guard) ---
+- type: latheRecipe
+  id: N14BPTownArmorHelmetTownGuard
+  result: N14ClothingHeadHatTownGuard
+  category: N14BlueprintTownArmorT1
+  completetime: 3
+  requiresBlueprint: true
+  availableFaction:
+  - Townsfolk
+  materials:
+    Cloth: 8
+    Leather: 4
+    Thread: 4
+
+# --- Town Tier 2 Helmets (Brodie / metal) ---
+- type: latheRecipe
+  id: N14BPTownArmorHelmetBrodie
+  result: N14ClothingHeadTownGuardBrodie
+  category: N14BlueprintTownArmorT2
+  completetime: 5
+  requiresBlueprint: true
+  availableFaction:
+  - Townsfolk
+  materials:
+    Steel: 1000
+    Cloth: 5
+    Leather: 3
+
+- type: latheRecipe
+  id: N14BPTownArmorHelmetMetal
+  result: N14ClothingHeadHatBaseHelmetMetal
+  category: N14BlueprintTownArmorT2
+  completetime: 5
+  requiresBlueprint: true
+  availableFaction:
+  - Townsfolk
+  materials:
+    Steel: 1200
+    Cloth: 5
+    Leather: 3
+
+# --- Town Tier 3 Helmets (riot / sheriff) ---
+- type: latheRecipe
+  id: N14BPTownArmorHelmetBrodieCover
+  result: N14ClothingHeadTownGuardBrodieCover
+  category: N14BlueprintTownArmorT3
+  completetime: 6
+  requiresBlueprint: true
+  availableFaction:
+  - Townsfolk
+  materials:
+    Steel: 1500
+    Cloth: 8
+    Leather: 4
+
+- type: latheRecipe
+  id: N14BPTownArmorHelmetBrodieVisor
+  result: N14ClothingHeadTownGuardBrodieVisor
+  category: N14BlueprintTownArmorT3
+  completetime: 7
+  requiresBlueprint: true
+  availableFaction:
+  - Townsfolk
+  materials:
+    Steel: 1800
+    Cloth: 8
+    Leather: 4
+    Glass: 200
+
+- type: latheRecipe
+  id: N14BPTownArmorHelmetRCMP
+  result: N14ClothingHeadHatHelmetRCMP
+  category: N14BlueprintTownArmorT3
+  completetime: 7
+  requiresBlueprint: true
+  availableFaction:
+  - Townsfolk
+  materials:
+    Steel: 2000
+    Cloth: 8
+    Leather: 4
+    Glass: 150
+
+# --- Town Tier 4 Helmets (combat / pre-war military) ---
+- type: latheRecipe
+  id: N14BPTownArmorHelmetCombat
+  result: N14ClothingHeadHatCombatHelmet
+  category: N14BlueprintTownArmorT4
+  completetime: 9
+  requiresBlueprint: true
+  availableFaction:
+  - Townsfolk
+  materials:
+    Steel: 3000
+    Cloth: 10
+    Leather: 5
+    Plastic: 100
+
+- type: latheRecipe
+  id: N14BPTownArmorHelmetCombatCargo
+  result: N14ClothingHeadHatCombatHelmetCargo
+  category: N14BlueprintTownArmorT4
+  completetime: 10
+  requiresBlueprint: true
+  availableFaction:
+  - Townsfolk
+  materials:
+    Steel: 3200
+    Cloth: 10
+    Leather: 5
+    Plastic: 100
+
+- type: latheRecipe
+  id: N14BPTownArmorHelmetPrewarMilitary
+  result: N14ClothingHeadHatPrewarMilitaryHelmet
+  category: N14BlueprintTownArmorT4
+  completetime: 10
+  requiresBlueprint: true
+  availableFaction:
+  - Townsfolk
+  materials:
+    Steel: 3000
+    Cloth: 10
+    Leather: 5
+
 

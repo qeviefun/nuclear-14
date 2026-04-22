@@ -9,9 +9,9 @@
   - !type:CharacterSpeciesRequirement
     species:
     - Human
-  - !type:CharacterDepartmentTimeRequirement
+  - !type:CharacterDepartmentTimeRequirement # #Misfits Tweak - reduced from 70h to 40h, inline with other faction leadership locks
     department: Vault
-    min: 252000 # 70 hours
+    min: 144000 # 40 hours
   playTimeTracker: Overseer
   weight: 100
   startingGear: OverseerGear

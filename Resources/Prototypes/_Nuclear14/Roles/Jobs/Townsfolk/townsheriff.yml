@@ -14,9 +14,9 @@
       species:
       - Human
       - Ghoul
-    #- !type:CharacterDepartmentTimeRequirement # #Misfits Change - removed Town law timelock
-    #  department: Townsfolk
-    #  min: 72000 # 20 hours
+    - !type:CharacterDepartmentTimeRequirement # #Misfits Tweak - re-enable timelock, 10h Townsfolk requirement
+      department: Townsfolk
+      min: 36000 # 10 hours
   startingGear: TownSheriffGear
   icon: "JobIconTownSheriff" # Corvax-Change
   supervisors: job-supervisors-townsfolk

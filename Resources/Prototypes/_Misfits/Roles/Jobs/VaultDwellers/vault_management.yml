@@ -1,0 +1,55 @@
+# vault_management.yml
+# #Misfits Add - Vault Management: admin-only command role above Overseer.
+# Whitelist-only, no playtime requirement, mirrors the NCRMajor / BoSWestElderCommander pattern.
+
+- type: job
+  id: VaultManagement
+  setPreference: true
+  hideWithoutJobWhitelist: true   # #Misfits Add - admin-only; hidden from job picker without whitelist
+  hideIfPlaytimeRequirementsNotMet: false
+  jobWhitelistBypassesRoleTimers: true # #Misfits Add - admin bypass, no timer gate
+  weight: 130  # #Misfits Add - above Overseer (100) so Management is top-ranking in the vault
+  name: job-name-vaultmanagement
+  description: job-description-vaultmanagement
+  playTimeTracker: VaultManagement
+  requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+        - Human
+  startingGear: VaultManagementGear
+  alwaysUseSpawner: true
+  icon: "JobIconVaultOverseer" # Reuse overseer icon for now
+  supervisors: job-supervisors-vaultmanagement
+  requireAdminNotify: true
+  joinNotifyCrew: true
+  canBeAntag: false
+  overrideConsoleVisibility: false
+  accessGroups:
+  - VaultOverseer # Full vault access
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Wastelander
+          - Vault
+
+- type: startingGear
+  id: VaultManagementGear
+  equipment:
+    jumpsuit: N14ClothingUniformJumpsuitVault14
+    back: N14ClothingBackpackVaultBlue
+    shoes: N14ClothingBootsBlack
+    eyes: ClothingEyesGlassesSunglasses
+    id: N14VaultOverseerPDA
+    ears: N14ClothingHeadsetVaultDweller
+    pocket1: N14WeaponPistol10mm
+  innerClothingSkirt: N14ClothingUniformJumpsuitVault14
+  storage:
+    back:
+    - N14Bandage
+    - N14CurrencyPrewarMoney500
+    - N14CurrencyPrewarMoney500
+
+- type: playTimeTracker
+  id: VaultManagement

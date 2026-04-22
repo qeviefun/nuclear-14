@@ -32,7 +32,7 @@
       - id: N14ClothingOuterNCRVestDesert # Forge-Change
       - id: ClothingBeltNCRPouches
       - id: N14WeaponSniper556VarmintRifle
-      - id: BaseMagazineBox556Rifle
+      - id: MagazineBox556 # #Misfits Fix - was abstract BaseMagazineBox556Rifle (Spawn threw, aborting OnUseInHand before QueueDel; kit became infinite)
       - id: N14WeaponPistol9mm
       - id: N14MagazinePistol9mm
         amount: 2
@@ -59,7 +59,7 @@
       - id: N14ClothingOuterNCRVestDesert # Forge-Change
       - id: ClothingBeltNCRPouches
       - id: N14WeaponSniper556VarmintRifle
-      - id: BaseMagazineBox556Rifle
+      - id: MagazineBox556 # #Misfits Fix - was abstract BaseMagazineBox556Rifle (Spawn threw, aborting OnUseInHand before QueueDel; kit became infinite)
       - id: N14WeaponPistol9mm
       - id: N14MagazinePistol9mm
         amount: 2
@@ -114,7 +114,7 @@
     items:
       - id: ClothingBeltNCR
       - id: N14WeaponSniper556VarmintRifle
-      - id: BaseMagazineBox556Rifle
+      - id: MagazineBox556 # #Misfits Fix - was abstract BaseMagazineBox556Rifle (Spawn threw, aborting OnUseInHand before QueueDel; kit became infinite)
       - id: N14WeaponPistol9mm
       - id: N14MagazinePistol9mm
         amount: 2
@@ -140,7 +140,7 @@
     items:
       - id: ClothingBeltNCR
       - id: N14WeaponSniper556VarmintRifle
-      - id: BaseMagazineBox556Rifle
+      - id: MagazineBox556 # #Misfits Fix - was abstract BaseMagazineBox556Rifle (Spawn threw, aborting OnUseInHand before QueueDel; kit became infinite)
       - id: N14WeaponPistol9mm
       - id: N14MagazinePistol9mm
         amount: 2

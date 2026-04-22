@@ -2509,4 +2509,344 @@
     N14Gunpowder: 15
 
 
+# =====================================================================
+# #Misfits Add - HELMET RECIPES
+# Helmets pair with their armor tier so players can craft a matching head
+# slot when their issued one breaks. Material costs are scaled to be lighter
+# than the body armor they pair with.
+# =====================================================================
+
+# --- NCR Tier 1 Helmets (paired with vest armor) ---
+- type: latheRecipe
+  id: N14BPNCRArmorHelmetMetalSnow
+  result: N14ClothingHeadHatNCRHelmetMetalSnow
+  category: N14BlueprintNCRArmorT1
+  completetime: 4
+  requiresBlueprint: true
+  availableFaction:
+  - NCR
+  materials:
+    Steel: 500
+    Cloth: 4
+    Leather: 2
+
+- type: latheRecipe
+  id: N14BPNCRArmorHelmetMetalWoods
+  result: N14ClothingHeadHatNCRHelmetMetalWoods
+  category: N14BlueprintNCRArmorT1
+  completetime: 4
+  requiresBlueprint: true
+  availableFaction:
+  - NCR
+  materials:
+    Steel: 500
+    Cloth: 4
+    Leather: 2
+
+- type: latheRecipe
+  id: N14BPNCRArmorHelmetMetalDesert
+  result: N14ClothingHeadHatNCRHelmetMetalDesert
+  category: N14BlueprintNCRArmorT1
+  completetime: 4
+  requiresBlueprint: true
+  availableFaction:
+  - NCR
+  materials:
+    Steel: 500
+    Cloth: 4
+    Leather: 2
+
+# --- NCR Tier 2 Helmets (paired with plate / pouched / CF vests) ---
+- type: latheRecipe
+  id: N14BPNCRArmorHelmetMetalRadioWood
+  result: N14ClothingHeadHatNCRHelmetMetalRadioWood
+  category: N14BlueprintNCRArmorT2
+  completetime: 6
+  requiresBlueprint: true
+  availableFaction:
+  - NCR
+  materials:
+    Steel: 1000
+    Cloth: 6
+    Leather: 3
+    ScrapElectronic: 3
+
+- type: latheRecipe
+  id: N14BPNCRArmorHelmetMetalRadioSnow
+  result: N14ClothingHeadHatNCRHelmetMetalRadioSnow
+  category: N14BlueprintNCRArmorT2
+  completetime: 6
+  requiresBlueprint: true
+  availableFaction:
+  - NCR
+  materials:
+    Steel: 1000
+    Cloth: 6
+    Leather: 3
+    ScrapElectronic: 3
+
+- type: latheRecipe
+  id: N14BPNCRArmorHelmetMetalMilitaryPolice
+  result: N14ClothingHeadHatNCRHelmetMetalMilitaryPolice
+  category: N14BlueprintNCRArmorT2
+  completetime: 5
+  requiresBlueprint: true
+  availableFaction:
+  - NCR
+  materials:
+    Steel: 900
+    Cloth: 5
+    Leather: 3
+
+- type: latheRecipe
+  id: N14BPNCRArmorHelmetMetalMedic
+  result: N14ClothingHeadHatNCRHelmetMetalMedic
+  category: N14BlueprintNCRArmorT2
+  completetime: 5
+  requiresBlueprint: true
+  availableFaction:
+  - NCR
+  materials:
+    Steel: 900
+    Cloth: 5
+    Leather: 3
+
+- type: latheRecipe
+  id: N14BPNCRArmorHelmetMetalGhillie
+  result: N14ClothingHeadHatNCRHelmetMetalGhillie
+  category: N14BlueprintNCRArmorT2
+  completetime: 6
+  requiresBlueprint: true
+  availableFaction:
+  - NCR
+  materials:
+    Steel: 800
+    Cloth: 10
+    Leather: 4
+
+# --- NCR Tier 3 Helmets (combat / ranger) ---
+- type: latheRecipe
+  id: N14BPNCRArmorCombatHelmet
+  result: N14ClothingHeadHatCombatHelmet
+  category: N14BlueprintNCRArmorT3
+  completetime: 8
+  requiresBlueprint: true
+  availableFaction:
+  - NCR
+  materials:
+    Steel: 2000
+    Cloth: 8
+    Leather: 4
+    Plastic: 100
+
+- type: latheRecipe
+  id: N14BPNCRArmorRangerHelmet
+  result: N14ClothingHeadHatRangerHelmet
+  category: N14BlueprintNCRArmorT3
+  completetime: 9
+  requiresBlueprint: true
+  availableFaction:
+  - NCR
+  - Rangers
+  materials:
+    Steel: 1800
+    Leather: 10
+    Cloth: 8
+    Glass: 200
+
+- type: latheRecipe
+  id: N14BPNCRArmorRangerHelmetDesert
+  result: N14ClothingHeadHatRangerHelmetDesert
+  category: N14BlueprintNCRArmorT3
+  completetime: 9
+  requiresBlueprint: true
+  availableFaction:
+  - NCR
+  - Rangers
+  materials:
+    Steel: 1800
+    Leather: 10
+    Cloth: 8
+    Glass: 200
+
+- type: latheRecipe
+  id: N14BPNCRArmorRangerHelmetOld
+  result: N14ClothingHeadHatRangerHelmetOld
+  category: N14BlueprintNCRArmorT3
+  completetime: 9
+  requiresBlueprint: true
+  availableFaction:
+  - NCR
+  - Rangers
+  materials:
+    Steel: 1800
+    Leather: 10
+    Cloth: 8
+    Glass: 200
+
+# --- NCR Tier 4 Helmets (elite / power armor) ---
+- type: latheRecipe
+  id: N14BPNCRArmorCombatHelmetMK2
+  result: N14ClothingHeadHatCombatHelmetMK2
+  category: N14BlueprintNCRArmorT4
+  completetime: 12
+  requiresBlueprint: true
+  availableFaction:
+  - NCR
+  materials:
+    Steel: 4000
+    Cloth: 10
+    Leather: 5
+    Circuitry: 5
+
+- type: latheRecipe
+  id: N14BPNCRArmorRangerHelmetElite
+  result: N14ClothingHeadHatRangerHelmetElite
+  category: N14BlueprintNCRArmorT4
+  completetime: 14
+  requiresBlueprint: true
+  availableFaction:
+  - NCR
+  - Rangers
+  materials:
+    Steel: 4000
+    Leather: 12
+    Cloth: 10
+    Glass: 250
+    Circuitry: 5
+
+# #Misfits Removed - user requested no power armor helmet recipes
+# - type: latheRecipe
+#   id: N14BPNCRArmorPowerHelmetT45NCR
+#   result: N14ClothingHeadHelmetPowerArmorT45NCR
+#   category: N14BlueprintNCRArmorT4
+#   completetime: 18
+#   requiresBlueprint: true
+#   availableFaction:
+#   - NCR
+#   materials:
+#     Steel: 4500
+#     N14Iron: 15
+#     Circuitry: 12
+#     ScrapElectronic: 8
+#     N14Brass: 5
+
+# --- Legion Tier 1 Helmets (recruit head wraps) ---
+- type: latheRecipe
+  id: N14BPLegionArmorHelmetTribalShemagh
+  result: N14ClothingTribalShemagh
+  category: N14BlueprintLegionArmorT1
+  completetime: 3
+  requiresBlueprint: true
+  availableFaction:
+  - CaesarLegion
+  materials:
+    Cloth: 8
+    Thread: 5
+
+- type: latheRecipe
+  id: N14BPLegionArmorHelmetTribalHeadWraps
+  result: N14ClothingTribalHeadWraps
+  category: N14BlueprintLegionArmorT1
+  completetime: 3
+  requiresBlueprint: true
+  availableFaction:
+  - CaesarLegion
+  materials:
+    Cloth: 8
+    Thread: 5
+
+# --- Legion Tier 2 Helmets (legionnaire hoods) ---
+- type: latheRecipe
+  id: N14BPLegionArmorHelmetTribalHood
+  result: N14ClothingTribalHood
+  category: N14BlueprintLegionArmorT2
+  completetime: 5
+  requiresBlueprint: true
+  availableFaction:
+  - CaesarLegion
+  materials:
+    Cloth: 12
+    Thread: 8
+    Leather: 5
+
+- type: latheRecipe
+  id: N14BPLegionArmorHelmetTribalOutcastHood
+  result: N14ClothingHeadHatTribalOutcastHood
+  category: N14BlueprintLegionArmorT2
+  completetime: 5
+  requiresBlueprint: true
+  availableFaction:
+  - CaesarLegion
+  materials:
+    Cloth: 12
+    Thread: 8
+    Leather: 5
+
+# --- Legion Tier 3 Helmets (veteran skulls and hunter hoods) ---
+- type: latheRecipe
+  id: N14BPLegionArmorHelmetTribalHunterHood
+  result: N14ClothingTribalHunterHood
+  category: N14BlueprintLegionArmorT3
+  completetime: 7
+  requiresBlueprint: true
+  availableFaction:
+  - CaesarLegion
+  materials:
+    Cloth: 15
+    Thread: 10
+    Leather: 8
+
+- type: latheRecipe
+  id: N14BPLegionArmorHelmetHeadtakerwraps
+  result: N14ClothingHeadTakerwraps
+  category: N14BlueprintLegionArmorT3
+  completetime: 7
+  requiresBlueprint: true
+  availableFaction:
+  - CaesarLegion
+  materials:
+    Cloth: 15
+    Thread: 10
+    Leather: 8
+
+- type: latheRecipe
+  id: N14BPLegionArmorHelmetMuffaloskull
+  result: N14ClothingTribalMuffaloskull
+  category: N14BlueprintLegionArmorT3
+  completetime: 8
+  requiresBlueprint: true
+  availableFaction:
+  - CaesarLegion
+  materials:
+    Leather: 20
+    Thread: 8
+
+# --- Legion Tier 4 Helmets (looted pre-war military) ---
+- type: latheRecipe
+  id: N14BPLegionArmorHelmetPrewarMilitaryHelmet
+  result: N14ClothingHeadHatPrewarMilitaryHelmet
+  category: N14BlueprintLegionArmorT4
+  completetime: 10
+  requiresBlueprint: true
+  availableFaction:
+  - CaesarLegion
+  materials:
+    Steel: 3000
+    Cloth: 10
+    Leather: 5
+
+- type: latheRecipe
+  id: N14BPLegionArmorHelmetMetalHelmet
+  result: N14ClothingHeadHatBaseHelmetMetal
+  category: N14BlueprintLegionArmorT4
+  completetime: 10
+  requiresBlueprint: true
+  availableFaction:
+  - CaesarLegion
+  materials:
+    Steel: 3000
+    Cloth: 10
+    Leather: 5
+
 
