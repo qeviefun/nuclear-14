@@ -221,7 +221,8 @@
   startNode: start
   targetNode: FlagOasis
 # category: construction-category-decorations
-  description: A flag depicting a stylised pink flower on a green background. It's the symbol of the town of Oasis.  hide: false
+  description: A flag depicting a stylised pink flower on a green background. It's the symbol of the town of Oasis.  
+  hide: false
   icon:
     sprite: _Nuclear14/Structures/Decoration/flags.rsi
     state: oasisflag

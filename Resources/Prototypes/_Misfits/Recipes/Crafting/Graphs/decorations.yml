@@ -1,3 +1,5 @@
+#small flags
+
 - type: constructionGraph
   id: MisfitsFlagUS
   start: start
@@ -323,6 +325,8 @@
               amount: 2
             - !type:DeleteEntity
 
+# Banners aka big flags
+
 - type: constructionGraph
   id: MisfitsFlagCoA
   start: start
@@ -357,8 +361,6 @@
               amount: 3
             - !type:DeleteEntity {}
 
-# Banners aka big flags
-
 - type: constructionGraph
   id: DecorationFlagOasis
   start: start
@@ -367,9 +369,15 @@
       edges:
         - to: FlagOasis
           steps:
-            - material: Cloth
-              amount: 2
+            - material: WoodPlank
+              amount: 5
               doAfter: 3
+            - material: Cloth
+              amount: 5
+              doAfter: 3
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
 
     - node: FlagOasis
       entity: N14DecorationFlagOasis
@@ -379,10 +387,14 @@
             - tool: Cutting
               doAfter: 3
           completed:
-            - !type:SpawnPrototype
+            - !type:GivePrototype
+              prototype: MaterialWoodPlank1
+              amount: 3
+            - !type:GivePrototype
               prototype: MaterialCloth1
-              amount: 2
-            - !type:DeleteEntity
+              amount: 3
+            - !type:DeleteEntity {}
+
 
 - type: constructionGraph
   id: DecorationFlagBrotherhoodWashington
@@ -392,22 +404,32 @@
       edges:
         - to: flagbcoas
           steps:
-            - material: Cloth
-              amount: 2
+          steps:
+            - material: WoodPlank
+              amount: 5
               doAfter: 3
+            - material: Cloth
+              amount: 5
+              doAfter: 3
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
 
     - node: FlagBrotherhoodWashington
       entity: N14DecorationFlagBrotherhoodWashington
       edges:
         - to: start
           steps:
-            - tool: Cutting
-              doAfter: 3
+            - tool: Prying
+              doAfter: 5
           completed:
-            - !type:SpawnPrototype
+            - !type:GivePrototype
+              prototype: MaterialWoodPlank1
+              amount: 3
+            - !type:GivePrototype
               prototype: MaterialCloth1
-              amount: 2
-            - !type:DeleteEntity
+              amount: 3
+            - !type:DeleteEntity {}
 
 - type: constructionGraph
   id: DecorationFlagEnclave
@@ -417,22 +439,31 @@
       edges:
         - to: FlagEnclave
           steps:
-            - material: Cloth
-              amount: 2
+            - material: WoodPlank
+              amount: 5
               doAfter: 3
+            - material: Cloth
+              amount: 5
+              doAfter: 3
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
 
     - node: FlagEnclave
       entity: N14DecorationFlagEnclave
       edges:
         - to: start
           steps:
-            - tool: Cutting
-              doAfter: 3
+            - tool: Prying
+              doAfter: 5
           completed:
-            - !type:SpawnPrototype
+            - !type:GivePrototype
+              prototype: MaterialWoodPlank1
+              amount: 3
+            - !type:GivePrototype
               prototype: MaterialCloth1
-              amount: 2
-            - !type:DeleteEntity
+              amount: 3
+            - !type:DeleteEntity {}
 
 - type: constructionGraph
   id: DecorationFlagHighvalleyhills
@@ -442,22 +473,30 @@
       edges:
         - to: FlagHighvalleyhills
           steps:
-            - material: Cloth
-              amount: 2
+            - material: WoodPlank
+              amount: 5
               doAfter: 3
-
+            - material: Cloth
+              amount: 5
+              doAfter: 3
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
     - node: FlagHighvalleyhills
       entity: N14DecorationFlagHighvalleyhills
       edges:
         - to: start
           steps:
-            - tool: Cutting
-              doAfter: 3
+            - tool: Prying
+              doAfter: 5
           completed:
-            - !type:SpawnPrototype
+            - !type:GivePrototype
+              prototype: MaterialWoodPlank1
+              amount: 3
+            - !type:GivePrototype
               prototype: MaterialCloth1
-              amount: 2
-            - !type:DeleteEntity
+              amount: 3
+            - !type:DeleteEntity {}
 
 - type: constructionGraph
   id: DecorationFlagVaultTecCityCoalition
@@ -467,22 +506,30 @@
       edges:
         - to: FlagVaultTecCityCoalition
           steps:
-            - material: Cloth
-              amount: 2
+            - material: WoodPlank
+              amount: 5
               doAfter: 3
-
+            - material: Cloth
+              amount: 5
+              doAfter: 3
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
     - node: FlagVaultTecCityCoalition
       entity: N14DecorationFlagVaultTecCityCoalition
       edges:
         - to: start
           steps:
-            - tool: Cutting
-              doAfter: 3
+            - tool: Prying
+              doAfter: 5
           completed:
-            - !type:SpawnPrototype
+            - !type:GivePrototype
+              prototype: MaterialWoodPlank1
+              amount: 3
+            - !type:GivePrototype
               prototype: MaterialCloth1
-              amount: 2
-            - !type:DeleteEntity
+              amount: 3
+            - !type:DeleteEntity {}
 
 - type: constructionGraph
   id: DecorationFlagKhans
@@ -492,22 +539,31 @@
       edges:
         - to: FlagKhans
           steps:
-            - material: Cloth
-              amount: 2
+            - material: WoodPlank
+              amount: 5
               doAfter: 3
+            - material: Cloth
+              amount: 5
+              doAfter: 3
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
 
     - node: FlagKhans
       entity: N14DecorationFlagKhans
       edges:
         - to: start
           steps:
-            - tool: Cutting
-              doAfter: 3
+            - tool: Prying
+              doAfter: 5
           completed:
-            - !type:SpawnPrototype
+            - !type:GivePrototype
+              prototype: MaterialWoodPlank1
+              amount: 3
+            - !type:GivePrototype
               prototype: MaterialCloth1
-              amount: 2
-            - !type:DeleteEntity
+              amount: 3
+            - !type:DeleteEntity {}
 
 - type: constructionGraph
   id: DecorationFlagChurch
@@ -517,19 +573,28 @@
       edges:
         - to: FlagChurch
           steps:
-            - material: Cloth
-              amount: 2
+            - material: WoodPlank
+              amount: 5
               doAfter: 3
+            - material: Cloth
+              amount: 5
+              doAfter: 3
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
 
     - node: FlagChurch
       entity: N14DecorationFlagChurch
       edges:
         - to: start
           steps:
-            - tool: Cutting
-              doAfter: 3
+            - tool: Prying
+              doAfter: 5
           completed:
-            - !type:SpawnPrototype
+            - !type:GivePrototype
+              prototype: MaterialWoodPlank1
+              amount: 3
+            - !type:GivePrototype
               prototype: MaterialCloth1
-              amount: 2
-            - !type:DeleteEntity
+              amount: 3
+            - !type:DeleteEntity {}
