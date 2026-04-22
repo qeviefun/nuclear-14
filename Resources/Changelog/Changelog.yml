@@ -3674,3 +3674,12 @@ Entries:
   id: 5757
   time: '2026-04-22T20:12:43.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/316
+- author: Bill Clinton
+  changes:
+    - type: Tweak
+      message: >-
+        Legion M60 and Bren mags no longer cost you your retirement savings. I
+        will consider helping out the other factions too later.
+  id: 5758
+  time: '2026-04-22T20:12:55.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/317
