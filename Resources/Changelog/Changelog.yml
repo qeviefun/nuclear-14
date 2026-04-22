@@ -3589,3 +3589,30 @@ Entries:
   id: 5754
   time: '2026-04-22T03:44:32.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/312
+- author: cythisiax
+  changes:
+    - type: Fix
+      message: >-
+        Fixed NCR Varmint Rifle starter kits being infinitely reusable due to
+        the ammo.
+    - type: Tweak
+      message: All blueprint now include matching helmets for each armor tier.
+    - type: Tweak
+      message: >-
+        Re-enabled playtime requirements for Town leadership roles: Deputy
+        requires 5 hours, Sheriff 10 hours, Mayor 15 hours of Townsfolk time.
+    - type: Tweak
+      message: >-
+        Reduced Vault Overseer playtime requirement from 70 hours down to 40
+        hours.
+    - type: Tweak
+      message: >-
+        Renamed "Farmer" and "Chaplain" roles to "Town Farmer" and "Town
+        Chaplain" for clarity.
+    - type: Add
+      message: >-
+        Added Vault Management as a new admin-only command role above the
+        Overseer, whitelisted and notification-flagged.
+  id: 5755
+  time: '2026-04-22T15:40:24.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/315
