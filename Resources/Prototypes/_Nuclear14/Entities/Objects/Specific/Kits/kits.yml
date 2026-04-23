@@ -1081,7 +1081,7 @@
   #Misfits Change /Tweak/: Added stimpak to knight laser kit.
   - type: SpawnItemsOnUse
     items:
-      - id: N14WeaponLaserRifle
+      - id: N14WeaponLaserRifleCrude
       - id: N14MicrofusionCellRed
         amount: 3
       - id: N14WeaponPistol12mm
@@ -1104,8 +1104,8 @@
   #Misfits Change /Tweak/: Added stimpak to knight ballistic kit.
   - type: SpawnItemsOnUse
     items:
-      - id: N14WeaponRifle556Carbine
-      - id: LongMagazine556Rifle
+      - id: N14WeaponRifle556CarbineOld
+      - id: Magazine556Rifle
         amount: 3
       - id: N14WeaponLaserPistol
       - id: N14PowerCellSmall
@@ -1259,7 +1259,7 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14WeaponLaserRiflePrototypeAER14
+      - id: N14WeaponLaserRifleAuto # misfits change by bill; makes it easier to balance paladin kits, AER14 too much roundstart.
       - id: N14MicrofusionCellBlue
         amount: 3
       - id: N14WeaponPistol12mm

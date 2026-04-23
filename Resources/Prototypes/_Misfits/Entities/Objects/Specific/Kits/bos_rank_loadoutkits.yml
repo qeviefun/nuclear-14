@@ -219,11 +219,11 @@
   - type: UndecidedLoadoutBackpack
     possibleSets:
     - MBoS_KniLas_Set
-    - MBoS_KniBal_Set
+    - MBoS_PalBal_Set
     #Misfits Change /Add/: Head Knight gets shotgun auto option (modified PalLas).
     - MBoS_PalLas_Set
-    #Misfits Change /Add/: Head Knight gets Bozar option.
-    - MBoS_PalSni_Set
+    #Misfits Change /remove/: Head Knight lost bozar option due to rebalance.
+    # - MBoS_PalSni_Set
 
 - type: entity
   id: BoSBrotherhoodHeadScribeKits
