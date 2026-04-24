@@ -3789,3 +3789,26 @@ Entries:
   id: 5766
   time: '2026-04-24T02:53:04.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/327
+- author: Chancerous
+  changes:
+    - type: Tweak
+      message: Replaced FoTA classroom with a functioning farm
+    - type: Tweak
+      message: Encloses FoTA base with a fence
+    - type: Tweak
+      message: Made FoTA closet larger and gave them body decomp options
+    - type: Tweak
+      message: Made legions mines larger
+    - type: Fix
+      message: Readded vault & tribal blueprints
+    - type: Fix
+      message: Unelectrified FoTA window bars
+    - type: Fix
+      message: Added BoS substation so they have power on round start now
+    - type: Add
+      message: Gave FoTA recharger
+    - type: Add
+      message: Gave FoTA seed extractor
+  id: 5767
+  time: '2026-04-24T16:12:21.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/329
