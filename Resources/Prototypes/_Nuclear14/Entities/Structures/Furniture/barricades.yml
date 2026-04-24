@@ -265,7 +265,7 @@
         acts: ["Destruction"]
 
 - type: entity
-  parent: N14DecorConcreteBarrier
+  parent: N14BarricadeSandbagSingle
   id: N14DecorConcreteBarrier
   name: concrete barrier
   description: A concrete barrier for stopping traffic.
