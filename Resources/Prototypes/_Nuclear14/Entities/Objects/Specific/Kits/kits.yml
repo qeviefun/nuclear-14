@@ -1226,7 +1226,7 @@
 
 #Misfits Change /Tweak/: Replaced Wattz 2000 sniper with Bozar GRA across all ranks.
 - type: entity
-  name: BoS Paladin Bozar Kit
+  name: BoS Paladin Advanced Laser Kit
   parent: KitBase
   id: KitMBoS_PalSni
   description: A crate containing everything a member of the Brotherhood might need.
@@ -1237,8 +1237,8 @@
     size: Huge
   - type: SpawnItemsOnUse
     items:
-      - id: N14WeaponRifleBozarGRA
-      - id: Magazine556Rifle30
+      - id: N14WeaponLaserRifleAER12
+      - id: N14MicrofusionCell
         amount: 3
       - id: N14WeaponPistol12mm
       - id: N14MagazinePistol12mm
@@ -1248,7 +1248,7 @@
       - id: N14BoxCardboardMREBoxKFilled
 
 - type: entity
-  name: BoS Paladin Advanced Laser Kit
+  name: BoS Paladin Automatic Laser Kit
   parent: KitBase
   id: KitMBoS_PalPla
   description: A crate containing everything a member of the Brotherhood might need.
