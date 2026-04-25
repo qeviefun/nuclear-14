@@ -3925,3 +3925,16 @@ Entries:
   id: 5772
   time: '2026-04-25T07:29:02.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/336
+- author: cythisiax
+  changes:
+    - type: Tweak
+      message: >-
+        optimizations of shitcode godspeed, primarily stealthboy & group system
+        dirty calls
+    - type: Fix
+      message: >-
+        whitelist cvar default to false over true, use `> cvar queue.enabled`
+        true/false
+  id: 5773
+  time: '2026-04-25T23:32:23.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/338
