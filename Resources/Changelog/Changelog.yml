@@ -3904,3 +3904,24 @@ Entries:
   id: 5771
   time: '2026-04-25T04:44:28.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/337
+- author: cythisiax
+  changes:
+    - type: Add
+      message: Nightkin FEV Playable Species
+    - type: Remove
+      message: town doctor
+    - type: Fix
+      message: dispenser reagents not present
+    - type: Fix
+      message: tribal smoke signal
+    - type: Fix
+      message: unnatural regeneration
+    - type: Tweak
+      message: nuclearoption disabled 1/1/1
+    - type: Tweak
+      message: >-
+        completely disable camera rotation mechanic, no longer exploit bypassed
+        by different keybinds
+  id: 5772
+  time: '2026-04-25T07:29:02.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/336
