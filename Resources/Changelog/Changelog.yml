@@ -3947,3 +3947,14 @@ Entries:
   id: 5774
   time: '2026-04-26T00:49:33.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/339
+- author: Bradysgaming
+  changes:
+    - type: Fix
+      message: >-
+        Gave supermutants aligned with the ncr a proper jumpsuit, no more
+        loosing your ID forever when you unequip it
+    - type: Add
+      message: Placeholder NCR supermutant shoes
+  id: 5775
+  time: '2026-04-26T13:39:22.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/340
