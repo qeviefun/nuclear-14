@@ -271,3 +271,35 @@
   - type: Tag
     tags:
     - SuperMutantWearable
+
+# #Misfits Add - Tribal Loincloth for the base playable Supermutant role.
+# Sprites by beepbopbopedy (CC-BY-SA-3.0).
+# --- Supermutant Tribal Loincloth ---
+- type: entity
+  parent: UnsensoredClothingUniformBase
+  id: ClothingSuperMutantTribalLoincloth
+  name: supermutant tribal loincloth
+  description: A simple loincloth made from scavenged materials, sized for a supermutant's massive frame. Worn by the most primitive of supermutants.
+  components:
+  - type: Sprite
+    sprite: _Misfits/Clothing/SuperMutant/supermutant_tribal_loincloth.rsi
+  - type: Clothing
+    sprite: _Misfits/Clothing/SuperMutant/supermutant_tribal_loincloth.rsi
+  - type: Tag
+    tags:
+    - SuperMutantWearable
+
+# #Misfits Add - Supermutant neck cape tribal
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingSuperMutantNeckCapeTribal
+  name: supermutant tribal neck cape
+  description: A skull with a long rope that goes around the body, worn as a trophy by the most primitive of supermutants.
+  components:
+  - type: Sprite
+    sprite: _Misfits/Clothing/SuperMutant/supermutant_tribal_cape.rsi
+  - type: Clothing
+    sprite: _Misfits/Clothing/SuperMutant/supermutant_tribal_cape.rsi
+  - type: Tag
+    tags:
+    - SuperMutantWearable
