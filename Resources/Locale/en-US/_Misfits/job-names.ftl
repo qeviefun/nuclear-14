@@ -66,6 +66,10 @@ job-description-supermutant-ncr-ranger = You are a supermutant who earned a plac
 job-name-supermutant-ncr-trooper = Supermutant NCR Trooper
 job-description-supermutant-ncr-trooper = You are a supermutant who fights under the NCR bear. Dismissed as a freak by most troopers, you prove your worth one engagement at a time. Your trooper armor and dogtag are the only credentials you need.
 
+# #Misfits Add - NCR-aligned supermutant variants for the FEVMutants whitelist department.
+job-name-supermutant-tribal = Supermutant Tribal
+job-description-supermutant-tribal = You are a Supermutant that found a home with the local tribe you will protect them with all your heart
+
 # #Misfits Add (Phase G) - C-27 Humanoid Robot job locale.
 job-name-c27 = C-27 Humanoid Robot
 job-description-c27 = You are a C-27 humanoid robot — a pre-war General Atomics workshop frame retrofitted for Wasteland service. Slow but durable, immune to flash and broken glass, and self-repairing. Choose your factory paint, serve your masters, or carve your own path through the wastes.

@@ -284,3 +284,75 @@
 
 - type: playTimeTracker
   id: SuperMutantNCRTrooper
+
+# #Misfits Add - Tribal Super Mutant
+# A Champion of the tribe blessed by the spirits
+- type: job
+  id: SuperMutantTribal
+  jobWhitelistBypassesRoleTimers: true
+  name: job-name-supermutant-tribal
+  description: job-description-supermutant-tribal
+  playTimeTracker: SuperMutantTribal
+  icon: JobIconBorg
+  supervisors: job-supervisors-ncr
+  canBeAntag: false
+  setPreference: true
+  access:
+  - TribeMember
+  - TribeChief
+  overrideConsoleVisibility: true
+  whitelisted: true
+  hideWithoutWhitelist: true
+  spawnLoadout: false
+  applyTraits: true
+  startingGear: SuperMutantTribalGear
+  requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+        - SuperMutant
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Wastelander
+          - Tribal
+          - PlayerSuperMutant
+      - type: Warcry
+        action: ActionTribalWarcry
+        targetDepartment: Tribe
+        range: 6
+        speedBonus: 0.50
+        duration: 10
+        overlayColor: "#3FAF63"
+        speechVerb: MisfitsTribalWarcry
+        warcryMessage: warcry-message-tribal
+        warcryMessageCount: 6
+        buffPopup: warcry-popup-buffed-tribal
+      - type: TribalHuntParticipant
+        targetDepartment: Tribe
+  - !type:AddTraitSpecial
+    traits: [ LanguageTribal ]
+
+- type: startingGear
+  id: SuperMutantTribalGear
+  equipment:
+    jumpsuit: ClothingSuperMutantTribalLoincloth
+    shoes: ClothingSuperMutantGladiatorBoots
+    back: N14ClothingBackpackTrekker # Corvax-Change
+    neck: ClothingSuperMutantNeckCapeTribal
+    pocket1: N14TribalKnife
+    pocket2: Triballoadoutkits
+    id: N14IDTribeBulletsPendant
+  satchel: N14ClothingBackpackSatchelTribalFilled
+  storage: # Corvax-Change
+    back:
+    - Torch
+    - Torch
+    - Torch
+    - N14Bandage
+    - Ointment
+    - N14HealingPowder
+
+- type: playTimeTracker
+  id: SuperMutantTribal

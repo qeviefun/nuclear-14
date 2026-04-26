@@ -21,6 +21,7 @@
             SuperMutantGladiator: [ 0, 1 ] # #Misfits Add: Gladiator variant latejoin slot.
             SuperMutantNCRRanger: [ 0, 1 ] # #Misfits Add: NCR Ranger variant latejoin slot.
             SuperMutantNCRTrooper: [ 0, 1 ] # #Misfits Add: NCR Trooper variant latejoin slot.
+            SuperMutantTribal: [ 0, 1 ] # #Misfits Add: Tribal variant latejoin slot.
             # WastelandScavenger: [ 3, 5 ]
             WastelandReporter: [ 1, 2 ]
             # WastelandMusician: [ 2, 3 ]
