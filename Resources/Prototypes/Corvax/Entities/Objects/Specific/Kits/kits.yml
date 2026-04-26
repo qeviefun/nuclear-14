@@ -185,7 +185,7 @@
       - id: ClothingBeltRope
       # #Misfits Change - AMR magazines removed; bolt-action uses single cartridges from ammo boxes
       - id: Magazine308RifleSniper
-        amount: 
+        amount: 2
       - id: ClothingEyesNightVisionGoggles
       - id: N14HealingPoultice #Misfits Change /Tweak/: replaces dirty stimpak, Legion uses tribal medicine
         amount: 2
