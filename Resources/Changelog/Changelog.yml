@@ -3987,3 +3987,12 @@ Entries:
   id: 5778
   time: '2026-04-26T17:23:25.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/342
+- author: Dpellowski
+  changes:
+    - type: Add
+      message: Super Mutant Tribal sprites
+    - type: Add
+      message: Super Mutant Tribals
+  id: 5779
+  time: '2026-04-26T19:39:39.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/348
