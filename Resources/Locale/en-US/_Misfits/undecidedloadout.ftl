@@ -289,8 +289,8 @@ undecided-loadout-category-misfits-centurion-armor-ranger-hunter-description =
 
 undecided-loadout-category-corvax-venator-marksman-name = Venator Marksman
 undecided-loadout-category-corvax-venator-marksman-description =
-    Includes an anti-materiel rifle, a rope belt,
-    3 boxes of .50 ammo, night vision goggles,
+    Includes a .308 sniper rifle, a rope belt,
+    2 mags of .308, night vision goggles,
     2 healing powder, 2 K rations,
     a ceramic flask, and mustard.
 
