@@ -3958,3 +3958,14 @@ Entries:
   id: 5775
   time: '2026-04-26T13:39:22.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/340
+- author: NajaTheNaja
+  changes:
+    - type: Add
+      message: >-
+        added maple syrup and an uncraftable, sweet liquid that adds sugar to
+        your bloodstream and sates thirst at .5x rate
+    - type: Fix
+      message: fixed name of mourning poultice to be spelled correctly
+  id: 5776
+  time: '2026-04-26T14:11:13.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/341
