@@ -3980,3 +3980,10 @@ Entries:
   id: 5777
   time: '2026-04-26T17:22:59.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/345
+- author: Trosling
+  changes:
+    - type: Add
+      message: Added Warhorns to certain faction roles that are audible from far away
+  id: 5778
+  time: '2026-04-26T17:23:25.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/342
