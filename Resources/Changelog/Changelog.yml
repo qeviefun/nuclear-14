@@ -4014,3 +4014,22 @@ Entries:
   id: 5781
   time: '2026-04-27T23:10:49.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/354
+- author: Sirius
+  changes:
+    - type: Add
+      message: The Followers have been given their recharging cell and shovel back.
+    - type: Add
+      message: >-
+        The Followers have adopted a pet! Say hello to Dr. Thumper, the
+        Follower's domesticated rabbit!
+    - type: Add
+      message: >-
+        The Followers managed to buy some new surgical tools as well as some
+        sterile spray.
+    - type: Remove
+      message: >-
+        Removed an erroneously mapped debug light in the operating room which
+        was always powered.
+  id: 5782
+  time: '2026-04-27T23:11:39.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/352
