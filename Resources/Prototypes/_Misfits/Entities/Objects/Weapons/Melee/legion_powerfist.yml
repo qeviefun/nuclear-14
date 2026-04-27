@@ -14,7 +14,7 @@
     size: Normal
     sprite: _Nuclear14/Clothing/Hands/PowerGauntlets/basic.rsi
   - type: Clothing
-    sprite: _Nuclear14/Clothing/Hands/PowerGauntlets/basic.rsi
+    sprite: _Misfits/Objects/Weapons/Melee/powerfist.rsi
     slots: [gloves]
   - type: MeleeWeapon
     soundHit:
