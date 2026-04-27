@@ -289,7 +289,7 @@ namespace Content.Server.Connection
             var wasInGame = EntitySystem.TryGet<GameTicker>(out var ticker) &&
                             ticker.PlayerGameStatuses.TryGetValue(userId, out var status) &&
                             status == PlayerGameStatus.JoinedGame;
-            var adminBypass = _cfg.GetCVar(CCVars.AdminBypassMaxPlayers) && adminData != null;
+            var adminBypass = adminData != null;
             // #Misfits Add - Whitelisted players use an expanded cap (soft max + reserved slots) so they
             // aren't pop-capped or queued behind regular players. Admins already bypass entirely via adminBypass.
             var softMax = _cfg.GetCVar(CCVars.SoftMaxPlayers);
