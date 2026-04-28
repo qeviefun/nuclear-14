@@ -4117,3 +4117,12 @@ Entries:
   id: 5792
   time: '2026-04-28T18:00:26.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/362
+- author: Dpellowski
+  changes:
+    - type: Add
+      message: >-
+        Removed war auto end timer ceasefire is required both leaderships need
+        to accept
+  id: 5793
+  time: '2026-04-28T19:20:17.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/363
