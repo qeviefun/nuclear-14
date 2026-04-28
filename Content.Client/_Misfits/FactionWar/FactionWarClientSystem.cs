@@ -151,7 +151,8 @@ public sealed class FactionWarClientSystem : EntitySystem
             msg.MyFactionDisplay,
             msg.ActiveWars,
             eligibleTargets,
-            ceasefireTargets);
+            ceasefireTargets,
+            msg.IncomingCeasefireProposals);
 
         if (msg.StatusMessage != null)
             _window.ShowResult(false, msg.StatusMessage);
@@ -260,6 +261,24 @@ public sealed class FactionWarClientSystem : EntitySystem
             RaiseNetworkEvent(new FactionWarCeasefireRequestEvent
             {
                 TargetFaction = targetId,
+            });
+        };
+
+        _window.OnAcceptCeasefireProposal += (aggressor, target) =>
+        {
+            RaiseNetworkEvent(new FactionWarAcceptCeasefireEvent
+            {
+                AggressorFaction = aggressor,
+                TargetFaction = target,
+            });
+        };
+
+        _window.OnRejectCeasefireProposal += (aggressor, target) =>
+        {
+            RaiseNetworkEvent(new FactionWarRejectCeasefireEvent
+            {
+                AggressorFaction = aggressor,
+                TargetFaction = target,
             });
         };
     }

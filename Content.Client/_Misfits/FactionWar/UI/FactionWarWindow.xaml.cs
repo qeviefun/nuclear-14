@@ -28,8 +28,14 @@ public sealed partial class FactionWarWindow : FancyWindow
     /// <summary>Fired when the player confirms Declare War. Args: (targetFactionId, casusBelli).</summary>
     public event Action<string, string>? OnDeclareWar;
 
-    /// <summary>Fired when the player clicks Ceasefire. Args: targetFactionId.</summary>
+    /// <summary>Fired when the player clicks Propose Ceasefire. Args: targetFactionId.</summary>
     public event Action<string>? OnCeasefire;
+
+    /// <summary>Fired when the player accepts an incoming ceasefire proposal. Args: (aggressorFactionId, targetFactionId).</summary>
+    public event Action<string, string>? OnAcceptCeasefireProposal;
+
+    /// <summary>Fired when the player rejects an incoming ceasefire proposal. Args: (aggressorFactionId, targetFactionId).</summary>
+    public event Action<string, string>? OnRejectCeasefireProposal;
 
     // ── Internal state ─────────────────────────────────────────────────────
 
@@ -38,6 +44,8 @@ public sealed partial class FactionWarWindow : FancyWindow
 
     /// <summary>Whether the declare war button is in the "confirm" state (second press fires).</summary>
     private bool _confirmPending;
+
+    private FactionWarCeasefireProposalInfo? _pendingCeasefireProposal;
 
     // ── Constructor ────────────────────────────────────────────────────────
 
@@ -56,8 +64,11 @@ public sealed partial class FactionWarWindow : FancyWindow
             "[bullet]No intentionally round-ending someone (de-heading, gibbing, etc.).[/bullet]\n" +
             "[bullet]Highest-ranking member may be round-removed [bold]only[/bold] via RP-friendly means (e.g., public execution).[/bullet]");
 
-        DeclareWarButton.OnPressed  += _ => OnDeclareWarPressed();
-        CeasefireButton.OnPressed   += _ => SubmitCeasefire();
+        DeclareWarButton.OnPressed += _ => OnDeclareWarPressed();
+        CeasefireButton.OnPressed  += _ => SubmitCeasefire();
+
+        AcceptCeasefireProposalButton.OnPressed += _ => SubmitAcceptCeasefireProposal();
+        RejectCeasefireProposalButton.OnPressed += _ => SubmitRejectCeasefireProposal();
 
         // Commit dropdown selection and reset confirm state when the target changes.
         TargetFactionSelector.OnItemSelected += args => { TargetFactionSelector.SelectId(args.Id); ResetConfirm(); };
@@ -74,7 +85,8 @@ public sealed partial class FactionWarWindow : FancyWindow
         string myFactionDisplay,
         IReadOnlyList<FactionWarEntry> activeWars,
         IReadOnlyList<(string Display, string Id)> eligibleTargets,
-        IReadOnlyList<(string Display, string Id)> ceasefireTargets)
+        IReadOnlyList<(string Display, string Id)> ceasefireTargets,
+        IReadOnlyList<FactionWarCeasefireProposalInfo> incomingCeasefireProposals)
     {
         // ── "Your Faction" label ──────────────────────────────────────────
         MyFactionLabel.Text = myFactionId == null
@@ -135,6 +147,16 @@ public sealed partial class FactionWarWindow : FancyWindow
         }
 
         CeasefireButton.Disabled = ceasefireTargets.Count == 0 || myFactionId == null;
+
+        // ── Incoming Ceasefire Proposal ───────────────────────────────────
+        _pendingCeasefireProposal = incomingCeasefireProposals.Count > 0 ? incomingCeasefireProposals[0] : null;
+        IncomingCeasefireProposalSection.Visible = _pendingCeasefireProposal != null;
+        if (_pendingCeasefireProposal != null)
+        {
+            var reqDisplay = FactionWarConfig.FactionDisplayName(_pendingCeasefireProposal.RequestingFaction);
+            IncomingCeasefireProposalLabel.Text = $"{reqDisplay} proposes a ceasefire.";
+            IncomingCeasefireProposerLabel.Text = $"Proposed by: {_pendingCeasefireProposal.RequesterCharacterName}, {_pendingCeasefireProposal.RequesterJobName}";
+        }
 
         // Clear any previous result message when state refreshes.
         ClearResult();
@@ -208,5 +230,19 @@ public sealed partial class FactionWarWindow : FancyWindow
     private void ClearResult()
     {
         ResultLabel.SetMarkup(string.Empty);
+    }
+
+    private void SubmitAcceptCeasefireProposal()
+    {
+        if (_pendingCeasefireProposal == null)
+            return;
+        OnAcceptCeasefireProposal?.Invoke(_pendingCeasefireProposal.AggressorFaction, _pendingCeasefireProposal.TargetFaction);
+    }
+
+    private void SubmitRejectCeasefireProposal()
+    {
+        if (_pendingCeasefireProposal == null)
+            return;
+        OnRejectCeasefireProposal?.Invoke(_pendingCeasefireProposal.AggressorFaction, _pendingCeasefireProposal.TargetFaction);
     }
 }

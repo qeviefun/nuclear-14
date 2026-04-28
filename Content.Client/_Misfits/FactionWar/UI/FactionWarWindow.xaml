@@ -48,6 +48,20 @@
 
         <PanelContainer MinHeight="1" Modulate="#404040" Margin="10 6"/>
 
+        <!-- ── Incoming Ceasefire Proposal ───────────────────────────── -->
+        <BoxContainer Name="IncomingCeasefireProposalSection" Orientation="Vertical" Visible="False"
+                      HorizontalExpand="True" SeparationOverride="2" Margin="10 0 10 4">
+            <Label Text="Incoming Ceasefire Proposal" Margin="0 4 0 2" Modulate="#5599CC" StyleClasses="LabelBig"/>
+            <Label Name="IncomingCeasefireProposalLabel" HorizontalExpand="True" Margin="0 2"/>
+            <Label Name="IncomingCeasefireProposerLabel" HorizontalExpand="True" Modulate="#808080"/>
+            <BoxContainer Orientation="Horizontal" SeparationOverride="6" Margin="0 4 0 0">
+                <Button Name="AcceptCeasefireProposalButton" Text="Accept Ceasefire" HorizontalExpand="True" Access="Public"/>
+                <Button Name="RejectCeasefireProposalButton" Text="Reject" HorizontalExpand="True" Access="Public"/>
+            </BoxContainer>
+        </BoxContainer>
+
+        <PanelContainer MinHeight="1" Modulate="#404040" Margin="10 6"/>
+
         <!-- ── Declare War ────────────────────────────────────────── -->
         <Label Text="{Loc faction-war-declare-header}" Margin="10 0 10 4" Modulate="#CC4040"
                StyleClasses="LabelBig"/>

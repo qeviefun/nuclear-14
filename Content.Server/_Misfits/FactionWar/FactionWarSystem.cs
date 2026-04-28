@@ -56,8 +56,9 @@ public sealed class FactionWarSystem : EntitySystem
     /// <summary>Cooldown after a war ends before the same faction can declare again.</summary>
     private static readonly TimeSpan WarCooldownAfterEnd = TimeSpan.FromMinutes(10);
 
-    // #Misfits Add - Maximum duration an active war can last before auto-ceasefire.
-    private static readonly TimeSpan WarMaxDuration = TimeSpan.FromMinutes(30);
+    /// <summary>How long a ceasefire proposal waits for the other side's consent before expiring.</summary>
+    private static readonly TimeSpan CeasefireProposalTimeout = TimeSpan.FromMinutes(5);
+
 
     // ── State ──────────────────────────────────────────────────────────────
 
@@ -76,8 +77,9 @@ public sealed class FactionWarSystem : EntitySystem
     /// <summary>Per-faction cooldown after a war ends. Key = faction ID, Value = earliest next war time.</summary>
     private readonly Dictionary<string, TimeSpan> _factionWarCooldowns = new();
 
-    // #Misfits Add - Auto-ceasefire deadline for active wars. Key = WarKey, Value = expiry time.
-    private readonly Dictionary<string, TimeSpan> _warAutoEndTimes = new();
+    /// <summary>Ceasefire proposals awaiting the other faction's consent. Key = WarKey(aggressor, target).</summary>
+    private readonly Dictionary<string, CeasefireProposal> _pendingCeasefireProposals = new();
+
 
     // #Misfits Tweak - Safety resync: re-sends participant dict every 30 s to catch edge cases
     // (e.g. entities that spawned mid-round while a war was active). All real state-change paths
@@ -97,7 +99,6 @@ public sealed class FactionWarSystem : EntitySystem
     // scans. These were per-tick allocations; keeping them resident eliminates steady-state
     // GC pressure on the 1 Hz war sweep.
     private readonly List<FactionWarEntry> _activatedScratch = new();
-    private readonly List<FactionWarEntry> _expiredScratch = new();
 
     /// <summary>
     /// Sessions that currently have the /war panel open.
@@ -129,6 +130,10 @@ public sealed class FactionWarSystem : EntitySystem
         SubscribeNetworkEvent<FactionWarOpenPanelRequestEvent>(OnPanelRequest);
         SubscribeNetworkEvent<FactionWarDeclareRequestEvent>(OnDeclareRequest);
         SubscribeNetworkEvent<FactionWarCeasefireRequestEvent>(OnCeasefireRequest);
+
+        // Ceasefire proposal consent responses.
+        SubscribeNetworkEvent<FactionWarAcceptCeasefireEvent>(OnAcceptCeasefireProposal);
+        SubscribeNetworkEvent<FactionWarRejectCeasefireEvent>(OnRejectCeasefireProposal);
 
         // Warjoin panel & enlistment.
         SubscribeNetworkEvent<FactionWarJoinPanelRequestEvent>(OnWarJoinPanelRequest);
@@ -179,6 +184,33 @@ public sealed class FactionWarSystem : EntitySystem
             _participantResyncAccumulator = 0f;
         }
 
+        // ── Ceasefire proposal timeouts ───────────────────────────────
+        if (_pendingCeasefireProposals.Count > 0)
+        {
+            List<string>? expiredCeaseKeys = null;
+            foreach (var (key, prop) in _pendingCeasefireProposals)
+            {
+                if (now >= prop.ExpiresAt)
+                {
+                    expiredCeaseKeys ??= new List<string>();
+                    expiredCeaseKeys.Add(key);
+                }
+            }
+            if (expiredCeaseKeys != null)
+            {
+                foreach (var key in expiredCeaseKeys)
+                {
+                    var prop = _pendingCeasefireProposals[key];
+                    _pendingCeasefireProposals.Remove(key);
+                    _chat.DispatchServerAnnouncement(
+                        $"CEASEFIRE PROPOSAL EXPIRED\n" +
+                        $"The ceasefire proposed by {FactionDisplayName(prop.RequestingFaction)} expired. The war continues.",
+                        Color.Gray);
+                }
+                SendPanelDataToAll();
+            }
+        }
+
         // ── Pending → Active transitions ──────────────────────────────
         if (_warActivationTimes.Count > 0)
         {
@@ -202,8 +234,6 @@ public sealed class FactionWarSystem : EntitySystem
                 _warActivationTimes.Remove(key);
                 activated.Add(war);
 
-                // #Misfits Add - Start the 30-minute auto-ceasefire countdown.
-                _warAutoEndTimes[key] = now + WarMaxDuration;
             }
 
             if (activated.Count > 0)
@@ -220,50 +250,12 @@ public sealed class FactionWarSystem : EntitySystem
                         $"WAR HAS BEGUN\n" +
                         $"The conflict between {aggDisplay} and {tgtDisplay} is now active!\n" +
                         $"(/warjoin) is now closed for this conflict.\n" +
-                        $"Auto-ceasefire in 30 minutes.",
+                        $"The war will only end by ceasefire.",
                         Color.OrangeRed);
                 }
             }
         }
 
-        // ── Auto-ceasefire expiry check ───────────────────────────────
-        // #Misfits Add - End wars that have exceeded WarMaxDuration.
-        if (_warAutoEndTimes.Count > 0)
-        {
-            // #Misfits Tweak - Reused scratch buffer; cleared here each sweep.
-            var expired = _expiredScratch;
-            expired.Clear();
-
-            foreach (var war in _activeWars)
-            {
-                if (war.Phase != WarPhase.Active)
-                    continue;
-
-                var key = WarKey(war);
-                if (!_warAutoEndTimes.TryGetValue(key, out var endTime))
-                    continue;
-
-                if (now >= endTime)
-                    expired.Add(war);
-            }
-
-            foreach (var war in expired)
-            {
-                var aggDisplay = FactionDisplayName(war.AggressorFaction);
-                var tgtDisplay = FactionDisplayName(war.TargetFaction);
-
-                _chat.DispatchServerAnnouncement(
-                    Loc.GetString("faction-war-auto-ceasefire-announcement",
-                        ("aggressor", aggDisplay),
-                        ("target", tgtDisplay)),
-                    Color.SkyBlue);
-
-                _chat.SendAdminAnnouncement(
-                    $"[FactionWar] Auto-ceasefire triggered: {aggDisplay} vs {tgtDisplay} (30-minute limit).");
-
-                RemoveWar(war);
-            }
-        }
     }
 
     // ── GUI: Panel data request ─────────────────────────────────────────
@@ -287,7 +279,7 @@ public sealed class FactionWarSystem : EntitySystem
         {
             if (TryGetWarFaction(playerEntity, out var factionId))
             {
-                data.MyFactionId      = factionId;
+                data.MyFactionId = factionId;
                 data.MyFactionDisplay = FactionDisplayName(factionId);
             }
         }
@@ -333,6 +325,23 @@ public sealed class FactionWarSystem : EntitySystem
                     data.CeasefireTargets.Add(new FactionWarTargetInfo { Id = war.TargetFaction, DisplayName = FactionDisplayName(war.TargetFaction) });
                 else if (war.TargetFaction == data.MyFactionId)
                     data.CeasefireTargets.Add(new FactionWarTargetInfo { Id = war.AggressorFaction, DisplayName = FactionDisplayName(war.AggressorFaction) });
+            }
+
+            // Incoming ceasefire proposals: player's faction needs to respond (they are NOT the requester).
+            foreach (var prop in _pendingCeasefireProposals.Values)
+            {
+                var involved = prop.AggressorFaction == data.MyFactionId || prop.TargetFaction == data.MyFactionId;
+                if (!involved || prop.RequestingFaction == data.MyFactionId)
+                    continue;
+
+                data.IncomingCeasefireProposals.Add(new FactionWarCeasefireProposalInfo
+                {
+                    AggressorFaction = prop.AggressorFaction,
+                    TargetFaction = prop.TargetFaction,
+                    RequestingFaction = prop.RequestingFaction,
+                    RequesterCharacterName = prop.RequesterCharacterName,
+                    RequesterJobName = prop.RequesterJobName,
+                });
             }
         }
 
@@ -425,11 +434,10 @@ public sealed class FactionWarSystem : EntitySystem
             return;
         }
 
-        var myWeight  = GetJobWeight(mindId);
+        var myWeight = GetJobWeight(mindId);
         var topWeight = GetFactionTopWeight(myFactionId);
         if (myWeight < topWeight)
         {
-            // Include rank info so the player knows who outranks them.
             var myJob = _jobs.MindTryGetJobName(mindId);
             var topHolder = GetFactionTopJobHolder(myFactionId);
             SendResult(player, false,
@@ -441,17 +449,16 @@ public sealed class FactionWarSystem : EntitySystem
 
         var entry = new FactionWarEntry
         {
-            AggressorFaction      = myFactionId,
-            TargetFaction         = targetFactionId,
-            CasusBelli            = casusBelli,
+            AggressorFaction = myFactionId,
+            TargetFaction = targetFactionId,
+            CasusBelli = casusBelli,
             DeclarerCharacterName = Name(playerEntity),
-            DeclarerJobName       = _jobs.MindTryGetJobName(mindId),
-            Phase                 = WarPhase.Pending,
+            DeclarerJobName = _jobs.MindTryGetJobName(mindId),
+            Phase = WarPhase.Pending,
         };
 
         _activeWars.Add(entry);
 
-        // Start the 5-minute preparation timer.
         var warKey = WarKey(entry);
         _warActivationTimes[warKey] = _gameTiming.CurTime + WarPrepDuration;
 
@@ -486,7 +493,7 @@ public sealed class FactionWarSystem : EntitySystem
         if (player.Status != SessionStatus.InGame ||
             player.AttachedEntity is not { } playerEntity)
         {
-            SendResult(player, false, "You must be in-game to declare a ceasefire.");
+            SendResult(player, false, "You must be in-game to propose a ceasefire.");
             return;
         }
 
@@ -500,7 +507,7 @@ public sealed class FactionWarSystem : EntitySystem
 
         var war = _activeWars.FirstOrDefault(w =>
             (w.AggressorFaction == myFactionId && w.TargetFaction == targetFactionId) ||
-            (w.TargetFaction    == myFactionId && w.AggressorFaction == targetFactionId));
+            (w.TargetFaction == myFactionId && w.AggressorFaction == targetFactionId));
 
         if (war == null)
         {
@@ -515,38 +522,230 @@ public sealed class FactionWarSystem : EntitySystem
             return;
         }
 
-        var ceaseMyWeight  = GetJobWeight(ceaseMindId);
+        var ceaseMyWeight = GetJobWeight(ceaseMindId);
         var ceaseTopWeight = GetFactionTopWeight(myFactionId);
         if (ceaseMyWeight < ceaseTopWeight)
         {
             var myJob = _jobs.MindTryGetJobName(ceaseMindId);
             var topHolder = GetFactionTopJobHolder(myFactionId);
             SendResult(player, false,
-                $"Only the highest-ranking member online can declare a ceasefire. " +
+                $"Only the highest-ranking member online can propose a ceasefire. " +
                 $"Your rank: {myJob} (weight {ceaseMyWeight}). " +
                 $"Outranked by: {topHolder} (weight {ceaseTopWeight}).");
             return;
         }
 
-        RemoveWar(war);
+        var warKey = WarKey(war);
+        if (_pendingCeasefireProposals.TryGetValue(warKey, out var existing))
+        {
+            if (existing.RequestingFaction == myFactionId)
+                SendResult(player, false, "You have already proposed a ceasefire. Waiting for the other faction to respond.");
+            else
+                SendResult(player, false, "The other faction has already proposed a ceasefire. Accept it via (/war).");
+            return;
+        }
+
+        var otherFactionId = myFactionId == war.AggressorFaction ? war.TargetFaction : war.AggressorFaction;
+
+        var ceaseProposal = new CeasefireProposal
+        {
+            AggressorFaction = war.AggressorFaction,
+            TargetFaction = war.TargetFaction,
+            RequestingFaction = myFactionId,
+            RequesterCharacterName = Name(playerEntity),
+            RequesterJobName = _jobs.MindTryGetJobName(ceaseMindId),
+            ExpiresAt = _gameTiming.CurTime + CeasefireProposalTimeout,
+        };
+
+        _pendingCeasefireProposals[warKey] = ceaseProposal;
+        SendPanelDataToAll();
 
         var aggressorDisplay = FactionDisplayName(war.AggressorFaction);
-        var targetDisplay    = FactionDisplayName(war.TargetFaction);
-        var charName         = Name(playerEntity);
-        var jobName          = _jobs.MindTryGetJobName(ceaseMindId);
+        var targetDisplay = FactionDisplayName(war.TargetFaction);
+        var otherDisplay = FactionDisplayName(otherFactionId);
+        var charName = Name(playerEntity);
+        var jobName = _jobs.MindTryGetJobName(ceaseMindId);
+
+        _chat.DispatchServerAnnouncement(
+            $"CEASEFIRE PROPOSED\n" +
+            $"{FactionDisplayName(myFactionId)} proposes a ceasefire.\n" +
+            $"Proposed by {charName}, {jobName}\n\n" +
+            $"{otherDisplay}'s leader must accept or reject via (/war). Expires in 5 minutes.",
+            Color.SkyBlue);
+
+        _chat.SendAdminAnnouncement(
+            $"[FactionWar] {player.Name} ({charName}) proposed ceasefire: {aggressorDisplay} vs {targetDisplay}");
+
+        SendResult(player, true,
+            $"Ceasefire proposed. Waiting for {otherDisplay}'s leader to respond via (/war).");
+    }
+
+    // ── GUI: Accept / Reject ceasefire proposal ────────────────────────────
+
+    private void OnAcceptCeasefireProposal(FactionWarAcceptCeasefireEvent msg, EntitySessionEventArgs args)
+    {
+        var player = args.SenderSession;
+
+        if (player.Status != SessionStatus.InGame ||
+            player.AttachedEntity is not { } playerEntity)
+        {
+            SendResult(player, false, "You must be in-game to accept a ceasefire.");
+            return;
+        }
+
+        var warKey = WarKey(msg.AggressorFaction, msg.TargetFaction);
+
+        if (!_pendingCeasefireProposals.TryGetValue(warKey, out var proposal))
+        {
+            SendResult(player, false, "That ceasefire proposal no longer exists.");
+            return;
+        }
+
+        if (!TryGetWarFaction(playerEntity, out var myFactionId))
+        {
+            SendResult(player, false, "You are not a member of any war-capable faction.");
+            return;
+        }
+
+        if (myFactionId == proposal.RequestingFaction)
+        {
+            SendResult(player, false, "You proposed this ceasefire. The other faction must accept.");
+            return;
+        }
+
+        if (myFactionId != proposal.AggressorFaction && myFactionId != proposal.TargetFaction)
+        {
+            SendResult(player, false, "You are not involved in this war.");
+            return;
+        }
+
+        if (!_minds.TryGetMind(playerEntity, out var mindId, out _))
+        {
+            SendResult(player, false, "You have no mind entity.");
+            return;
+        }
+
+        var myWeight = GetJobWeight(mindId);
+        var topWeight = GetFactionTopWeight(myFactionId);
+        if (myWeight < topWeight)
+        {
+            var myJob = _jobs.MindTryGetJobName(mindId);
+            var topHolder = GetFactionTopJobHolder(myFactionId);
+            SendResult(player, false,
+                $"Only the highest-ranking member online can accept a ceasefire. " +
+                $"Your rank: {myJob} (weight {myWeight}). " +
+                $"Outranked by: {topHolder} (weight {topWeight}).");
+            return;
+        }
+
+        var war = _activeWars.FirstOrDefault(w =>
+            w.AggressorFaction == proposal.AggressorFaction && w.TargetFaction == proposal.TargetFaction);
+
+        if (war == null)
+        {
+            _pendingCeasefireProposals.Remove(warKey);
+            SendResult(player, false, "The war no longer exists.");
+            SendPanelDataToAll();
+            return;
+        }
+
+        _pendingCeasefireProposals.Remove(warKey);
+        RemoveWar(war);
+
+        var aggressorDisplay = FactionDisplayName(proposal.AggressorFaction);
+        var targetDisplay = FactionDisplayName(proposal.TargetFaction);
+        var charName = Name(playerEntity);
+        var jobName = _jobs.MindTryGetJobName(mindId);
 
         _chat.DispatchServerAnnouncement(
             $"CEASEFIRE\n" +
             $"{aggressorDisplay} and {targetDisplay} have agreed to a ceasefire.\n" +
+            $"Accepted by {charName}, {jobName}\n" +
             $"However, escalation and tensions still exist.",
             Color.SkyBlue);
 
         _chat.SendAdminAnnouncement(
-            $"[FactionWar] {player.Name} ({charName}) called ceasefire:" +
-            $" {aggressorDisplay} vs {targetDisplay}");
+            $"[FactionWar] {player.Name} ({charName}) accepted ceasefire: {aggressorDisplay} vs {targetDisplay}");
 
-        SendResult(player, true,
-            $"Ceasefire declared. The conflict with {targetDisplay} has ended.");
+        SendResult(player, true, "Ceasefire accepted. The conflict has ended.");
+    }
+
+    private void OnRejectCeasefireProposal(FactionWarRejectCeasefireEvent msg, EntitySessionEventArgs args)
+    {
+        var player = args.SenderSession;
+
+        if (player.Status != SessionStatus.InGame ||
+            player.AttachedEntity is not { } playerEntity)
+        {
+            SendResult(player, false, "You must be in-game to reject a ceasefire.");
+            return;
+        }
+
+        var warKey = WarKey(msg.AggressorFaction, msg.TargetFaction);
+
+        if (!_pendingCeasefireProposals.TryGetValue(warKey, out var proposal))
+        {
+            SendResult(player, false, "That ceasefire proposal no longer exists.");
+            return;
+        }
+
+        if (!TryGetWarFaction(playerEntity, out var myFactionId))
+        {
+            SendResult(player, false, "You are not a member of any war-capable faction.");
+            return;
+        }
+
+        if (myFactionId == proposal.RequestingFaction)
+        {
+            SendResult(player, false, "You proposed this ceasefire. The other faction must respond.");
+            return;
+        }
+
+        if (myFactionId != proposal.AggressorFaction && myFactionId != proposal.TargetFaction)
+        {
+            SendResult(player, false, "You are not involved in this war.");
+            return;
+        }
+
+        if (!_minds.TryGetMind(playerEntity, out var mindId, out _))
+        {
+            SendResult(player, false, "You have no mind entity.");
+            return;
+        }
+
+        var myWeight = GetJobWeight(mindId);
+        var topWeight = GetFactionTopWeight(myFactionId);
+        if (myWeight < topWeight)
+        {
+            var myJob = _jobs.MindTryGetJobName(mindId);
+            var topHolder = GetFactionTopJobHolder(myFactionId);
+            SendResult(player, false,
+                $"Only the highest-ranking member online can reject a ceasefire. " +
+                $"Your rank: {myJob} (weight {myWeight}). " +
+                $"Outranked by: {topHolder} (weight {topWeight}).");
+            return;
+        }
+
+        _pendingCeasefireProposals.Remove(warKey);
+        SendPanelDataToAll();
+
+        var aggressorDisplay = FactionDisplayName(proposal.AggressorFaction);
+        var targetDisplay = FactionDisplayName(proposal.TargetFaction);
+        var charName = Name(playerEntity);
+        var jobName = _jobs.MindTryGetJobName(mindId);
+        var requestingDisplay = FactionDisplayName(proposal.RequestingFaction);
+
+        _chat.DispatchServerAnnouncement(
+            $"CEASEFIRE REJECTED\n" +
+            $"{FactionDisplayName(myFactionId)} rejected the ceasefire proposed by {requestingDisplay}.\n" +
+            $"Rejected by {charName}, {jobName}\n" +
+            $"The war continues.",
+            Color.OrangeRed);
+
+        _chat.SendAdminAnnouncement(
+            $"[FactionWar] {player.Name} ({charName}) rejected ceasefire: {aggressorDisplay} vs {targetDisplay}");
+
+        SendResult(player, true, $"Ceasefire from {requestingDisplay} rejected. The war continues.");
     }
 
     // ── GUI: Warjoin panel data ────────────────────────────────────────────
@@ -1056,9 +1255,9 @@ public sealed class FactionWarSystem : EntitySystem
     {
         _activeWars.Clear();
         _warActivationTimes.Clear();
-        _warAutoEndTimes.Clear(); // #Misfits Add - Clear auto-ceasefire timers on round restart.
         _warParticipants.Clear();
         _factionWarCooldowns.Clear();
+        _pendingCeasefireProposals.Clear();
         _panelOpenSessions.Clear();
         _participantResyncAccumulator = 0f;
         _roundStartTime = _gameTiming.CurTime;
@@ -1098,9 +1297,7 @@ public sealed class FactionWarSystem : EntitySystem
 
         var warKey = WarKey(war);
         _warActivationTimes.Remove(warKey);
-
-        // #Misfits Add - Cancel auto-ceasefire timer if one was running.
-        _warAutoEndTimes.Remove(warKey);
+        _pendingCeasefireProposals.Remove(warKey);
 
         // Set per-faction cooldown so neither side can immediately re-declare.
         var cooldownEnd = _gameTiming.CurTime + WarCooldownAfterEnd;
@@ -1166,12 +1363,17 @@ public sealed class FactionWarSystem : EntitySystem
     {
         var dict = new Dictionary<NetEntity, string>();
 
-        // Collect the set of faction IDs currently at war.
+        // Collect faction IDs from Active wars only — tags are hidden during the 5-min Pending phase.
         var warFactions = new HashSet<string>();
+        var activeWarKeys = new HashSet<string>();
         foreach (var war in _activeWars)
         {
+            if (war.Phase != WarPhase.Active)
+                continue;
+
             warFactions.Add(war.AggressorFaction);
             warFactions.Add(war.TargetFaction);
+            activeWarKeys.Add(WarKey(war));
             // Include aliases (e.g. Rangers → NCR) so those members are found too.
             foreach (var (raw, canonical) in FactionWarConfig.FactionAliases)
             {
@@ -1180,7 +1382,7 @@ public sealed class FactionWarSystem : EntitySystem
             }
         }
 
-        // Pass 1: All NPC faction members whose faction is involved in a war.
+        // Pass 1: All NPC faction members whose faction is in an Active war.
         var factionQuery = EntityQueryEnumerator<NpcFactionMemberComponent>();
         while (factionQuery.MoveNext(out var uid, out _))
         {
@@ -1202,13 +1404,15 @@ public sealed class FactionWarSystem : EntitySystem
             }
         }
 
-        // Pass 2: Individual /warjoin participants (may overlap with pass 1 — their side wins).
+        // Pass 2: Individual /warjoin participants — only show tags once their war is Active.
         var sessionByUserId = new Dictionary<NetUserId, ICommonSession>();
         foreach (var session in _playerManager.Sessions)
             sessionByUserId[session.UserId] = session;
 
-        foreach (var (userId, (_, side)) in _warParticipants)
+        foreach (var (userId, (warKey, side)) in _warParticipants)
         {
+            if (!activeWarKeys.Contains(warKey))
+                continue;
             if (!sessionByUserId.TryGetValue(userId, out var session))
                 continue;
             if (session.AttachedEntity is not { } entity)
@@ -1348,4 +1552,19 @@ public sealed class FactionWarSystem : EntitySystem
 
     private static string WarKey(FactionWarEntry war) =>
         $"{war.AggressorFaction}|{war.TargetFaction}";
+
+    private static string WarKey(string aggressor, string target) =>
+        $"{aggressor}|{target}";
+
+    // ── Inner proposal types (server-only, not serialized) ─────────────────
+
+    private sealed class CeasefireProposal
+    {
+        public string AggressorFaction = string.Empty;
+        public string TargetFaction = string.Empty;
+        public string RequestingFaction = string.Empty;
+        public string RequesterCharacterName = string.Empty;
+        public string RequesterJobName = string.Empty;
+        public TimeSpan ExpiresAt;
+    }
 }

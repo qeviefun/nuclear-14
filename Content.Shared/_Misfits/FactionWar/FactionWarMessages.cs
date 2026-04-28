@@ -151,6 +151,9 @@ public sealed class FactionWarPanelDataEvent : EntityEventArgs
     public List<FactionWarTargetInfo> EligibleTargets = new();
     public List<FactionWarTargetInfo> CeasefireTargets = new();
     public string? StatusMessage;
+
+    /// <summary>Ceasefire proposals where the player's faction needs to respond.</summary>
+    public List<FactionWarCeasefireProposalInfo> IncomingCeasefireProposals = new();
 }
 
 /// <summary>
@@ -191,6 +194,36 @@ public sealed class FactionWarCommandResultEvent : EntityEventArgs
 {
     public bool   Success = false;
     public string Message = string.Empty;
+}
+
+/// <summary>
+/// A pending ceasefire proposal (one faction waiting for the other's consent).
+/// Included in <see cref="FactionWarPanelDataEvent"/> for the non-requesting faction's leader.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class FactionWarCeasefireProposalInfo
+{
+    public string AggressorFaction        = string.Empty;
+    public string TargetFaction           = string.Empty;
+    public string RequestingFaction       = string.Empty;
+    public string RequesterCharacterName  = string.Empty;
+    public string RequesterJobName        = string.Empty;
+}
+
+/// <summary>Client → server. Other faction's leader accepts a ceasefire proposal.</summary>
+[Serializable, NetSerializable]
+public sealed class FactionWarAcceptCeasefireEvent : EntityEventArgs
+{
+    public string AggressorFaction = string.Empty;
+    public string TargetFaction    = string.Empty;
+}
+
+/// <summary>Client → server. Other faction's leader rejects a ceasefire proposal.</summary>
+[Serializable, NetSerializable]
+public sealed class FactionWarRejectCeasefireEvent : EntityEventArgs
+{
+    public string AggressorFaction = string.Empty;
+    public string TargetFaction    = string.Empty;
 }
 
 // ── /warjoin network messages ─────────────────────────────────────────────
