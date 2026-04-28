@@ -4075,3 +4075,10 @@ Entries:
   id: 5788
   time: '2026-04-28T14:21:52.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/357
+- author: Dpellowski
+  changes:
+    - type: Fix
+      message: Admins now actually skip full server
+  id: 5789
+  time: '2026-04-28T16:49:24.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/360
