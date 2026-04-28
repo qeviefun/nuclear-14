@@ -4089,3 +4089,24 @@ Entries:
   id: 5790
   time: '2026-04-28T16:49:50.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/359
+- author: Chancerous
+  changes:
+    - type: Add
+      message: Access terminal to BoS armory
+    - type: Add
+      message: Handcuffs to BoS armory
+    - type: Add
+      message: Extra comms to BoS armory
+    - type: Add
+      message: Sink to BoS chem room
+    - type: Tweak
+      message: Moved knight spawns
+    - type: Tweak
+      message: Moved squire spawns
+    - type: Fix
+      message: BoS Surgery door
+    - type: Fix
+      message: BoS Head Paladin office
+  id: 5791
+  time: '2026-04-28T17:15:16.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/361
