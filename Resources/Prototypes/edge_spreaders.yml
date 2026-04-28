@@ -4,7 +4,7 @@
 
 - type: edgeSpreader
   id: Puddle
-  updatesPerSecond: 16
+  updatesPerSecond: 2
 
 - type: edgeSpreader
   id: Smoke

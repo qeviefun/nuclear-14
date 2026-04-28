@@ -171,7 +171,6 @@
     solution: puddle
   - type: BadDrink
   - type: IgnoresFingerprints
-  - type: PuddleFootPrints
 
 - type: entity
   name: footstep
@@ -228,6 +227,7 @@
       solution: step
     - type: BadDrink
     - type: IgnoresFingerprints
+    - type: Evaporation
     - type: Tag
       tags:
       - DNASolutionScannable

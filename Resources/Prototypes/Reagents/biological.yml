@@ -1,4 +1,3 @@
-# Misfits Change Tweak: Blood does not evaporate so mops can clean blood puddles
 - type: reagent
   id: Blood
   name: reagent-name-blood
@@ -6,7 +5,6 @@
   desc: reagent-desc-blood
   flavor: metallic
   color: "#800000"
-  evaporates: false
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/bloodglass.rsi
     state: icon_empty
@@ -170,7 +168,6 @@
   physicalDesc: reagent-physical-desc-necrotic
   flavor: bitter
   color: "#2b0700"
-  evaporates: false
   slippery: false
   metabolisms:
     Drink:
@@ -196,7 +193,6 @@
   physicalDesc: reagent-physical-desc-roaring
   flavor: metallic
   color: "#f4692e"
-  evaporates: false
   recognizable: true
   metabolisms:
     Drink:

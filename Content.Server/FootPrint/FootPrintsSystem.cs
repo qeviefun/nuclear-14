@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Server.Atmos.Components;
 using Content.Shared.Inventory;
 using Content.Shared.FootPrint;
@@ -23,7 +22,6 @@ public sealed class FootPrintsSystem : EntitySystem
     [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
 
     private EntityQuery<AppearanceComponent> _appearanceQuery;
     private EntityQuery<StandingStateComponent> _standingStateQuery;
@@ -57,11 +55,6 @@ public sealed class FootPrintsSystem : EntitySystem
         var stepSize = dragging ? component.DragSize : component.StepSize;
 
         if (distance < stepSize)
-            return;
-
-        // are we on a puddle? we exit, ideally we would exchange liquid and DNA with the puddle but meh, too lazy to do that now.
-        var entities = _lookup.GetEntitiesIntersecting(uid, LookupFlags.All);
-        if (entities.Any(HasComp<PuddleFootPrintsComponent>))
             return;
 
         // Spawn the footprint
