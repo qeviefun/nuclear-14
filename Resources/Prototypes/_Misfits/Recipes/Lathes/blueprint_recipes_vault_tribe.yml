@@ -269,6 +269,22 @@
     Plastic: 50
 
 - type: latheRecipe
+  id: M14BPVaultPaintCombatArmor
+  result: M14ClothingOuterVaultCombatArmor
+  category: N14BlueprintVaultArmorT4
+  completetime: 25
+  requiresBlueprint: true
+  availableFaction:
+  - Vault
+  materials:
+    Steel: 900
+    Cloth: 4
+    Thread: 275
+    Circuitry: 150
+    ScrapElectronic: 1
+    N14Iron: 1
+
+- type: latheRecipe
   id: N14BPVaultArmorMarineArmor
   result: N14ClothingOuterMarineArmor
   category: N14BlueprintVaultArmorT4
@@ -1071,6 +1087,20 @@
 - type: latheRecipe
   id: N14BPVaultArmorHelmetCombatMK2
   result: N14ClothingHeadHatCombatHelmetMK2
+  category: N14BlueprintVaultArmorT4
+  completetime: 12
+  requiresBlueprint: true
+  availableFaction:
+  - Vault
+  materials:
+    Steel: 4000
+    Cloth: 10
+    Leather: 5
+    Circuitry: 5
+
+- type: latheRecipe
+  id: M14BPVaultPaintCombatHelmet
+  result: M14ClothingHeadHatVaultCombatHelmet
   category: N14BlueprintVaultArmorT4
   completetime: 12
   requiresBlueprint: true

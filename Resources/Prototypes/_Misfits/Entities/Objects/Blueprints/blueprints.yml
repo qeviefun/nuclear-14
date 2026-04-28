@@ -929,9 +929,12 @@
     recipes:
     - N14BPVaultArmorCombatArmorMK2
     - N14BPVaultArmorMarineArmor
-    # #Misfits Add - paired combat MK2 and marine helmets
+    # #Misfits Add - Vault-Tec combat armor
+    - M14BPVaultPaintCombatArmor
+    # #Misfits Add - paired combat MK2 and marine helmets, also vault helmet
     - N14BPVaultArmorHelmetCombatMK2
     - N14BPVaultArmorHelmetMarine
+    - M14BPVaultPaintCombatHelmet
 
 # --- Vault Ammo ---
 - type: entity

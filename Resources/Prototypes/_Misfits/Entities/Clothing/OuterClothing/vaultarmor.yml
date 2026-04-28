@@ -1,0 +1,25 @@
+# #Misfits Add
+
+- type: entity
+  parent: N14FalloutArmorBase
+  id: M14ClothingOuterVaultCombatArmor
+  name: vault combat armor
+  description: An extremely advanced piece of combat armor manufactured with vault-tec colors, the strongest you can find in the vault
+  components:
+  - type: Sprite
+    sprite: _Misfits/Clothing/OuterClothing/Armor/vaultcombatarmor.rsi
+  - type: Clothing
+    sprite: _Misfits/Clothing/OuterClothing/Armor/vaultcombatarmor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.55
+        Heat: 0.55
+    priceMultiplier: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.75
+  - type: ClothingSpeedModifier # Forge-Add
+    walkModifier: 0.95
+    sprintModifier: 0.95
