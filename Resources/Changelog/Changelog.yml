@@ -4082,3 +4082,10 @@ Entries:
   id: 5789
   time: '2026-04-28T16:49:24.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/360
+- author: NajaTheNaja
+  changes:
+    - type: Tweak
+      message: changed PA repair time from 30 to 18 seconds
+  id: 5790
+  time: '2026-04-28T16:49:50.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/359
