@@ -4054,3 +4054,10 @@ Entries:
   id: 5785
   time: '2026-04-27T23:59:29.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/353
+- author: Dpellowski
+  changes:
+    - type: Add
+      message: Supermutant traits!
+  id: 5786
+  time: '2026-04-28T00:31:50.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/356
