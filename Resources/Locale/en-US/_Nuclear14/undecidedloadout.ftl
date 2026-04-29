@@ -124,8 +124,8 @@ undecided-loadout-category-ws-grenadier-description =
 
 undecided-loadout-category-ws-sniper-name = Specialist Sniper Kit
 undecided-loadout-category-ws-sniper-description =
-    Includes 1 NCR belt, 1 recon beret, 1 NCR cloak, 1 NCR .50 rifle,
-    1 box of .50 ammo, 1 .45 pistol, 2 .45 pistol magazines,
+    Includes 1 NCR belt, 1 recon beret, 1 NCR cloak, 1 .308 sniper rifle,
+    1 mag of .308, 1 .45 pistol, 2 .45 pistol magazines,
     1 C ration MRE, 1 stimpak, 1 RadAway blood bag, 1 gauze pack, and 1 flare.
 
 undecided-loadout-category-ws-stealth-name = Specialist Infiltrator Kit
