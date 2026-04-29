@@ -4183,3 +4183,32 @@ Entries:
   id: 5798
   time: '2026-04-29T01:55:37.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/369
+- author: AthenaAI
+  changes:
+    - type: Add
+      message: Adds build able recipes to the armor, tinker and weapon workbenches.
+    - type: Add
+      message: >-
+        Added health analyzer, geiger counter, payloads and sensor module to the
+        tinker bench.
+    - type: Add
+      message: Added a way to craft cloth with cotton via the normal crafting menu.
+    - type: Add
+      message: Added small and large gear recipes to the work bench.
+    - type: Tweak
+      message: >-
+        Moved the centrifuge, electrolysis and mine recipes to the tinker bench
+        because it makes more sense.
+    - type: Tweak
+      message: >-
+        Modular mine now needs a sensor module instead of the non existent
+        promixity sensor.
+    - type: Tweak
+      message: Moved the gauze recipe to the workbench form the tinker bench.
+    - type: Fix
+      message: >-
+        Fixed the construction ghosts for workbenches to match their built
+        counterpart.
+  id: 5799
+  time: '2026-04-29T20:42:37.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/371
