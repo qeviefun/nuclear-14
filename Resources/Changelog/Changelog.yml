@@ -4212,3 +4212,20 @@ Entries:
   id: 5799
   time: '2026-04-29T20:42:37.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/371
+- author: Bill Clinton
+  changes:
+    - type: Remove
+      message: >-
+        Removed fun! in the form of HTs losing 5.56 LMGs and specialists +
+        frumentarii losing their .50 AMRs
+    - type: Tweak
+      message: >-
+        blueprint costs increased for... *checks my notes... everyone. Crucify
+        me later.
+    - type: Add
+      message: >-
+        HTs get their minigun back and specialist snipers + frumentarii get .308
+        snipers with a spare mag or two.
+  id: 5800
+  time: '2026-04-29T22:24:55.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/349
