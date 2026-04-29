@@ -1,341 +1,360 @@
-# #Misfits Change - Super Mutant species-specific clothing items.
-# Tagged with SuperMutantWearable to match supermutant inventory template whitelist.
-# Only Super Mutants can equip these items in body-worn slots.
+# Super Mutant job: playable FEV-mutated humanoid role.
+# Players spawn directly into the super mutant body via jobEntity.
+# Locked behind 9999 hours playtime and whitelist.
 
-# --- Jumpsuit ---
-- type: entity
-  parent: UnsensoredClothingUniformBase
-  id: ClothingSuperMutantJumpsuit
-  name: super mutant garb
-  description: A crude set of garments cobbled together from scavenged materials, sized for a super mutant's massive frame.
-  components:
-  - type: Sprite
-    sprite: _Misfits/Clothing/SuperMutant/jumpsuit.rsi
-  - type: Clothing
-    sprite: _Misfits/Clothing/SuperMutant/jumpsuit.rsi
-  - type: Tag
-    tags:
-    - SuperMutantWearable
+- type: job
+  id: SuperMutant
+  jobWhitelistBypassesRoleTimers: true # #Misfits Change
+  name: job-name-supermutant
+  description: job-description-supermutant
+  playTimeTracker: SuperMutant
+  icon: JobIconBorg
+  supervisors: job-supervisors-supermutant
+  canBeAntag: false
+  setPreference: true
+  overrideConsoleVisibility: true
+  whitelisted: true # #Misfits Fix — allow job-whitelist fallback in lobby visibility filter
+  hideWithoutWhitelist: true # #Misfits Change
+  spawnLoadout: true
+  startingGear: SuperMutantVaultSuitGear # #Misfits Add - prevents naked spawns
+  applyTraits: true # #Misfits Change - enable perks tab for Supermutants
+  requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+        - SuperMutant
+  special: # #Misfits Add - register with PlayerSuperMutant faction so Loremaster tab can detect this job
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - PlayerSuperMutant
 
-# --- Outer Clothing ---
-- type: entity
-  parent: ClothingOuterBase
-  id: ClothingSuperMutantOuterClothing
-  name: super mutant armor
-  description: Scrap metal and leather lashed together into crude but effective armor, built to fit a super mutant.
-  components:
-  - type: Sprite
-    sprite: _Misfits/Clothing/SuperMutant/outerclothing.rsi
-  - type: Clothing
-    sprite: _Misfits/Clothing/SuperMutant/outerclothing.rsi
-  - type: Tag
-    tags:
-    - SuperMutantWearable
+- type: playTimeTracker
+  id: SuperMutant
 
-# --- Gloves ---
-- type: entity
-  parent: ClothingHandsBase
-  id: ClothingSuperMutantGloves
-  name: super mutant hand wraps
-  description: Heavy strips of leather and cloth wound around enormous green hands.
-  components:
-  - type: Sprite
-    sprite: _Misfits/Clothing/SuperMutant/gloves.rsi
-  - type: Clothing
-    sprite: _Misfits/Clothing/SuperMutant/gloves.rsi
-  - type: Tag
-    tags:
-    - SuperMutantWearable
+# #Misfits Add - startingGear for the base Supermutant: a vault suit so they don't spawn naked.
+- type: startingGear
+  id: SuperMutantVaultSuitGear
+  equipment:
+    jumpsuit: ClothingSuperMutantVaultSuit
 
-# --- Shoes ---
-- type: entity
-  parent: ClothingShoesBase
-  id: ClothingSuperMutantShoes
-  name: super mutant boots
-  description: Oversized boots fashioned from thick hides, sized for a super mutant's feet.
-  components:
-  - type: Sprite
-    sprite: _Misfits/Clothing/SuperMutant/shoes.rsi
-  - type: Clothing
-    sprite: _Misfits/Clothing/SuperMutant/shoes.rsi
-  - type: Tag
-    tags:
-    - SuperMutantWearable
+# #Misfits Add - Nightkin variant with its own whitelist entry.
+- type: job
+  id: Nightkin
+  jobWhitelistBypassesRoleTimers: true
+  name: job-name-nightkin
+  description: job-description-nightkin
+  playTimeTracker: Nightkin
+  icon: JobIconBorg
+  supervisors: job-supervisors-supermutant
+  canBeAntag: false
+  setPreference: true
+  overrideConsoleVisibility: true
+  whitelisted: true
+  hideWithoutWhitelist: true
+  spawnLoadout: true
+  startingGear: SuperMutantVaultSuitGear
+  applyTraits: true
+  requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+        - Nightkin
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - PlayerSuperMutant
 
-# --- Head ---
-- type: entity
-  parent: ClothingHeadBase
-  id: ClothingSuperMutantHead
-  name: super mutant headgear
-  description: A crude helmet assembled from scrap metal and leather, shaped to fit a super mutant's oversized skull.
-  components:
-  - type: Sprite
-    sprite: _Misfits/Clothing/SuperMutant/head.rsi
-  - type: Clothing
-    sprite: _Misfits/Clothing/SuperMutant/head.rsi
-  - type: Tag
-    tags:
-    - SuperMutantWearable
+- type: playTimeTracker
+  id: Nightkin
 
-# --- Mask ---
-- type: entity
-  parent: ClothingMaskBase
-  id: ClothingSuperMutantMask
-  name: super mutant face wrap
-  description: A strip of thick hide covering the lower face, more for intimidation than protection.
-  components:
-  - type: Sprite
-    sprite: _Misfits/Clothing/SuperMutant/mask.rsi
-  - type: Clothing
-    sprite: _Misfits/Clothing/SuperMutant/mask.rsi
-  - type: Tag
-    tags:
-    - SuperMutantWearable
+# #Misfits Add - Gladiator variant of the playable Supermutant role.
+# Spawns with an arena-themed outfit while retaining normal whitelist and species restrictions.
+- type: job
+  id: SuperMutantGladiator
+  jobWhitelistBypassesRoleTimers: true # #Misfits Change
+  name: job-name-supermutant-gladiator
+  description: job-description-supermutant-gladiator
+  playTimeTracker: SuperMutantGladiator
+  icon: JobIconBorg
+  supervisors: job-supervisors-supermutant
+  canBeAntag: false
+  setPreference: true
+  overrideConsoleVisibility: true
+  whitelisted: true # #Misfits Change
+  hideWithoutWhitelist: true # #Misfits Change
+  spawnLoadout: true
+  applyTraits: true # #Misfits Change - enable perks tab for Supermutants
+  startingGear: SuperMutantGladiatorGear
+  requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+        - SuperMutant
+  special: # #Misfits Add - register with PlayerSuperMutant faction so Loremaster tab can detect this job
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - PlayerSuperMutant
+  - !type:AddTraitSpecial
+    traits: [ LanguageLatin ]
+- type: startingGear
+  id: SuperMutantGladiatorGear
+  equipment:
+    ears: N14ClothingHeadsetLegion
+    jumpsuit: ClothingSuperMutantGladiatorLoincloth
+    outerClothing: ClothingSuperMutantGladiatorArmor
+    shoes: ClothingSuperMutantGladiatorBoots
+    head: ClothingSuperMutantGladiatorHelmet
+    id: N14IDLegionaryBadgeSlave # Gladiator serves under Legion authority
+    back: N14ClothingBackpackMilitary # #Misfits Add - backslot for storing a secondary weapon
+    suitstorage: N14WastelandTribalSpear # #Misfits Add - back holster slot; starts with a spear stowed on the back
+  inhand:
+    - N14WastelandTribalSpear # Starts with a tribal spear for close-combat
 
-# --- Neck ---
-- type: entity
-  parent: ClothingNeckBase
-  id: ClothingSuperMutantNeck
-  name: super mutant neck guard
-  description: A thick collar of scrap and leather protecting a super mutant's neck.
-  components:
-  - type: Sprite
-    sprite: _Misfits/Clothing/SuperMutant/neck.rsi
-  - type: Clothing
-    sprite: _Misfits/Clothing/SuperMutant/neck.rsi
-  - type: Tag
-    tags:
-    - SuperMutantWearable
+- type: playTimeTracker
+  id: SuperMutantGladiator
 
-# #Misfits Add - Gladiator set for the playable Supermutant Gladiator variant.
-# Uses dedicated supermutant-fitted directional sheets so the outfit renders cleanly on species layers.
+# #Misfits Add - Ranger variant of the playable Supermutant role.
+# Spawns with ranger armor. Same whitelist/species/faction restrictions as Gladiator.
+- type: job
+  id: SuperMutantRanger
+  jobWhitelistBypassesRoleTimers: true
+  name: job-name-supermutant-ranger
+  description: job-description-supermutant-ranger
+  playTimeTracker: SuperMutantRanger
+  icon: JobIconBorg
+  supervisors: job-supervisors-supermutant
+  canBeAntag: false
+  setPreference: true
+  overrideConsoleVisibility: true
+  whitelisted: true
+  hideWithoutWhitelist: true
+  spawnLoadout: true
+  applyTraits: true
+  startingGear: SuperMutantRangerGear
+  requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+        - SuperMutant
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - PlayerSuperMutant
 
-# --- Gladiator Loincloth ---
-- type: entity
-  parent: UnsensoredClothingUniformBase
-  id: ClothingSuperMutantGladiatorLoincloth
-  name: supermutant gladiator loincloth
-  description: A hardened arena loincloth cut for a supermutant frame.
-  components:
-  - type: Sprite
-    sprite: _Misfits/Clothing/SuperMutant/gladiator_loincloth.rsi
-  - type: Clothing
-    sprite: _Misfits/Clothing/SuperMutant/gladiator_loincloth.rsi
-  - type: Tag
-    tags:
-    - SuperMutantWearable
+- type: startingGear
+  id: SuperMutantRangerGear
+  equipment:
+    head: ClothingSuperMutantRangerHat
+    jumpsuit: ClothingSuperMutantRangerShirt
+    outerClothing: ClothingSuperMutantRangerArmor
+    back: N14ClothingBackpackMilitary
 
-# --- Gladiator Armor ---
-- type: entity
-  parent: [ClothingOuterBase, AllowSuitStorageClothing] # #Misfits Add - AllowSuitStorageClothing enables the back holster (suitstorage) slot
-  id: ClothingSuperMutantGladiatorArmor
-  name: supermutant gladiator armor
-  description: Heavy scrap armor reinforced for pit fights and close-quarters brutality.
-  components:
-  - type: Sprite
-    sprite: _Misfits/Clothing/SuperMutant/gladiator_armor.rsi
-  - type: Clothing
-    sprite: _Misfits/Clothing/SuperMutant/gladiator_armor.rsi
-  - type: Tag
-    tags:
-    - SuperMutantWearable
-  - type: Armor # #Misfits Add - 15% physical damage resistance baseline
-    modifiers:
-      coefficients:
-        Blunt: 0.85
-        Slash: 0.85
-        Piercing: 0.85
+- type: playTimeTracker
+  id: SuperMutantRanger
 
-# --- Gladiator Boots ---
-- type: entity
-  parent: ClothingShoesBase
-  id: ClothingSuperMutantGladiatorBoots
-  name: supermutant gladiator boots
-  description: Arena boots built for traction and impact on broken concrete.
-  components:
-  - type: Sprite
-    sprite: _Misfits/Clothing/SuperMutant/gladiator_boots.rsi
-  - type: Clothing
-    sprite: _Misfits/Clothing/SuperMutant/gladiator_boots.rsi
-  - type: Tag
-    tags:
-    - SuperMutantWearable
+# #Misfits Add - Trooper variant of the playable Supermutant role.
+# Front-line heavy; spawns with trooper armor. Same restrictions as Ranger/Gladiator.
+- type: job
+  id: SuperMutantTrooper
+  jobWhitelistBypassesRoleTimers: true
+  name: job-name-supermutant-trooper
+  description: job-description-supermutant-trooper
+  playTimeTracker: SuperMutantTrooper
+  icon: JobIconBorg
+  supervisors: job-supervisors-supermutant
+  canBeAntag: false
+  setPreference: true
+  overrideConsoleVisibility: true
+  whitelisted: true
+  hideWithoutWhitelist: true
+  spawnLoadout: true
+  applyTraits: true
+  startingGear: SuperMutantTrooperGear
+  requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+        - SuperMutant
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - PlayerSuperMutant
 
-# --- Gladiator Helmet ---
-- type: entity
-  parent: ClothingHeadBase
-  id: ClothingSuperMutantGladiatorHelmet
-  name: supermutant gladiator helmet
-  description: A brutal steel helm meant to survive point-blank blows in the arena.
-  components:
-  - type: Sprite
-    sprite: _Misfits/Clothing/SuperMutant/gladiator_helmet.rsi
-  - type: Clothing
-    sprite: _Misfits/Clothing/SuperMutant/gladiator_helmet.rsi
-  - type: Tag
-    tags:
-    - SuperMutantWearable
-  - type: Armor # #Misfits Add - 50% physical damage resistance (head protection)
-    modifiers:
-      coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.5
+- type: startingGear
+  id: SuperMutantTrooperGear
+  equipment:
+    outerClothing: ClothingSuperMutantTrooperArmor
+    back: N14ClothingBackpackMilitary
 
-# #Misfits Add - Ranger armor for the Supermutant Ranger job.
-# Tagged SupermutantWearable so only supermutants can equip it in Outerclothing slot.
-- type: entity
-  parent: [ClothingOuterBase, AllowSuitStorageClothing]
-  id: ClothingSuperMutantRangerArmor
-  name: supermutant ranger duster
-  description: An XXXXL duster created to fit even the biggest of people.
-  components:
-  - type: Sprite
-    sprite: _Misfits/Clothing/SuperMutant/ranger_armor.rsi
-  - type: Clothing
-    sprite: _Misfits/Clothing/SuperMutant/ranger_armor.rsi
-  - type: Tag
-    tags:
-    - SuperMutantWearable
-  - type: Armor # #Misfits add: was the old ncr ranger dmg reduc
-    modifiers:
-      coefficients:
-        Blunt: 0.80
-        Slash: 0.80
-        Piercing: 0.
+- type: playTimeTracker
+  id: SuperMutantTrooper
 
-- type: entity
-  parent: ClothingHeadBase
-  id: ClothingSuperMutantRangerHat
-  name: supermutant ranger hat
-  description: An XXXXL ranger hat made to fit even the biggest of people.
-  components:
-  - type: Sprite
-    sprite: _Misfits\Clothing\SuperMutant\ranger_hat.rsi
-  - type: Clothing
-    sprite: _Misfits\Clothing\SuperMutant\ranger_hat.rsi
-  - type: Tag
-    tags:
-    - SuperMutantWearable
-  - type: Armor # #Misfits Add - 50% physical damage resistance (head protection)
-    modifiers:
-      coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.5
+# #Misfits Add - NCR-aligned supermutant ranger.
+# Dual faction: PlayerSuperMutant (Loremaster detection) + NCR (faction interactions).
+# Uses ranger_armor.rsi sprites. NCR headset and badge recognise this mutant as an ally.
+- type: job
+  id: SuperMutantNCRRanger
+  jobWhitelistBypassesRoleTimers: true
+  name: job-name-supermutant-ncr-ranger
+  description: job-description-supermutant-ncr-ranger
+  playTimeTracker: SuperMutantNCRRanger
+  icon: JobIconBorg
+  supervisors: job-supervisors-ncr-ranger
+  canBeAntag: false
+  setPreference: true
+  overrideConsoleVisibility: true
+  whitelisted: true
+  hideWithoutWhitelist: true
+  spawnLoadout: true
+  applyTraits: true
+  startingGear: SuperMutantNCRRangerGear
+  access:
+  - NCR
+  - NCRSGT
+  - NCRRanger
+  requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+        - SuperMutant
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - PlayerSuperMutant  # keeps Loremaster/perk detection working
+          - NCR                # recognised as ally by NCR faction AI and tabs
 
-# #Misfits Add - Ranger armor for the playable Supermutant Ranger job variant.
-# Tagged SuperMutantWearable so only supermutants can equip it in outerClothing slot.
-- type: entity
-  parent: [UnsensoredClothingUniformBase, AllowSuitStorageClothing]
-  id: ClothingSuperMutantRangerShirt
-  name: supermutant ranger shirt
-  description: An XXXXL shirt made to fit even the biggest of people.
-  components:
-  - type: Sprite
-    sprite: _Misfits/Clothing/SuperMutant/ranger_shirt.rsi
-  - type: Clothing
-    sprite: _Misfits/Clothing/SuperMutant/ranger_shirt.rsi
-  - type: Tag
-    tags:
-    - SuperMutantWearable
+- type: startingGear
+  id: SuperMutantNCRRangerGear
+  equipment:
+    head: ClothingSuperMutantRangerHat
+    shoes: ClothingSuperMutantGladiatorBoots # Placeholder untill we get NCR boots
+    jumpsuit: ClothingSuperMutantRangerShirt
+    outerClothing: ClothingSuperMutantRangerArmor
+    ears: N14ClothingHeadsetNCR
+    id: N14IDBadgeNCRRanger
+    back: N14ClothingBackpackMilitary
 
+- type: playTimeTracker
+  id: SuperMutantNCRRanger
 
-# #Misfits Add - Trooper armor for the playable Supermutant Trooper job variant.
-- type: entity
-  parent: [ClothingOuterBase, AllowSuitStorageClothing]
-  id: ClothingSuperMutantTrooperArmor
-  name: supermutant trooper armor
-  description: Thick welded plating built for a supermutant front-liner. Not elegant, but reliably stops bullets aimed at its massive wearer.
-  components:
-  - type: Sprite
-    sprite: _Misfits/Clothing/SuperMutant/trooper_armor.rsi
-  - type: Clothing
-    sprite: _Misfits/Clothing/SuperMutant/trooper_armor.rsi
-  - type: Tag
-    tags:
-    - SuperMutantWearable
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.75
-        Slash: 0.75
-        Piercing: 0.80
+# #Misfits Add - NCR-aligned supermutant trooper.
+# Front-line grunt who has been folded into NCR service.
+# Uses trooper_armor.rsi sprites. NCR dogtag marks allegiance.
+- type: job
+  id: SuperMutantNCRTrooper
+  jobWhitelistBypassesRoleTimers: true
+  name: job-name-supermutant-ncr-trooper
+  description: job-description-supermutant-ncr-trooper
+  playTimeTracker: SuperMutantNCRTrooper
+  icon: JobIconBorg
+  supervisors: job-supervisors-ncr
+  canBeAntag: false
+  setPreference: true
+  overrideConsoleVisibility: true
+  whitelisted: true
+  hideWithoutWhitelist: true
+  spawnLoadout: true
+  applyTraits: true
+  startingGear: SuperMutantNCRTrooperGear
+  requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+        - SuperMutant
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - PlayerSuperMutant  # keeps Loremaster/perk detection working
+          - NCR                # recognised as ally by NCR faction AI and tabs
 
-# #Misfits Add - Extra supermutant outer outfit (outfit C) — spawnable standalone wearable.
-- type: entity
-  parent: ClothingOuterBase
-  id: ClothingSuperMutantOutfitC
-  name: supermutant battle wrap
-  description: A layered wrap of salvaged cloth and scrap-metal strips worn by supermutants heading into a fight.
-  components:
-  - type: Sprite
-    sprite: _Misfits/Clothing/SuperMutant/supermutant_outfit_c.rsi
-  - type: Clothing
-    sprite: _Misfits/Clothing/SuperMutant/supermutant_outfit_c.rsi
-  - type: Tag
-    tags:
-    - SuperMutantWearable
+- type: startingGear
+  id: SuperMutantNCRTrooperGear
+  equipment:
+    shoes: ClothingSuperMutantGladiatorBoots # Placeholder untill we get NCR boots
+    jumpsuit: ClothingSuperMutantJumpsuit
+    outerClothing: ClothingSuperMutantTrooperArmor
+    ears: N14ClothingHeadsetNCR
+    id: N14IDNCRDogtagSoldier
+    back: N14ClothingBackpackNCR
 
-# #Misfits Add - Supermutant neck trinket (skull necklace) — standalone spawnable wearable.
-- type: entity
-  parent: ClothingNeckBase
-  id: ClothingSuperMutantNeckTrinket
-  name: supermutant skull necklace
-  description: A string of crushed skulls and scrap metal worn as a trophy around a supermutant's thick neck.
-  components:
-  - type: Sprite
-    sprite: _Misfits/Clothing/SuperMutant/supermutant_neck_trinket.rsi
-  - type: Clothing
-    sprite: _Misfits/Clothing/SuperMutant/supermutant_neck_trinket.rsi
-  - type: Tag
-    tags:
-    - SuperMutantWearable
+- type: playTimeTracker
+  id: SuperMutantNCRTrooper
 
-# #Misfits Add - Vault suit jumpsuit for the base playable Supermutant role.
-# Sprites by ColonelNothing (CC-BY-SA-3.0). Prevents naked spawns.
-# --- Supermutant Vault Suit ---
-- type: entity
-  parent: UnsensoredClothingUniformBase
-  id: ClothingSuperMutantVaultSuit
-  name: supermutant vault suit
-  description: A heavily stretched vault suit modified to fit a supermutant's oversized frame.
-  components:
-  - type: Sprite
-    sprite: _Misfits/Clothing/SuperMutant/vaultsuit.rsi
-  - type: Clothing
-    sprite: _Misfits/Clothing/SuperMutant/vaultsuit.rsi
-  - type: Tag
-    tags:
-    - SuperMutantWearable
-# #Misfits Add - Tribal Loincloth for the base playable Supermutant role.
-# Sprites by beepbopbopedy (CC-BY-SA-3.0).
-# --- Supermutant Tribal Loincloth ---
-- type: entity
-  parent: UnsensoredClothingUniformBase
-  id: ClothingSuperMutantTribalLoincloth
-  name: supermutant tribal loincloth
-  description: A simple loincloth made from scavenged materials, sized for a supermutant's massive frame. Worn by the most primitive of supermutants.
-  components:
-  - type: Sprite
-    sprite: _Misfits/Clothing/SuperMutant/supermutant_tribal_loincloth.rsi
-  - type: Clothing
-    sprite: _Misfits/Clothing/SuperMutant/supermutant_tribal_loincloth.rsi
-  - type: Tag
-    tags:
-    - SuperMutantWearable
+# #Misfits Add - Tribal Super Mutant
+# A Champion of the tribe blessed by the spirits
+- type: job
+  id: SuperMutantTribal
+  jobWhitelistBypassesRoleTimers: true
+  name: job-name-supermutant-tribal
+  description: job-description-supermutant-tribal
+  playTimeTracker: SuperMutantTribal
+  icon: JobIconBorg
+  supervisors: job-supervisors-ncr
+  canBeAntag: false
+  setPreference: true
+  access:
+  - TribeMember
+  - TribeChief
+  overrideConsoleVisibility: true
+  whitelisted: true
+  hideWithoutWhitelist: true
+  spawnLoadout: true
+  applyTraits: true
+  startingGear: SuperMutantTribalGear
+  requirements:
+    - !type:CharacterSpeciesRequirement
+      species:
+        - SuperMutant
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: NpcFactionMember
+        factions:
+          - Wastelander
+          - Tribal
+          - PlayerSuperMutant
+      - type: Warcry
+        action: ActionTribalWarcry
+        targetDepartment: Tribe
+        range: 6
+        speedBonus: 0.50
+        duration: 10
+        overlayColor: "#3FAF63"
+        speechVerb: MisfitsTribalWarcry
+        warcryMessage: warcry-message-tribal
+        warcryMessageCount: 6
+        buffPopup: warcry-popup-buffed-tribal
+      - type: TribalHuntParticipant
+        targetDepartment: Tribe
+  - !type:AddTraitSpecial
+    traits: [ LanguageTribal ]
 
-# #Misfits Add - Supermutant neck cape tribal
-- type: entity
-  parent: ClothingNeckBase
-  id: ClothingSuperMutantNeckCapeTribal
-  name: supermutant tribal neck cape
-  description: A skull with a long rope that goes around the body, worn as a trophy by the most primitive of supermutants.
-  components:
-  - type: Sprite
-    sprite: _Misfits/Clothing/SuperMutant/supermutant_tribal_cape.rsi
-  - type: Clothing
-    sprite: _Misfits/Clothing/SuperMutant/supermutant_tribal_cape.rsi
-  - type: Tag
-    tags:
-    - SuperMutantWearable
+- type: startingGear
+  id: SuperMutantTribalGear
+  equipment:
+    jumpsuit: ClothingSuperMutantTribalLoincloth
+    shoes: ClothingSuperMutantGladiatorBoots
+    back: N14ClothingBackpackTrekker # Corvax-Change
+    neck: ClothingSuperMutantNeckCapeTribal
+    pocket1: N14TribalKnife
+    pocket2: Triballoadoutkits
+    id: N14IDTribeBulletsPendant
+  satchel: N14ClothingBackpackSatchelTribalFilled
+  storage: # Corvax-Change
+    back:
+    - Torch
+    - Torch
+    - Torch
+    - N14Bandage
+    - Ointment
+    - N14HealingPowder
+
+- type: playTimeTracker
+  id: SuperMutantTribal
