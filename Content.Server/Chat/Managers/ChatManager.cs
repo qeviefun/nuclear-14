@@ -292,7 +292,9 @@ namespace Content.Server.Chat.Managers
                 return;
             }
 
-            var clients = _adminManager.ActiveAdmins.Select(p => p.Channel);
+            var clients = _adminManager.ActiveAdmins
+                .Where(p => _adminManager.GetAdminData(p)?.HasFlag(AdminFlags.Adminchat) == true)
+                .Select(p => p.Channel);
             var wrappedMessage = Loc.GetString("chat-manager-send-admin-chat-wrap-message",
                                             ("adminChannelName", Loc.GetString("chat-manager-admin-channel-name")),
                                             ("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));

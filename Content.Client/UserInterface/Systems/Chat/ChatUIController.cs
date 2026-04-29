@@ -557,9 +557,8 @@ public sealed class ChatUIController : UIController
             CanSendChannels |= ChatSelectChannel.Dead;
         }
 
-        // only admins and mentors can see / filter asay
-        // #Misfits Change - Grant ViewNotes (mentor) access to admin chat UI
-        if (_admin.HasFlag(AdminFlags.Adminchat) || _admin.HasFlag(AdminFlags.ViewNotes))
+        // only admins with Adminchat permission can see / filter asay
+        if (_admin.HasFlag(AdminFlags.Adminchat))
         {
             FilterableChannels |= ChatChannel.Admin;
             FilterableChannels |= ChatChannel.AdminAlert;
