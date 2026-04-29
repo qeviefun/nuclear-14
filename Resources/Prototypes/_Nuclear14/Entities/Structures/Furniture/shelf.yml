@@ -105,6 +105,9 @@
     sprite: _Nuclear14/Structures/Furniture/np13_misc.rsi
     netsync: false
     state: shelf_wood
+  - type: Construction
+    graph: ShelvesWood
+    node: ShelfWood
   - type: Damageable
     damageModifierSet: Wood
     damageContainer: Inorganic
@@ -166,12 +169,16 @@
 - type: entity
   parent: N14ShelfWood1
   id: N14ShelfWood
+  name: tall wooden shelf
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Furniture/64x96_furniture.rsi
     state: wood_shelf
     noRot: false
     offset: 0.5, 0.5
+  - type: Construction
+    graph: ShelvesWood
+    node: ShelfWoodTall
   - type: Fixtures
     fixtures:
       fix1:
@@ -207,13 +214,28 @@
 - type: entity
   parent: N14ShelfWood
   id: N14ShelfWoodShowcase
-  name: showcase
+  name: wooden showcase shelves
   description: A wooden stand for showing things off.
   components:
   - type: Sprite
     sprite: _Nuclear14/Structures/Furniture/64x64_furniture.rsi
     snapCardinals: true
     state: showcase
+  - type: Construction
+    graph: ShelvesWood
+    node: ShelfWoodShowcase
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.3,-0.3,1.3,0.5"
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
     
 - type: entity
   parent: N14ShelfWood
@@ -223,6 +245,9 @@
   components:
   - type: Sprite
     state: stand_wood
+  - type: Construction
+    graph: ShelvesWood
+    node: ShelfWoodStand
   - type: Fixtures
     fixtures:
       fix1:
@@ -244,6 +269,9 @@
   components:
   - type: Sprite
     state: stand_wood_small
+  - type: Construction
+    graph: ShelvesWood
+    node: ShelfWoodStandSmall
   - type: Fixtures
     fixtures:
       fix1:
@@ -265,6 +293,9 @@
   components:
   - type: Sprite
     state: clothing_rack
+  - type: Construction
+    graph: ShelvesWood
+    node: ShelfWoodClothesRack
     
 # Metal Shelves
 - type: entity

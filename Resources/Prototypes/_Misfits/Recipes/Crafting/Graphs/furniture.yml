@@ -1,0 +1,110 @@
+# wood shelves
+
+- type: constructionGraph
+  id: ShelvesWood
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: ShelfWood
+          steps:
+            - material: WoodPlank
+              amount: 6
+              doAfter: 4
+        - to: ShelfWoodTall
+          steps:
+            - material: WoodPlank
+              amount: 9
+              doAfter: 4
+        - to: ShelfWoodShowcase
+          steps:
+            - material: WoodPlank
+              amount: 11
+              doAfter: 6
+        - to: ShelfWoodStand
+          steps:
+            - material: WoodPlank
+              amount: 6
+              doAfter: 5
+        - to: ShelfWoodStandSmall
+          steps:
+            - material: WoodPlank
+              amount: 5
+              doAfter: 5
+        - to: ShelfWoodClothesRack
+          steps:
+            - material: WoodPlank
+              amount: 9
+              doAfter: 6
+    - node: ShelfWood
+      entity: N14ShelfWood1
+      edges: 
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 6
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 6
+            - !type:DeleteEntity
+    - node: ShelfWoodTall
+      entity: N14ShelfWood
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 7
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 9
+            - !type:DeleteEntity
+    - node: ShelfWoodShowcase
+      entity: N14ShelfWoodShowcase
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 8
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 11
+            - !type:DeleteEntity
+    - node: ShelfWoodStand
+      entity: N14ShelfWoodStand
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 6
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 6
+            - !type:DeleteEntity
+    - node: ShelfWoodStandSmall
+      entity: N14ShelfWoodStandSmall
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 4
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 5
+            - !type:DeleteEntity
+    - node: ShelfWoodClothesRack
+      entity: N14ShelfWoodClothesRack
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 8
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 9
+            - !type:DeleteEntity

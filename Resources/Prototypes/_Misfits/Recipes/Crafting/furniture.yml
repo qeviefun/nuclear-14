@@ -1,0 +1,91 @@
+# wood shelves
+
+- type: construction
+  name: basic wooden shelf
+  id: N14ShelfWood1
+  graph: ShelvesWood
+  startNode: start
+  targetNode: ShelfWood
+  category: construction-category-storage
+  description: A dusty old shelf.
+  hide: false
+  icon:
+    sprite: _Nuclear14/Structures/Furniture/np13_misc.rsi
+    state: shelf_wood
+  objectType: Structure
+  placementMode: SnapgridCenter
+
+- type: construction
+  name: tall wooden shelf
+  id: N14ShelfWood
+  graph: ShelvesWood
+  startNode: start
+  targetNode: ShelfWoodTall
+  category: construction-category-storage
+  description: A tall wooden shelf.
+  hide: false
+  icon:
+    sprite: _Nuclear14/Structures/Furniture/64x96_furniture.rsi
+    state: wood_shelf
+  objectType: Structure
+  placementMode: SnapgridCenter
+
+- type: construction
+  name: wooden showcase shelves
+  id: N14ShelfWoodShowcase
+  graph: ShelvesWood
+  startNode: start
+  targetNode: ShelfWoodShowcase
+  category: construction-category-storage
+  description: A wooden showcase for displaying items.
+  hide: false
+  icon:
+    sprite: _Nuclear14/Structures/Furniture/64x64_furniture.rsi
+    state: showcase
+  objectType: Structure
+  placementMode: SnapgridCenter
+
+- type: construction
+  name: wooden stand
+  id: N14ShelfWoodStand
+  graph: ShelvesWood
+  startNode: start
+  targetNode: ShelfWoodStand
+  category: construction-category-storage
+  description: A stand, not a sit. Good for plants or trophies.
+  hide: false
+  icon:
+    sprite: _Nuclear14/Structures/Furniture/64x96_furniture.rsi
+    state: stand_wood
+  objectType: Structure
+  placementMode: SnapgridCenter
+
+- type: construction
+  name: small wooden stand
+  id: N14ShelfWoodStandSmall
+  graph: ShelvesWood
+  startNode: start
+  targetNode: ShelfWoodStandSmall
+  category: construction-category-storage
+  description: A small stand. For small people.
+  hide: false
+  icon:
+    sprite: _Nuclear14/Structures/Furniture/64x96_furniture.rsi
+    state: stand_wood_small
+  objectType: Structure
+  placementMode: SnapgridCenter
+
+- type: construction
+  name: wooden clothes rack
+  id: N14ShelfWoodClothesRack
+  graph: ShelvesWood
+  startNode: start
+  targetNode: ShelfWoodClothesRack
+  category: construction-category-storage
+  description: A wooden rack for storing clothes.
+  hide: false
+  icon:
+    sprite: _Nuclear14/Structures/Furniture/64x96_furniture.rsi
+    state: clothing_rack
+  objectType: Structure
+  placementMode: SnapgridCenter

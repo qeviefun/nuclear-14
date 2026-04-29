@@ -42,7 +42,7 @@
 - type: entity
   parent: N14Bed
   id: N14BedWood
-  name: "Wooden Bed"
+  name: "wooden bed"
   description: A bed with a wooden frame.
   components:
   - type: Sprite
@@ -54,7 +54,7 @@
 - type: entity
   parent: N14Bed
   id: N14BedWoodBunk
-  name: "Wooden Bunk Bed"
+  name: "wooden bunk bed"
   description: A bunk bed with a wooden frame.
   components:
   - type: Sprite

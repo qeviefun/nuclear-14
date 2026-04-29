@@ -53,7 +53,7 @@
 # ItemCabinets
 - type: construction
   id: ShowCase
-  name: showcase
+  name: showcasea
   description: A sturdy showcase for an expensive exhibit.
   graph: GlassBox
   startNode: start

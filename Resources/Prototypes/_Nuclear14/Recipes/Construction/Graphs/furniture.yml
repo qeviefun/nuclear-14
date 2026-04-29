@@ -79,7 +79,7 @@
               amount: 6
           steps:
             - tool: Screwing
-              doAfter: 1
+              doAfter: 2
     #start Misfits change
     - node: bedwoodbunk
       entity: N14BedWoodBunk
@@ -94,7 +94,7 @@
               amount: 6
           steps:
             - tool: Screwing
-              doAfter: 1
+              doAfter: 2
     #end Misfits change
     - node: medicalbed
       entity: MedicalBed
