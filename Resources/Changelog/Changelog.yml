@@ -4150,3 +4150,18 @@ Entries:
   id: 5795
   time: '2026-04-29T00:49:01.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/367
+- author: HungryCuban
+  changes:
+    - type: Add
+      message: Added Spray Paints to the shopkeeper terminal
+    - type: Add
+      message: Added Map to the shopkeeper terminal
+    - type: Tweak
+      message: >-
+        Currency moved from the ores category. Denarius price increased to 10
+        and Aureus decreased to 50
+    - type: Tweak
+      message: Denarius and Aureus crafting recipe decreased to 0.2
+  id: 5796
+  time: '2026-04-29T00:49:26.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/366
