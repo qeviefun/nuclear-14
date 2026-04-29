@@ -4229,3 +4229,10 @@ Entries:
   id: 5800
   time: '2026-04-29T22:24:55.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/349
+- author: Dpellowski
+  changes:
+    - type: Tweak
+      message: Admin perms
+  id: 5801
+  time: '2026-04-29T23:10:12.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/373
