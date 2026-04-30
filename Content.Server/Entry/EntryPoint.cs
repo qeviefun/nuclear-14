@@ -168,11 +168,11 @@ namespace Content.Server.Entry
 
                 IoCManager.Resolve<IGameMapManager>().Initialize();
                 IoCManager.Resolve<IEntitySystemManager>().GetEntitySystem<GameTicker>().PostInitialize();
-                IoCManager.Resolve<IConsoleHost>().ExecuteCommand("populationadjust 120");
                 IoCManager.Resolve<IBanManager>().Initialize();
                 IoCManager.Resolve<IConnectionManager>().PostInit();
                 IoCManager.Resolve<SponsorManager>().Initialize(); // Forge-Change
                 IoCManager.Resolve<ISupporterManager>().Initialize(); // #Misfits Add
+                IoCManager.Resolve<IConsoleHost>().ExecuteCommand("populationadjust 121");
             }
         }
 
