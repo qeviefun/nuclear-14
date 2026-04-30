@@ -52,7 +52,7 @@ namespace Content.Server.Database
                 .AsSingleQuery()
                 .SingleOrDefaultAsync(p => p.UserId == userId.UserId, cancel);
 
-            if (prefs is null)
+            if (prefs is null || prefs.Profiles.Count == 0)
                 return null;
 
             var maxSlot = prefs.Profiles.Max(p => p.Slot) + 1;
@@ -108,15 +108,12 @@ namespace Content.Server.Database
             }
 
             var newProfile = ConvertProfiles(humanoid, slot);
-            if (oldProfile == null)
-            {
-                var prefs = await db.DbContext
-                    .Preference
-                    .Include(p => p.Profiles)
-                    .SingleAsync(p => p.UserId == userId.UserId);
+            var prefs = await db.DbContext
+                .Preference
+                .Include(p => p.Profiles)
+                .SingleAsync(p => p.UserId == userId.UserId);
 
-                prefs.Profiles.Add(newProfile);
-            }
+            prefs.Profiles.Add(newProfile);
 
             await db.DbContext.SaveChangesAsync();
         }
