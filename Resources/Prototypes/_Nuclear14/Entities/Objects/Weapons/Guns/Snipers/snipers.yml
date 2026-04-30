@@ -675,15 +675,6 @@
       collection: N14SniperVarmintGunshot
   - type: StaticPrice
     price: 500
-  - type: Scope
-    useInHand: true
-    requireWielding: true
-    zoomLevels:
-    - name: 4x
-      zoom: 1.0
-      offset: 15
-      allowMovement: true
-      doAfter: 0.8
 
 - type: entity
   name: M1 carbine
