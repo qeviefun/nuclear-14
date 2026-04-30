@@ -4243,3 +4243,22 @@ Entries:
   id: 5802
   time: '2026-04-30T01:25:42.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/375
+- author: Fox
+  changes:
+    - type: Add
+      message: Added a fun new thing to craft
+    - type: Add
+      message: >-
+        Added wooden furniture crafting: signs, supports, barricades, bunk beds,
+        shelves
+    - type: Add
+      message: Added decoration crafting recipes
+    - type: Add
+      message: Added scope functionality to Ratslayer rifle (4x zoom)
+    - type: Tweak
+      message: Increased sand yield from sand digging
+    - type: Fix
+      message: Fixed minor supermutant clothing and organ issues
+  id: 5803
+  time: '2026-04-30T01:31:42.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/376
