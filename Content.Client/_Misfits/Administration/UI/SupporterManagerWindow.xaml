@@ -1,0 +1,42 @@
+<controls:FancyWindow
+    xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    Title="Supporter Manager"
+    MinSize="520 500">
+    <BoxContainer Orientation="Vertical" Margin="8" SeparationOverride="6">
+
+        <!-- Add / Edit Section -->
+        <Label Text="Add or Edit Supporter" StyleClasses="LabelHeadingBig" />
+
+        <GridContainer Columns="2" VSeparationOverride="6" HSeparationOverride="6">
+            <Label Text="Username:" VerticalAlignment="Center" />
+            <LineEdit Name="UsernameEdit" PlaceHolder="Player username" HorizontalExpand="True" />
+
+            <Label Text="Title (prefix):" VerticalAlignment="Center" />
+            <LineEdit Name="TitleEdit" PlaceHolder="e.g. Supporter  (leave blank to clear)" HorizontalExpand="True" />
+
+            <Label Text="Name color:" VerticalAlignment="Center" />
+            <LineEdit Name="ColorEdit" PlaceHolder="Hex color e.g. #FFD700  (leave blank to clear)" HorizontalExpand="True" />
+        </GridContainer>
+
+        <BoxContainer Orientation="Horizontal" SeparationOverride="6">
+            <Button Name="AddButton" Text="Add / Update" HorizontalExpand="True" />
+            <Button Name="ClearFormButton" Text="Clear Form" />
+        </BoxContainer>
+
+        <Label Name="StatusLabel" StyleClasses="LabelSubText" />
+
+        <PanelContainer StyleClasses="LowDivider" Margin="0 4 0 4" />
+
+        <!-- Supporter List -->
+        <Label Text="Current Supporters" StyleClasses="LabelHeadingBig" />
+
+        <ScrollContainer VerticalExpand="True" MinSize="0 200">
+            <BoxContainer Name="SupporterListContainer" Orientation="Vertical" SeparationOverride="2" />
+        </ScrollContainer>
+
+        <Label Name="NoSupportersLabel" Text="No supporters configured." StyleClasses="LabelSubText"
+               HorizontalAlignment="Center" Visible="False" />
+
+    </BoxContainer>
+</controls:FancyWindow>

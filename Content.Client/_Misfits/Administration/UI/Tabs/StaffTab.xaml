@@ -30,5 +30,11 @@
             <Label Text="{Loc misfits-staff-tab-banlist-desc}" VerticalAlignment="Center" StyleClasses="LabelSubText" />
         </BoxContainer>
 
+        <!-- #Nuclear14 - Supporter Manager: set custom chat color and title for supporters -->
+        <BoxContainer Orientation="Horizontal" SeparationOverride="8">
+            <cc:CommandButton Command="opensupportermanager" Text="Manage Supporters" MinWidth="180" />
+            <Label Text="Set custom chat color &amp; title for supporters (no admin perms)" VerticalAlignment="Center" StyleClasses="LabelSubText" />
+        </BoxContainer>
+
     </BoxContainer>
 </Control>

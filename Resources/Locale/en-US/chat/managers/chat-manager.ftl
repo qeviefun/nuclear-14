@@ -45,6 +45,9 @@ chat-manager-entity-do-wrap-message = [italic]{$message}[/italic]
 chat-manager-entity-looc-wrap-message = LOOC: {$entityName}: {$message}
 chat-manager-send-ooc-wrap-message = OOC: {$playerName}: {$message}
 chat-manager-send-ooc-patron-wrap-message = OOC: [color={$patronColor}]{$playerName}[/color]: {$message}
+# #Nuclear14 - Supporter OOC formats: with and without title prefix
+chat-manager-send-ooc-supporter-wrap-message = OOC: [color={$supporterColor}][bold]\[{$supporterTitle}][/bold] {$playerName}[/color]: {$message}
+chat-manager-send-ooc-supporter-notitle-wrap-message = OOC: [color={$supporterColor}]{$playerName}[/color]: {$message}
 
 chat-manager-send-dead-chat-wrap-message = {$deadChannelName}: [BubbleHeader]{$playerName}[/BubbleHeader]: [BubbleContent]{$message}[/BubbleContent]
 chat-manager-send-admin-dead-chat-wrap-message = {$adminChannelName}: ([BubbleHeader]{$userName}[/BubbleHeader]): [BubbleContent]{$message}[/BubbleContent]

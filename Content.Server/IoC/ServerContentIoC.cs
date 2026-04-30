@@ -1,5 +1,6 @@
 using Content.Server._NC.Discord;
 using Content.Server._Misfits.Holotape; // #Misfits Add - Terminal notes data store IoC registration
+using Content.Server._Misfits.Supporter; // #Misfits Add - Supporter manager
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
@@ -85,6 +86,7 @@ namespace Content.Server.IoC
             IoCManager.Register<MappingManager>();
             IoCManager.Register<TerminalNotesDataStore>(); // #Misfits Add - Persistent terminal notes storage
             IoCManager.Register<TerminalDatabaseDataStore>(); // #Misfits Add - Persistent faction database storage
+            IoCManager.Register<ISupporterManager, SupporterManager>(); // #Misfits Add
         }
     }
 }

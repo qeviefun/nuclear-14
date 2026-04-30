@@ -40,6 +40,7 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Server._NC.Sponsor; // Forge-Change
 using Content.Server._NC.TTS; // Forge-Change
+using Content.Server._Misfits.Supporter; // #Misfits Add - Supporter manager
 
 namespace Content.Server.Entry
 {
@@ -169,6 +170,7 @@ namespace Content.Server.Entry
                 IoCManager.Resolve<IBanManager>().Initialize();
                 IoCManager.Resolve<IConnectionManager>().PostInit();
                 IoCManager.Resolve<SponsorManager>().Initialize(); // Forge-Change
+                IoCManager.Resolve<ISupporterManager>().Initialize(); // #Misfits Add
             }
         }
 

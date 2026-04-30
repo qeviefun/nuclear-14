@@ -89,8 +89,8 @@
   - NCRCadet             # NCR Recruit             | _Misfits/Roles/Jobs/NCR/ncr_recruit.yml
   # Special
   - NCRPisoner           # NCR Prisoner            | _Misfits/Roles/Jobs/NCR/ncr_prisoner.yml
-  # Legacy jobs kept outside the visible ladder for compatibility:
-  # - NCRMPinvestigator  # NCR MP Investigator     | _Misfits/Roles/Jobs/NCR/ncr_mp_investigator.yml
+  # Special roles outside the visible ladder:
+  - NCRMPinvestigator  # NCR MP Investigator     | _Misfits/Roles/Jobs/NCR/ncr_mp_investigator.yml
   # - NCRRanger
   # - NCRRangerVeteran
 
