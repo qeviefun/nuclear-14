@@ -4262,3 +4262,10 @@ Entries:
   id: 5803
   time: '2026-04-30T01:31:42.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/376
+- author: Dpellowski
+  changes:
+    - type: Tweak
+      message: Reserved slots work on bootup now..
+  id: 5804
+  time: '2026-04-30T01:56:54.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/377
