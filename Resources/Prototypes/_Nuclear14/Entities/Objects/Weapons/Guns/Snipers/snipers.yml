@@ -654,7 +654,9 @@
   components:
   - type: Clothing
     sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/ratslayer.rsi
-    state: equipped-SUITSTORAGE
+    slots:
+    - Back
+    - suitStorage
   - type: Sprite
     sprite: _Nuclear14/Objects/Weapons/Guns/Snipers/ratslayer.rsi
   - type: Construction
