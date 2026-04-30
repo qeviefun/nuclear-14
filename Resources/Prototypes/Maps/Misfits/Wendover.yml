@@ -150,3 +150,6 @@
           EnclaveHeadScientist: [ 1, 1 ]
           EnclaveScientist: [ 2, 2 ]
           EnclaveJuniorScientist: [ 2, 2 ]
+          NCRMilitaryPoliceSergeant: [ 0, 0 ]
+          NCRMilitaryPoliceRecruit: [ 0, 0 ]
+          NCRMilitaryPoliceCaptain: [ 0, 0 ]

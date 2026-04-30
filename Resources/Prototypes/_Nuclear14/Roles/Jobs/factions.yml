@@ -108,6 +108,16 @@
   #- NCRRanger       # NCR Desert Ranger (whitelist-only, outside the ladder) | _Misfits/Roles/Jobs/Rangers/ncr_ranger.yml  # #Misfits Removed - separate whitelist role, not part of station ladder
 
 - type: department
+  id: MilitaryPolice
+  description: department-NCRMilitaryPolice-description
+  color: "#662727"
+  uiCategory: MajorFaction
+  roles:
+  - NCRMilitaryPoliceRecruit
+  - NCRMilitaryPoliceSergeant
+  - NCRMilitaryPoliceCaptain
+
+- type: department
   id: Tribe
   description: department-Tribe-description
   color: "#d69b3d"
