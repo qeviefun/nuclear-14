@@ -4377,3 +4377,12 @@ Entries:
   id: 5816
   time: '2026-05-01T16:36:24.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/396
+- author: qevie
+  changes:
+    - type: Tweak
+      message: Adjusted supermutant slots
+    - type: Tweak
+      message: Adjusted silicon slots
+  id: 5817
+  time: '2026-05-01T18:00:15.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/397
