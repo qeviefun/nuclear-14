@@ -4409,3 +4409,10 @@ Entries:
   id: 5820
   time: '2026-05-01T21:06:54.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/400
+- author: Dpellowski
+  changes:
+    - type: Fix
+      message: Revived people no longer show up
+  id: 5821
+  time: '2026-05-01T21:26:33.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/402
