@@ -4345,3 +4345,10 @@ Entries:
   id: 5812
   time: '2026-04-30T21:47:01.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/392
+- author: Bradysgaming
+  changes:
+    - type: Add
+      message: Added the NCRMP vest and helmet
+  id: 5813
+  time: '2026-05-01T16:22:38.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/394
