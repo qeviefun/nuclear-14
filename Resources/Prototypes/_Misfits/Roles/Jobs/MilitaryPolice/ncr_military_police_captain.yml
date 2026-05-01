@@ -37,7 +37,7 @@
 - type: startingGear
   id: NCRMilitaryPoliceCaptainGear
   equipment:
-    head: N14ClothingHeadHatNCRBeretOfficer
+    head: FalloutNCRmilitarypoliceHelmet
     back: N14ClothingBackpackNCR
     jumpsuit: N14ClothingMPUniformNCRDesert
     shoes: N14ClothingBootsCombatFilled
