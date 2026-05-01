@@ -866,7 +866,7 @@
 
 - type: entity
   parent: N14ClothingHeadHatCombatHelmet
-  id: FalloutNCRmilitarypolice
+  id: FalloutNCRmilitarypoliceHelmet
   name: NCR Military Police Helmet
   description: A helmet worn by the NCR Millitary Police.
   components:
