@@ -4400,3 +4400,12 @@ Entries:
   id: 5819
   time: '2026-05-01T21:05:05.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/401
+- author: Papa Yml Khan Bill Clinton
+  changes:
+    - type: Tweak
+      message: >-
+        I feed the masses what they desire. cars drop more metal and they now
+        drop a little electronic scrap and a shitload of normal scrap.
+  id: 5820
+  time: '2026-05-01T21:06:54.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/400
