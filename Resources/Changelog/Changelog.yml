@@ -4416,3 +4416,10 @@ Entries:
   id: 5821
   time: '2026-05-01T21:26:33.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/402
+- author: Dpellowski
+  changes:
+    - type: Tweak
+      message: Get rid of non ooc prefixs for supporters
+  id: 5822
+  time: '2026-05-02T01:09:57.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/403
