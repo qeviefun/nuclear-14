@@ -12,8 +12,8 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.1,-0.1,1,0.3"
-        density: 190
+          bounds: "-0.75,-0.3,0.75,0.3"
+        density: 3000
         mask:
         - MachineMask
         layer:
@@ -34,6 +34,8 @@
   - type: ExtensionCableReceiver
   - type: ApcPowerReceiver
     needsPower: false
+  - type: Anchorable
+  - type: Rotatable
   - type: Tag
     tags:
     - N14Workbench
@@ -442,6 +444,7 @@
     - CentrifugeMachineCircuitboard
     # #Misfits Add: Electrolyzer machine board so players can make electrolyzers via machine frame.
     - ElectrolysisUnitMachineCircuitboard
+  - type: ActivatableUIRequiresPower
 
 - type: entity
   categories: [ HideSpawnMenu ] # Forge-change
@@ -493,8 +496,8 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-1,-0,0,0.5" # Corvax-Change
-        density: 500
+          bounds: "-0.5,-0.5,0.5,0.5" # Misfit Change
+        density: 1500
         mask:
         - TabletopMachineMask
   - type: ActivatableUI

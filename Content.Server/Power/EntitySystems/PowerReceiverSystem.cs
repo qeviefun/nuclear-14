@@ -55,6 +55,8 @@ namespace Content.Server.Power.EntitySystems
 
         private void OnExamined(Entity<ApcPowerReceiverComponent> ent, ref ExaminedEvent args)
         {
+            if (!ent.Comp.NeedsPower) return; // Misfits Change
+
             args.PushMarkup(GetExamineText(ent.Comp.Powered));
         }
 
