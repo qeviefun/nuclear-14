@@ -4423,3 +4423,24 @@ Entries:
   id: 5822
   time: '2026-05-02T01:09:57.0000000+00:00'
   url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/403
+- author: AthenaAI
+  changes:
+    - type: Fix
+      message: Fixed health analyzer using the wrong gold material.
+    - type: Fix
+      message: >-
+        Fixed paper not being paper now paper acts like paper and burns like
+        paper and can be written like paper.
+    - type: Tweak
+      message: Adjusted hitboxes for the workbenches to be better match their sprites.
+    - type: Tweak
+      message: >-
+        Adjusted the sprite of the chemical set so its centered instead of being
+        somewhere to the left.
+    - type: Tweak
+      message: >-
+        Allowed workbenches, chemical set, and seed extractor be unachored.
+        Albeit workbenches and chemical set are heavy to move.
+  id: 5823
+  time: '2026-05-02T01:10:46.0000000+00:00'
+  url: https://github.com/Misfit-Sanctuary/nuclear-14/pull/399
